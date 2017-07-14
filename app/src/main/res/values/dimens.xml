@@ -1,0 +1,46 @@
+<resources>
+    <dimen name="button_sign_in_margin">32dp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="activity_padding">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="element_horizontal_margin">8dp</dimen>
+    <dimen name="element_vertical_margin">8dp</dimen>
+    <dimen name="item_horizontal_margin">8dp</dimen>
+    <dimen name="item_vertical_margin">8dp</dimen>
+    <dimen name="element_padding">8dp</dimen>
+    <dimen name="element_margin">8dp</dimen>
+
+    <dimen name="no_dimen">0dp</dimen>
+
+    <dimen name="dimen_dialog_text">24dp</dimen>
+    <dimen name="fab_margin">8dp</dimen>
+    <dimen name="card_height">304dp</dimen>
+    <dimen name="md_keylines">16dp</dimen>
+    <dimen name="article_keylines">82dp</dimen>
+    <dimen name="card_image_height">200dp</dimen>
+    <dimen name="dimen_card_view_height">180dp</dimen>
+    <dimen name="dimen_card_scenery_view_height">250dp</dimen>
+    <dimen name="dimen_card_campaign_view_height">495dp</dimen>
+    <dimen name="card_view_item_height">330dp</dimen>
+    <dimen name="cards_button_width">45dp</dimen>
+    <dimen name="cards_button_height">45dp</dimen>
+    <dimen name="item_img_width">38dp</dimen>
+    <dimen name="item_img_height">38dp</dimen>
+    <dimen name="item_comments_height">76dp</dimen>
+
+    <dimen name="item_dialog_img_width">25dp</dimen>
+    <dimen name="item_dialog_img_height">25dp</dimen>
+
+    <dimen name="mini_button_width">15dp</dimen>
+    <dimen name="mini_button_height">15dp</dimen>
+
+    <dimen name="item_view_img_width">38dp</dimen>
+    <dimen name="item_view_img_height">38dp</dimen>
+    <dimen name="item_view_padding">8dp</dimen>
+
+    <dimen name="fab_margin_bottom">56dp</dimen>
+    <dimen name="fab_margin_right">55dp</dimen>
+    <dimen name="app_bar_height">256dp</dimen>
+
+</resources>
