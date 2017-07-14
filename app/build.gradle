@@ -27,8 +27,8 @@ android {
         debug {
             minifyEnabled false
             testCoverageEnabled = true
-            resValue "string", "app_name", "BGScore - Debug"
-            resValue "string", "title_app", "BGScore - Debug"
+            resValue "string", "app_name", "BGScore (debug)"
+            resValue "string", "title_app", "BGScore (debug)"
         }
     }
     productFlavors {
