@@ -1,5 +1,6 @@
 package br.com.battista.bgscore.activity;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 import java.text.MessageFormat;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.util.AndroidUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -46,6 +46,14 @@ public class MainActivity extends BaseActivity {
     private void processProgressBarMain() {
         final ProgressBar progressBarMain = (ProgressBar) findViewById(R.id.progress_bar_main);
         new ProgressBarAsyncTask(progressBarMain).execute();
+    }
+
+    private void loadHomeActivity() {
+        Bundle args = new Bundle();
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtras(args);
+
+        getContext().startActivity(intent);
     }
 
     private class ProgressBarAsyncTask extends AsyncTask<Void, Integer, Void> {
@@ -83,8 +91,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
-            AndroidUtils.toast(getActivity(), "Acabou!");
+            loadHomeActivity();
         }
     }
 }

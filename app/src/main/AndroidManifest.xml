@@ -17,13 +17,11 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-
         <service
             android:name=".service.CacheManageService"
             android:enabled="true" />
 
         <activity android:name=".activity.BaseActivity" />
-
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTop"
@@ -33,6 +31,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.HomeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
         </activity>
 
         <meta-data
@@ -47,10 +52,10 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="br.com.battista.bgscore.model" />
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="259f20ad704f17270f36dedac2ff04ed2f044dfb" />
+
     </application>
 
 </manifest>

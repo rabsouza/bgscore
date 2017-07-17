@@ -123,6 +123,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 /*

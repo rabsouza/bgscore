@@ -9,6 +9,15 @@
     android:padding="@dimen/no_dimen"
     tools:context="br.com.battista.bgscore.activity.MainActivity">
 
+    <TextView
+        android:id="@+id/title_main"
+        style="@style/AppTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingTop="50dp"
+        android:text="@string/title_main" />
+
     <ImageView
         android:id="@+id/image_main"
         android:layout_width="@dimen/image_main_width"
@@ -18,15 +27,6 @@
         android:layout_marginTop="-150dp"
         android:contentDescription="@string/cd_image_main"
         android:src="@drawable/logo_bgscore" />
-
-    <TextView
-        android:id="@+id/title_main"
-        style="@style/AppTitleStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:paddingTop="50dp"
-        android:text="@string/title_main" />
 
     <ProgressBar
         android:id="@+id/progress_bar_main"

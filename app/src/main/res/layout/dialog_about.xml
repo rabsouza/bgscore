@@ -1,0 +1,8 @@
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_about_text"
+    style="@style/TextStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="start|center_vertical"
+    android:padding="@dimen/dimen_dialog_text"/>

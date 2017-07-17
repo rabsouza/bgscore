@@ -6,19 +6,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="android:typeface">serif</item>
+        <item name="android:windowBackground">@color/colorBG</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:typeface">sans</item>
-    </style>
-
-    <style name="AppTheme.Activity">
-        <item name="android:background">@color/colorBG</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.NavDrawer">
         <item name="android:typeface">sans</item>
     </style>
 

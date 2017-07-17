@@ -6,8 +6,52 @@
 
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
+    <string name="title_home">BoardGame Score</string>
+    <string name="title_about">Informação</string>
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software @2017 - %1$s</string>
+
+    <!-- ################### ALERT #################### -->
+    <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
+    <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. Deseja sair da aplicação?</string>
+
+    <!-- ################### ELEMENTS #################### -->
+    <string name="btn_login">ENTRAR</string>
+    <string name="btn_sign_in">CRIAR CONTA</string>
+    <string name="btn_save">SALVAR</string>
+    <string name="btn_create">CRIAR</string>
+    <string name="btn_cancel">CANCELAR</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_share">COMPARTILHAR</string>
+    <string name="btn_confirmation_dialog_exit">SAIR</string>
+    <string name="btn_confirmation_dialog_cancel">CANCELAR</string>
+    <string name="btn_confirmation_dialog_delete">EXCLUIR</string>
+    <string name="btn_confirmation_dialog_remove">REMOVER</string>
+    <string name="btn_confirmation_dialog_play">JOGAR</string>
+    <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
+
+    <!-- ################### ACTION BAR #################### -->
+    <string name="action_home">inicio</string>
+    <string name="action_games">partidas</string>
+    <string name="action_account">perfil</string>
+    <string name="action_info">informação</string>
+
+    <!-- ################### DIALOG ####################### -->
+    <string name="about_dialog_text">
+    <![CDATA[
+<h3>BoardGame Score @2017</h3><br>
+Versão: {0} ({1})<br>
+Data Release: {2}<br><br>
+<b>Suporte:</b><br>
+* O aplicativo para gerenciar as suas partidas de BoardGames!
+<br><br>
+<b>Contato:</b><br>
+Nome: Rafael Alessandro Batista<br>
+E-mail: rabsouza@gmail.com<br>
+<br><br>
+Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a>
+	]]>
+    </string>
 
 </resources>
