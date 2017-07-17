@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -8,6 +10,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
         encoding = 'UTF-8'
     }
+
     defaultConfig {
         applicationId "br.com.battista.bgscore"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -117,6 +120,9 @@ dependencies {
 
     compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintVersion"
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
 }
 
 /*

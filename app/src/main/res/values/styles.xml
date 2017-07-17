@@ -14,6 +14,10 @@
         <item name="android:typeface">sans</item>
     </style>
 
+    <style name="AppTheme.Activity">
+        <item name="android:background">@color/colorBG</item>
+    </style>
+
     <style name="AppTheme.NoActionBar.NavDrawer">
         <item name="android:typeface">sans</item>
     </style>
@@ -88,7 +92,7 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">42sp</item>
+        <item name="android:textSize">48sp</item>
         <item name="android:typeface">sans</item>
     </style>
 

@@ -20,7 +20,7 @@ public class ImageLoadUtils {
                 .into(img);
     }
 
-    public static void loadImage(@NonNull Context context, @NonNull int resId, @NonNull ImageView img) {
+    public static void loadImage(@NonNull Context context, @NonNull Integer resId, @NonNull ImageView img) {
         Glide.with(context)
                 .load(resId)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)

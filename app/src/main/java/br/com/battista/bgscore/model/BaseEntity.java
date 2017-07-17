@@ -10,6 +10,9 @@ import com.orm.dsl.Column;
 import java.io.Serializable;
 import java.util.Date;
 
+import br.com.battista.bgscore.constants.EntityConstant;
+import br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry;
+
 
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)

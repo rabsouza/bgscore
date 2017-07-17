@@ -7,7 +7,7 @@ import java.util.Map;
 
 public enum SharedPreferencesKeys {
 
-    NONE, USER_DATA;
+    NONE;
 
     private static final Map<String, SharedPreferencesKeys> LOOK_UP = Maps.newHashMap();
 

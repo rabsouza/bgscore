@@ -7,8 +7,7 @@ import java.util.Map;
 
 public enum ActionEnum {
 
-    NONE,
-    START_FRAGMENT_CAMPAIGNS;
+    NONE;
 
     private static final Map<String, ActionEnum> LOOK_UP = Maps.newHashMap();
 

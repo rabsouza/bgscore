@@ -15,6 +15,8 @@ import android.view.ViewPropertyAnimator;
 
 public class AnimationUtils {
 
+    private static final int DURATION = 250;
+
     /**
      * This method is used to remove the Status Bar and the Navbar from
      * the shared elements transition, otherwise they will blink.
@@ -28,8 +30,6 @@ public class AnimationUtils {
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         return fade;
     }
-
-    private static final int DURATION = 250;
 
     /**
      * This method animates a view's Z position when touched.
@@ -56,22 +56,15 @@ public class AnimationUtils {
                 public boolean onTouch(View view, MotionEvent motionEvent) {
                     int action = motionEvent.getActionMasked();
                     ViewPropertyAnimator animation = null;
-        /* Raise view on ACTION_DOWN and lower it on ACTION_UP. */
+                    /* Raise view on ACTION_DOWN and lower it on ACTION_UP. */
                     switch (action) {
                         case MotionEvent.ACTION_DOWN:
-                            if (animation != null)
-                                animation.cancel();
                             animateZ(viewToAnimate, finalZ);
                             break;
                         case MotionEvent.ACTION_UP:
-                            if (animation != null)
-                                animation.cancel();
                             animateZ(viewToAnimate, start);
-
                             break;
                         case MotionEvent.ACTION_CANCEL:
-                            if (animation != null)
-                                animation.cancel();
                             animateZ(viewToAnimate, start);
                             break;
                     }

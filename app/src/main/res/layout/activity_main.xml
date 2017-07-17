@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.battista.bgscore.MainActivity">
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true"
+    android:padding="@dimen/no_dimen"
+    tools:context="br.com.battista.bgscore.activity.MainActivity">
+
+    <ImageView
+        android:id="@+id/image_main"
+        android:layout_width="@dimen/image_main_width"
+        android:layout_height="@dimen/image_main_height"
+        android:layout_alignTop="@+id/title_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-150dp"
+        android:contentDescription="@string/cd_image_main"
+        android:src="@drawable/logo_bgscore" />
 
     <TextView
+        android:id="@+id/title_main"
+        style="@style/AppTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerInParent="true"
+        android:paddingTop="50dp"
+        android:text="@string/title_main" />
 
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar_main"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="@dimen/image_main_width"
+        android:layout_height="10dp"
+        android:layout_below="@id/title_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:progress="0" />
+
+</RelativeLayout>

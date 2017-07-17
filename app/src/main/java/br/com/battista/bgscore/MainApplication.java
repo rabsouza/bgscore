@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.orm.SugarContext;
 
 import java.util.Locale;
@@ -15,6 +16,7 @@ import java.util.Locale;
 import br.com.battista.bgscore.adpater.FontsAdapter;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.service.CacheManageService;
+import io.fabric.sdk.android.Fabric;
 
 import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
 import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
@@ -42,6 +44,7 @@ public class MainApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         Log.d(TAG, "onCreate: MainApplication!");
 
         initializeSystemFont();
@@ -53,6 +56,7 @@ public class MainApplication extends MultiDexApplication {
         initializeCacheManager();
     }
 
+    @SuppressWarnings("deprecation")
     public Locale getCurrentLocale() {
         return getResources().getConfiguration().locale;
     }
@@ -83,7 +87,6 @@ public class MainApplication extends MultiDexApplication {
         editor.putString(key.name(), value);
         return editor.commit();
     }
-
 
     protected void initializeDB() {
         Log.i(TAG, "initializeDB: Initialize Database to App.");

@@ -1,2 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- ################### CONTENT_DESCRIPTION #################### -->
+    <string name="cd_image_main">Imagem da logo do BoardGame Score</string>
+
+    <!-- ################### TITLE #################### -->
+    <string name="title_main">BoardGame\nScore</string>
+
 </resources>

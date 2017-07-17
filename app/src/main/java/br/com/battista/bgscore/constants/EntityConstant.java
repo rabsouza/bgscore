@@ -4,7 +4,7 @@ public class EntityConstant {
 
     public static final Long DEFAULT_VERSION = 1L;
     public static final Integer DEFAULT_CACHE_SIZE = 10 * 1024 * 1024;
-    public static final String DEFAULT_DATABASE_NAME = "arcadia_caller_db.db";
+    public static final String DEFAULT_DATABASE_NAME = "bgscore_db.db";
 
     private EntityConstant() {
     }

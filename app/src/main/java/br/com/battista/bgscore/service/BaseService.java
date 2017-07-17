@@ -1,12 +1,5 @@
 package br.com.battista.bgscore.service;
 
-import static br.com.battista.arcadiacaller.constants.EntityConstant.DEFAULT_CACHE_SIZE;
-import static br.com.battista.arcadiacaller.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_KEY;
-import static br.com.battista.arcadiacaller.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_VALUE;
-import static br.com.battista.arcadiacaller.constants.RestConstant.HEADER_LOCALE_KEY;
-import static br.com.battista.arcadiacaller.constants.RestConstant.HEADER_USER_AGENT_KEY;
-import static br.com.battista.arcadiacaller.constants.RestConstant.HEADER_USER_AGENT_VALUE;
-
 import android.net.http.HttpResponseCache;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -15,15 +8,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import br.com.battista.arcadiacaller.MainApplication;
-import br.com.battista.arcadiacaller.constants.HttpStatus;
-import br.com.battista.arcadiacaller.constants.RestConstant;
-import br.com.battista.arcadiacaller.exception.ArcadiaCallerException;
-import br.com.battista.arcadiacaller.exception.AuthenticationException;
-import br.com.battista.arcadiacaller.exception.EntityAlreadyExistsException;
-import br.com.battista.arcadiacaller.exception.EntityNotFoundException;
-import br.com.battista.arcadiacaller.exception.ValidatorException;
-import br.com.battista.arcadiacaller.service.server.LocaleService;
+import br.com.battista.bgscore.MainApplication;
+import br.com.battista.bgscore.constants.HttpStatus;
+import br.com.battista.bgscore.constants.RestConstant;
+import br.com.battista.bgscore.exception.AuthenticationException;
+import br.com.battista.bgscore.exception.BGScoreException;
+import br.com.battista.bgscore.exception.EntityAlreadyExistsException;
+import br.com.battista.bgscore.exception.EntityNotFoundException;
+import br.com.battista.bgscore.exception.ValidatorException;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -32,6 +24,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_CACHE_SIZE;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_KEY;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_VALUE;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_LOCALE_KEY;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_KEY;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_VALUE;
 
 public class BaseService {
 
@@ -103,7 +102,7 @@ public class BaseService {
 
         } catch (IOException e) {
             Log.e(TAG, "createCache: " + e.getLocalizedMessage(), e);
-            throw new ArcadiaCallerException("Error create to cache!", e);
+            throw new BGScoreException("Error create to cache!", e);
         }
     }
 
