@@ -7,4 +7,7 @@
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
 
+    <!-- ################### HINT #################### -->
+    <string name="hint_version">Battista Software @2017 - %1$s</string>
+
 </resources>

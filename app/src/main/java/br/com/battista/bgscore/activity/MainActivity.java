@@ -1,18 +1,25 @@
 package br.com.battista.bgscore.activity;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import java.text.MessageFormat;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.util.AndroidUtils;
 
 public class MainActivity extends BaseActivity {
 
+    public static final int DEFAULT_SLEEP_PROGRESS_BAR = 300;
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static final int DEFAULT_STEPS_PROGRESS_BAR = 5;
     private static final int MAX_PROGRESS_BAR = 100;
-    public static final int DEFAULT_SLEEP_PROGRESS_BAR = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +27,24 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         processProgressBarMain();
+        loadVersionName();
+    }
+
+    private void loadVersionName() {
+        final TextView hintVersion = (TextView) findViewById(R.id.hint_version);
+        String version = "";
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = pInfo.versionName;
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, MessageFormat.format("Error load version: {0}", e.getLocalizedMessage()));
+        }
+        hintVersion.setText(getString(R.string.hint_version, version));
     }
 
     private void processProgressBarMain() {
         final ProgressBar progressBarMain = (ProgressBar) findViewById(R.id.progress_bar_main);
-
         new ProgressBarAsyncTask(progressBarMain).execute();
     }
 
