@@ -48,8 +48,8 @@ public class ScoreboardView extends LinearLayout {
         String value = null;
         String label = null;
         try {
-            value = a.getString(R.styleable.ScoreboardView_score);
-            label = a.getString(R.styleable.ScoreboardView_label);
+            value = a.getString(R.styleable.ScoreboardView_value_score);
+            label = a.getString(R.styleable.ScoreboardView_label_score);
         } finally {
             a.recycle();
         }

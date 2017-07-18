@@ -33,6 +33,11 @@
     <string name="text_mail">E-mail: %1$s</string>
     <string name="text_date_created">Data criação: %1$s</string>
     <string name="text_dialog_change_avatar_info_01">* Selecione na lista abaixo o avatar que deseja usar como perfil.</string>
+    <string name="text_dialog_edit_profile_info_01">* Preencha os campos abaixo com seus dados.</string>
+
+    <!-- ################### Field #################### -->
+    <string name="field_username">Nome do usuário</string>
+    <string name="field_mail">E-mail do perfil</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
@@ -79,9 +84,12 @@ Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/REL
 	]]>
     </string>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
+    <string name="dialog_title_edit_profile">Editar perfil</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ################### OTHERS #################### -->
     <string name="avatar_boba_fett">Boba Fett</string>
     <string name="avatar_feet_jango">Fett Jango</string>
     <string name="avatar_jawa">Jawa</string>

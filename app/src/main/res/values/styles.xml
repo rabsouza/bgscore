@@ -27,14 +27,14 @@
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">sans</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:padding">8dp</item>
     </style>
 
     <style name="ButtonStyleWithBorder" parent="Base.Widget.AppCompat.Button">
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">sans</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:padding">8dp</item>
         <item name="android:textColor">@color/colorText</item>
     </style>
@@ -42,7 +42,7 @@
     <style name="ButtonStyleActive" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">sans</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:padding">8dp</item>
         <item name="android:textColor">@color/white</item>
     </style>
@@ -50,19 +50,19 @@
     <style name="InputStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="HintTextStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:typeface">serif</item>
     </style>
 
@@ -94,27 +94,21 @@
     <style name="CardHeadStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:typeface">serif</item>
-    </style>
-
-    <style name="ItemTextStyle">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:typeface">serif</item>
     </style>
 
     <style name="CardTextStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="CardTextBoldStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

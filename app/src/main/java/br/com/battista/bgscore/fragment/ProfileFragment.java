@@ -20,8 +20,8 @@ import java.util.Calendar;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
+import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
@@ -78,6 +78,11 @@ public class ProfileFragment extends BaseFragment {
                 if (resultCode == Activity.RESULT_OK) {
                     loadUserInfo(getView());
                 }
+                break;
+            case EditProfileDialog.DIALOG_EDIT_PROFILE_FRAGMENT:
+                if (resultCode == Activity.RESULT_OK) {
+                    loadUserInfo(getView());
+                }
         }
     }
 
@@ -127,7 +132,7 @@ public class ProfileFragment extends BaseFragment {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AndroidUtils.toast(getActivity(), "Não implementado!");
+                EditProfileDialog.newInstance().showDialog(currentFragment);
             }
         });
     }
