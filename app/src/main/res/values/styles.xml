@@ -62,22 +62,8 @@
     <style name="HintTextStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:typeface">serif</item>
-    </style>
-
-    <style name="NavDrawerTextBoldStyle">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:typeface">sans</item>
-    </style>
-
-    <style name="NavDrawerTextStyle">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textStyle">italic</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:typeface">sans</item>
     </style>
 
     <style name="AppTitleStyle">
@@ -101,15 +87,15 @@
     <style name="CardTitleStyle">
         <item name="android:textColor">@color/colorTitle</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
     <style name="CardHeadStyle">
-        <item name="android:textColor">@color/colorTitle</item>
+        <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:typeface">sans</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">serif</item>
     </style>
 
     <style name="ItemTextStyle">
@@ -121,23 +107,14 @@
     <style name="CardTextStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="CardTextBoldStyle">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="CardTextTitleStyle">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">right</item>
-        <item name="android:layout_marginRight">@dimen/element_horizontal_margin</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
 </resources>

@@ -7,13 +7,17 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.util.Log;
 import android.view.MenuItem;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.dialog.AboutDialog;
+import br.com.battista.bgscore.fragment.dialog.AboutDialog;
+import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.util.AndroidUtils;
 
 public class HomeActivity extends BaseActivity {
+
+    private static final String TAG = HomeActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,9 @@ public class HomeActivity extends BaseActivity {
 
         setUpToolbar(R.string.title_home);
         setUpBottomNavigation();
+
+        Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
+        replaceFragment(HomeFragment.newInstance());
     }
 
     private void setUpBottomNavigation() {

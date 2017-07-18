@@ -9,8 +9,20 @@
     <string name="title_home">BoardGame Score</string>
     <string name="title_about">Informação</string>
 
+    <!-- ################### CARD #################### -->
+    <string name="card_title_my_profile">Meu perfil</string>
+    <string name="card_title_my_ranking_game">Meu ranking de games</string>
+
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software @2017 - %1$s</string>
+
+    <!-- ################### TEXT #################### -->
+    <string name="text_home_games">Jogos</string>
+    <string name="text_home_matches">Partidas</string>
+    <string name="text_home_matches_time">Tempo(hs)</string>
+    <string name="text_home_username">Usuário Padrão</string>
+    <string name="text_home_last_play">Última partida: %1$s</string>
+    <string name="text_home_stats_info_01">* O ranking de games é formado através das partidas cadastradas no aplicativo. Ordenado pela quantidades de partidas.</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
@@ -33,7 +45,7 @@
 
     <!-- ################### ACTION BAR #################### -->
     <string name="action_home">inicio</string>
-    <string name="action_games">partidas</string>
+    <string name="action_matches">partidas</string>
     <string name="action_account">perfil</string>
     <string name="action_info">informação</string>
 

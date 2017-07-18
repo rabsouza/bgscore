@@ -12,7 +12,7 @@
         android:id="@+id/action_games"
         android:enabled="true"
         android:icon="@drawable/ic_games"
-        android:title="@string/action_games" />
+        android:title="@string/action_matches" />
 
     <item
         android:id="@+id/action_account"

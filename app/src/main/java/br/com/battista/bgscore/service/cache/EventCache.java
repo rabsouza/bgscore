@@ -1,4 +1,4 @@
-package br.com.battista.bgscore.cache;
+package br.com.battista.bgscore.service.cache;
 
 import android.support.annotation.NonNull;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package br.com.battista.bgscore.dialog;
+package br.com.battista.bgscore.fragment.dialog;
 
 
 import android.app.Dialog;
