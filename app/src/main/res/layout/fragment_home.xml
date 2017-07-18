@@ -53,7 +53,7 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
+                            android:layout_height="2px"
                             android:layout_marginBottom="@dimen/element_vertical_margin"
                             android:background="@color/colorLine"/>
 
@@ -69,7 +69,8 @@
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/profile"
                                 app:civ_border_color="@color/colorLine"
-                                app:civ_border_width="2dp"/>
+                                app:civ_border_overlay="true"
+                                app:civ_border_width="2px"/>
 
                             <TextView
                                 android:id="@+id/card_view_home_username"
@@ -112,7 +113,7 @@
                                     app:score="0"/>
 
                                 <View
-                                    android:layout_width="1px"
+                                    android:layout_width="2px"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="@dimen/element_horizontal_margin"
                                     android:layout_marginRight="@dimen/element_horizontal_margin"
@@ -126,7 +127,7 @@
                                     app:score="0"/>
 
                                 <View
-                                    android:layout_width="1px"
+                                    android:layout_width="2px"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="@dimen/element_horizontal_margin"
                                     android:layout_marginRight="@dimen/element_horizontal_margin"
@@ -151,6 +152,7 @@
                     android:id="@+id/card_view_stats"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="@dimen/no_dimen"
                     app:cardBackgroundColor="@android:color/transparent"
@@ -177,7 +179,7 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
+                            android:layout_height="2px"
                             android:layout_marginBottom="@dimen/element_vertical_margin"
                             android:background="@color/colorLine"/>
 
