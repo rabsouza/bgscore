@@ -77,6 +77,17 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            step01CheckUser();
+
+            while (currentProgress < MAX_PROGRESS_BAR) {
+                SystemClock.sleep(DEFAULT_SLEEP_PROGRESS_BAR);
+                currentProgress += incrementProgressBarMain;
+                publishProgress(currentProgress);
+            }
+            return null;
+        }
+
+        private void step01CheckUser() {
             MainApplication instance = MainApplication.instance();
             User user = instance.getUser();
             if (user == null) {
@@ -84,14 +95,8 @@ public class MainActivity extends BaseActivity {
                 user.initEntity();
                 instance.setUser(user);
             }
-
-            while (currentProgress < MAX_PROGRESS_BAR) {
-                SystemClock.sleep(DEFAULT_SLEEP_PROGRESS_BAR);
-                currentProgress += incrementProgressBarMain;
-                publishProgress(currentProgress);
-            }
-
-            return null;
+            currentProgress += incrementProgressBarMain;
+            publishProgress(currentProgress);
         }
 
         @Override

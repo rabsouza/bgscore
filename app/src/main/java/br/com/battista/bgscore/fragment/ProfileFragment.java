@@ -1,6 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
 
+import com.google.common.base.MoreObjects;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,11 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
+import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
 
@@ -25,6 +33,11 @@ public class ProfileFragment extends BaseFragment {
 
     private Button btnChangeAvatar;
     private Button btnEditProfile;
+
+    private TextView usernameView;
+    private TextView mailView;
+    private TextView dateCreatedView;
+    private ImageView avatarView;
 
     public ProfileFragment() {
     }
@@ -45,8 +58,36 @@ public class ProfileFragment extends BaseFragment {
 
         setupRecycleViewFriends(view);
         setupButtonsProfile(view);
+        loadUserInfo(view);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadUserInfo(getView());
+    }
+
+    private void loadUserInfo(View view) {
+        User user = MainApplication.instance().getUser();
+
+        avatarView = view.findViewById(R.id.card_view_profile_img);
+        avatarView.setImageResource(user.getIdResAvatar());
+
+        usernameView = view.findViewById(R.id.card_view_profile_username);
+        usernameView.setText(getString(R.string.text_username, user.getUsername()));
+
+        mailView = view.findViewById(R.id.card_view_profile_mail);
+        mailView.setText(getString(R.string.text_mail,
+                MoreObjects.firstNonNull(user.getMail(), "-")));
+
+        dateCreatedView = view.findViewById(R.id.card_view_profile_date_created);
+        Calendar dateCreatedCalendar = Calendar.getInstance();
+        dateCreatedCalendar.setTime(user.getCreatedAt());
+        dateCreatedView.setText(getString(R.string.text_date_created,
+                DateUtils.format(dateCreatedCalendar)));
+
     }
 
     private void setupRecycleViewFriends(View view) {

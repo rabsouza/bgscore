@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -29,6 +30,7 @@ public class HomeFragment extends BaseFragment {
 
     private TextView usernameView;
     private TextView lastPlayView;
+    private ImageView avatarView;
 
     private ScoreboardView scoreGames;
     private ScoreboardView scoreMatches;
@@ -68,6 +70,10 @@ public class HomeFragment extends BaseFragment {
 
     private void loadUserInfo(View view) {
         User user = MainApplication.instance().getUser();
+
+        avatarView = view.findViewById(R.id.card_view_home_img);
+        avatarView.setImageResource(user.getIdResAvatar());
+
         usernameView = view.findViewById(R.id.card_view_home_username);
         usernameView.setText(user.getUsername());
 

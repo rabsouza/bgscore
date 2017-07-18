@@ -24,7 +24,7 @@
     <string name="text_home_matches_time">Tempo(hs)</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
     <string name="text_home_stats_info_01">* Seu ranking pessoal dos últimos 10 jogos mais jogados.</string>
-    <string name="text_home_stats_empty_view">Você ainda não adicionou nenhum jogo.</string>
+    <string name="text_home_stats_empty_view">Você ainda não adicionou nenhum jogo e partida.</string>
     <string name="text_home_stats_error_view">Error ao carregar a lista de jogos, favor tentar novamente.</string>
     <string name="text_profile_friends_empty_view">Você ainda não adicionou nenhum amigo.</string>
     <string name="text_profile_friends_error_view">Error ao carregar a lista de amigos, favor tentar novamente.</string>

@@ -56,16 +56,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                                 android:id="@+id/card_view_profile_img"
                                 android:layout_width="@dimen/dimen_profile_img_width"
                                 android:layout_height="@dimen/dimen_profile_img_height"
                                 android:padding="@dimen/element_padding"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/profile"
-                                app:civ_border_color="@color/colorLine"
-                                app:civ_border_overlay="true"
-                                app:civ_border_width="@dimen/dimen_line" />
+                                android:layout_marginTop="25dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/profile" />
 
                         <LinearLayout
                                 android:id="@+id/group_data_profile"

@@ -2,12 +2,15 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.Objects;
 
+import android.support.annotation.DrawableRes;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
 @Table(name = UserEntry.TABLE_NAME)
@@ -22,7 +25,8 @@ public class User extends BaseEntity implements Serializable {
     private String mail = null;
 
     @Column(name = UserEntry.COLUMN_NAME_URL_AVATAR)
-    private String urlAvatar = null;
+    @DrawableRes
+    private int idResAvatar = R.drawable.profile;
 
     @Column(name = UserEntry.COLUMN_NAME_LAST_PLAY)
     private Date lastPlay = null;
@@ -52,12 +56,13 @@ public class User extends BaseEntity implements Serializable {
         this.mail = mail;
     }
 
-    public String getUrlAvatar() {
-        return urlAvatar;
+    @DrawableRes
+    public int getIdResAvatar() {
+        return idResAvatar;
     }
 
-    public void setUrlAvatar(String urlAvatar) {
-        this.urlAvatar = urlAvatar;
+    public void setIdResAvatar(@DrawableRes int idResAvatar) {
+        this.idResAvatar = idResAvatar;
     }
 
     public Date getLastPlay() {
@@ -111,7 +116,7 @@ public class User extends BaseEntity implements Serializable {
         return "User{" +
                 "username='" + username + '\'' +
                 ", mail='" + mail + '\'' +
-                ", urlAvatar='" + urlAvatar + '\'' +
+                ", idResAvatar='" + idResAvatar + '\'' +
                 ", lastPlay=" + lastPlay +
                 ", numGames=" + numGames +
                 ", numMatches=" + numMatches +
@@ -129,8 +134,8 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
-    public User urlAvatar(String urlAvatar) {
-        this.urlAvatar = urlAvatar;
+    public User idResAvatar(@DrawableRes int idResAvatar) {
+        this.idResAvatar = idResAvatar;
         return this;
     }
 
