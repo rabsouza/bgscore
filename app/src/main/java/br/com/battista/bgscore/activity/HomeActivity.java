@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
@@ -26,6 +28,13 @@ public class HomeActivity extends BaseActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
 
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        for (int i = 0; i < menuView.getChildCount(); i++) {
+            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
+            itemView.setShiftingMode(false);
+            itemView.setChecked(false);
+        }
+
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -33,12 +42,15 @@ public class HomeActivity extends BaseActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_home:
+                                item.setChecked(true);
                                 AndroidUtils.toast(getActivity(), "Clicou em Home!");
                                 break;
                             case R.id.action_games:
+                                item.setChecked(true);
                                 AndroidUtils.toast(getActivity(), "Clicou em Partidas!");
                                 break;
                             case R.id.action_account:
+                                item.setChecked(true);
                                 AndroidUtils.toast(getActivity(), "Clicou em Perfil!");
                                 break;
                             case R.id.action_info:
