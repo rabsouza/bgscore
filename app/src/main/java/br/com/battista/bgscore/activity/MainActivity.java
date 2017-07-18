@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity {
 
     public static final int DEFAULT_SLEEP_PROGRESS_BAR = 300;
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int DEFAULT_STEPS_PROGRESS_BAR = 6;
+    private static final int DEFAULT_STEPS_PROGRESS_BAR = 5;
     private static final int MAX_PROGRESS_BAR = 100;
 
     @Override

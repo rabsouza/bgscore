@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.fragment;
 
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_FRAGMENT;
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_FRAGMENT;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +9,11 @@ import android.util.Log;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
 import com.crashlytics.android.answers.CustomEvent;
+
+import br.com.battista.bgscore.R;
+
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_FRAGMENT;
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_FRAGMENT;
 
 public class BaseFragment extends Fragment {
 
@@ -30,10 +32,13 @@ public class BaseFragment extends Fragment {
                 .putContentType(KEY_FRAGMENT));
 
     }
+
     protected void replaceDetailFragment(Fragment fragment, int containerResID) {
         if (fragment != null) {
             Log.d(TAG, "replaceFragment: Change to detail fragment!");
             final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(
+                    R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
             transaction.replace(containerResID, fragment);
             transaction.commit();
         }

@@ -77,16 +77,10 @@ public class BaseActivity extends AppCompatActivity {
         if (fragment != null) {
             Log.d(TAG, "replaceFragment: Change to fragment!");
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container, fragment, fragment.getTag());
-            transaction.commit();
-        }
-    }
+            transaction.setCustomAnimations(
+                    R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
 
-    protected void replaceDetailFragment(Fragment fragment, int resIdContainer) {
-        if (fragment != null) {
-            Log.d(TAG, "replaceFragment: Change to detail fragment!");
-            final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(resIdContainer, fragment);
+            transaction.replace(R.id.container, fragment, fragment.getTag());
             transaction.commit();
         }
     }

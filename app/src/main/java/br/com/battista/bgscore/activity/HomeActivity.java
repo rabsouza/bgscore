@@ -11,8 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.HomeFragment;
+import br.com.battista.bgscore.fragment.ProfileFragment;
+import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.util.AndroidUtils;
 
 public class HomeActivity extends BaseActivity {
@@ -50,7 +51,8 @@ public class HomeActivity extends BaseActivity {
                         switch (item.getItemId()) {
                             case R.id.action_home:
                                 item.setChecked(true);
-                                AndroidUtils.toast(getActivity(), "Clicou em Home!");
+                                setUpToolbar(R.string.title_home);
+                                replaceFragment(HomeFragment.newInstance());
                                 break;
                             case R.id.action_games:
                                 item.setChecked(true);
@@ -58,7 +60,8 @@ public class HomeActivity extends BaseActivity {
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);
-                                AndroidUtils.toast(getActivity(), "Clicou em Perfil!");
+                                setUpToolbar(R.string.title_profile);
+                                replaceFragment(ProfileFragment.newInstance());
                                 break;
                             case R.id.action_info:
                                 AboutDialog.showAbout(getSupportFragmentManager());
