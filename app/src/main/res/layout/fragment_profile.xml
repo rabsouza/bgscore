@@ -175,6 +175,33 @@
                         android:layout_marginBottom="@dimen/element_vertical_margin"
                         android:background="@color/colorLine" />
 
+                    <br.com.battista.bgscore.view.RecycleEmptyErrorView
+                        android:id="@+id/card_view_friends_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:clipToPadding="false"
+                        android:dividerHeight="1dp"
+                        android:listSelector="@android:color/transparent"
+                        android:paddingBottom="@dimen/md_keylines"
+                        android:paddingTop="@dimen/md_keylines" />
+
+                    <TextView
+                        android:id="@+id/card_view_friends_empty_view"
+                        style="@style/CardTextBoldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="@string/text_profile_friends_empty_view" />
+
+                    <TextView
+                        android:id="@+id/card_view_friends_error_view"
+                        style="@style/CardTextBoldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="@string/text_profile_friends_error_view" />
+
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

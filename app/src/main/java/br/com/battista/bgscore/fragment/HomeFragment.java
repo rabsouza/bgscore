@@ -6,8 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
@@ -15,8 +15,8 @@ public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
 
     private SwipeRefreshLayout refreshLayout;
-    private RecycleEmptyErrorView recycleViewRankingGames;
 
+    private RecycleEmptyErrorView recycleViewRankingGames;
     private TextView emptyMsgRankingGames;
     private TextView errorMsgRankingGames;
 
@@ -45,11 +45,14 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        recycleViewRankingGames = view.findViewById(R.id.card_view_stats_empty_view);
+        recycleViewRankingGames = view.findViewById(R.id.card_view_stats_recycler_view);
         emptyMsgRankingGames = view.findViewById(R.id.card_view_stats_empty_view);
         errorMsgRankingGames = view.findViewById(R.id.card_view_stats_error_view);
         recycleViewRankingGames.setEmptyView(emptyMsgRankingGames);
         recycleViewRankingGames.setErrorView(errorMsgRankingGames);
+
+        // TODO Remover ao add um adapter
+        emptyMsgRankingGames.setVisibility(View.VISIBLE);
 
         return view;
     }
