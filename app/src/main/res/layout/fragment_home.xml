@@ -81,7 +81,7 @@
                                     android:gravity="center_horizontal"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:paddingTop="@dimen/element_padding"
-                                    android:text="@string/text_default_username" />
+                                    tools:text="@string/text_default_username" />
 
                             <TextView
                                     android:id="@+id/card_view_last_play"
@@ -93,7 +93,7 @@
                                     android:gravity="center_horizontal"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:paddingTop="@dimen/element_padding"
-                                    android:text="@string/text_home_last_play" />
+                                    tools:text="@string/text_home_last_play" />
 
                             <LinearLayout
                                     android:layout_width="match_parent"
@@ -104,6 +104,7 @@
                                     android:weightSum="3">
 
                                 <br.com.battista.bgscore.view.ScoreboardView
+                                        android:id="@+id/card_view_score_games"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
@@ -118,6 +119,7 @@
                                         android:background="@color/colorLine" />
 
                                 <br.com.battista.bgscore.view.ScoreboardView
+                                        android:id="@+id/card_view_score_matches"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
@@ -132,6 +134,7 @@
                                         android:background="@color/colorLine" />
 
                                 <br.com.battista.bgscore.view.ScoreboardView
+                                        android:id="@+id/card_view_score_total_time"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"

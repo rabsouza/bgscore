@@ -70,6 +70,14 @@ public class ScoreboardView extends LinearLayout {
         scoreView.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
+    public void setScoreText(String text){
+        scoreView.setText(text);
+    }
+
+    public void setLabelText(String text){
+        labelView.setText(text);
+    }
+
     private void setStyle(TextView textView, int idResStyle) {
         if (Build.VERSION.SDK_INT < 23) {
             textView.setTextAppearance(getContext(), idResStyle);

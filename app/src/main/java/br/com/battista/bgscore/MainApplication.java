@@ -1,5 +1,7 @@
 package br.com.battista.bgscore;
 
+import com.google.common.base.Strings;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +11,15 @@ import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orm.SugarContext;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import br.com.battista.bgscore.adpater.FontsAdapter;
+import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.service.CacheManageService;
 import io.fabric.sdk.android.Fabric;
@@ -28,6 +34,9 @@ import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 public class MainApplication extends MultiDexApplication {
 
     private static final String TAG = MainApplication.class.getSimpleName();
+
+    private final SharedPreferencesKeyEnum keyUser = SharedPreferencesKeyEnum.SAVED_USER;
+    private User user;
 
     private static MainApplication instance = null;
 
@@ -54,6 +63,31 @@ public class MainApplication extends MultiDexApplication {
         instance = this;
         initializeDB();
         initializeCacheManager();
+    }
+
+    public User getUser() {
+        if ((user == null
+                || Strings.isNullOrEmpty(user.getUsername()))
+                && preferences.contains(keyUser.name())) {
+            try {
+                String jsonUSer = getPreferences(keyUser);
+                user = new ObjectMapper().readValue(jsonUSer, User.class);
+            } catch (IOException e) {
+                Log.e(TAG, "getUser: error convert user!", e);
+            }
+        }
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        try {
+            String jsonUser = new ObjectMapper().writeValueAsString(user);
+            putPreferences(keyUser, jsonUser);
+        } catch (JsonProcessingException e) {
+            Log.e(TAG, "setUser: error convert user!", e);
+        }
+
     }
 
     @SuppressWarnings("deprecation")

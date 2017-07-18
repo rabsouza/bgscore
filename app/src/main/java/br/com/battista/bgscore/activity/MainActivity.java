@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import java.text.MessageFormat;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.User;
 
 public class MainActivity extends BaseActivity {
 
@@ -75,11 +77,20 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            MainApplication instance = MainApplication.instance();
+            User user = instance.getUser();
+            if (user == null) {
+                user = new User().username(getString(R.string.text_default_username));
+                user.initEntity();
+                instance.setUser(user);
+            }
+
             while (currentProgress < MAX_PROGRESS_BAR) {
                 SystemClock.sleep(DEFAULT_SLEEP_PROGRESS_BAR);
                 currentProgress += incrementProgressBarMain;
                 publishProgress(currentProgress);
             }
+
             return null;
         }
 

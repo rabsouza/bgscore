@@ -17,4 +17,16 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_ENTITY_SYNCHRONIZED = "ENTITY_SYNCHRONIZED";
     }
 
+    public static abstract class UserEntry extends BaseEntry {
+
+        public static final String TABLE_NAME = "USER";
+        public static final String COLUMN_NAME_USERNAME = "USERNAME";
+        public static final String COLUMN_NAME_MAIL = "MAIL";
+        public static final String COLUMN_NAME_URL_AVATAR = "URL_AVATAR";
+        public static final String COLUMN_NAME_LAST_PLAY = "LAST_PLAY";
+        public static final String COLUMN_NAME_NUM_GAMES = "NUM_GAMES";
+        public static final String COLUMN_NAME_NUM_MATCHES = "NUM_MATCHES";
+        public static final String COLUMN_NAME_TOTAL_TIME = "TOTAL_TIME";
+    }
+
 }

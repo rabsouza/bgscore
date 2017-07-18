@@ -8,8 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
+
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
+import br.com.battista.bgscore.view.ScoreboardView;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
@@ -19,6 +26,13 @@ public class HomeFragment extends BaseFragment {
     private RecycleEmptyErrorView recycleViewRankingGames;
     private TextView emptyMsgRankingGames;
     private TextView errorMsgRankingGames;
+
+    private TextView usernameView;
+    private TextView lastPlayView;
+
+    private ScoreboardView scoreGames;
+    private ScoreboardView scoreMatches;
+    private ScoreboardView scoreTotalTime;
 
     public HomeFragment() {
     }
@@ -41,10 +55,43 @@ public class HomeFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                loadUserInfo(view);
                 refreshLayout.setRefreshing(false);
             }
         });
 
+        setupRecycleRanking(view);
+        loadUserInfo(view);
+
+        return view;
+    }
+
+    private void loadUserInfo(View view) {
+        User user = MainApplication.instance().getUser();
+        usernameView = view.findViewById(R.id.card_view_home_username);
+        usernameView.setText(user.getUsername());
+
+        lastPlayView = view.findViewById(R.id.card_view_last_play);
+        String lastPlay = "-";
+        if (user.getLastPlay() != null) {
+            Calendar lastPlayCalendar = Calendar.getInstance();
+            lastPlayCalendar.setTime(user.getLastPlay());
+            lastPlay = DateUtils.format(lastPlayCalendar);
+        }
+        lastPlayView.setText(getString(R.string.text_home_last_play, lastPlay));
+
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        scoreGames = view.findViewById(R.id.card_view_score_games);
+        scoreGames.setScoreText(decimalFormatScore.format(user.getNumGames()));
+
+        scoreMatches = view.findViewById(R.id.card_view_score_matches);
+        scoreMatches.setScoreText(decimalFormatScore.format(user.getNumMatches()));
+
+        scoreTotalTime = view.findViewById(R.id.card_view_score_total_time);
+        scoreTotalTime.setScoreText(DateUtils.convertSecToHours(user.getTotalTime()));
+    }
+
+    private void setupRecycleRanking(View view) {
         recycleViewRankingGames = view.findViewById(R.id.card_view_stats_recycler_view);
         emptyMsgRankingGames = view.findViewById(R.id.card_view_stats_empty_view);
         errorMsgRankingGames = view.findViewById(R.id.card_view_stats_error_view);
@@ -53,7 +100,5 @@ public class HomeFragment extends BaseFragment {
 
         // TODO Remover ao add um adapter
         emptyMsgRankingGames.setVisibility(View.VISIBLE);
-
-        return view;
     }
 }
