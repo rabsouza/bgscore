@@ -1,5 +1,6 @@
 package br.com.battista.bgscore.model;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import android.support.annotation.DrawableRes;
@@ -113,15 +114,15 @@ public class User extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", mail='" + mail + '\'' +
-                ", idResAvatar='" + idResAvatar + '\'' +
-                ", lastPlay=" + lastPlay +
-                ", numGames=" + numGames +
-                ", numMatches=" + numMatches +
-                ", totalTime=" + totalTime +
-                '}';
+        return MoreObjects.toStringHelper(this)
+                .add("username", username)
+                .add("mail", mail)
+                .add("idResAvatar", idResAvatar)
+                .add("lastPlay", lastPlay)
+                .add("numGames", numGames)
+                .add("numMatches", numMatches)
+                .add("totalTime", totalTime)
+                .toString();
     }
 
     public User username(String username) {

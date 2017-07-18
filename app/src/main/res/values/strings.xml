@@ -82,5 +82,11 @@ Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/REL
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="avatar_boba_fett">Boba Fett</string>
+    <string name="avatar_feet_jango">Fett Jango</string>
+    <string name="avatar_jawa">Jawa</string>
+    <string name="avatar_leia_princess">Leia Princess</string>
+    <string name="avatar_lobot">Lobot</string>
+    <string name="avatar_r2d2">R2D2</string>
 
 </resources>

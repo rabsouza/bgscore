@@ -3,6 +3,8 @@ package br.com.battista.bgscore.fragment;
 
 import com.google.common.base.MoreObjects;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -67,6 +69,16 @@ public class ProfileFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         loadUserInfo(getView());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case ChangeAvatarDialog.DIALOG_CHANGE_AVATAR_FRAGMENT:
+                if (resultCode == Activity.RESULT_OK) {
+                    loadUserInfo(getView());
+                }
+        }
     }
 
     private void loadUserInfo(View view) {
