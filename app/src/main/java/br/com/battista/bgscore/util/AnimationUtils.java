@@ -20,8 +20,6 @@ public class AnimationUtils {
     /**
      * This method is used to remove the Status Bar and the Navbar from
      * the shared elements transition, otherwise they will blink.
-     *
-     * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static Transition makeEnterTransition() {
@@ -36,7 +34,8 @@ public class AnimationUtils {
      *
      * @param viewToClick   view that, when clicked, will activate the animation
      * @param viewToAnimate view that will have it's Z position changed
-     * @param upWhenClicked true = makes the view go up when touched, false = makes the view to gown when touched
+     * @param upWhenClicked true = makes the view go up when touched, false = makes the view to gown
+     *                      when touched
      */
     public static void setAnimationElevation(View viewToClick, final View viewToAnimate, final boolean upWhenClicked) {
 

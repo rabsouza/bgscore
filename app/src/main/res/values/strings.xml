@@ -18,10 +18,6 @@
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software @2017 - %1$s</string>
 
-    <!-- ################### BUTTON #################### -->
-    <string name="button_change_avatar">trocar avatar</string>
-    <string name="button_edit_profile">editar</string>
-
     <!-- ################### TEXT #################### -->
     <string name="text_home_games">Jogos</string>
     <string name="text_home_matches">Partidas</string>
@@ -36,6 +32,7 @@
     <string name="text_username">Usuário: %1$s</string>
     <string name="text_mail">E-mail: %1$s</string>
     <string name="text_date_created">Data criação: %1$s</string>
+    <string name="text_dialog_change_avatar_info_01">* Selecione na lista abaixo o avatar que deseja usar como perfil.</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
@@ -45,6 +42,7 @@
     <string name="btn_login">ENTRAR</string>
     <string name="btn_sign_in">CRIAR CONTA</string>
     <string name="btn_save">SALVAR</string>
+    <string name="btn_confirm">CONFIRMAR</string>
     <string name="btn_create">CRIAR</string>
     <string name="btn_cancel">CANCELAR</string>
     <string name="btn_ok">OK</string>
@@ -55,6 +53,8 @@
     <string name="btn_confirmation_dialog_remove">REMOVER</string>
     <string name="btn_confirmation_dialog_play">JOGAR</string>
     <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
+    <string name="btn_change_avatar">TROCAR AVATAR</string>
+    <string name="btn_edit">EDITAR</string>
 
     <!-- ################### ACTION BAR #################### -->
     <string name="action_home">inicio</string>
@@ -78,6 +78,7 @@ E-mail: rabsouza@gmail.com<br>
 Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a>
 	]]>
     </string>
+    <string name="dialog_title_change_avatar">Trocar avatar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

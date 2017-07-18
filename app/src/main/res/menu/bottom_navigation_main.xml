@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_home"
-        android:enabled="true"
-        android:icon="@drawable/ic_home"
-        android:title="@string/action_home" />
+            android:id="@+id/action_home"
+            android:enabled="true"
+            android:icon="@drawable/ic_home"
+            android:title="@string/action_home" />
 
     <item
-        android:id="@+id/action_games"
-        android:enabled="true"
-        android:icon="@drawable/ic_games"
-        android:title="@string/action_matches" />
+            android:id="@+id/action_games"
+            android:enabled="true"
+            android:icon="@drawable/ic_games"
+            android:title="@string/action_matches" />
 
     <item
-        android:id="@+id/action_account"
-        android:enabled="true"
-        android:icon="@drawable/ic_account"
-        android:title="@string/action_account" />
+            android:id="@+id/action_account"
+            android:enabled="true"
+            android:icon="@drawable/ic_account"
+            android:title="@string/action_account" />
 
     <item
-        android:id="@+id/action_info"
-        android:enabled="true"
-        android:icon="@drawable/ic_info"
-        android:title="@string/action_info" />
+            android:id="@+id/action_info"
+            android:enabled="true"
+            android:icon="@drawable/ic_info"
+            android:title="@string/action_info" />
 
 </menu>
