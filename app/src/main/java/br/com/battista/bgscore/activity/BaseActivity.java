@@ -1,13 +1,11 @@
 package br.com.battista.bgscore.activity;
 
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTIVITY;
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_ACTIVITY;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +18,9 @@ import com.crashlytics.android.answers.CustomEvent;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.util.AnimationUtils;
+
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTIVITY;
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_ACTIVITY;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -73,6 +74,18 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void changeTitleCollapsingToolbar(int titleResId) {
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(getContext().getString(titleResId));
+    }
+
+    protected void setupToolbarDetail() {
+        setSupportActionBar((Toolbar) findViewById(R.id.detail_toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     protected void replaceFragment(Fragment fragment) {
         if (fragment != null) {
             Log.d(TAG, "replaceFragment: Change to fragment!");
@@ -81,6 +94,17 @@ public class BaseActivity extends AppCompatActivity {
                     R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
 
             transaction.replace(R.id.container, fragment, fragment.getTag());
+            transaction.commit();
+        }
+    }
+
+    protected void replaceDetailFragment(Fragment fragment, int resIdContainer) {
+        if (fragment != null) {
+            Log.d(TAG, "replaceFragment: Change to detail fragment!");
+            final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(
+                    R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(resIdContainer, fragment, fragment.getTag());
             transaction.commit();
         }
     }

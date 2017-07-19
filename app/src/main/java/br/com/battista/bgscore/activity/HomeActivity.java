@@ -87,7 +87,7 @@ public class HomeActivity extends BaseActivity {
     private void dialogCloseActivity() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
-                .setMessage(R.string.alert_confirmation_dialog_text_exit)
+                .setMessage(R.string.alert_confirmation_dialog_text_exit_app)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(R.string.btn_confirmation_dialog_exit,
                         new DialogInterface.OnClickListener() {

@@ -1,6 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import java.util.Calendar;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
@@ -59,6 +62,18 @@ public class HomeFragment extends BaseFragment {
             public void onRefresh() {
                 loadUserInfo(view);
                 refreshLayout.setRefreshing(false);
+            }
+        });
+
+        FloatingActionButton fab = view.findViewById(R.id.fab_new_match);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                Intent intent = new Intent(getContext(), MatchActivity.class);
+                intent.putExtras(args);
+
+                getContext().startActivity(intent);
             }
         });
 

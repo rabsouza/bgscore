@@ -9,6 +9,7 @@
     <string name="title_home">BoardGame Score</string>
     <string name="title_profile">Meu perfil</string>
     <string name="title_about">Informação</string>
+    <string name="title_add_match">Jogo/Partida</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_friends">Meus amigos</string>
@@ -48,7 +49,8 @@
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
-    <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. Deseja sair da aplicação?</string>
+    <string name="alert_confirmation_dialog_text_exit_app">Deseja sair da aplicação?</string>
+    <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. Deseja sair sem salvar?</string>
     <string name="alert_confirmation_dialog_title_delete">Tem certeza?</string>
     <string name="alert_confirmation_dialog_text_remove">Deseja remover o amigo(a) {0}? Essa operação não pode ser revetida.</string>
 

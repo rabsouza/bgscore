@@ -9,6 +9,7 @@
     <color name="colorBG">#FFFFFF</color>
 
     <!-- ################# Element ################ -->
+    <color name="colorTitleToolbar">#FFFFFF</color>
     <color name="colorTitle">#BA2126</color>
     <color name="colorText">#353434</color>
     <color name="colorCardTitle">#BA2126</color>

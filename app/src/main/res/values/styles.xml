@@ -76,9 +76,7 @@
     </style>
 
     <style name="ExpandedTitleStyle">
-        <item name="android:textColor">@color/colorTitle</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/colorTitleToolbar</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">38sp</item>
         <item name="android:typeface">sans</item>
