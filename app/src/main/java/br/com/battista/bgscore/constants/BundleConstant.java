@@ -10,4 +10,5 @@ public class BundleConstant {
     public static final String DATA = "DATA";
     public static final String POSITION = "POSITION";
     public static final String KEY = "KEY";
+    public static final String CURRENT_AVATAR = "CURRENT_AVATAR";
 }

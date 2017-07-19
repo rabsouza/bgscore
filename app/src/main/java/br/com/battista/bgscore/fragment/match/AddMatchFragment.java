@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.common.collect.Lists;
+
+import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
@@ -70,7 +72,7 @@ public class AddMatchFragment extends BaseFragment {
         recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
-        final ArrayList<FriendDto> friends = new ArrayList<>(user.getFriends());
+        final List<FriendDto> friends = Lists.newLinkedList(user.getFriends());
         recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends, false, true));
 
     }

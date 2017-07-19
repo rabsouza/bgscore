@@ -7,6 +7,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorControlHighlight">#B3E5FC</color>
     <color name="colorBG">#FFFFFF</color>
+    <color name="colorCard">#e7e7e7</color>
 
     <!-- ################# Element ################ -->
     <color name="colorTitleToolbar">#FFFFFF</color>

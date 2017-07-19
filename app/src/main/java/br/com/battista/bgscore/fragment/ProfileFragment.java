@@ -19,14 +19,16 @@ import android.widget.TextView;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.FriendAdapter;
+import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
@@ -91,6 +93,9 @@ public class ProfileFragment extends BaseFragment {
         switch (requestCode) {
             case ChangeAvatarDialog.DIALOG_CHANGE_AVATAR_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
+                    final int currentAvatar = data.getIntExtra(BundleConstant.CURRENT_AVATAR, R.drawable.avatar_profile);
+                    Log.i(TAG, MessageFormat.format("onActivityResult: Change avatar to res: {0}", currentAvatar));
+                    updateAvatarUser(currentAvatar);
                     loadUserInfo(getView());
                     AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
                             ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
@@ -103,6 +108,13 @@ public class ProfileFragment extends BaseFragment {
                             ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_PROFILE);
                 }
         }
+    }
+
+    private void updateAvatarUser(int currentAvatar) {
+        final MainApplication instance = MainApplication.instance();
+        User user = instance.getUser();
+        user.setIdResAvatar(currentAvatar);
+        instance.setUser(user);
     }
 
     private void loadUserInfo(View view) {
@@ -139,7 +151,7 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
-        final ArrayList<FriendDto> friends = new ArrayList<>(user.getFriends());
+        final List<FriendDto> friends = Lists.newLinkedList(user.getFriends());
         recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends));
 
         usernameFriendView = view.findViewById(R.id.card_view_friends_username);
@@ -184,7 +196,8 @@ public class ProfileFragment extends BaseFragment {
         btnChangeAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChangeAvatarDialog.newInstance().showDialog(currentFragment);
+                final User user = MainApplication.instance().getUser();
+                ChangeAvatarDialog.newInstance(user.getIdResAvatar()).showDialog(currentFragment);
             }
         });
 

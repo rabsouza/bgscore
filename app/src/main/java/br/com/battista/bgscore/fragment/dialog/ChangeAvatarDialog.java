@@ -1,7 +1,9 @@
 package br.com.battista.bgscore.fragment.dialog;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -17,10 +19,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
-import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.AvatarAdapter;
-import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.constants.BundleConstant;
 
 public class ChangeAvatarDialog extends DialogFragment {
 
@@ -32,13 +33,16 @@ public class ChangeAvatarDialog extends DialogFragment {
     private Button btnCancelChange;
     private RecyclerView recyclerViewAvatars;
     private AvatarAdapter avatarAdapter;
+    @DrawableRes
+    private int currentAvatar;
 
     public ChangeAvatarDialog() {
     }
 
-    public static ChangeAvatarDialog newInstance() {
+    public static ChangeAvatarDialog newInstance(@DrawableRes int currentAvatar) {
         ChangeAvatarDialog fragment = new ChangeAvatarDialog();
         Bundle args = new Bundle();
+        args.putInt(BundleConstant.CURRENT_AVATAR, currentAvatar);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,6 +67,8 @@ public class ChangeAvatarDialog extends DialogFragment {
         View viewFragment = inflater.inflate(R.layout.dialog_change_avatar, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        currentAvatar = getArguments().getInt(BundleConstant.CURRENT_AVATAR);
+
         loadViews(viewFragment);
         return viewFragment;
     }
@@ -84,12 +90,10 @@ public class ChangeAvatarDialog extends DialogFragment {
         btnConfirmChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainApplication instance = MainApplication.instance();
-                User user = instance.getUser();
-                user.setIdResAvatar(avatarAdapter.getCurrentAvatar());
-                instance.setUser(user);
+                final Intent intent = getActivity().getIntent();
+                intent.putExtra(BundleConstant.CURRENT_AVATAR, avatarAdapter.getCurrentAvatar());
                 getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_OK, getActivity().getIntent());
+                        Activity.RESULT_OK, intent);
                 getDialog().dismiss();
             }
         });
@@ -98,7 +102,7 @@ public class ChangeAvatarDialog extends DialogFragment {
         recyclerViewAvatars.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerViewAvatars.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAvatars.setHasFixedSize(true);
-        avatarAdapter = new AvatarAdapter(getContext());
+        avatarAdapter = new AvatarAdapter(getContext(), currentAvatar);
         recyclerViewAvatars.setAdapter(avatarAdapter);
     }
 

@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.AvatarDto;
 
 
@@ -27,18 +25,12 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
     private View lastSelectionView;
 
 
-    public AvatarAdapter(Context context) {
+    public AvatarAdapter(Context context, @DrawableRes int currentAvatar) {
         super(context);
         this.context = context;
+        this.currentAvatar = currentAvatar;
 
-        User user = MainApplication.instance().getUser();
-        if (user != null) {
-            currentAvatar = user.getIdResAvatar();
-        } else {
-            currentAvatar = R.drawable.avatar_profile;
-        }
-
-        this.avatars = new ArrayList<>();
+        this.avatars = new LinkedList<>();
         avatars.add(new AvatarDto()
                 .idResAvatar(R.drawable.avatar_profile)
                 .nameAvatar(context.getString(R.string.text_default_username)));

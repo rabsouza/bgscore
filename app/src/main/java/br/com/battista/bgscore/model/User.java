@@ -44,7 +44,7 @@ public class User extends BaseEntity implements Serializable {
     private Long totalTime = 0L;
 
     @Column(name = UserEntry.COLUMN_NAME_FRIENDS)
-    private Set<FriendDto> friends = Sets.newLinkedHashSet();
+    private Set<FriendDto> friends = Sets.newTreeSet();
 
     public String getUsername() {
         return username;
