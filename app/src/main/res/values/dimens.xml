@@ -48,6 +48,8 @@
 
     <dimen name="dimen_profile_img_width">70dp</dimen>
     <dimen name="dimen_profile_img_height">70dp</dimen>
+    <dimen name="dimen_profile_img_small_width">50dp</dimen>
+    <dimen name="dimen_profile_img_small_height">50dp</dimen>
     <dimen name="dimen_line">2px</dimen>
 
 </resources>

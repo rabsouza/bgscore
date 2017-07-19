@@ -7,7 +7,7 @@
                                     android:clickable="true"
                                     android:foreground="?attr/selectableItemBackground"
                                     android:padding="@dimen/element_padding"
-                                    app:cardBackgroundColor="@color/transparent"
+                                    app:cardBackgroundColor="@color/selector_row"
                                     app:cardCornerRadius="2dp"
                                     app:cardElevation="1dp"
                                     app:cardPreventCornerOverlap="false"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/card_view_friend_img"
-            android:layout_width="@dimen/dimen_profile_img_width"
-            android:layout_height="@dimen/dimen_profile_img_height"
+            android:layout_width="@dimen/dimen_profile_img_small_width"
+            android:layout_height="@dimen/dimen_profile_img_small_height"
             android:layout_centerHorizontal="true"
             android:padding="@dimen/element_padding"
             android:scaleType="fitCenter"/>

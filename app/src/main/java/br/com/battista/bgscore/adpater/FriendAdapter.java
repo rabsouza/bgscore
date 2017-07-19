@@ -3,6 +3,7 @@ package br.com.battista.bgscore.adpater;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,19 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
 
     private Context context;
     private List<FriendDto> friends;
+    private Boolean allowsDelete;
+    private Boolean allowsSelect;
 
-    public FriendAdapter(Context context, List<FriendDto> friends) {
+    public FriendAdapter(Context context, List<FriendDto> friends, Boolean allowsDelete, Boolean allowsSelect) {
         super(context);
         this.context = context;
-
         this.friends = friends;
+        this.allowsDelete = allowsDelete;
+        this.allowsSelect = allowsSelect;
+    }
+
+    public FriendAdapter(Context context, List<FriendDto> friends) {
+        this(context, friends, Boolean.TRUE, Boolean.FALSE);
     }
 
     @Override
@@ -50,12 +58,32 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             holder.getTxtTitle().setText(friendDto.getUsername());
             holder.getImgAvatar().setImageResource(friendDto.getIdResAvatar());
             final int positionRemoved = holder.getAdapterPosition();
-            holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    createDialogRemoveFriend(friendDto.getUsername(), positionRemoved);
-                }
-            });
+            if (allowsDelete) {
+                holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        createDialogRemoveFriend(friendDto.getUsername(), positionRemoved);
+                    }
+                });
+            } else {
+                holder.getBtnRemove().setVisibility(View.GONE);
+            }
+
+            final CardView cardView = itemView.findViewById(R.id.card_view_friend);
+            if (allowsSelect) {
+                cardView.setOnClickListener(new View.OnClickListener() {
+                    boolean cardSelected = Boolean.FALSE;
+
+                    @Override
+                    public void onClick(View view) {
+                        cardSelected = !cardSelected;
+                        cardView.setSelected(cardSelected);
+                        friendDto.selected(cardSelected);
+                    }
+                });
+            } else {
+                cardView.setSelected(false);
+            }
         } else {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }

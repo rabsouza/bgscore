@@ -13,11 +13,147 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/hello_blank_fragment"/>
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_padding"
+                android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/detail_card_view_match"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/element_padding"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/detail_card_view_match_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_new_match"/>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
+
+                    <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <EditText
+                                android:id="@+id/detail_card_view_match_alias"
+                                style="@style/InputStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/element_vertical_margin"
+                                android:hint="@string/hint_detail_alias_match"
+                                android:imeOptions="actionDone"
+                                android:inputType="textAutoComplete"
+                                android:maxLines="1"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:text="@string/hint_text_detail_alias_match"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/card_view_friends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
+
+                    <TextView
+                            android:id="@+id/card_view_friends_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_friends"/>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
+
+                    <TextView
+                            android:id="@+id/card_view_friends_info_01"
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_match_friends_info_01"/>
+
+                    <br.com.battista.bgscore.view.RecycleEmptyErrorView
+                            android:id="@+id/card_view_friends_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:clipToPadding="false"
+                            android:dividerHeight="1dp"
+                            android:listSelector="@android:color/transparent"
+                            android:paddingBottom="@dimen/md_keylines"
+                            android:paddingTop="@dimen/md_keylines"/>
+
+                    <TextView
+                            android:id="@+id/card_view_friends_empty_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_profile_friends_empty_view"
+                            android:visibility="gone"/>
+
+                    <TextView
+                            android:id="@+id/card_view_friends_error_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_profile_friends_error_view"
+                            android:visibility="gone"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_img_height"/>
+
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -25,7 +161,8 @@
             android:id="@+id/fab_next_edit_match"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_margin="@dimen/fab_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             app:layout_anchor="@id/detail_scroll_view"
