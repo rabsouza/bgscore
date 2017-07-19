@@ -16,6 +16,7 @@ import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
@@ -50,6 +51,7 @@ public class MainApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Answers());
         Log.d(TAG, "onCreate: MainApplication!");
 
         initializeSystemFont();

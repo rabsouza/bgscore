@@ -14,7 +14,10 @@ import java.text.MessageFormat;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.AnswersUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -107,6 +110,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AnswersUtils.onActionMetric(Actions.ACTION_OPEN, ValueActions.VALUE_ACTION_OPEN);
             loadHomeActivity();
         }
     }

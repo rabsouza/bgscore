@@ -8,7 +8,7 @@
         android:title="@string/action_home"/>
 
     <item
-        android:id="@+id/action_games"
+        android:id="@+id/action_matches"
         android:enabled="true"
         android:icon="@drawable/ic_games"
         android:title="@string/action_matches"/>

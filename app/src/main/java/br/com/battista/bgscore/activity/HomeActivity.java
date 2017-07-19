@@ -11,10 +11,13 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {
 
@@ -52,19 +55,23 @@ public class HomeActivity extends BaseActivity {
                             case R.id.action_home:
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_home);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_HOME);
                                 replaceFragment(HomeFragment.newInstance());
                                 break;
-                            case R.id.action_games:
+                            case R.id.action_matches:
                                 item.setChecked(true);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_MATCHES);
                                 AndroidUtils.toast(getActivity(), "Clicou em Partidas!");
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_profile);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_PROFILE);
                                 replaceFragment(ProfileFragment.newInstance());
                                 break;
                             case R.id.action_info:
                                 AboutDialog.showAbout(getSupportFragmentManager());
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_INFO);
                                 break;
                         }
                         return false;
@@ -85,6 +92,7 @@ public class HomeActivity extends BaseActivity {
                 .setPositiveButton(R.string.btn_confirmation_dialog_exit,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
+                                AnswersUtils.onActionMetric(Actions.ACTION_EXIT, ValueActions.VALUE_ACTION_EXIT);
                                 finishAffinity();
                             }
                         })

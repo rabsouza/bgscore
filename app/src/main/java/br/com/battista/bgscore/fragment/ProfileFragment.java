@@ -27,11 +27,14 @@ import java.util.Calendar;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.FriendAdapter;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
 import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
@@ -89,11 +92,15 @@ public class ProfileFragment extends BaseFragment {
             case ChangeAvatarDialog.DIALOG_CHANGE_AVATAR_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     loadUserInfo(getView());
+                    AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                            ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
                 }
                 break;
             case EditProfileDialog.DIALOG_EDIT_PROFILE_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     loadUserInfo(getView());
+                    AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                            ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_PROFILE);
                 }
         }
     }
@@ -148,6 +155,9 @@ public class ProfileFragment extends BaseFragment {
                     instance.setUser(user);
                     usernameFriendView.setText(null);
                     recycleViewFriends.getAdapter().notifyDataSetChanged();
+
+                    AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                            ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_FRIEND);
                 }
             }
         });
