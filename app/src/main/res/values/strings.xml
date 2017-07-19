@@ -5,11 +5,11 @@
     <string name="cd_image_main">Imagem da logo do BoardGame Score</string>
 
     <!-- ################### TITLE #################### -->
-    <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">BoardGame Score</string>
-    <string name="title_profile">Meu perfil</string>
-    <string name="title_about">Informação</string>
-    <string name="title_add_match">Partida</string>
+    <string name="title_main">&#x265c;&#x265e;&#x265a;\nBoardGame\nScore</string>
+    <string name="title_home">&#x265e; BoardGame Score</string>
+    <string name="title_profile">&#x265e; Meu perfil</string>
+    <string name="title_about">&#x265e; Informação</string>
+    <string name="title_add_match">&#x265e; Partida</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_friends">Meus amigos</string>
@@ -18,7 +18,7 @@
     <string name="card_title_new_match">Nova partida</string>
 
     <!-- ################### HINT #################### -->
-    <string name="hint_version">Battista Software @2017 - %1$s</string>
+    <string name="hint_version">&#xa9; Battista Software @2017 - %1$s</string>
     <string name="hint_detail_alias_match">Nome/Apelido para a partida</string>
     <string name="hint_text_detail_alias_match">*¹ O nome/apelido será utilizado para identificar sua partida.</string>
 
@@ -85,7 +85,7 @@
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
     <![CDATA[
-<h3>BoardGame Score @2017</h3><br>
+<h3>&#xa9; BoardGame Score @2017</h3><br>
 Versão: {0} ({1})<br>
 Data Release: {2}<br><br>
 <b>Suporte:</b><br>
