@@ -16,9 +16,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.common.base.Strings;
+
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.AndroidUtils;
 
 public class EditProfileDialog extends DialogFragment {
 
@@ -43,7 +46,7 @@ public class EditProfileDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog edit profile!");
+        Log.i(TAG, "showAbout: Show dialog edit avatar_profile!");
 
         setTargetFragment(fragment, DIALOG_EDIT_PROFILE_FRAGMENT);
 
@@ -86,6 +89,12 @@ public class EditProfileDialog extends DialogFragment {
             public void onClick(View view) {
                 User user = instance.getUser();
 
+                if (Strings.isNullOrEmpty(txtUsername.getText().toString())) {
+                    String msgErrorUsername = getContext().getString(R.string.msg_username_required);
+                    AndroidUtils.changeErrorEditText(txtUsername, msgErrorUsername, true);
+                    return;
+                }
+                AndroidUtils.changeErrorEditText(txtUsername);
                 String username = txtUsername.getText().toString().trim();
                 if (!TextUtils.isEmpty(username)) {
                     user.setUsername(username);

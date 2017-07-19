@@ -1,17 +1,19 @@
 package br.com.battista.bgscore.model;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-
 import android.support.annotation.DrawableRes;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
 @Table(name = UserEntry.TABLE_NAME)
@@ -27,7 +29,7 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_URL_AVATAR)
     @DrawableRes
-    private int idResAvatar = R.drawable.profile;
+    private int idResAvatar = R.drawable.avatar_profile;
 
     @Column(name = UserEntry.COLUMN_NAME_LAST_PLAY)
     private Date lastPlay = null;
@@ -40,6 +42,9 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_TOTAL_TIME)
     private Long totalTime = 0L;
+
+    @Column(name = UserEntry.COLUMN_NAME_FRIENDS)
+    private Set<FriendDto> friends = Sets.newLinkedHashSet();
 
     public String getUsername() {
         return username;
@@ -98,6 +103,14 @@ public class User extends BaseEntity implements Serializable {
         this.totalTime = totalTime;
     }
 
+    public Set<FriendDto> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<FriendDto> friends) {
+        this.friends = friends;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,6 +135,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("numGames", numGames)
                 .add("numMatches", numMatches)
                 .add("totalTime", totalTime)
+                .add("friends", friends)
                 .toString();
     }
 
@@ -158,5 +172,22 @@ public class User extends BaseEntity implements Serializable {
     public User totalTime(Long totalTime) {
         this.totalTime = totalTime;
         return this;
+    }
+
+    public User friends(Set<FriendDto> friendsDto) {
+        this.friends = friendsDto;
+        return this;
+    }
+
+    public boolean addFriend(FriendDto friendDto) {
+        return friends.add(friendDto);
+    }
+
+    public boolean removeFriend(FriendDto friendDto) {
+        return friends.remove(friendDto);
+    }
+
+    public void clearFriends() {
+        friends.clear();
     }
 }

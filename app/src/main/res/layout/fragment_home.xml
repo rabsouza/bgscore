@@ -1,140 +1,139 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:animateLayoutChanges="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:paddingBottom="?attr/actionBarSize"
-        tools:context="br.com.battista.bgscore.fragment.HomeFragment">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginTop="?attr/actionBarSize"
+             android:animateLayoutChanges="true"
+             android:paddingBottom="?attr/actionBarSize"
+             tools:context="br.com.battista.bgscore.fragment.HomeFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_padding">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_padding">
 
                 <android.support.v7.widget.CardView
-                        android:id="@+id/card_view_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:padding="@dimen/no_dimen"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:cardElevation="1dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardCornerRadius="2dp"
-                        app:cardUseCompatPadding="true">
+                    android:id="@+id/card_view_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="@dimen/element_padding">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
 
                         <TextView
-                                android:id="@+id/card_view_home_title"
-                                style="@style/CardTitleStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/card_title_my_profile" />
+                            android:id="@+id/card_view_home_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_my_profile"/>
 
                         <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dimen_line"
-                                android:layout_marginBottom="@dimen/element_vertical_margin"
-                                android:background="@color/colorLine" />
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
 
                         <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
                             <ImageView
-                                    android:id="@+id/card_view_home_img"
-                                    android:layout_width="@dimen/dimen_profile_img_width"
-                                    android:layout_height="@dimen/dimen_profile_img_height"
-                                    android:padding="@dimen/element_padding"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/profile" />
+                                android:id="@+id/card_view_home_img"
+                                android:layout_width="@dimen/dimen_profile_img_width"
+                                android:layout_height="@dimen/dimen_profile_img_height"
+                                android:padding="@dimen/element_padding"
+                                android:scaleType="fitCenter"/>
 
                             <TextView
-                                    android:id="@+id/card_view_home_username"
-                                    style="@style/CardHeadStyle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_toRightOf="@id/card_view_home_img"
-                                    android:gravity="center_horizontal"
-                                    android:paddingLeft="@dimen/element_padding"
-                                    android:paddingTop="@dimen/element_padding"
-                                    tools:text="@string/text_default_username" />
+                                android:id="@+id/card_view_home_username"
+                                style="@style/CardHeadStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@id/card_view_home_img"
+                                android:gravity="center_horizontal"
+                                android:paddingLeft="@dimen/element_padding"
+                                android:paddingTop="@dimen/element_padding"
+                                tools:text="@string/text_default_username"/>
 
                             <TextView
-                                    android:id="@+id/card_view_last_play"
-                                    style="@style/CardTextStyle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/card_view_home_username"
-                                    android:layout_toRightOf="@id/card_view_home_img"
-                                    android:gravity="center_horizontal"
-                                    android:paddingLeft="@dimen/element_padding"
-                                    android:paddingTop="@dimen/element_padding"
-                                    tools:text="@string/text_home_last_play" />
+                                android:id="@+id/card_view_last_play"
+                                style="@style/CardTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_home_username"
+                                android:layout_toRightOf="@id/card_view_home_img"
+                                android:gravity="center_horizontal"
+                                android:paddingLeft="@dimen/element_padding"
+                                android:paddingTop="@dimen/element_padding"
+                                tools:text="@string/text_home_last_play"/>
 
                             <LinearLayout
-                                    android:layout_width="match_parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_home_img"
+                                android:layout_marginTop="@dimen/element_vertical_margin"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <br.com.battista.bgscore.view.ScoreboardView
+                                    android:id="@+id/card_view_score_games"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@id/card_view_home_img"
-                                    android:layout_marginTop="@dimen/element_vertical_margin"
-                                    android:orientation="horizontal"
-                                    android:weightSum="3">
-
-                                <br.com.battista.bgscore.view.ScoreboardView
-                                        android:id="@+id/card_view_score_games"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        app:label_score="@string/text_home_games"
-                                        app:value_score="0" />
+                                    android:layout_weight="1"
+                                    app:label_score="@string/text_home_games"
+                                    app:value_score="0"/>
 
                                 <View
-                                        android:layout_width="@dimen/dimen_line"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginLeft="@dimen/element_horizontal_margin"
-                                        android:layout_marginRight="@dimen/element_horizontal_margin"
-                                        android:background="@color/colorLine" />
+                                    android:layout_width="@dimen/dimen_line"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                    android:layout_marginRight="@dimen/element_horizontal_margin"
+                                    android:background="@color/colorLine"/>
 
                                 <br.com.battista.bgscore.view.ScoreboardView
-                                        android:id="@+id/card_view_score_matches"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        app:label_score="@string/text_home_matches"
-                                        app:value_score="0" />
+                                    android:id="@+id/card_view_score_matches"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    app:label_score="@string/text_home_matches"
+                                    app:value_score="0"/>
 
                                 <View
-                                        android:layout_width="@dimen/dimen_line"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginLeft="@dimen/element_horizontal_margin"
-                                        android:layout_marginRight="@dimen/element_horizontal_margin"
-                                        android:background="@color/colorLine" />
+                                    android:layout_width="@dimen/dimen_line"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                    android:layout_marginRight="@dimen/element_horizontal_margin"
+                                    android:background="@color/colorLine"/>
 
                                 <br.com.battista.bgscore.view.ScoreboardView
-                                        android:id="@+id/card_view_score_total_time"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        app:label_score="@string/text_home_matches_time"
-                                        app:value_score="00:00" />
+                                    android:id="@+id/card_view_score_total_time"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    app:label_score="@string/text_home_matches_time"
+                                    app:value_score="00:00"/>
 
                             </LinearLayout>
 
@@ -145,71 +144,71 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                        android:id="@+id/card_view_stats"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/element_vertical_margin"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:padding="@dimen/no_dimen"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:cardElevation="1dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardCornerRadius="2dp"
-                        app:cardUseCompatPadding="true">
+                    android:id="@+id/card_view_stats"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:orientation="vertical"
-                            android:padding="@dimen/element_padding">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
 
                         <TextView
-                                android:id="@+id/card_view_stats_title"
-                                style="@style/CardTitleStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/card_title_my_ranking_game" />
+                            android:id="@+id/card_view_stats_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_my_ranking_game"/>
 
                         <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dimen_line"
-                                android:layout_marginBottom="@dimen/element_vertical_margin"
-                                android:background="@color/colorLine" />
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
 
                         <TextView
-                                android:id="@+id/card_view_stats_info_01"
-                                style="@style/HintTextStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_home_stats_info_01" />
+                            android:id="@+id/card_view_stats_info_01"
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_home_stats_info_01"/>
 
                         <br.com.battista.bgscore.view.RecycleEmptyErrorView
-                                android:id="@+id/card_view_stats_recycler_view"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:cacheColorHint="@android:color/transparent"
-                                android:clipToPadding="false"
-                                android:dividerHeight="1dp"
-                                android:listSelector="@android:color/transparent"
-                                android:paddingBottom="@dimen/md_keylines"
-                                android:paddingTop="@dimen/md_keylines" />
+                            android:id="@+id/card_view_stats_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:clipToPadding="false"
+                            android:dividerHeight="1dp"
+                            android:listSelector="@android:color/transparent"
+                            android:paddingBottom="@dimen/md_keylines"
+                            android:paddingTop="@dimen/md_keylines"/>
 
                         <TextView
-                                android:id="@+id/card_view_stats_empty_view"
-                                style="@style/CardTextBoldStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone"
-                                android:text="@string/text_home_stats_empty_view" />
+                            android:id="@+id/card_view_stats_empty_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_home_stats_empty_view"
+                            android:visibility="gone"/>
 
                         <TextView
-                                android:id="@+id/card_view_stats_error_view"
-                                style="@style/CardTextBoldStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone"
-                                android:text="@string/text_home_stats_error_view" />
+                            android:id="@+id/card_view_stats_error_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_home_stats_error_view"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 

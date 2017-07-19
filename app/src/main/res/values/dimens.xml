@@ -32,8 +32,8 @@
     <dimen name="item_dialog_img_width">25dp</dimen>
     <dimen name="item_dialog_img_height">25dp</dimen>
 
-    <dimen name="mini_button_width">15dp</dimen>
-    <dimen name="mini_button_height">15dp</dimen>
+    <dimen name="mini_button_width">24dp</dimen>
+    <dimen name="mini_button_height">24dp</dimen>
 
     <dimen name="item_view_img_width">38dp</dimen>
     <dimen name="item_view_img_height">38dp</dimen>

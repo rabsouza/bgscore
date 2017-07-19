@@ -1,9 +1,9 @@
 package br.com.battista.bgscore.model.dto;
 
+import android.support.annotation.DrawableRes;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-
-import android.support.annotation.DrawableRes;
 
 public class AvatarDto {
 

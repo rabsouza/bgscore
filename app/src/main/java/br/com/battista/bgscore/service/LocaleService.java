@@ -1,12 +1,12 @@
 package br.com.battista.bgscore.service;
 
+import static br.com.battista.bgscore.service.LocaleService.SupportedLocale.EN;
+import static br.com.battista.bgscore.service.LocaleService.SupportedLocale.PT;
+
 import com.google.common.collect.Maps;
 
 import java.util.Locale;
 import java.util.Map;
-
-import static br.com.battista.bgscore.service.LocaleService.SupportedLocale.EN;
-import static br.com.battista.bgscore.service.LocaleService.SupportedLocale.PT;
 
 public class LocaleService {
 

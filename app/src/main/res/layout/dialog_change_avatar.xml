@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/dialog_view_change_avatar"
-        android:animateLayoutChanges="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/no_dimen"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_padding"
-        android:scrollbars="none">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/dialog_view_change_avatar"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="@dimen/no_dimen"
+             android:animateLayoutChanges="true"
+             android:orientation="vertical"
+             android:padding="@dimen/activity_padding"
+             android:scrollbars="none">
 
     <LinearLayout
-            android:id="@+id/container_dialog"
+        android:id="@+id/container_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_view_change_avatar_title"
+            style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <TextView
-                android:id="@+id/dialog_view_change_avatar_title"
-                style="@style/CardTitleStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dialog_title_change_avatar" />
+            android:text="@string/dialog_title_change_avatar"/>
 
         <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_line"
-                android:layout_marginBottom="@dimen/element_vertical_margin"
-                android:background="@color/colorLine" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_line"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:background="@color/colorLine"/>
 
         <TextView
-                android:id="@+id/dialog_view_change_avatar_info_01"
-                style="@style/HintTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/element_vertical_margin"
-                android:text="@string/text_dialog_change_avatar_info_01" />
+            android:id="@+id/dialog_view_change_avatar_info_01"
+            style="@style/HintTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:text="@string/text_dialog_change_avatar_info_01"/>
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/dialog_view_change_avatar_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:cacheColorHint="@android:color/transparent"
-                android:clipToPadding="false"
-                android:dividerHeight="0dp"
-                android:paddingTop="@dimen/md_keylines"
-                android:scrollbarStyle="outsideOverlay"
-                android:scrollbars="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:id="@+id/dialog_view_change_avatar_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            android:dividerHeight="0dp"
+            android:paddingTop="@dimen/md_keylines"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <RelativeLayout
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/element_vertical_margin">
+
+            <Button
+                android:id="@+id/dialog_view_change_avatar_btn_confirm"
+                style="@style/ButtonStyleActive"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/element_vertical_margin">
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/btn_confirm"/>
 
             <Button
-                    android:id="@+id/dialog_view_change_avatar_btn_confirm"
-                    style="@style/ButtonStyleActive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="@string/btn_confirm" />
-
-            <Button
-                    android:id="@+id/dialog_view_change_avatar_btn_cancel"
-                    style="@style/ButtonStyleWithBorder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/dialog_view_change_avatar_btn_confirm"
-                    android:text="@string/btn_cancel" />
+                android:id="@+id/dialog_view_change_avatar_btn_cancel"
+                style="@style/ButtonStyleWithBorder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/dialog_view_change_avatar_btn_confirm"
+                android:text="@string/btn_cancel"/>
 
         </RelativeLayout>
 

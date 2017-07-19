@@ -1,6 +1,11 @@
 package br.com.battista.bgscore;
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 import android.app.Application;
 import android.content.Context;
@@ -13,6 +18,7 @@ import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Strings;
 import com.orm.SugarContext;
 
 import java.io.IOException;
@@ -24,22 +30,12 @@ import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.service.CacheManageService;
 import io.fabric.sdk.android.Fabric;
 
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
-
 public class MainApplication extends MultiDexApplication {
 
     private static final String TAG = MainApplication.class.getSimpleName();
-
+    private static MainApplication instance = null;
     private final SharedPreferencesKeyEnum keyUser = SharedPreferencesKeyEnum.SAVED_USER;
     private User user;
-
-    private static MainApplication instance = null;
-
     private SharedPreferences preferences;
 
     public static MainApplication instance() {

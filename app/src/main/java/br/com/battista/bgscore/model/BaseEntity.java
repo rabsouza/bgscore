@@ -1,10 +1,9 @@
 package br.com.battista.bgscore.model;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import com.orm.SugarRecord;
 import com.orm.dsl.Column;
 

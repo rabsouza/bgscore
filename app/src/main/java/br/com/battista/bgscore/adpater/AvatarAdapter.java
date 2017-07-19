@@ -35,12 +35,12 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
         if (user != null) {
             currentAvatar = user.getIdResAvatar();
         } else {
-            currentAvatar = R.drawable.profile;
+            currentAvatar = R.drawable.avatar_profile;
         }
 
         this.avatars = new ArrayList<>();
         avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.profile)
+                .idResAvatar(R.drawable.avatar_profile)
                 .nameAvatar(context.getString(R.string.text_default_username)));
         avatars.add(new AvatarDto()
                 .idResAvatar(R.drawable.avatar_boba_fett)

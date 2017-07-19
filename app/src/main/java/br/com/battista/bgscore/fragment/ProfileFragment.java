@@ -1,27 +1,37 @@
 package br.com.battista.bgscore.fragment;
 
 
-import com.google.common.base.MoreObjects;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+
+import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
 import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
@@ -35,6 +45,8 @@ public class ProfileFragment extends BaseFragment {
 
     private Button btnChangeAvatar;
     private Button btnEditProfile;
+    private ImageButton btnAddFriend;
+    private EditText usernameFriendView;
 
     private TextView usernameView;
     private TextView mailView;
@@ -108,14 +120,52 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void setupRecycleViewFriends(View view) {
+        final MainApplication instance = MainApplication.instance();
+        final User user = instance.getUser();
+
         recycleViewFriends = view.findViewById(R.id.card_view_friends_recycler_view);
         emptyMsgFriends = view.findViewById(R.id.card_view_friends_empty_view);
         errorMsgFriends = view.findViewById(R.id.card_view_friends_error_view);
         recycleViewFriends.setEmptyView(emptyMsgFriends);
         recycleViewFriends.setErrorView(errorMsgFriends);
 
-        // TODO Remover ao add um adapter
-        emptyMsgFriends.setVisibility(View.VISIBLE);
+        recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
+        recycleViewFriends.setHasFixedSize(false);
+        final ArrayList<FriendDto> friends = new ArrayList<>(user.getFriends());
+        recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends));
+
+        usernameFriendView = view.findViewById(R.id.card_view_friends_username);
+
+        btnAddFriend = view.findViewById(R.id.card_view_friends_button_add);
+        btnAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final FriendDto friendDto = addNewFriend();
+                if (friendDto != null) {
+                    friends.add(friendDto);
+                    user.addFriend(friendDto);
+                    instance.setUser(user);
+                    usernameFriendView.setText(null);
+                    recycleViewFriends.getAdapter().notifyDataSetChanged();
+                }
+            }
+        });
+    }
+
+    private FriendDto addNewFriend() {
+        Log.i(TAG, "addNewFriend: Add new friend!");
+
+        if (Strings.isNullOrEmpty(usernameFriendView.getText().toString())) {
+            String msgErrorUsername = getContext().getString(R.string.msg_username_friend_required);
+            AndroidUtils.changeErrorEditText(usernameFriendView, msgErrorUsername, true);
+            return null;
+        }
+        AndroidUtils.changeErrorEditText(usernameFriendView);
+        final String username = usernameFriendView.getText().toString().trim();
+
+        Log.d(TAG, MessageFormat.format("Create new friend with username: {0}.", username));
+        return new FriendDto().username(username);
     }
 
     private void setupButtonsProfile(View view) {
