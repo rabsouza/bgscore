@@ -1,6 +1,10 @@
 package br.com.battista.bgscore.fragment;
 
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
@@ -38,7 +38,7 @@ import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
-import br.com.battista.bgscore.view.RecycleEmptyErrorView;
+import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 
 
 public class ProfileFragment extends BaseFragment {
@@ -71,7 +71,7 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new fragment Profile!");
+        Log.d(TAG, "onCreateView: Create new ProfileFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 

@@ -1,4 +1,4 @@
-package br.com.battista.bgscore.view;
+package br.com.battista.bgscore.custom;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

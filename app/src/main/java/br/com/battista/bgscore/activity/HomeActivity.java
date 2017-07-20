@@ -10,9 +10,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.MenuItem;
 
+import java.lang.reflect.GenericArrayType;
+
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.fragment.GameFragment;
 import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
@@ -66,7 +69,7 @@ public class HomeActivity extends BaseActivity {
                             case R.id.action_games:
                                 item.setChecked(true);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_GAMES);
-                                AndroidUtils.toast(getActivity(), "Em construção!");
+                                replaceFragment(GameFragment.newInstance());
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);
@@ -75,8 +78,8 @@ public class HomeActivity extends BaseActivity {
                                 replaceFragment(ProfileFragment.newInstance());
                                 break;
                             case R.id.action_info:
-                                AboutDialog.showAbout(getSupportFragmentManager());
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_INFO);
+                                AboutDialog.showAbout(getSupportFragmentManager());
                                 break;
                         }
                         return false;

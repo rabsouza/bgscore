@@ -1,17 +1,20 @@
 package br.com.battista.bgscore.fragment.match;
 
 
+import com.google.common.collect.Lists;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.collect.Lists;
 
 import java.util.List;
 import java.util.Random;
@@ -19,6 +22,7 @@ import java.util.Random;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.FriendAdapter;
+import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.BaseFragment;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
@@ -30,7 +34,7 @@ import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
-import br.com.battista.bgscore.view.RecycleEmptyErrorView;
+import br.com.battista.bgscore.util.PopupMenuUtils;
 
 public class NewMatchFragment extends BaseFragment {
     private static final String TAG = NewMatchFragment.class.getSimpleName();
@@ -38,6 +42,9 @@ public class NewMatchFragment extends BaseFragment {
     private RecycleEmptyErrorView recycleViewPlayers;
     private TextView emptyMsgPlayers;
     private TextView errorMsgPlayers;
+
+    private CardView cardViewGame;
+    private ImageView imageMoreActions;
 
     public NewMatchFragment() {
     }
@@ -52,7 +59,7 @@ public class NewMatchFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new fragment Profile!");
+        Log.d(TAG, "onCreateView: Create new NewMatchFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_new_match, container, false);
 
@@ -95,8 +102,25 @@ public class NewMatchFragment extends BaseFragment {
         });
 
         setupRecycleViewPlayers(view);
+        setupCardViewGame(view);
 
         return view;
+    }
+
+    private void setupCardViewGame(final View view) {
+
+        cardViewGame = view.findViewById(R.id.card_view_game_info);
+
+        imageMoreActions = view.findViewById(R.id.card_view_game_info_more_actions);
+        final PopupMenu popup = new PopupMenu(getContext(), imageMoreActions);
+        PopupMenuUtils.showPopupWindow(popup);
+        popup.getMenuInflater().inflate(R.menu.menu_actions_game, popup.getMenu());
+        cardViewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup.show();
+            }
+        });
     }
 
     private void setupRecycleViewPlayers(View view) {

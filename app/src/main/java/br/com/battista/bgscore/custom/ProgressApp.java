@@ -1,4 +1,4 @@
-package br.com.battista.bgscore.util;
+package br.com.battista.bgscore.custom;
 
 
 import android.app.Activity;

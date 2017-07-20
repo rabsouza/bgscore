@@ -21,8 +21,8 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
-import br.com.battista.bgscore.view.RecycleEmptyErrorView;
-import br.com.battista.bgscore.view.ScoreboardView;
+import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
+import br.com.battista.bgscore.custom.ScoreboardView;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
@@ -54,7 +54,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new fragment Home!");
+        Log.d(TAG, "onCreateView: Create new HomeFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 

@@ -97,7 +97,7 @@
                                 android:orientation="horizontal"
                                 android:weightSum="3">
 
-                                <br.com.battista.bgscore.view.ScoreboardView
+                                <br.com.battista.bgscore.custom.ScoreboardView
                                     android:id="@+id/card_view_score_games"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                                     android:layout_marginRight="@dimen/element_horizontal_margin"
                                     android:background="@color/colorLine"/>
 
-                                <br.com.battista.bgscore.view.ScoreboardView
+                                <br.com.battista.bgscore.custom.ScoreboardView
                                     android:id="@+id/card_view_score_matches"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                                     android:layout_marginRight="@dimen/element_horizontal_margin"
                                     android:background="@color/colorLine"/>
 
-                                <br.com.battista.bgscore.view.ScoreboardView
+                                <br.com.battista.bgscore.custom.ScoreboardView
                                     android:id="@+id/card_view_score_total_time"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/text_home_stats_info_01"/>
 
-                        <br.com.battista.bgscore.view.RecycleEmptyErrorView
+                        <br.com.battista.bgscore.custom.RecycleEmptyErrorView
                             android:id="@+id/card_view_stats_recycler_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

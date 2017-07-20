@@ -1,4 +1,4 @@
-package br.com.battista.bgscore.view;
+package br.com.battista.bgscore.custom;
 
 import android.annotation.TargetApi;
 import android.content.Context;

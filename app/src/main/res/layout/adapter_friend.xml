@@ -33,7 +33,7 @@
             android:layout_height="@dimen/mini_button_height"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/ic_remove"/>
+            app:srcCompat="@drawable/ic_remove_friend"/>
 
         <TextView
             android:id="@+id/card_view_friend_title"

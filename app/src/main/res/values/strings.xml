@@ -5,7 +5,7 @@
     <string name="cd_image_main">Imagem da logo do BoardGame Score</string>
 
     <!-- ################### TITLE #################### -->
-    <string name="title_main">&#x265a;&#x265b;&#x265c;&#x265d;&#x265e;&#x265f;\nBoardGame\nScore</string>
+    <string name="title_main">BoardGame\nScore</string>
     <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
@@ -13,6 +13,7 @@
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
+    <string name="card_title_games">Meus jogos</string>
     <string name="card_title_players">Jogadores</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
@@ -86,7 +87,10 @@
     <string name="action_matches">partidas</string>
     <string name="action_games">jogos</string>
     <string name="action_account">perfil</string>
+    <string name="action_detail">detalhes</string>
     <string name="action_info">info</string>
+    <string name="action_edit">editar</string>
+    <string name="action_remove">remover</string>
 
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
