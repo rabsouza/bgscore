@@ -14,21 +14,30 @@ import android.widget.TextView;
 import com.google.common.collect.Lists;
 
 import java.util.List;
+import java.util.Random;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.fragment.BaseFragment;
+import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.repository.GameRepository;
+import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.repository.PlayerRepository;
+import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
 public class NewMatchFragment extends BaseFragment {
     private static final String TAG = NewMatchFragment.class.getSimpleName();
 
-    private RecycleEmptyErrorView recycleViewFriends;
-    private TextView emptyMsgFriends;
-    private TextView errorMsgFriends;
+    private RecycleEmptyErrorView recycleViewPlayers;
+    private TextView emptyMsgPlayers;
+    private TextView errorMsgPlayers;
 
     public NewMatchFragment() {
     }
@@ -51,29 +60,60 @@ public class NewMatchFragment extends BaseFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final Game game = new Game().name("Game" + Math.random());
+                game.initEntity();
+                new GameRepository().save(game);
+                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+
+                final Player player01 = new Player().name("Player01" + Math.random()).winner(false);
+                player01.initEntity();
+                final PlayerRepository playerRepository = new PlayerRepository();
+                playerRepository.save(player01);
+                final Player player02 = new Player().name("Player02" + Math.random()).winner(true);
+                player02.initEntity();
+                playerRepository.save(player02);
+
+                int result = new Random().nextInt(200) + 100;
+                final Match match = new Match()
+                        .alias("Alias" + Math.random())
+                        .duration(Long.valueOf(result))
+                        .finish(true).game(game)
+                        .players(Lists.newArrayList(player01, player02));
+                Log.i(TAG, "***********************************************************");
+                Log.i(TAG, "MATCH SAVE:" + match);
+                Log.i(TAG, "***********************************************************");
+                new MatchRepository().save(match);
+
+                final List<Match> matches = new MatchRepository().findAll();
+                Log.i(TAG, "***********************************************************");
+                for (Match matchLoad : matches) {
+                    Log.i(TAG, "MATCH LOAD:" + matchLoad);
+                }
+                Log.i(TAG, "***********************************************************");
+                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
             }
         });
 
-        setupRecycleViewFriends(view);
+        setupRecycleViewPlayers(view);
 
         return view;
     }
 
-    private void setupRecycleViewFriends(View view) {
+    private void setupRecycleViewPlayers(View view) {
         final MainApplication instance = MainApplication.instance();
         final User user = instance.getUser();
 
-        recycleViewFriends = view.findViewById(R.id.card_view_friends_recycler_view);
-        emptyMsgFriends = view.findViewById(R.id.card_view_friends_empty_view);
-        errorMsgFriends = view.findViewById(R.id.card_view_friends_error_view);
-        recycleViewFriends.setEmptyView(emptyMsgFriends);
-        recycleViewFriends.setErrorView(errorMsgFriends);
+        recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
+        emptyMsgPlayers = view.findViewById(R.id.card_view_players_empty_view);
+        errorMsgPlayers = view.findViewById(R.id.card_view_players_error_view);
+        recycleViewPlayers.setEmptyView(emptyMsgPlayers);
+        recycleViewPlayers.setErrorView(errorMsgPlayers);
 
-        recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
-        recycleViewFriends.setHasFixedSize(false);
-        final List<FriendDto> friends = Lists.newLinkedList(user.getFriends());
-        recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends, false, true));
+        recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
+        recycleViewPlayers.setHasFixedSize(false);
+        final List<FriendDto> players = Lists.newLinkedList(user.getFriends());
+        recycleViewPlayers.setAdapter(new FriendAdapter(getContext(), players, false, true));
 
     }
 

@@ -13,6 +13,7 @@
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
+    <string name="card_title_players">Jogadores</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
     <string name="card_title_my_ranking_game">Meu ranking de games</string>
@@ -45,8 +46,9 @@
     <string name="text_dialog_change_avatar_info_01">*¹ Selecione na lista abaixo o avatar que deseja usar.</string>
     <string name="text_dialog_edit_profile_info_01">*¹ Preencha os campos abaixo com seus dados.</string>
     <string name="text_profile_friends_info_01">*¹ Cadastre um novo amigo para jogar na suas partidas.</string>
-    <string name="text_match_friends_info_01">*¹ Selecione os amigos para jogar na nesta partida.</string>
+    <string name="text_match_players_info_01">*¹ Selecione os jogadores para jogar esta partida.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir dos jogos cadastrados no site boardgamegeek.com.</string>
+    <string name="text_match_friends_i_playing">Estou jogando esse partida</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>

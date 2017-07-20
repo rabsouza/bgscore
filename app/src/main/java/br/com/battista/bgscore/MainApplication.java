@@ -23,6 +23,7 @@ import com.google.common.base.Strings;
 import com.orm.SugarContext;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Locale;
 
 import br.com.battista.bgscore.adpater.FontsAdapter;
@@ -74,10 +75,12 @@ public class MainApplication extends MultiDexApplication {
                 Log.e(TAG, "getUser: error convert user!", e);
             }
         }
+        Log.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
         return user;
     }
 
     public void setUser(User user) {
+        Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
         this.user = user;
         try {
             String jsonUser = new ObjectMapper().writeValueAsString(user);
@@ -122,6 +125,7 @@ public class MainApplication extends MultiDexApplication {
 
     protected void initializeDB() {
         Log.i(TAG, "initializeDB: Initialize Database to App.");
+        getApplicationContext().deleteDatabase("bgscore_db.db");
         SugarContext.init(getApplicationContext());
     }
 

@@ -87,6 +87,12 @@ public class HomeFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadUserInfo(getView());
+    }
+
     private void loadUserInfo(View view) {
         User user = MainApplication.instance().getUser();
 

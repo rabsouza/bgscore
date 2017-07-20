@@ -48,10 +48,10 @@
             android:value="bgscore_db.db"/>
         <meta-data
             android:name="VERSION"
-            android:value="0"/>
+            android:value="1"/>
         <meta-data
             android:name="QUERY_LOG"
-            android:value="false"/>
+            android:value="true"/>
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="br.com.battista.bgscore.model"/>

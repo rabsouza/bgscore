@@ -12,6 +12,8 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
@@ -85,6 +87,9 @@ public class MainActivity extends BaseActivity {
                 user = new User().username(getString(R.string.text_default_username));
                 user.initEntity();
                 instance.setUser(user);
+            } else {
+                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
             }
             currentProgress += incrementProgressBarMain;
             publishProgress(currentProgress);

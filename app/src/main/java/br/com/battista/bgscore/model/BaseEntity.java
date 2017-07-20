@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.model;
 
+import android.os.SystemClock;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
@@ -39,6 +41,7 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
     private Date synchronizedAt;
 
     public void initEntity() {
+        id = SystemClock.currentThreadTimeMillis();
         createdAt = new Date();
         updatedAt = createdAt;
         version = EntityConstant.DEFAULT_VERSION;

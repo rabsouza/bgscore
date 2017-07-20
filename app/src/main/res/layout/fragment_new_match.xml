@@ -243,7 +243,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/card_view_friends"
+                android:id="@+id/card_view_players"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/element_vertical_margin"
@@ -262,11 +262,11 @@
                     android:padding="@dimen/element_padding">
 
                     <TextView
-                        android:id="@+id/card_view_friends_title"
+                        android:id="@+id/card_view_players_title"
                         style="@style/CardTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_title_friends"/>
+                        android:text="@string/card_title_players"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -275,14 +275,23 @@
                         android:background="@color/colorLine"/>
 
                     <TextView
-                        android:id="@+id/card_view_friends_info_01"
+                        android:id="@+id/card_view_players_info_01"
                         style="@style/HintTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_match_friends_info_01"/>
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/text_match_players_info_01"/>
+
+                    <Switch
+                        android:id="@+id/card_view_players_i_playing_switch"
+                        style="@style/CardTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/text_match_friends_i_playing"/>
 
                     <br.com.battista.bgscore.view.RecycleEmptyErrorView
-                        android:id="@+id/card_view_friends_recycler_view"
+                        android:id="@+id/card_view_players_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:cacheColorHint="@android:color/transparent"
@@ -293,7 +302,7 @@
                         android:paddingTop="@dimen/md_keylines"/>
 
                     <TextView
-                        android:id="@+id/card_view_friends_empty_view"
+                        android:id="@+id/card_view_players_empty_view"
                         style="@style/CardTextBoldStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -301,7 +310,7 @@
                         android:visibility="gone"/>
 
                     <TextView
-                        android:id="@+id/card_view_friends_error_view"
+                        android:id="@+id/card_view_players_error_view"
                         style="@style/CardTextBoldStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

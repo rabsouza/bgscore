@@ -136,6 +136,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("numMatches", numMatches)
                 .add("totalTime", totalTime)
                 .add("friends", friends)
+                .addValue(super.toString())
                 .toString();
     }
 
