@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.fragment.match.AddMatchFragment;
+import br.com.battista.bgscore.fragment.match.NewMatchFragment;
 
 public class MatchActivity extends BaseActivity {
 
@@ -20,9 +20,9 @@ public class MatchActivity extends BaseActivity {
         setupToolbarDetail();
         changeTitleCollapsingToolbar(R.string.title_add_match);
 
-        Log.i(TAG, "loadFragmentInitial: Load the MatchFragment!");
+        Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
 
-        replaceDetailFragment(AddMatchFragment.newInstance(), R.id.detail_container);
+        replaceDetailFragment(NewMatchFragment.newInstance(), R.id.detail_container);
     }
 
     @Override

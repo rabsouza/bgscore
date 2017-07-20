@@ -10,7 +10,8 @@ public class DateUtils {
     private static final String TAG = DateUtils.class.getSimpleName();
     private static final String FORMART_HOURS_MINUTES = "%02d:%02d";
     private static SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-    private static SimpleDateFormat formatWithHours = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+    private static SimpleDateFormat formatWithHours =
+            new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
     private DateUtils() {
     }

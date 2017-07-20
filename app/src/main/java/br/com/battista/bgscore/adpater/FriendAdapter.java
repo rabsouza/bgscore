@@ -26,7 +26,8 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     private Boolean allowsDelete;
     private Boolean allowsSelect;
 
-    public FriendAdapter(Context context, List<FriendDto> friends, Boolean allowsDelete, Boolean allowsSelect) {
+    public FriendAdapter(Context context, List<FriendDto> friends,
+                         Boolean allowsDelete, Boolean allowsSelect) {
         super(context);
         this.context = context;
         this.friends = friends;

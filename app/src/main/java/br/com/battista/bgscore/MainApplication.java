@@ -142,7 +142,8 @@ public class MainApplication extends MultiDexApplication {
 
     private void terminateCacheManager() {
         Log.i(TAG, "terminateCacheManager: Terminate event cache manager!");
-        getApplicationContext().stopService(new Intent(getApplicationContext(), CacheManageService.class));
+        getApplicationContext().stopService(new Intent(getApplicationContext(),
+                CacheManageService.class));
         SugarContext.terminate();
     }
 

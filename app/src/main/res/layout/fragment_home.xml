@@ -1,12 +1,12 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:layout_marginTop="?attr/actionBarSize"
-             android:animateLayoutChanges="true"
-             android:paddingBottom="?attr/actionBarSize"
-             tools:context="br.com.battista.bgscore.fragment.HomeFragment">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:layout_marginTop="?attr/actionBarSize"
+                                                 android:animateLayoutChanges="true"
+                                                 android:paddingBottom="?attr/actionBarSize"
+                                                 tools:context="br.com.battista.bgscore.fragment.HomeFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
@@ -221,12 +221,12 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_new_match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin_bottom"
-            app:srcCompat="@drawable/ic_fab_add"/>
+        android:id="@+id/fab_new_match"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        app:srcCompat="@drawable/ic_fab_add"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-/**
- * Created by felip on 03/10/2016.
- */
-
 public class DimensionsUtils {
 
     /**

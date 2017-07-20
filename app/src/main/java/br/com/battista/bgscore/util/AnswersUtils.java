@@ -7,7 +7,8 @@ import com.crashlytics.android.answers.CustomEvent;
 
 public class AnswersUtils {
 
-    private AnswersUtils(){ }
+    private AnswersUtils() {
+    }
 
     public static void onActionMetric(String nameAction, String valueAction) {
         Answers.getInstance().logCustom(new CustomEvent(KEY_ACTION)

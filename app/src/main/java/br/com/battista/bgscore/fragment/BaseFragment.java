@@ -36,7 +36,8 @@ public class BaseFragment extends Fragment {
     protected void replaceDetailFragment(Fragment fragment, int containerResID) {
         if (fragment != null) {
             Log.d(TAG, "replaceFragment: Change to detail fragment!");
-            final FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            final FragmentTransaction transaction = getActivity().
+                    getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(
                     R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
             transaction.replace(containerResID, fragment);

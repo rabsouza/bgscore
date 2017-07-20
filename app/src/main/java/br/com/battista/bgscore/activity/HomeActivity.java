@@ -61,7 +61,12 @@ public class HomeActivity extends BaseActivity {
                             case R.id.action_matches:
                                 item.setChecked(true);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_MATCHES);
-                                AndroidUtils.toast(getActivity(), "Clicou em Partidas!");
+                                AndroidUtils.toast(getActivity(), "Em construção!");
+                                break;
+                            case R.id.action_games:
+                                item.setChecked(true);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_GAMES);
+                                AndroidUtils.toast(getActivity(), "Em construção!");
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);

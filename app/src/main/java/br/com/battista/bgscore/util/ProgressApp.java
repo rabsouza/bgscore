@@ -34,7 +34,8 @@ public class ProgressApp extends AsyncTask<Void, Integer, Boolean> {
     }
 
     public ProgressApp(Activity activity, Integer messageResId, Integer currProgress,
-                       Integer maxProgress, Integer offsetProgress, Integer timeSleep, Boolean styleProgress) {
+                       Integer maxProgress, Integer offsetProgress, Integer timeSleep,
+                       Boolean styleProgress) {
         this.currProgress = currProgress;
         this.maxProgress = maxProgress;
         this.offsetProgress = offsetProgress;

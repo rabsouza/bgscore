@@ -9,10 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 
-/**
- * Created by felip on 03/10/2016.
- */
-
 public class AnimationUtils {
 
     private static final int DURATION = 250;
@@ -37,7 +33,8 @@ public class AnimationUtils {
      * @param upWhenClicked true = makes the view go up when touched, false = makes the view to gown
      *                      when touched
      */
-    public static void setAnimationElevation(View viewToClick, final View viewToAnimate, final boolean upWhenClicked) {
+    public static void setAnimationElevation(View viewToClick, final View viewToAnimate,
+                                             final boolean upWhenClicked) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 

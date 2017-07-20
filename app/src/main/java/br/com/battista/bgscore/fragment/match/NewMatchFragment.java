@@ -23,18 +23,18 @@ import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 
-public class AddMatchFragment extends BaseFragment {
-    private static final String TAG = AddMatchFragment.class.getSimpleName();
+public class NewMatchFragment extends BaseFragment {
+    private static final String TAG = NewMatchFragment.class.getSimpleName();
 
     private RecycleEmptyErrorView recycleViewFriends;
     private TextView emptyMsgFriends;
     private TextView errorMsgFriends;
 
-    public AddMatchFragment() {
+    public NewMatchFragment() {
     }
 
-    public static AddMatchFragment newInstance() {
-        AddMatchFragment fragment = new AddMatchFragment();
+    public static NewMatchFragment newInstance() {
+        NewMatchFragment fragment = new NewMatchFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -45,9 +45,9 @@ public class AddMatchFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: Create new fragment Profile!");
 
-        final View view = inflater.inflate(R.layout.fragment_add_match, container, false);
+        final View view = inflater.inflate(R.layout.fragment_new_match, container, false);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_next_edit_match);
+        FloatingActionButton fab = view.findViewById(R.id.fab_next_edit_match);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

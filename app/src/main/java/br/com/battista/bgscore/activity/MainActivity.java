@@ -1,22 +1,18 @@
 package br.com.battista.bgscore.activity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.text.MessageFormat;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class MainActivity extends BaseActivity {
@@ -37,15 +33,7 @@ public class MainActivity extends BaseActivity {
 
     private void loadVersionName() {
         final TextView hintVersion = (TextView) findViewById(R.id.hint_version);
-        String version = "";
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            version = pInfo.versionName;
-
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, MessageFormat.format("Error load version: {0}", e.getLocalizedMessage()));
-        }
-        hintVersion.setText(getString(R.string.hint_version, version));
+        hintVersion.setText(getString(R.string.hint_version, AndroidUtils.getVersionName(this)));
     }
 
     private void processProgressBarMain() {

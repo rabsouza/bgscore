@@ -55,20 +55,21 @@ public class AndroidUtils {
         changeErrorSpinner(spinner, null, false);
     }
 
-    public static void changeErrorSpinner(@NonNull MaterialBetterSpinner spinner, String msgErro, Boolean error) {
+    public static void changeErrorSpinner(@NonNull MaterialBetterSpinner spinner,
+                                          String msgError, Boolean error) {
         if (error) {
-            Log.e(TAG, msgErro);
-            spinner.setError(msgErro);
+            Log.e(TAG, msgError);
+            spinner.setError(msgError);
             spinner.requestFocus();
         } else {
             spinner.setError(null);
         }
     }
 
-    public static void changeErrorEditText(@NonNull EditText editText, String msgErro, Boolean error) {
+    public static void changeErrorEditText(@NonNull EditText editText, String msgError, Boolean error) {
         if (error) {
-            Log.e(TAG, msgErro);
-            editText.setError(msgErro);
+            Log.e(TAG, msgError);
+            editText.setError(msgError);
             editText.requestFocus();
         } else {
             editText.setError(null);

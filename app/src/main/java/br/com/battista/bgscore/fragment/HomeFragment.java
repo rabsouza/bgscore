@@ -17,7 +17,9 @@ import java.util.Calendar;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.view.RecycleEmptyErrorView;
 import br.com.battista.bgscore.view.ScoreboardView;
@@ -69,6 +71,8 @@ public class HomeFragment extends BaseFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
                 Bundle args = new Bundle();
                 Intent intent = new Intent(getContext(), MatchActivity.class);
                 intent.putExtras(args);

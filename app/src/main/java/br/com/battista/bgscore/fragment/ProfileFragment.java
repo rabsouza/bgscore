@@ -93,8 +93,10 @@ public class ProfileFragment extends BaseFragment {
         switch (requestCode) {
             case ChangeAvatarDialog.DIALOG_CHANGE_AVATAR_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
-                    final int currentAvatar = data.getIntExtra(BundleConstant.CURRENT_AVATAR, R.drawable.avatar_profile);
-                    Log.i(TAG, MessageFormat.format("onActivityResult: Change avatar to res: {0}", currentAvatar));
+                    final int currentAvatar = data.getIntExtra(BundleConstant.CURRENT_AVATAR,
+                            R.drawable.avatar_profile);
+                    Log.i(TAG, MessageFormat.format("onActivityResult: Change avatar to res: {0}",
+                            currentAvatar));
                     updateAvatarUser(currentAvatar);
                     loadUserInfo(getView());
                     AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
