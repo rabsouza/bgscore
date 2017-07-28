@@ -10,13 +10,17 @@ import android.view.ViewGroup;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.AvatarDto;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 
 public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
     private static final String TAG = AvatarAdapter.class.getSimpleName();
+    public static final int OFFSET_RANGE_HEIGHT = 50;
 
     private Context context;
     private List<AvatarDto> avatars;
@@ -65,8 +69,11 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
     public void onBindViewHolder(AvatarViewHolder holder, int position) {
         if (avatars != null && !avatars.isEmpty()) {
             View itemView = holder.itemView;
-            final CardView cardView = itemView.findViewById(R.id.card_view_avatar);
+            itemView.measure(WRAP_CONTENT, WRAP_CONTENT);
+            itemView.getLayoutParams().height = itemView.getMeasuredHeight()
+                    + getRandomIntInRange(OFFSET_RANGE_HEIGHT);
             setAnimationHolder(itemView, position);
+            final CardView cardView = itemView.findViewById(R.id.card_view_avatar);
 
             final AvatarDto avatarDto = avatars.get(position);
             Log.i(TAG, String.format(
@@ -96,6 +103,10 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
+    }
+
+    private int getRandomIntInRange(int offset) {
+        return new Random().nextInt(offset);
     }
 
     public int getCurrentAvatar() {

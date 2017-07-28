@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +31,7 @@ import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
 import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.model.User;
@@ -38,7 +39,8 @@ import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
-import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
+
+import static android.support.v7.widget.StaggeredGridLayoutManager.*;
 
 
 public class ProfileFragment extends BaseFragment {
@@ -150,7 +152,8 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setEmptyView(emptyMsgFriends);
         recycleViewFriends.setErrorView(errorMsgFriends);
 
-        recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        recycleViewFriends.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
         final List<FriendDto> friends = Lists.newLinkedList(user.getFriends());

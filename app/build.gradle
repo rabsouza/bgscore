@@ -29,7 +29,7 @@ android {
         }
         debug {
             minifyEnabled false
-            testCoverageEnabled = true
+            testCoverageEnabled = false
             resValue "string", "app_name", "BGScore (debug)"
             resValue "string", "title_app", "BGScore (debug)"
         }

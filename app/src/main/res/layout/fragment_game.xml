@@ -61,7 +61,35 @@
                                 style="@style/HintTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/text_match_games_info_01"/>
+                                android:text="@string/text_game_games_info_01"
+                                android:paddingBottom="@dimen/md_keylines"/>
+
+                        <br.com.battista.bgscore.custom.RecycleEmptyErrorView
+                                android:id="@+id/card_view_games_recycler_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:cacheColorHint="@android:color/transparent"
+                                android:clipToPadding="false"
+                                android:dividerHeight="1dp"
+                                android:listSelector="@android:color/transparent"
+                                android:paddingBottom="@dimen/md_keylines"
+                                android:paddingTop="@dimen/md_keylines"/>
+
+                        <TextView
+                                android:id="@+id/card_view_games_empty_view"
+                                style="@style/CardTextBoldStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_game_games_empty_view"
+                                android:visibility="gone"/>
+
+                        <TextView
+                                android:id="@+id/card_view_games_error_view"
+                                style="@style/CardTextBoldStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_game_games_error_view"
+                                android:visibility="gone"/>
 
                     </LinearLayout>
 

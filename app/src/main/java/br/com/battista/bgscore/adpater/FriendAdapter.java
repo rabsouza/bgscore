@@ -11,15 +11,19 @@ import android.view.ViewGroup;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Random;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     private static final String TAG = FriendAdapter.class.getSimpleName();
+    public static final int OFFSET_RANGE_HEIGHT = 50;
 
     private Context context;
     private List<FriendDto> friends;
@@ -50,6 +54,9 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     public void onBindViewHolder(FriendViewHolder holder, int position) {
         if (friends != null && !friends.isEmpty()) {
             View itemView = holder.itemView;
+            itemView.measure(WRAP_CONTENT, WRAP_CONTENT);
+            itemView.getLayoutParams().height = itemView.getMeasuredHeight()
+                    + getRandomIntInRange(OFFSET_RANGE_HEIGHT);
             setAnimationHolder(itemView, position);
 
             final FriendDto friendDto = friends.get(position);
@@ -89,6 +96,10 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
+    }
+
+    private int getRandomIntInRange(int offset) {
+        return new Random().nextInt(offset);
     }
 
     private void createDialogRemoveFriend(final String friend, final int position) {

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +35,8 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.PopupMenuUtils;
+
+import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
 
 public class NewMatchFragment extends BaseFragment {
     private static final String TAG = NewMatchFragment.class.getSimpleName();
@@ -133,7 +135,7 @@ public class NewMatchFragment extends BaseFragment {
         recycleViewPlayers.setEmptyView(emptyMsgPlayers);
         recycleViewPlayers.setErrorView(errorMsgPlayers);
 
-        recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycleViewPlayers.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
         recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
         recycleViewPlayers.setHasFixedSize(false);
         final List<FriendDto> players = Lists.newLinkedList(user.getFriends());

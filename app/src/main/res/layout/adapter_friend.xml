@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_friend_img"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:drawableLeft="@drawable/ic_username"
             android:gravity="left|center_vertical"/>
 

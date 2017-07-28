@@ -10,8 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +22,8 @@ import android.widget.Button;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.AvatarAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
+
+import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
 
 public class ChangeAvatarDialog extends DialogFragment {
 
@@ -99,7 +101,7 @@ public class ChangeAvatarDialog extends DialogFragment {
         });
 
         recyclerViewAvatars = viewFragment.findViewById(R.id.dialog_view_change_avatar_recycler_view);
-        recyclerViewAvatars.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerViewAvatars.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
         recyclerViewAvatars.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAvatars.setHasFixedSize(true);
         avatarAdapter = new AvatarAdapter(getContext(), currentAvatar);

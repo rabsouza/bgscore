@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
                                     android:id="@+id/card_view_games_info"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -33,7 +34,7 @@
                 android:layout_marginLeft="@dimen/element_margin"
                 android:layout_marginRight="@dimen/element_margin"
                 android:layout_toRightOf="@id/card_view_games_info_image"
-                android:text="Zombicide Season 3: Rue Morgue (2015)"/>
+                tools:text="Zombicide Season 3: Rue Morgue (2015)"/>
 
         <TextView
                 android:id="@+id/card_view_games_info_players"
@@ -43,7 +44,7 @@
                 android:layout_below="@id/card_view_games_info_name"
                 android:layout_margin="@dimen/element_margin"
                 android:layout_toRightOf="@id/card_view_games_info_image"
-                android:text="1/12 joga."/>
+                tools:text="1/12 joga."/>
 
         <TextView
                 android:id="@+id/card_view_games_info_time"
@@ -56,7 +57,7 @@
                 android:layout_marginLeft="@dimen/element_margin"
                 android:layout_marginBottom="@dimen/element_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:text="60-180 mins"/>
+                tools:text="60-180 mins"/>
 
         <TextView
                 android:id="@+id/card_view_games_info_ages"
@@ -67,7 +68,7 @@
                 android:layout_marginLeft="@dimen/element_margin"
                 android:layout_marginRight="@dimen/element_margin"
                 android:layout_toRightOf="@id/card_view_games_info_image"
-                android:text="14+ anos"/>
+                tools:text="14+ anos"/>
 
         <RatingBar
                 android:id="@+id/card_view_games_info_rating"
@@ -79,9 +80,10 @@
                 android:layout_marginLeft="@dimen/element_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:numStars="5"
-                android:rating="4"/>
+                android:rating="0"/>
 
         <ImageView
+                android:id="@+id/card_view_games_more_actions"
                 android:layout_width="20dp"
                 android:layout_height="32dp"
                 android:layout_alignParentRight="true"
