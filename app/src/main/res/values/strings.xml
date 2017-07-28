@@ -10,6 +10,7 @@
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
     <string name="title_add_match">&#x265c; Partida &#x265c;</string>
+    <string name="title_add_game">&#x265c; Jogo &#x265c;</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
@@ -19,6 +20,8 @@
     <string name="card_title_my_profile">Meu perfil</string>
     <string name="card_title_my_ranking_game">Meu ranking de games</string>
     <string name="card_title_new_match">Minha nova partida</string>
+    <string name="card_title_new_game">Meu novo jogo</string>
+    <string name="card_title_search_game">Buscar um novo jogo</string>
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
@@ -50,6 +53,7 @@
     <string name="text_match_players_info_01">*¹ Selecione os jogadores para jogar esta partida.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir dos jogos cadastrados no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida</string>
+    <string name="text_match_games_info_01">*¹ Lista dos ultimos jogos cadastrados.</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
