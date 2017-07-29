@@ -125,7 +125,7 @@ public class MainApplication extends MultiDexApplication {
 
     protected void initializeDB() {
         Log.i(TAG, "initializeDB: Initialize Database to App.");
-        getApplicationContext().deleteDatabase("bgscore_db.db");
+        //getApplicationContext().deleteDatabase("bgscore_db.db");
         SugarContext.init(getApplicationContext());
     }
 

@@ -69,19 +69,19 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "*")));
 
             if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
-                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0} joga.",
+                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1")));
             } else {
-                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}/{1} joga.",
+                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}-{1}",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
             }
 
             if (Strings.isNullOrEmpty(game.getMaxPlayTime())) {
-                holder.getTxtInfoTime().setText(MessageFormat.format("{0} mins",
+                holder.getTxtInfoTime().setText(MessageFormat.format("{0}´",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "∞")));
             } else {
-                holder.getTxtInfoTime().setText(MessageFormat.format("{0}-{1} mins",
+                holder.getTxtInfoTime().setText(MessageFormat.format("{0}-{1}´",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
             }
@@ -89,7 +89,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
             if (Strings.isNullOrEmpty(game.getAge())) {
                 holder.getTxtInfoAges().setText("-");
             } else {
-                holder.getTxtInfoAges().setText(MessageFormat.format("{0}+ anos", game.getAge()));
+                holder.getTxtInfoAges().setText(MessageFormat.format("{0}+", game.getAge()));
             }
 
             if (Strings.isNullOrEmpty(game.getRating())) {

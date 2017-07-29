@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:id="@+id/card_view_games_info"
+                                    android:id="@+id/card_view_gamess_info"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:foreground="?attr/selectableItemBackground"
@@ -33,8 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
-            android:layout_toRightOf="@id/card_view_games_info_image"
-            tools:text="Zombicide Season 3: Rue Morgue (2015)"/>
+            android:layout_toRightOf="@id/card_view_games_info_image"/>
 
         <TextView
             android:id="@+id/card_view_games_info_players"
@@ -44,7 +42,20 @@
             android:layout_below="@id/card_view_games_info_name"
             android:layout_margin="@dimen/element_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
-            tools:text="1/12 joga."/>
+            android:drawableLeft="@drawable/ic_game_players"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/card_view_games_info_ages"
+            style="@style/CardTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_view_games_info_name"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:layout_marginTop="@dimen/element_vertical_margin"
+            android:layout_toRightOf="@id/card_view_games_info_players"
+            android:drawableLeft="@drawable/ic_game_age"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:id="@+id/card_view_games_info_time"
@@ -57,30 +68,19 @@
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/element_margin"
-            tools:text="60-180 mins"/>
-
-        <TextView
-            android:id="@+id/card_view_games_info_ages"
-            style="@style/CardTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/card_view_games_info_players"
-            android:layout_marginLeft="@dimen/element_margin"
-            android:layout_marginRight="@dimen/element_margin"
-            android:layout_toRightOf="@id/card_view_games_info_image"
-            tools:text="14+ anos"/>
+            android:drawableLeft="@drawable/ic_game_time"
+            android:gravity="center_vertical"/>
 
         <RatingBar
             android:id="@+id/card_view_games_info_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/card_view_games_info_time"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:numStars="5"
-            android:rating="0"/>
+            android:layout_toRightOf="@id/card_view_games_info_image"
+            android:numStars="@string/rating_num_stars"/>
 
         <ImageView
             android:id="@+id/card_view_games_more_actions"

@@ -67,7 +67,7 @@ public class PlayerRepository implements Repository<Player> {
         Log.i(TAG, "Find all Players.");
         return Select
                 .from(Player.class)
-                .orderBy(MessageFormat.format("{0} ASC, {1} ASC",
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, PlayerEntry.COLUMN_NAME_NAME))
                 .list();
     }

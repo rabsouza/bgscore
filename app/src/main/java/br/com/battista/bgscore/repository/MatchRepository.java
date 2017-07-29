@@ -67,7 +67,7 @@ public class MatchRepository implements Repository<Match> {
         Log.i(TAG, "Find all Matches.");
         return Select
                 .from(Match.class)
-                .orderBy(MessageFormat.format("{0} ASC, {1} ASC",
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
                 .list();
     }

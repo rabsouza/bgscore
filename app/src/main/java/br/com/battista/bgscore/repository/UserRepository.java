@@ -67,7 +67,7 @@ public class UserRepository implements Repository<User> {
         Log.i(TAG, "Find all Users.");
         return Select
                 .from(User.class)
-                .orderBy(MessageFormat.format("{0} ASC, {1} ASC",
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, UserEntry.COLUMN_NAME_USERNAME))
                 .list();
     }

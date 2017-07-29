@@ -199,19 +199,19 @@ public class NewMatchFragment extends BaseFragment {
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "*")));
 
             if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
-                txtInfoPlayers.setText(MessageFormat.format("{0} joga.",
+                txtInfoPlayers.setText(MessageFormat.format("{0}",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1")));
             } else {
-                txtInfoPlayers.setText(MessageFormat.format("{0}/{1} joga.",
+                txtInfoPlayers.setText(MessageFormat.format("{0}-{1}",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
             }
 
             if (Strings.isNullOrEmpty(game.getMaxPlayTime())) {
-                txtInfoTime.setText(MessageFormat.format("{0} mins",
+                txtInfoTime.setText(MessageFormat.format("{0}´",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "∞")));
             } else {
-                txtInfoTime.setText(MessageFormat.format("{0}-{1} mins",
+                txtInfoTime.setText(MessageFormat.format("{0}-{1}´",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
             }
@@ -219,7 +219,7 @@ public class NewMatchFragment extends BaseFragment {
             if (Strings.isNullOrEmpty(game.getAge())) {
                 txtInfoAges.setText("-");
             } else {
-                txtInfoAges.setText(MessageFormat.format("{0}+ anos", game.getAge()));
+                txtInfoAges.setText(MessageFormat.format("{0}+", game.getAge()));
             }
 
             if (Strings.isNullOrEmpty(game.getRating())) {

@@ -109,4 +109,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="RatingBarStyle" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="android:scaleX">1.4</item>
+        <item name="android:scaleY">1.4</item>
+    </style>
+
 </resources>

@@ -83,7 +83,7 @@
     <string name="field_min_play_time_new_game">Duração mínima (Mins.)</string>
     <string name="field_max_play_time_new_game">Duração máxima (Mins.)</string>
     <string name="field_age_new_game">Idade recomendada</string>
-    <string name="field_rating_new_game">Avaliação do jogo (0-5)</string>
+    <string name="field_rating_new_game">Avaliação do jogo (0-10&#x2605;)</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
@@ -149,5 +149,7 @@ Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/REL
     <string name="avatar_leia_princess">Princesa Leia</string>
     <string name="avatar_lobot">Lobot</string>
     <string name="avatar_r2d2">R2D2</string>
+    <string name="rating_num_stars">10</string>
+    <string name="rating_step_size">0.5</string>
 
 </resources>

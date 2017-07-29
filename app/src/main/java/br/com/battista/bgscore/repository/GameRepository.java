@@ -67,7 +67,7 @@ public class GameRepository implements Repository<Game> {
         Log.i(TAG, "Find all Games.");
         return Select
                 .from(Game.class)
-                .orderBy(MessageFormat.format("{0} ASC, {1} ASC",
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, GameEntry.COLUMN_NAME_NAME))
                 .list();
     }
