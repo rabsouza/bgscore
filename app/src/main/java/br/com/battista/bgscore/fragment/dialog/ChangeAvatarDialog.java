@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
+import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,8 +24,6 @@ import android.widget.Button;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.AvatarAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
-
-import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
 
 public class ChangeAvatarDialog extends DialogFragment {
 

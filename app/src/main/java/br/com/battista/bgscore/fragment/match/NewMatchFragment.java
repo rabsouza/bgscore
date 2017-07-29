@@ -1,22 +1,34 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import com.google.common.collect.Lists;
+import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import br.com.battista.bgscore.MainApplication;
@@ -34,9 +46,9 @@ import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
-import br.com.battista.bgscore.util.PopupMenuUtils;
-
-import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
+import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewMatchFragment extends BaseFragment {
     private static final String TAG = NewMatchFragment.class.getSimpleName();
@@ -45,8 +57,18 @@ public class NewMatchFragment extends BaseFragment {
     private TextView emptyMsgPlayers;
     private TextView errorMsgPlayers;
 
+    private final Map<String, Game> gameMap = Maps.newTreeMap();
+
+    private ImageButton btnSearchGame;
+    private AutoCompleteTextView txtSearchNameGame;
     private CardView cardViewGame;
-    private ImageView imageMoreActions;
+
+    private ImageView imgInfoGame;
+    private TextView txtInfoName;
+    private TextView txtInfoTime;
+    private TextView txtInfoPlayers;
+    private TextView txtInfoAges;
+    private RatingBar rtbInfoRating;
 
     public NewMatchFragment() {
     }
@@ -104,26 +126,114 @@ public class NewMatchFragment extends BaseFragment {
         });
 
         setupRecycleViewPlayers(view);
-        setupCardViewGame(view);
-
+        loadDataForm(view);
         return view;
     }
 
-    private void setupCardViewGame(final View view) {
+    private void loadDataForm(final View view) {
+        Log.i(TAG, "loadDataForm: Load all form fields!");
+        final List<Game> games = new GameRepository().findAll();
+        for (Game game : games) {
+            gameMap.put(game.getName(), game);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, Lists.newArrayList(gameMap.keySet()));
+
+        txtSearchNameGame = view.findViewById(R.id.card_view_game_search_name);
+        txtSearchNameGame.setAdapter(adapter);
+        txtSearchNameGame.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    processDataSearchGame(view);
+                }
+                return false;
+            }
+        });
 
         cardViewGame = view.findViewById(R.id.card_view_game_info);
 
-        imageMoreActions = view.findViewById(R.id.card_view_game_info_more_actions);
-        final PopupMenu popup = new PopupMenu(getContext(), imageMoreActions);
-        PopupMenuUtils.showPopupWindow(popup);
-        popup.getMenuInflater().inflate(R.menu.menu_actions_game, popup.getMenu());
-        cardViewGame.setOnClickListener(new View.OnClickListener() {
+        btnSearchGame = view.findViewById(R.id.card_view_game_button_search);
+        btnSearchGame.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                popup.show();
+            public void onClick(View viewClicked) {
+                processDataSearchGame(view);
             }
         });
     }
+
+    private void processDataSearchGame(View view) {
+        if (Strings.isNullOrEmpty(txtSearchNameGame.getText().toString())) {
+            String msgErrorUsername = getContext().getString(R.string.msg_name_game_required);
+            AndroidUtils.changeErrorEditText(txtSearchNameGame, msgErrorUsername, true);
+            return;
+        }
+        AndroidUtils.changeErrorEditText(txtSearchNameGame);
+        final String nameGame = txtSearchNameGame.getText().toString().trim();
+        if (gameMap.containsKey(nameGame)) {
+            Game game = gameMap.get(nameGame);
+
+            imgInfoGame = view.findViewById(R.id.card_view_game_info_image);
+            txtInfoName = view.findViewById(R.id.card_view_game_info_name);
+            txtInfoPlayers = view.findViewById(R.id.card_view_game_info_players);
+            txtInfoTime = view.findViewById(R.id.card_view_game_info_time);
+            txtInfoAges = view.findViewById(R.id.card_view_game_info_ages);
+            rtbInfoRating = view.findViewById(R.id.card_view_game_info_rating);
+
+            Log.i(TAG, "processDataSearchGame: Fill the data Game!");
+
+            String urlThumbnail = game.getUrlThumbnail();
+            if (Strings.isNullOrEmpty(urlThumbnail)) {
+                ImageLoadUtils.loadImage(getContext(),
+                        R.drawable.boardgame_game,
+                        imgInfoGame);
+            } else {
+                ImageLoadUtils.loadImage(getContext(),
+                        urlThumbnail,
+                        imgInfoGame);
+            }
+
+            txtInfoName.setText(MessageFormat.format("{0} ({1})",
+                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"),
+                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "*")));
+
+            if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
+                txtInfoPlayers.setText(MessageFormat.format("{0} joga.",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1")));
+            } else {
+                txtInfoPlayers.setText(MessageFormat.format("{0}/{1} joga.",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
+            }
+
+            if (Strings.isNullOrEmpty(game.getMaxPlayTime())) {
+                txtInfoTime.setText(MessageFormat.format("{0} mins",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "∞")));
+            } else {
+                txtInfoTime.setText(MessageFormat.format("{0}-{1} mins",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
+            }
+
+            if (Strings.isNullOrEmpty(game.getAge())) {
+                txtInfoAges.setText("-");
+            } else {
+                txtInfoAges.setText(MessageFormat.format("{0}+ anos", game.getAge()));
+            }
+
+            if (Strings.isNullOrEmpty(game.getRating())) {
+                rtbInfoRating.setRating(0F);
+            } else {
+                rtbInfoRating.setRating(RatingUtils.convertFrom(game.getRating()));
+            }
+
+            cardViewGame.setVisibility(View.VISIBLE);
+        } else {
+            AndroidUtils.snackbar(view, R.string.msg_game_dont_found);
+        }
+    }
+
 
     private void setupRecycleViewPlayers(View view) {
         final MainApplication instance = MainApplication.instance();

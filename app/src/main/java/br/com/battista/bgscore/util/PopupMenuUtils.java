@@ -7,7 +7,8 @@ import java.lang.reflect.Method;
 
 public class PopupMenuUtils {
 
-    private PopupMenuUtils(){}
+    private PopupMenuUtils() {
+    }
 
     public static void showPopupWindow(PopupMenu popup) {
         try {

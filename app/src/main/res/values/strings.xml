@@ -21,7 +21,7 @@
     <string name="card_title_my_ranking_game">Meu ranking de games</string>
     <string name="card_title_new_match">Minha nova partida</string>
     <string name="card_title_new_game">Meu novo jogo</string>
-    <string name="card_title_search_game">Buscar um novo jogo</string>
+    <string name="card_title_search_game">Buscar um jogo</string>
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
@@ -31,9 +31,12 @@
     <!-- ################### HINT #################### -->
     <string name="msg_username_friend_required">Nome do usuários do seu amigo(a) é obrigatório!</string>
     <string name="msg_username_required">Nome do usuário é obrigatório!</string>
+    <string name="msg_name_game_required">Nome do jogo é obrigatório!</string>
     <string name="msg_mail_required">E-mail é obrigatório!</string>
+    <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor tente novamente!</string>
 
     <!-- ################### TEXT #################### -->
+    <string name="text_under_construction">Em construção, por favor aguarde!</string>
     <string name="text_home_games">Jogos</string>
     <string name="text_home_matches">Partidas</string>
     <string name="text_home_matches_time">Tempo(hs)</string>
@@ -51,17 +54,30 @@
     <string name="text_dialog_edit_profile_info_01">*¹ Preencha os campos abaixo com seus dados.</string>
     <string name="text_profile_friends_info_01">*¹ Cadastre um novo amigo para jogar na suas partidas.</string>
     <string name="text_match_players_info_01">*¹ Selecione os jogadores para jogar esta partida.</string>
-    <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir dos jogos cadastrados no site boardgamegeek.com.</string>
+    <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir dos seus jogos cadastrados ou no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida</string>
+    <string name="text_match_search_online">Buscar no site boardgamegeek.com.</string>
     <string name="text_game_games_info_01">*¹ Lista dos ultimos jogos cadastrados.</string>
     <string name="text_game_games_empty_view">Você ainda não adicionou nenhum jogo.</string>
     <string name="text_game_games_error_view">Error ao carregar a lista de jogos, favor tentar novamente.</string>
+    <string name="text_game_new_game_info_01">*¹ Adicione um novo jogo, cadastrando as informações abaixo.</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
     <string name="field_username_friend">Nome do usuário do seu amigo(a)</string>
     <string name="field_mail">E-mail do perfil</string>
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
+    <string name="field_name_new_game">Nome do jogo</string>
+    <string name="field_url_thumbnail_new_game">Link da imagem (Miniatura)</string>
+    <string name="field_url_image_new_game">Link da imagem (Principal)</string>
+    <string name="field_url_info_new_game">Link da página do jogo (Ludopedia ou boardgamegeek.com)</string>
+    <string name="field_year_published_new_game">Ano de publicação (yyyy)</string>
+    <string name="field_min_players_new_game">Mínimo de jogadores suportados</string>
+    <string name="field_max_players_new_game">Máximo de jogadores suportados</string>
+    <string name="field_min_play_time_new_game">Duração mínima (Mins.)</string>
+    <string name="field_max_play_time_new_game">Duração máxima (Mins.)</string>
+    <string name="field_age_new_game">Idade recomendada</string>
+    <string name="field_rating_new_game">Avaliação do jogo (0-5)</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
@@ -118,7 +134,7 @@ Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/REL
     <string name="dialog_title_edit_profile">Editar perfil</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>
 
     <!-- ################### OTHERS #################### -->
     <string name="avatar_boba_fett">Boba Fett</string>

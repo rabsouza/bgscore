@@ -19,9 +19,13 @@ public class MatchActivity extends BaseActivity {
 
         setupToolbarDetail();
         changeTitleCollapsingToolbar(R.string.title_add_match);
+        processDataActivity(getIntent().getExtras());
+    }
+
+    private void processDataActivity(Bundle bundle) {
+        Log.d(TAG, "processDataActivity: Process bundle data Activity!");
 
         Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
-
         replaceDetailFragment(NewMatchFragment.newInstance(), R.id.detail_container);
     }
 

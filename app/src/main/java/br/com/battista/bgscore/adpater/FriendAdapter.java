@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -18,13 +20,10 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
-    private static final String TAG = FriendAdapter.class.getSimpleName();
     public static final int OFFSET_RANGE_HEIGHT = 50;
-
+    private static final String TAG = FriendAdapter.class.getSimpleName();
     private Context context;
     private List<FriendDto> friends;
     private Boolean allowsDelete;

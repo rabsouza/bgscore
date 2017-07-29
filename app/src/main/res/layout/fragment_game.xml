@@ -9,87 +9,87 @@
                                                  tools:context="br.com.battista.bgscore.fragment.GameFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_padding">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_padding">
 
                 <android.support.v7.widget.CardView
-                        android:id="@+id/card_view_games"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/element_vertical_margin"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:padding="@dimen/no_dimen"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:cardCornerRadius="2dp"
-                        app:cardElevation="1dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:cardUseCompatPadding="true">
+                    android:id="@+id/card_view_games"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
+
+                        <TextView
+                            android:id="@+id/card_view_games_title"
+                            style="@style/CardTitleStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="@dimen/element_padding">
-
-                        <TextView
-                                android:id="@+id/card_view_games_title"
-                                style="@style/CardTitleStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/card_title_games"/>
+                            android:text="@string/card_title_games"/>
 
                         <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dimen_line"
-                                android:layout_marginBottom="@dimen/element_vertical_margin"
-                                android:background="@color/colorLine"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
 
                         <TextView
-                                android:id="@+id/card_view_games_info_01"
-                                style="@style/HintTextStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_game_games_info_01"
-                                android:paddingBottom="@dimen/md_keylines"/>
+                            android:id="@+id/card_view_games_info_01"
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/md_keylines"
+                            android:text="@string/text_game_games_info_01"/>
 
                         <br.com.battista.bgscore.custom.RecycleEmptyErrorView
-                                android:id="@+id/card_view_games_recycler_view"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:cacheColorHint="@android:color/transparent"
-                                android:clipToPadding="false"
-                                android:dividerHeight="1dp"
-                                android:listSelector="@android:color/transparent"
-                                android:paddingBottom="@dimen/md_keylines"
-                                android:paddingTop="@dimen/md_keylines"/>
+                            android:id="@+id/card_view_games_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:clipToPadding="false"
+                            android:dividerHeight="1dp"
+                            android:listSelector="@android:color/transparent"
+                            android:paddingBottom="@dimen/md_keylines"
+                            android:paddingTop="@dimen/md_keylines"/>
 
                         <TextView
-                                android:id="@+id/card_view_games_empty_view"
-                                style="@style/CardTextBoldStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_game_games_empty_view"
-                                android:visibility="gone"/>
+                            android:id="@+id/card_view_games_empty_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_game_games_empty_view"
+                            android:visibility="gone"/>
 
                         <TextView
-                                android:id="@+id/card_view_games_error_view"
-                                style="@style/CardTextBoldStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_game_games_error_view"
-                                android:visibility="gone"/>
+                            android:id="@+id/card_view_games_error_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_game_games_error_view"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -102,12 +102,12 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_new_match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin_bottom"
-            app:srcCompat="@drawable/ic_fab_add"/>
+        android:id="@+id/fab_new_match"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        app:srcCompat="@drawable/ic_fab_add"/>
 
 </android.support.design.widget.CoordinatorLayout>

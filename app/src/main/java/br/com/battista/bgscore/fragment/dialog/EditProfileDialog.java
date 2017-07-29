@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,13 +95,10 @@ public class EditProfileDialog extends DialogFragment {
                 }
                 AndroidUtils.changeErrorEditText(txtUsername);
                 String username = txtUsername.getText().toString().trim();
-                if (!TextUtils.isEmpty(username)) {
-                    user.setUsername(username);
-                }
+                user.setUsername(username);
+
                 String mail = txtMail.getText().toString();
-                if (!TextUtils.isEmpty(mail)) {
-                    user.setMail(mail);
-                }
+                user.setMail(mail);
                 instance.setUser(user);
 
                 getTargetFragment().onActivityResult(getTargetRequestCode(),

@@ -20,8 +20,13 @@ public class GameActivity extends BaseActivity {
         setupToolbarDetail();
         changeTitleCollapsingToolbar(R.string.title_add_game);
 
-        Log.i(TAG, "loadFragmentInitial: Load the NewGameFragment!");
+        processDataActivity(getIntent().getExtras());
+    }
 
+    private void processDataActivity(Bundle bundle) {
+        Log.d(TAG, "processDataActivity: Process bundle data Activity!");
+
+        Log.i(TAG, "loadFragmentInitial: Load the NewGameFragment!");
         replaceDetailFragment(NewGameFragment.newInstance(), R.id.detail_container);
     }
 

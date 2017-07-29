@@ -1,29 +1,45 @@
 package br.com.battista.bgscore.fragment.game;
 
 
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.RatingBar;
+
+import com.google.common.base.Strings;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.fragment.BaseFragment;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.service.CacheManageService;
-import br.com.battista.bgscore.util.PopupMenuUtils;
+import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();
 
-    private CardView cardViewGame;
-    private ImageView imageMoreActions;
+    private EditText txtNameGame;
+    private EditText txtUrlThumbnailGame;
+    private EditText txtUrlImageGame;
+    private EditText txtUrlInfoGame;
+    private EditText txtYearPublishedGame;
+    private EditText txtMinPlayersGame;
+    private EditText txtMaxPlayersGame;
+    private EditText txtMinPlayTimeGame;
+    private EditText txtMaxPlayTimeGame;
+    private EditText txtAgeGame;
+    private RatingBar rtbRatingGame;
 
     public NewGameFragment() {
     }
@@ -46,31 +62,68 @@ public class NewGameFragment extends BaseFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Game game = new Game().name("Game" + Math.random());
-                game.initEntity();
-                new GameRepository().save(game);
-                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+                fillDataAndSave(view);
             }
         });
 
-        setupCardViewGame(view);
+        loadDataForm(view);
         return view;
     }
 
-    private void setupCardViewGame(final View view) {
+    private void finishFormAndProcessData() {
+        Bundle args = new Bundle();
+        args.putInt(NAVIGATION_TO, GAME_FRAGMENT);
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.putExtras(args);
 
-        cardViewGame = view.findViewById(R.id.card_view_search_game_info);
+        getContext().startActivity(intent);
+    }
 
-        imageMoreActions = view.findViewById(R.id.card_view_search_game_info_more_actions);
-        final PopupMenu popup = new PopupMenu(getContext(), imageMoreActions);
-        PopupMenuUtils.showPopupWindow(popup);
-        popup.getMenuInflater().inflate(R.menu.menu_actions_game, popup.getMenu());
-        cardViewGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popup.show();
-            }
-        });
+    private void fillDataAndSave(View view) {
+        final Game game = new Game();
+        game.initEntity();
+
+        if (Strings.isNullOrEmpty(txtNameGame.getText().toString())) {
+            String msgErrorUsername = getContext().getString(R.string.msg_name_game_required);
+            AndroidUtils.changeErrorEditText(txtNameGame, msgErrorUsername, true);
+            return;
+        }
+        AndroidUtils.changeErrorEditText(txtNameGame);
+        game.name(txtNameGame.getText().toString().trim());
+        game.urlThumbnail(txtUrlThumbnailGame.getText().toString().trim());
+        game.urlImage(txtUrlImageGame.getText().toString().trim());
+        game.urlInfo(txtUrlInfoGame.getText().toString().trim());
+        game.yearPublished(txtYearPublishedGame.getText().toString().trim());
+        game.minPlayers(txtMinPlayersGame.getText().toString().trim());
+        game.maxPlayers(txtMaxPlayersGame.getText().toString().trim());
+        game.minPlayTime(txtMinPlayTimeGame.getText().toString().trim());
+        game.maxPlayTime(txtMaxPlayTimeGame.getText().toString().trim());
+        game.age(txtAgeGame.getText().toString().trim());
+        game.rating(RatingUtils.convertTo(rtbRatingGame.getRating()));
+
+        Log.i(TAG, "fillDataAndSave: Save the data in BD.");
+        new GameRepository().save(game);
+        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+        new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+
+        finishFormAndProcessData();
+    }
+
+    private void loadDataForm(View view) {
+        Log.i(TAG, "loadDataForm: Load all form fields!");
+
+        txtNameGame = view.findViewById(R.id.card_view_new_game_name);
+        txtUrlThumbnailGame = view.findViewById(R.id.card_view_new_game_url_thumbnail);
+        txtUrlImageGame = view.findViewById(R.id.card_view_new_game_url_image);
+        txtUrlInfoGame = view.findViewById(R.id.card_view_new_game_url_info);
+        txtYearPublishedGame = view.findViewById(R.id.card_view_new_game_year_published);
+        txtMinPlayersGame = view.findViewById(R.id.card_view_new_game_min_players);
+        txtMaxPlayersGame = view.findViewById(R.id.card_view_new_game_max_players);
+        txtMinPlayTimeGame = view.findViewById(R.id.card_view_new_game_min_play_time);
+        txtMaxPlayTimeGame = view.findViewById(R.id.card_view_new_game_max_play_time);
+        txtAgeGame = view.findViewById(R.id.card_view_new_game_age);
+        rtbRatingGame = view.findViewById(R.id.card_view_new_game_rating);
+
     }
 
 }

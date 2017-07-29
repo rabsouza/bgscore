@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.CardView;
@@ -15,13 +17,10 @@ import java.util.Random;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.AvatarDto;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
 
 public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
-    private static final String TAG = AvatarAdapter.class.getSimpleName();
     public static final int OFFSET_RANGE_HEIGHT = 50;
-
+    private static final String TAG = AvatarAdapter.class.getSimpleName();
     private Context context;
     private List<AvatarDto> avatars;
     @DrawableRes

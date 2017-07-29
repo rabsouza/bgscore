@@ -10,9 +10,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.MenuItem;
 
-import java.lang.reflect.GenericArrayType;
-
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.fragment.GameFragment;
@@ -33,9 +32,30 @@ public class HomeActivity extends BaseActivity {
 
         setUpToolbar(R.string.title_home);
         setUpBottomNavigation();
+        processDataActivity(getIntent().getExtras());
+    }
 
-        Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
-        replaceFragment(HomeFragment.newInstance());
+    private void processDataActivity(Bundle bundle) {
+        Log.d(TAG, "processDataActivity: Process bundle data Activity!");
+
+        if (bundle.containsKey(BundleConstant.NAVIGATION_TO)) {
+            int navigationTo = bundle.getInt(BundleConstant.NAVIGATION_TO);
+
+            switch (navigationTo) {
+                case BundleConstant.NavigationTo.GAME_FRAGMENT:
+                    Log.i(TAG, "loadFragmentInitial: Load the GameFragment!");
+                    replaceFragment(GameFragment.newInstance());
+                    break;
+                default:
+                    Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
+                    replaceFragment(HomeFragment.newInstance());
+                    break;
+            }
+
+        } else {
+            Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
+            replaceFragment(HomeFragment.newInstance());
+        }
     }
 
     private void setUpBottomNavigation() {

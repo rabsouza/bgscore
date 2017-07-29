@@ -1,9 +1,7 @@
 package br.com.battista.bgscore.fragment;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +18,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
@@ -39,8 +41,6 @@ import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
-
-import static android.support.v7.widget.StaggeredGridLayoutManager.*;
 
 
 public class ProfileFragment extends BaseFragment {

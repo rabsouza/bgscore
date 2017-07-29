@@ -14,83 +14,83 @@
                                     app:cardUseCompatPadding="true">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/element_padding">
+
+        <ImageView
+            android:id="@+id/card_view_games_info_image"
+            android:layout_width="@dimen/dimen_game_img_width"
+            android:layout_height="@dimen/dimen_game_img_height"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/boardgame_game"/>
+
+        <TextView
+            android:id="@+id/card_view_games_info_name"
+            style="@style/CardHeadStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/element_padding">
-
-        <ImageView
-                android:id="@+id/card_view_games_info_image"
-                android:layout_width="@dimen/dimen_game_img_width"
-                android:layout_height="@dimen/dimen_game_img_height"
-                android:layout_centerVertical="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/boardgame_game"/>
+            android:layout_marginLeft="@dimen/element_margin"
+            android:layout_marginRight="@dimen/element_margin"
+            android:layout_toRightOf="@id/card_view_games_info_image"
+            tools:text="Zombicide Season 3: Rue Morgue (2015)"/>
 
         <TextView
-                android:id="@+id/card_view_games_info_name"
-                style="@style/CardHeadStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/element_margin"
-                android:layout_marginRight="@dimen/element_margin"
-                android:layout_toRightOf="@id/card_view_games_info_image"
-                tools:text="Zombicide Season 3: Rue Morgue (2015)"/>
+            android:id="@+id/card_view_games_info_players"
+            style="@style/CardTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_view_games_info_name"
+            android:layout_margin="@dimen/element_margin"
+            android:layout_toRightOf="@id/card_view_games_info_image"
+            tools:text="1/12 joga."/>
 
         <TextView
-                android:id="@+id/card_view_games_info_players"
-                style="@style/CardTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/card_view_games_info_name"
-                android:layout_margin="@dimen/element_margin"
-                android:layout_toRightOf="@id/card_view_games_info_image"
-                tools:text="1/12 joga."/>
+            android:id="@+id/card_view_games_info_time"
+            style="@style/CardTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/card_view_games_info_name"
+            android:layout_marginBottom="@dimen/element_margin"
+            android:layout_marginLeft="@dimen/element_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/element_margin"
+            tools:text="60-180 mins"/>
 
         <TextView
-                android:id="@+id/card_view_games_info_time"
-                style="@style/CardTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/card_view_games_info_name"
-                android:layout_marginTop="@dimen/element_margin"
-                android:layout_marginLeft="@dimen/element_margin"
-                android:layout_marginBottom="@dimen/element_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                tools:text="60-180 mins"/>
-
-        <TextView
-                android:id="@+id/card_view_games_info_ages"
-                style="@style/CardTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/card_view_games_info_players"
-                android:layout_marginLeft="@dimen/element_margin"
-                android:layout_marginRight="@dimen/element_margin"
-                android:layout_toRightOf="@id/card_view_games_info_image"
-                tools:text="14+ anos"/>
+            android:id="@+id/card_view_games_info_ages"
+            style="@style/CardTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_view_games_info_players"
+            android:layout_marginLeft="@dimen/element_margin"
+            android:layout_marginRight="@dimen/element_margin"
+            android:layout_toRightOf="@id/card_view_games_info_image"
+            tools:text="14+ anos"/>
 
         <RatingBar
-                android:id="@+id/card_view_games_info_rating"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/card_view_games_info_time"
-                android:layout_marginLeft="@dimen/element_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:numStars="5"
-                android:rating="0"/>
+            android:id="@+id/card_view_games_info_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/card_view_games_info_time"
+            android:layout_marginLeft="@dimen/element_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:numStars="5"
+            android:rating="0"/>
 
         <ImageView
-                android:id="@+id/card_view_games_more_actions"
-                android:layout_width="20dp"
-                android:layout_height="32dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="-4dp"
-                app:srcCompat="@drawable/ic_more_actions"
-                android:scaleType="fitCenter"/>
+            android:id="@+id/card_view_games_more_actions"
+            android:layout_width="20dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="-4dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_more_actions"/>
 
     </RelativeLayout>
 

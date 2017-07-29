@@ -18,11 +18,11 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
+import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
-import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
-import br.com.battista.bgscore.custom.ScoreboardView;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();

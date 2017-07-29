@@ -1,23 +1,26 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import java.text.MessageFormat;
 import java.util.List;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
+import br.com.battista.bgscore.util.RatingUtils;
 
 
 public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
@@ -42,10 +45,11 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
     @Override
     public void onBindViewHolder(GameViewHolder holder, int position) {
         if (games != null && !games.isEmpty()) {
-            View itemView = holder.itemView;
+            final View itemView = holder.itemView;
             setAnimationHolder(itemView, position);
 
             Game game = games.get(position);
+            itemView.setTag(game.getId());
             Log.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, game));
 
@@ -62,23 +66,36 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
 
             holder.getTxtInfoName().setText(MessageFormat.format("{0} ({1})",
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"),
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getAge()), "-")));
+                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "*")));
 
-            holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}/{1} joga.",
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
+            if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
+                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0} joga.",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1")));
+            } else {
+                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}/{1} joga.",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
+            }
 
-            holder.getTxtInfoTime().setText(MessageFormat.format("{0}-{1} mins",
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
+            if (Strings.isNullOrEmpty(game.getMaxPlayTime())) {
+                holder.getTxtInfoTime().setText(MessageFormat.format("{0} mins",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "∞")));
+            } else {
+                holder.getTxtInfoTime().setText(MessageFormat.format("{0}-{1} mins",
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
+                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
+            }
 
-            holder.getTxtInfoAges().setText(MessageFormat.format("{0}+ anos",
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*")));
+            if (Strings.isNullOrEmpty(game.getAge())) {
+                holder.getTxtInfoAges().setText("-");
+            } else {
+                holder.getTxtInfoAges().setText(MessageFormat.format("{0}+ anos", game.getAge()));
+            }
 
             if (Strings.isNullOrEmpty(game.getRating())) {
                 holder.getRtbInfoRating().setRating(0F);
             } else {
-                holder.getRtbInfoRating().setRating(Float.parseFloat(game.getRating()));
+                holder.getRtbInfoRating().setRating(RatingUtils.convertFrom(game.getRating()));
             }
 
             ImageView imageMoreActions = holder.getImgMoreActions();
@@ -89,6 +106,25 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 @Override
                 public void onClick(View view) {
                     popup.show();
+                }
+            });
+
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.menu_action_detail:
+                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            break;
+                        case R.id.menu_action_edit:
+                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            break;
+                        case R.id.menu_action_remove:
+                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            break;
+                    }
+
+                    return false;
                 }
             });
 
