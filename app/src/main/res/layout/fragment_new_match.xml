@@ -316,7 +316,7 @@
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
                         android:paddingBottom="@dimen/md_keylines"
-                        android:paddingTop="@dimen/md_keylines"/>
+                        android:paddingTop="@dimen/element_vertical_margin"/>
 
                     <TextView
                         android:id="@+id/card_view_players_empty_view"
