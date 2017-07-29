@@ -8,6 +8,8 @@
     <string name="title_main">BoardGame\nScore</string>
     <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
+    <string name="title_games">&#x265c; Meus jogos &#x265c;</string>
+    <string name="title_matches">&#x265c; Minhas partidas &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
     <string name="title_add_match">&#x265c; Partida &#x265c;</string>
     <string name="title_add_game">&#x265c; Jogo &#x265c;</string>
@@ -15,6 +17,7 @@
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
     <string name="card_title_games">Meus jogos</string>
+    <string name="card_title_matches">Minhas partidas</string>
     <string name="card_title_players">Jogadores</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
@@ -61,6 +64,9 @@
     <string name="text_game_games_empty_view">Você ainda não adicionou nenhum jogo.</string>
     <string name="text_game_games_error_view">Error ao carregar a lista de jogos, favor tentar novamente.</string>
     <string name="text_game_new_game_info_01">*¹ Adicione um novo jogo, cadastrando as informações abaixo.</string>
+    <string name="text_match_matches_info_01">*¹ Lista das ultimas partidas cadastradas.</string>
+    <string name="text_match_matches_empty_view">Você ainda não adicionou nenhum partida.</string>
+    <string name="text_match_matches_error_view">Error ao carregar a lista de partidas, favor tentar novamente.</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>

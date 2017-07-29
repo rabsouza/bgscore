@@ -61,7 +61,7 @@ public class GameFragment extends BaseFragment {
             }
         });
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_new_match);
+        FloatingActionButton fab = view.findViewById(R.id.fab_new_game);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

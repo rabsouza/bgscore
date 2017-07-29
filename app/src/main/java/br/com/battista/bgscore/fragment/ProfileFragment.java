@@ -10,9 +10,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -160,24 +163,37 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends));
 
         usernameFriendView = view.findViewById(R.id.card_view_friends_username);
+        usernameFriendView.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    processDataFriends(friends, user, instance);
+                }
+                return false;
+            }
+        });
 
         btnAddFriend = view.findViewById(R.id.card_view_friends_button_add);
         btnAddFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final FriendDto friendDto = addNewFriend();
-                if (friendDto != null) {
-                    friends.add(friendDto);
-                    user.addFriend(friendDto);
-                    instance.setUser(user);
-                    usernameFriendView.setText(null);
-                    recycleViewFriends.getAdapter().notifyDataSetChanged();
-
-                    AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                            ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_FRIEND);
-                }
+                processDataFriends(friends, user, instance);
             }
         });
+    }
+
+    private void processDataFriends(List<FriendDto> friends, User user, MainApplication instance) {
+        final FriendDto friendDto = addNewFriend();
+        if (friendDto != null) {
+            friends.add(friendDto);
+            user.addFriend(friendDto);
+            instance.setUser(user);
+            usernameFriendView.setText(null);
+            recycleViewFriends.getAdapter().notifyDataSetChanged();
+
+            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                    ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_FRIEND);
+        }
     }
 
     private FriendDto addNewFriend() {

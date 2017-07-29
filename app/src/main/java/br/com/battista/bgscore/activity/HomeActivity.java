@@ -16,9 +16,9 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.fragment.GameFragment;
 import br.com.battista.bgscore.fragment.HomeFragment;
+import br.com.battista.bgscore.fragment.MatchFragment;
 import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
-import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {
@@ -83,11 +83,13 @@ public class HomeActivity extends BaseActivity {
                                 break;
                             case R.id.action_matches:
                                 item.setChecked(true);
+                                setUpToolbar(R.string.title_matches);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_MATCHES);
-                                AndroidUtils.toast(getActivity(), "Em construção!");
+                                replaceFragment(MatchFragment.newInstance());
                                 break;
                             case R.id.action_games:
                                 item.setChecked(true);
+                                setUpToolbar(R.string.title_games);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_GAMES);
                                 replaceFragment(GameFragment.newInstance());
                                 break;
