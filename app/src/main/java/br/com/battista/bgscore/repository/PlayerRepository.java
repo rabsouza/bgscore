@@ -56,7 +56,9 @@ public class PlayerRepository implements Repository<Player> {
     public void delete(Player entity) {
         if (entity != null) {
             Log.i(TAG, MessageFormat.format("Delete to Player with id: {0}.", entity.getId()));
-            Player.delete(entity);
+            Player.deleteAll(entity.getClass(),
+                    MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),
+                    String.valueOf(entity.getId()));
         } else {
             Log.w(TAG, "Entity can not be null!");
         }

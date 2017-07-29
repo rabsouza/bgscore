@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.fragment.game;
 
 
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
 
@@ -18,6 +19,7 @@ import com.google.common.base.Strings;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
+import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.fragment.BaseFragment;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
@@ -41,12 +43,17 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtAgeGame;
     private RatingBar rtbRatingGame;
 
+    private Game game;
+
     public NewGameFragment() {
     }
 
-    public static NewGameFragment newInstance() {
+    public static NewGameFragment newInstance(Game game) {
         NewGameFragment fragment = new NewGameFragment();
         Bundle args = new Bundle();
+        if (game != null) {
+            args.putSerializable(DATA, game);
+        }
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,12 +69,38 @@ public class NewGameFragment extends BaseFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fillDataAndSave(view);
+                fillDataAndSave();
             }
         });
 
         loadDataForm(view);
+        processDataFragment(view, getArguments());
         return view;
+    }
+
+    private void processDataFragment(View viewFragment, Bundle bundle) {
+        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        if (bundle.containsKey(BundleConstant.DATA)) {
+            game = (Game) bundle.getSerializable(BundleConstant.DATA);
+
+            txtNameGame.setText(game.getName());
+            txtUrlThumbnailGame.setText(game.getUrlThumbnail());
+            txtUrlImageGame.setText(game.getUrlImage());
+            txtUrlInfoGame.setText(game.getUrlInfo());
+            txtYearPublishedGame.setText(game.getYearPublished());
+            txtMinPlayersGame.setText(game.getMinPlayers());
+            txtMaxPlayersGame.setText(game.getMaxPlayers());
+            txtMinPlayTimeGame.setText(game.getMinPlayTime());
+            txtMaxPlayTimeGame.setText(game.getMaxPlayTime());
+            txtAgeGame.setText(game.getAge());
+            if (!Strings.isNullOrEmpty(game.getRating())) {
+                rtbRatingGame.setRating(RatingUtils.convertFrom(game.getRating()));
+            }
+        } else {
+            game = new Game();
+            game.initEntity();
+            AndroidUtils.snackbar(viewFragment, getContext().getText(R.string.msg_error_game_not_found).toString());
+        }
     }
 
     private void finishFormAndProcessData() {
@@ -79,10 +112,7 @@ public class NewGameFragment extends BaseFragment {
         getContext().startActivity(intent);
     }
 
-    private void fillDataAndSave(View view) {
-        final Game game = new Game();
-        game.initEntity();
-
+    private void fillDataAndSave() {
         if (Strings.isNullOrEmpty(txtNameGame.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_name_game_required);
             AndroidUtils.changeErrorEditText(txtNameGame, msgErrorUsername, true);

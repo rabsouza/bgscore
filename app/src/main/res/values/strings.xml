@@ -37,6 +37,7 @@
     <string name="msg_name_game_required">Nome do jogo é obrigatório!</string>
     <string name="msg_mail_required">E-mail é obrigatório!</string>
     <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor tente novamente!</string>
+    <string name="msg_error_game_not_found">Erro ao processar a edição do Jogo! Por favor, crie um novo Jogo.</string>
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>
@@ -90,7 +91,8 @@
     <string name="alert_confirmation_dialog_text_exit_app">Deseja sair da aplicação?</string>
     <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. Deseja sair sem salvar?</string>
     <string name="alert_confirmation_dialog_title_delete">Tem certeza?</string>
-    <string name="alert_confirmation_dialog_text_remove">Deseja remover o amigo(a) {0}? Essa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_remove_friend">Deseja remover o amigo(a) {0}? Essa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? Essa operação não pode ser revetida.</string>
 
     <!-- ################### ELEMENTS #################### -->
     <string name="btn_login">ENTRAR</string>

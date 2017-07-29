@@ -1,7 +1,13 @@
 package br.com.battista.bgscore.adpater;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,8 +22,15 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.GameActivity;
+import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.repository.GameRepository;
+import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
 import br.com.battista.bgscore.util.RatingUtils;
@@ -48,7 +61,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
             final View itemView = holder.itemView;
             setAnimationHolder(itemView, position);
 
-            Game game = games.get(position);
+            final Game game = games.get(position);
             itemView.setTag(game.getId());
             Log.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, game));
@@ -109,18 +122,20 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 }
             });
 
+            final RecyclerView.Adapter adapterCurrent = this;
+            final int positionRemoved = holder.getAdapterPosition();
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.menu_action_detail:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            openDetailInBrowser(itemView, game);
                             break;
                         case R.id.menu_action_edit:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            processEditGame(itemView, game);
                             break;
                         case R.id.menu_action_remove:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            createDialogRemoveFriend(game, positionRemoved, adapterCurrent);
                             break;
                     }
 
@@ -132,6 +147,56 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
+    }
+
+    private void openDetailInBrowser(View itemView, Game game) {
+        if (!Strings.isNullOrEmpty(game.getUrlInfo())) {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_OPEN_INFO_GAME);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(game.getUrlInfo()));
+            itemView.getContext().startActivity(intent);
+        } else {
+            AndroidUtils.snackbar(itemView, itemView.getContext().getText(R.string.msg_game_dont_found).toString());
+        }
+    }
+
+    private void processEditGame(View itemView, Game game) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_GAME);
+
+        Bundle args = new Bundle();
+        Intent intent = new Intent(itemView.getContext(), GameActivity.class);
+        args.putSerializable(BundleConstant.DATA, game);
+        intent.putExtras(args);
+
+        itemView.getContext().startActivity(intent);
+    }
+
+    private void createDialogRemoveFriend(final Game game, final int position, final RecyclerView.Adapter adapterCurrent) {
+        String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_game);
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.alert_confirmation_dialog_title_delete)
+                .setMessage(MessageFormat.format(msgDelete, game.getName()))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.btn_confirmation_dialog_remove, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Log.d(TAG, "onClick: Success remove the game and refresh recyclerView!");
+
+                        new GameRepository().delete(game);
+                        games.remove(position);
+                        adapterCurrent.notifyItemRemoved(position);
+                        adapterCurrent.notifyDataSetChanged();
+
+                        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+                        new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+
+                        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_GAME);
+                    }
+                })
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
     }
 
     @Override

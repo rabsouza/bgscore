@@ -6,11 +6,15 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.fragment.game.NewGameFragment;
+import br.com.battista.bgscore.model.Game;
 
 public class GameActivity extends BaseActivity {
 
     private static final String TAG = GameActivity.class.getSimpleName();
+
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +29,14 @@ public class GameActivity extends BaseActivity {
 
     private void processDataActivity(Bundle bundle) {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
-
-        Log.i(TAG, "loadFragmentInitial: Load the NewGameFragment!");
-        replaceDetailFragment(NewGameFragment.newInstance(), R.id.detail_container);
+        if (bundle.containsKey(BundleConstant.DATA)) {
+            game = (Game) bundle.getSerializable(BundleConstant.DATA);
+            Log.i(TAG, "loadFragmentInitial: Load the NewGameFragment!");
+            replaceDetailFragment(NewGameFragment.newInstance(game), R.id.detail_container);
+        } else {
+            Log.i(TAG, "loadFragmentInitial: Load the NewGameFragment!");
+            replaceDetailFragment(NewGameFragment.newInstance(null), R.id.detail_container);
+        }
     }
 
     @Override

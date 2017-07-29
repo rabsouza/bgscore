@@ -102,7 +102,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     }
 
     private void createDialogRemoveFriend(final String friend, final int position) {
-        String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove);
+        String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_friend);
         new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, friend))

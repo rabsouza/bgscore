@@ -56,7 +56,9 @@ public class UserRepository implements Repository<User> {
     public void delete(User entity) {
         if (entity != null) {
             Log.i(TAG, MessageFormat.format("Delete to User with id: {0}.", entity.getId()));
-            User.delete(entity);
+            User.deleteAll(entity.getClass(),
+                    MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),
+                    String.valueOf(entity.getId()));
         } else {
             Log.w(TAG, "Entity can not be null!");
         }

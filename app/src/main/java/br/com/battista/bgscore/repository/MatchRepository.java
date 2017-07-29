@@ -56,7 +56,9 @@ public class MatchRepository implements Repository<Match> {
     public void delete(Match entity) {
         if (entity != null) {
             Log.i(TAG, MessageFormat.format("Delete to Match with id: {0}.", entity.getId()));
-            Match.delete(entity);
+            Match.deleteAll(entity.getClass(),
+                    MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),
+                    String.valueOf(entity.getId()));
         } else {
             Log.w(TAG, "Entity can not be null!");
         }

@@ -56,7 +56,9 @@ public class GameRepository implements Repository<Game> {
     public void delete(Game entity) {
         if (entity != null) {
             Log.i(TAG, MessageFormat.format("Delete to Game with id: {0}.", entity.getId()));
-            Game.delete(entity);
+            Game.deleteAll(entity.getClass(),
+                    MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),
+                    String.valueOf(entity.getId()));
         } else {
             Log.w(TAG, "Entity can not be null!");
         }
