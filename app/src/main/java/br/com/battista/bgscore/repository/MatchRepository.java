@@ -8,28 +8,28 @@ import com.orm.query.Select;
 import java.text.MessageFormat;
 import java.util.List;
 
-import br.com.battista.bgscore.model.BaseEntity;
+import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 
-public class MatchRepository implements Repository<Match> {
+public class MatchRepository extends BaseRepository implements Repository<Match> {
 
     public static final String TAG = MatchRepository.class.getSimpleName();
 
     @Override
     public void save(Match entity) {
         if (entity != null) {
-            Log.i(TAG, MessageFormat.format("Save to Match with id: {0}.", entity.getId()));
+            Log.i(TAG, MessageFormat.format("Save to Match with alias: {0}.", entity.getAlias()));
             saveEntity(entity);
+            for (Player player : entity.getPlayers()) {
+                player.matchId(entity.getId());
+                new PlayerRepository().save(player);
+            }
         } else {
             Log.w(TAG, "Entity can not be null!");
         }
-    }
-
-    private void saveEntity(BaseEntity entity) {
-        entity.synchronize();
-        entity.save();
     }
 
     @Override
@@ -49,7 +49,11 @@ public class MatchRepository implements Repository<Match> {
 
     public Match find(Long id) {
         Log.i(TAG, MessageFormat.format("Find the Match by key: {0}.", id));
-        return Match.findById(Match.class, id);
+        final Match match = Match.findById(Match.class, id);
+        if (match != null) {
+            reload(match);
+        }
+        return match;
     }
 
     @Override
@@ -67,16 +71,36 @@ public class MatchRepository implements Repository<Match> {
     @Override
     public List<Match> findAll() {
         Log.i(TAG, "Find all Matches.");
-        return Select
+        final List<Match> matches = Select
                 .from(Match.class)
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
                 .list();
+        if (matches != null) {
+            for (Match match : matches) {
+                reload(match);
+            }
+        }
+        return matches;
     }
 
     @Override
     public void deleteAll() {
         Log.i(TAG, "Delete all Matches.");
         Match.deleteAll(Match.class);
+    }
+
+    private void reload(Match entity) {
+        Log.i(TAG, "Reload data Matches.");
+        if (entity != null) {
+            if (entity.getGame() == null && entity.getGameId() != null) {
+                final Game game = new GameRepository().find(entity.getGameId());
+                entity.game(game);
+            }
+            if (entity.getPlayers() == null || entity.getPlayers().isEmpty()) {
+                final List<Player> players = new PlayerRepository().findByMatchId(entity.getId());
+                entity.players(players);
+            }
+        }
     }
 }

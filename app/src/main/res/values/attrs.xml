@@ -3,6 +3,7 @@
     <declare-styleable name="ScoreboardView">
         <attr name="value_score" format="string"/>
         <attr name="label_score" format="string"/>
+        <attr name="icon_score" format="reference"/>
     </declare-styleable>
 
 </resources>

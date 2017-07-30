@@ -82,6 +82,7 @@ public class NewGameFragment extends BaseFragment {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle.containsKey(BundleConstant.DATA)) {
             game = (Game) bundle.getSerializable(BundleConstant.DATA);
+            game.reloadId();
 
             txtNameGame.setText(game.getName());
             txtUrlThumbnailGame.setText(game.getUrlThumbnail());

@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,9 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.MatchActivity;
+import br.com.battista.bgscore.adpater.MatchAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
+import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 
@@ -60,6 +67,11 @@ public class MatchFragment extends BaseFragment {
             public void onClick(View view) {
                 AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                         CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
+                Bundle args = new Bundle();
+                Intent intent = new Intent(getContext(), MatchActivity.class);
+                intent.putExtras(args);
+
+                getContext().startActivity(intent);
 
             }
         });
@@ -71,20 +83,29 @@ public class MatchFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        loadAllMatches();
+    }
+
+    private void loadAllMatches() {
+        Log.i(TAG, "loadAllMatches: Load all Matches in BD!");
+        List<Match> matches = new MatchRepository().findAll();
+        recycleViewMatches.setAdapter(new MatchAdapter(getContext(), matches));
     }
 
     private void setupRecycleRanking(View view) {
         recycleViewMatches = view.findViewById(R.id.card_view_matches_recycler_view);
         emptyMsgMatches = view.findViewById(R.id.card_view_matches_empty_view);
         errorMsgMatches = view.findViewById(R.id.card_view_matches_error_view);
+
         recycleViewMatches.setEmptyView(emptyMsgMatches);
         recycleViewMatches.setErrorView(errorMsgMatches);
         recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
         recycleViewMatches.setHasFixedSize(false);
 
-        // TODO REMOVER DEPOIS
-        emptyMsgMatches.setVisibility(View.VISIBLE);
+        recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
+        recycleViewMatches.setHasFixedSize(true);
     }
 
 }

@@ -14,7 +14,7 @@ public class Game extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = GameEntry.COLUMN_NAME_NAME, notNull = true, unique = true)
+    @Column(name = GameEntry.COLUMN_NAME_NAME, notNull = true)
     private String name;
 
     @Column(name = GameEntry.COLUMN_NAME_ID_BGG)

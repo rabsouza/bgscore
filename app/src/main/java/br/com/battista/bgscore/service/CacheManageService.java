@@ -57,6 +57,9 @@ public class CacheManageService extends Service {
         final MatchRepository matchRepository = new MatchRepository();
         final List<Match> matches = matchRepository.findAll();
         user.setNumMatches(matches.size());
+        if (matches.size() == 0) {
+            user.setLastPlay(null);
+        }
 
         long totalTime = 0;
         for (Match match : matches) {

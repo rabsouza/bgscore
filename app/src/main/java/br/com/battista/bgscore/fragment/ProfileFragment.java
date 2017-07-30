@@ -25,9 +25,11 @@ import android.widget.TextView;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -125,6 +127,7 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void loadUserInfo(View view) {
+        Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
 
         avatarView = view.findViewById(R.id.card_view_profile_img);
@@ -159,14 +162,21 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
+
         final List<FriendDto> friends = Lists.newLinkedList(user.getFriends());
+        Collections.sort(friends, new Ordering<FriendDto>() {
+            @Override
+            public int compare(FriendDto left, FriendDto right) {
+                return left.compareTo(right);
+            }
+        });
         recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends));
 
         usernameFriendView = view.findViewById(R.id.card_view_friends_username);
         usernameFriendView.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
                     processDataFriends(friends, user, instance);
                 }
                 return false;
@@ -185,7 +195,7 @@ public class ProfileFragment extends BaseFragment {
     private void processDataFriends(List<FriendDto> friends, User user, MainApplication instance) {
         final FriendDto friendDto = addNewFriend();
         if (friendDto != null) {
-            friends.add(friendDto);
+            friends.add(0, friendDto);
             user.addFriend(friendDto);
             instance.setUser(user);
             usernameFriendView.setText(null);
@@ -206,6 +216,7 @@ public class ProfileFragment extends BaseFragment {
         }
         AndroidUtils.changeErrorEditText(usernameFriendView);
         final String username = usernameFriendView.getText().toString().trim();
+        usernameFriendView.setText(null);
 
         Log.d(TAG, MessageFormat.format("Create new friend with username: {0}.", username));
         return new FriendDto().username(username);

@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.model;
 
-import android.os.SystemClock;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
@@ -22,8 +20,8 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = BaseEntry.COLUMN_NAME_ID, notNull = true, unique = true)
-    private Long id;
+    @Column(name = BaseEntry.COLUMN_NAME_PK)
+    private Long pk;
 
     @Column(name = BaseEntry.COLUMN_NAME_CREATED_AT, notNull = true)
     private Date createdAt;
@@ -41,11 +39,11 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
     private Date synchronizedAt;
 
     public void initEntity() {
-        id = SystemClock.currentThreadTimeMillis();
         createdAt = new Date();
         updatedAt = createdAt;
         version = EntityConstant.DEFAULT_VERSION;
         entitySynchronized = Boolean.FALSE;
+        pk = getId();
     }
 
     public void synchronize() {
@@ -55,12 +53,34 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
 
         entitySynchronized = Boolean.TRUE;
         synchronizedAt = new Date();
+        pk = getId();
     }
 
     public void updateEntity() {
         updatedAt = new Date();
         entitySynchronized = Boolean.FALSE;
         version++;
+        pk = getId();
+    }
+
+    public void reloadId(){
+        if(getId() == null || getId() == 0){
+            setId(pk);
+        }
+    }
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+        setPk(id);
+    }
+
+    public Long getPk() {
+        return pk;
+    }
+
+    public void setPk(Long pk) {
+        this.pk = pk;
     }
 
     public Date getCreatedAt() {
@@ -104,16 +124,6 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
     }
 
     @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BaseEntity)) return false;
@@ -129,7 +139,7 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("id", id)
+                .add("id", getId())
                 .add("createdAt", createdAt)
                 .add("updatedAt", updatedAt)
                 .add("version", version)
@@ -139,7 +149,7 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
     }
 
     public BaseEntity id(Long id) {
-        this.id = id;
+        setId(id);
         return this;
     }
 

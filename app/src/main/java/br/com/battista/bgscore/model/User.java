@@ -21,7 +21,7 @@ public class User extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = UserEntry.COLUMN_NAME_USERNAME, notNull = true, unique = true)
+    @Column(name = UserEntry.COLUMN_NAME_USERNAME, notNull = true)
     private String username;
 
     @Column(name = UserEntry.COLUMN_NAME_MAIL)

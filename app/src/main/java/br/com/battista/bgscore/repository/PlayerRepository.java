@@ -8,28 +8,22 @@ import com.orm.query.Select;
 import java.text.MessageFormat;
 import java.util.List;
 
-import br.com.battista.bgscore.model.BaseEntity;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.PlayerEntry;
 
-public class PlayerRepository implements Repository<Player> {
+public class PlayerRepository extends BaseRepository implements Repository<Player> {
 
     public static final String TAG = PlayerRepository.class.getSimpleName();
 
     @Override
     public void save(Player entity) {
         if (entity != null) {
-            Log.i(TAG, MessageFormat.format("Save to Player with id: {0}.", entity.getId()));
+            Log.i(TAG, MessageFormat.format("Save to Player with name: {0}.", entity.getName()));
             saveEntity(entity);
         } else {
             Log.w(TAG, "Entity can not be null!");
         }
-    }
-
-    private void saveEntity(BaseEntity entity) {
-        entity.synchronize();
-        entity.save();
     }
 
     @Override
@@ -69,6 +63,17 @@ public class PlayerRepository implements Repository<Player> {
         Log.i(TAG, "Find all Players.");
         return Select
                 .from(Player.class)
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
+                        DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, PlayerEntry.COLUMN_NAME_NAME))
+                .list();
+    }
+
+    public List<Player> findByMatchId(Long idMatch) {
+        Log.i(TAG, MessageFormat.format("Find Players by Id Match: {0}.", idMatch));
+        return Select
+                .from(Player.class)
+                .where(MessageFormat.format("{0} = ?", PlayerEntry.FK_MATCH_ID),
+                        new String[]{String.valueOf(idMatch)})
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, PlayerEntry.COLUMN_NAME_NAME))
                 .list();

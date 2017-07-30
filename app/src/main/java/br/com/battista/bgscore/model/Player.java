@@ -17,6 +17,9 @@ public class Player extends BaseEntity implements Serializable {
     @Column(name = PlayerEntry.COLUMN_NAME_NAME, notNull = true)
     private String name;
 
+    @Column(name = PlayerEntry.FK_MATCH_ID)
+    private Long matchId;
+
     @Column(name = PlayerEntry.COLUMN_NAME_PUNCTUATION)
     private String punctuation = null;
 
@@ -29,6 +32,14 @@ public class Player extends BaseEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(Long matchId) {
+        this.matchId = matchId;
     }
 
     public String getPunctuation() {
@@ -65,6 +76,7 @@ public class Player extends BaseEntity implements Serializable {
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("name", name)
+                .add("matchId", matchId)
                 .add("punctuation", punctuation)
                 .add("winner", winner)
                 .addValue(super.toString())
@@ -73,6 +85,11 @@ public class Player extends BaseEntity implements Serializable {
 
     public Player name(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Player matchId(Long matchId) {
+        this.matchId = matchId;
         return this;
     }
 

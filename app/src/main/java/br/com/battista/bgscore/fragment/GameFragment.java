@@ -50,7 +50,6 @@ public class GameFragment extends BaseFragment {
 
         final View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-
         refreshLayout = view.findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -87,6 +86,7 @@ public class GameFragment extends BaseFragment {
     }
 
     private void loadAllGames() {
+        Log.i(TAG, "loadAllMatches: Load all Games in BD!");
         List<Game> games = new GameRepository().findAll();
         recycleViewGames.setAdapter(new GameAdapter(getContext(), games));
 
@@ -98,9 +98,10 @@ public class GameFragment extends BaseFragment {
         errorMsgGames = view.findViewById(R.id.card_view_games_error_view);
         recycleViewGames.setEmptyView(emptyMsgGames);
         recycleViewGames.setErrorView(errorMsgGames);
+
         recycleViewGames.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewGames.setItemAnimator(new DefaultItemAnimator());
-        recycleViewGames.setHasFixedSize(false);
+        recycleViewGames.setHasFixedSize(true);
     }
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:id="@+id/card_view_gamess_info"
+                                    android:id="@+id/card_view_games_info"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:foreground="?attr/selectableItemBackground"
@@ -62,12 +62,12 @@
             style="@style/CardTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/card_view_games_info_name"
             android:layout_marginBottom="@dimen/element_margin"
             android:layout_marginLeft="@dimen/element_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_marginTop="@dimen/element_margin"
+            android:layout_toRightOf="@id/card_view_games_info_ages"
             android:drawableLeft="@drawable/ic_game_time"
             android:gravity="center_vertical"/>
 
@@ -78,7 +78,7 @@
             android:layout_height="20dp"
             android:layout_below="@id/card_view_games_info_time"
             android:layout_marginLeft="@dimen/element_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
             android:numStars="@string/rating_num_stars"/>
 
@@ -88,7 +88,7 @@
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="-4dp"
+            android:layout_marginRight="-8dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_more_actions"/>
 

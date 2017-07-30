@@ -12,7 +12,6 @@
         android:paddingBottom="@dimen/fab_margin_bottom"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +19,7 @@
             android:padding="@dimen/activity_padding">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/detail_card_view_match"
+                android:id="@+id/card_view_match"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/element_vertical_margin"
@@ -39,7 +38,7 @@
                     android:padding="@dimen/element_padding">
 
                     <TextView
-                        android:id="@+id/detail_card_view_match_title"
+                        android:id="@+id/card_view_match_title"
                         style="@style/CardTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -56,7 +55,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/detail_card_view_match_alias"
+                            android:id="@+id/card_view_match_info_alias"
                             style="@style/InputStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -230,11 +229,11 @@
                                 style="@style/CardTextStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
                                 android:layout_below="@id/card_view_game_info_name"
                                 android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_marginLeft="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/element_horizontal_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_ages"
                                 android:layout_marginTop="@dimen/element_margin"
                                 android:drawableLeft="@drawable/ic_game_time"
                                 android:gravity="center_vertical"/>
@@ -352,6 +351,6 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_next"/>
+        app:srcCompat="@drawable/ic_fab_done"/>
 
 </android.support.design.widget.CoordinatorLayout>

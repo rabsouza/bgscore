@@ -194,7 +194,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/activity_vertical_margin"
                                 android:hint="@string/field_username_friend"
-                                android:imeOptions="actionSend"
+                                android:imeOptions="actionDone"
                                 android:inputType="textAutoComplete"
                                 android:maxLength="30"
                                 android:maxLines="1"/>

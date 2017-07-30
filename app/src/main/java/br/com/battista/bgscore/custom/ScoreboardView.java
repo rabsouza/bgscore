@@ -16,6 +16,7 @@ public class ScoreboardView extends LinearLayout {
 
     private TextView scoreView;
     private TextView labelView;
+    private int iconView;
 
     public ScoreboardView(Context context) {
         super(context);
@@ -50,6 +51,7 @@ public class ScoreboardView extends LinearLayout {
         try {
             value = a.getString(R.styleable.ScoreboardView_value_score);
             label = a.getString(R.styleable.ScoreboardView_label_score);
+            iconView = a.getResourceId(R.styleable.ScoreboardView_icon_score, 0);
         } finally {
             a.recycle();
         }
@@ -62,7 +64,11 @@ public class ScoreboardView extends LinearLayout {
 
         labelView = new TextView(getContext());
         labelView.setText(label);
-        labelView.setGravity(Gravity.CENTER_HORIZONTAL);
+        labelView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        if (iconView != 0) {
+            labelView.setCompoundDrawablePadding(0);
+            labelView.setCompoundDrawablesWithIntrinsicBounds(iconView, 0, 0, 0);
+        }
         setStyle(labelView, R.style.CardTextStyle);
         addView(labelView);
 

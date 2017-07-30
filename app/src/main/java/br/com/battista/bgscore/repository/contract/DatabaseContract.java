@@ -9,7 +9,8 @@ public class DatabaseContract {
 
     public static abstract class BaseEntry implements BaseColumns {
 
-        public static final String COLUMN_NAME_ID = "ID";
+        public static final String COLUMN_NAME_ID = "id";
+        public static final String COLUMN_NAME_PK = "pk";
         public static final String COLUMN_NAME_CREATED_AT = "CREATED_AT";
         public static final String COLUMN_NAME_UPDATED_AT = "UPDATED_AT";
         public static final String COLUMN_NAME_VERSION = "VERSION";
@@ -50,6 +51,7 @@ public class DatabaseContract {
     public static abstract class PlayerEntry extends BaseEntry {
 
         public static final String TABLE_NAME = "PLAYER";
+        public static final String FK_MATCH_ID = "FK_MATCH_ID";
         public static final String COLUMN_NAME_NAME = "NAME";
         public static final String COLUMN_NAME_PUNCTUATION = "PUNCTUATION";
         public static final String COLUMN_NAME_WINNER = "WINNER";
@@ -60,8 +62,11 @@ public class DatabaseContract {
         public static final String TABLE_NAME = "MATCH";
         public static final String COLUMN_NAME_ALIAS = "ALIAS";
         public static final String COLUMN_NAME_GAME = "GAME";
+        public static final String FK_GAME_ID = "FK_GAME_ID";
         public static final String COLUMN_NAME_PLAYERS = "PLAYERS";
-        public static final String COLUMN_NAME_FINISH = "FINISH";
+        public static final String COLUMN_NAME_FINISHED = "FINISHED";
         public static final String COLUMN_NAME_DURATION = "DURATION";
+        public static final String COLUMN_NAME_FEEDBACK = "FEEDBACK";
+        public static final String COLUMN_NAME_OBS = "OBS";
     }
 }

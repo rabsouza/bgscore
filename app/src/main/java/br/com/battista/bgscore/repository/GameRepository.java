@@ -8,28 +8,22 @@ import com.orm.query.Select;
 import java.text.MessageFormat;
 import java.util.List;
 
-import br.com.battista.bgscore.model.BaseEntity;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 
-public class GameRepository implements Repository<Game> {
+public class GameRepository extends BaseRepository implements Repository<Game> {
 
     public static final String TAG = GameRepository.class.getSimpleName();
 
     @Override
     public void save(Game entity) {
         if (entity != null) {
-            Log.i(TAG, MessageFormat.format("Save to Game with id: {0}.", entity.getId()));
+            Log.i(TAG, MessageFormat.format("Save to Game with name: {0}.", entity.getName()));
             saveEntity(entity);
         } else {
             Log.w(TAG, "Entity can not be null!");
         }
-    }
-
-    private void saveEntity(BaseEntity entity) {
-        entity.synchronize();
-        entity.save();
     }
 
     @Override

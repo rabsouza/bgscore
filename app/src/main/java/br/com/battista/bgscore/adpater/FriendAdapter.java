@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.common.collect.Lists;
+
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Random;
@@ -26,6 +28,8 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     private static final String TAG = FriendAdapter.class.getSimpleName();
     private Context context;
     private List<FriendDto> friends;
+
+    private List<FriendDto> friendsSelected = Lists.newArrayList();
     private Boolean allowsDelete;
     private Boolean allowsSelect;
 
@@ -86,6 +90,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
                         cardSelected = !cardSelected;
                         cardView.setSelected(cardSelected);
                         friendDto.selected(cardSelected);
+                        friendsSelected.add(friendDto);
                     }
                 });
             } else {
@@ -125,5 +130,9 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     @Override
     public int getItemCount() {
         return friends != null ? friends.size() : 0;
+    }
+
+    public List<FriendDto> getFriendsSelected() {
+        return friendsSelected;
     }
 }

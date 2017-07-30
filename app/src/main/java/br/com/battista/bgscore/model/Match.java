@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.model;
 
+import android.support.annotation.IdRes;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.orm.dsl.Column;
@@ -8,6 +10,7 @@ import com.orm.dsl.Table;
 import java.io.Serializable;
 import java.util.List;
 
+import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 
 @Table(name = MatchEntry.TABLE_NAME)
@@ -21,14 +24,24 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.COLUMN_NAME_GAME)
     private Game game = null;
 
+    @Column(name = MatchEntry.FK_GAME_ID)
+    private Long gameId;
+
     @Column(name = MatchEntry.COLUMN_NAME_PLAYERS)
     private List<Player> players = Lists.newArrayList();
 
-    @Column(name = MatchEntry.COLUMN_NAME_FINISH)
-    private Boolean finish = Boolean.FALSE;
+    @Column(name = MatchEntry.COLUMN_NAME_FINISHED)
+    private Boolean finished = Boolean.FALSE;
 
     @Column(name = MatchEntry.COLUMN_NAME_DURATION)
     private Long duration = 0L;
+
+    @IdRes
+    @Column(name = MatchEntry.COLUMN_NAME_FEEDBACK)
+    private int feedbackIdRes = R.drawable.ic_feedback_neutral;
+
+    @Column(name = MatchEntry.COLUMN_NAME_OBS)
+    private String obs;
 
     public String getAlias() {
         return alias;
@@ -44,6 +57,17 @@ public class Match extends BaseEntity implements Serializable {
 
     public void setGame(Game game) {
         this.game = game;
+        if (game != null && game.getId() != null) {
+            gameId(game.getId());
+        }
+    }
+
+    public Long getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
     }
 
     public List<Player> getPlayers() {
@@ -54,12 +78,12 @@ public class Match extends BaseEntity implements Serializable {
         this.players = players;
     }
 
-    public Boolean getFinish() {
-        return finish;
+    public Boolean isFinished() {
+        return finished;
     }
 
-    public void setFinish(Boolean finish) {
-        this.finish = finish;
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
     }
 
     public Long getDuration() {
@@ -70,14 +94,33 @@ public class Match extends BaseEntity implements Serializable {
         this.duration = duration;
     }
 
+    public int getFeedbackIdRes() {
+        return feedbackIdRes;
+    }
+
+    public void setFeedbackIdRes(@IdRes int feedbackIdRes) {
+        this.feedbackIdRes = feedbackIdRes;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("alias", alias)
                 .add("game", game)
+                .add("gameId", gameId)
                 .add("players", players)
-                .add("finish", finish)
+                .add("finished", finished)
                 .add("duration", duration)
+                .add("feedbackIdRes", feedbackIdRes)
+                .add("obs", obs)
                 .addValue(super.toString())
                 .toString();
     }
@@ -89,6 +132,14 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match game(Game game) {
         this.game = game;
+        if (game != null && game.getId() != null) {
+            gameId(game.getId());
+        }
+        return this;
+    }
+
+    public Match gameId(Long gameId) {
+        this.gameId = gameId;
         return this;
     }
 
@@ -97,13 +148,23 @@ public class Match extends BaseEntity implements Serializable {
         return this;
     }
 
-    public Match finish(Boolean finish) {
-        this.finish = finish;
+    public Match finished(Boolean finished) {
+        this.finished = finished;
         return this;
     }
 
     public Match duration(Long duration) {
         this.duration = duration;
+        return this;
+    }
+
+    public Match feedbackIdRes(@IdRes int feedbackIdRes) {
+        this.feedbackIdRes = feedbackIdRes;
+        return this;
+    }
+
+    public Match obs(String obs) {
+        this.obs = obs;
         return this;
     }
 
@@ -118,4 +179,5 @@ public class Match extends BaseEntity implements Serializable {
     public void clearPlayers() {
         players.clear();
     }
+
 }

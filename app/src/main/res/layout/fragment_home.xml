@@ -102,6 +102,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    app:icon_score="@drawable/ic_games"
                                     app:label_score="@string/text_home_games"
                                     app:value_score="0"/>
 
@@ -117,6 +118,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    app:icon_score="@drawable/ic_matches"
                                     app:label_score="@string/text_home_matches"
                                     app:value_score="0"/>
 
@@ -132,6 +134,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    app:icon_score="@drawable/ic_total_time"
                                     app:label_score="@string/text_home_matches_time"
                                     app:value_score="00:00"/>
 

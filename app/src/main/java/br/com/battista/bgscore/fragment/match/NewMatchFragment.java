@@ -2,7 +2,10 @@ package br.com.battista.bgscore.fragment.match;
 
 
 import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.HOME_FRAGMENT;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
@@ -16,23 +19,27 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
 
 import java.text.MessageFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.BaseFragment;
@@ -44,7 +51,6 @@ import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
-import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
@@ -52,16 +58,20 @@ import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewMatchFragment extends BaseFragment {
     private static final String TAG = NewMatchFragment.class.getSimpleName();
-
+    private final Map<String, Game> gameMap = Maps.newTreeMap();
     private RecycleEmptyErrorView recycleViewPlayers;
     private TextView emptyMsgPlayers;
     private TextView errorMsgPlayers;
-
-    private final Map<String, Game> gameMap = Maps.newTreeMap();
+    private Game gameSelected;
+    private FriendAdapter friendAdapter;
+    private List<FriendDto> friendsSelected = Lists.newArrayList();
 
     private ImageButton btnSearchGame;
     private AutoCompleteTextView txtSearchNameGame;
     private CardView cardViewGame;
+
+    private EditText txtMatchAlias;
+    private Switch swtIPlaying;
 
     private ImageView imgInfoGame;
     private TextView txtInfoName;
@@ -90,44 +100,74 @@ public class NewMatchFragment extends BaseFragment {
         FloatingActionButton fab = view.findViewById(R.id.fab_next_edit_match);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                final Game game = new Game().name("Game" + Math.random());
-                game.initEntity();
-                new GameRepository().save(game);
-                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
-
-                final Player player01 = new Player().name("Player01" + Math.random()).winner(false);
-                player01.initEntity();
-                final PlayerRepository playerRepository = new PlayerRepository();
-                playerRepository.save(player01);
-                final Player player02 = new Player().name("Player02" + Math.random()).winner(true);
-                player02.initEntity();
-                playerRepository.save(player02);
-
-                int result = new Random().nextInt(200) + 100;
-                final Match match = new Match()
-                        .alias("Alias" + Math.random())
-                        .duration(Long.valueOf(result))
-                        .finish(true).game(game)
-                        .players(Lists.newArrayList(player01, player02));
-                Log.i(TAG, "***********************************************************");
-                Log.i(TAG, "MATCH SAVE:" + match);
-                Log.i(TAG, "***********************************************************");
-                new MatchRepository().save(match);
-
-                final List<Match> matches = new MatchRepository().findAll();
-                Log.i(TAG, "***********************************************************");
-                for (Match matchLoad : matches) {
-                    Log.i(TAG, "MATCH LOAD:" + matchLoad);
-                }
-                Log.i(TAG, "***********************************************************");
-                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+            public void onClick(View viewClicked) {
+                fillDataAndSave(view);
             }
         });
 
         setupRecycleViewPlayers(view);
         loadDataForm(view);
         return view;
+    }
+
+    private void fillDataAndSave(View view) {
+        Log.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
+        Match match = new Match();
+        match.initEntity();
+        if (Strings.isNullOrEmpty(txtMatchAlias.getText().toString())) {
+            String msgErrorUsername = getContext().getString(R.string.msg_alias_match_required);
+            AndroidUtils.changeErrorEditText(txtMatchAlias, msgErrorUsername, true);
+            return;
+        }
+        AndroidUtils.changeErrorEditText(txtMatchAlias);
+        match.setAlias(txtMatchAlias.getText().toString().trim());
+
+        if (gameSelected == null) {
+            String msgErrorUsername = getContext().getString(R.string.msg_game_required);
+            AndroidUtils.changeErrorEditText(txtSearchNameGame, msgErrorUsername, true);
+            return;
+        }
+        AndroidUtils.changeErrorEditText(txtSearchNameGame);
+        match.setGame(gameSelected);
+
+        friendsSelected.addAll(friendAdapter.getFriendsSelected());
+        final MainApplication instance = MainApplication.instance();
+        final User user = instance.getUser();
+        if (swtIPlaying.isChecked()) {
+            FriendDto userCurrent = new FriendDto()
+                    .username(user.getUsername())
+                    .mail(user.getMail())
+                    .idResAvatar(user.getIdResAvatar())
+                    .selected(Boolean.TRUE);
+            friendsSelected.add(userCurrent);
+        }
+
+        for (FriendDto friendDto : friendsSelected) {
+            Player player = new Player();
+            player.initEntity();
+            player.name(friendDto.getUsername());
+            match.addPlayer(player);
+        }
+
+        Log.i(TAG, "fillDataAndSave: Save the data in BD.");
+        new MatchRepository().save(match);
+
+        user.lastPlay(match.getCreatedAt());
+        instance.setUser(user);
+
+        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+        new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+
+        finishFormAndProcessData();
+    }
+
+    private void finishFormAndProcessData() {
+        Bundle args = new Bundle();
+        args.putInt(NAVIGATION_TO, HOME_FRAGMENT);
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.putExtras(args);
+
+        getContext().startActivity(intent);
     }
 
     private void loadDataForm(final View view) {
@@ -161,6 +201,9 @@ public class NewMatchFragment extends BaseFragment {
                 processDataSearchGame(view);
             }
         });
+
+        txtMatchAlias = view.findViewById(R.id.card_view_match_info_alias);
+        swtIPlaying = view.findViewById(R.id.card_view_players_i_playing_switch);
     }
 
     private void processDataSearchGame(View view) {
@@ -172,7 +215,7 @@ public class NewMatchFragment extends BaseFragment {
         AndroidUtils.changeErrorEditText(txtSearchNameGame);
         final String nameGame = txtSearchNameGame.getText().toString().trim();
         if (gameMap.containsKey(nameGame)) {
-            Game game = gameMap.get(nameGame);
+            gameSelected = gameMap.get(nameGame);
 
             imgInfoGame = view.findViewById(R.id.card_view_game_info_image);
             txtInfoName = view.findViewById(R.id.card_view_game_info_name);
@@ -183,7 +226,7 @@ public class NewMatchFragment extends BaseFragment {
 
             Log.i(TAG, "processDataSearchGame: Fill the data Game!");
 
-            String urlThumbnail = game.getUrlThumbnail();
+            String urlThumbnail = gameSelected.getUrlThumbnail();
             if (Strings.isNullOrEmpty(urlThumbnail)) {
                 ImageLoadUtils.loadImage(getContext(),
                         R.drawable.boardgame_game,
@@ -195,37 +238,37 @@ public class NewMatchFragment extends BaseFragment {
             }
 
             txtInfoName.setText(MessageFormat.format("{0} ({1})",
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"),
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "*")));
+                    MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getName()), "-"),
+                    MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getYearPublished()), "*")));
 
-            if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
+            if (Strings.isNullOrEmpty(gameSelected.getMaxPlayers())) {
                 txtInfoPlayers.setText(MessageFormat.format("{0}",
-                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1")));
+                        MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1")));
             } else {
                 txtInfoPlayers.setText(MessageFormat.format("{0}-{1}",
-                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
-                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
+                        MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1"),
+                        MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayers()), "*")));
             }
 
-            if (Strings.isNullOrEmpty(game.getMaxPlayTime())) {
+            if (Strings.isNullOrEmpty(gameSelected.getMaxPlayTime())) {
                 txtInfoTime.setText(MessageFormat.format("{0}´",
-                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "∞")));
+                        MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "∞")));
             } else {
                 txtInfoTime.setText(MessageFormat.format("{0}-{1}´",
-                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
-                        MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
+                        MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "*"),
+                        MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayTime()), "∞")));
             }
 
-            if (Strings.isNullOrEmpty(game.getAge())) {
+            if (Strings.isNullOrEmpty(gameSelected.getAge())) {
                 txtInfoAges.setText("-");
             } else {
-                txtInfoAges.setText(MessageFormat.format("{0}+", game.getAge()));
+                txtInfoAges.setText(MessageFormat.format("{0}+", gameSelected.getAge()));
             }
 
-            if (Strings.isNullOrEmpty(game.getRating())) {
+            if (Strings.isNullOrEmpty(gameSelected.getRating())) {
                 rtbInfoRating.setRating(0F);
             } else {
-                rtbInfoRating.setRating(RatingUtils.convertFrom(game.getRating()));
+                rtbInfoRating.setRating(RatingUtils.convertFrom(gameSelected.getRating()));
             }
 
             cardViewGame.setVisibility(View.VISIBLE);
@@ -249,7 +292,14 @@ public class NewMatchFragment extends BaseFragment {
         recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
         recycleViewPlayers.setHasFixedSize(false);
         final List<FriendDto> players = Lists.newLinkedList(user.getFriends());
-        recycleViewPlayers.setAdapter(new FriendAdapter(getContext(), players, false, true));
+        Collections.sort(players, new Ordering<FriendDto>() {
+            @Override
+            public int compare(FriendDto left, FriendDto right) {
+                return left.compareTo(right);
+            }
+        });
+        friendAdapter = new FriendAdapter(getContext(), players, false, true);
+        recycleViewPlayers.setAdapter(friendAdapter);
 
     }
 

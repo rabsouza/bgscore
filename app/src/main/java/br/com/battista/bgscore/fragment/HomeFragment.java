@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +15,24 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
+import br.com.battista.bgscore.adpater.MatchAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
+import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
+    private static final int MAX_MATCHES_LIST = 5;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -91,9 +98,21 @@ public class HomeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         loadUserInfo(getView());
+        loadAllMatches();
+    }
+
+    private void loadAllMatches() {
+        Log.i(TAG, "loadAllMatches: Load all Matches in BD!");
+        List<Match> matches = new MatchRepository().findAll();
+        if(matches.size() > MAX_MATCHES_LIST){
+            matches = matches.subList(0, MAX_MATCHES_LIST);
+        }
+        recycleViewRankingGames.setAdapter(new MatchAdapter(getContext(), matches));
+
     }
 
     private void loadUserInfo(View view) {
+        Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
 
         avatarView = view.findViewById(R.id.card_view_home_img);
@@ -104,7 +123,7 @@ public class HomeFragment extends BaseFragment {
 
         lastPlayView = view.findViewById(R.id.card_view_last_play);
         String lastPlay = "-";
-        if (user.getLastPlay() != null) {
+        if (user.getLastPlay() != null && user.getNumMatches() > 0) {
             Calendar lastPlayCalendar = Calendar.getInstance();
             lastPlayCalendar.setTime(user.getLastPlay());
             lastPlay = DateUtils.format(lastPlayCalendar);
@@ -129,7 +148,8 @@ public class HomeFragment extends BaseFragment {
         recycleViewRankingGames.setEmptyView(emptyMsgRankingGames);
         recycleViewRankingGames.setErrorView(errorMsgRankingGames);
 
-        // TODO Remover ao add um adapter
-        emptyMsgRankingGames.setVisibility(View.VISIBLE);
+        recycleViewRankingGames.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleViewRankingGames.setItemAnimator(new DefaultItemAnimator());
+        recycleViewRankingGames.setHasFixedSize(true);
     }
 }

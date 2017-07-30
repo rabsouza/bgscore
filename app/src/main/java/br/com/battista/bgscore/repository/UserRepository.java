@@ -8,28 +8,22 @@ import com.orm.query.Select;
 import java.text.MessageFormat;
 import java.util.List;
 
-import br.com.battista.bgscore.model.BaseEntity;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
-public class UserRepository implements Repository<User> {
+public class UserRepository extends BaseRepository implements Repository<User> {
 
     public static final String TAG = UserRepository.class.getSimpleName();
 
     @Override
     public void save(User entity) {
         if (entity != null) {
-            Log.i(TAG, MessageFormat.format("Save to User with id: {0}.", entity.getId()));
+            Log.i(TAG, MessageFormat.format("Save to User with username: {0}.", entity.getUsername()));
             saveEntity(entity);
         } else {
             Log.w(TAG, "Entity can not be null!");
         }
-    }
-
-    private void saveEntity(BaseEntity entity) {
-        entity.synchronize();
-        entity.save();
     }
 
     @Override

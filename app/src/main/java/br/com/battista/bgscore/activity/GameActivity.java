@@ -31,6 +31,7 @@ public class GameActivity extends BaseActivity {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
         if (bundle.containsKey(BundleConstant.DATA)) {
             game = (Game) bundle.getSerializable(BundleConstant.DATA);
+            game.reloadId();
             Log.i(TAG, "loadFragmentInitial: Load the NewGameFragment!");
             replaceDetailFragment(NewGameFragment.newInstance(game), R.id.detail_container);
         } else {
