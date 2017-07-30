@@ -26,8 +26,10 @@ import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
+import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
@@ -135,7 +137,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                             processEditGame(itemView, game);
                             break;
                         case R.id.menu_action_remove:
-                            createDialogRemoveFriend(game, positionRemoved, adapterCurrent);
+                            createDialogRemoveFriend(game, positionRemoved, adapterCurrent, itemView);
                             break;
                     }
 
@@ -174,7 +176,9 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
         itemView.getContext().startActivity(intent);
     }
 
-    private void createDialogRemoveFriend(final Game game, final int position, final RecyclerView.Adapter adapterCurrent) {
+    private void createDialogRemoveFriend(final Game game, final int position,
+                                          final RecyclerView.Adapter adapterCurrent,
+                                          final View itemView) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_game);
         new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
@@ -182,6 +186,13 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(R.string.btn_confirmation_dialog_remove, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        List<Match> matches = new MatchRepository().findByGameId(game.getId());
+                        if (matches != null && !matches.isEmpty()) {
+                            final String msgError = itemView.getContext().getString(R.string.msg_error_game_with_partner, game.getName());
+                            AndroidUtils.snackbar(itemView, msgError);
+                            return;
+                        }
+
                         Log.d(TAG, "onClick: Success remove the game and refresh recyclerView!");
 
                         new GameRepository().delete(game);

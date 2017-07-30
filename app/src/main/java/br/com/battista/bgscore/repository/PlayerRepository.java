@@ -43,7 +43,9 @@ public class PlayerRepository extends BaseRepository implements Repository<Playe
 
     public Player find(Long id) {
         Log.i(TAG, MessageFormat.format("Find the Player by key: {0}.", id));
-        return Player.findById(Player.class, id);
+        final Player player = Player.findById(Player.class, id);
+        reloadEntity(player);
+        return player;
     }
 
     @Override
@@ -61,22 +63,26 @@ public class PlayerRepository extends BaseRepository implements Repository<Playe
     @Override
     public List<Player> findAll() {
         Log.i(TAG, "Find all Players.");
-        return Select
+        final List<Player> players = Select
                 .from(Player.class)
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, PlayerEntry.COLUMN_NAME_NAME))
                 .list();
+        reloadEntity(players);
+        return players;
     }
 
     public List<Player> findByMatchId(Long idMatch) {
         Log.i(TAG, MessageFormat.format("Find Players by Id Match: {0}.", idMatch));
-        return Select
+        final List<Player> players = Select
                 .from(Player.class)
                 .where(MessageFormat.format("{0} = ?", PlayerEntry.FK_MATCH_ID),
                         new String[]{String.valueOf(idMatch)})
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, PlayerEntry.COLUMN_NAME_NAME))
                 .list();
+        reloadEntity(players);
+        return players;
     }
 
     @Override

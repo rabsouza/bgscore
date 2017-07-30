@@ -6,6 +6,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.orm.SugarRecord;
 import com.orm.dsl.Column;
+import com.orm.dsl.Unique;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,7 +21,8 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = BaseEntry.COLUMN_NAME_PK)
+    @Unique
+    @Column(name = BaseEntry.COLUMN_NAME_PK, unique = true)
     private Long pk;
 
     @Column(name = BaseEntry.COLUMN_NAME_CREATED_AT, notNull = true)

@@ -40,6 +40,7 @@
     <string name="msg_mail_required">E-mail é obrigatório!</string>
     <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor tente novamente!</string>
     <string name="msg_error_game_not_found">Erro ao processar a edição do Jogo! Por favor, crie um novo Jogo.</string>
+    <string name="msg_error_game_with_partner">Erro ao remover o jogo! Existe partidas cadastradas associadas ao jogo %1$s.</string>
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>

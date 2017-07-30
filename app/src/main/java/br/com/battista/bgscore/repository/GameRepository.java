@@ -43,7 +43,9 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
 
     public Game find(Long id) {
         Log.i(TAG, MessageFormat.format("Find the Game by key: {0}.", id));
-        return Game.findById(Game.class, id);
+        final Game game = Game.findById(Game.class, id);
+        reloadEntity(game);
+        return game;
     }
 
     @Override
@@ -61,11 +63,13 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     @Override
     public List<Game> findAll() {
         Log.i(TAG, "Find all Games.");
-        return Select
+        final List<Game> games = Select
                 .from(Game.class)
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, GameEntry.COLUMN_NAME_NAME))
                 .list();
+        reloadEntity(games);
+        return games;
     }
 
     @Override
