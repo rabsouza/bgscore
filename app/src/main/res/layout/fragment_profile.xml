@@ -8,244 +8,251 @@
              android:paddingBottom="?attr/actionBarSize"
              tools:context="br.com.battista.bgscore.fragment.ProfileFragment">
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_padding">
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view_profile"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="@dimen/no_dimen"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="1dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true">
+                android:orientation="vertical"
+                android:padding="@dimen/activity_padding">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/element_padding">
-
-                    <TextView
-                        android:id="@+id/card_view_profile_title"
-                        style="@style/CardTitleStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/card_title_my_profile"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimen_line"
-                        android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:background="@color/colorLine"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/card_view_profile_img"
-                            android:layout_width="@dimen/dimen_profile_img_width"
-                            android:layout_height="@dimen/dimen_profile_img_height"
-                            android:layout_marginTop="25dp"
-                            android:padding="@dimen/element_padding"
-                            android:scaleType="fitCenter"/>
-
-                        <LinearLayout
-                            android:id="@+id/group_data_profile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/card_view_profile_img"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/card_view_profile_username"
-                                style="@style/CardTextStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:drawableLeft="@drawable/ic_username"
-                                android:gravity="left|center_vertical"
-                                android:paddingLeft="@dimen/element_padding"
-                                android:text="@string/text_username"/>
-
-                            <TextView
-                                android:id="@+id/card_view_profile_mail"
-                                style="@style/CardTextStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:drawableLeft="@drawable/ic_mail"
-                                android:gravity="left|center_vertical"
-                                android:paddingLeft="@dimen/element_padding"
-                                android:text="@string/text_mail"/>
-
-                            <TextView
-                                android:id="@+id/card_view_profile_date_created"
-                                style="@style/CardTextStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:drawableLeft="@drawable/ic_date"
-                                android:gravity="left|center_vertical"
-                                android:paddingLeft="@dimen/element_padding"
-                                android:text="@string/text_date_created"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/group_action_profile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/group_data_profile"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <Button
-                                android:id="@+id/button_profile_change_avatar"
-                                style="@style/ButtonStyleWithBorder"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/btn_change_avatar"/>
-
-                            <Button
-                                android:id="@+id/button_profile_edit_profile"
-                                style="@style/ButtonStyleWithBorder"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/btn_edit"/>
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view_friends"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/element_vertical_margin"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="@dimen/no_dimen"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="1dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/element_padding">
-
-                    <TextView
-                        android:id="@+id/card_view_friends_title"
-                        style="@style/CardTitleStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/card_title_friends"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimen_line"
-                        android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:background="@color/colorLine"/>
-
-                    <TextView
-                        android:id="@+id/card_view_friends_info_01"
-                        style="@style/HintTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_profile_friends_info_01"/>
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/element_vertical_margin"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/card_view_profile_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:text="@string/card_title_my_profile"/>
 
-                            <EditText
-                                android:id="@+id/card_view_friends_username"
-                                style="@style/InputStyle"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/card_view_profile_img"
+                                android:layout_width="@dimen/dimen_profile_img_width"
+                                android:layout_height="@dimen/dimen_profile_img_height"
+                                android:layout_marginTop="25dp"
+                                android:padding="@dimen/element_padding"
+                                android:scaleType="fitCenter"/>
+
+                            <LinearLayout
+                                android:id="@+id/group_data_profile"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_toRightOf="@id/card_view_profile_img"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/card_view_profile_username"
+                                    style="@style/CardTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/element_padding"
+                                    android:drawableLeft="@drawable/ic_username"
+                                    android:gravity="left|center_vertical"
+                                    android:paddingLeft="@dimen/element_padding"
+                                    android:text="@string/text_username"/>
+
+                                <TextView
+                                    android:id="@+id/card_view_profile_mail"
+                                    style="@style/CardTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/element_padding"
+                                    android:drawableLeft="@drawable/ic_mail"
+                                    android:gravity="left|center_vertical"
+                                    android:paddingLeft="@dimen/element_padding"
+                                    android:text="@string/text_mail"/>
+
+                                <TextView
+                                    android:id="@+id/card_view_profile_date_created"
+                                    style="@style/CardTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/element_padding"
+                                    android:drawableLeft="@drawable/ic_date"
+                                    android:gravity="left|center_vertical"
+                                    android:paddingLeft="@dimen/element_padding"
+                                    android:text="@string/text_date_created"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/group_action_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/group_data_profile"
                                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                                android:hint="@string/field_username_friend"
-                                android:imeOptions="actionDone"
-                                android:inputType="textAutoComplete"
-                                android:maxLength="30"
-                                android:maxLines="1"/>
+                                android:orientation="horizontal"
+                                android:weightSum="2">
 
-                        </android.support.design.widget.TextInputLayout>
+                                <Button
+                                    android:id="@+id/button_profile_change_avatar"
+                                    style="@style/ButtonStyleWithBorder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/btn_change_avatar"/>
 
-                        <ImageButton
-                            android:id="@+id/card_view_friends_button_add"
-                            style="?android:attr/buttonStyle"
-                            android:layout_width="@dimen/cards_button_width"
-                            android:layout_height="@dimen/cards_button_height"
-                            android:layout_marginLeft="@dimen/element_horizontal_margin"
-                            android:layout_marginRight="@dimen/element_horizontal_margin"
-                            android:layout_marginTop="@dimen/element_vertical_margin"
-                            app:srcCompat="@drawable/ic_add_friend"/>
+                                <Button
+                                    android:id="@+id/button_profile_edit_profile"
+                                    style="@style/ButtonStyleWithBorder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/btn_edit"/>
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
 
                     </LinearLayout>
 
-                    <br.com.battista.bgscore.custom.RecycleEmptyErrorView
-                        android:id="@+id/card_view_friends_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:cacheColorHint="@android:color/transparent"
-                        android:clipToPadding="false"
-                        android:dividerHeight="1dp"
-                        android:listSelector="@android:color/transparent"
-                        android:paddingBottom="@dimen/md_keylines"
-                        android:paddingTop="@dimen/element_vertical_margin"/>
+                </android.support.v7.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/card_view_friends_empty_view"
-                        style="@style/CardTextBoldStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_profile_friends_empty_view"
-                        android:visibility="gone"/>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view_friends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="1dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/card_view_friends_error_view"
-                        style="@style/CardTextBoldStyle"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_profile_friends_error_view"
-                        android:visibility="gone"/>
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/card_view_friends_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_friends"/>
 
-            </android.support.v7.widget.CardView>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine"/>
 
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/card_view_friends_info_01"
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_profile_friends_info_01"/>
 
-    </android.support.v4.widget.NestedScrollView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/card_view_friends_username"
+                                    style="@style/InputStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                                    android:hint="@string/field_username_friend"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="textAutoComplete"
+                                    android:maxLength="30"
+                                    android:maxLines="1"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/card_view_friends_button_add"
+                                style="?android:attr/buttonStyle"
+                                android:layout_width="@dimen/cards_button_width"
+                                android:layout_height="@dimen/cards_button_height"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:layout_marginRight="@dimen/element_horizontal_margin"
+                                android:layout_marginTop="@dimen/element_vertical_margin"
+                                app:srcCompat="@drawable/ic_add_friend"/>
+
+                        </LinearLayout>
+
+                        <br.com.battista.bgscore.custom.RecycleEmptyErrorView
+                            android:id="@+id/card_view_friends_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:clipToPadding="false"
+                            android:dividerHeight="1dp"
+                            android:listSelector="@android:color/transparent"
+                            android:paddingBottom="@dimen/md_keylines"
+                            android:paddingTop="@dimen/element_vertical_margin"/>
+
+                        <TextView
+                            android:id="@+id/card_view_friends_empty_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_profile_friends_empty_view"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/card_view_friends_error_view"
+                            style="@style/CardTextBoldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_profile_friends_error_view"
+                            android:visibility="gone"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

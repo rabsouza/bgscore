@@ -44,10 +44,17 @@ public class HomeActivity extends BaseActivity {
             switch (navigationTo) {
                 case BundleConstant.NavigationTo.GAME_FRAGMENT:
                     Log.i(TAG, "loadFragmentInitial: Load the GameFragment!");
+                    changeActionActive(R.id.action_games);
                     replaceFragment(GameFragment.newInstance());
+                    break;
+                case BundleConstant.NavigationTo.MATCH_FRAGMENT:
+                    Log.i(TAG, "loadFragmentInitial: Load the MatchFragment!");
+                    changeActionActive(R.id.action_matches);
+                    replaceFragment(MatchFragment.newInstance());
                     break;
                 default:
                     Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
+                    changeActionActive(R.id.action_home);
                     replaceFragment(HomeFragment.newInstance());
                     break;
             }

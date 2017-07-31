@@ -49,8 +49,8 @@
             android:layout_width="@dimen/dimen_game_img_width"
             android:layout_height="@dimen/dimen_game_img_height"
             android:layout_below="@id/card_view_match_info_line"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:scaleType="fitCenter"
             android:src="@drawable/boardgame_game"/>
 

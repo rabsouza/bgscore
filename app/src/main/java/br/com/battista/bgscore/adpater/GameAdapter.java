@@ -79,9 +79,11 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                         holder.getImgInfoGame());
             }
 
-            holder.getTxtInfoName().setText(MessageFormat.format("{0} ({1})",
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"),
-                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "*")));
+            holder.getTxtInfoName().setText(
+                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"));
+
+            holder.getTxtInfoYear().setText(
+                    MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "****"));
 
             if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
                 holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}",
@@ -137,7 +139,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                             processEditGame(itemView, game);
                             break;
                         case R.id.menu_action_remove:
-                            createDialogRemoveFriend(game, positionRemoved, adapterCurrent, itemView);
+                            createDialogRemoveGame(game, positionRemoved, adapterCurrent, itemView);
                             break;
                     }
 
@@ -176,9 +178,9 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
         itemView.getContext().startActivity(intent);
     }
 
-    private void createDialogRemoveFriend(final Game game, final int position,
-                                          final RecyclerView.Adapter adapterCurrent,
-                                          final View itemView) {
+    private void createDialogRemoveGame(final Game game, final int position,
+                                        final RecyclerView.Adapter adapterCurrent,
+                                        final View itemView) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_game);
         new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)

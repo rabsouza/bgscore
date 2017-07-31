@@ -11,11 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
@@ -29,7 +30,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     private Context context;
     private List<FriendDto> friends;
 
-    private List<FriendDto> friendsSelected = Lists.newArrayList();
+    private Set<FriendDto> friendsSelected = Sets.newLinkedHashSet();
     private Boolean allowsDelete;
     private Boolean allowsSelect;
 
@@ -40,6 +41,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
         this.friends = friends;
         this.allowsDelete = allowsDelete;
         this.allowsSelect = allowsSelect;
+        friendsSelected.clear();
     }
 
     public FriendAdapter(Context context, List<FriendDto> friends) {
@@ -82,15 +84,23 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
 
             final CardView cardView = itemView.findViewById(R.id.card_view_friend);
             if (allowsSelect) {
+                if (friendDto.isSelected()) {
+                    cardView.setSelected(Boolean.TRUE);
+                    friendsSelected.add(friendDto);
+                }
                 cardView.setOnClickListener(new View.OnClickListener() {
-                    boolean cardSelected = Boolean.FALSE;
+                    boolean cardSelected = friendDto.isSelected();
 
                     @Override
                     public void onClick(View view) {
                         cardSelected = !cardSelected;
                         cardView.setSelected(cardSelected);
                         friendDto.selected(cardSelected);
-                        friendsSelected.add(friendDto);
+                        if (cardSelected) {
+                            friendsSelected.add(friendDto);
+                        } else {
+                            friendsSelected.remove(friendDto);
+                        }
                     }
                 });
             } else {
@@ -132,7 +142,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
         return friends != null ? friends.size() : 0;
     }
 
-    public List<FriendDto> getFriendsSelected() {
+    public Set<FriendDto> getFriendsSelected() {
         return friendsSelected;
     }
 }

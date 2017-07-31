@@ -1,6 +1,10 @@
 package br.com.battista.bgscore.adpater;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,13 +16,21 @@ import android.widget.ImageView;
 
 import com.google.common.base.Strings;
 
+import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.List;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.MatchActivity;
+import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
@@ -104,13 +116,13 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                             AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
                             break;
                         case R.id.menu_action_edit:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            processEditMatch(itemView, match);
                             break;
                         case R.id.menu_action_finish:
                             AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
                             break;
                         case R.id.menu_action_remove:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            createDialogRemoveMatch(match, positionRemoved, adapterCurrent, itemView);
                             break;
                     }
 
@@ -122,6 +134,45 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
+    }
+
+    private void processEditMatch(View itemView, Match match) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_MATCH);
+
+        Bundle args = new Bundle();
+        Intent intent = new Intent(itemView.getContext(), MatchActivity.class);
+        args.putSerializable(BundleConstant.DATA, match);
+        intent.putExtras(args);
+
+        itemView.getContext().startActivity(intent);
+    }
+
+    private void createDialogRemoveMatch(final Match match, final int position,
+                                         final RecyclerView.Adapter adapterCurrent,
+                                         final View itemView) {
+        String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_match);
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.alert_confirmation_dialog_title_delete)
+                .setMessage(MessageFormat.format(msgDelete, match.getAlias()))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.btn_confirmation_dialog_remove, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Log.d(TAG, "onClick: Success remove the match and refresh recyclerView!");
+
+                        new MatchRepository().delete(match);
+                        matches.remove(position);
+                        adapterCurrent.notifyItemRemoved(position);
+                        adapterCurrent.notifyDataSetChanged();
+
+                        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+                        new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+
+                        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_MATCH);
+                    }
+                })
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
     }
 
     @Override

@@ -32,7 +32,7 @@ import br.com.battista.bgscore.util.DateUtils;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
-    private static final int MAX_MATCHES_LIST = 5;
+    private static final int MAX_MATCHES_LIST = 3;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -70,6 +70,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 loadUserInfo(view);
+                loadAllMatches();
                 refreshLayout.setRefreshing(false);
             }
         });
@@ -89,8 +90,6 @@ public class HomeFragment extends BaseFragment {
         });
 
         setupRecycleRanking(view);
-        loadUserInfo(view);
-
         return view;
     }
 
@@ -104,10 +103,11 @@ public class HomeFragment extends BaseFragment {
     private void loadAllMatches() {
         Log.i(TAG, "loadAllMatches: Load all Matches in BD!");
         List<Match> matches = new MatchRepository().findAll();
-        if(matches.size() > MAX_MATCHES_LIST){
+        if (matches.size() > MAX_MATCHES_LIST) {
             matches = matches.subList(0, MAX_MATCHES_LIST);
         }
-        recycleViewRankingGames.setAdapter(new MatchAdapter(getContext(), matches));
+        final MatchAdapter matchAdapter = new MatchAdapter(getContext(), matches);
+        recycleViewRankingGames.setAdapter(matchAdapter);
 
     }
 
@@ -150,6 +150,6 @@ public class HomeFragment extends BaseFragment {
 
         recycleViewRankingGames.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewRankingGames.setItemAnimator(new DefaultItemAnimator());
-        recycleViewRankingGames.setHasFixedSize(true);
+        recycleViewRankingGames.setHasFixedSize(false);
     }
 }

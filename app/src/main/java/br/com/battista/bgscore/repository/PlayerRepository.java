@@ -51,6 +51,7 @@ public class PlayerRepository extends BaseRepository implements Repository<Playe
     @Override
     public void delete(Player entity) {
         if (entity != null) {
+            entity.reloadId();
             Log.i(TAG, MessageFormat.format("Delete to Player with id: {0}.", entity.getId()));
             Player.deleteAll(entity.getClass(),
                     MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),

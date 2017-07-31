@@ -204,24 +204,12 @@
                             <TextView
                                 android:id="@+id/card_view_game_info_players"
                                 style="@style/CardTextStyle"
-                                android:layout_width="wrap_content"
+                                android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_name"
                                 android:layout_margin="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_image"
                                 android:drawableLeft="@drawable/ic_game_players"
-                                android:gravity="center_vertical"/>
-
-                            <TextView
-                                android:id="@+id/card_view_game_info_ages"
-                                style="@style/CardTextStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/card_view_game_info_name"
-                                android:layout_marginBottom="@dimen/element_vertical_margin"
-                                android:layout_marginTop="@dimen/element_vertical_margin"
-                                android:layout_toRightOf="@id/card_view_game_info_players"
-                                android:drawableLeft="@drawable/ic_game_age"
                                 android:gravity="center_vertical"/>
 
                             <TextView
@@ -232,10 +220,36 @@
                                 android:layout_below="@id/card_view_game_info_name"
                                 android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_marginLeft="@dimen/element_margin"
-                                android:layout_marginRight="@dimen/element_horizontal_margin"
-                                android:layout_toRightOf="@id/card_view_game_info_ages"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
                                 android:layout_marginTop="@dimen/element_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_players"
                                 android:drawableLeft="@drawable/ic_game_time"
+                                android:gravity="center_vertical"/>
+
+                            <TextView
+                                android:id="@+id/card_view_game_info_ages"
+                                style="@style/CardTextStyle"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_game_info_players"
+                                android:layout_marginBottom="@dimen/element_margin"
+                                android:layout_marginLeft="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/element_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_image"
+                                android:drawableLeft="@drawable/ic_game_age"
+                                android:gravity="center_vertical"/>
+
+                            <TextView
+                                android:id="@+id/card_view_game_info_year"
+                                style="@style/CardTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_game_info_players"
+                                android:layout_marginBottom="@dimen/element_margin"
+                                android:layout_marginLeft="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_ages"
+                                android:drawableLeft="@drawable/ic_game_date"
                                 android:gravity="center_vertical"/>
 
                             <RatingBar
@@ -243,7 +257,7 @@
                                 style="?android:attr/ratingBarStyleSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:layout_below="@id/card_view_game_info_time"
+                                android:layout_below="@id/card_view_game_info_ages"
                                 android:layout_marginLeft="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/element_horizontal_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_image"

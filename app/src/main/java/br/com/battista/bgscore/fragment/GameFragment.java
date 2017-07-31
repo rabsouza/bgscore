@@ -54,7 +54,6 @@ public class GameFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 loadAllGames();
                 refreshLayout.setRefreshing(false);
             }

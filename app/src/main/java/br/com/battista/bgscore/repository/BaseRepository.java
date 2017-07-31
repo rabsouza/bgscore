@@ -12,7 +12,7 @@ public abstract class BaseRepository {
         entity.synchronize();
         if (entity.getId() != null && entity.getId() > 0 && entity.getVersion() != null) {
             entity.updateEntity();
-            entity.setId(entity.update());
+            entity.update();
         } else {
             entity.setId(entity.save());
             entity.update();

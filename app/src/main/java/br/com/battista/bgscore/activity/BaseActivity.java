@@ -7,7 +7,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -27,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     private static final String TAG = BaseActivity.class.getSimpleName();
 
     private Toolbar toolbar;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class BaseActivity extends AppCompatActivity {
         return this;
     }
 
-    protected void setUpToolbar(int title) {
+    protected void setUpToolbar(@StringRes int title) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             changeTitleToolbar(title);
@@ -64,13 +68,16 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected void changeTitleToolbar(int title) {
-        if (title != 0) {
-            toolbar.setTitle(title);
-        }
+    protected void changeTitleToolbar(@StringRes int idTitle) {
+        toolbar.setTitle(idTitle);
     }
 
-    protected void changeTitleCollapsingToolbar(int titleResId) {
+    protected void changeActionActive(@IdRes int idAction) {
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(idAction);
+    }
+
+    protected void changeTitleCollapsingToolbar(@StringRes int titleResId) {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(getContext().getString(titleResId));

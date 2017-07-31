@@ -51,6 +51,7 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     @Override
     public void delete(Game entity) {
         if (entity != null) {
+            entity.reloadId();
             Log.i(TAG, MessageFormat.format("Delete to Game with id: {0}.", entity.getId()));
             Game.deleteAll(entity.getClass(),
                     MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),

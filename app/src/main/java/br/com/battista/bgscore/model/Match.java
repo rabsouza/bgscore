@@ -30,6 +30,9 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.COLUMN_NAME_PLAYERS)
     private List<Player> players = Lists.newArrayList();
 
+    @Column(name = MatchEntry.COLUMN_NAME_I_PLAYING)
+    private Boolean iPlaying = Boolean.TRUE;
+
     @Column(name = MatchEntry.COLUMN_NAME_FINISHED)
     private Boolean finished = Boolean.FALSE;
 
@@ -110,6 +113,14 @@ public class Match extends BaseEntity implements Serializable {
         this.obs = obs;
     }
 
+    public Boolean isIPlaying() {
+        return iPlaying;
+    }
+
+    public void setiPlaying(Boolean iPlaying) {
+        this.iPlaying = iPlaying;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -117,6 +128,7 @@ public class Match extends BaseEntity implements Serializable {
                 .add("game", game)
                 .add("gameId", gameId)
                 .add("players", players)
+                .add("iPlaying", iPlaying)
                 .add("finished", finished)
                 .add("duration", duration)
                 .add("feedbackIdRes", feedbackIdRes)
@@ -165,6 +177,11 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match obs(String obs) {
         this.obs = obs;
+        return this;
+    }
+
+    public Match iPlaying(Boolean iPlaying) {
+        this.iPlaying = iPlaying;
         return this;
     }
 

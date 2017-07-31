@@ -65,8 +65,8 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
         pk = getId();
     }
 
-    public void reloadId(){
-        if(getId() == null || getId() == 0){
+    public void reloadId() {
+        if (getId() == null || getId() == 0) {
             setId(pk);
         }
     }

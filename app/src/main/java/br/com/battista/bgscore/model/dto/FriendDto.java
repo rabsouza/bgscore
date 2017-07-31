@@ -2,9 +2,11 @@ package br.com.battista.bgscore.model.dto;
 
 import android.support.annotation.DrawableRes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
+import com.orm.dsl.Ignore;
 
 import java.io.Serializable;
 
@@ -21,6 +23,8 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
     @DrawableRes
     private int idResAvatar = R.drawable.avatar_friend;
 
+    @Ignore
+    @JsonIgnore
     private boolean selected = Boolean.FALSE;
 
     public String getUsername() {

@@ -57,6 +57,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     @Override
     public void delete(Match entity) {
         if (entity != null) {
+            entity.reloadId();
             Log.i(TAG, MessageFormat.format("Delete to Match with id: {0}.", entity.getId()));
             Match.deleteAll(entity.getClass(),
                     MessageFormat.format("{0} = ?", BaseEntry.COLUMN_NAME_ID),
@@ -108,6 +109,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     private void reload(Match entity) {
         Log.i(TAG, "Reload data Matches.");
         if (entity != null) {
+            entity.reloadId();
             if (entity.getGame() == null && entity.getGameId() != null) {
                 final Game game = new GameRepository().find(entity.getGameId());
                 entity.game(game);

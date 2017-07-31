@@ -191,4 +191,13 @@ public class User extends BaseEntity implements Serializable {
     public void clearFriends() {
         friends.clear();
     }
+
+    public FriendDto getMyFriendDTO() {
+        FriendDto userCurrent = new FriendDto()
+                .username(getUsername())
+                .mail(getMail())
+                .idResAvatar(getIdResAvatar())
+                .selected(Boolean.TRUE);
+        return userCurrent;
+    }
 }

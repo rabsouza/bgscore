@@ -73,7 +73,8 @@ public class NewGameFragment extends BaseFragment {
             }
         });
 
-        loadDataForm(view);
+        setupDataForm(view);
+
         processDataFragment(view, getArguments());
         return view;
     }
@@ -100,7 +101,6 @@ public class NewGameFragment extends BaseFragment {
         } else {
             game = new Game();
             game.initEntity();
-            AndroidUtils.snackbar(viewFragment, getContext().getText(R.string.msg_error_game_not_found).toString());
         }
     }
 
@@ -140,8 +140,8 @@ public class NewGameFragment extends BaseFragment {
         finishFormAndProcessData();
     }
 
-    private void loadDataForm(View view) {
-        Log.i(TAG, "loadDataForm: Load all form fields!");
+    private void setupDataForm(View view) {
+        Log.i(TAG, "setupDataForm: Load all form fields!");
 
         txtNameGame = view.findViewById(R.id.card_view_new_game_name);
         txtUrlThumbnailGame = view.findViewById(R.id.card_view_new_game_url_thumbnail);

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -65,6 +66,8 @@ public class ProfileFragment extends BaseFragment {
     private TextView dateCreatedView;
     private ImageView avatarView;
 
+    private SwipeRefreshLayout refreshLayout;
+
     public ProfileFragment() {
     }
 
@@ -82,10 +85,18 @@ public class ProfileFragment extends BaseFragment {
 
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        refreshLayout = view.findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadUserInfo(getView());
+                loadDataFriends(getView());
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
         setupRecycleViewFriends(view);
         setupButtonsProfile(view);
-        loadUserInfo(view);
-
         return view;
     }
 
@@ -93,6 +104,7 @@ public class ProfileFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         loadUserInfo(getView());
+        loadDataFriends(getView());
     }
 
     @Override
@@ -149,19 +161,20 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void setupRecycleViewFriends(View view) {
-        final MainApplication instance = MainApplication.instance();
-        final User user = instance.getUser();
-
         recycleViewFriends = view.findViewById(R.id.card_view_friends_recycler_view);
         emptyMsgFriends = view.findViewById(R.id.card_view_friends_empty_view);
         errorMsgFriends = view.findViewById(R.id.card_view_friends_error_view);
         recycleViewFriends.setEmptyView(emptyMsgFriends);
         recycleViewFriends.setErrorView(errorMsgFriends);
 
-
         recycleViewFriends.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
+    }
+
+    private void loadDataFriends(View view) {
+        final MainApplication instance = MainApplication.instance();
+        final User user = instance.getUser();
 
         final List<FriendDto> friends = Lists.newLinkedList(user.getFriends());
         Collections.sort(friends, new Ordering<FriendDto>() {

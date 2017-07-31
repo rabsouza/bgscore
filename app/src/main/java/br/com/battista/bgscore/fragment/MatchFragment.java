@@ -56,7 +56,7 @@ public class MatchFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                loadAllMatches();
                 refreshLayout.setRefreshing(false);
             }
         });
