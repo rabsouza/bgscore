@@ -29,6 +29,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_NUM_MATCHES = "NUM_MATCHES";
         public static final String COLUMN_NAME_TOTAL_TIME = "TOTAL_TIME";
         public static final String COLUMN_NAME_FRIENDS = "FRIENDS";
+        public static final String COLUMN_NAME_RANKING_GAMES = "RANKING_GAMES";
     }
 
     public static abstract class GameEntry extends BaseEntry {

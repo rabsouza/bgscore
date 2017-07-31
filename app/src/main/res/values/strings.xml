@@ -48,7 +48,7 @@
     <string name="text_home_matches">Partidas</string>
     <string name="text_home_matches_time">Tempo</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
-    <string name="text_home_stats_info_01">*¹ Lista com as últimas 3 partidas jogadas.</string>
+    <string name="text_home_stats_info_01">*¹ Seu ranking pessoal dos últimos 3 jogos mais jogados.</string>
     <string name="text_home_stats_empty_view">Você ainda não adicionou nenhum jogo/partida.</string>
     <string name="text_home_stats_error_view">Error ao carregar a lista de jogos/partidas, favor tentar novamente.</string>
     <string name="text_profile_friends_empty_view">Você ainda não adicionou nenhum amigo(a).</string>

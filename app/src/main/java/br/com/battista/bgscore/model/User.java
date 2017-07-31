@@ -14,6 +14,7 @@ import java.util.Set;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
 @Table(name = UserEntry.TABLE_NAME)
@@ -45,6 +46,9 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_FRIENDS)
     private Set<FriendDto> friends = Sets.newTreeSet();
+
+    @Column(name = UserEntry.COLUMN_NAME_RANKING_GAMES)
+    private Set<RankingGamesDto> rankingGames = Sets.newTreeSet();
 
     public String getUsername() {
         return username;
@@ -111,6 +115,14 @@ public class User extends BaseEntity implements Serializable {
         this.friends = friends;
     }
 
+    public Set<RankingGamesDto> getRankingGames() {
+        return rankingGames;
+    }
+
+    public void setRankingGames(Set<RankingGamesDto> rankingGames) {
+        this.rankingGames = rankingGames;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -136,6 +148,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("numMatches", numMatches)
                 .add("totalTime", totalTime)
                 .add("friends", friends)
+                .add("rankingGames", rankingGames)
                 .addValue(super.toString())
                 .toString();
     }
@@ -180,6 +193,11 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
+    public User rankingGames(Set<RankingGamesDto> rankingGames) {
+        this.rankingGames = rankingGames;
+        return this;
+    }
+
     public boolean addFriend(FriendDto friendDto) {
         return friends.add(friendDto);
     }
@@ -192,6 +210,18 @@ public class User extends BaseEntity implements Serializable {
         friends.clear();
     }
 
+    public boolean addRankingGames(RankingGamesDto rankingGamesDto) {
+        return rankingGames.add(rankingGamesDto);
+    }
+
+    public boolean removeRankingGames(RankingGamesDto rankingGamesDto) {
+        return rankingGames.remove(rankingGamesDto);
+    }
+
+    public void clearRankingGamess() {
+        rankingGames.clear();
+    }
+
     public FriendDto getMyFriendDTO() {
         FriendDto userCurrent = new FriendDto()
                 .username(getUsername())
@@ -200,4 +230,5 @@ public class User extends BaseEntity implements Serializable {
                 .selected(Boolean.TRUE);
         return userCurrent;
     }
+
 }

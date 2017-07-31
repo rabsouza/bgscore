@@ -13,20 +13,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
-import br.com.battista.bgscore.adpater.MatchAdapter;
+import br.com.battista.bgscore.adpater.RankingGamesAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
-import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
@@ -70,7 +73,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 loadUserInfo(view);
-                loadAllMatches();
+                loadAllRankingGames();
                 refreshLayout.setRefreshing(false);
             }
         });
@@ -97,17 +100,27 @@ public class HomeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         loadUserInfo(getView());
-        loadAllMatches();
+        loadAllRankingGames();
     }
 
-    private void loadAllMatches() {
-        Log.i(TAG, "loadAllMatches: Load all Matches in BD!");
-        List<Match> matches = new MatchRepository().findAll();
+    private void loadAllRankingGames() {
+        Log.i(TAG, "loadAllRankingGames: Load all Ranking Games in BD!");
+        User user = MainApplication.instance().getUser();
+
+        List<RankingGamesDto> matches = Lists.newLinkedList(user.getRankingGames());
+        Collections.sort(matches, new Ordering<RankingGamesDto>() {
+            @Override
+            public int compare(RankingGamesDto left, RankingGamesDto right) {
+                return left.compareTo(right);
+            }
+        });
+        Collections.reverse(matches);
+
         if (matches.size() > MAX_MATCHES_LIST) {
             matches = matches.subList(0, MAX_MATCHES_LIST);
         }
-        final MatchAdapter matchAdapter = new MatchAdapter(getContext(), matches);
-        recycleViewRankingGames.setAdapter(matchAdapter);
+        final RankingGamesAdapter rankingGamesAdapter = new RankingGamesAdapter(getContext(), matches);
+        recycleViewRankingGames.setAdapter(rankingGamesAdapter);
 
     }
 

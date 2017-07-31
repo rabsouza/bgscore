@@ -17,6 +17,7 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
@@ -48,6 +49,7 @@ public class CacheManageService extends Service {
             loadAllDataGameAddToCache(instance);
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
             loadAllDataMatchAddToCache(instance);
+            loadAllDataRankingGamesAddToCache(instance);
         }
     }
 
@@ -66,6 +68,29 @@ public class CacheManageService extends Service {
             totalTime += match.getDuration();
         }
         user.setTotalTime(totalTime);
+        instance.setUser(user);
+    }
+
+    private void loadAllDataRankingGamesAddToCache(MainApplication instance) {
+        User user = instance.getUser();
+        user.clearRankingGamess();
+
+        Log.i(TAG, "loadAllDataMatchAddToCache: Find all data in DB!");
+        final List<Game> games = new GameRepository().findAll();
+        for (Game game : games) {
+
+            final List<Match> matches = new MatchRepository().findByGameId(game.getId());
+            if (!matches.isEmpty()) {
+
+                Match lastMatch = matches.get(0);
+                final RankingGamesDto rankingGames = new RankingGamesDto()
+                        .count(matches.size())
+                        .lastPlayed(lastMatch.getUpdatedAt())
+                        .game(game);
+                user.addRankingGames(rankingGames);
+            }
+        }
+
         instance.setUser(user);
     }
 

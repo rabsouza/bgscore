@@ -5,10 +5,15 @@ import android.support.annotation.DrawableRes;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-public class AvatarDto {
+import java.io.Serializable;
+
+public class AvatarDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @DrawableRes
     private int idResAvatar;
+
     private String nameAvatar;
 
     @DrawableRes
