@@ -17,14 +17,6 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/element_padding">
 
-        <ImageView
-            android:id="@+id/card_view_games_info_image"
-            android:layout_width="@dimen/dimen_game_img_width"
-            android:layout_height="@dimen/dimen_game_img_height"
-            android:layout_centerVertical="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/boardgame_game"/>
-
         <TextView
             android:id="@+id/card_view_games_info_name"
             style="@style/CardHeadStyle"
@@ -32,7 +24,16 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
-            android:layout_toRightOf="@id/card_view_games_info_image"/>
+            android:gravity="left"/>
+
+        <ImageView
+            android:id="@+id/card_view_games_info_image"
+            android:layout_width="@dimen/dimen_game_img_width"
+            android:layout_height="@dimen/dimen_game_img_height"
+            android:layout_below="@id/card_view_games_info_name"
+            android:layout_marginTop="@dimen/element_vertical_margin"
+            android:scaleType="fitCenter"
+            android:src="@drawable/boardgame_game"/>
 
         <TextView
             android:id="@+id/card_view_games_info_players"
@@ -82,7 +83,7 @@
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/card_view_games_info_ages"
-            android:drawableLeft="@drawable/ic_game_date"
+            android:drawableLeft="@drawable/ic_game_date_year"
             android:gravity="center_vertical"/>
 
         <RatingBar

@@ -1,12 +1,10 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
-import com.google.common.collect.Sets;
+import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,9 +23,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
 
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -54,12 +58,6 @@ import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-import br.com.battista.bgscore.util.RatingUtils;
-
-import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 
 public class NewMatchFragment extends BaseFragment {
 
@@ -86,7 +84,6 @@ public class NewMatchFragment extends BaseFragment {
     private TextView txtInfoPlayers;
     private TextView txtInfoAges;
     private TextView txtInfoYear;
-    private RatingBar rtbInfoRating;
 
     private Match match;
 
@@ -254,7 +251,6 @@ public class NewMatchFragment extends BaseFragment {
         txtInfoTime = view.findViewById(R.id.card_view_game_info_time);
         txtInfoAges = view.findViewById(R.id.card_view_game_info_ages);
         txtInfoYear = view.findViewById(R.id.card_view_game_info_year);
-        rtbInfoRating = view.findViewById(R.id.card_view_game_info_rating);
     }
 
     private void processDataSearchGame(View view) {
@@ -315,12 +311,6 @@ public class NewMatchFragment extends BaseFragment {
             txtInfoAges.setText("-");
         } else {
             txtInfoAges.setText(MessageFormat.format("{0}+", gameSelected.getAge()));
-        }
-
-        if (Strings.isNullOrEmpty(gameSelected.getRating())) {
-            rtbInfoRating.setRating(0F);
-        } else {
-            rtbInfoRating.setRating(RatingUtils.convertFrom(gameSelected.getRating()));
         }
 
         cardViewGame.setVisibility(View.VISIBLE);

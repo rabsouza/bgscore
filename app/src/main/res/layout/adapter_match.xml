@@ -25,6 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/dimen_feedback_img_width"
+            android:drawableLeft="@drawable/ic_matches"
+            android:gravity="left|center_vertical"
             tools:text="Partida CN"/>
 
         <ImageView
@@ -56,7 +58,7 @@
 
         <TextView
             android:id="@+id/card_view_match_info_name_game"
-            style="@style/CardHeadStyle"
+            style="@style/CardTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_match_info_line"

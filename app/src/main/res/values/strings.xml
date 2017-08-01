@@ -8,7 +8,7 @@
     <string name="title_main">BoardGame\nScore</string>
     <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
-    <string name="title_games">&#x265c; Meus jogos &#x265c;</string>
+    <string name="title_games">&#x265c; Minha coleção &#x265c;</string>
     <string name="title_matches">&#x265c; Minhas partidas &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
     <string name="title_add_match">&#x265c; Partida &#x265c;</string>
@@ -16,7 +16,7 @@
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
-    <string name="card_title_games">Meus jogos</string>
+    <string name="card_title_games">Minha coleção</string>
     <string name="card_title_matches">Minhas partidas</string>
     <string name="card_title_players">Jogadores</string>
     <string name="card_title_friends">Meus amigos</string>
@@ -44,9 +44,9 @@
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>
-    <string name="text_home_games">Jogos</string>
-    <string name="text_home_matches">Partidas</string>
-    <string name="text_home_matches_time">Tempo</string>
+    <string name="text_home_games"> jogos</string>
+    <string name="text_home_matches"> partidas</string>
+    <string name="text_home_matches_time"> tempo</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
     <string name="text_home_stats_info_01">*¹ Seu ranking pessoal dos últimos 3 jogos mais jogados.</string>
     <string name="text_home_stats_empty_view">Você ainda não adicionou nenhum jogo/partida.</string>
@@ -119,7 +119,7 @@
     <!-- ################### ACTION BAR #################### -->
     <string name="action_home">inicio</string>
     <string name="action_matches">partidas</string>
-    <string name="action_games">jogos</string>
+    <string name="action_games">coleção</string>
     <string name="action_account">perfil</string>
     <string name="action_detail">detalhes</string>
     <string name="action_info">info</string>
@@ -157,6 +157,6 @@ Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/REL
     <string name="avatar_lobot">Lobot</string>
     <string name="avatar_r2d2">R2D2</string>
     <string name="rating_num_stars">10</string>
-    <string name="rating_step_size">0.5</string>
+    <string name="rating_step_size">1</string>
 
 </resources>
