@@ -14,6 +14,7 @@
     <string name="title_welcome">&#x265c; Bem vindo ao BGScore &#x265c;</string>
     <string name="title_add_match">&#x265c; Partida &#x265c;</string>
     <string name="title_add_game">&#x265c; Jogo &#x265c;</string>
+    <string name="title_help">&#x265c; Ajuda &#x265c;</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
@@ -72,6 +73,20 @@
     <string name="text_match_matches_info_01">*¹ Lista das ultimas partidas cadastradas.</string>
     <string name="text_match_matches_empty_view">Você ainda não adicionou nenhum partida.</string>
     <string name="text_match_matches_error_view">Error ao carregar a lista de partidas, favor tentar novamente.</string>
+    <string name="text_legend_info_01">*¹ Legenda com a definição/detalhes de cada um dos icones utilizados nessa sessão:</string>
+    <string name="text_legend_game_players">Números de jogadores suportados pelo jogo (Mínimo-Máximo).</string>
+    <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
+    <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
+    <string name="text_legend_game_sort_list">Lista ordenada pela data de alteração do jogo em ordem decrescente.</string>
+    <string name="text_legend_game_year">Ano em que o jogo foi publicado.</string>
+    <string name="text_legend_match_match">Nome/Apelido da partida.</string>
+    <string name="text_legend_match_date">Data em que aconteceu a partida.</string>
+    <string name="text_legend_match_players">Quantidade de jogadores que estão participando da partida.</string>
+    <string name="text_legend_match_time">Duração estimada da partida.</string>
+    <string name="text_legend_match_sort_list">Lista ordenada pela data de criação das partidas em ordem decrescente.</string>
+    <string name="text_legend_ranking_game_matches">Números de partidas jogadas do jogo.</string>
+    <string name="text_legend_ranking_game_date">Data da última partida jogada do jogo.</string>
+    <string name="text_legend_ranking_game_sort_list">Lista ordenada pelos últimos jogos mais jogados em ordem decrescente.</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>

@@ -80,7 +80,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                         holder.getImgInfoGame());
             }
 
-            holder.getTxtInfoAlias().setText(match.getAlias());
+            holder.getTxtInfoAlias().setText(SPACE_DRAWABLE + match.getAlias());
             holder.getTxtInfoNameGame().setText(game.getName());
 
             final Calendar createdAt = Calendar.getInstance();
@@ -90,7 +90,8 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
             if (match.getDuration() == null) {
                 holder.getTxtInfoDuration().setText(" ∞");
             } else {
-                holder.getTxtInfoDuration().setText(SPACE_DRAWABLE + match.getDuration());
+                holder.getTxtInfoDuration().setText(SPACE_DRAWABLE +
+                        DateUtils.convertSecToHours(match.getDuration()));
             }
             if (match.isFinished()) {
                 holder.getImgInfoFeedback().setImageResource(match.getFeedbackIdRes());

@@ -165,12 +165,28 @@
                         android:orientation="vertical"
                         android:padding="@dimen/element_padding">
 
-                        <TextView
-                            android:id="@+id/card_view_stats_title"
-                            style="@style/CardTitleStyle"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_title_my_ranking_game"/>
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/card_view_stats_title"
+                                style="@style/CardTitleStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/card_title_my_ranking_game"/>
+
+                            <ImageView
+                                android:id="@+id/card_view_stats_help"
+                                android:clickable="true"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:src="@drawable/ic_help"/>
+
+                        </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"

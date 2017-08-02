@@ -1,9 +1,12 @@
 package br.com.battista.bgscore.fragment;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -51,6 +54,8 @@ public class HomeFragment extends BaseFragment {
     private ScoreboardView scoreMatches;
     private ScoreboardView scoreTotalTime;
 
+    private ImageView imgHelpRankingGame;
+
     public HomeFragment() {
     }
 
@@ -93,7 +98,32 @@ public class HomeFragment extends BaseFragment {
         });
 
         setupRecycleRanking(view);
+        setupHelpRankingGame(view);
+
         return view;
+    }
+
+    private void setupHelpRankingGame(View view) {
+        imgHelpRankingGame = view.findViewById(R.id.card_view_stats_help);
+        imgHelpRankingGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = inflater.inflate(R.layout.custom_help_ranking_game, null);
+
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.title_help)
+                        .setView(customView)
+                        .setPositiveButton(R.string.btn_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        )
+                        .create().show();
+            }
+        });
     }
 
     @Override

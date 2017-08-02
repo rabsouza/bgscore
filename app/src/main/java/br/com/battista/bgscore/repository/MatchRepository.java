@@ -73,7 +73,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
         final List<Match> matches = Select
                 .from(Match.class)
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
-                        BaseEntry.COLUMN_NAME_UPDATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
+                        BaseEntry.COLUMN_NAME_CREATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
                 .list();
         if (matches != null) {
             for (Match match : matches) {
@@ -90,7 +90,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
                 .where(MessageFormat.format("{0} = ?", MatchEntry.FK_GAME_ID),
                         new String[]{String.valueOf(idGame)})
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
-                        BaseEntry.COLUMN_NAME_UPDATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
+                        BaseEntry.COLUMN_NAME_CREATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
                 .list();
         if (matches != null) {
             for (Match match : matches) {

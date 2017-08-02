@@ -1,15 +1,19 @@
 package br.com.battista.bgscore.fragment;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,6 +34,7 @@ public class GameFragment extends BaseFragment {
     private RecycleEmptyErrorView recycleViewGames;
     private TextView emptyMsgGames;
     private TextView errorMsgGames;
+    private ImageView imgHelpGame;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -75,7 +80,32 @@ public class GameFragment extends BaseFragment {
         });
 
         setupRecycleRanking(view);
+        setupHelpGame(view);
+
         return view;
+    }
+
+    private void setupHelpGame(View view) {
+        imgHelpGame = view.findViewById(R.id.card_view_games_help);
+        imgHelpGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = inflater.inflate(R.layout.custom_help_game, null);
+
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.title_help)
+                        .setView(customView)
+                        .setPositiveButton(R.string.btn_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        )
+                        .create().show();
+            }
+        });
     }
 
     @Override

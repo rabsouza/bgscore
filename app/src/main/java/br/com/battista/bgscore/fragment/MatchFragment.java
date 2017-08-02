@@ -1,16 +1,20 @@
 package br.com.battista.bgscore.fragment;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,6 +36,7 @@ public class MatchFragment extends BaseFragment {
     private RecycleEmptyErrorView recycleViewMatches;
     private TextView emptyMsgMatches;
     private TextView errorMsgMatches;
+    private ImageView imgHelpMatch;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -77,7 +82,32 @@ public class MatchFragment extends BaseFragment {
         });
 
         setupRecycleRanking(view);
+        setupHelpMath(view);
+
         return view;
+    }
+
+    private void setupHelpMath(View view) {
+        imgHelpMatch = view.findViewById(R.id.card_view_matches_help);
+        imgHelpMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = inflater.inflate(R.layout.custom_help_match, null);
+
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.title_help)
+                        .setView(customView)
+                        .setPositiveButton(R.string.btn_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        )
+                        .create().show();
+            }
+        });
     }
 
     @Override
