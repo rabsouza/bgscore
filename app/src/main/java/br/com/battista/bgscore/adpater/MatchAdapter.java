@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -80,14 +82,15 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
 
             holder.getTxtInfoAlias().setText(match.getAlias());
             holder.getTxtInfoNameGame().setText(game.getName());
+
             final Calendar createdAt = Calendar.getInstance();
             createdAt.setTime(match.getCreatedAt());
-            holder.getTxtInfoMatchDate().setText(DateUtils.format(createdAt));
-            holder.getTxtInfoPlayers().setText(String.valueOf(match.getPlayers().size()));
+            holder.getTxtInfoMatchDate().setText(SPACE_DRAWABLE + DateUtils.format(createdAt));
+            holder.getTxtInfoPlayers().setText(SPACE_DRAWABLE + match.getPlayers().size());
             if (match.getDuration() == null) {
-                holder.getTxtInfoDuration().setText("∞");
+                holder.getTxtInfoDuration().setText(" ∞");
             } else {
-                holder.getTxtInfoDuration().setText(String.valueOf(match.getDuration()));
+                holder.getTxtInfoDuration().setText(SPACE_DRAWABLE + match.getDuration());
             }
             if (match.isFinished()) {
                 holder.getImgInfoFeedback().setImageResource(match.getFeedbackIdRes());

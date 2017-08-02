@@ -50,6 +50,9 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_RANKING_GAMES)
     private Set<RankingGamesDto> rankingGames = Sets.newTreeSet();
 
+    @Column(name = UserEntry.COLUMN_NAME_WELCOME)
+    private Boolean welcome = Boolean.TRUE;
+
     public String getUsername() {
         return username;
     }
@@ -123,6 +126,14 @@ public class User extends BaseEntity implements Serializable {
         this.rankingGames = rankingGames;
     }
 
+    public Boolean getWelcome() {
+        return welcome;
+    }
+
+    public void setWelcome(Boolean welcome) {
+        this.welcome = welcome;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,6 +160,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("totalTime", totalTime)
                 .add("friends", friends)
                 .add("rankingGames", rankingGames)
+                .add("welcome", welcome)
                 .addValue(super.toString())
                 .toString();
     }
@@ -195,6 +207,11 @@ public class User extends BaseEntity implements Serializable {
 
     public User rankingGames(Set<RankingGamesDto> rankingGames) {
         this.rankingGames = rankingGames;
+        return this;
+    }
+
+    public User welcome(Boolean welcome) {
+        this.welcome = welcome;
         return this;
     }
 

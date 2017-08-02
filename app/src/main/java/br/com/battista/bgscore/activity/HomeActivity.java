@@ -10,6 +10,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.MenuItem;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
@@ -19,6 +20,8 @@ import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.fragment.MatchFragment;
 import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
+import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
+import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {
@@ -33,6 +36,11 @@ public class HomeActivity extends BaseActivity {
         setUpToolbar(R.string.title_home);
         setUpBottomNavigation();
         processDataActivity(getIntent().getExtras());
+
+        final User user = MainApplication.instance().getUser();
+        if (user.getWelcome()) {
+            WelcomeDialog.newInstance(0).showAbout(getSupportFragmentManager());
+        }
     }
 
     private void processDataActivity(Bundle bundle) {

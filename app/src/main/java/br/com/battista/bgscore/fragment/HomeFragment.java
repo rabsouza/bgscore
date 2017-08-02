@@ -35,7 +35,7 @@ import br.com.battista.bgscore.util.DateUtils;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
-    private static final int MAX_MATCHES_LIST = 3;
+    private static final int MAX_MATCHES_LIST = 5;
 
     private SwipeRefreshLayout refreshLayout;
 

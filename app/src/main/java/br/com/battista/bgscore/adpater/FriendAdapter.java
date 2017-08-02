@@ -1,9 +1,11 @@
 package br.com.battista.bgscore.adpater;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -68,8 +70,12 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             Log.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, friendDto));
 
-            holder.getTxtTitle().setText(friendDto.getUsername());
+            holder.getTxtTitle().setText(SPACE_DRAWABLE + friendDto.getUsername());
             holder.getImgAvatar().setImageResource(friendDto.getIdResAvatar());
+
+            Random randomColorTint = new Random();
+            holder.getImgAvatar().setColorFilter(
+                    Color.argb(255, randomColorTint.nextInt(256), randomColorTint.nextInt(256), randomColorTint.nextInt(256)));
             final int positionRemoved = holder.getAdapterPosition();
             if (allowsDelete) {
                 holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {

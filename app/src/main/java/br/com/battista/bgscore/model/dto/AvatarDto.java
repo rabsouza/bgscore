@@ -1,13 +1,15 @@
 package br.com.battista.bgscore.model.dto;
 
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 
 import java.io.Serializable;
 
-public class AvatarDto implements Serializable {
+public class AvatarDto implements Serializable, Comparable<AvatarDto> {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +56,6 @@ public class AvatarDto implements Serializable {
                 .toString();
     }
 
-
     public AvatarDto idResAvatar(@DrawableRes int idResAvatar) {
         this.idResAvatar = idResAvatar;
         return this;
@@ -63,5 +64,16 @@ public class AvatarDto implements Serializable {
     public AvatarDto nameAvatar(String nameAvatar) {
         this.nameAvatar = nameAvatar;
         return this;
+    }
+
+    @Override
+    public int compareTo(@NonNull AvatarDto avatarDto) {
+        if (avatarDto == null) {
+            return -1;
+        }
+        if (Strings.isNullOrEmpty(getNameAvatar())) {
+            return 1;
+        }
+        return this.getNameAvatar().compareTo(avatarDto.getNameAvatar());
     }
 }

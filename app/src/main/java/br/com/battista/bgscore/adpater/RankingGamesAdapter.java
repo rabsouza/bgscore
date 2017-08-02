@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,11 +66,11 @@ public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHo
             holder.getTxtInfoName().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"));
 
-            holder.getTxtInfoCountMatches().setText(String.valueOf(rankingGames.getCount()));
+            holder.getTxtInfoCountMatches().setText(SPACE_DRAWABLE + rankingGames.getCount());
 
             Calendar lastPlayed = Calendar.getInstance();
             lastPlayed.setTime(rankingGames.getLastPlayed());
-            holder.getTxtInfoLastPlayed().setText(DateUtils.format(lastPlayed));
+            holder.getTxtInfoLastPlayed().setText(SPACE_DRAWABLE + DateUtils.format(lastPlayed));
 
             if (Strings.isNullOrEmpty(game.getRating())) {
                 holder.getRtbInfoRating().setRating(0F);

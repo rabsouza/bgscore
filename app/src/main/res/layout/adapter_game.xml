@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/card_view_games_info_players"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_name"
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/card_view_games_info_time"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_name"
@@ -62,7 +62,7 @@
 
         <TextView
             android:id="@+id/card_view_games_info_ages"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_players"
@@ -75,7 +75,7 @@
 
         <TextView
             android:id="@+id/card_view_games_info_year"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_players"

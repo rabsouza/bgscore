@@ -1,5 +1,6 @@
 package br.com.battista.bgscore.adpater;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 import android.content.Context;
@@ -10,12 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.AvatarDto;
+import br.com.battista.bgscore.repository.AvatarRepository;
 
 
 public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
@@ -32,29 +33,7 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
         super(context);
         this.context = context;
         this.currentAvatar = currentAvatar;
-
-        this.avatars = new LinkedList<>();
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_profile)
-                .nameAvatar(context.getString(R.string.text_default_username)));
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_boba_fett)
-                .nameAvatar(context.getString(R.string.avatar_boba_fett)));
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_fett_jango)
-                .nameAvatar(context.getString(R.string.avatar_feet_jango)));
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_jawa)
-                .nameAvatar(context.getString(R.string.avatar_jawa)));
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_leia_princess)
-                .nameAvatar(context.getString(R.string.avatar_leia_princess)));
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_lobot)
-                .nameAvatar(context.getString(R.string.avatar_lobot)));
-        avatars.add(new AvatarDto()
-                .idResAvatar(R.drawable.avatar_r2d2)
-                .nameAvatar(context.getString(R.string.avatar_r2d2)));
+        this.avatars = new AvatarRepository().findAll();
     }
 
     @Override
@@ -68,7 +47,7 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
     public void onBindViewHolder(AvatarViewHolder holder, int position) {
         if (avatars != null && !avatars.isEmpty()) {
             View itemView = holder.itemView;
-            itemView.measure(WRAP_CONTENT, WRAP_CONTENT);
+            itemView.measure(MATCH_PARENT, WRAP_CONTENT);
             itemView.getLayoutParams().height = itemView.getMeasuredHeight()
                     + getRandomIntInRange(OFFSET_RANGE_HEIGHT);
             setAnimationHolder(itemView, position);

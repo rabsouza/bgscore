@@ -70,7 +70,7 @@
 
         <TextView
             android:id="@+id/card_view_match_info_date"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_match_info_name_game"
@@ -83,7 +83,7 @@
 
         <TextView
             android:id="@+id/card_view_match_info_players"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_match_info_date"
@@ -97,7 +97,7 @@
 
         <TextView
             android:id="@+id/card_view_match_info_duration"
-            style="@style/CardTextStyle"
+            style="@style/NumberValueStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_match_info_date"

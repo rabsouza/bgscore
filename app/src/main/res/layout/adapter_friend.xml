@@ -43,7 +43,7 @@
             android:layout_alignParentBottom="true"
             android:layout_below="@id/card_view_friend_img"
             android:layout_centerHorizontal="true"
-            android:drawableLeft="@drawable/ic_username"
+            android:drawableLeft="@drawable/ic_friend"
             android:gravity="left|center_vertical"/>
 
     </RelativeLayout>

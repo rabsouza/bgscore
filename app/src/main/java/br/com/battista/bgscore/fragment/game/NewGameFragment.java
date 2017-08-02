@@ -12,10 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
@@ -35,7 +41,7 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtUrlThumbnailGame;
     private EditText txtUrlImageGame;
     private EditText txtUrlInfoGame;
-    private EditText txtYearPublishedGame;
+    private MaterialBetterSpinner txtYearPublishedGame;
     private EditText txtMinPlayersGame;
     private EditText txtMaxPlayersGame;
     private EditText txtMinPlayTimeGame;
@@ -147,7 +153,18 @@ public class NewGameFragment extends BaseFragment {
         txtUrlThumbnailGame = view.findViewById(R.id.card_view_new_game_url_thumbnail);
         txtUrlImageGame = view.findViewById(R.id.card_view_new_game_url_image);
         txtUrlInfoGame = view.findViewById(R.id.card_view_new_game_url_info);
+
+        final Calendar now = Calendar.getInstance();
+        ArrayList<Integer> namesHeroes = Lists.newArrayList(now.get(Calendar.YEAR));
+        for (int offset = 1; offset < 50; offset++) {
+            now.add(Calendar.YEAR, -1);
+            namesHeroes.add(now.get(Calendar.YEAR));
+        }
+        ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, namesHeroes);
+
         txtYearPublishedGame = view.findViewById(R.id.card_view_new_game_year_published);
+        txtYearPublishedGame.setAdapter(arrayAdapter);
         txtMinPlayersGame = view.findViewById(R.id.card_view_new_game_min_players);
         txtMaxPlayersGame = view.findViewById(R.id.card_view_new_game_max_players);
         txtMinPlayTimeGame = view.findViewById(R.id.card_view_new_game_min_play_time);

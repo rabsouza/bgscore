@@ -6,11 +6,12 @@
 
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
+    <string name="title_home">&#x265c; BGScore &#x265c;</string>
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
     <string name="title_games">&#x265c; Minha coleção &#x265c;</string>
     <string name="title_matches">&#x265c; Minhas partidas &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
+    <string name="title_welcome">&#x265c; Bem vindo ao BGScore &#x265c;</string>
     <string name="title_add_match">&#x265c; Partida &#x265c;</string>
     <string name="title_add_game">&#x265c; Jogo &#x265c;</string>
 
@@ -48,7 +49,7 @@
     <string name="text_home_matches"> partidas</string>
     <string name="text_home_matches_time"> tempo</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
-    <string name="text_home_stats_info_01">*¹ Seu ranking pessoal dos últimos 3 jogos mais jogados.</string>
+    <string name="text_home_stats_info_01">*¹ Seu ranking pessoal dos últimos 5 jogos mais jogados.</string>
     <string name="text_home_stats_empty_view">Você ainda não adicionou nenhum jogo/partida.</string>
     <string name="text_home_stats_error_view">Error ao carregar a lista de jogos/partidas, favor tentar novamente.</string>
     <string name="text_profile_friends_empty_view">Você ainda não adicionou nenhum amigo(a).</string>
@@ -78,12 +79,12 @@
     <string name="field_mail">E-mail do perfil</string>
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
     <string name="field_name_new_game">Nome do jogo</string>
-    <string name="field_url_thumbnail_new_game">Link da imagem (Miniatura)</string>
-    <string name="field_url_image_new_game">Link da imagem (Principal)</string>
+    <string name="field_url_thumbnail_new_game">Link da url imagem (Miniatura)</string>
+    <string name="field_url_image_new_game">Link da url imagem (Principal)</string>
     <string name="field_url_info_new_game">Link da página do jogo (Ludopedia ou boardgamegeek.com)</string>
-    <string name="field_year_published_new_game">Ano de publicação (yyyy)</string>
-    <string name="field_min_players_new_game">Mínimo de jogadores suportados</string>
-    <string name="field_max_players_new_game">Máximo de jogadores suportados</string>
+    <string name="field_year_published_new_game">Ano de publicação</string>
+    <string name="field_min_players_new_game">Mínimo de jogadores</string>
+    <string name="field_max_players_new_game">Máximo de jogadores</string>
     <string name="field_min_play_time_new_game">Duração mínima (Mins.)</string>
     <string name="field_max_play_time_new_game">Duração máxima (Mins.)</string>
     <string name="field_age_new_game">Idade recomendada</string>
@@ -134,13 +135,29 @@
 Versão: {0} ({1})<br>
 Data Release: {2}<br><br>
 <b>Suporte:</b><br>
-* O aplicativo para gerenciar suas partidas e coleção de BoardGames!
+* O aplicativo para gerenciar suas partidas e sua coleção de BoardGames!
 <br><br>
 <b>Contato:</b><br>
 Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
 <br><br>
 Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a>
+	]]>
+    </string>
+    <string name="welcome_dialog_text">
+    <![CDATA[
+* O aplicativo para gerenciar suas partidas e sua coleção de BoardGames!
+<br><br>
+<b>Novidades (Top 3):</b><br>
+&nbsp;&nbsp;&nbsp;<b>1)</b> Tela inicial com dados estatísticos e ranking dos tops 5 jogos.<br>
+&nbsp;&nbsp;&nbsp;<b>2)</b> Telas para gerenciar suas partidas e coleção de jogos.<br>
+&nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e adicionar seus amigos.<br>
+<br>
+<b>Aplicativo:</b><br>
+Versão: {0} ({1})<br><br>
+<i><u>Obs.: Versão em beta teste, seus dados serão perdidos no lançamento da versão final.</u></i>
+<br><br><br>
+<i>Battista Software &#xa9;2017<i>
 	]]>
     </string>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
@@ -156,6 +173,25 @@ Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/REL
     <string name="avatar_leia_princess">Princesa Leia</string>
     <string name="avatar_lobot">Lobot</string>
     <string name="avatar_r2d2">R2D2</string>
+    <string name="avatar_ackbar_admiral">Ackbar Admiral</string>
+    <string name="avatar_c3p0">C3P0</string>
+    <string name="avatar_calrissian_lando">Calrissian Lando</string>
+    <string name="avatar_chewbacca">Chewbacca</string>
+    <string name="avatar_clone_trooper">Clone Trooper</string>
+    <string name="avatar_darth_maul">Darth Maul</string>
+    <string name="avatar_darth_vader">Darth Vader</string>
+    <string name="avatar_emperor_palpatine">Emperor Palpatine</string>
+    <string name="avatar_ewok">Ewok</string>
+    <string name="avatar_five_red">Five Red</string>
+    <string name="avatar_gon_jinn_qui">Gon Jinn Qui</string>
+    <string name="avatar_greedo">Greedo</string>
+    <string name="avatar_han_solo">Han Solo</string>
+    <string name="avatar_hutt_jabba_the">Hutt Jabba The</string>
+    <string name="avatar_kenobi_obiwan">Kenobi Obiwan</string>
+    <string name="avatar_luke_skywalker">Luke Skywalker</string>
+    <string name="avatar_raider_tusken">Raider Tusken</string>
+    <string name="avatar_stormtrooper">Stormtrooper</string>
+    <string name="avatar_yoda">Yoda</string>
     <string name="rating_num_stars">10</string>
     <string name="rating_step_size">1</string>
 

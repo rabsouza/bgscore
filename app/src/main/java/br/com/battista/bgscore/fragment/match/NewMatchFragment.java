@@ -5,6 +5,7 @@ import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -286,23 +287,23 @@ public class NewMatchFragment extends BaseFragment {
         txtInfoName.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getName()), "-"));
 
-        txtInfoYear.setText(
+        txtInfoYear.setText(SPACE_DRAWABLE +
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getYearPublished()), "****"));
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayers())) {
-            txtInfoPlayers.setText(MessageFormat.format("{0}",
+            txtInfoPlayers.setText(MessageFormat.format(" {0}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1")));
         } else {
-            txtInfoPlayers.setText(MessageFormat.format("{0}-{1}",
+            txtInfoPlayers.setText(MessageFormat.format(" {0}-{1}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayers()), "*")));
         }
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayTime())) {
-            txtInfoTime.setText(MessageFormat.format("{0}´",
+            txtInfoTime.setText(MessageFormat.format(" {0}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "∞")));
         } else {
-            txtInfoTime.setText(MessageFormat.format("{0}-{1}´",
+            txtInfoTime.setText(MessageFormat.format(" {0}-{1}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "*"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayTime()), "∞")));
         }
@@ -310,7 +311,7 @@ public class NewMatchFragment extends BaseFragment {
         if (Strings.isNullOrEmpty(gameSelected.getAge())) {
             txtInfoAges.setText("-");
         } else {
-            txtInfoAges.setText(MessageFormat.format("{0}+", gameSelected.getAge()));
+            txtInfoAges.setText(MessageFormat.format(" {0}+", gameSelected.getAge()));
         }
 
         cardViewGame.setVisibility(View.VISIBLE);

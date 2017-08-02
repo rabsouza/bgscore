@@ -12,8 +12,5 @@
 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5
 14z"/>
     <path
-        android:pathData="M0 0h24v24H0V0z"/>
-    <path
-        android:fillColor="@color/colorText"
-        android:pathData="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
+        android:pathData="M0 0h24v24H0z"/>
 </vector>
