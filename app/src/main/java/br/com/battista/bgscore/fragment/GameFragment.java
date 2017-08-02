@@ -90,8 +90,11 @@ public class GameFragment extends BaseFragment {
         imgHelpGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_GAME);
+
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = inflater.inflate(R.layout.custom_help_game, null);
+                View customView = inflater.inflate(R.layout.dialog_help_game, null);
 
                 new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.title_help)

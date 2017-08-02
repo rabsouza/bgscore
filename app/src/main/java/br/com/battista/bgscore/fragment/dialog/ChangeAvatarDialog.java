@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,7 +99,7 @@ public class ChangeAvatarDialog extends DialogFragment {
         });
 
         recyclerViewAvatars = viewFragment.findViewById(R.id.dialog_view_change_avatar_recycler_view);
-        recyclerViewAvatars.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
+        recyclerViewAvatars.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerViewAvatars.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAvatars.setHasFixedSize(true);
         avatarAdapter = new AvatarAdapter(getContext(), currentAvatar);

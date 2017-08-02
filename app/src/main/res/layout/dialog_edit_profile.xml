@@ -72,29 +72,29 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="2"
             android:layout_marginTop="@dimen/element_vertical_margin">
-
-            <Button
-                android:id="@+id/dialog_view_edit_profile_btn_save"
-                style="@style/ButtonStyleActive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="@string/btn_save"/>
 
             <Button
                 android:id="@+id/dialog_view_edit_profile_btn_cancel"
                 style="@style/ButtonStyleWithBorder"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/dialog_view_edit_profile_btn_save"
                 android:text="@string/btn_cancel"/>
 
-        </RelativeLayout>
+            <Button
+                    android:id="@+id/dialog_view_edit_profile_btn_save"
+                    style="@style/ButtonStyleActive"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_save"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.CardView;
@@ -12,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-import java.util.Random;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.AvatarDto;
@@ -47,9 +43,6 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
     public void onBindViewHolder(AvatarViewHolder holder, int position) {
         if (avatars != null && !avatars.isEmpty()) {
             View itemView = holder.itemView;
-            itemView.measure(MATCH_PARENT, WRAP_CONTENT);
-            itemView.getLayoutParams().height = itemView.getMeasuredHeight()
-                    + getRandomIntInRange(OFFSET_RANGE_HEIGHT);
             setAnimationHolder(itemView, position);
             final CardView cardView = itemView.findViewById(R.id.card_view_avatar);
 
@@ -81,10 +74,6 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
-    }
-
-    private int getRandomIntInRange(int offset) {
-        return new Random().nextInt(offset);
     }
 
     public int getCurrentAvatar() {

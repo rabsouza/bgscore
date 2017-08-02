@@ -1,10 +1,11 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
+
+import android.support.annotation.DrawableRes;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
@@ -52,6 +54,9 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_WELCOME)
     private Boolean welcome = Boolean.TRUE;
+
+    @Column(name = UserEntry.COLUMN_NAME_LAST_BUILD_VERSION)
+    private Integer lastBuildVersion = BuildConfig.VERSION_CODE;
 
     public String getUsername() {
         return username;
@@ -126,12 +131,20 @@ public class User extends BaseEntity implements Serializable {
         this.rankingGames = rankingGames;
     }
 
-    public Boolean getWelcome() {
+    public Boolean isWelcome() {
         return welcome;
     }
 
     public void setWelcome(Boolean welcome) {
         this.welcome = welcome;
+    }
+
+    public Integer getLastBuildVersion() {
+        return lastBuildVersion;
+    }
+
+    public void setLastBuildVersion(Integer lastBuildVersion) {
+        this.lastBuildVersion = lastBuildVersion;
     }
 
     @Override
@@ -161,6 +174,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("friends", friends)
                 .add("rankingGames", rankingGames)
                 .add("welcome", welcome)
+                .add("lastBuildVersion", lastBuildVersion)
                 .addValue(super.toString())
                 .toString();
     }
@@ -212,6 +226,11 @@ public class User extends BaseEntity implements Serializable {
 
     public User welcome(Boolean welcome) {
         this.welcome = welcome;
+        return this;
+    }
+
+    public User lastBuildVersion(Integer lastBuildVersion) {
+        this.lastBuildVersion = lastBuildVersion;
         return this;
     }
 

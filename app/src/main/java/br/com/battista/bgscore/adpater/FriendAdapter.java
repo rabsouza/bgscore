@@ -1,7 +1,6 @@
 package br.com.battista.bgscore.adpater;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.collect.Sets;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.common.collect.Sets;
-
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Random;
@@ -24,6 +21,8 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
@@ -61,9 +60,6 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
     public void onBindViewHolder(FriendViewHolder holder, int position) {
         if (friends != null && !friends.isEmpty()) {
             View itemView = holder.itemView;
-            itemView.measure(WRAP_CONTENT, WRAP_CONTENT);
-            itemView.getLayoutParams().height = itemView.getMeasuredHeight()
-                    + getRandomIntInRange(OFFSET_RANGE_HEIGHT);
             setAnimationHolder(itemView, position);
 
             final FriendDto friendDto = friends.get(position);
@@ -116,10 +112,6 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
-    }
-
-    private int getRandomIntInRange(int offset) {
-        return new Random().nextInt(offset);
     }
 
     private void createDialogRemoveFriend(final String friend, final int position) {

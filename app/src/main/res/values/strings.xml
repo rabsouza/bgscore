@@ -138,6 +138,7 @@
     <string name="action_games">coleção</string>
     <string name="action_account">perfil</string>
     <string name="action_detail">detalhes</string>
+    <string name="action_share">compartilhar</string>
     <string name="action_info">info</string>
     <string name="action_edit">editar</string>
     <string name="action_finish">finalizar</string>

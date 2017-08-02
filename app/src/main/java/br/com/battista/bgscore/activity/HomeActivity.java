@@ -10,6 +10,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.MenuItem;
 
+import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.BundleConstant;
@@ -38,7 +39,7 @@ public class HomeActivity extends BaseActivity {
         processDataActivity(getIntent().getExtras());
 
         final User user = MainApplication.instance().getUser();
-        if (user.getWelcome()) {
+        if (user.isWelcome() || !user.getLastBuildVersion().equals(BuildConfig.VERSION_CODE)) {
             WelcomeDialog.newInstance(0).showAbout(getSupportFragmentManager());
         }
     }
@@ -130,6 +131,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void dialogCloseActivity() {
+        AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_HOME);
+
         new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
                 .setMessage(R.string.alert_confirmation_dialog_text_exit_app)
@@ -137,7 +140,8 @@ public class HomeActivity extends BaseActivity {
                 .setPositiveButton(R.string.btn_confirmation_dialog_exit,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                AnswersUtils.onActionMetric(Actions.ACTION_EXIT, ValueActions.VALUE_ACTION_EXIT);
+                                AnswersUtils.onActionMetric(Actions.ACTION_EXIT,
+                                        ValueActions.VALUE_ACTION_EXIT);
                                 finishAffinity();
                             }
                         })

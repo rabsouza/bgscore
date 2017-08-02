@@ -92,8 +92,11 @@ public class MatchFragment extends BaseFragment {
         imgHelpMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_MATCH);
+
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = inflater.inflate(R.layout.custom_help_match, null);
+                View customView = inflater.inflate(R.layout.dialog_help_match, null);
 
                 new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.title_help)

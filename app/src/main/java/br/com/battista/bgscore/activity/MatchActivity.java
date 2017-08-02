@@ -7,8 +7,11 @@ import android.util.Log;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.fragment.match.NewMatchFragment;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.util.AnswersUtils;
 
 public class MatchActivity extends BaseActivity {
 
@@ -52,6 +55,8 @@ public class MatchActivity extends BaseActivity {
     }
 
     private void dialogCloseActivity() {
+        AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_MATCH);
+
         new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
                 .setMessage(R.string.alert_confirmation_dialog_text_exit)

@@ -1,7 +1,10 @@
 package br.com.battista.bgscore.fragment;
 
 
-import static android.support.v7.widget.StaggeredGridLayoutManager.VERTICAL;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -22,11 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
@@ -141,9 +139,17 @@ public class ProfileFragment extends BaseFragment {
     private void loadUserInfo(View view) {
         Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
+        final Fragment currentFragment = this;
 
         avatarView = view.findViewById(R.id.card_view_profile_img);
         avatarView.setImageResource(user.getIdResAvatar());
+        avatarView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final User user = MainApplication.instance().getUser();
+                ChangeAvatarDialog.newInstance(user.getIdResAvatar()).showDialog(currentFragment);
+            }
+        });
 
         usernameView = view.findViewById(R.id.card_view_profile_username);
         usernameView.setText(getString(R.string.text_username, user.getUsername()));
@@ -167,7 +173,7 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setEmptyView(emptyMsgFriends);
         recycleViewFriends.setErrorView(errorMsgFriends);
 
-        recycleViewFriends.setLayoutManager(new StaggeredGridLayoutManager(2, VERTICAL));
+        recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
     }

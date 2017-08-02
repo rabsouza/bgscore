@@ -1,11 +1,6 @@
 package br.com.battista.bgscore;
 
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
+import com.google.common.base.Strings;
 
 import android.app.Application;
 import android.content.Context;
@@ -19,7 +14,6 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
 import com.orm.SugarContext;
 
 import java.io.IOException;
@@ -31,6 +25,13 @@ import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.service.CacheManageService;
 import io.fabric.sdk.android.Fabric;
+
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 public class MainApplication extends MultiDexApplication {
 
