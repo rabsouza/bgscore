@@ -166,6 +166,7 @@
     <string name="about_dialog_text">
     <![CDATA[
 <h3>BoardGame Score &#xa9;2017</h3><br>
+<b>Página no Facebook: <a href="https://www.facebook.com/boardgamescore">BGScore</a></b><br><br>
 Versão: {0} ({1})<br>
 Data Release: {2}<br><br>
 <b>Suporte:</b><br>
@@ -175,13 +176,13 @@ Data Release: {2}<br><br>
 Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
 <br><br>
-Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a>
+<b>Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a></b>
 	]]>
     </string>
     <string name="welcome_dialog_text">
     <![CDATA[
-* O aplicativo para gerenciar suas partidas e sua coleção de BoardGames!
-<br><br>
+* O aplicativo para gerenciar suas partidas e sua coleção de BoardGames!<br>
+<b>Página no Facebook: <a href="https://www.facebook.com/boardgamescore">BGScore</a></b><br><br>
 <b>Novidades (Top 3):</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Tela inicial com dados estatísticos e ranking dos tops 5 jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para gerenciar suas partidas e coleção de jogos.<br>
