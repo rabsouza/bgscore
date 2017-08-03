@@ -4,7 +4,6 @@ import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -23,11 +22,13 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.util.AndroidUtils;
 
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
-    public static final int OFFSET_RANGE_HEIGHT = 50;
+
     private static final String TAG = FriendAdapter.class.getSimpleName();
+
     private Context context;
     private List<FriendDto> friends;
 
@@ -70,8 +71,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             holder.getImgAvatar().setImageResource(friendDto.getIdResAvatar());
 
             Random randomColorTint = new Random();
-            holder.getImgAvatar().setColorFilter(
-                    Color.argb(255, randomColorTint.nextInt(256), randomColorTint.nextInt(256), randomColorTint.nextInt(256)));
+            holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
             final int positionRemoved = holder.getAdapterPosition();
             if (allowsDelete) {
                 holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {

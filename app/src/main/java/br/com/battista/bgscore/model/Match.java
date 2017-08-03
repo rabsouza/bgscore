@@ -3,12 +3,13 @@ package br.com.battista.bgscore.model;
 import android.support.annotation.IdRes;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
@@ -28,7 +29,7 @@ public class Match extends BaseEntity implements Serializable {
     private Long gameId;
 
     @Column(name = MatchEntry.COLUMN_NAME_PLAYERS)
-    private List<Player> players = Lists.newArrayList();
+    private Set<Player> players = Sets.newLinkedHashSet();
 
     @Column(name = MatchEntry.COLUMN_NAME_I_PLAYING)
     private Boolean iPlaying = Boolean.TRUE;
@@ -73,11 +74,11 @@ public class Match extends BaseEntity implements Serializable {
         this.gameId = gameId;
     }
 
-    public List<Player> getPlayers() {
+    public Set<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(Set<Player> players) {
         this.players = players;
     }
 
@@ -155,8 +156,14 @@ public class Match extends BaseEntity implements Serializable {
         return this;
     }
 
-    public Match players(List<Player> players) {
+    public Match players(Set<Player> players) {
         this.players = players;
+        return this;
+    }
+
+    public Match players(List<Player> players) {
+        this.players.clear();
+        this.players.addAll(players);
         return this;
     }
 

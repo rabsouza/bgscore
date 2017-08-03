@@ -10,6 +10,7 @@ import br.com.battista.bgscore.R;
 
 public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
 
+    private ImageView imgMyGame;
     private ImageView imgInfoGame;
     private TextView txtInfoName;
     private TextView txtInfoCountMatches;
@@ -19,6 +20,7 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
     public RankingGamesViewHolder(View view) {
         super(view);
 
+        imgMyGame = view.findViewById(R.id.card_view_ranking_games_info_my_game);
         imgInfoGame = view.findViewById(R.id.card_view_ranking_games_info_image);
         txtInfoName = view.findViewById(R.id.card_view_ranking_games_info_name);
         txtInfoLastPlayed = view.findViewById(R.id.card_view_ranking_games_info_last_played);
@@ -44,6 +46,10 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
 
     public RatingBar getRtbInfoRating() {
         return rtbInfoRating;
+    }
+
+    public ImageView getImgMyGame() {
+        return imgMyGame;
     }
 
 }

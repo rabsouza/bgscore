@@ -2,6 +2,7 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
@@ -10,7 +11,7 @@ import java.io.Serializable;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.PlayerEntry;
 
 @Table(name = PlayerEntry.TABLE_NAME)
-public class Player extends BaseEntity implements Serializable {
+public class Player extends BaseEntity implements Serializable, Comparable<Player> {
 
     private static final long serialVersionUID = 1L;
 
@@ -70,6 +71,17 @@ public class Player extends BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(super.hashCode(), getName());
+    }
+
+    @Override
+    public int compareTo(Player player) {
+        if (player == null) {
+            return -1;
+        }
+        if (Strings.isNullOrEmpty(getName())) {
+            return 1;
+        }
+        return this.getName().compareTo(player.getName());
     }
 
     @Override

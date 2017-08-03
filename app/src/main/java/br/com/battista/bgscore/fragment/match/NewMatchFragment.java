@@ -48,7 +48,9 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.adpater.FriendAdapter;
+import br.com.battista.bgscore.adpater.PlayerAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.BaseFragment;
 import br.com.battista.bgscore.model.Game;
@@ -62,6 +64,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
@@ -70,9 +73,15 @@ public class NewMatchFragment extends BaseFragment {
 
     private static final String TAG = NewMatchFragment.class.getSimpleName();
     private final Map<String, Game> gameMap = Maps.newTreeMap();
+
     private RecycleEmptyErrorView recycleViewPlayers;
-    private TextView emptyMsgPlayers;
-    private TextView errorMsgPlayers;
+    private ImageButton btnAddPlayer;
+    private EditText txtUsernamePlayer;
+    final List<Player> players = Lists.newLinkedList();
+
+    private RecycleEmptyErrorView recycleViewPlayersFriends;
+    private TextView emptyMsgPlayersFriends;
+    private TextView errorMsgPlayersFriends;
     private Game gameSelected;
     private FriendAdapter friendAdapter;
     private Set<FriendDto> friendsSelected = Sets.newLinkedHashSet();
@@ -149,11 +158,24 @@ public class NewMatchFragment extends BaseFragment {
             if (match.isIPlaying()) {
                 playersSaved.add(user.getMyFriendDTO());
             }
-            for (Player player : match.getPlayers()) {
+
+            players.addAll(match.getPlayers());
+            List<Player> noPlayers = Lists.newArrayList();
+            for (Player player : players) {
                 if (!player.getName().equals(user.getUsername())) {
                     playersSaved.add(new FriendDto().username(player.getName()));
+                    for (FriendDto friendDto : user.getFriends()) {
+                        if (friendDto.getUsername().equals(player.getName())) {
+                            noPlayers.add(player);
+                            break;
+                        }
+                    }
+                } else {
+                    noPlayers.add(player);
                 }
             }
+
+            players.removeAll(noPlayers);
         } else {
             match = new Match();
             match.initEntity();
@@ -202,6 +224,10 @@ public class NewMatchFragment extends BaseFragment {
             Player player = new Player();
             player.initEntity();
             player.name(friendDto.getUsername());
+            match.addPlayer(player);
+        }
+
+        for (Player player : players) {
             match.addPlayer(player);
         }
 
@@ -288,6 +314,56 @@ public class NewMatchFragment extends BaseFragment {
         txtInfoTime = view.findViewById(R.id.card_view_game_info_time);
         txtInfoAges = view.findViewById(R.id.card_view_game_info_ages);
         txtInfoYear = view.findViewById(R.id.card_view_game_info_year);
+
+        txtUsernamePlayer = view.findViewById(R.id.card_view_players_username);
+        txtUsernamePlayer.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    processDataPlayers();
+                }
+                return false;
+            }
+        });
+
+        btnAddPlayer = view.findViewById(R.id.card_view_players_button_add);
+        btnAddPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                processDataPlayers();
+            }
+        });
+    }
+
+    private void processDataPlayers() {
+        final Player player = addNewPlayer();
+        if (player != null) {
+            players.add(0, player);
+
+            txtUsernamePlayer.setText(null);
+            recycleViewPlayers.getAdapter().notifyDataSetChanged();
+
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_PLAYER);
+        }
+    }
+
+    private Player addNewPlayer() {
+        Log.i(TAG, "addNewFriend: Add new player!");
+
+        if (Strings.isNullOrEmpty(txtUsernamePlayer.getText().toString())) {
+            String msgErrorUsername = getContext().getString(R.string.msg_username_player_required);
+            AndroidUtils.changeErrorEditText(txtUsernamePlayer, msgErrorUsername, true);
+            return null;
+        }
+        AndroidUtils.changeErrorEditText(txtUsernamePlayer);
+        final String username = txtUsernamePlayer.getText().toString().trim();
+        txtUsernamePlayer.setText(null);
+
+        Log.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
+        final Player player = new Player().name(username);
+        player.initEntity();
+        return player;
     }
 
     private void processDataSearchGame(View view) {
@@ -356,39 +432,52 @@ public class NewMatchFragment extends BaseFragment {
 
     private void setupRecycleViewPlayers(View view) {
         recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
-        emptyMsgPlayers = view.findViewById(R.id.card_view_players_empty_view);
-        errorMsgPlayers = view.findViewById(R.id.card_view_players_error_view);
-        recycleViewPlayers.setEmptyView(emptyMsgPlayers);
-        recycleViewPlayers.setErrorView(errorMsgPlayers);
-
         recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
         recycleViewPlayers.setHasFixedSize(false);
+
+        recycleViewPlayersFriends = view.findViewById(R.id.card_view_players_friends_recycler_view);
+        emptyMsgPlayersFriends = view.findViewById(R.id.card_view_players_friends_empty_view);
+        errorMsgPlayersFriends = view.findViewById(R.id.card_view_players_friends_error_view);
+        recycleViewPlayersFriends.setEmptyView(emptyMsgPlayersFriends);
+        recycleViewPlayersFriends.setErrorView(errorMsgPlayersFriends);
+
+        recycleViewPlayersFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycleViewPlayersFriends.setItemAnimator(new DefaultItemAnimator());
+        recycleViewPlayersFriends.setHasFixedSize(true);
 
     }
 
     private void loadDataPlayers() {
         final MainApplication instance = MainApplication.instance();
         final User user = instance.getUser();
-        final List<FriendDto> players = Lists.newLinkedList(user.getFriends());
-        Collections.sort(players, new Ordering<FriendDto>() {
+        final List<FriendDto> friendDtos = Lists.newLinkedList(user.getFriends());
+        Collections.sort(friendDtos, new Ordering<FriendDto>() {
             @Override
             public int compare(FriendDto left, FriendDto right) {
                 return left.compareTo(right);
             }
         });
 
-        for (FriendDto player : players) {
-            player.setSelected(Boolean.FALSE);
+        for (FriendDto friendDto : friendDtos) {
+            friendDto.setSelected(Boolean.FALSE);
             for (FriendDto playerSaved : playersSaved) {
-                if (player.getUsername().equals(playerSaved.getUsername())) {
-                    player.setSelected(Boolean.TRUE);
+                if (friendDto.getUsername().equals(playerSaved.getUsername())) {
+                    friendDto.setSelected(Boolean.TRUE);
                     break;
                 }
             }
         }
-        friendAdapter = new FriendAdapter(getContext(), players, false, true);
-        recycleViewPlayers.setAdapter(friendAdapter);
+        friendAdapter = new FriendAdapter(getContext(), friendDtos, false, true);
+        recycleViewPlayersFriends.setAdapter(friendAdapter);
+
+        Collections.sort(players, new Ordering<Player>() {
+            @Override
+            public int compare(Player left, Player right) {
+                return left.compareTo(right);
+            }
+        });
+        recycleViewPlayers.setAdapter(new PlayerAdapter(getContext(), players));
     }
 
     private class MyOnDateSetListener implements DatePickerDialog.OnDateSetListener {

@@ -15,8 +15,8 @@
     <color name="colorIcon">#D9353434</color>
     <color name="colorCardTitle">#E6BA2126</color>
     <color name="colorLine">#D9353434</color>
-    <color name="colorCard">#D9b4b4b4</color>
-    <color name="colorButton">#D9b4b4b4</color>
+    <color name="colorCard">#D9CFCFCF</color>
+    <color name="colorButton">#D9CFCFCF</color>
 
     <!-- ################# BASIC ################ -->
     <color name="transparent">#0000</color>

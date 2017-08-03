@@ -49,8 +49,8 @@ public class CacheManageService extends Service {
             loadAllDataGameAddToCache(instance);
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
             loadAllDataMatchAddToCache(instance);
-            loadAllDataRankingGamesAddToCache(instance);
         }
+        loadAllDataRankingGamesAddToCache(instance);
     }
 
     private void loadAllDataMatchAddToCache(MainApplication instance) {

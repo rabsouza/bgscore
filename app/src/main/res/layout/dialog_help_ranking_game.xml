@@ -33,6 +33,16 @@
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_date"/>
 
+    <TextView
+        style="@style/HintTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_checked"
+        android:drawablePadding="@dimen/element_padding"
+        android:gravity="center_vertical"
+        android:padding="@dimen/element_padding"
+        android:text="@string/text_legend_game_my_game"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_line"

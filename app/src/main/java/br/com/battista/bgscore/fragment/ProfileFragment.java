@@ -62,12 +62,12 @@ public class ProfileFragment extends BaseFragment {
     private Button btnExportImportData;
     private Button btnEditProfile;
     private ImageButton btnAddFriend;
-    private EditText usernameFriendView;
+    private EditText txtUsernameFriend;
 
-    private TextView usernameView;
-    private TextView mailView;
-    private TextView dateCreatedView;
-    private ImageView avatarView;
+    private TextView txtUsername;
+    private TextView txtMail;
+    private TextView txtDateCreated;
+    private ImageView txtAvatar;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -158,9 +158,9 @@ public class ProfileFragment extends BaseFragment {
         User user = MainApplication.instance().getUser();
         final Fragment currentFragment = this;
 
-        avatarView = view.findViewById(R.id.card_view_profile_img);
-        avatarView.setImageResource(user.getIdResAvatar());
-        avatarView.setOnClickListener(new View.OnClickListener() {
+        txtAvatar = view.findViewById(R.id.card_view_profile_img);
+        txtAvatar.setImageResource(user.getIdResAvatar());
+        txtAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
@@ -171,17 +171,17 @@ public class ProfileFragment extends BaseFragment {
             }
         });
 
-        usernameView = view.findViewById(R.id.card_view_profile_username);
-        usernameView.setText(getString(R.string.text_username, user.getUsername()));
+        txtUsername = view.findViewById(R.id.card_view_profile_username);
+        txtUsername.setText(getString(R.string.text_username, user.getUsername()));
 
-        mailView = view.findViewById(R.id.card_view_profile_mail);
-        mailView.setText(getString(R.string.text_mail,
+        txtMail = view.findViewById(R.id.card_view_profile_mail);
+        txtMail.setText(getString(R.string.text_mail,
                 MoreObjects.firstNonNull(user.getMail(), "-")));
 
-        dateCreatedView = view.findViewById(R.id.card_view_profile_date_created);
+        txtDateCreated = view.findViewById(R.id.card_view_profile_date_created);
         Calendar dateCreatedCalendar = Calendar.getInstance();
         dateCreatedCalendar.setTime(user.getCreatedAt());
-        dateCreatedView.setText(getString(R.string.text_date_created,
+        txtDateCreated.setText(getString(R.string.text_date_created,
                 DateUtils.format(dateCreatedCalendar)));
 
     }
@@ -211,8 +211,8 @@ public class ProfileFragment extends BaseFragment {
         });
         recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends));
 
-        usernameFriendView = view.findViewById(R.id.card_view_friends_username);
-        usernameFriendView.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
+        txtUsernameFriend = view.findViewById(R.id.card_view_friends_username);
+        txtUsernameFriend.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -237,7 +237,7 @@ public class ProfileFragment extends BaseFragment {
             friends.add(0, friendDto);
             user.addFriend(friendDto);
             instance.setUser(user);
-            usernameFriendView.setText(null);
+            txtUsernameFriend.setText(null);
             recycleViewFriends.getAdapter().notifyDataSetChanged();
 
             AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
@@ -248,14 +248,14 @@ public class ProfileFragment extends BaseFragment {
     private FriendDto addNewFriend() {
         Log.i(TAG, "addNewFriend: Add new friend!");
 
-        if (Strings.isNullOrEmpty(usernameFriendView.getText().toString())) {
+        if (Strings.isNullOrEmpty(txtUsernameFriend.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_username_friend_required);
-            AndroidUtils.changeErrorEditText(usernameFriendView, msgErrorUsername, true);
+            AndroidUtils.changeErrorEditText(txtUsernameFriend, msgErrorUsername, true);
             return null;
         }
-        AndroidUtils.changeErrorEditText(usernameFriendView);
-        final String username = usernameFriendView.getText().toString().trim();
-        usernameFriendView.setText(null);
+        AndroidUtils.changeErrorEditText(txtUsernameFriend);
+        final String username = txtUsernameFriend.getText().toString().trim();
+        txtUsernameFriend.setText(null);
 
         Log.d(TAG, MessageFormat.format("Create new friend with username: {0}.", username));
         return new FriendDto().username(username);

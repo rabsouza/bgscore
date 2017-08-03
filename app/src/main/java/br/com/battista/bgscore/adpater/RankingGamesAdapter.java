@@ -66,6 +66,12 @@ public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHo
             holder.getTxtInfoName().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"));
 
+            if (game.isMyGame()) {
+                holder.getImgMyGame().setVisibility(View.VISIBLE);
+            } else {
+                holder.getImgMyGame().setVisibility(View.GONE);
+            }
+
             holder.getTxtInfoCountMatches().setText(SPACE_DRAWABLE + rankingGames.getCount());
 
             Calendar lastPlayed = Calendar.getInstance();

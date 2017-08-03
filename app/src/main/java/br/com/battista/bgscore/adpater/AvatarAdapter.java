@@ -16,8 +16,9 @@ import br.com.battista.bgscore.repository.AvatarRepository;
 
 
 public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
-    public static final int OFFSET_RANGE_HEIGHT = 50;
+
     private static final String TAG = AvatarAdapter.class.getSimpleName();
+
     private Context context;
     private List<AvatarDto> avatars;
     @DrawableRes
