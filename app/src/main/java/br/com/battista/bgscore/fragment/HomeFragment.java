@@ -33,7 +33,6 @@ import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
-import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
@@ -48,9 +47,9 @@ public class HomeFragment extends BaseFragment {
     private TextView emptyMsgRankingGames;
     private TextView errorMsgRankingGames;
 
-    private TextView usernameView;
-    private TextView lastPlayView;
-    private ImageView avatarView;
+    private TextView txtUsername;
+    private TextView txtLastPlay;
+    private ImageView txtAvatar;
 
     private ScoreboardView scoreGames;
     private ScoreboardView scoreMatches;
@@ -79,8 +78,7 @@ public class HomeFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new CacheManageService().onActionCache(
-                        ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
+                new CacheManageService().reloadAllDataCache();
                 loadUserInfo(view);
                 loadAllRankingGames();
                 refreshLayout.setRefreshing(false);
@@ -101,9 +99,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        new CacheManageService().onActionCache(
-                ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
-
+        new CacheManageService().reloadAllDataCache();
         setupRecycleRanking(view);
         setupHelpRankingGame(view);
 
@@ -168,20 +164,20 @@ public class HomeFragment extends BaseFragment {
         Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
 
-        avatarView = view.findViewById(R.id.card_view_home_img);
-        avatarView.setImageResource(user.getIdResAvatar());
+        txtAvatar = view.findViewById(R.id.card_view_home_img);
+        txtAvatar.setImageResource(user.getIdResAvatar());
 
-        usernameView = view.findViewById(R.id.card_view_home_username);
-        usernameView.setText(user.getUsername());
+        txtUsername = view.findViewById(R.id.card_view_home_username);
+        txtUsername.setText(getString(R.string.text_home_username, user.getUsername()));
 
-        lastPlayView = view.findViewById(R.id.card_view_last_play);
+        txtLastPlay = view.findViewById(R.id.card_view_last_play);
         String lastPlay = "-";
         if (user.getLastPlayed() != null && user.getNumMatches() > 0) {
             Calendar lastPlayCalendar = Calendar.getInstance();
             lastPlayCalendar.setTime(user.getLastPlayed());
             lastPlay = DateUtils.format(lastPlayCalendar);
         }
-        lastPlayView.setText(getString(R.string.text_home_last_play, lastPlay));
+        txtLastPlay.setText(getString(R.string.text_home_last_play, lastPlay));
 
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
         scoreGames = view.findViewById(R.id.card_view_score_games);

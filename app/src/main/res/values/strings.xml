@@ -6,12 +6,12 @@
 
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">&#x265c; BGScore &#x265c;</string>
+    <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
     <string name="title_games">&#x265c; Minha coleção &#x265c;</string>
     <string name="title_matches">&#x265c; Minhas partidas &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
-    <string name="title_welcome">&#x265c; Bem vindo ao BGScore &#x265c;</string>
+    <string name="title_welcome">&#x265c; BoardGame Score &#x265c;</string>
     <string name="title_add_match">&#x265c; Partida &#x265c;</string>
     <string name="title_add_game">&#x265c; Jogo &#x265c;</string>
     <string name="title_help">&#x265c; Ajuda &#x265c;</string>
@@ -23,28 +23,27 @@
     <string name="card_title_players">Jogadores/Amigos</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
-    <string name="card_title_my_ranking_game">Meu ranking de games</string>
+    <string name="card_title_my_ranking_game">Meu ranking de jogos</string>
     <string name="card_title_new_match">Minha nova partida</string>
     <string name="card_title_new_game">Meu novo jogo</string>
     <string name="card_title_search_game">Buscar um jogo</string>
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
-    <string name="hint_detail_alias_match">Nome/Apelido para a partida</string>
+    <string name="hint_detail_alias_match">Nome/Apelido da partida</string>
     <string name="hint_detail_alias_created_at">Data da partida (dd/mm/yyyy)</string>
-    <string name="hint_text_detail_alias_match">*¹ O nome/apelido será utilizado para identificar sua partida.</string>
+    <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar na lsita de partidas.</string>
 
     <!-- ################### HINT #################### -->
-    <string name="msg_username_friend_required">Nome do usuários do seu amigo(a) é obrigatório!</string>
+    <string name="msg_username_friend_required">Nome do seu amigo(a) é obrigatório!</string>
     <string name="msg_username_player_required">Nome do jogador(a) é obrigatório!</string>
     <string name="msg_username_required">Nome do usuário é obrigatório!</string>
     <string name="msg_name_game_required">Nome do jogo é obrigatório!</string>
     <string name="msg_alias_match_required">Nome/Apelido da partida é obrigatório!</string>
-    <string name="msg_game_required">Você deve selecionar pelo menos 1 jogo para essa partida!</string>
+    <string name="msg_game_required">Você deve selecionar pelo menos 1 jogo para salvar/editar essa partida!</string>
     <string name="msg_mail_required">E-mail é obrigatório!</string>
-    <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor tente novamente!</string>
-    <string name="msg_error_game_not_found">Erro ao processar a edição do Jogo! Por favor, crie um novo Jogo.</string>
-    <string name="msg_error_game_with_partner">Erro ao remover o jogo! Existe partidas cadastradas associadas ao jogo %1$s.</string>
+    <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor adicione link da página do jogo!</string>
+    <string name="msg_error_game_with_partner">Erro ao tentar excluir o jogo %1$s! Verifique se existe partidas associadas ao jogo.</string>
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>
@@ -52,12 +51,13 @@
     <string name="text_home_matches"> partidas</string>
     <string name="text_home_matches_time"> tempo</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
-    <string name="text_home_stats_info_01">*¹ Seu ranking pessoal dos últimos 5 jogos mais jogados.</string>
-    <string name="text_home_stats_empty_view">Você ainda não adicionou nenhum jogo/partida.</string>
-    <string name="text_home_stats_error_view">Error ao carregar a lista de jogos/partidas, favor tentar novamente.</string>
-    <string name="text_profile_friends_empty_view">Você ainda não adicionou nenhum amigo(a).</string>
-    <string name="text_profile_friends_error_view">Error ao carregar a lista de amigo(a)s, favor tentar novamente.</string>
+    <string name="text_home_stats_info_01">*¹ Seu ranking pessoal com os 5 jogos mais jogados da sua coleção.</string>
+    <string name="text_home_stats_empty_view">Nenhum partida localizada. Por favor, adicione uma nova partida!</string>
+    <string name="text_home_stats_error_view">Error ao tentar carregar o ranking pessoal de suas partidas, favor tentar novamente!</string>
+    <string name="text_profile_friends_empty_view">Nenhum amigo adicionado. Por favor, adicione novos amigos para jogar as partidas!</string>
+    <string name="text_profile_friends_error_view">Error ao tentar carregar a lista de amigo(a)s, favor tentar novamente!</string>
     <string name="text_default_username">Usuário Padrão</string>
+    <string name="text_home_username">Ola, %1$s</string>
     <string name="text_username">%1$s</string>
     <string name="text_mail">%1$s</string>
     <string name="text_date_created">%1$s</string>
@@ -65,68 +65,68 @@
     <string name="text_dialog_edit_profile_info_01">*¹ Preencha os campos abaixo com seus dados.</string>
     <string name="text_dialog_edit_profile_reset">Desejo resetar o meu perfil?</string>
     <string name="text_dialog_edit_profile_info_02">*² Todos os dados serão perdidos e essa ação não pode ser revertida.</string>
-    <string name="text_profile_friends_info_01">*¹ Cadastre um novo amigo para jogar na suas partidas.</string>
-    <string name="text_match_players_info_01">*¹ Selecione ou adicione novos jogadores para jogar esta partida.</string>
-    <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir dos seus jogos cadastrados ou no site boardgamegeek.com.</string>
-    <string name="text_match_friends_i_playing">Estou jogando esse partida</string>
-    <string name="text_match_search_online">Buscar no site boardgamegeek.com.</string>
-    <string name="text_game_games_info_01">*¹ Lista dos ultimos jogos cadastrados.</string>
-    <string name="text_game_games_empty_view">Você ainda não adicionou nenhum jogo.</string>
-    <string name="text_game_games_error_view">Error ao carregar a lista de jogos, favor tentar novamente.</string>
-    <string name="text_game_new_game_info_01">*¹ Adicione um novo jogo, cadastrando as informações abaixo.</string>
-    <string name="text_match_matches_info_01">*¹ Lista das ultimas partidas cadastradas.</string>
-    <string name="text_match_matches_empty_view">Você ainda não adicionou nenhum partida.</string>
-    <string name="text_match_matches_error_view">Error ao carregar a lista de partidas, favor tentar novamente.</string>
-    <string name="text_legend_info_01">*¹ Legenda com a definição/detalhes de cada um dos icones utilizados nessa sessão:</string>
+    <string name="text_profile_friends_info_01">*¹ Adicione um novo amigo(a) para jogar suas partidas.</string>
+    <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
+    <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da sua coleção ou busque no site boardgamegeek.com.</string>
+    <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
+    <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
+    <string name="text_game_games_info_01">*¹ Lista com os últimos jogos cadastrados.</string>
+    <string name="text_game_games_empty_view">Nenhum jogo adicionado, por favor adicione novos jogos.</string>
+    <string name="text_game_games_error_view">Error ao tentar carregar a lista de jogos, favor tentar novamente.</string>
+    <string name="text_game_new_game_info_01">*¹ Para cadastrar um novo jogo você deve preencher as informações abaixo.</string>
+    <string name="text_match_matches_info_01">*¹ Lista com as últimas partidas cadastradas.</string>
+    <string name="text_match_matches_empty_view">Nenhuma partida adicionada, por favor adicione uma nova partida.</string>
+    <string name="text_match_matches_error_view">Error ao tentar carregar a lista de partidas, favor tentar novamente.</string>
+    <string name="text_legend_info_01">*¹ Legenda com a definição de cada um dos icones utilizados nessa sessão do aplicativo.</string>
     <string name="text_legend_game_players">Números de jogadores suportados pelo jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Lista ordenada pela data de alteração do jogo em ordem decrescente.</string>
-    <string name="text_legend_game_year">Ano em que o jogo foi publicado.</string>
-    <string name="text_legend_game_my_game">Indicador para jogos da sua coleção.</string>
+    <string name="text_legend_game_year">Ano de publicação do jogo.</string>
+    <string name="text_legend_game_my_game">Indicador para o jogo da sua coleção.</string>
     <string name="text_legend_match_match">Nome/Apelido da partida.</string>
-    <string name="text_legend_match_date">Data em que aconteceu a partida.</string>
-    <string name="text_legend_match_players">Quantidade de jogadores que estão participando da partida.</string>
-    <string name="text_legend_match_time">Duração estimada da partida.</string>
-    <string name="text_legend_match_sort_list">Lista ordenada pela data de criação das partidas em ordem decrescente.</string>
-    <string name="text_legend_ranking_game_matches">Números de partidas jogadas do jogo.</string>
-    <string name="text_legend_ranking_game_date">Data da última partida jogada do jogo.</string>
-    <string name="text_legend_ranking_game_sort_list">Lista ordenada pelos últimos jogos mais jogados em ordem decrescente.</string>
+    <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
+    <string name="text_legend_match_players">Quantidade de jogadores que estão jogando a partida.</string>
+    <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
+    <string name="text_legend_match_sort_list">Lista ordenada pela data da partida em ordem decrescente.</string>
+    <string name="text_legend_ranking_game_matches">Números de partidas que utilizaram o jogo.</string>
+    <string name="text_legend_ranking_game_date">Data em qua aconteceu a última partida do jogo.</string>
+    <string name="text_legend_ranking_game_sort_list">Lista ordenada pelos pela quantidade de partida do jogo em ordem decrescente.</string>
     <string name="text_dialog_export_data_info_01">*¹ Selecione os dados que você deseja que seja exportado para um arquivo externo.</string>
-    <string name="text_dialog_import_data_info_01">*¹ Selecione os dados que você deseja importar apartir de um arquivo externo.</string>
-    <string name="text_dialog_export_data_user">Exportar os dados do úsuario.</string>
-    <string name="text_dialog_import_data_user">Importar para o seu úsuario os dados.</string>
-    <string name="text_dialog_export_data_db">Exportar os dados da sua coleção e partidas cadastradas.</string>
-    <string name="text_dialog_import_data_db">Importar para sua coleção e partidas os dados externos.</string>
+    <string name="text_dialog_import_data_info_01">*¹ Selecione os dados que você deseja importar a partir de um arquivo externo.</string>
+    <string name="text_dialog_export_data_user">Exportar os dados do seu úsuario?</string>
+    <string name="text_dialog_import_data_user">Importar os dados para o seu úsuario?</string>
+    <string name="text_dialog_export_data_db">Exportar os dados da sua coleção e das partidas cadastradas?</string>
+    <string name="text_dialog_import_data_db">Importar os dados para sua coleção e partidas?</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
-    <string name="field_username_friend">Nome do usuário do seu amigo(a)</string>
+    <string name="field_username_friend">Nome do seu amigo(a)</string>
     <string name="field_username_player">Nome do jogador(a)</string>
-    <string name="field_mail">E-mail do perfil</string>
+    <string name="field_mail">E-mail do seu usuário</string>
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
     <string name="field_name_new_game">Nome do jogo</string>
     <string name="field_name_new_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
-    <string name="field_url_thumbnail_new_game">Link da url imagem (Miniatura)</string>
-    <string name="field_url_image_new_game">Link da url imagem (Principal)</string>
-    <string name="field_url_info_new_game">Link da página do jogo (Ludopedia ou boardgamegeek.com)</string>
+    <string name="field_url_thumbnail_new_game">Link da imagem miniatura</string>
+    <string name="field_url_image_new_game">Link da imagem principal (Setup/Componentes)</string>
+    <string name="field_url_info_new_game">Link da página (Ludopedia ou boardgamegeek.com)</string>
     <string name="field_year_published_new_game">Ano de publicação</string>
     <string name="field_min_players_new_game">Mínimo de jogadores</string>
     <string name="field_max_players_new_game">Máximo de jogadores</string>
     <string name="field_min_play_time_new_game">Duração mínima (Mins.)</string>
     <string name="field_max_play_time_new_game">Duração máxima (Mins.)</string>
     <string name="field_age_new_game">Idade recomendada</string>
-    <string name="field_rating_new_game">Avaliação do jogo (0-10&#x2605;)</string>
+    <string name="field_rating_new_game">Sua avaliação/nota do jogo (0-10 &#x2605;)</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
     <string name="alert_confirmation_dialog_text_exit_app">Deseja sair da aplicação?</string>
     <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. Deseja sair sem salvar?</string>
     <string name="alert_confirmation_dialog_title_delete">Tem certeza?</string>
-    <string name="alert_confirmation_dialog_text_remove_player">Deseja remover o jogador(a) {0} dessa partida?</string>
-    <string name="alert_confirmation_dialog_text_remove_friend">Deseja remover o amigo(a) {0}? Essa operação não pode ser revetida.</string>
-    <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? Essa operação não pode ser revetida.</string>
-    <string name="alert_confirmation_dialog_text_remove_match">Deseja remover a partida {0}? Essa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_remove_player">Deseja remover o jogador(a) {0} dessa partida? \nEssa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_remove_friend">Deseja remover o amigo(a) {0}? \nEssa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? \nEssa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_remove_match">Deseja remover a partida {0}? \nEssa operação não pode ser revetida.</string>
 
     <!-- ################### ELEMENTS #################### -->
     <string name="btn_login">ENTRAR</string>
@@ -160,44 +160,43 @@
     <string name="action_info">info</string>
     <string name="action_edit">editar</string>
     <string name="action_finish">finalizar</string>
-    <string name="action_remove">remover</string>
+    <string name="action_remove">excluir</string>
 
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
     <![CDATA[
 <h3>BoardGame Score &#xa9;2017</h3><br>
-<b>Página no Facebook: <a href="https://www.facebook.com/boardgamescore">BGScore</a></b><br><br>
-Versão: {0} ({1})<br>
+<b>Página no Facebook:</b><br>
+<b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
+Versão publicada: {0} ({1})<br>
 Data Release: {2}<br><br>
-<b>Suporte:</b><br>
-* O aplicativo para gerenciar suas partidas e sua coleção de BoardGames!
+<b>Objetivo do aplicativo:</b><br>
+* Esse aplicativo tem como objetivo ajudar a gerenciar sua coleção e partidas de jogos de tabuleiro!
 <br><br>
 <b>Contato:</b><br>
 Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
 <br><br>
-<b>Mais informações: <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a></b>
-	]]>
+<b>Mais informações:</b><br>
+<a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a></b>]]>
     </string>
     <string name="welcome_dialog_text">
     <![CDATA[
-* O aplicativo para gerenciar suas partidas e sua coleção de BoardGames!<br>
-<b>Página no Facebook: <a href="https://www.facebook.com/boardgamescore">BGScore</a></b><br><br>
-<b>Novidades (Top 3):</b><br>
+Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a gerenciar suas partidas e coleção de jogos de tabuleiros.<br><br>
+<b>Página no Facebook:</b><br>
+<b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
+<b>Novidades:</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Tela inicial com dados estatísticos e ranking dos tops 5 jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para gerenciar suas partidas e coleção de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e adicionar seus amigos.<br>
 <br>
-<b>Aplicativo:</b><br>
-Versão: {0} ({1})<br><br>
-<i><u>Obs.: Versão em beta teste, seus dados serão perdidos no lançamento da versão final.</u></i>
-<br><br><br>
-<i>Battista Software &#xa9;2017<i>
-	]]>
+<b>Dados do Aplicativo:</b><br>
+Versão <i>{0}</i> publicada em {1}.<br><br>
+<i><u>Obs.: Versão em beta teste, seus dados serão perdidos no lançamento da versão final.</u></i>]]>
     </string>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
-    <string name="dialog_title_edit_profile">Editar perfil</string>
-    <string name="dialog_title_edit_profile_reset">Resetar perfil</string>
+    <string name="dialog_title_edit_profile">Editar informações</string>
+    <string name="dialog_title_edit_profile_reset">Resetar dados</string>
     <string name="dialog_title_export_data">Exportar dados do App</string>
     <string name="dialog_title_import_data">Importar dados para o App</string>
 

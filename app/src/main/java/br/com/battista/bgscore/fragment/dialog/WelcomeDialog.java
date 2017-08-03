@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.WELCOME_DIALOG_CONTENT;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -19,11 +17,15 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import java.text.MessageFormat;
+import java.util.Calendar;
 
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.DateUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.WELCOME_DIALOG_CONTENT;
 
 public class WelcomeDialog extends DialogFragment {
 
@@ -56,15 +58,18 @@ public class WelcomeDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         SpannableStringBuilder aboutBody = new SpannableStringBuilder();
         String versionName = BuildConfig.VERSION_NAME;
-        Integer versionNumber = BuildConfig.VERSION_CODE;
+
+        Calendar buildDate = Calendar.getInstance();
+        buildDate.setTimeInMillis(BuildConfig.BUILD_UPDATED);
 
         String info;
         if (getArguments().containsKey(WELCOME_DIALOG_CONTENT)) {
-            info = MessageFormat.format(getString(getArguments().getInt(WELCOME_DIALOG_CONTENT, R.string.welcome_dialog_text)),
-                    versionName, versionNumber);
+            info = MessageFormat.format(getString(
+                    getArguments().getInt(WELCOME_DIALOG_CONTENT, R.string.welcome_dialog_text)),
+                    versionName, DateUtils.format(buildDate));
         } else {
             info = MessageFormat.format(getString(R.string.welcome_dialog_text), versionName,
-                    versionNumber);
+                    DateUtils.format(buildDate));
         }
         aboutBody.append(Html.fromHtml(info));
 

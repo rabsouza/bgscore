@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -30,7 +32,6 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
-import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
@@ -240,7 +241,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                         adapterCurrent.notifyDataSetChanged();
 
                         Log.i(TAG, "fillDataAndSave: Reload cache data.");
-                        new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+                        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_GAME);
 
                         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_GAME);

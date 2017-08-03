@@ -1,9 +1,8 @@
 package br.com.battista.bgscore.fragment.game;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +16,9 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Switch;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,9 +30,12 @@ import br.com.battista.bgscore.fragment.BaseFragment;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
-import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.RatingUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
 
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();
@@ -147,7 +149,7 @@ public class NewGameFragment extends BaseFragment {
         Log.i(TAG, "fillDataAndSave: Save the data in BD.");
         new GameRepository().save(game);
         Log.i(TAG, "fillDataAndSave: Reload cache data.");
-        new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_GAME);
 
         finishFormAndProcessData();
     }

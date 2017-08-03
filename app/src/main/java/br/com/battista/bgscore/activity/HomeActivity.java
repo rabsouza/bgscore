@@ -94,8 +94,6 @@ public class HomeActivity extends BaseActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_home:
-                                new CacheManageService().onActionCache(
-                                        ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_home);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,

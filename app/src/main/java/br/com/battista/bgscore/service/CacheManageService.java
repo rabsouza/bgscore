@@ -39,6 +39,12 @@ public class CacheManageService extends Service {
         return null;
     }
 
+    public void reloadAllDataCache() {
+        Log.i(TAG, "reloadAllDataCache: Reload all data cache!!!");
+        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_GAME);
+        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_MATCHES);
+    }
+
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onActionCache(ActionCacheEnum action) {
         final MainApplication instance = MainApplication.instance();
@@ -48,8 +54,8 @@ public class CacheManageService extends Service {
             loadAllDataGameAddToCache(instance);
             loadAllDataRankingGamesAddToCache(instance);
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
-            loadAllDataRankingGamesAddToCache(instance);
             loadAllDataMatchAddToCache(instance);
+            loadAllDataRankingGamesAddToCache(instance);
         } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
             loadAllDataRankingGamesAddToCache(instance);
         }

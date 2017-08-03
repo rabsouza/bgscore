@@ -19,7 +19,8 @@
         tools:replace="android:allowBackup, android:label">
         <service
             android:name=".service.CacheManageService"
-            android:enabled="true"/>
+            android:enabled="true"
+            android:exported="false"/>
 
         <activity android:name=".activity.BaseActivity"/>
         <activity
