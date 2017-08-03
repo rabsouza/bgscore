@@ -70,7 +70,7 @@ import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
-public class NewMatchFragment extends BaseFragment {
+public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = NewMatchFragment.class.getSimpleName();
     private final Map<String, Game> gameMap = Maps.newTreeMap();
@@ -290,6 +290,7 @@ public class NewMatchFragment extends BaseFragment {
         txtCreateAt.addTextChangedListener(new MaskEditTextChangedListener("##/##/####", txtCreateAt));
 
         btnCreateAt = view.findViewById(R.id.card_view_match_info_btn_created_at);
+        final NewMatchFragment currentFragment = this;
         btnCreateAt.setOnClickListener(new View.OnClickListener() {
             Calendar now = Calendar.getInstance();
 
@@ -300,7 +301,7 @@ public class NewMatchFragment extends BaseFragment {
                 }
 
                 new DatePickerDialog(getContext(),
-                        new MyOnDateSetListener(),
+                        currentFragment,
                         now.get(Calendar.YEAR),
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)).show();
@@ -481,18 +482,16 @@ public class NewMatchFragment extends BaseFragment {
         recycleViewPlayers.setAdapter(new PlayerAdapter(getContext(), players));
     }
 
-    private class MyOnDateSetListener implements DatePickerDialog.OnDateSetListener {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            DecimalFormat decimalFormatScore = new DecimalFormat("#00");
-            StringBuilder newDate = new StringBuilder();
-            newDate.append(decimalFormatScore.format(day))
-                    .append("/")
-                    .append(decimalFormatScore.format(month))
-                    .append("/")
-                    .append(year);
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        StringBuilder newDate = new StringBuilder();
+        newDate.append(decimalFormatScore.format(day))
+                .append("/")
+                .append(decimalFormatScore.format(month))
+                .append("/")
+                .append(year);
 
-            txtCreateAt.setText(newDate.toString());
-        }
+        txtCreateAt.setText(newDate.toString());
     }
 }

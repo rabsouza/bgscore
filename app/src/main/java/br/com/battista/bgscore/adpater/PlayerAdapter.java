@@ -1,10 +1,11 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.collect.Sets;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,13 @@ import android.view.ViewGroup;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Set;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.util.AndroidUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
@@ -25,10 +29,22 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
     private Context context;
     private List<Player> players;
 
-    public PlayerAdapter(Context context, List<Player> players) {
+    private Set<Player> playersWinners = Sets.newLinkedHashSet();
+    private Boolean allowsDelete;
+    private Boolean allowsSelect;
+
+    public PlayerAdapter(Context context, List<Player> players,
+                         Boolean allowsDelete, Boolean allowsSelect) {
         super(context);
         this.context = context;
         this.players = players;
+        this.allowsDelete = allowsDelete;
+        this.allowsSelect = allowsSelect;
+        playersWinners.clear();
+    }
+
+    public PlayerAdapter(Context context, List<Player> players) {
+        this(context, players, Boolean.TRUE, Boolean.FALSE);
     }
 
     @Override
@@ -49,16 +65,45 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                     "onBindViewHolder: Fill to row position: %S with %s.", position, player));
 
             holder.getTxtTitle().setText(SPACE_DRAWABLE + player.getName());
-
             holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
 
-            final int positionRemoved = holder.getAdapterPosition();
-            holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    createDialogRemovePlayer(player.getName(), positionRemoved);
+            if (allowsDelete) {
+                final int positionRemoved = holder.getAdapterPosition();
+                holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        createDialogRemovePlayer(player.getName(), positionRemoved);
+                    }
+                });
+            } else {
+                holder.getBtnRemove().setVisibility(View.GONE);
+            }
+
+            final CardView cardView = itemView.findViewById(R.id.card_view_player);
+            if (allowsSelect) {
+                if (player.isWinner()) {
+                    cardView.setSelected(Boolean.TRUE);
+                    playersWinners.add(player);
                 }
-            });
+                cardView.setOnClickListener(new View.OnClickListener() {
+                    boolean cardSelected = player.isWinner();
+
+                    @Override
+                    public void onClick(View view) {
+                        cardSelected = !cardSelected;
+                        cardView.setSelected(cardSelected);
+                        player.winner(cardSelected);
+                        if (cardSelected) {
+                            playersWinners.add(player);
+                        } else {
+                            playersWinners.remove(player);
+                        }
+                    }
+                });
+            } else {
+                cardView.setSelected(false);
+            }
+
         } else {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }

@@ -51,7 +51,7 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
         this.punctuation = punctuation;
     }
 
-    public Boolean getWinner() {
+    public Boolean isWinner() {
         return winner;
     }
 

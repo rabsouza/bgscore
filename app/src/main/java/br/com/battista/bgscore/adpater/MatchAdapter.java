@@ -37,6 +37,9 @@ import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
 
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
@@ -131,7 +134,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                             processEditMatch(itemView, match);
                             break;
                         case R.id.menu_action_finish:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            processFinishMatch(itemView, match);
                             break;
                         case R.id.menu_action_remove:
                             createDialogRemoveMatch(match, positionRemoved, adapterCurrent, itemView);
@@ -172,6 +175,19 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
         itemView.getContext().startActivity(intent);
     }
 
+    private void processFinishMatch(View itemView, Match match) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_FINISH_MATCH);
+
+        Bundle args = new Bundle();
+        Intent intent = new Intent(itemView.getContext(), MatchActivity.class);
+        args.putSerializable(BundleConstant.DATA, match);
+        args.putInt(NAVIGATION_TO, FINISH_MATCH_FRAGMENT);
+        intent.putExtras(args);
+
+        itemView.getContext().startActivity(intent);
+    }
+
     private void processEditMatch(View itemView, Match match) {
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_MATCH);
@@ -179,6 +195,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
         Bundle args = new Bundle();
         Intent intent = new Intent(itemView.getContext(), MatchActivity.class);
         args.putSerializable(BundleConstant.DATA, match);
+        args.putInt(NAVIGATION_TO, NEW_MATCH_FRAGMENT);
         intent.putExtras(args);
 
         itemView.getContext().startActivity(intent);

@@ -6,12 +6,16 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.BundleConstant.NavigationTo;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.fragment.match.FinishMatchFragment;
 import br.com.battista.bgscore.fragment.match.NewMatchFragment;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.util.AnswersUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 
 public class MatchActivity extends BaseActivity {
 
@@ -31,16 +35,31 @@ public class MatchActivity extends BaseActivity {
 
     private void processDataActivity(Bundle bundle) {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
-            match = (Match) bundle.getSerializable(BundleConstant.DATA);
+        if (bundle.containsKey(DATA)) {
+            match = (Match) bundle.getSerializable(DATA);
             match.reloadId();
 
-            Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
-            replaceDetailFragment(NewMatchFragment.newInstance(match), R.id.detail_container);
+            if (bundle.containsKey(NAVIGATION_TO)) {
+                int navigationTo = bundle.getInt(NAVIGATION_TO, NavigationTo.NEW_MATCH_FRAGMENT);
+                switch (navigationTo) {
+                    case NavigationTo.NEW_MATCH_FRAGMENT:
+                        Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
+                        replaceDetailFragment(NewMatchFragment.newInstance(match),
+                                R.id.detail_container);
+                        break;
+                    case NavigationTo.FINISH_MATCH_FRAGMENT:
+                        Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
+                        replaceDetailFragment(FinishMatchFragment.newInstance(match),
+                                R.id.detail_container);
+                        break;
+                }
+                return;
+            }
         } else {
-            Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
-            replaceDetailFragment(NewMatchFragment.newInstance(null), R.id.detail_container);
+            match = null;
         }
+        Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
+        replaceDetailFragment(NewMatchFragment.newInstance(match), R.id.detail_container);
     }
 
     @Override
