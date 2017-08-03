@@ -24,7 +24,6 @@ import br.com.battista.bgscore.repository.MatchRepository;
 
 public class CacheManageService extends Service {
 
-    public static final Boolean CACHED = Boolean.FALSE;
     private static final String TAG = CacheManageService.class.getSimpleName();
 
     @Override
@@ -47,10 +46,13 @@ public class CacheManageService extends Service {
         Log.i(TAG, MessageFormat.format("onActionCache: Process to action: {0}.", action));
         if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
             loadAllDataGameAddToCache(instance);
+            loadAllDataRankingGamesAddToCache(instance);
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
+            loadAllDataRankingGamesAddToCache(instance);
             loadAllDataMatchAddToCache(instance);
+        } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
+            loadAllDataRankingGamesAddToCache(instance);
         }
-        loadAllDataRankingGamesAddToCache(instance);
     }
 
     private void loadAllDataMatchAddToCache(MainApplication instance) {
@@ -60,7 +62,10 @@ public class CacheManageService extends Service {
         final List<Match> matches = matchRepository.findAll();
         user.setNumMatches(matches.size());
         if (matches.size() == 0) {
-            user.setLastPlay(null);
+            user.lastPlayed(null);
+        } else {
+            Match lastMatch = matches.get(0);
+            user.lastPlayed(lastMatch.getCreatedAt());
         }
 
         long totalTime = 0;
@@ -85,7 +90,7 @@ public class CacheManageService extends Service {
                 Match lastMatch = matches.get(0);
                 final RankingGamesDto rankingGames = new RankingGamesDto()
                         .count(matches.size())
-                        .lastPlayed(lastMatch.getUpdatedAt())
+                        .lastPlayed(lastMatch.getCreatedAt())
                         .game(game);
                 user.addRankingGames(rankingGames);
             }

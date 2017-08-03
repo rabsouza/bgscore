@@ -1,10 +1,11 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
+
+import android.support.annotation.DrawableRes;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
@@ -34,7 +35,7 @@ public class User extends BaseEntity implements Serializable {
     private int idResAvatar = R.drawable.avatar_profile;
 
     @Column(name = UserEntry.COLUMN_NAME_LAST_PLAY)
-    private Date lastPlay = null;
+    private Date lastPlayed = null;
 
     @Column(name = UserEntry.COLUMN_NAME_NUM_GAMES)
     private Integer numGames = 0;
@@ -82,12 +83,12 @@ public class User extends BaseEntity implements Serializable {
         this.idResAvatar = idResAvatar;
     }
 
-    public Date getLastPlay() {
-        return lastPlay;
+    public Date getLastPlayed() {
+        return lastPlayed;
     }
 
-    public void setLastPlay(Date lastPlay) {
-        this.lastPlay = lastPlay;
+    public void setLastPlayed(Date lastPlayed) {
+        this.lastPlayed = lastPlayed;
     }
 
     public Integer getNumGames() {
@@ -166,7 +167,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("username", username)
                 .add("mail", mail)
                 .add("idResAvatar", idResAvatar)
-                .add("lastPlay", lastPlay)
+                .add("lastPlayed", lastPlayed)
                 .add("numGames", numGames)
                 .add("numMatches", numMatches)
                 .add("totalTime", totalTime)
@@ -193,8 +194,8 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
-    public User lastPlay(Date lastPlay) {
-        this.lastPlay = lastPlay;
+    public User lastPlayed(Date lastPlayed) {
+        this.lastPlayed = lastPlayed;
         return this;
     }
 

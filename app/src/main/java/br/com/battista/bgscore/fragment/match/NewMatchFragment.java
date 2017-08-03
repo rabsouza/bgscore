@@ -234,7 +234,7 @@ public class NewMatchFragment extends BaseFragment {
         Log.i(TAG, "fillDataAndSave: Save the data in BD.");
         new MatchRepository().save(match);
 
-        user.lastPlay(match.getCreatedAt());
+        user.lastPlayed(match.getCreatedAt());
         instance.setUser(user);
 
         Log.i(TAG, "fillDataAndSave: Reload cache data.");

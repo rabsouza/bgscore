@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,9 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -38,6 +36,8 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
 import br.com.battista.bgscore.util.RatingUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
@@ -140,6 +140,9 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
+                        case R.id.menu_action_copy:
+                            processCopyGame(itemView, game);
+                            break;
                         case R.id.menu_action_detail:
                             openDetailInBrowser(itemView, game);
                             break;
@@ -172,6 +175,32 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
         } else {
             AndroidUtils.snackbar(itemView, itemView.getContext().getText(R.string.msg_game_dont_found).toString());
         }
+    }
+
+    private void processCopyGame(View itemView, Game game) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_COPY_GAME);
+
+        Game newGame = new Game();
+        newGame.initEntity();
+        newGame.name(game.getName());
+        newGame.myGame(game.isMyGame());
+        newGame.urlThumbnail(game.getUrlThumbnail());
+        newGame.urlImage(game.getUrlImage());
+        newGame.urlInfo(game.getUrlInfo());
+        newGame.yearPublished(game.getYearPublished());
+        newGame.minPlayers(game.getMinPlayers());
+        newGame.maxPlayers(game.getMaxPlayers());
+        newGame.minPlayTime(game.getMinPlayTime());
+        newGame.maxPlayTime(game.getMaxPlayTime());
+        newGame.age(game.getAge());
+
+        Bundle args = new Bundle();
+        Intent intent = new Intent(itemView.getContext(), GameActivity.class);
+        args.putSerializable(BundleConstant.DATA, newGame);
+        intent.putExtras(args);
+
+        itemView.getContext().startActivity(intent);
     }
 
     private void processEditGame(View itemView, Game game) {

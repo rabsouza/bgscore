@@ -23,6 +23,8 @@ import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {
@@ -92,31 +94,38 @@ public class HomeActivity extends BaseActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_home:
+                                new CacheManageService().onActionCache(
+                                        ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_home);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_HOME);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                        ValueActions.VALUE_CLICK_MENU_HOME);
                                 replaceFragment(HomeFragment.newInstance());
                                 break;
                             case R.id.action_matches:
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_matches);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_MATCHES);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                        ValueActions.VALUE_CLICK_MENU_MATCHES);
                                 replaceFragment(MatchFragment.newInstance());
                                 break;
                             case R.id.action_games:
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_games);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_GAMES);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                        ValueActions.VALUE_CLICK_MENU_GAMES);
                                 replaceFragment(GameFragment.newInstance());
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);
                                 setUpToolbar(R.string.title_profile);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_PROFILE);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                        ValueActions.VALUE_CLICK_MENU_PROFILE);
                                 replaceFragment(ProfileFragment.newInstance());
                                 break;
                             case R.id.action_info:
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU, ValueActions.VALUE_CLICK_MENU_INFO);
+                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                        ValueActions.VALUE_CLICK_MENU_INFO);
                                 AboutDialog.showAbout(getSupportFragmentManager());
                                 break;
                         }

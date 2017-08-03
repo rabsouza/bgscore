@@ -1,5 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,9 +19,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -33,6 +33,8 @@ import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
@@ -77,6 +79,8 @@ public class HomeFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                new CacheManageService().onActionCache(
+                        ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
                 loadUserInfo(view);
                 loadAllRankingGames();
                 refreshLayout.setRefreshing(false);
@@ -96,6 +100,9 @@ public class HomeFragment extends BaseFragment {
                 getContext().startActivity(intent);
             }
         });
+
+        new CacheManageService().onActionCache(
+                ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
 
         setupRecycleRanking(view);
         setupHelpRankingGame(view);
@@ -169,9 +176,9 @@ public class HomeFragment extends BaseFragment {
 
         lastPlayView = view.findViewById(R.id.card_view_last_play);
         String lastPlay = "-";
-        if (user.getLastPlay() != null && user.getNumMatches() > 0) {
+        if (user.getLastPlayed() != null && user.getNumMatches() > 0) {
             Calendar lastPlayCalendar = Calendar.getInstance();
-            lastPlayCalendar.setTime(user.getLastPlay());
+            lastPlayCalendar.setTime(user.getLastPlayed());
             lastPlay = DateUtils.format(lastPlayCalendar);
         }
         lastPlayView.setText(getString(R.string.text_home_last_play, lastPlay));

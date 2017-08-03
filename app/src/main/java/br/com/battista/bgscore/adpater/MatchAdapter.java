@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.google.common.base.Strings;
-
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -28,6 +26,7 @@ import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.service.CacheManageService;
@@ -36,6 +35,8 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
@@ -116,6 +117,9 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
+                        case R.id.menu_action_copy:
+                            processCopyMatch(itemView, match);
+                            break;
                         case R.id.menu_action_detail:
                             AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
                             break;
@@ -141,6 +145,30 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
             Log.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
+    }
+
+    private void processCopyMatch(View itemView, Match match) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_COPY_MATCH);
+
+        Match matchCopy = new Match();
+        matchCopy.initEntity();
+        matchCopy.alias(match.getAlias());
+        matchCopy.createdAt(match.getCreatedAt());
+        matchCopy.game(match.getGame());
+
+        for (Player player : match.getPlayers()) {
+            Player newPlayer = new Player().name(player.getName());
+            newPlayer.initEntity();
+            matchCopy.addPlayer(newPlayer);
+        }
+
+        Bundle args = new Bundle();
+        Intent intent = new Intent(itemView.getContext(), MatchActivity.class);
+        args.putSerializable(BundleConstant.DATA, matchCopy);
+        intent.putExtras(args);
+
+        itemView.getContext().startActivity(intent);
     }
 
     private void processEditMatch(View itemView, Match match) {

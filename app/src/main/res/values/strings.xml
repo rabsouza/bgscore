@@ -154,6 +154,7 @@
     <string name="action_matches">partidas</string>
     <string name="action_games">coleção</string>
     <string name="action_account">perfil</string>
+    <string name="action_copy">duplicar</string>
     <string name="action_detail">detalhes</string>
     <string name="action_share">compartilhar</string>
     <string name="action_info">info</string>
