@@ -104,6 +104,7 @@ dependencies {
     compile "com.android.support:multidex:$rootProject.ext.multidexVersion"
 
     compile "org.greenrobot:eventbus:$rootProject.ext.eventBusVersion"
+    compile "br.com.jansenfelipe:androidmask:$rootProject.ext.androidmaskVersion"
 
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"

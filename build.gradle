@@ -62,4 +62,5 @@ ext {
     multidexVersion = '1.0.1'
     rxjavaVersion = "1.1.8"
     eventBusVersion = "3.0.0"
+    androidmaskVersion = "1.0.1"
 }

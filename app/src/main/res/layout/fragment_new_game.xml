@@ -81,8 +81,8 @@
                         style="@style/CardTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/element_vertical_margin"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
                         android:checked="true"
                         android:text="@string/field_name_new_my_game"/>
 

@@ -23,7 +23,7 @@
             android:layout_height="@dimen/dimen_game_img_height"
             android:layout_centerVertical="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/boardgame_game"/>
+            app:srcCompat="@drawable/boardgame_game"/>
 
         <TextView
             android:id="@+id/card_view_ranking_games_info_name"

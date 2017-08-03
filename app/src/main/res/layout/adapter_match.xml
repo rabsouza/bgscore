@@ -35,7 +35,7 @@
             android:layout_height="@dimen/dimen_feedback_img_height"
             android:layout_alignParentRight="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_feedback_neutral"/>
+            app:srcCompat="@drawable/ic_feedback_neutral"/>
 
         <View
             android:id="@+id/card_view_match_info_line"
@@ -54,7 +54,7 @@
             android:layout_marginBottom="@dimen/element_vertical_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:scaleType="fitCenter"
-            android:src="@drawable/boardgame_game"/>
+            app:srcCompat="@drawable/boardgame_game"/>
 
         <TextView
             android:id="@+id/card_view_match_info_name_game"

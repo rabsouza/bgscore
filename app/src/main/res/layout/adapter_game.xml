@@ -30,10 +30,10 @@
             android:id="@+id/card_view_games_info_my_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/element_vertical_margin"
             android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/element_vertical_margin"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_checked"/>
+            app:srcCompat="@drawable/ic_checked"/>
 
         <ImageView
             android:id="@+id/card_view_games_info_image"
@@ -42,7 +42,7 @@
             android:layout_below="@id/card_view_games_info_name"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:scaleType="fitCenter"
-            android:src="@drawable/boardgame_game"/>
+            app:srcCompat="@drawable/boardgame_game"/>
 
         <TextView
             android:id="@+id/card_view_games_info_players"

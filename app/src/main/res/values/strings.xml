@@ -31,6 +31,7 @@
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
     <string name="hint_detail_alias_match">Nome/Apelido para a partida</string>
+    <string name="hint_detail_alias_created_at">Data da partida (dd/mm/yyyy)</string>
     <string name="hint_text_detail_alias_match">*¹ O nome/apelido será utilizado para identificar sua partida.</string>
 
     <!-- ################### HINT #################### -->
@@ -81,6 +82,7 @@
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Lista ordenada pela data de alteração do jogo em ordem decrescente.</string>
     <string name="text_legend_game_year">Ano em que o jogo foi publicado.</string>
+    <string name="text_legend_game_my_game">Indicado para jogos da sua coleção.</string>
     <string name="text_legend_match_match">Nome/Apelido da partida.</string>
     <string name="text_legend_match_date">Data em que aconteceu a partida.</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão participando da partida.</string>

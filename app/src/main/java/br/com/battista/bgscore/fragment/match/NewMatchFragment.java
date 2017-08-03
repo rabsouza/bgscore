@@ -6,6 +6,7 @@ import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,8 +35,11 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 import com.google.common.collect.Sets;
 
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -57,7 +62,9 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class NewMatchFragment extends BaseFragment {
 
@@ -76,6 +83,8 @@ public class NewMatchFragment extends BaseFragment {
     private CardView cardViewGame;
 
     private EditText txtMatchAlias;
+    private EditText txtCreateAt;
+    private ImageButton btnCreateAt;
     private Switch swtIPlaying;
 
     private ImageView imgInfoGame;
@@ -130,6 +139,7 @@ public class NewMatchFragment extends BaseFragment {
             match.reloadId();
 
             txtMatchAlias.setText(match.getAlias());
+            txtCreateAt.setText(DateUtils.format(match.getCreatedAt()));
             gameSelected = match.getGame();
             txtSearchNameGame.setText(gameSelected.getName());
             fillCardGame();
@@ -159,6 +169,12 @@ public class NewMatchFragment extends BaseFragment {
         }
         AndroidUtils.changeErrorEditText(txtMatchAlias);
         match.setAlias(txtMatchAlias.getText().toString().trim());
+
+        if (Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
+            match.setCreatedAt(new Date());
+        } else {
+            match.setCreatedAt(DateUtils.parse(txtCreateAt.getText().toString().trim()));
+        }
 
         if (gameSelected == null) {
             String msgErrorUsername = getContext().getString(R.string.msg_game_required);
@@ -243,6 +259,27 @@ public class NewMatchFragment extends BaseFragment {
         });
 
         txtMatchAlias = view.findViewById(R.id.card_view_match_info_alias);
+        txtCreateAt = view.findViewById(R.id.card_view_match_info_created_at);
+        txtCreateAt.addTextChangedListener(new MaskEditTextChangedListener("##/##/####", txtCreateAt));
+
+        btnCreateAt = view.findViewById(R.id.card_view_match_info_btn_created_at);
+        btnCreateAt.setOnClickListener(new View.OnClickListener() {
+            Calendar now = Calendar.getInstance();
+
+            @Override
+            public void onClick(View view) {
+                if (!Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
+                    now.setTime(DateUtils.parse(txtCreateAt.getText().toString().trim()));
+                }
+
+                new DatePickerDialog(getContext(),
+                        new MyOnDateSetListener(),
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         swtIPlaying = view.findViewById(R.id.card_view_players_i_playing_switch);
 
         imgInfoGame = view.findViewById(R.id.card_view_game_info_image);
@@ -354,4 +391,18 @@ public class NewMatchFragment extends BaseFragment {
         recycleViewPlayers.setAdapter(friendAdapter);
     }
 
+    private class MyOnDateSetListener implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+            StringBuilder newDate = new StringBuilder();
+            newDate.append(decimalFormatScore.format(day))
+                    .append("/")
+                    .append(decimalFormatScore.format(month))
+                    .append("/")
+                    .append(year);
+
+            txtCreateAt.setText(newDate.toString());
+        }
+    }
 }
