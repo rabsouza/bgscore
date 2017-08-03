@@ -117,6 +117,12 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 holder.getRtbInfoRating().setRating(RatingUtils.convertFrom(game.getRating()));
             }
 
+            if (game.isMyGame()) {
+                holder.getImgMyGame().setVisibility(View.VISIBLE);
+            } else {
+                holder.getImgMyGame().setVisibility(View.GONE);
+            }
+
             ImageView imageMoreActions = holder.getImgMoreActions();
             final PopupMenu popup = new PopupMenu(itemView.getContext(), imageMoreActions);
             PopupMenuUtils.showPopupWindow(popup);

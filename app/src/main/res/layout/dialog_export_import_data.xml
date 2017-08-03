@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:id="@+id/dialog_view_edit_profile"
+             android:id="@+id/dialog_view_export_import_data"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_margin="@dimen/no_dimen"
@@ -16,11 +16,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dialog_view_edit_profile_title"
+            android:id="@+id/dialog_view_export_data_title"
             style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_title_edit_profile"/>
+            android:text="@string/dialog_title_export_data"/>
 
         <View
             android:layout_width="match_parent"
@@ -29,56 +29,58 @@
             android:background="@color/colorLine"/>
 
         <TextView
-            android:id="@+id/dialog_view_edit_profile_info_01"
+            android:id="@+id/dialog_view_export_data_info_01"
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="@string/text_dialog_edit_profile_info_01"/>
+            android:text="@string/text_dialog_export_data_info_01"/>
 
-        <android.support.design.widget.TextInputLayout
+        <Switch
+            android:id="@+id/dialog_view_export_data_user"
+            style="@style/CardTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/element_vertical_margin">
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:checked="true"
+            android:text="@string/text_dialog_export_data_user"/>
 
-            <EditText
-                android:id="@+id/dialog_view_edit_profile_username"
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/field_username"
-                android:imeOptions="actionNext"
-                android:inputType="textAutoComplete"
-                android:maxLength="30"
-                android:maxLines="1"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <Switch
+            android:id="@+id/dialog_view_export_data_db"
+            style="@style/CardTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/element_horizontal_margin">
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:checked="true"
+            android:text="@string/text_dialog_export_data_db"/>
 
-            <EditText
-                android:id="@+id/dialog_view_edit_profile_mail"
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/dialog_view_export_import_data_btn_export"
+                style="@style/ButtonStyleWithBorder"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/field_mail"
-                android:imeOptions="actionDone"
-                android:inputType="textEmailAddress"
-                android:maxLength="50"
-                android:maxLines="1"/>
+                android:layout_weight="1"
+                android:text="@string/btn_export"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/dialog_view_edit_profile_reset_title"
+            android:id="@+id/dialog_view_import_data_title"
             style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/dialog_title_edit_profile_reset"/>
+            android:text="@string/dialog_title_import_data"/>
 
         <View
             android:layout_width="match_parent"
@@ -87,21 +89,30 @@
             android:background="@color/colorLine"/>
 
         <TextView
-            android:id="@+id/dialog_view_edit_profile_info_02"
+            android:id="@+id/dialog_view_import_data_info_01"
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="@string/text_dialog_edit_profile_info_02"/>
+            android:text="@string/text_dialog_import_data_info_01"/>
 
         <Switch
-            android:id="@+id/dialog_view_edit_profile_reset"
+            android:id="@+id/dialog_view_import_data_user"
+            style="@style/CardTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:checked="true"
+            android:text="@string/text_dialog_import_data_user"/>
+
+        <Switch
+            android:id="@+id/dialog_view_import_data_db"
             style="@style/CardTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:checked="false"
-            android:text="@string/text_dialog_edit_profile_reset"/>
+            android:checked="true"
+            android:text="@string/text_dialog_import_data_db"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,20 +121,20 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/dialog_view_edit_profile_btn_cancel"
-                style="@style/ButtonStyleWithBorder"
+                android:id="@+id/dialog_view_export_import_data_btn_cancel"
+                style="@style/ButtonStyleActive"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/btn_cancel"/>
 
             <Button
-                android:id="@+id/dialog_view_edit_profile_btn_save"
-                style="@style/ButtonStyleActive"
+                android:id="@+id/dialog_view_export_import_data_btn_import"
+                style="@style/ButtonStyleWithBorder"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_save"/>
+                android:text="@string/btn_import"/>
 
         </LinearLayout>
 

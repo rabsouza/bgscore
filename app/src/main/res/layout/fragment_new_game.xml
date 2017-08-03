@@ -76,6 +76,16 @@
 
                     </android.support.design.widget.TextInputLayout>
 
+                    <Switch
+                        android:id="@+id/card_view_new_game_my_game"
+                        style="@style/CardTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:checked="true"
+                        android:text="@string/field_name_new_my_game"/>
+
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -163,7 +173,6 @@
                         </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
-
 
                     <LinearLayout
                         android:layout_width="match_parent"

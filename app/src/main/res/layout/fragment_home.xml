@@ -180,10 +180,10 @@
 
                             <ImageView
                                 android:id="@+id/card_view_stats_help"
-                                android:clickable="true"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:clickable="true"
                                 android:src="@drawable/ic_help"/>
 
                         </LinearLayout>

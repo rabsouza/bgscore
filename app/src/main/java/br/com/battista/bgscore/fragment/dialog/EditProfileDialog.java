@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.google.common.base.Strings;
 
@@ -24,7 +27,6 @@ import br.com.battista.bgscore.util.AndroidUtils;
 
 public class EditProfileDialog extends DialogFragment {
 
-    public static final int DIALOG_EDIT_PROFILE_FRAGMENT = 2;
     private static final String TAG = EditProfileDialog.class.getSimpleName();
     private static final String DIALOG_EDIT_PROFILE = "dialog_edit_profile";
 
@@ -33,6 +35,7 @@ public class EditProfileDialog extends DialogFragment {
 
     private EditText txtUsername;
     private EditText txtMail;
+    private Switch swtReset;
 
     public EditProfileDialog() {
     }
@@ -45,7 +48,7 @@ public class EditProfileDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog edit avatar_profile!");
+        Log.i(TAG, "showAbout: Show dialog edit profile!");
 
         setTargetFragment(fragment, DIALOG_EDIT_PROFILE_FRAGMENT);
 
@@ -72,6 +75,8 @@ public class EditProfileDialog extends DialogFragment {
         Log.i(TAG, "loadViews: load all views!");
         final MainApplication instance = MainApplication.instance();
 
+        swtReset = viewFragment.findViewById(R.id.dialog_view_edit_profile_reset);
+
         btnCancelChange = viewFragment.findViewById(R.id.dialog_view_edit_profile_btn_cancel);
         btnCancelChange.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,19 +91,24 @@ public class EditProfileDialog extends DialogFragment {
         btnSaveChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = instance.getUser();
+                User user;
+                if (swtReset.isChecked()) {
+                    user = new User().username(getString(R.string.text_default_username));
+                    user.initEntity();
+                } else {
+                    user = instance.getUser();
+                    if (Strings.isNullOrEmpty(txtUsername.getText().toString())) {
+                        String msgErrorUsername = getContext().getString(R.string.msg_username_required);
+                        AndroidUtils.changeErrorEditText(txtUsername, msgErrorUsername, true);
+                        return;
+                    }
+                    AndroidUtils.changeErrorEditText(txtUsername);
+                    String username = txtUsername.getText().toString().trim();
+                    user.setUsername(username);
 
-                if (Strings.isNullOrEmpty(txtUsername.getText().toString())) {
-                    String msgErrorUsername = getContext().getString(R.string.msg_username_required);
-                    AndroidUtils.changeErrorEditText(txtUsername, msgErrorUsername, true);
-                    return;
+                    String mail = txtMail.getText().toString();
+                    user.setMail(mail);
                 }
-                AndroidUtils.changeErrorEditText(txtUsername);
-                String username = txtUsername.getText().toString().trim();
-                user.setUsername(username);
-
-                String mail = txtMail.getText().toString();
-                user.setMail(mail);
                 instance.setUser(user);
 
                 getTargetFragment().onActivityResult(getTargetRequestCode(),

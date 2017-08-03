@@ -1,12 +1,10 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
-import com.google.common.collect.Sets;
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +25,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
 
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -53,11 +58,6 @@ import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 public class NewMatchFragment extends BaseFragment {
 

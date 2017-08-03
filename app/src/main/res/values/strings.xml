@@ -61,6 +61,8 @@
     <string name="text_date_created">%1$s</string>
     <string name="text_dialog_change_avatar_info_01">*¹ Selecione na lista abaixo o avatar que deseja usar.</string>
     <string name="text_dialog_edit_profile_info_01">*¹ Preencha os campos abaixo com seus dados.</string>
+    <string name="text_dialog_edit_profile_reset">Desejo resetar o meu perfil?</string>
+    <string name="text_dialog_edit_profile_info_02">*² Todos os dados serão perdidos e essa ação não pode ser revertida.</string>
     <string name="text_profile_friends_info_01">*¹ Cadastre um novo amigo para jogar na suas partidas.</string>
     <string name="text_match_players_info_01">*¹ Selecione os jogadores para jogar esta partida.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir dos seus jogos cadastrados ou no site boardgamegeek.com.</string>
@@ -87,6 +89,12 @@
     <string name="text_legend_ranking_game_matches">Números de partidas jogadas do jogo.</string>
     <string name="text_legend_ranking_game_date">Data da última partida jogada do jogo.</string>
     <string name="text_legend_ranking_game_sort_list">Lista ordenada pelos últimos jogos mais jogados em ordem decrescente.</string>
+    <string name="text_dialog_export_data_info_01">*¹ Selecione os dados que você deseja que seja exportado para um arquivo externo.</string>
+    <string name="text_dialog_import_data_info_01">*¹ Selecione os dados que você deseja importar apartir de um arquivo externo.</string>
+    <string name="text_dialog_export_data_user">Exportar os dados do úsuario.</string>
+    <string name="text_dialog_import_data_user">Importar para o seu úsuario os dados.</string>
+    <string name="text_dialog_export_data_db">Exportar os dados da sua coleção e partidas cadastradas.</string>
+    <string name="text_dialog_import_data_db">Importar para sua coleção e partidas os dados externos.</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
@@ -94,6 +102,7 @@
     <string name="field_mail">E-mail do perfil</string>
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
     <string name="field_name_new_game">Nome do jogo</string>
+    <string name="field_name_new_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
     <string name="field_url_thumbnail_new_game">Link da url imagem (Miniatura)</string>
     <string name="field_url_image_new_game">Link da url imagem (Principal)</string>
     <string name="field_url_info_new_game">Link da página do jogo (Ludopedia ou boardgamegeek.com)</string>
@@ -131,6 +140,9 @@
     <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
     <string name="btn_change_avatar">TROCAR AVATAR</string>
     <string name="btn_edit">EDITAR</string>
+    <string name="btn_export">EXPORTAR</string>
+    <string name="btn_import">IMPORTAR</string>
+    <string name="btn_export_import">EXPORTAR / IMPORTAR</string>
 
     <!-- ################### ACTION BAR #################### -->
     <string name="action_home">inicio</string>
@@ -178,6 +190,9 @@ Versão: {0} ({1})<br><br>
     </string>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
     <string name="dialog_title_edit_profile">Editar perfil</string>
+    <string name="dialog_title_edit_profile_reset">Resetar perfil</string>
+    <string name="dialog_title_export_data">Exportar dados do App</string>
+    <string name="dialog_title_import_data">Importar dados para o App</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>

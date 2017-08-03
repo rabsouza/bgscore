@@ -18,6 +18,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
     private TextView txtInfoYear;
     private RatingBar rtbInfoRating;
     private ImageView imgMoreActions;
+    private ImageView imgMyGame;
 
     public GameViewHolder(View view) {
         super(view);
@@ -30,6 +31,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         txtInfoYear = view.findViewById(R.id.card_view_games_info_year);
         rtbInfoRating = view.findViewById(R.id.card_view_games_info_rating);
         imgMoreActions = view.findViewById(R.id.card_view_games_more_actions);
+        imgMyGame = view.findViewById(R.id.card_view_games_info_my_game);
     }
 
     public ImageView getImgInfoGame() {
@@ -62,5 +64,9 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getTxtInfoYear() {
         return txtInfoYear;
+    }
+
+    public ImageView getImgMyGame() {
+        return imgMyGame;
     }
 }

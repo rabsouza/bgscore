@@ -6,32 +6,33 @@
     <color name="colorPrimaryDark">#80171a</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorControlHighlight">#B3E5FC</color>
-    <color name="colorBG">#FFFFFF</color>
-    <color name="colorCard">#e7e7e7</color>
+    <color name="colorBG">#D9FFFFFF</color>
 
     <!-- ################# Element ################ -->
-    <color name="colorTitleToolbar">#FFFFFF</color>
-    <color name="colorTitle">#BA2126</color>
-    <color name="colorText">#353434</color>
-    <color name="colorCardTitle">#BA2126</color>
-    <color name="colorButton">#9E9E9E</color>
-    <color name="colorLine">#9E9E9E</color>
+    <color name="colorTitleToolbar">#E6FFFFFF</color>
+    <color name="colorTitle">#E6BA2126</color>
+    <color name="colorText">#E6353434</color>
+    <color name="colorIcon">#D9353434</color>
+    <color name="colorCardTitle">#E6BA2126</color>
+    <color name="colorLine">#D9353434</color>
+    <color name="colorCard">#D9b4b4b4</color>
+    <color name="colorButton">#D9b4b4b4</color>
 
     <!-- ################# BASIC ################ -->
     <color name="transparent">#0000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="yellow">#FFEB3B</color>
-    <color name="gray">#9E9E9E</color>
-    <color name="orange">#FF9800</color>
-    <color name="red">#F44336</color>
-    <color name="pink">#E91E63</color>
-    <color name="blue">#2196F3</color>
-    <color name="purple">#9C27B0</color>
-    <color name="green">#4CAF50</color>
-    <color name="indigo">#3F51B5</color>
-    <color name="cyan">#00BCD4</color>
-    <color name="lime">#CDDC39</color>
-    <color name="brown">#795548</color>
+    <color name="white">#D9FFFFFF</color>
+    <color name="black">#D9000000</color>
+    <color name="yellow">#D9FFEB3B</color>
+    <color name="gray">#D99E9E9E</color>
+    <color name="orange">#D9FF9800</color>
+    <color name="red">#D9F44336</color>
+    <color name="pink">#D9E91E63</color>
+    <color name="blue">#D92196F3</color>
+    <color name="purple">#D99C27B0</color>
+    <color name="green">#D94CAF50</color>
+    <color name="indigo">#D93F51B5</color>
+    <color name="cyan">#D900BCD4</color>
+    <color name="lime">#D9CDDC39</color>
+    <color name="brown">#D9795548</color>
 
 </resources>

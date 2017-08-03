@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Switch;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -48,6 +49,7 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtMaxPlayTimeGame;
     private EditText txtAgeGame;
     private RatingBar rtbRatingGame;
+    private Switch swtMyGame;
 
     private Game game;
 
@@ -103,7 +105,10 @@ public class NewGameFragment extends BaseFragment {
             txtAgeGame.setText(game.getAge());
             if (!Strings.isNullOrEmpty(game.getRating())) {
                 rtbRatingGame.setRating(RatingUtils.convertFrom(game.getRating()));
+            } else {
+                rtbRatingGame.setRating(0F);
             }
+            swtMyGame.setChecked(game.isMyGame());
         } else {
             game = new Game();
             game.initEntity();
@@ -137,6 +142,7 @@ public class NewGameFragment extends BaseFragment {
         game.maxPlayTime(txtMaxPlayTimeGame.getText().toString().trim());
         game.age(txtAgeGame.getText().toString().trim());
         game.rating(RatingUtils.convertTo(rtbRatingGame.getRating()));
+        game.myGame(swtMyGame.isChecked());
 
         Log.i(TAG, "fillDataAndSave: Save the data in BD.");
         new GameRepository().save(game);
@@ -171,6 +177,7 @@ public class NewGameFragment extends BaseFragment {
         txtMaxPlayTimeGame = view.findViewById(R.id.card_view_new_game_max_play_time);
         txtAgeGame = view.findViewById(R.id.card_view_new_game_age);
         rtbRatingGame = view.findViewById(R.id.card_view_new_game_rating);
+        swtMyGame = view.findViewById(R.id.card_view_new_game_my_game);
 
     }
 

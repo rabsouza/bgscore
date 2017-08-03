@@ -1,10 +1,9 @@
 package br.com.battista.bgscore.fragment;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +25,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -40,6 +44,7 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
 import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
+import br.com.battista.bgscore.fragment.dialog.ExportImportDataDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
@@ -54,7 +59,7 @@ public class ProfileFragment extends BaseFragment {
     private TextView emptyMsgFriends;
     private TextView errorMsgFriends;
 
-    private Button btnChangeAvatar;
+    private Button btnExportImportData;
     private Button btnEditProfile;
     private ImageButton btnAddFriend;
     private EditText usernameFriendView;
@@ -108,23 +113,35 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case ChangeAvatarDialog.DIALOG_CHANGE_AVATAR_FRAGMENT:
+            case DIALOG_CHANGE_AVATAR_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     final int currentAvatar = data.getIntExtra(BundleConstant.CURRENT_AVATAR,
                             R.drawable.avatar_profile);
                     Log.i(TAG, MessageFormat.format("onActivityResult: Change avatar to res: {0}",
                             currentAvatar));
+
                     updateAvatarUser(currentAvatar);
                     loadUserInfo(getView());
                     AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
                             ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
                 }
                 break;
-            case EditProfileDialog.DIALOG_EDIT_PROFILE_FRAGMENT:
+            case DIALOG_EDIT_PROFILE_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
+                    Log.i(TAG, "onActivityResult: Edit my user!");
+
                     loadUserInfo(getView());
+                    loadDataFriends(getView());
                     AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
                             ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_PROFILE);
+                }
+                break;
+            case DIALOG_EXPORT_IMPORT_DATA_FRAGMENT:
+                if (resultCode == Activity.RESULT_OK) {
+                    Log.i(TAG, "onActivityResult: Export/Import data!");
+
+                    AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                            ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
                 }
         }
     }
@@ -146,6 +163,9 @@ public class ProfileFragment extends BaseFragment {
         avatarView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                        ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
+
                 final User user = MainApplication.instance().getUser();
                 ChangeAvatarDialog.newInstance(user.getIdResAvatar()).showDialog(currentFragment);
             }
@@ -243,12 +263,13 @@ public class ProfileFragment extends BaseFragment {
 
     private void setupButtonsProfile(View view) {
         final Fragment currentFragment = this;
-        btnChangeAvatar = view.findViewById(R.id.button_profile_change_avatar);
-        btnChangeAvatar.setOnClickListener(new View.OnClickListener() {
+        btnExportImportData = view.findViewById(R.id.button_profile_export_import_data);
+        btnExportImportData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final User user = MainApplication.instance().getUser();
-                ChangeAvatarDialog.newInstance(user.getIdResAvatar()).showDialog(currentFragment);
+                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                        ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
+                ExportImportDataDialog.newInstance().showDialog(currentFragment);
             }
         });
 
@@ -256,6 +277,9 @@ public class ProfileFragment extends BaseFragment {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                        ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_PROFILE);
+
                 EditProfileDialog.newInstance().showDialog(currentFragment);
             }
         });

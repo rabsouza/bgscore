@@ -50,6 +50,12 @@ public class Game extends BaseEntity implements Serializable {
     @Column(name = GameEntry.COLUMN_NAME_RATING)
     private String rating = null;
 
+    @Column(name = GameEntry.COLUMN_NAME_MY_GAME)
+    private Boolean myGame = Boolean.TRUE;
+
+    @Column(name = GameEntry.COLUMN_NAME_FAVORITE)
+    private Boolean favorite = Boolean.TRUE;
+
     public String getName() {
         return name;
     }
@@ -146,6 +152,22 @@ public class Game extends BaseEntity implements Serializable {
         this.rating = rating;
     }
 
+    public Boolean isMyGame() {
+        return myGame;
+    }
+
+    public void setMyGame(Boolean myGame) {
+        this.myGame = myGame;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -175,6 +197,8 @@ public class Game extends BaseEntity implements Serializable {
                 .add("maxPlayTime", maxPlayTime)
                 .add("age", age)
                 .add("rating", rating)
+                .add("favorite", favorite)
+                .add("myGame", myGame)
                 .addValue(super.toString())
                 .toString();
     }
@@ -236,6 +260,16 @@ public class Game extends BaseEntity implements Serializable {
 
     public Game rating(String rating) {
         this.rating = rating;
+        return this;
+    }
+
+    public Game myGame(Boolean myGame) {
+        this.myGame = myGame;
+        return this;
+    }
+
+    public Game favorite(Boolean favorite) {
+        this.favorite = favorite;
         return this;
     }
 }

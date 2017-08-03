@@ -49,6 +49,8 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_MAX_PLAY_TIME = "MAX_PLAY_TIME";
         public static final String COLUMN_NAME_AGE = "AGE";
         public static final String COLUMN_NAME_RATING = "RATING";
+        public static final String COLUMN_NAME_MY_GAME = "MY_GAME";
+        public static final String COLUMN_NAME_FAVORITE = "FAVORITE";
     }
 
     public static abstract class PlayerEntry extends BaseEntry {
