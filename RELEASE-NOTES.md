@@ -31,6 +31,7 @@ Os Pacotes liberados para testes e produção da aplicação.
 
 **Features**
  - Adiciona função para duplicar uma partida
+ - Adiciona função para duplicar um jogo
 
 **Bugs**
  - Corrigi bug dos dados estatísticos e ranking dos últimos jogos na Home
