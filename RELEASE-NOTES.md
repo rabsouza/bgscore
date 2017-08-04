@@ -25,6 +25,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
+### Version - 1.0.4-Beta
+**Date release**
+ - 04/08/2017
+
+**Features**
+ - Tela para detalhes de uma partida.
+
+**Bugs**
+ - Corrigi bug ao abrir o teclado
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.3-Beta
 **Date release**
  - 04/08/2017

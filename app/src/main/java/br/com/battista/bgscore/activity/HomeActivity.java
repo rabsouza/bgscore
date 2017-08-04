@@ -23,8 +23,6 @@ import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
-import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {

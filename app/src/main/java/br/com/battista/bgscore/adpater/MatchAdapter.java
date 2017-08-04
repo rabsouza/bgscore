@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.DETAIL_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
@@ -37,7 +38,6 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
-import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
@@ -105,16 +105,16 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                     case R.drawable.ic_feedback_very_dissatisfied:
                     case R.drawable.ic_feedback_dissatisfied:
                         holder.getImgInfoFeedback().setColorFilter(
-                                ContextCompat.getColor(itemView.getContext(), R.color.red));
+                                ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackDissatisfied));
                         break;
                     case R.drawable.ic_feedback_neutral:
                         holder.getImgInfoFeedback().setColorFilter(
-                                ContextCompat.getColor(itemView.getContext(), R.color.colorIcon));
+                                ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackNeutral));
                         break;
                     case R.drawable.ic_feedback_satisfied:
                     case R.drawable.ic_feedback_very_satisfied:
                         holder.getImgInfoFeedback().setColorFilter(
-                                ContextCompat.getColor(itemView.getContext(), R.color.green));
+                                ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackSatisfied));
                         break;
                 }
             } else {
@@ -142,7 +142,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                             processCopyMatch(itemView, match);
                             break;
                         case R.id.menu_action_detail:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
+                            processDetailMatch(itemView, match);
                             break;
                         case R.id.menu_action_edit:
                             processEditMatch(itemView, match);
@@ -184,6 +184,19 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
         Bundle args = new Bundle();
         Intent intent = new Intent(itemView.getContext(), MatchActivity.class);
         args.putSerializable(BundleConstant.DATA, matchCopy);
+        intent.putExtras(args);
+
+        itemView.getContext().startActivity(intent);
+    }
+
+    private void processDetailMatch(View itemView, Match match) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DETAIL_MATCH);
+
+        Bundle args = new Bundle();
+        Intent intent = new Intent(itemView.getContext(), MatchActivity.class);
+        args.putSerializable(BundleConstant.DATA, match);
+        args.putInt(NAVIGATION_TO, DETAIL_MATCH_FRAGMENT);
         intent.putExtras(args);
 
         itemView.getContext().startActivity(intent);

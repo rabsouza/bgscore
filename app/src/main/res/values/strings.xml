@@ -41,6 +41,8 @@
     <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar sua partida.</string>
     <string name="hint_text_detail_finish_match">*¹ Preencha os dados abaixo para finalizar a partida.</string>
     <string name="hint_text_detail_feedback_match">*¹ Selecione uma avaliação para sua partida (Avaliação Normal será a padrão).</string>
+    <string name="hint_share_match">Veja os detalhes da minha partida {0} do jogo {1}. Compartilhado via app BGScore!!!</string>
+    <string name="hint_title_share_match">Detalhes da partida</string>
 
     <!-- ################### HINT #################### -->
     <string name="msg_username_friend_required">Nome do seu amigo(a) é obrigatório!</string>
@@ -52,6 +54,7 @@
     <string name="msg_mail_required">E-mail é obrigatório!</string>
     <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor adicione link da página do jogo!</string>
     <string name="msg_error_game_with_partner">Erro ao tentar excluir o jogo %1$s! Verifique se existe partidas associadas ao jogo.</string>
+    <string name="msg_share_detail_match">Gerando a imagem para o compartilhamento, por favor aguarde.</string>
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>
@@ -241,6 +244,11 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="avatar_raider_tusken">Raider Tusken</string>
     <string name="avatar_stormtrooper">Stormtrooper</string>
     <string name="avatar_yoda">Yoda</string>
+    <string name="feedback_very_dissatisfied">Uma péssima partida</string>
+    <string name="feedback_dissatisfied">Uma partida ruim</string>
+    <string name="feedback_neutral">Uma partida normal</string>
+    <string name="feedback_satisfied">Uma Boa partida</string>
+    <string name="feedback_very_satisfied">Uma excelente partida</string>
     <string name="rating_num_stars">10</string>
     <string name="rating_step_size">1</string>
 

@@ -17,6 +17,9 @@
     <color name="colorLine">#D9353434</color>
     <color name="colorCard">#D9CFCFCF</color>
     <color name="colorButton">#D9CFCFCF</color>
+    <color name="colorImgFeedbackDissatisfied">@color/red</color>
+    <color name="colorImgFeedbackNeutral">@color/colorIcon</color>
+    <color name="colorImgFeedbackSatisfied">@color/green</color>
 
     <!-- ################# BASIC ################ -->
     <color name="transparent">#0000</color>

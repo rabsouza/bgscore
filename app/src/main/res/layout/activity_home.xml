@@ -5,6 +5,7 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                              android:animateLayoutChanges="true"
+                                             android:background="@color/colorBG"
                                              android:fitsSystemWindows="true"
                                              android:padding="@dimen/no_dimen"
                                              tools:context="br.com.battista.bgscore.activity.HomeActivity">

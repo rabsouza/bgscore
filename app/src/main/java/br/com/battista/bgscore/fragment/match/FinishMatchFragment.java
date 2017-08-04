@@ -58,15 +58,13 @@ import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 public class FinishMatchFragment extends BaseFragment implements TimePickerDialog.OnTimeSetListener {
 
     private static final String TAG = FinishMatchFragment.class.getSimpleName();
-
+    private final List<Player> players = Lists.newLinkedList();
     private Match match;
     private Game gameSelected;
-
     private EditText txtMatchAlias;
     private EditText txtCreateAt;
     private EditText txtDuration;
     private ImageButton btnDuration;
-
     private CardView cardViewGame;
     private ImageView imgInfoGame;
     private TextView txtInfoName;
@@ -74,9 +72,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     private TextView txtInfoPlayers;
     private TextView txtInfoAges;
     private TextView txtInfoYear;
-
     private RecycleEmptyErrorView recycleViewPlayers;
-    private final List<Player> players = Lists.newLinkedList();
     private Set<Player> playersWinners = Sets.newLinkedHashSet();
 
     private ImageView imgFeedbackVeryDissatisfied;
@@ -108,7 +104,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
         final View view = inflater.inflate(R.layout.fragment_finish_match, container, false);
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_next_finish_match);
+        FloatingActionButton fab = view.findViewById(R.id.fab_finish_finish_match);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View viewClicked) {
@@ -210,7 +206,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
         recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
-        recycleViewPlayers.setHasFixedSize(false);
+        recycleViewPlayers.setHasFixedSize(true);
 
     }
 

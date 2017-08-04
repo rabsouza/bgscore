@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/activity_login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:animateLayoutChanges="true"
+                android:background="@color/colorBG"
                 android:fitsSystemWindows="true"
                 android:padding="@dimen/no_dimen"
                 tools:context="br.com.battista.bgscore.activity.MainActivity">
 
     <ImageView
         android:id="@+id/image_main"
-        app:srcCompat="@drawable/logo_bgscore"
         android:layout_width="@dimen/image_main_width"
         android:layout_height="@dimen/image_main_height"
         android:layout_alignTop="@+id/title_main"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-150dp"
-        android:contentDescription="@string/cd_image_main"/>
+        android:contentDescription="@string/cd_image_main"
+        app:srcCompat="@drawable/logo_bgscore"/>
 
     <TextView
         android:id="@+id/title_main"

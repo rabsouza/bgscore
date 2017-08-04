@@ -19,13 +19,13 @@ public class DateUtils {
     public static final int HOURS_IN_MINS = 60;
     public static final String DD_MM_YYYY = "dd/MM/yyyy";
     public static final String DD_MM_YYYY_HH_MM = "dd/MM/yyyy HH:mm";
-
+    public static final String REGEX_TIME = "(?m)^(\\d\\d:\\d\\d)";
     private static final String TAG = DateUtils.class.getSimpleName();
     private static final String FORMAT_HOURS_MINUTES = "%02d:%02d";
-    public static final String REGEX_TIME = "(?m)^(\\d\\d:\\d\\d)";
     private static SimpleDateFormat format = new SimpleDateFormat(DD_MM_YYYY, Locale.getDefault());
     private static SimpleDateFormat formatWithHours = new SimpleDateFormat(DD_MM_YYYY_HH_MM, Locale.getDefault());
-    private static Pattern  patternTime = Pattern.compile(REGEX_TIME);;
+    private static Pattern patternTime = Pattern.compile(REGEX_TIME);
+    ;
 
     private DateUtils() {
     }
@@ -77,7 +77,7 @@ public class DateUtils {
         }
 
         Long minute = time % HOURS_IN_MINS;
-        Long hour = time / HOURS_IN_MINS ;
+        Long hour = time / HOURS_IN_MINS;
 
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
         StringBuilder newTime = new StringBuilder();

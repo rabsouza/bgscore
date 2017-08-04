@@ -73,13 +73,11 @@ import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = NewMatchFragment.class.getSimpleName();
+    final List<Player> players = Lists.newLinkedList();
     private final Map<String, Game> gameMap = Maps.newTreeMap();
-
     private RecycleEmptyErrorView recycleViewPlayers;
     private ImageButton btnAddPlayer;
     private EditText txtUsernamePlayer;
-    final List<Player> players = Lists.newLinkedList();
-
     private RecycleEmptyErrorView recycleViewPlayersFriends;
     private TextView emptyMsgPlayersFriends;
     private TextView errorMsgPlayersFriends;

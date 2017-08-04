@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,13 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.google.common.base.Strings;
+
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
-
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
 
 public class EditProfileDialog extends DialogFragment {
 

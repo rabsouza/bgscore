@@ -17,5 +17,6 @@ public class BundleConstant {
         int PROFILE_FRAGMENT = 3;
         int NEW_MATCH_FRAGMENT = 4;
         int FINISH_MATCH_FRAGMENT = 5;
+        int DETAIL_MATCH_FRAGMENT = 6;
     }
 }
