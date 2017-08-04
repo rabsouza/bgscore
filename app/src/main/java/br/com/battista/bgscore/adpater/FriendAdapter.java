@@ -15,7 +15,6 @@ import com.google.common.collect.Sets;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import br.com.battista.bgscore.MainApplication;
@@ -70,7 +69,6 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             holder.getTxtTitle().setText(SPACE_DRAWABLE + friendDto.getUsername());
             holder.getImgAvatar().setImageResource(friendDto.getIdResAvatar());
 
-            Random randomColorTint = new Random();
             holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
             final int positionRemoved = holder.getAdapterPosition();
             if (allowsDelete) {
@@ -106,6 +104,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
                     }
                 });
             } else {
+                cardView.setClickable(false);
                 cardView.setSelected(false);
             }
         } else {

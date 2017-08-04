@@ -101,6 +101,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                     }
                 });
             } else {
+                cardView.setClickable(false);
                 cardView.setSelected(false);
             }
 
