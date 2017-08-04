@@ -1,12 +1,10 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
-import com.google.common.collect.Sets;
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -29,6 +27,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -64,11 +69,6 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
-
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -191,12 +191,12 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             return;
         }
         AndroidUtils.changeErrorEditText(txtMatchAlias);
-        match.setAlias(txtMatchAlias.getText().toString().trim());
+        match.alias(txtMatchAlias.getText().toString().trim());
 
         if (Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
-            match.setCreatedAt(new Date());
+            match.createdAt(new Date());
         } else {
-            match.setCreatedAt(DateUtils.parse(txtCreateAt.getText().toString().trim()));
+            match.createdAt(DateUtils.parse(txtCreateAt.getText().toString().trim()));
         }
 
         if (gameSelected == null) {
@@ -205,7 +205,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             return;
         }
         AndroidUtils.changeErrorEditText(txtSearchNameGame);
-        match.setGame(gameSelected);
+        match.game(gameSelected);
 
         for (Player player : match.getPlayers()) {
             new PlayerRepository().delete(player);

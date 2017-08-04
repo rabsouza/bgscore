@@ -94,10 +94,15 @@ public class CacheManageService extends Service {
             if (!matches.isEmpty()) {
 
                 Match lastMatch = matches.get(0);
+                long durationTotal = 0;
+                for (Match match : matches) {
+                    durationTotal += match.getDuration();
+                }
                 final RankingGamesDto rankingGames = new RankingGamesDto()
                         .count(matches.size())
                         .lastPlayed(lastMatch.getCreatedAt())
-                        .game(game);
+                        .game(game)
+                        .duration(durationTotal);
                 user.addRankingGames(rankingGames);
             }
         }

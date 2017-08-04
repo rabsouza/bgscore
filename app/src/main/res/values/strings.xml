@@ -23,11 +23,12 @@
     <string name="card_title_matches">Minhas partidas</string>
     <string name="card_title_players">Jogadores/Amigos</string>
     <string name="card_title_players_winners">Ganhadores</string>
+    <string name="card_title_players_obs">Observações/Anotações</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
     <string name="card_title_my_ranking_game">Meu ranking de jogos</string>
-    <string name="card_title_new_match">Minha nova partida</string>
-    <string name="card_title_new_game">Meu novo jogo</string>
+    <string name="card_title_new_match">Minha partida</string>
+    <string name="card_title_new_game">Meu jogo</string>
     <string name="card_title_search_game">Buscar um jogo</string>
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação da partida</string>
@@ -35,10 +36,11 @@
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
     <string name="hint_detail_alias_match">Nome/Apelido da partida</string>
-    <string name="hint_detail_alias_created_at">Data da partida (dd/mm/yyyy)</string>
-    <string name="hint_detail_alias_duration">Duração da partida (HH:MM)</string>
+    <string name="hint_detail_match_obs">Observações/Anotações da partida</string>
+    <string name="hint_detail_match_created_at">Data da partida (dd/mm/yyyy)</string>
+    <string name="hint_detail_match_duration">Duração da partida (HH:MM)</string>
     <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar na lista de partidas.</string>
-    <string name="hint_text_detail_finish_match">*¹ Preenche os dados abaixo para finalizar a partida.</string>
+    <string name="hint_text_detail_finish_match">*¹ Preencha os dados abaixo para finalizar a partida.</string>
     <string name="hint_text_detail_feedback_match">*¹ Selecione uma avaliação para sua partida (Avaliação Normal será a padrão).</string>
 
     <!-- ################### HINT #################### -->
@@ -59,7 +61,7 @@
     <string name="text_home_matches_time"> tempo</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
     <string name="text_home_stats_info_01">*¹ Seu ranking pessoal com os 5 jogos mais jogados da sua coleção.</string>
-    <string name="text_home_stats_empty_view">Nenhum partida localizada. Por favor, adicione uma nova partida!</string>
+    <string name="text_home_stats_empty_view">Nenhuma partida localizada. Por favor, adicione uma nova partida!</string>
     <string name="text_home_stats_error_view">Error ao tentar carregar o ranking pessoal de suas partidas, favor tentar novamente!</string>
     <string name="text_profile_friends_empty_view">Nenhum amigo(a) adicionado. Por favor, adicione novos amigos para jogar as partidas!</string>
     <string name="text_profile_friends_error_view">Error ao tentar carregar a lista de amigos, favor tentar novamente!</string>
@@ -74,7 +76,8 @@
     <string name="text_dialog_edit_profile_info_02">*² Todos os dados serão perdidos e essa ação não pode ser revertida.</string>
     <string name="text_profile_friends_info_01">*¹ Adicione um novo amigo(a) para jogar suas partidas.</string>
     <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
-    <string name="text_match_players_winners_info_01">*¹ Selecione os jogadores ganhadores da partida.</string>
+    <string name="text_match_players_winners_info_01">*¹ Selecione os jogadores ganhadores desta partida.</string>
+    <string name="text_match_players_obs_info_01">*¹ Preencha o campo abaixo com as observações/anotações desta partida.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da sua coleção ou busque no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
@@ -96,9 +99,11 @@
     <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão jogando a partida.</string>
     <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
+    <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Lista ordenada pela data da partida em ordem decrescente.</string>
     <string name="text_legend_ranking_game_matches">Números de partidas que utilizaram o jogo.</string>
     <string name="text_legend_ranking_game_date">Data em qua aconteceu a última partida do jogo.</string>
+    <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
     <string name="text_legend_ranking_game_sort_list">Lista ordenada pelos pela quantidade de partida do jogo em ordem decrescente.</string>
     <string name="text_dialog_export_data_info_01">*¹ Selecione os dados que você deseja que seja exportado para um arquivo externo.</string>
     <string name="text_dialog_import_data_info_01">*¹ Selecione os dados que você deseja importar a partir de um arquivo externo.</string>

@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.fragment;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -187,7 +187,7 @@ public class HomeFragment extends BaseFragment {
         scoreMatches.setScoreText(decimalFormatScore.format(user.getNumMatches()));
 
         scoreTotalTime = view.findViewById(R.id.card_view_score_total_time);
-        scoreTotalTime.setScoreText(DateUtils.convertSecToHours(user.getTotalTime()));
+        scoreTotalTime.setScoreText(DateUtils.formatTime(user.getTotalTime()));
     }
 
     private void setupRecycleRanking(View view) {

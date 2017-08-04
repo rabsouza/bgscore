@@ -91,7 +91,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/element_vertical_margin"
-                                android:hint="@string/hint_detail_alias_created_at"
+                                android:hint="@string/hint_detail_match_created_at"
                                 android:imeOptions="actionNext"
                                 android:inputType="date"
                                 android:maxLength="10"

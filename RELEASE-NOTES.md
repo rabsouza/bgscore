@@ -25,6 +25,22 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
+### Version - 1.0.2-Beta
+**Date release**
+ - 04/08/2017
+
+**Features**
+ - Adiciona função para finalizar uma partida
+
+**Bugs**
+ - Corrigi bug ao iniciar a home sem dados
+
+**Improvements**
+ - Melhorias de cores, icones e layouts
+ - Adiciona tempo total jogado no ranking
+ - Ajusta as legendas
+
+------------------------------------------------------------------------
 ### Version - 1.0.1-Beta
 **Date release**
  - 03/08/2017

@@ -1,11 +1,15 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +19,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.google.common.base.Strings;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -36,11 +42,6 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
-
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
@@ -96,10 +97,26 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                 holder.getTxtInfoDuration().setText(" ∞");
             } else {
                 holder.getTxtInfoDuration().setText(SPACE_DRAWABLE +
-                        DateUtils.convertSecToHours(match.getDuration()));
+                        DateUtils.formatTime(match.getDuration()));
             }
             if (match.isFinished()) {
                 holder.getImgInfoFeedback().setImageResource(match.getFeedbackIdRes());
+                switch (match.getFeedbackIdRes()) {
+                    case R.drawable.ic_feedback_very_dissatisfied:
+                    case R.drawable.ic_feedback_dissatisfied:
+                        holder.getImgInfoFeedback().setColorFilter(
+                                ContextCompat.getColor(itemView.getContext(), R.color.red));
+                        break;
+                    case R.drawable.ic_feedback_neutral:
+                        holder.getImgInfoFeedback().setColorFilter(
+                                ContextCompat.getColor(itemView.getContext(), R.color.colorIcon));
+                        break;
+                    case R.drawable.ic_feedback_satisfied:
+                    case R.drawable.ic_feedback_very_satisfied:
+                        holder.getImgInfoFeedback().setColorFilter(
+                                ContextCompat.getColor(itemView.getContext(), R.color.green));
+                        break;
+                }
             } else {
                 holder.getImgInfoFeedback().setVisibility(View.GONE);
             }
@@ -125,9 +142,6 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                             processCopyMatch(itemView, match);
                             break;
                         case R.id.menu_action_detail:
-                            AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
-                            break;
-                        case R.id.menu_action_share:
                             AndroidUtils.toast(itemView.getContext(), R.string.text_under_construction);
                             break;
                         case R.id.menu_action_edit:

@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.collect.Sets;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.common.collect.Sets;
+
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
@@ -18,8 +20,6 @@ import java.util.Set;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.util.AndroidUtils;
-
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
@@ -131,4 +131,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
         return players != null ? players.size() : 0;
     }
 
+    public Set<Player> getPlayersWinners() {
+        return playersWinners;
+    }
 }

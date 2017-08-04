@@ -6,343 +6,397 @@
                                                  tools:context="br.com.battista.bgscore.fragment.match.FinishMatchFragment">
 
     <android.support.v4.widget.NestedScrollView
-            android:id="@+id/detail_scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/fab_margin_bottom"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:id="@+id/detail_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/fab_margin_bottom"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/no_dimen">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/no_dimen">
 
             <android.support.v7.widget.CardView
-                    android:id="@+id/card_view_match"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/element_vertical_margin"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="@dimen/no_dimen"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardCornerRadius="2dp"
-                    app:cardElevation="1dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true">
+                android:id="@+id/card_view_match"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_vertical_margin"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/no_dimen"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/element_padding">
+
+                    <TextView
+                        android:id="@+id/card_view_match_title"
+                        style="@style/CardTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/element_padding">
-
-                    <TextView
-                            android:id="@+id/card_view_match_title"
-                            style="@style/CardTitleStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/card_title_finish_match"/>
+                        android:text="@string/card_title_finish_match"/>
 
                     <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dimen_line"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_line"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:background="@color/colorLine"/>
 
                     <TextView
-                            style="@style/HintTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:text="@string/hint_text_detail_finish_match"/>
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/hint_text_detail_finish_match"/>
 
                     <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <EditText
-                                android:id="@+id/card_view_match_info_alias"
-                                style="@style/InputStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/element_vertical_margin"
-                                android:hint="@string/hint_detail_alias_match"
-                                android:enabled="false"
-                                android:focusable="false"
-                                android:maxLength="30"
-                                android:maxLines="1"/>
+                            android:id="@+id/card_view_match_info_alias"
+                            style="@style/InputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:hint="@string/hint_detail_alias_match"
+                            android:maxLength="30"
+                            android:maxLines="1"/>
 
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <EditText
-                                android:id="@+id/card_view_match_info_created_at"
-                                style="@style/InputStyle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/element_vertical_margin"
-                                android:hint="@string/hint_detail_alias_created_at"
-                                android:enabled="false"
-                                android:focusable="false"
-                                android:maxLength="30"
-                                android:maxLines="1"/>
+                            android:id="@+id/card_view_match_info_created_at"
+                            style="@style/InputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:hint="@string/hint_detail_match_created_at"
+                            android:maxLength="30"
+                            android:maxLines="1"/>
 
                     </android.support.design.widget.TextInputLayout>
 
                     <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
 
                             <EditText
-                                    android:id="@+id/card_view_match_info_duration"
-                                    style="@style/InputStyle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/element_vertical_margin"
-                                    android:hint="@string/hint_detail_alias_duration"
-                                    android:imeOptions="actionNext"
-                                    android:inputType="time"
-                                    android:maxLength="5"
-                                    android:maxLines="1"/>
+                                android:id="@+id/card_view_match_info_duration"
+                                style="@style/InputStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/element_vertical_margin"
+                                android:hint="@string/hint_detail_match_duration"
+                                android:imeOptions="actionDone"
+                                android:inputType="time"
+                                android:maxLength="5"
+                                android:maxLines="1"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <ImageButton
-                                android:id="@+id/card_view_match_info_btn_duration"
-                                style="?android:attr/buttonStyle"
-                                android:layout_width="@dimen/cards_button_width"
-                                android:layout_height="@dimen/cards_button_height"
-                                android:layout_marginLeft="@dimen/element_horizontal_margin"
-                                android:layout_marginRight="@dimen/element_horizontal_margin"
-                                android:layout_marginTop="@dimen/element_vertical_margin"
-                                app:srcCompat="@drawable/ic_match_time"/>
+                            android:id="@+id/card_view_match_info_btn_duration"
+                            style="?android:attr/buttonStyle"
+                            android:layout_width="@dimen/cards_button_width"
+                            android:layout_height="@dimen/cards_button_height"
+                            android:layout_marginLeft="@dimen/element_horizontal_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            app:srcCompat="@drawable/ic_match_time"/>
 
                     </LinearLayout>
-
-                    <TextView
-                            android:id="@+id/card_view_feedback_title"
-                            style="@style/CardTitleStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:text="@string/card_title_feedback_match"/>
-
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dimen_line"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
-
-                    <TextView
-                            style="@style/HintTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:text="@string/hint_text_detail_feedback_match"/>
-
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                        <ImageView
-                                android:layout_width="@dimen/dimen_profile_img_small_width"
-                                android:layout_height="@dimen/dimen_profile_img_small_height"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:clickable="true"
-                                android:layout_marginBottom="@dimen/element_padding"
-                                android:layout_marginRight="@dimen/element_padding"
-                                android:src="@drawable/ic_feedback_very_dissatisfied"
-                                android:scaleType="fitXY"/>
-
-                        <ImageView
-                                android:layout_width="@dimen/dimen_profile_img_small_width"
-                                android:layout_height="@dimen/dimen_profile_img_small_height"
-                                android:clickable="true"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:layout_marginBottom="@dimen/element_padding"
-                                android:layout_marginRight="@dimen/element_padding"
-                                android:src="@drawable/ic_feedback_dissatisfied"
-                                android:scaleType="fitXY"/>
-
-                        <ImageView
-                                android:layout_width="@dimen/dimen_profile_img_small_width"
-                                android:layout_height="@dimen/dimen_profile_img_small_height"
-                                android:clickable="true"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:layout_marginBottom="@dimen/element_padding"
-                                android:layout_marginRight="@dimen/element_padding"
-                                android:src="@drawable/ic_feedback_neutral"
-                                android:scaleType="fitXY"/>
-
-                        <ImageView
-                                android:layout_width="@dimen/dimen_profile_img_small_width"
-                                android:layout_height="@dimen/dimen_profile_img_small_height"
-                                android:clickable="true"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:layout_marginBottom="@dimen/element_padding"
-                                android:layout_marginRight="@dimen/element_padding"
-                                android:src="@drawable/ic_feedback_satisfied"
-                                android:scaleType="fitXY"/>
-
-                        <ImageView
-                                android:layout_width="@dimen/dimen_profile_img_small_width"
-                                android:layout_height="@dimen/dimen_profile_img_small_height"
-                                android:clickable="true"
-                                android:layout_marginTop="@dimen/element_padding"
-                                android:layout_marginBottom="@dimen/element_padding"
-                                android:layout_marginRight="@dimen/element_padding"
-                                android:src="@drawable/ic_feedback_very_satisfied"
-                                android:scaleType="fitXY"/>
-
-                    </LinearLayout>
-
-                    <TextView
-                            android:id="@+id/card_view_game_title"
-                            style="@style/CardTitleStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:text="@string/card_title_game_match"/>
-
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dimen_line"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
 
                     <android.support.v7.widget.CardView
-                            android:id="@+id/card_view_game_info"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:padding="@dimen/no_dimen"
-                            android:visibility="gone"
-                            app:cardBackgroundColor="@color/transparent"
-                            app:cardCornerRadius="3dp"
-                            app:cardElevation="2dp"
-                            app:cardPreventCornerOverlap="true"
-                            app:cardUseCompatPadding="true">
+                        android:id="@+id/card_view_game_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="@dimen/no_dimen"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/transparent"
+                        app:cardCornerRadius="3dp"
+                        app:cardElevation="2dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true">
 
                         <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="@dimen/element_padding">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/element_padding">
 
                             <ImageView
-                                    android:id="@+id/card_view_game_info_image"
-                                    android:layout_width="@dimen/dimen_game_img_width"
-                                    android:layout_height="@dimen/dimen_game_img_height"
-                                    android:layout_centerVertical="true"
-                                    android:scaleType="fitCenter"
-                                    app:srcCompat="@drawable/boardgame_game"/>
+                                android:id="@+id/card_view_game_info_image"
+                                android:layout_width="@dimen/dimen_game_img_width"
+                                android:layout_height="@dimen/dimen_game_img_height"
+                                android:layout_centerVertical="true"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/boardgame_game"/>
 
                             <TextView
-                                    android:id="@+id/card_view_game_info_name"
-                                    style="@style/CardHeadStyle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/element_margin"
-                                    android:layout_marginRight="@dimen/element_margin"
-                                    android:layout_toRightOf="@id/card_view_game_info_image"/>
+                                android:id="@+id/card_view_game_info_name"
+                                style="@style/CardHeadStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/element_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_image"/>
 
                             <TextView
-                                    android:id="@+id/card_view_game_info_players"
-                                    style="@style/NumberValueStyle"
-                                    android:layout_width="60dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/card_view_game_info_name"
-                                    android:layout_margin="@dimen/element_margin"
-                                    android:layout_toRightOf="@id/card_view_game_info_image"
-                                    android:drawableLeft="@drawable/ic_game_players"
-                                    android:gravity="center_vertical"/>
+                                android:id="@+id/card_view_game_info_players"
+                                style="@style/NumberValueStyle"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_game_info_name"
+                                android:layout_margin="@dimen/element_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_image"
+                                android:drawableLeft="@drawable/ic_game_players"
+                                android:gravity="center_vertical"/>
 
                             <TextView
-                                    android:id="@+id/card_view_game_info_time"
-                                    style="@style/NumberValueStyle"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/card_view_game_info_name"
-                                    android:layout_marginBottom="@dimen/element_margin"
-                                    android:layout_marginLeft="@dimen/element_margin"
-                                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                                    android:layout_marginTop="@dimen/element_margin"
-                                    android:layout_toRightOf="@id/card_view_game_info_players"
-                                    android:drawableLeft="@drawable/ic_game_time"
-                                    android:gravity="center_vertical"/>
+                                android:id="@+id/card_view_game_info_time"
+                                style="@style/NumberValueStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_game_info_name"
+                                android:layout_marginBottom="@dimen/element_margin"
+                                android:layout_marginLeft="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_marginTop="@dimen/element_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_players"
+                                android:drawableLeft="@drawable/ic_game_time"
+                                android:gravity="center_vertical"/>
 
                             <TextView
-                                    android:id="@+id/card_view_game_info_ages"
-                                    style="@style/NumberValueStyle"
-                                    android:layout_width="60dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/card_view_game_info_players"
-                                    android:layout_marginBottom="@dimen/element_margin"
-                                    android:layout_marginLeft="@dimen/element_margin"
-                                    android:layout_marginRight="@dimen/element_margin"
-                                    android:layout_toRightOf="@id/card_view_game_info_image"
-                                    android:drawableLeft="@drawable/ic_game_age"
-                                    android:gravity="center_vertical"/>
+                                android:id="@+id/card_view_game_info_ages"
+                                style="@style/NumberValueStyle"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_game_info_players"
+                                android:layout_marginBottom="@dimen/element_margin"
+                                android:layout_marginLeft="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/element_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_image"
+                                android:drawableLeft="@drawable/ic_game_age"
+                                android:gravity="center_vertical"/>
 
                             <TextView
-                                    android:id="@+id/card_view_game_info_year"
-                                    style="@style/NumberValueStyle"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/card_view_game_info_players"
-                                    android:layout_marginBottom="@dimen/element_margin"
-                                    android:layout_marginLeft="@dimen/element_margin"
-                                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                                    android:layout_toRightOf="@id/card_view_game_info_ages"
-                                    android:drawableLeft="@drawable/ic_game_date_year"
-                                    android:gravity="center_vertical"/>
+                                android:id="@+id/card_view_game_info_year"
+                                style="@style/NumberValueStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card_view_game_info_players"
+                                android:layout_marginBottom="@dimen/element_margin"
+                                android:layout_marginLeft="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_toRightOf="@id/card_view_game_info_ages"
+                                android:drawableLeft="@drawable/ic_game_date_year"
+                                android:gravity="center_vertical"/>
 
                         </RelativeLayout>
 
                     </android.support.v7.widget.CardView>
 
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_players"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_vertical_margin"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/no_dimen"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/element_padding">
+
                     <TextView
-                            android:id="@+id/card_view_players_title"
-                            style="@style/CardTitleStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:text="@string/card_title_players_winners"/>
+                        android:id="@+id/card_view_players_title"
+                        style="@style/CardTitleStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/card_title_players_winners"/>
 
                     <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dimen_line"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_line"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:background="@color/colorLine"/>
 
                     <TextView
-                            android:id="@+id/card_view_players_info_01"
-                            style="@style/HintTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:text="@string/text_match_players_winners_info_01"/>
+                        android:id="@+id/card_view_players_info_01"
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/text_match_players_winners_info_01"/>
 
                     <br.com.battista.bgscore.custom.RecycleEmptyErrorView
-                            android:id="@+id/card_view_players_recycler_view"
+                        android:id="@+id/card_view_players_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:clipToPadding="false"
+                        android:dividerHeight="1dp"
+                        android:listSelector="@android:color/transparent"
+                        android:paddingTop="@dimen/element_vertical_margin"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_vertical_margin"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/no_dimen"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/element_padding">
+
+                    <TextView
+                        android:id="@+id/card_view_feedback_title"
+                        style="@style/CardTitleStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/card_title_feedback_match"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_line"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:background="@color/colorLine"/>
+
+                    <TextView
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/hint_text_detail_feedback_match"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/card_view_feedback_img_very_dissatisfied"
+                            android:layout_width="@dimen/dimen_profile_img_small_width"
+                            android:layout_height="@dimen/dimen_profile_img_small_height"
+                            android:layout_marginBottom="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/element_padding"
+                            android:layout_marginTop="@dimen/element_padding"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_feedback_very_dissatisfied"/>
+
+                        <ImageView
+                            android:id="@+id/card_view_feedback_img_dissatisfied"
+                            android:layout_width="@dimen/dimen_profile_img_small_width"
+                            android:layout_height="@dimen/dimen_profile_img_small_height"
+                            android:layout_marginBottom="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/element_padding"
+                            android:layout_marginTop="@dimen/element_padding"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_feedback_dissatisfied"/>
+
+                        <ImageView
+                            android:id="@+id/card_view_feedback_img_neutral"
+                            android:layout_width="@dimen/dimen_profile_img_small_width"
+                            android:layout_height="@dimen/dimen_profile_img_small_height"
+                            android:layout_marginBottom="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/element_padding"
+                            android:layout_marginTop="@dimen/element_padding"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_feedback_neutral"/>
+
+                        <ImageView
+                            android:id="@+id/card_view_feedback_img_satisfied"
+                            android:layout_width="@dimen/dimen_profile_img_small_width"
+                            android:layout_height="@dimen/dimen_profile_img_small_height"
+                            android:layout_marginBottom="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/element_padding"
+                            android:layout_marginTop="@dimen/element_padding"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_feedback_satisfied"/>
+
+                        <ImageView
+                            android:id="@+id/card_view_feedback_img_very_satisfied"
+                            android:layout_width="@dimen/dimen_profile_img_small_width"
+                            android:layout_height="@dimen/dimen_profile_img_small_height"
+                            android:layout_marginBottom="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/element_padding"
+                            android:layout_marginTop="@dimen/element_padding"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_feedback_very_satisfied"/>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/element_vertical_margin">
+
+                        <EditText
+                            android:id="@+id/card_view_match_obs_text"
+                            style="@style/InputStyle"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:cacheColorHint="@android:color/transparent"
-                            android:clipToPadding="false"
-                            android:dividerHeight="1dp"
-                            android:listSelector="@android:color/transparent"
-                            android:paddingTop="@dimen/element_vertical_margin"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:hint="@string/hint_detail_match_obs"
+                            android:imeOptions="actionDone"
+                            android:inputType="textMultiLine"
+                            android:maxLines="5"
+                            android:minLines="5"/>
+
+                    </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
 
@@ -353,16 +407,16 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_next_finish_match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            app:layout_anchor="@id/detail_scroll_view"
-            app:layout_anchorGravity="bottom|right|end"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:srcCompat="@drawable/ic_fab_finish"/>
+        android:id="@+id/fab_next_finish_match"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_anchor="@id/detail_scroll_view"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/ic_fab_finish"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

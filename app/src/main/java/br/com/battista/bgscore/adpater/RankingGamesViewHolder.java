@@ -14,6 +14,7 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
     private ImageView imgInfoGame;
     private TextView txtInfoName;
     private TextView txtInfoCountMatches;
+    private TextView txtInfoSumTime;
     private TextView txtInfoLastPlayed;
     private RatingBar rtbInfoRating;
 
@@ -23,6 +24,7 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
         imgMyGame = view.findViewById(R.id.card_view_ranking_games_info_my_game);
         imgInfoGame = view.findViewById(R.id.card_view_ranking_games_info_image);
         txtInfoName = view.findViewById(R.id.card_view_ranking_games_info_name);
+        txtInfoSumTime = view.findViewById(R.id.card_view_ranking_games_info_sum_time);
         txtInfoLastPlayed = view.findViewById(R.id.card_view_ranking_games_info_last_played);
         txtInfoCountMatches = view.findViewById(R.id.card_view_ranking_games_info_count_matches);
         rtbInfoRating = view.findViewById(R.id.card_view_ranking_games_info_rating);
@@ -52,4 +54,7 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
         return imgMyGame;
     }
 
+    public TextView getTxtInfoSumTime() {
+        return txtInfoSumTime;
+    }
 }

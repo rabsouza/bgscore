@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.IdRes;
+import android.support.annotation.DrawableRes;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
@@ -40,7 +40,7 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.COLUMN_NAME_DURATION)
     private Long duration = 0L;
 
-    @IdRes
+    @DrawableRes
     @Column(name = MatchEntry.COLUMN_NAME_FEEDBACK)
     private int feedbackIdRes = R.drawable.ic_feedback_neutral;
 
@@ -102,7 +102,7 @@ public class Match extends BaseEntity implements Serializable {
         return feedbackIdRes;
     }
 
-    public void setFeedbackIdRes(@IdRes int feedbackIdRes) {
+    public void setFeedbackIdRes(@DrawableRes int feedbackIdRes) {
         this.feedbackIdRes = feedbackIdRes;
     }
 
@@ -177,7 +177,7 @@ public class Match extends BaseEntity implements Serializable {
         return this;
     }
 
-    public Match feedbackIdRes(@IdRes int feedbackIdRes) {
+    public Match feedbackIdRes(@DrawableRes int feedbackIdRes) {
         this.feedbackIdRes = feedbackIdRes;
         return this;
     }

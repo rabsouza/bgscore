@@ -16,6 +16,7 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
     private Game game;
     private int count = 0;
     private Date lastPlayed;
+    private Long duration;
 
     public Game getGame() {
         return game;
@@ -41,6 +42,14 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
         this.lastPlayed = lastPlayed;
     }
 
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,6 +69,7 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
                 .add("game", game)
                 .add("count", count)
                 .add("lastPlayed", lastPlayed)
+                .add("duration", duration)
                 .toString();
     }
 
@@ -75,6 +85,11 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
 
     public RankingGamesDto lastPlayed(Date lastPlayed) {
         this.lastPlayed = lastPlayed;
+        return this;
+    }
+
+    public RankingGamesDto duration(Long duration) {
+        this.duration = duration;
         return this;
     }
 
