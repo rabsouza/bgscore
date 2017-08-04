@@ -488,7 +488,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         StringBuilder newDate = new StringBuilder();
         newDate.append(decimalFormatScore.format(day))
                 .append("/")
-                .append(decimalFormatScore.format(month))
+                .append(decimalFormatScore.format(month + 1))
                 .append("/")
                 .append(year);
 

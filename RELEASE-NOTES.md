@@ -25,6 +25,20 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
+### Version - 1.0.3-Beta
+**Date release**
+ - 04/08/2017
+
+**Features**
+
+**Bugs**
+ - Corrigi bug data da partida
+
+**Improvements**
+ - Melhorias das mensagens de excluisão
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.2-Beta
 **Date release**
  - 04/08/2017
