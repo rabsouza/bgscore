@@ -8,22 +8,21 @@
     <string name="title_main">BoardGame\nScore</string>
     <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
     <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
-    <string name="title_games">&#x265c; Minha coleção &#x265c;</string>
-    <string name="title_matches">&#x265c; Minhas partidas &#x265c;</string>
+    <string name="title_games">&#x265c; Coleção de jogos &#x265c;</string>
+    <string name="title_matches">&#x265c; Partidas &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
-    <string name="title_welcome">&#x265c; BoardGame Score &#x265c;</string>
-    <string name="title_add_match">&#x265c; Partida &#x265c;</string>
-    <string name="title_add_game">&#x265c; Jogo &#x265c;</string>
+    <string name="title_welcome">&#x265c; Bem vindo ao BoardGame Score &#x265c;</string>
+    <string name="title_match">&#x265c; Partida &#x265c;</string>
+    <string name="title_game">&#x265c; Jogo &#x265c;</string>
     <string name="title_help">&#x265c; Ajuda &#x265c;</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
-    <string name="card_title_game_match">Jogo da partida</string>
-    <string name="card_title_games">Minha coleção</string>
+    <string name="card_title_game_match">Meu jogo da partida</string>
+    <string name="card_title_games">Meus jogos</string>
     <string name="card_title_matches">Minhas partidas</string>
     <string name="card_title_players">Jogadores/Amigos</string>
     <string name="card_title_players_winners">Ganhadores</string>
-    <string name="card_title_players_obs">Observações/Anotações</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
     <string name="card_title_my_ranking_game">Meu ranking de jogos</string>
@@ -31,7 +30,7 @@
     <string name="card_title_new_game">Meu jogo</string>
     <string name="card_title_search_game">Buscar um jogo</string>
     <string name="card_title_finish_match">Minha partida</string>
-    <string name="card_title_feedback_match">Avaliação da partida</string>
+    <string name="card_title_feedback_match">Avaliação/Observações</string>
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
@@ -39,7 +38,7 @@
     <string name="hint_detail_match_obs">Observações/Anotações da partida</string>
     <string name="hint_detail_match_created_at">Data da partida (dd/mm/yyyy)</string>
     <string name="hint_detail_match_duration">Duração da partida (HH:MM)</string>
-    <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar na lista de partidas.</string>
+    <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar sua partida.</string>
     <string name="hint_text_detail_finish_match">*¹ Preencha os dados abaixo para finalizar a partida.</string>
     <string name="hint_text_detail_feedback_match">*¹ Selecione uma avaliação para sua partida (Avaliação Normal será a padrão).</string>
 
@@ -94,17 +93,17 @@
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Lista ordenada pela data de alteração do jogo em ordem decrescente.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
-    <string name="text_legend_game_my_game">Indicador para o jogo da sua coleção.</string>
+    <string name="text_legend_game_my_game">Indicador para jogo da sua coleção.</string>
     <string name="text_legend_match_match">Nome/Apelido da partida.</string>
     <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão jogando a partida.</string>
     <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Lista ordenada pela data da partida em ordem decrescente.</string>
-    <string name="text_legend_ranking_game_matches">Números de partidas que utilizaram o jogo.</string>
-    <string name="text_legend_ranking_game_date">Data em qua aconteceu a última partida do jogo.</string>
+    <string name="text_legend_ranking_game_matches">Números de partidas do jogo.</string>
+    <string name="text_legend_ranking_game_date">Data em que aconteceu a última partida do jogo.</string>
     <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
-    <string name="text_legend_ranking_game_sort_list">Lista ordenada pelos pela quantidade de partida do jogo em ordem decrescente.</string>
+    <string name="text_legend_ranking_game_sort_list">Lista ordenada pela quantidade de partida do jogo em ordem decrescente.</string>
     <string name="text_dialog_export_data_info_01">*¹ Selecione os dados que você deseja que seja exportado para um arquivo externo.</string>
     <string name="text_dialog_import_data_info_01">*¹ Selecione os dados que você deseja importar a partir de um arquivo externo.</string>
     <string name="text_dialog_export_data_user">Exportar os dados do seu úsuario?</string>

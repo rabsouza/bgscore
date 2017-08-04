@@ -25,7 +25,7 @@ public class GameActivity extends BaseActivity {
         setContentView(R.layout.activity_match);
 
         setupToolbarDetail();
-        changeTitleCollapsingToolbar(R.string.title_add_game);
+        changeTitleCollapsingToolbar(R.string.title_game);
 
         processDataActivity(getIntent().getExtras());
     }

@@ -29,7 +29,7 @@ public class MatchActivity extends BaseActivity {
         setContentView(R.layout.activity_match);
 
         setupToolbarDetail();
-        changeTitleCollapsingToolbar(R.string.title_add_match);
+        changeTitleCollapsingToolbar(R.string.title_match);
         processDataActivity(getIntent().getExtras());
     }
 
