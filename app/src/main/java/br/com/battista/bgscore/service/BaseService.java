@@ -30,7 +30,7 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class BaseService {
 
@@ -54,8 +54,8 @@ public class BaseService {
         httpClient.networkInterceptors().add(createHttpInterceptor());
 
         builder = new Retrofit.Builder()
-                .baseUrl(RestConstant.REST_API_ENDPOINT.concat(RestConstant.REST_API_V1))
-                .addConverterFactory(JacksonConverterFactory.create())
+                .baseUrl(RestConstant.REST_API_ENDPOINT.concat(RestConstant.REST_API_VERSION))
+                .addConverterFactory(SimpleXmlConverterFactory.create())
                 .client(httpClient.build()).build();
     }
 
@@ -109,7 +109,7 @@ public class BaseService {
     @NonNull
     private HttpLoggingInterceptor createHttpLoggingInterceptor() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         return logging;
     }
 

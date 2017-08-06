@@ -7,6 +7,7 @@ public class BundleConstant {
     public static final String POSITION = "POSITION";
     public static final String KEY = "KEY";
     public static final String CURRENT_AVATAR = "CURRENT_AVATAR";
+    public static final String SEARCH_GAME_ID = "SEARCH_GAME_ID";
     public static final String NAVIGATION_TO = "NAVIGATION_TO";
     public static final String WELCOME_DIALOG_CONTENT = "WELCOME_DIALOG_CONTENT";
 

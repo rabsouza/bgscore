@@ -4,12 +4,15 @@ package br.com.battista.bgscore.fragment.match;
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -39,6 +42,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -53,17 +57,22 @@ import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.adpater.PlayerAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.custom.ProgressApp;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.BaseFragment;
+import br.com.battista.bgscore.fragment.dialog.SearchGameDialog;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
+import br.com.battista.bgscore.service.Inject;
+import br.com.battista.bgscore.service.server.GameService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
@@ -89,6 +98,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     private ImageButton btnSearchGame;
     private AutoCompleteTextView txtSearchNameGame;
     private CardView cardViewGame;
+    private Switch swtSearchOnline;
 
     private EditText txtMatchAlias;
     private EditText txtCreateAt;
@@ -132,7 +142,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             }
         });
 
-        setupRecycleViewPlayers(view);
+        setupRecycleViewPlayersAndFriends(view);
         setupDataForm(view);
 
         processDataFragment(view, getArguments());
@@ -275,6 +285,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
 
         cardViewGame = view.findViewById(R.id.card_view_game_info);
 
+        swtSearchOnline = view.findViewById(R.id.card_view_players_search_online_switch);
         btnSearchGame = view.findViewById(R.id.card_view_game_button_search);
         btnSearchGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -348,6 +359,47 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case DIALOG_SEARCH_GAME_FRAGMENT:
+                if (resultCode == Activity.RESULT_OK) {
+                    final long gameId = data.getLongExtra(BundleConstant.SEARCH_GAME_ID, 0l);
+                    Log.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
+                            gameId));
+
+                    new ProgressApp(this.getActivity(), R.string.msg_action_saving, false) {
+                        Game game;
+
+                        @Override
+                        protected void onPostExecute(Boolean result) {
+                            if (game == null) {
+                                AndroidUtils.snackbar(getView(), R.string.msg_game_error_add_game);
+                            } else {
+                                game.setMyGame(Boolean.FALSE);
+                                new GameRepository().save(game);
+
+                                gameSelected = game;
+                                fillCardGame();
+                            }
+                            dismissProgress();
+                        }
+
+                        @Override
+                        protected Boolean doInBackground(Void... params) {
+                            final GameService gameService = Inject.provideGameService();
+                            game = gameService.loadGame(gameId);
+                            return true;
+                        }
+                    }.execute();
+
+                    AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                            CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_GAME_ONLINE);
+                }
+                break;
+        }
+    }
+
     private Player addNewPlayer() {
         Log.i(TAG, "addNewFriend: Add new player!");
 
@@ -366,7 +418,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         return player;
     }
 
-    private void processDataSearchGame(View view) {
+    private void processDataSearchGame(final View viewContainer) {
         if (Strings.isNullOrEmpty(txtSearchNameGame.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_name_game_required);
             AndroidUtils.changeErrorEditText(txtSearchNameGame, msgErrorUsername, true);
@@ -374,11 +426,39 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         }
         AndroidUtils.changeErrorEditText(txtSearchNameGame);
         final String nameGame = txtSearchNameGame.getText().toString().trim();
-        if (gameMap.containsKey(nameGame)) {
-            gameSelected = gameMap.get(nameGame);
-            fillCardGame();
+
+        if (swtSearchOnline.isChecked()) {
+            Log.i(TAG, "processDataSearchGame: Search game in server!");
+
+            final Fragment currentFragment = this;
+            new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {
+                ArrayList<GameResponse> gameResponses;
+
+                @Override
+                protected void onPostExecute(Boolean result) {
+                    if (gameResponses.isEmpty()) {
+                        AndroidUtils.snackbar(viewContainer, R.string.msg_game_dont_found_search);
+                    } else {
+                        SearchGameDialog.newInstance(gameResponses).showDialog(currentFragment);
+                    }
+                    dismissProgress();
+                }
+
+                @Override
+                protected Boolean doInBackground(Void... params) {
+                    final GameService gameService = Inject.provideGameService();
+                    gameResponses = new ArrayList<>(gameService.searchGame(nameGame));
+                    return true;
+                }
+            }.execute();
         } else {
-            AndroidUtils.snackbar(view, R.string.msg_game_dont_found);
+            Log.i(TAG, "processDataSearchGame: Search game in BD!");
+            if (gameMap.containsKey(nameGame)) {
+                gameSelected = gameMap.get(nameGame);
+                fillCardGame();
+            } else {
+                AndroidUtils.snackbar(viewContainer, R.string.msg_game_dont_found_search);
+            }
         }
     }
 
@@ -430,7 +510,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
 
-    private void setupRecycleViewPlayers(View view) {
+    private void setupRecycleViewPlayersAndFriends(View view) {
         recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
         recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());

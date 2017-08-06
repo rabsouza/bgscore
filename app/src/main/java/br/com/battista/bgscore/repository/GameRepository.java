@@ -48,6 +48,17 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
         return game;
     }
 
+    public Game findByBoardGameId(Long boardgameId) {
+        Log.i(TAG, MessageFormat.format("Find the Game by boardgameId: {0}.", boardgameId));
+        final Game game = Select
+                .from(Game.class)
+                .where(MessageFormat.format("{0} = ?", GameEntry.COLUMN_NAME_ID_BGG),
+                        new String[]{String.valueOf(boardgameId)})
+                .first();
+        reloadEntity(game);
+        return game;
+    }
+
     @Override
     public void delete(Game entity) {
         if (entity != null) {

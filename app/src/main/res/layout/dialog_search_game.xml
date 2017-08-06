@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/element_padding">
+
+    <TextView
+        style="@style/CardTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/element_vertical_margin"
+        android:text="@string/text_dialog_search_game_info_01"/>
+
+    <br.com.battista.bgscore.custom.RecycleEmptyErrorView
+        android:id="@+id/search_game_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="@dimen/md_keylines"
+        android:paddingTop="@dimen/element_vertical_margin"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/element_vertical_margin">
+
+        <Button
+            android:id="@+id/search_game_btn_cancel"
+            style="@style/ButtonStyleWithBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/btn_cancel"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

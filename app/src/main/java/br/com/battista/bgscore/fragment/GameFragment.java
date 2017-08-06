@@ -79,7 +79,7 @@ public class GameFragment extends BaseFragment {
             }
         });
 
-        setupRecycleRanking(view);
+        setupRecycleGames(view);
         setupHelpGame(view);
 
         return view;
@@ -124,7 +124,7 @@ public class GameFragment extends BaseFragment {
 
     }
 
-    private void setupRecycleRanking(View view) {
+    private void setupRecycleGames(View view) {
         recycleViewGames = view.findViewById(R.id.card_view_games_recycler_view);
         emptyMsgGames = view.findViewById(R.id.card_view_games_empty_view);
         errorMsgGames = view.findViewById(R.id.card_view_games_error_view);
