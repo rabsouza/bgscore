@@ -48,7 +48,7 @@ public class Game extends BaseEntity implements Serializable {
     private String age = null;
 
     @Column(name = GameEntry.COLUMN_NAME_RATING)
-    private String rating = null;
+    private Long rating = null;
 
     @Column(name = GameEntry.COLUMN_NAME_MY_GAME)
     private Boolean myGame = Boolean.TRUE;
@@ -144,11 +144,11 @@ public class Game extends BaseEntity implements Serializable {
         this.age = age;
     }
 
-    public String getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
     }
 
@@ -258,8 +258,13 @@ public class Game extends BaseEntity implements Serializable {
         return this;
     }
 
-    public Game rating(String rating) {
+    public Game rating(Long rating) {
         this.rating = rating;
+        return this;
+    }
+
+    public Game rating(String rating) {
+        this.rating = Long.valueOf(rating);
         return this;
     }
 

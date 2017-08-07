@@ -162,6 +162,7 @@ public class NewGameFragment extends BaseFragment {
 
     private void fillGameData() {
         txtNameGame.setText(game.getName());
+        txtSearchNameGame.setText(game.getName());
         txtUrlThumbnailGame.setText(game.getUrlThumbnail());
         txtUrlImageGame.setText(game.getUrlImage());
         txtUrlInfoGame.setText(game.getUrlInfo());
@@ -171,8 +172,8 @@ public class NewGameFragment extends BaseFragment {
         txtMinPlayTimeGame.setText(game.getMinPlayTime());
         txtMaxPlayTimeGame.setText(game.getMaxPlayTime());
         txtAgeGame.setText(game.getAge());
-        if (!Strings.isNullOrEmpty(game.getRating())) {
-            rtbRatingGame.setRating(RatingUtils.convertFrom(game.getRating()));
+        if (game.getRating() != null) {
+            rtbRatingGame.setRating(game.getRating());
         } else {
             rtbRatingGame.setRating(0F);
         }

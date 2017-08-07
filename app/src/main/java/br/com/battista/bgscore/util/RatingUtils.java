@@ -11,15 +11,15 @@ public class RatingUtils {
     }
 
     public static String convertTo(Float rating) {
-        nf.setMaximumFractionDigits(1);
-        nf.setMinimumFractionDigits(1);
+        nf.setMaximumFractionDigits(0);
+        nf.setMinimumFractionDigits(0);
         nf.setGroupingUsed(false);
         return nf.format(rating);
     }
 
     public static Float convertFrom(String rating) {
-        nf.setMaximumFractionDigits(1);
-        nf.setMinimumFractionDigits(1);
+        nf.setMaximumFractionDigits(0);
+        nf.setMinimumFractionDigits(0);
         nf.setGroupingUsed(false);
         try {
             return nf.parse(rating).floatValue();
@@ -27,4 +27,5 @@ public class RatingUtils {
             return 0F;
         }
     }
+
 }

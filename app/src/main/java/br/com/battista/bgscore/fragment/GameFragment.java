@@ -158,7 +158,7 @@ public class GameFragment extends BaseFragment {
         QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
         String[] optionsSortList = getResources().getStringArray(R.array.sort_list_games);
         if (selectedItem.equals(optionsSortList[2])) {
-            builder.addPropOrderBy(GameEntry.COLUMN_NAME_RATING, DESC);
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_RATING + " AS INTEGER)", DESC);
         } else if (selectedItem.equals(optionsSortList[3])) {
             builder.addPropOrderBy(GameEntry.COLUMN_NAME_FAVORITE, DESC);
             builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);

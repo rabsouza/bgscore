@@ -37,7 +37,6 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
-import br.com.battista.bgscore.util.RatingUtils;
 
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
@@ -113,10 +112,10 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 holder.getTxtInfoAges().setText(MessageFormat.format(" {0}+", game.getAge()));
             }
 
-            if (Strings.isNullOrEmpty(game.getRating())) {
+            if (game.getRating() == null) {
                 holder.getRtbInfoRating().setRating(0F);
             } else {
-                holder.getRtbInfoRating().setRating(RatingUtils.convertFrom(game.getRating()));
+                holder.getRtbInfoRating().setRating(game.getRating());
             }
 
             if (game.isMyGame()) {

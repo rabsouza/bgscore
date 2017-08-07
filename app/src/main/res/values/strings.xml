@@ -91,6 +91,7 @@
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da sua coleção ou busque no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
+    <string name="text_match_sort_list_info_01">*¹ Selecione uma das opções para ordenação da lista de partidas.</string>
     <string name="text_game_sort_list_info_01">*¹ Selecione uma das opções para ordenação da lista de jogos.</string>
     <string name="text_game_games_info_01">*¹ Lista com os últimos jogos cadastrados.</string>
     <string name="text_game_games_empty_view">Nenhum jogo adicionado, por favor adicione novos jogos.</string>
@@ -269,9 +270,16 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string-array name="sort_list_games">
         <item>Padrão</item>
         <item>Mais recentes</item>
-        <item>Melhor avaliados</item>
+        <item>Melhores avaliados</item>
         <item>Favoritos</item>
         <item>Meus jogos</item>
+    </string-array>
+    <string-array name="sort_list_matches">
+        <item>Padrão</item>
+        <item>Mais recentes</item>
+        <item>Finalizadas</item>
+        <item>Maior duração</item>
+        <item>Menor duração</item>
     </string-array>
 
 </resources>

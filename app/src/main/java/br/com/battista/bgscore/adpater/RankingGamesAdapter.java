@@ -16,7 +16,6 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-import br.com.battista.bgscore.util.RatingUtils;
 
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 import static com.google.common.base.MoreObjects.firstNonNull;
@@ -79,10 +78,10 @@ public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHo
             lastPlayed.setTime(rankingGames.getLastPlayed());
             holder.getTxtInfoLastPlayed().setText(SPACE_DRAWABLE + DateUtils.format(lastPlayed));
 
-            if (Strings.isNullOrEmpty(game.getRating())) {
+            if (game.getRating() == null) {
                 holder.getRtbInfoRating().setRating(0F);
             } else {
-                holder.getRtbInfoRating().setRating(RatingUtils.convertFrom(game.getRating()));
+                holder.getRtbInfoRating().setRating(game.getRating());
             }
 
         } else {

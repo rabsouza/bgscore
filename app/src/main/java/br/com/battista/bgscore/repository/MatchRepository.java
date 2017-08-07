@@ -83,6 +83,20 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
         return matches;
     }
 
+    public List<Match> findAll(String orderBy) {
+        Log.i(TAG, "Find all Matches.");
+        final List<Match> matches = Select
+                .from(Match.class)
+                .orderBy(orderBy)
+                .list();
+        if (matches != null) {
+            for (Match match : matches) {
+                reload(match);
+            }
+        }
+        return matches;
+    }
+
     public List<Match> findByGameId(Long idGame) {
         Log.i(TAG, MessageFormat.format("Find Matches by Id Game: {0}.", idGame));
         final List<Match> matches = Select

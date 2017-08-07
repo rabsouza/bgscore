@@ -62,12 +62,23 @@ public class User extends BaseEntity implements Serializable {
     @Ignore
     private String orderByGames = null;
 
+    @Ignore
+    private String orderByMatches = null;
+
     public String getOrderByGames() {
         return orderByGames;
     }
 
     public void setOrderByGames(String orderByGames) {
         this.orderByGames = orderByGames;
+    }
+
+    public String getOrderByMatches() {
+        return orderByMatches;
+    }
+
+    public void setOrderByMatches(String orderByMatches) {
+        this.orderByMatches = orderByMatches;
     }
 
     public String getUsername() {
@@ -281,6 +292,11 @@ public class User extends BaseEntity implements Serializable {
 
     public User orderByGames(String orderByGames) {
         this.orderByGames = orderByGames;
+        return this;
+    }
+
+    public User orderByMatches(String orderByMatches) {
+        this.orderByMatches = orderByMatches;
         return this;
     }
 
