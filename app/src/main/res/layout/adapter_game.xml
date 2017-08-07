@@ -48,7 +48,7 @@
         <TextView
             android:id="@+id/card_view_games_info_players"
             style="@style/NumberValueStyle"
-            android:layout_width="60dp"
+            android:layout_width="@dimen/first_column_card_width"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_name"
             android:layout_margin="@dimen/element_margin"
@@ -63,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_name"
             android:layout_marginBottom="@dimen/element_margin"
-            android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/element_margin"
             android:layout_toRightOf="@id/card_view_games_info_players"
@@ -73,7 +72,7 @@
         <TextView
             android:id="@+id/card_view_games_info_ages"
             style="@style/NumberValueStyle"
-            android:layout_width="60dp"
+            android:layout_width="@dimen/first_column_card_width"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_players"
             android:layout_marginBottom="@dimen/element_margin"
@@ -90,7 +89,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_games_info_players"
             android:layout_marginBottom="@dimen/element_margin"
-            android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/card_view_games_info_ages"
             android:drawableLeft="@drawable/ic_game_date_year"

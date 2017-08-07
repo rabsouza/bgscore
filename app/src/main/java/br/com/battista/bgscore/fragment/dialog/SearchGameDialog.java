@@ -30,9 +30,8 @@ import br.com.battista.bgscore.model.response.GameResponse;
 
 public class SearchGameDialog extends DialogFragment {
 
-    private static final String TAG = SearchGameDialog.class.getSimpleName();
     public static final String DIALOG_SEARCH_GAME = "dialog_search_game";
-
+    private static final String TAG = SearchGameDialog.class.getSimpleName();
     private RecycleEmptyErrorView recycleViewGames;
     private List<GameResponse> games = Lists.newArrayList();
 

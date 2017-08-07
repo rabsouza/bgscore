@@ -54,5 +54,6 @@
     <dimen name="dimen_profile_img_small_width">50dp</dimen>
     <dimen name="dimen_profile_img_small_height">50dp</dimen>
     <dimen name="dimen_line">2px</dimen>
+    <dimen name="first_column_card_width">76dp</dimen>
 
 </resources>

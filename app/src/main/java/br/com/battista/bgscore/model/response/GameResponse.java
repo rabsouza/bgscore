@@ -17,35 +17,36 @@ import java.util.Map;
 
 @Root(name = "boardgame", strict = false)
 public class GameResponse implements Serializable, Parcelable {
-    private static final long serialVersionUID = 1L;
+    public static final Creator<GameResponse> CREATOR = new Creator<GameResponse>() {
+        @Override
+        public GameResponse createFromParcel(Parcel source) {
+            return new GameResponse(source);
+        }
 
+        @Override
+        public GameResponse[] newArray(int size) {
+            return new GameResponse[size];
+        }
+    };
+    private static final long serialVersionUID = 1L;
     @Attribute(name = "objectid")
     private Long boardgameId;
-
     @ElementMap(entry = "name", key = "primary", attribute = true, inline = true)
     private Map<Boolean, String> nameMap;
-
     @Element(name = "yearpublished", required = false)
     private String yearPublished;
-
     @Element(name = "minplayers", required = false)
     private String minPlayers;
-
     @Element(name = "maxplayers", required = false)
     private String maxPlayers;
-
     @Element(name = "minplaytime", required = false)
     private String minPlayTime;
-
     @Element(name = "maxplaytime", required = false)
     private String maxPlayTime;
-
     @Element(name = "age", required = false)
     private String age;
-
     @Element(name = "thumbnail", required = false)
     private String thumbnail;
-
     @Element(name = "image", required = false)
     private String image;
 
@@ -70,18 +71,6 @@ public class GameResponse implements Serializable, Parcelable {
         this.thumbnail = in.readString();
         this.image = in.readString();
     }
-
-    public static final Creator<GameResponse> CREATOR = new Creator<GameResponse>() {
-        @Override
-        public GameResponse createFromParcel(Parcel source) {
-            return new GameResponse(source);
-        }
-
-        @Override
-        public GameResponse[] newArray(int size) {
-            return new GameResponse[size];
-        }
-    };
 
     public String getName() {
         if (nameMap != null) {

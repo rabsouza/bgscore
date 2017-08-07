@@ -11,7 +11,7 @@
     <string name="title_games">&#x265c; Coleção de jogos &#x265c;</string>
     <string name="title_matches">&#x265c; Partidas &#x265c;</string>
     <string name="title_about">&#x265c; Informação &#x265c;</string>
-    <string name="title_welcome">&#x265c; Bem vindo ao BoardGame Score &#x265c;</string>
+    <string name="title_welcome">&#x265c; Novidades &#x265c;</string>
     <string name="title_match">&#x265c; Partida &#x265c;</string>
     <string name="title_game">&#x265c; Jogo &#x265c;</string>
     <string name="title_help">&#x265c; Ajuda &#x265c;</string>
@@ -257,7 +257,7 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="feedback_very_dissatisfied">Uma péssima partida</string>
     <string name="feedback_dissatisfied">Uma partida ruim</string>
     <string name="feedback_neutral">Uma partida normal</string>
-    <string name="feedback_satisfied">Uma Boa partida</string>
+    <string name="feedback_satisfied">Uma boa partida</string>
     <string name="feedback_very_satisfied">Uma excelente partida</string>
     <string name="rating_num_stars">10</string>
     <string name="rating_step_size">1</string>

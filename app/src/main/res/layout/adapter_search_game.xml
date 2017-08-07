@@ -23,8 +23,8 @@
             android:id="@+id/card_view_games_info_image"
             android:layout_width="@dimen/dimen_profile_img_small_width"
             android:layout_height="@dimen/dimen_profile_img_small_height"
-            android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/element_vertical_margin"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/boardgame_game"/>
 

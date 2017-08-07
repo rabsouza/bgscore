@@ -35,6 +35,8 @@ Os Pacotes liberados para testes e produção da aplicação.
  - Compartilhamento simples de partida.
 
 **Bugs**
+ - Corrige bugs de layouts.
+ - Corrige bugs de textos.
 
 **Improvements**
  - Melhorias das mensagens, layouts e cores.

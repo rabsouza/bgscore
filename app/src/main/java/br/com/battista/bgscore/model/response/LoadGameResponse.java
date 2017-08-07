@@ -14,18 +14,6 @@ import java.io.Serializable;
 @Root(name = "boardgames", strict = false)
 public class LoadGameResponse implements Serializable, Parcelable {
 
-    private static final long serialVersionUID = 1L;
-
-    @Element(name = "boardgame", required = false)
-    private GameResponse boardgame;
-
-    public LoadGameResponse() {
-    }
-
-    protected LoadGameResponse(Parcel in) {
-        this.boardgame = in.readParcelable(GameResponse.class.getClassLoader());
-    }
-
     public static final Creator<LoadGameResponse> CREATOR = new Creator<LoadGameResponse>() {
         @Override
         public LoadGameResponse createFromParcel(Parcel source) {
@@ -37,6 +25,16 @@ public class LoadGameResponse implements Serializable, Parcelable {
             return new LoadGameResponse[size];
         }
     };
+    private static final long serialVersionUID = 1L;
+    @Element(name = "boardgame", required = false)
+    private GameResponse boardgame;
+
+    public LoadGameResponse() {
+    }
+
+    protected LoadGameResponse(Parcel in) {
+        this.boardgame = in.readParcelable(GameResponse.class.getClassLoader());
+    }
 
     public GameResponse getBoardgame() {
         return boardgame;

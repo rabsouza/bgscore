@@ -39,9 +39,8 @@ import br.com.battista.bgscore.util.ImageLoadUtils;
 
 public class ShareMatchDialog extends DialogFragment {
 
-    private static final String TAG = ShareMatchDialog.class.getSimpleName();
     public static final String DIALOG_SHARE_MATCH = "dialog_share_match";
-
+    private static final String TAG = ShareMatchDialog.class.getSimpleName();
     private Button btnCancel;
     private Button btnShare;
     private Match match;

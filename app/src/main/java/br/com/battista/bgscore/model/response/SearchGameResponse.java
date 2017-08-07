@@ -12,20 +12,8 @@ import org.simpleframework.xml.Root;
 import java.io.Serializable;
 import java.util.List;
 
-@Root(name = "boardgames", strict=false)
+@Root(name = "boardgames", strict = false)
 public class SearchGameResponse implements Serializable, Parcelable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ElementList(name = "boardgame", inline=true, required = false)
-    private List<GameResponse> boardgames = Lists.newArrayList();
-
-    public SearchGameResponse() {
-    }
-
-    protected SearchGameResponse(Parcel in) {
-        this.boardgames = in.createTypedArrayList(GameResponse.CREATOR);
-    }
 
     public static final Parcelable.Creator<SearchGameResponse> CREATOR = new Parcelable.Creator<SearchGameResponse>() {
         @Override
@@ -38,6 +26,16 @@ public class SearchGameResponse implements Serializable, Parcelable {
             return new SearchGameResponse[size];
         }
     };
+    private static final long serialVersionUID = 1L;
+    @ElementList(name = "boardgame", inline = true, required = false)
+    private List<GameResponse> boardgames = Lists.newArrayList();
+
+    public SearchGameResponse() {
+    }
+
+    protected SearchGameResponse(Parcel in) {
+        this.boardgames = in.createTypedArrayList(GameResponse.CREATOR);
+    }
 
     public List<GameResponse> getBoardgames() {
         return boardgames;

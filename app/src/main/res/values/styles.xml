@@ -105,7 +105,7 @@
     <style name="NumberValueStyle" parent="Base.TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
     <style name="ScoreValueStyle" parent="Base.TextAppearance.AppCompat.Large">
