@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
@@ -33,6 +35,7 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.fragment.dialog.ShareMatchDialog;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
@@ -94,7 +97,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
             holder.getTxtInfoMatchDate().setText(SPACE_DRAWABLE + DateUtils.format(createdAt));
             holder.getTxtInfoPlayers().setText(SPACE_DRAWABLE + match.getPlayers().size());
             if (match.getDuration() == null) {
-                holder.getTxtInfoDuration().setText(" ∞");
+                holder.getTxtInfoDuration().setText("00:00");
             } else {
                 holder.getTxtInfoDuration().setText(SPACE_DRAWABLE +
                         DateUtils.formatTime(match.getDuration()));
@@ -144,6 +147,9 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                         case R.id.menu_action_detail:
                             processDetailMatch(itemView, match);
                             break;
+                        case R.id.menu_action_share:
+                            processShareMatch(itemView, match);
+                            break;
                         case R.id.menu_action_edit:
                             processEditMatch(itemView, match);
                             break;
@@ -166,6 +172,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
     }
 
     private void processCopyMatch(View itemView, Match match) {
+        Log.i(TAG, "processCopyMatch: Copy the match!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_COPY_MATCH);
 
@@ -189,7 +196,14 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
         itemView.getContext().startActivity(intent);
     }
 
+    private void processShareMatch(View itemView, Match match) {
+        Log.i(TAG, "processShareMatch: Share the match!");
+        final FragmentManager supportFragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+        new ShareMatchDialog().newInstance(match).showDialog(supportFragmentManager.findFragmentById(R.id.container));
+    }
+
     private void processDetailMatch(View itemView, Match match) {
+        Log.i(TAG, "processDetailMatch: Detail the macth!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DETAIL_MATCH);
 
@@ -203,6 +217,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
     }
 
     private void processFinishMatch(View itemView, Match match) {
+        Log.i(TAG, "processFinishMatch: Finish the match!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_FINISH_MATCH);
 
@@ -216,6 +231,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
     }
 
     private void processEditMatch(View itemView, Match match) {
+        Log.i(TAG, "processEditMatch: Edit the match!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_MATCH);
 

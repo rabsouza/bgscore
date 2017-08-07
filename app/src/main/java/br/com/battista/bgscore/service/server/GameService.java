@@ -78,7 +78,7 @@ public class GameService extends BaseService {
 
                 final GameRepository gameRepository = new GameRepository();
                 final Game gameBD = gameRepository.findByBoardGameId(boardgameId);
-                if (gameBD == null || gameBD.getVersion() == null || game.getPk() == null) {
+                if (gameBD == null || gameBD.getVersion() == null || gameBD.getPk() == null) {
                     game = new Game();
                     game.initEntity();
                 } else {

@@ -4,18 +4,26 @@ package br.com.battista.bgscore.fragment.game;
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -23,17 +31,25 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.custom.ProgressApp;
 import br.com.battista.bgscore.fragment.BaseFragment;
+import br.com.battista.bgscore.fragment.dialog.SearchGameDialog;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.repository.GameRepository;
+import br.com.battista.bgscore.service.Inject;
+import br.com.battista.bgscore.service.server.GameService;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewGameFragment extends BaseFragment {
@@ -51,6 +67,9 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtAgeGame;
     private RatingBar rtbRatingGame;
     private Switch swtMyGame;
+
+    private ImageButton btnSearchGame;
+    private EditText txtSearchNameGame;
 
     private Game game;
 
@@ -88,32 +107,74 @@ public class NewGameFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case DIALOG_SEARCH_GAME_FRAGMENT:
+                if (resultCode == Activity.RESULT_OK) {
+                    final long gameId = data.getLongExtra(BundleConstant.SEARCH_GAME_ID, 0l);
+                    Log.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
+                            gameId));
+
+                    new ProgressApp(this.getActivity(), R.string.msg_action_saving, false) {
+                        Game gameServer;
+
+                        @Override
+                        protected void onPostExecute(Boolean result) {
+                            if (gameServer == null) {
+                                AndroidUtils.snackbar(getView(), R.string.msg_game_error_add_game);
+                            } else {
+                                game = gameServer;
+                                fillGameData();
+                            }
+                            dismissProgress();
+                        }
+
+                        @Override
+                        protected Boolean doInBackground(Void... params) {
+                            final GameService gameService = Inject.provideGameService();
+                            gameServer = gameService.loadGame(gameId);
+                            return true;
+                        }
+                    }.execute();
+
+                    AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                            CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_GAME_ONLINE);
+                }
+                break;
+        }
+    }
+
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle.containsKey(BundleConstant.DATA)) {
             game = (Game) bundle.getSerializable(BundleConstant.DATA);
             game.reloadId();
 
-            txtNameGame.setText(game.getName());
-            txtUrlThumbnailGame.setText(game.getUrlThumbnail());
-            txtUrlImageGame.setText(game.getUrlImage());
-            txtUrlInfoGame.setText(game.getUrlInfo());
-            txtYearPublishedGame.setText(game.getYearPublished());
-            txtMinPlayersGame.setText(game.getMinPlayers());
-            txtMaxPlayersGame.setText(game.getMaxPlayers());
-            txtMinPlayTimeGame.setText(game.getMinPlayTime());
-            txtMaxPlayTimeGame.setText(game.getMaxPlayTime());
-            txtAgeGame.setText(game.getAge());
-            if (!Strings.isNullOrEmpty(game.getRating())) {
-                rtbRatingGame.setRating(RatingUtils.convertFrom(game.getRating()));
-            } else {
-                rtbRatingGame.setRating(0F);
-            }
-            swtMyGame.setChecked(game.isMyGame());
+            fillGameData();
         } else {
             game = new Game();
             game.initEntity();
         }
+    }
+
+    private void fillGameData() {
+        txtNameGame.setText(game.getName());
+        txtUrlThumbnailGame.setText(game.getUrlThumbnail());
+        txtUrlImageGame.setText(game.getUrlImage());
+        txtUrlInfoGame.setText(game.getUrlInfo());
+        txtYearPublishedGame.setText(game.getYearPublished());
+        txtMinPlayersGame.setText(game.getMinPlayers());
+        txtMaxPlayersGame.setText(game.getMaxPlayers());
+        txtMinPlayTimeGame.setText(game.getMinPlayTime());
+        txtMaxPlayTimeGame.setText(game.getMaxPlayTime());
+        txtAgeGame.setText(game.getAge());
+        if (!Strings.isNullOrEmpty(game.getRating())) {
+            rtbRatingGame.setRating(RatingUtils.convertFrom(game.getRating()));
+        } else {
+            rtbRatingGame.setRating(0F);
+        }
+        swtMyGame.setChecked(game.isMyGame());
     }
 
     private void finishFormAndProcessData() {
@@ -153,7 +214,7 @@ public class NewGameFragment extends BaseFragment {
         finishFormAndProcessData();
     }
 
-    private void setupDataForm(View view) {
+    private void setupDataForm(final View view) {
         Log.i(TAG, "setupDataForm: Load all form fields!");
 
         txtNameGame = view.findViewById(R.id.card_view_new_game_name);
@@ -179,6 +240,60 @@ public class NewGameFragment extends BaseFragment {
         txtAgeGame = view.findViewById(R.id.card_view_new_game_age);
         rtbRatingGame = view.findViewById(R.id.card_view_new_game_rating);
         swtMyGame = view.findViewById(R.id.card_view_new_game_my_game);
+
+        btnSearchGame = view.findViewById(R.id.card_view_game_button_search);
+        btnSearchGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewClicked) {
+                processDataSearchGame(view);
+            }
+        });
+
+        txtSearchNameGame = view.findViewById(R.id.card_view_game_search_name);
+        txtSearchNameGame.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    processDataSearchGame(view);
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void processDataSearchGame(final View viewContainer) {
+        if (Strings.isNullOrEmpty(txtSearchNameGame.getText().toString())) {
+            String msgErrorUsername = getContext().getString(R.string.msg_name_game_required);
+            AndroidUtils.changeErrorEditText(txtSearchNameGame, msgErrorUsername, true);
+            return;
+        }
+        AndroidUtils.changeErrorEditText(txtSearchNameGame);
+        final String nameGame = txtSearchNameGame.getText().toString().trim();
+
+        Log.i(TAG, "processDataSearchGame: Search game in server!");
+
+        final Fragment currentFragment = this;
+        new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {
+            ArrayList<GameResponse> gameResponses;
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                if (gameResponses.isEmpty()) {
+                    AndroidUtils.snackbar(viewContainer, R.string.msg_game_dont_found_search);
+                } else {
+                    SearchGameDialog.newInstance(gameResponses).showDialog(currentFragment);
+                }
+                dismissProgress();
+            }
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                final GameService gameService = Inject.provideGameService();
+                gameResponses = new ArrayList<>(gameService.searchGame(nameGame));
+                return true;
+            }
+        }.execute();
 
     }
 
