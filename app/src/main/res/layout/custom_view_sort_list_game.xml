@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
+                android:drawable="@color/selector_spinner"
                 android:spinnerMode="dialog"
                 android:entries="@array/sort_list_games"
                 android:prompt="@string/field_game_order_by" />

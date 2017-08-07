@@ -1,11 +1,14 @@
 package br.com.battista.bgscore.fragment;
 
+import com.google.common.base.Strings;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -25,15 +28,22 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.adpater.GameAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.repository.GameRepository;
-import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.QueryBuilderUtils;
+
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 public class GameFragment extends BaseFragment {
 
@@ -117,13 +127,18 @@ public class GameFragment extends BaseFragment {
         popupWindow.setAnimationStyle(R.style.animationPopup);
 
         spnSortList = layout.findViewById(R.id.card_view_sort_list_value);
-        final String orderBy = (String) spnSortList.getSelectedItem();
+        spnSortList.setSelected(true);
         spnSortList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            boolean ignoreFirst = Boolean.FALSE;
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(!orderBy.equals(spnSortList.getSelectedItem())){
-                    AndroidUtils.toast(getContext(), ""+spnSortList.getSelectedItem());
+                String selectedItem = (String) spnSortList.getSelectedItem();
+                if (ignoreFirst) {
+                    processNewOrderByGames(selectedItem);
                     popupWindow.dismiss();
+                } else {
+                    ignoreFirst = true;
                 }
             }
 
@@ -133,6 +148,30 @@ public class GameFragment extends BaseFragment {
         });
 
         popupWindow.showAsDropDown(viewClicked);
+    }
+
+    private void processNewOrderByGames(@NonNull String selectedItem) {
+        Log.i(TAG, "processNewOrderByGames: Process new order by!");
+
+        QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
+        String[] optionsSortList = getResources().getStringArray(R.array.sort_list_games);
+        if (selectedItem.equals(optionsSortList[2])) {
+            builder.addPropOrderBy(GameEntry.COLUMN_NAME_RATING, DESC);
+        } else if (selectedItem.equals(optionsSortList[3])) {
+            builder.addPropOrderBy(GameEntry.COLUMN_NAME_FAVORITE, DESC);
+            builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
+        } else if (selectedItem.equals(optionsSortList[4])) {
+            builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
+        }
+        builder.addPropOrderBy(COLUMN_NAME_UPDATED_AT, DESC);
+        builder.addPropOrderBy(GameEntry.COLUMN_NAME_NAME, ASC);
+
+        MainApplication instance = MainApplication.instance();
+        User user = instance.getUser();
+        user.orderByGames(builder.buildOrderBy());
+        instance.setUser(user);
+
+        loadAllGames();
     }
 
     private void setupHelpGame(View view) {
@@ -169,9 +208,14 @@ public class GameFragment extends BaseFragment {
 
     private void loadAllGames() {
         Log.i(TAG, "loadAllMatches: Load all Games in BD!");
-        List<Game> games = new GameRepository().findAll();
+        User user = MainApplication.instance().getUser();
+        List<Game> games;
+        if (Strings.isNullOrEmpty(user.getOrderByGames())) {
+            games = new GameRepository().findAll();
+        } else {
+            games = new GameRepository().findAll(user.getOrderByGames());
+        }
         recycleViewGames.setAdapter(new GameAdapter(getContext(), games));
-
     }
 
     private void setupRecycleGames(View view) {

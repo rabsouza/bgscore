@@ -267,6 +267,7 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="rating_num_stars">10</string>
     <string name="rating_step_size">1</string>
     <string-array name="sort_list_games">
+        <item>Padrão</item>
         <item>Mais recentes</item>
         <item>Melhor avaliados</item>
         <item>Favoritos</item>

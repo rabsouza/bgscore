@@ -283,4 +283,5 @@ public class User extends BaseEntity implements Serializable {
         this.orderByGames = orderByGames;
         return this;
     }
+
 }
