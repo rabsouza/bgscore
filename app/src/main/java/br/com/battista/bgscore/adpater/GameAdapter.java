@@ -36,7 +36,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-import br.com.battista.bgscore.util.PopupMenuUtils;
+import br.com.battista.bgscore.util.PopupUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
@@ -137,7 +137,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
 
             ImageView imageMoreActions = holder.getImgMoreActions();
             final PopupMenu popup = new PopupMenu(itemView.getContext(), imageMoreActions);
-            PopupMenuUtils.showPopupWindow(popup);
+            PopupUtils.showPopupWindow(popup);
             popup.getMenuInflater().inflate(R.menu.menu_actions_game, popup.getMenu());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

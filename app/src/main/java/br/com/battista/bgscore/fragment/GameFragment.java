@@ -3,6 +3,8 @@ package br.com.battista.bgscore.fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,7 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
@@ -25,6 +32,7 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.repository.GameRepository;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class GameFragment extends BaseFragment {
@@ -35,6 +43,7 @@ public class GameFragment extends BaseFragment {
     private TextView emptyMsgGames;
     private TextView errorMsgGames;
     private ImageView imgHelpGame;
+    private Spinner spnSortList;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -64,6 +73,15 @@ public class GameFragment extends BaseFragment {
             }
         });
 
+        ImageButton btnSortList = getActivity().findViewById(R.id.btn_sort_list);
+        btnSortList.setVisibility(View.VISIBLE);
+        btnSortList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewClicked) {
+                processSortListGames(view, viewClicked);
+            }
+        });
+
         FloatingActionButton fab = view.findViewById(R.id.fab_new_game);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +101,38 @@ public class GameFragment extends BaseFragment {
         setupHelpGame(view);
 
         return view;
+    }
+
+    private void processSortListGames(View view, View viewClicked) {
+        Log.i(TAG, "processSortListGames: Show sort list games!");
+
+        LayoutInflater inflater = (LayoutInflater)
+                getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.custom_view_sort_list_game, null);
+        final PopupWindow popupWindow = new PopupWindow(layout, LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setAnimationStyle(R.style.animationPopup);
+
+        spnSortList = layout.findViewById(R.id.card_view_sort_list_value);
+        final String orderBy = (String) spnSortList.getSelectedItem();
+        spnSortList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(!orderBy.equals(spnSortList.getSelectedItem())){
+                    AndroidUtils.toast(getContext(), ""+spnSortList.getSelectedItem());
+                    popupWindow.dismiss();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        popupWindow.showAsDropDown(viewClicked);
     }
 
     private void setupHelpGame(View view) {

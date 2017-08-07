@@ -84,6 +84,16 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
         return games;
     }
 
+    public List<Game> findAll(String orderBy) {
+        Log.i(TAG, "Find all Games.");
+        final List<Game> games = Select
+                .from(Game.class)
+                .orderBy(orderBy)
+                .list();
+        reloadEntity(games);
+        return games;
+    }
+
     @Override
     public void deleteAll() {
         Log.i(TAG, "Delete all Games.");

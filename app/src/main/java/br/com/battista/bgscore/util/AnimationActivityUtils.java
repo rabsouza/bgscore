@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 
-public class AnimationUtils {
+public class AnimationActivityUtils {
 
     private static final int DURATION = 250;
 

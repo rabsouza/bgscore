@@ -1,11 +1,13 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
+
+import android.support.annotation.DrawableRes;
+
 import com.orm.dsl.Column;
+import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
@@ -56,6 +58,17 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_LAST_BUILD_VERSION)
     private Integer lastBuildVersion = BuildConfig.VERSION_CODE;
+
+    @Ignore
+    private String orderByGames = null;
+
+    public String getOrderByGames() {
+        return orderByGames;
+    }
+
+    public void setOrderByGames(String orderByGames) {
+        this.orderByGames = orderByGames;
+    }
 
     public String getUsername() {
         return username;
@@ -266,4 +279,8 @@ public class User extends BaseEntity implements Serializable {
         return userCurrent;
     }
 
+    public User orderByGames(String orderByGames) {
+        this.orderByGames = orderByGames;
+        return this;
+    }
 }

@@ -44,7 +44,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-import br.com.battista.bgscore.util.PopupMenuUtils;
+import br.com.battista.bgscore.util.PopupUtils;
 
 
 public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
@@ -126,7 +126,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
 
             ImageView imageMoreActions = holder.getImgMoreActions();
             final PopupMenu popup = new PopupMenu(itemView.getContext(), imageMoreActions);
-            PopupMenuUtils.showPopupWindow(popup);
+            PopupUtils.showPopupWindow(popup);
             popup.getMenuInflater().inflate(R.menu.menu_actions_match, popup.getMenu());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

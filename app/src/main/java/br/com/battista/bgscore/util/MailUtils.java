@@ -4,13 +4,13 @@ import com.google.common.base.Strings;
 
 import java.util.regex.Pattern;
 
-public class MailUtil {
+public class MailUtils {
 
     private static final String CHAR_MAIL = "@";
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    private MailUtil() {
+    private MailUtils() {
     }
 
     public static boolean isValidEmailAddress(final String mail) {

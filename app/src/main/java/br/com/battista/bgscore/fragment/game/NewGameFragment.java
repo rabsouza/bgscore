@@ -60,7 +60,7 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtUrlThumbnailGame;
     private EditText txtUrlImageGame;
     private EditText txtUrlInfoGame;
-    private MaterialBetterSpinner txtYearPublishedGame;
+    private MaterialBetterSpinner spnYearPublishedGame;
     private EditText txtMinPlayersGame;
     private EditText txtMaxPlayersGame;
     private EditText txtMinPlayTimeGame;
@@ -165,7 +165,7 @@ public class NewGameFragment extends BaseFragment {
         txtUrlThumbnailGame.setText(game.getUrlThumbnail());
         txtUrlImageGame.setText(game.getUrlImage());
         txtUrlInfoGame.setText(game.getUrlInfo());
-        txtYearPublishedGame.setText(game.getYearPublished());
+        spnYearPublishedGame.setText(game.getYearPublished());
         txtMinPlayersGame.setText(game.getMinPlayers());
         txtMaxPlayersGame.setText(game.getMaxPlayers());
         txtMinPlayTimeGame.setText(game.getMinPlayTime());
@@ -200,7 +200,7 @@ public class NewGameFragment extends BaseFragment {
         game.urlThumbnail(txtUrlThumbnailGame.getText().toString().trim());
         game.urlImage(txtUrlImageGame.getText().toString().trim());
         game.urlInfo(txtUrlInfoGame.getText().toString().trim());
-        game.yearPublished(txtYearPublishedGame.getText().toString().trim());
+        game.yearPublished(spnYearPublishedGame.getText().toString().trim());
         game.minPlayers(txtMinPlayersGame.getText().toString().trim());
         game.maxPlayers(txtMaxPlayersGame.getText().toString().trim());
         game.minPlayTime(txtMinPlayTimeGame.getText().toString().trim());
@@ -227,16 +227,16 @@ public class NewGameFragment extends BaseFragment {
         txtUrlInfoGame = view.findViewById(R.id.card_view_new_game_url_info);
 
         final Calendar now = Calendar.getInstance();
-        ArrayList<Integer> namesHeroes = Lists.newArrayList(now.get(Calendar.YEAR));
-        for (int offset = 1; offset < 50; offset++) {
+        ArrayList<Integer> years = Lists.newArrayList(now.get(Calendar.YEAR));
+        for (int offset = 1; offset < 70; offset++) {
             now.add(Calendar.YEAR, -1);
-            namesHeroes.add(now.get(Calendar.YEAR));
+            years.add(now.get(Calendar.YEAR));
         }
         ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_dropdown_item_1line, namesHeroes);
+                android.R.layout.simple_dropdown_item_1line, years);
 
-        txtYearPublishedGame = view.findViewById(R.id.card_view_new_game_year_published);
-        txtYearPublishedGame.setAdapter(arrayAdapter);
+        spnYearPublishedGame = view.findViewById(R.id.card_view_new_game_year_published);
+        spnYearPublishedGame.setAdapter(arrayAdapter);
         txtMinPlayersGame = view.findViewById(R.id.card_view_new_game_min_players);
         txtMaxPlayersGame = view.findViewById(R.id.card_view_new_game_max_players);
         txtMinPlayTimeGame = view.findViewById(R.id.card_view_new_game_min_play_time);

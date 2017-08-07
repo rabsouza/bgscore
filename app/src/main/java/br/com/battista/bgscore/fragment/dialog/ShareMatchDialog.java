@@ -1,8 +1,9 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -19,9 +20,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import java.text.MessageFormat;
 import java.util.Calendar;
 
@@ -36,6 +34,9 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 public class ShareMatchDialog extends DialogFragment {
 
@@ -231,6 +232,14 @@ public class ShareMatchDialog extends DialogFragment {
         txtInfoTime = viewFragment.findViewById(R.id.card_view_share_match_info_time);
         txtInfoAges = viewFragment.findViewById(R.id.card_view_share_match_info_ages);
         txtInfoYear = viewFragment.findViewById(R.id.card_view_share_match_info_year);
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
     }
 
 }

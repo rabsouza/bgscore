@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.WELCOME_DIALOG_CONTENT;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -26,6 +24,8 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.DateUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.WELCOME_DIALOG_CONTENT;
 
 public class WelcomeDialog extends DialogFragment {
 
@@ -78,7 +78,7 @@ public class WelcomeDialog extends DialogFragment {
         view.setText(aboutBody);
         view.setMovementMethod(new LinkMovementMethod());
 
-        return new AlertDialog.Builder(getActivity())
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.title_welcome)
                 .setView(view)
                 .setPositiveButton(R.string.btn_ok,
@@ -94,6 +94,8 @@ public class WelcomeDialog extends DialogFragment {
                         }
                 )
                 .create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return alertDialog;
     }
 
 }

@@ -1,8 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
-
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -18,6 +17,8 @@ import android.widget.Button;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 public class ExportImportDataDialog extends DialogFragment {
 
@@ -96,6 +97,14 @@ public class ExportImportDataDialog extends DialogFragment {
             }
         });
 
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
     }
 
 }

@@ -32,6 +32,7 @@
     <string name="card_title_search_game_list">Jogos BoardgameGeek.com</string>
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação/Observações</string>
+    <string name="card_title_sort_list">Ordenação</string>
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
@@ -90,6 +91,7 @@
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da sua coleção ou busque no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
+    <string name="text_game_sort_list_info_01">*¹ Selecione uma das opções para ordenação da lista de jogos.</string>
     <string name="text_game_games_info_01">*¹ Lista com os últimos jogos cadastrados.</string>
     <string name="text_game_games_empty_view">Nenhum jogo adicionado, por favor adicione novos jogos.</string>
     <string name="text_game_games_error_view">Error ao tentar carregar a lista de jogos, favor tentar novamente.</string>
@@ -136,6 +138,7 @@
     <string name="field_url_image_new_game">Link da imagem principal (Setup/Componentes)</string>
     <string name="field_url_info_new_game">Link da página (Ludopedia ou boardgamegeek.com)</string>
     <string name="field_year_published_new_game">Ano de publicação</string>
+    <string name="field_game_order_by">Ordenador por</string>
     <string name="field_min_players_new_game">Mínimo de jogadores</string>
     <string name="field_max_players_new_game">Máximo de jogadores</string>
     <string name="field_min_play_time_new_game">Duração mínima (Mins.)</string>
@@ -263,5 +266,11 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="feedback_very_satisfied">Uma excelente partida</string>
     <string name="rating_num_stars">10</string>
     <string name="rating_step_size">1</string>
+    <string-array name="sort_list_games">
+        <item>Mais recentes</item>
+        <item>Melhor avaliados</item>
+        <item>Favoritos</item>
+        <item>Meus jogos</item>
+    </string-array>
 
 </resources>

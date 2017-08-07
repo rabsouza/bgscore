@@ -57,5 +57,6 @@
     <dimen name="dimen_profile_img_small_height">50dp</dimen>
     <dimen name="dimen_line">2px</dimen>
     <dimen name="first_column_card_width">76dp</dimen>
+    <dimen name="button_toolbar_width">32dp</dimen>
 
 </resources>

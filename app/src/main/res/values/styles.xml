@@ -127,4 +127,9 @@
         <item name="android:scaleY">1.4</item>
     </style>
 
+    <style name="animationPopup" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_on</item>
+        <item name="android:windowExitAnimation">@anim/popup_off</item>
+    </style>
+
 </resources>

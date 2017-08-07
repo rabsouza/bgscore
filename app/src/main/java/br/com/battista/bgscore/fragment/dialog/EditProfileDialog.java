@@ -1,8 +1,9 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
+import com.google.common.base.Strings;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -18,13 +19,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
-import com.google.common.base.Strings;
-
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.util.AndroidUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
 
 public class EditProfileDialog extends DialogFragment {
 
@@ -125,6 +126,14 @@ public class EditProfileDialog extends DialogFragment {
         txtUsername.setText(user.getUsername());
         txtMail = viewFragment.findViewById(R.id.dialog_view_edit_profile_mail);
         txtMail.setText(user.getMail());
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
     }
 
 }

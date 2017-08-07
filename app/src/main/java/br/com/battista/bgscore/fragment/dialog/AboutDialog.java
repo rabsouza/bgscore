@@ -54,7 +54,7 @@ public class AboutDialog extends DialogFragment {
         view.setText(aboutBody);
         view.setMovementMethod(new LinkMovementMethod());
 
-        return new AlertDialog.Builder(getActivity())
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.title_about)
                 .setView(view)
                 .setPositiveButton(R.string.btn_ok,
@@ -65,6 +65,8 @@ public class AboutDialog extends DialogFragment {
                         }
                 )
                 .create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return alertDialog;
     }
 
 }

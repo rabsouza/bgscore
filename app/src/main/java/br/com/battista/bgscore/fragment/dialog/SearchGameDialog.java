@@ -1,7 +1,8 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import com.google.common.collect.Lists;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -17,8 +18,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
-import com.google.common.collect.Lists;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +26,8 @@ import br.com.battista.bgscore.adpater.SearchGameAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.response.GameResponse;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
 public class SearchGameDialog extends DialogFragment {
 
@@ -107,6 +108,14 @@ public class SearchGameDialog extends DialogFragment {
                 dismiss();
             }
         });
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
     }
 
 }

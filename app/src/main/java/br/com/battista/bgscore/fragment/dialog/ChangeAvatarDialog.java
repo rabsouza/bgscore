@@ -1,8 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
-
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -24,6 +23,8 @@ import android.widget.Button;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.AvatarAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
 
 public class ChangeAvatarDialog extends DialogFragment {
 
@@ -55,6 +56,7 @@ public class ChangeAvatarDialog extends DialogFragment {
 
         FragmentManager fm = fragment.getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        ft.setCustomAnimations(R.anim.popup_on, R.anim.popup_off, R.anim.popup_on, R.anim.popup_off);
         Fragment prev = fm.findFragmentByTag(DIALOG_CHANGE_AVATAR);
         if (prev != null) {
             ft.remove(prev);
@@ -107,4 +109,11 @@ public class ChangeAvatarDialog extends DialogFragment {
         recyclerViewAvatars.setAdapter(avatarAdapter);
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
+    }
 }
