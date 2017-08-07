@@ -24,7 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
-            android:gravity="left"/>
+            android:ellipsize="end"
+            android:gravity="left"
+            android:maxLines="3"/>
 
         <ImageView
             android:id="@+id/card_view_games_info_my_game"

@@ -81,7 +81,7 @@ public class MatchFragment extends BaseFragment {
             }
         });
 
-        setupRecycleRanking(view);
+        setupRecycleMatches(view);
         setupHelpMath(view);
 
         return view;
@@ -125,7 +125,7 @@ public class MatchFragment extends BaseFragment {
         recycleViewMatches.setAdapter(new MatchAdapter(getContext(), matches));
     }
 
-    private void setupRecycleRanking(View view) {
+    private void setupRecycleMatches(View view) {
         recycleViewMatches = view.findViewById(R.id.card_view_matches_recycler_view);
         emptyMsgMatches = view.findViewById(R.id.card_view_matches_empty_view);
         errorMsgMatches = view.findViewById(R.id.card_view_matches_error_view);

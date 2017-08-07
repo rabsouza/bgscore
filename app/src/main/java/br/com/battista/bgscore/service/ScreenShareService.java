@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.text.MessageFormat;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.model.Match;
 
 
 public class ScreenShareService {
@@ -34,7 +33,7 @@ public class ScreenShareService {
         this.context = context;
     }
 
-    public void shareScreen(@NonNull View activity, @NonNull Match match) {
+    public void shareScreen(@NonNull View activity, String textShare) {
         String nameFile = DEFAULT_NAME_FILE.replace(KEY_NAME_FILE, String.valueOf(SystemClock.currentThreadTimeMillis()));
         Log.i(TAG, MessageFormat.format("shareScreen: Share to match in the file name: {0}.", nameFile));
 
@@ -42,10 +41,6 @@ public class ScreenShareService {
         saveImageToDisk(bitmap, nameFile);
 
         Log.i(TAG, "shareScreen: Success to save image to disk!");
-        String textShare = MessageFormat.format(
-                context.getString(R.string.hint_share_match),
-                match.getAlias(),
-                match.getGame().getName());
         shareImage(nameFile, textShare);
     }
 

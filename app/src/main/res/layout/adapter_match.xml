@@ -26,7 +26,9 @@
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/dimen_feedback_img_width"
             android:drawableLeft="@drawable/ic_matches"
+            android:ellipsize="end"
             android:gravity="left|center_vertical"
+            android:maxLines="3"
             tools:text="Partida CN"/>
 
         <ImageView
@@ -64,7 +66,9 @@
             android:layout_below="@id/card_view_match_info_line"
             android:layout_margin="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_match_info_image"
+            android:ellipsize="end"
             android:gravity="center_vertical"
+            android:maxLines="3"
             tools:text="Five Tribes"/>
 
         <TextView

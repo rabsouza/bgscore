@@ -29,6 +29,7 @@
     <string name="card_title_new_match">Minha partida</string>
     <string name="card_title_new_game">Meu jogo</string>
     <string name="card_title_search_game">Buscar um jogo</string>
+    <string name="card_title_search_game_list">Jogos BoardgameGeek.com</string>
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação/Observações</string>
 
@@ -41,7 +42,7 @@
     <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar sua partida.</string>
     <string name="hint_text_detail_finish_match">*¹ Preencha os dados abaixo para finalizar a partida.</string>
     <string name="hint_text_detail_feedback_match">*¹ Selecione uma avaliação para sua partida (Avaliação Normal será a padrão).</string>
-    <string name="hint_share_match">Veja os detalhes da minha partida {0} do jogo {1}. Compartilhado via app BGScore!!!</string>
+    <string name="hint_share_match">Veja a minha partida {0}!!!</string>
     <string name="hint_title_share_match">Detalhes da partida</string>
 
     <!-- ################### HINT #################### -->
@@ -52,9 +53,14 @@
     <string name="msg_alias_match_required">Nome/Apelido da partida é obrigatório!</string>
     <string name="msg_game_required">Você deve selecionar pelo menos 1 jogo para salvar/editar essa partida!</string>
     <string name="msg_mail_required">E-mail é obrigatório!</string>
-    <string name="msg_game_dont_found">Não foi possível localizar o jogo, por favor adicione link da página do jogo!</string>
+    <string name="msg_game_dont_found_open">Não foi possível localizar o jogo, por favor adicione link da página do jogo!</string>
+    <string name="msg_game_dont_found_search">Não foi possível localizar o jogo, por favor tente novamente!</string>
+    <string name="msg_game_error_add_game">Erro ao tentar adicionar um novo jogo. Por favor tente novamente.</string>
     <string name="msg_error_game_with_partner">Erro ao tentar excluir o jogo %1$s! Verifique se existe partidas associadas ao jogo.</string>
+    <string name="msg_error_add_search_game">Erro ao tentar adicionar um novo jogo. Por favor tente novamente.</string>
     <string name="msg_share_detail_match">Gerando a imagem para o compartilhamento, por favor aguarde.</string>
+    <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
+    <string name="msg_action_saving">Aguarde! Salvando dados&#8230;</string>
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>
@@ -80,6 +86,7 @@
     <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
     <string name="text_match_players_winners_info_01">*¹ Selecione os jogadores ganhadores desta partida.</string>
     <string name="text_match_players_obs_info_01">*¹ Preencha o campo abaixo com as observações/anotações desta partida.</string>
+    <string name="text_match_search_game_info_01">*¹ Busque um jogo a partir do site boardgamegeek.com.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da sua coleção ou busque no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
@@ -113,6 +120,7 @@
     <string name="text_dialog_import_data_user">Importar os dados para o seu úsuario?</string>
     <string name="text_dialog_export_data_db">Exportar os dados da sua coleção e das partidas cadastradas?</string>
     <string name="text_dialog_import_data_db">Importar os dados para sua coleção e partidas?</string>
+    <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a sua coleção/partida.</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
@@ -142,6 +150,7 @@
     <string name="alert_confirmation_dialog_text_remove_friend">Deseja remover o amigo(a) {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? \nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_match">Deseja remover a partida {0}? \n\nEssa operação não pode ser revetida.</string>
+    <string name="alert_confirmation_dialog_text_add_game">Deseja deseja adicionar o jogo {0}? \n\nO jogo será adicionado a sua coleção.</string>
 
     <!-- ################### ELEMENTS #################### -->
     <string name="btn_login">ENTRAR</string>
@@ -156,6 +165,7 @@
     <string name="btn_confirmation_dialog_cancel">CANCELAR</string>
     <string name="btn_confirmation_dialog_delete">EXCLUIR</string>
     <string name="btn_confirmation_dialog_remove">REMOVER</string>
+    <string name="btn_confirmation_dialog_add">ADICIONAR</string>
     <string name="btn_confirmation_dialog_play">JOGAR</string>
     <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
     <string name="btn_change_avatar">TROCAR AVATAR</string>

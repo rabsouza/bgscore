@@ -174,7 +174,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
             intent.setData(Uri.parse(game.getUrlInfo()));
             itemView.getContext().startActivity(intent);
         } else {
-            AndroidUtils.snackbar(itemView, itemView.getContext().getText(R.string.msg_game_dont_found).toString());
+            AndroidUtils.snackbar(itemView, itemView.getContext().getText(R.string.msg_game_dont_found_open).toString());
         }
     }
 

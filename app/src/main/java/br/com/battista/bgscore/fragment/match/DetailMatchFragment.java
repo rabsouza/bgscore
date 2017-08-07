@@ -107,7 +107,7 @@ public class DetailMatchFragment extends BaseFragment {
             }
         });
 
-        setupRecycleViewPlayers(view);
+        setupRecycleViewPlayersAndWinners(view);
         setupDataForm(view);
 
         processDataFragment(view, getArguments());
@@ -213,7 +213,7 @@ public class DetailMatchFragment extends BaseFragment {
         }
     }
 
-    private void setupRecycleViewPlayers(View view) {
+    private void setupRecycleViewPlayersAndWinners(View view) {
         cardViewPlayers = view.findViewById(R.id.card_view_players);
         recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
         recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
