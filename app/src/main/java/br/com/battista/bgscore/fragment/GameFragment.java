@@ -152,6 +152,8 @@ public class GameFragment extends BaseFragment {
 
     private void processNewOrderByGames(@NonNull String selectedItem) {
         Log.i(TAG, "processNewOrderByGames: Process new order by!");
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SORT_LIST_GAME);
 
         QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
         String[] optionsSortList = getResources().getStringArray(R.array.sort_list_games);
