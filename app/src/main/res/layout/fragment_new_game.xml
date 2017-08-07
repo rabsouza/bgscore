@@ -152,7 +152,7 @@
                             android:hint="@string/field_name_new_game"
                             android:imeOptions="actionNext"
                             android:inputType="textAutoComplete"
-                            android:maxLength="50"
+                            android:maxLength="60"
                             android:maxLines="1"/>
 
                     </android.support.design.widget.TextInputLayout>
