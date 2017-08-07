@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,9 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
+import android.widget.RelativeLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,6 +38,8 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupMenuUtils;
 import br.com.battista.bgscore.util.RatingUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
@@ -122,6 +123,16 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                 holder.getImgMyGame().setVisibility(View.VISIBLE);
             } else {
                 holder.getImgMyGame().setVisibility(View.GONE);
+
+                RelativeLayout.LayoutParams layoutParams =
+                        (RelativeLayout.LayoutParams) holder.getImgFavorite().getLayoutParams();
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            }
+
+            if (game.isFavorite()) {
+                holder.getImgFavorite().setVisibility(View.VISIBLE);
+            } else {
+                holder.getImgFavorite().setVisibility(View.GONE);
             }
 
             ImageView imageMoreActions = holder.getImgMoreActions();

@@ -104,6 +104,7 @@
     <string name="text_legend_game_sort_list">Lista ordenada pela data de alteração do jogo em ordem decrescente.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
     <string name="text_legend_game_my_game">Indicador para jogo da sua coleção.</string>
+    <string name="text_legend_game_favorite">Indicador para jogo favorito.</string>
     <string name="text_legend_match_match">Nome/Apelido da partida.</string>
     <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão jogando a partida.</string>
@@ -129,7 +130,8 @@
     <string name="field_mail">E-mail do seu usuário</string>
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
     <string name="field_name_new_game">Nome do jogo</string>
-    <string name="field_name_new_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
+    <string name="field_is_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
+    <string name="field_is_favorite_game">Esse jogo é favorito?</string>
     <string name="field_url_thumbnail_new_game">Link da imagem miniatura</string>
     <string name="field_url_image_new_game">Link da imagem principal (Setup/Componentes)</string>
     <string name="field_url_info_new_game">Link da página (Ludopedia ou boardgamegeek.com)</string>

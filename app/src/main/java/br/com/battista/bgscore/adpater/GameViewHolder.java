@@ -19,6 +19,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
     private RatingBar rtbInfoRating;
     private ImageView imgMoreActions;
     private ImageView imgMyGame;
+    private ImageView imgFavorite;
 
     public GameViewHolder(View view) {
         super(view);
@@ -32,6 +33,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         rtbInfoRating = view.findViewById(R.id.card_view_games_info_rating);
         imgMoreActions = view.findViewById(R.id.card_view_games_more_actions);
         imgMyGame = view.findViewById(R.id.card_view_games_info_my_game);
+        imgFavorite = view.findViewById(R.id.card_view_games_info_favorite);
     }
 
     public ImageView getImgInfoGame() {
@@ -69,4 +71,9 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
     public ImageView getImgMyGame() {
         return imgMyGame;
     }
+
+    public ImageView getImgFavorite() {
+        return imgFavorite;
+    }
+
 }

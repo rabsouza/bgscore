@@ -54,7 +54,7 @@ public class Game extends BaseEntity implements Serializable {
     private Boolean myGame = Boolean.TRUE;
 
     @Column(name = GameEntry.COLUMN_NAME_FAVORITE)
-    private Boolean favorite = Boolean.TRUE;
+    private Boolean favorite = Boolean.FALSE;
 
     public String getName() {
         return name;
@@ -160,7 +160,7 @@ public class Game extends BaseEntity implements Serializable {
         this.myGame = myGame;
     }
 
-    public Boolean getFavorite() {
+    public Boolean isFavorite() {
         return favorite;
     }
 

@@ -1,10 +1,8 @@
 package br.com.battista.bgscore.fragment.game;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,8 +23,6 @@ import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,6 +48,11 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();
 
@@ -67,6 +68,7 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtAgeGame;
     private RatingBar rtbRatingGame;
     private Switch swtMyGame;
+    private Switch swtFavorite;
 
     private ImageButton btnSearchGame;
     private EditText txtSearchNameGame;
@@ -175,6 +177,7 @@ public class NewGameFragment extends BaseFragment {
             rtbRatingGame.setRating(0F);
         }
         swtMyGame.setChecked(game.isMyGame());
+        swtFavorite.setChecked(game.isFavorite());
     }
 
     private void finishFormAndProcessData() {
@@ -205,6 +208,7 @@ public class NewGameFragment extends BaseFragment {
         game.age(txtAgeGame.getText().toString().trim());
         game.rating(RatingUtils.convertTo(rtbRatingGame.getRating()));
         game.myGame(swtMyGame.isChecked());
+        game.favorite(swtFavorite.isChecked());
 
         Log.i(TAG, "fillDataAndSave: Save the data in BD.");
         new GameRepository().save(game);
@@ -240,6 +244,7 @@ public class NewGameFragment extends BaseFragment {
         txtAgeGame = view.findViewById(R.id.card_view_new_game_age);
         rtbRatingGame = view.findViewById(R.id.card_view_new_game_rating);
         swtMyGame = view.findViewById(R.id.card_view_new_game_my_game);
+        swtFavorite = view.findViewById(R.id.card_view_new_game_favorite);
 
         btnSearchGame = view.findViewById(R.id.card_view_game_button_search);
         btnSearchGame.setOnClickListener(new View.OnClickListener() {

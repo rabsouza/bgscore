@@ -41,6 +41,7 @@
         android:drawablePadding="@dimen/element_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
+        android:visibility="gone"
         android:text="@string/text_legend_game_my_game"/>
 
     <TextView
