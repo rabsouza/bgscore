@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_matches"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_matches"/>
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_game_date"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_date"/>
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_checked"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_my_game"
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_match_time"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_time"/>
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_sort_list"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_sort_list"/>

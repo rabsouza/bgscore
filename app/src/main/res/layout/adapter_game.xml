@@ -63,6 +63,7 @@
             android:layout_below="@id/card_view_games_info_name"
             android:layout_margin="@dimen/element_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
+            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_game_players"
             android:gravity="center_vertical"/>
 
@@ -76,6 +77,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/element_margin"
             android:layout_toRightOf="@id/card_view_games_info_players"
+            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_game_time"
             android:gravity="center_vertical"/>
 
@@ -89,6 +91,7 @@
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
+            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_game_age"
             android:gravity="center_vertical"/>
 
@@ -101,6 +104,7 @@
             android:layout_marginBottom="@dimen/element_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/card_view_games_info_ages"
+            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_game_date_year"
             android:gravity="center_vertical"/>
 

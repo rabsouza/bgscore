@@ -44,7 +44,6 @@ import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.DETAIL_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
@@ -89,17 +88,17 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                         holder.getImgInfoGame());
             }
 
-            holder.getTxtInfoAlias().setText(SPACE_DRAWABLE + match.getAlias());
+            holder.getTxtInfoAlias().setText(match.getAlias());
             holder.getTxtInfoNameGame().setText(game.getName());
 
             final Calendar createdAt = Calendar.getInstance();
             createdAt.setTime(match.getCreatedAt());
-            holder.getTxtInfoMatchDate().setText(SPACE_DRAWABLE + DateUtils.format(createdAt));
-            holder.getTxtInfoPlayers().setText(SPACE_DRAWABLE + match.getPlayers().size());
+            holder.getTxtInfoMatchDate().setText(DateUtils.format(createdAt));
+            holder.getTxtInfoPlayers().setText("0" +match.getPlayers().size());
             if (match.getDuration() == null) {
                 holder.getTxtInfoDuration().setText("00:00");
             } else {
-                holder.getTxtInfoDuration().setText(SPACE_DRAWABLE +
+                holder.getTxtInfoDuration().setText(
                         DateUtils.formatTime(match.getDuration()));
             }
             if (match.isFinished()) {

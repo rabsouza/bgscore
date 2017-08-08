@@ -6,9 +6,9 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -26,11 +26,11 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.adpater.PlayerAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.BaseFragment;
+import br.com.battista.bgscore.fragment.dialog.ShareMatchFullDialog;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
@@ -39,10 +39,6 @@ import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 
 public class DetailMatchFragment extends BaseFragment {
 
@@ -61,7 +57,6 @@ public class DetailMatchFragment extends BaseFragment {
     private TextView txtInfoPlayers;
     private TextView txtInfoAges;
     private TextView txtInfoYear;
-    private CardView cardViewPlayers;
     private RecycleEmptyErrorView recycleViewPlayers;
     private CardView cardViewPlayersWinners;
     private RecycleEmptyErrorView recycleViewPlayersWinners;
@@ -91,19 +86,13 @@ public class DetailMatchFragment extends BaseFragment {
 
         final View view = inflater.inflate(R.layout.fragment_detail_match, container, false);
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_done_detail_match);
+        final Fragment currentFragment = this;
+        FloatingActionButton fab = view.findViewById(R.id.fab_share_detail_match);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View viewClicked) {
-                finishFormAndProcessData();
-
-                // TODO Validar com alguém porque do error
-                //AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                //        ValueActions.VALUE_ACTION_CLICK_BUTTON_SHARE_MATCH);
-                //
-                //new ScreenShareService(getContext()).shareScreen(containerDetailMatch, match);
-                //AndroidUtils.snackbar(getView(), R.string.msg_share_detail_match);
-
+                Log.i(TAG, "processShareMatch: Share the match!");
+                new ShareMatchFullDialog().newInstance(match).showDialog(currentFragment);
             }
         });
 
@@ -113,15 +102,6 @@ public class DetailMatchFragment extends BaseFragment {
         processDataFragment(view, getArguments());
         loadDataPlayers();
         return view;
-    }
-
-    private void finishFormAndProcessData() {
-        Bundle args = new Bundle();
-        args.putInt(NAVIGATION_TO, MATCH_FRAGMENT);
-        Intent intent = new Intent(getContext(), HomeActivity.class);
-        intent.putExtras(args);
-
-        getContext().startActivity(intent);
     }
 
     private void loadDataPlayers() {
@@ -216,7 +196,6 @@ public class DetailMatchFragment extends BaseFragment {
     }
 
     private void setupRecycleViewPlayersAndWinners(View view) {
-        cardViewPlayers = view.findViewById(R.id.card_view_players);
         recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
         recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
@@ -273,23 +252,23 @@ public class DetailMatchFragment extends BaseFragment {
         txtInfoName.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getName()), "-"));
 
-        txtInfoYear.setText(SPACE_DRAWABLE +
+        txtInfoYear.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getYearPublished()), "****"));
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayers())) {
-            txtInfoPlayers.setText(MessageFormat.format(" {0}",
+            txtInfoPlayers.setText(MessageFormat.format("{0}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1")));
         } else {
-            txtInfoPlayers.setText(MessageFormat.format(" {0}-{1}",
+            txtInfoPlayers.setText(MessageFormat.format("{0}-{1}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayers()), "*")));
         }
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayTime())) {
-            txtInfoTime.setText(MessageFormat.format(" {0}´",
+            txtInfoTime.setText(MessageFormat.format("{0}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "∞")));
         } else {
-            txtInfoTime.setText(MessageFormat.format(" {0}-{1}´",
+            txtInfoTime.setText(MessageFormat.format("{0}-{1}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "*"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayTime()), "∞")));
         }
@@ -297,7 +276,7 @@ public class DetailMatchFragment extends BaseFragment {
         if (Strings.isNullOrEmpty(gameSelected.getAge())) {
             txtInfoAges.setText("-");
         } else {
-            txtInfoAges.setText(MessageFormat.format(" {0}+", gameSelected.getAge()));
+            txtInfoAges.setText(MessageFormat.format("{0}+", gameSelected.getAge()));
         }
 
         cardViewGame.setVisibility(View.VISIBLE);

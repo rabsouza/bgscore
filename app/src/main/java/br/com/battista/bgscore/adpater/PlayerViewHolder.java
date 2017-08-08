@@ -12,6 +12,7 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder {
 
     private TextView txtTitle;
     private ImageView imgAvatar;
+    private ImageView imgWinner;
     private ImageButton btnRemove;
 
     public PlayerViewHolder(View view) {
@@ -20,6 +21,7 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder {
         txtTitle = view.findViewById(R.id.card_view_player_title);
         btnRemove = view.findViewById(R.id.card_view_player_remove);
         imgAvatar = view.findViewById(R.id.card_view_player_img);
+        imgWinner = view.findViewById(R.id.card_view_player_winner_img);
     }
 
     public TextView getTxtTitle() {
@@ -32,6 +34,10 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder {
 
     public ImageButton getBtnRemove() {
         return btnRemove;
+    }
+
+    public ImageView getImgWinner() {
+        return imgWinner;
     }
 
 }

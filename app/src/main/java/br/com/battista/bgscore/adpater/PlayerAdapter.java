@@ -20,9 +20,6 @@ import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
-
 public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
 
     private static final String TAG = PlayerAdapter.class.getSimpleName();
@@ -68,18 +65,24 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             Log.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, player));
 
-            holder.getTxtTitle().setText(SPACE_DRAWABLE + player.getName());
+            holder.getTxtTitle().setText(player.getName());
+            int colorPlayer = AndroidUtils.generateRandomColor();
             TypePlayerEnum typePlayer = player.getTypePlayer();
-            if(showWinner && player.isWinner()){
-                holder.getImgAvatar().setImageResource(R.drawable.ic_winner);
-            }else if (typePlayer == null || TypePlayerEnum.PLAYER.equals(typePlayer)) {
+            if (showWinner && player.isWinner()) {
+                holder.getImgWinner().setImageResource(R.drawable.ic_winner);
+                holder.getImgWinner().setColorFilter(colorPlayer);
+            } else {
+                holder.getImgWinner().setVisibility(View.GONE);
+            }
+
+            if (typePlayer == null || TypePlayerEnum.PLAYER.equals(typePlayer)) {
                 holder.getImgAvatar().setImageResource(R.drawable.ic_player);
             } else if (TypePlayerEnum.FRIEND.equals(typePlayer)) {
                 holder.getImgAvatar().setImageResource(R.drawable.ic_friend);
             } else if (TypePlayerEnum.USER.equals(typePlayer)) {
                 holder.getImgAvatar().setImageResource(R.drawable.ic_username);
             }
-            holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
+            holder.getImgAvatar().setColorFilter(colorPlayer);
 
             if (allowsDelete) {
                 final int positionRemoved = holder.getAdapterPosition();

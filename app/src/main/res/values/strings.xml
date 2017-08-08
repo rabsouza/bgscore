@@ -23,6 +23,7 @@
     <string name="card_title_matches">Minhas partidas</string>
     <string name="card_title_players">Jogadores/Amigos</string>
     <string name="card_title_players_winners">Ganhadores</string>
+    <string name="card_title_players_with_winners">Jogadores/Ganhadores</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
     <string name="card_title_my_ranking_game">Meu ranking de jogos</string>
@@ -44,6 +45,7 @@
     <string name="hint_text_detail_finish_match">*¹ Preencha os dados abaixo para finalizar a partida.</string>
     <string name="hint_text_detail_feedback_match">*¹ Selecione uma avaliação para sua partida (Avaliação Normal será a padrão).</string>
     <string name="hint_share_match">Veja a minha partida {0}!!!</string>
+    <string name="hint_share_match_full">Veja os detalhes da minha partida {0} do jogo {1}!!!</string>
     <string name="hint_title_share_match">Detalhes da partida</string>
 
     <!-- ################### HINT #################### -->

@@ -1,15 +1,12 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-import static com.google.common.base.MoreObjects.firstNonNull;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.common.base.Strings;
 
 import java.util.Calendar;
 import java.util.List;
@@ -19,6 +16,8 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+
+import static com.google.common.base.MoreObjects.firstNonNull;
 
 
 public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHolder> {
@@ -68,15 +67,15 @@ public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHo
             holder.getImgMyGame().setVisibility(View.GONE);
 
             holder.getTxtInfoCountMatches()
-                    .setText(SPACE_DRAWABLE + firstNonNull(rankingGames.getCount(), 0));
+                    .setText("" + firstNonNull(rankingGames.getCount(), 0));
 
             holder.getTxtInfoSumTime()
-                    .setText(SPACE_DRAWABLE +
+                    .setText(
                             DateUtils.formatTime(firstNonNull(rankingGames.getDuration(), 0L)));
 
             Calendar lastPlayed = Calendar.getInstance();
             lastPlayed.setTime(rankingGames.getLastPlayed());
-            holder.getTxtInfoLastPlayed().setText(SPACE_DRAWABLE + DateUtils.format(lastPlayed));
+            holder.getTxtInfoLastPlayed().setText(DateUtils.format(lastPlayed));
 
             if (game.getRating() == null) {
                 holder.getRtbInfoRating().setRating(0F);

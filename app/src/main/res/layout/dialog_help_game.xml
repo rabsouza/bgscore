@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_game_players"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_players"/>
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_game_time"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_time"/>
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_game_age"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_age"/>
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_game_date_year"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_year"/>
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_checked"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_my_game"/>
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_favorite"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_favorite"/>
@@ -84,7 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_sort_list"
-        android:drawablePadding="@dimen/element_padding"
+        android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:padding="@dimen/element_padding"
         android:text="@string/text_legend_game_sort_list"/>

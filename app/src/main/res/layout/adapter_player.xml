@@ -19,12 +19,24 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/card_view_player_winner_img"
+            android:layout_width="@dimen/item_view_img_width"
+            android:layout_height="@dimen/item_view_img_height"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/element_vertical_margin"
+            android:paddingTop="@dimen/element_vertical_margin"
+            android:paddingLeft="@dimen/element_horizontal_margin"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_winner"/>
+
+        <ImageView
             android:id="@+id/card_view_player_img"
             android:layout_width="@dimen/item_view_img_width"
             android:layout_height="@dimen/item_view_img_height"
             android:layout_centerVertical="true"
             android:padding="@dimen/element_padding"
             android:scaleType="fitCenter"
+            android:layout_toRightOf="@id/card_view_player_winner_img"
             app:srcCompat="@drawable/ic_player"/>
 
         <ImageButton

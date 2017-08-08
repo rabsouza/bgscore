@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.custom;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -65,13 +63,14 @@ public class ScoreboardView extends LinearLayout {
         addView(scoreView);
 
         labelView = new TextView(getContext());
-        labelView.setText(SPACE_DRAWABLE + label);
+        labelView.setText(label);
         labelView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
         if (iconView != 0) {
-            labelView.setCompoundDrawablePadding(0);
+            labelView.setCompoundDrawablePadding(
+                    getResources().getDimensionPixelSize(R.dimen.drawable_padding));
             labelView.setCompoundDrawablesWithIntrinsicBounds(iconView, 0, 0, 0);
         }
-        setStyle(labelView, R.style.CardTextStyle);
+        setStyle(labelView, R.style.CardHeadStyle);
         addView(labelView);
 
         scoreView.setWidth(labelView.getMeasuredWidthAndState());

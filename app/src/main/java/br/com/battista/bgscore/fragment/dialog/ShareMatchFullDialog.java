@@ -2,6 +2,8 @@ package br.com.battista.bgscore.fragment.dialog;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,25 +27,30 @@ import android.widget.TextView;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.adpater.PlayerAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.service.ScreenShareService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
 
-public class ShareMatchDialog extends DialogFragment {
+public class ShareMatchFullDialog extends DialogFragment {
 
-    public static final String DIALOG_SHARE_MATCH = "dialog_share_match";
-    private static final String TAG = ShareMatchDialog.class.getSimpleName();
+    public static final String DIALOG_SHARE_MATCH_FULL = "dialog_share_match_full";
+    private static final String TAG = ShareMatchFullDialog.class.getSimpleName();
     private Button btnCancel;
     private Button btnShare;
     private Match match;
@@ -49,7 +58,6 @@ public class ShareMatchDialog extends DialogFragment {
     private ImageView imgInfoGame;
     private TextView txtInfoTime;
     private TextView txtInfoPlayers;
-    private TextView txtInfoPlayersMatch;
     private TextView txtInfoAges;
     private TextView txtInfoYear;
     private TextView txtInfoAlias;
@@ -58,14 +66,18 @@ public class ShareMatchDialog extends DialogFragment {
     private TextView txtInfoNameGame;
     private TextView txtInfoMatchDate;
     private TextView txtInfoDuration;
+    private TextView txtFeedbackObs;
 
     private CardView cardContent;
 
-    public ShareMatchDialog() {
+    private final List<Player> players = Lists.newLinkedList();
+    private RecycleEmptyErrorView recycleViewPlayers;
+
+    public ShareMatchFullDialog() {
     }
 
-    public static ShareMatchDialog newInstance(Match match) {
-        ShareMatchDialog fragment = new ShareMatchDialog();
+    public static ShareMatchFullDialog newInstance(Match match) {
+        ShareMatchFullDialog fragment = new ShareMatchFullDialog();
         Bundle args = new Bundle();
         args.putSerializable(BundleConstant.DATA, match);
         fragment.setArguments(args);
@@ -75,24 +87,25 @@ public class ShareMatchDialog extends DialogFragment {
     public void showDialog(@NonNull Fragment fragment) {
         Log.i(TAG, "showAbout: Show dialog share match!");
 
-        setTargetFragment(fragment, DIALOG_SHARE_MATCH_FRAGMENT);
+        setTargetFragment(fragment, DIALOG_SHARE_MATCH_FULL_FRAGMENT);
 
         FragmentManager fm = fragment.getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment prev = fm.findFragmentByTag(DIALOG_SHARE_MATCH);
+        Fragment prev = fm.findFragmentByTag(DIALOG_SHARE_MATCH_FULL);
         if (prev != null) {
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        show(ft, DIALOG_SHARE_MATCH);
+        show(ft, DIALOG_SHARE_MATCH_FULL);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View viewFragment = inflater.inflate(R.layout.dialog_share_match, container, false);
+        View viewFragment = inflater.inflate(R.layout.dialog_share_match_full, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         loadViews(viewFragment);
+        setupRecycleViewPlayers(viewFragment);
 
         processDataFragment(viewFragment, getArguments());
         return viewFragment;
@@ -112,6 +125,13 @@ public class ShareMatchDialog extends DialogFragment {
         loadDataMatch();
     }
 
+    private void setupRecycleViewPlayers(View view) {
+        recycleViewPlayers = view.findViewById(R.id.card_view_players_recycler_view);
+        recycleViewPlayers.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycleViewPlayers.setItemAnimator(new DefaultItemAnimator());
+        recycleViewPlayers.setHasFixedSize(true);
+    }
+
     private void loadDataMatch() {
         Log.i(TAG, "loadDataMatch: Load data match");
 
@@ -126,6 +146,16 @@ public class ShareMatchDialog extends DialogFragment {
                     urlThumbnail,
                     imgInfoGame);
         }
+
+        players.addAll(match.getPlayers());
+        Collections.sort(players, new Ordering<Player>() {
+            @Override
+            public int compare(Player left, Player right) {
+                return left.compareTo(right);
+            }
+        });
+        recycleViewPlayers.setAdapter(new PlayerAdapter(getContext(),
+                players, false, false, true));
 
         txtInfoNameGame.setText(game.getName());
         txtInfoYear.setText(
@@ -160,7 +190,6 @@ public class ShareMatchDialog extends DialogFragment {
         final Calendar createdAt = Calendar.getInstance();
         createdAt.setTime(match.getCreatedAt());
         txtInfoMatchDate.setText(DateUtils.format(createdAt));
-        txtInfoPlayersMatch.setText("" + match.getPlayers().size());
 
         if (match.getDuration() == null) {
             txtInfoDuration.setText("00:00´");
@@ -206,14 +235,20 @@ public class ShareMatchDialog extends DialogFragment {
                 txtInfoFeedback.setTextColor(colorFeedbackSatisfied);
                 break;
         }
+
+        if (!Strings.isNullOrEmpty(match.getObs())) {
+            txtFeedbackObs.setText(match.getObs());
+        } else {
+            txtFeedbackObs.setVisibility(View.GONE);
+        }
     }
 
     private void loadViews(final View viewFragment) {
         Log.i(TAG, "loadViews: load all views!");
 
-        cardContent = viewFragment.findViewById(R.id.card_view_share_match_info);
+        cardContent = viewFragment.findViewById(R.id.card_view_share_match_full_info);
 
-        btnCancel = viewFragment.findViewById(R.id.share_match_btn_cancel);
+        btnCancel = viewFragment.findViewById(R.id.share_match_full_btn_cancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,16 +256,16 @@ public class ShareMatchDialog extends DialogFragment {
             }
         });
 
-        btnShare = viewFragment.findViewById(R.id.share_match_btn_share);
+        btnShare = viewFragment.findViewById(R.id.share_match_full_btn_share);
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                        ValueActions.VALUE_ACTION_CLICK_BUTTON_SHARE_MATCH);
+                        ValueActions.VALUE_ACTION_CLICK_BUTTON_SHARE_MATCH_FULL);
 
                 String textShare = MessageFormat.format(
-                        viewFragment.getContext().getString(R.string.hint_share_match),
-                        match.getAlias());
+                        viewFragment.getContext().getString(R.string.hint_share_match_full),
+                        match.getAlias(), match.getGame().getName());
 
                 new ScreenShareService(viewFragment.getContext()).shareScreen(cardContent, textShare);
                 AndroidUtils.toast(viewFragment.getContext(), R.string.msg_share_detail_match);
@@ -239,18 +274,18 @@ public class ShareMatchDialog extends DialogFragment {
             }
         });
 
-        txtInfoAlias = viewFragment.findViewById(R.id.card_view_share_match_info_alias);
-        imgInfoGame = viewFragment.findViewById(R.id.card_view_share_match_info_image);
-        imgInfoFeedback = viewFragment.findViewById(R.id.card_view_share_match_info_feedback);
-        txtInfoFeedback = viewFragment.findViewById(R.id.card_view_share_match_info_feedback_text);
-        txtInfoNameGame = viewFragment.findViewById(R.id.card_view_share_match_info_name_game);
-        txtInfoMatchDate = viewFragment.findViewById(R.id.card_view_share_match_info_date);
-        txtInfoPlayers = viewFragment.findViewById(R.id.card_view_share_match_info_players);
-        txtInfoPlayersMatch = viewFragment.findViewById(R.id.card_view_share_match_info_players_match);
-        txtInfoDuration = viewFragment.findViewById(R.id.card_view_share_match_info_duration);
-        txtInfoTime = viewFragment.findViewById(R.id.card_view_share_match_info_time);
-        txtInfoAges = viewFragment.findViewById(R.id.card_view_share_match_info_ages);
-        txtInfoYear = viewFragment.findViewById(R.id.card_view_share_match_info_year);
+        txtInfoAlias = viewFragment.findViewById(R.id.card_view_share_match_full_info_alias);
+        imgInfoGame = viewFragment.findViewById(R.id.card_view_share_match_full_info_image);
+        imgInfoFeedback = viewFragment.findViewById(R.id.card_view_share_match_full_info_feedback);
+        txtInfoFeedback = viewFragment.findViewById(R.id.card_view_share_match_full_info_feedback_text);
+        txtFeedbackObs = viewFragment.findViewById(R.id.card_view_share_match_full_obs_value);
+        txtInfoNameGame = viewFragment.findViewById(R.id.card_view_share_match_full_info_name_game);
+        txtInfoMatchDate = viewFragment.findViewById(R.id.card_view_share_match_full_info_date);
+        txtInfoPlayers = viewFragment.findViewById(R.id.card_view_share_match_full_info_players);
+        txtInfoDuration = viewFragment.findViewById(R.id.card_view_share_match_full_info_duration);
+        txtInfoTime = viewFragment.findViewById(R.id.card_view_share_match_full_info_time);
+        txtInfoAges = viewFragment.findViewById(R.id.card_view_share_match_full_info_ages);
+        txtInfoYear = viewFragment.findViewById(R.id.card_view_share_match_full_info_year);
     }
 
     @NonNull

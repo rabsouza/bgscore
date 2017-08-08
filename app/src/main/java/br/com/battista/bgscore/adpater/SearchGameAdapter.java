@@ -26,8 +26,6 @@ import br.com.battista.bgscore.fragment.dialog.SearchGameDialog;
 import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.util.AndroidUtils;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 
 public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder> {
     private static final String TAG = SearchGameAdapter.class.getSimpleName();
@@ -62,7 +60,7 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), " - "));
 
             if (game.getYearPublished() != null) {
-                holder.getTxtInfoYear().setText(SPACE_DRAWABLE + game.getYearPublished());
+                holder.getTxtInfoYear().setText(game.getYearPublished());
             } else {
                 holder.getTxtInfoYear().setVisibility(View.GONE);
             }

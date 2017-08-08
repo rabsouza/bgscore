@@ -49,29 +49,29 @@
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/element_vertical_margin">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:weightSum="2">
+
+            <Button
+                    android:id="@+id/dialog_view_change_avatar_btn_cancel"
+                    style="@style/ButtonStyleWithBorder"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_cancel"/>
 
             <Button
                 android:id="@+id/dialog_view_change_avatar_btn_confirm"
                 style="@style/ButtonStyleActive"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:text="@string/btn_confirm"/>
 
-            <Button
-                android:id="@+id/dialog_view_change_avatar_btn_cancel"
-                style="@style/ButtonStyleWithBorder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/dialog_view_change_avatar_btn_confirm"
-                android:text="@string/btn_cancel"/>
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

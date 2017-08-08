@@ -21,8 +21,6 @@ import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
 
@@ -66,7 +64,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             Log.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, friendDto));
 
-            holder.getTxtTitle().setText(SPACE_DRAWABLE + friendDto.getUsername());
+            holder.getTxtTitle().setText(friendDto.getUsername());
             holder.getImgAvatar().setImageResource(friendDto.getIdResAvatar());
 
             holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
