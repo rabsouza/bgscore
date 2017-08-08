@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import java.text.MessageFormat;
 import java.util.List;

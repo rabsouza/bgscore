@@ -1,9 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -25,6 +22,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -45,16 +47,14 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
-
 public class ShareMatchFullDialog extends DialogFragment {
 
     public static final String DIALOG_SHARE_MATCH_FULL = "dialog_share_match_full";
     private static final String TAG = ShareMatchFullDialog.class.getSimpleName();
+    private final List<Player> players = Lists.newLinkedList();
     private Button btnCancel;
     private Button btnShare;
     private Match match;
-
     private ImageView imgInfoGame;
     private TextView txtInfoTime;
     private TextView txtInfoPlayers;
@@ -67,10 +67,7 @@ public class ShareMatchFullDialog extends DialogFragment {
     private TextView txtInfoMatchDate;
     private TextView txtInfoDuration;
     private TextView txtFeedbackObs;
-
     private CardView cardContent;
-
-    private final List<Player> players = Lists.newLinkedList();
     private RecycleEmptyErrorView recycleViewPlayers;
 
     public ShareMatchFullDialog() {

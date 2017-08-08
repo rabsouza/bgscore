@@ -1,217 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBG"
-        android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBG"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-            android:id="@+id/card_view_share_match_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="@dimen/no_dimen"
-            app:cardBackgroundColor="@color/colorBG"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
+        android:id="@+id/card_view_share_match_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/no_dimen"
+        app:cardBackgroundColor="@color/colorBG"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/element_padding">
+
+            <TextView
+                android:id="@+id/card_view_share_match_info_alias"
+                style="@style/CardHeadStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/element_padding">
-
-            <TextView
-                    android:id="@+id/card_view_share_match_info_alias"
-                    style="@style/CardHeadStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_matches"
-                    android:ellipsize="end"
-                    android:gravity="left|center_vertical"
-                    android:maxLines="3"
-                    tools:text="Partida CN"/>
+                android:drawableLeft="@drawable/ic_matches"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:ellipsize="end"
+                android:gravity="left|center_vertical"
+                android:maxLines="3"
+                tools:text="Partida CN"/>
 
             <View
-                    android:id="@+id/card_view_share_match_info_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_line"
-                    android:layout_below="@id/card_view_share_match_info_alias"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:background="@color/colorLine"/>
+                android:id="@+id/card_view_share_match_info_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_line"
+                android:layout_below="@id/card_view_share_match_info_alias"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:background="@color/colorLine"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_date"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_line"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_date"
-                    android:gravity="center_vertical"
-                    tools:text="30/07/2017"/>
+                android:id="@+id/card_view_share_match_info_date"
+                style="@style/NumberValueStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_line"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:drawableLeft="@drawable/ic_date"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="30/07/2017"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_duration"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_line"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_marginLeft="@dimen/element_horizontal_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_date"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_match_time"
-                    android:gravity="center_vertical"
-                    tools:text="01:00´"/>
+                android:id="@+id/card_view_share_match_info_duration"
+                style="@style/NumberValueStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_line"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_date"
+                android:drawableLeft="@drawable/ic_match_time"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="01:00´"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_players_match"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_date"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_game_players"
-                    android:gravity="center_vertical"
-                    tools:text="2"/>
+                android:id="@+id/card_view_share_match_info_players_match"
+                style="@style/NumberValueStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_date"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:drawableLeft="@drawable/ic_game_players"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="2"/>
 
             <ImageView
-                    android:id="@+id/card_view_share_match_info_feedback"
-                    android:layout_width="@dimen/item_dialog_img_width"
-                    android:layout_height="@dimen/item_dialog_img_height"
-                    android:layout_below="@id/card_view_share_match_info_date"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_marginLeft="@dimen/element_horizontal_margin"
-                    android:layout_marginRight="@dimen/drawable_padding"
-                    android:layout_toRightOf="@id/card_view_share_match_info_players_match"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_feedback_neutral"/>
+                android:id="@+id/card_view_share_match_info_feedback"
+                android:layout_width="@dimen/item_dialog_img_width"
+                android:layout_height="@dimen/item_dialog_img_height"
+                android:layout_below="@id/card_view_share_match_info_date"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                android:layout_marginRight="@dimen/drawable_padding"
+                android:layout_toRightOf="@id/card_view_share_match_info_players_match"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_feedback_neutral"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_feedback_text"
-                    style="@style/CardTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/item_dialog_img_height"
-                    android:layout_below="@id/card_view_share_match_info_date"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_feedback"
-                    android:gravity="center_vertical"
-                    tools:text="Uma partida normal"/>
+                android:id="@+id/card_view_share_match_info_feedback_text"
+                style="@style/CardTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/item_dialog_img_height"
+                android:layout_below="@id/card_view_share_match_info_date"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_feedback"
+                android:gravity="center_vertical"
+                tools:text="Uma partida normal"/>
 
             <ImageView
-                    android:id="@+id/card_view_share_match_info_image"
-                    android:layout_width="@dimen/dimen_game_img_width"
-                    android:layout_height="@dimen/dimen_game_img_height"
-                    android:layout_below="@id/card_view_share_match_info_feedback"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_marginTop="@dimen/element_vertical_margin"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/boardgame_game"/>
+                android:id="@+id/card_view_share_match_info_image"
+                android:layout_width="@dimen/dimen_game_img_width"
+                android:layout_height="@dimen/dimen_game_img_height"
+                android:layout_below="@id/card_view_share_match_info_feedback"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_marginTop="@dimen/element_vertical_margin"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/boardgame_game"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_name_game"
-                    style="@style/CardHeadStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_feedback"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_marginLeft="@dimen/element_vertical_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_image"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="3"
-                    tools:text="Five Tribes"/>
+                android:id="@+id/card_view_share_match_info_name_game"
+                style="@style/CardHeadStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_feedback"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_marginLeft="@dimen/element_vertical_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_image"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="3"
+                tools:text="Five Tribes"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_players"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="@dimen/first_column_card_width"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_name_game"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_marginLeft="@dimen/element_horizontal_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_image"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_game_players"
-                    android:gravity="center_vertical"
-                    tools:text="2-4"/>
+                android:id="@+id/card_view_share_match_info_players"
+                style="@style/NumberValueStyle"
+                android:layout_width="@dimen/first_column_card_width"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_name_game"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_image"
+                android:drawableLeft="@drawable/ic_game_players"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="2-4"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_time"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_name_game"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_players"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_game_time"
-                    android:gravity="center_vertical"
-                    tools:text="10-15´"/>
+                android:id="@+id/card_view_share_match_info_time"
+                style="@style/NumberValueStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_name_game"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_players"
+                android:drawableLeft="@drawable/ic_game_time"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="10-15´"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_ages"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="@dimen/first_column_card_width"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_players"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_marginLeft="@dimen/element_horizontal_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_image"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_game_age"
-                    android:gravity="center_vertical"
-                    tools:text="10+"/>
+                android:id="@+id/card_view_share_match_info_ages"
+                style="@style/NumberValueStyle"
+                android:layout_width="@dimen/first_column_card_width"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_players"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_image"
+                android:drawableLeft="@drawable/ic_game_age"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="10+"/>
 
             <TextView
-                    android:id="@+id/card_view_share_match_info_year"
-                    style="@style/NumberValueStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_view_share_match_info_players"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:layout_toRightOf="@id/card_view_share_match_info_ages"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:drawableLeft="@drawable/ic_game_date_year"
-                    android:gravity="center_vertical"
-                    tools:text="2014"/>
+                android:id="@+id/card_view_share_match_info_year"
+                style="@style/NumberValueStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_share_match_info_players"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:layout_toRightOf="@id/card_view_share_match_info_ages"
+                android:drawableLeft="@drawable/ic_game_date_year"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:gravity="center_vertical"
+                tools:text="2014"/>
 
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
     <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_view_share_match_info"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/share_match_btn_cancel"
+            style="@style/ButtonStyleWithBorder"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_below="@id/card_view_share_match_info"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:weightSum="2">
+            android:layout_weight="1"
+            android:text="@string/btn_cancel"/>
 
         <Button
-                android:id="@+id/share_match_btn_cancel"
-                style="@style/ButtonStyleWithBorder"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_cancel"/>
-
-        <Button
-                android:id="@+id/share_match_btn_share"
-                style="@style/ButtonStyleActive"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_share"/>
+            android:id="@+id/share_match_btn_share"
+            style="@style/ButtonStyleActive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_share"/>
 
     </LinearLayout>
 

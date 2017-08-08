@@ -1,87 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-            android:id="@+id/card_view_game"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/element_vertical_margin"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="@dimen/no_dimen"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="1dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
+        android:id="@+id/card_view_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/element_vertical_margin"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/no_dimen"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="1dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/element_padding">
+
+            <TextView
+                android:id="@+id/card_view_game_title"
+                style="@style/CardTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/element_padding">
-
-            <TextView
-                    android:id="@+id/card_view_game_title"
-                    style="@style/CardTitleStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/card_title_search_game_list"/>
+                android:text="@string/card_title_search_game_list"/>
 
             <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_line"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:background="@color/colorLine"/>
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_line"
+                android:layout_marginBottom="@dimen/element_vertical_margin"
+                android:background="@color/colorLine"/>
 
             <TextView
-                    style="@style/CardTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/element_vertical_margin"
-                    android:text="@string/text_dialog_search_game_info_01"/>
+                style="@style/CardTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/element_vertical_margin"
+                android:text="@string/text_dialog_search_game_info_01"/>
 
             <br.com.battista.bgscore.custom.RecycleEmptyErrorView
-                    android:id="@+id/search_game_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:cacheColorHint="@android:color/transparent"
-                    android:clipToPadding="false"
-                    android:dividerHeight="0dp"
-                    android:listSelector="@android:color/transparent"
-                    android:paddingBottom="@dimen/md_keylines"
-                    android:paddingTop="@dimen/element_vertical_margin"/>
+                android:id="@+id/search_game_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@android:color/transparent"
+                android:clipToPadding="false"
+                android:dividerHeight="0dp"
+                android:listSelector="@android:color/transparent"
+                android:paddingBottom="@dimen/md_keylines"
+                android:paddingTop="@dimen/element_vertical_margin"/>
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/card_view_game"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:weightSum="2">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/card_view_game"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:weightSum="2">
 
         <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <Button
-                android:id="@+id/search_game_btn_cancel"
-                style="@style/ButtonStyleWithBorder"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="@dimen/element_vertical_margin"
-                android:text="@string/btn_cancel"/>
+            android:id="@+id/search_game_btn_cancel"
+            style="@style/ButtonStyleWithBorder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/element_vertical_margin"
+            android:layout_weight="1"
+            android:text="@string/btn_cancel"/>
 
     </LinearLayout>
 

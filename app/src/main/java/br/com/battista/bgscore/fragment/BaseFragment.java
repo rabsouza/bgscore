@@ -34,7 +34,7 @@ public class BaseFragment extends Fragment {
                 .putContentType(KEY_FRAGMENT));
 
         ImageButton btnSortList = getActivity().findViewById(R.id.btn_sort_list);
-        if(btnSortList != null) {
+        if (btnSortList != null) {
             btnSortList.setVisibility(View.GONE);
         }
 

@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.collect.Sets;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.common.collect.Sets;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -71,18 +71,18 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             if (showWinner && player.isWinner()) {
                 holder.getImgWinner().setImageResource(R.drawable.ic_winner);
                 holder.getImgWinner().setColorFilter(colorPlayer);
+                holder.getImgAvatar().setVisibility(View.GONE);
             } else {
                 holder.getImgWinner().setVisibility(View.GONE);
+                if (typePlayer == null || TypePlayerEnum.PLAYER.equals(typePlayer)) {
+                    holder.getImgAvatar().setImageResource(R.drawable.ic_player);
+                } else if (TypePlayerEnum.FRIEND.equals(typePlayer)) {
+                    holder.getImgAvatar().setImageResource(R.drawable.ic_friend);
+                } else if (TypePlayerEnum.USER.equals(typePlayer)) {
+                    holder.getImgAvatar().setImageResource(R.drawable.ic_username);
+                }
+                holder.getImgAvatar().setColorFilter(colorPlayer);
             }
-
-            if (typePlayer == null || TypePlayerEnum.PLAYER.equals(typePlayer)) {
-                holder.getImgAvatar().setImageResource(R.drawable.ic_player);
-            } else if (TypePlayerEnum.FRIEND.equals(typePlayer)) {
-                holder.getImgAvatar().setImageResource(R.drawable.ic_friend);
-            } else if (TypePlayerEnum.USER.equals(typePlayer)) {
-                holder.getImgAvatar().setImageResource(R.drawable.ic_username);
-            }
-            holder.getImgAvatar().setColorFilter(colorPlayer);
 
             if (allowsDelete) {
                 final int positionRemoved = holder.getAdapterPosition();

@@ -54,8 +54,8 @@
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_ranking_games_info_image"
-            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_game_date"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"/>
 
         <TextView
@@ -69,8 +69,8 @@
             android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_ranking_games_info_image"
-            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_matches"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"/>
 
         <TextView
@@ -83,8 +83,8 @@
             android:layout_marginRight="@dimen/element_margin"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_ranking_games_info_count_matches"
-            android:drawablePadding="@dimen/drawable_padding"
             android:drawableLeft="@drawable/ic_match_time"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"/>
 
         <RatingBar

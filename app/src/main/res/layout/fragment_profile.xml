@@ -90,8 +90,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/element_padding"
-                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:drawableLeft="@drawable/ic_username"
+                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:text="@string/text_username"/>
@@ -102,8 +102,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/element_padding"
-                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:drawableLeft="@drawable/ic_mail"
+                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:text="@string/text_mail"/>
@@ -114,8 +114,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/element_padding"
-                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:drawableLeft="@drawable/ic_date"
+                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:text="@string/text_date_created"/>
