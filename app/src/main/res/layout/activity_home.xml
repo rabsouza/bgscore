@@ -11,63 +11,63 @@
                                              tools:context="br.com.battista.bgscore.activity.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageButton
-                    android:id="@+id/btn_sort_list"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_width="@dimen/button_toolbar_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|end"
-                    android:visibility="gone"
-                    android:tint="@color/colorTitleToolbar"
-                    app:srcCompat="@drawable/ic_sort_list"/>
+                android:id="@+id/btn_sort_list"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/button_toolbar_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorTitleToolbar"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_sort_list"/>
 
             <ImageButton
-                    android:id="@+id/btn_filter_list"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_width="@dimen/button_toolbar_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|end"
-                    android:visibility="gone"
-                    android:tint="@color/colorTitleToolbar"
-                    app:srcCompat="@drawable/ic_filter_list"/>
+                android:id="@+id/btn_filter_list"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/button_toolbar_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:tint="@color/colorTitleToolbar"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_filter_list"/>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@color/colorBG"
-            app:itemTextColor="@color/colorBG"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/bottom_navigation_main"/>
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/colorBG"
+        app:itemTextColor="@color/colorBG"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_navigation_main"/>
 
 </android.support.constraint.ConstraintLayout>

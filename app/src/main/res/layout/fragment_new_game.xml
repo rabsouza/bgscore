@@ -168,14 +168,14 @@
                         android:text="@string/field_is_my_game"/>
 
                     <Switch
-                            android:id="@+id/card_view_new_game_favorite"
-                            style="@style/CardTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:layout_marginTop="@dimen/element_vertical_margin"
-                            android:checked="false"
-                            android:text="@string/field_is_favorite_game"/>
+                        android:id="@+id/card_view_new_game_favorite"
+                        style="@style/CardTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:checked="false"
+                        android:text="@string/field_is_favorite_game"/>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -387,9 +387,9 @@
         android:id="@+id/fab_next_done_game"
         android:layout_width="@dimen/fab_image_width"
         android:layout_height="@dimen/fab_image_height"
-        android:scaleType="center"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="center"
         app:layout_anchor="@id/detail_scroll_view"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"

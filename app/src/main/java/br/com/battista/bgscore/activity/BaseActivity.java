@@ -1,5 +1,8 @@
 package br.com.battista.bgscore.activity;
 
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTIVITY;
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_ACTIVITY;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
@@ -21,9 +24,6 @@ import com.crashlytics.android.answers.CustomEvent;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.util.AnimationActivityUtils;
-
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTIVITY;
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_ACTIVITY;
 
 public class BaseActivity extends AppCompatActivity {
 

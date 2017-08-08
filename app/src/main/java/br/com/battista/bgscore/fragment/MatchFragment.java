@@ -1,7 +1,9 @@
 package br.com.battista.bgscore.fragment;
 
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,6 +29,8 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.common.base.Strings;
+
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -41,10 +45,6 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
-
-import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 
 public class MatchFragment extends BaseFragment {
@@ -162,9 +162,11 @@ public class MatchFragment extends BaseFragment {
         if (selectedItem.equals(optionsSortList[2])) {
             builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
         } else if (selectedItem.equals(optionsSortList[3])) {
+            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, ASC);
+        } else if (selectedItem.equals(optionsSortList[4])) {
             builder.addPropOrderBy(MatchEntry.COLUMN_NAME_DURATION, DESC);
             builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
-        } else if (selectedItem.equals(optionsSortList[4])) {
+        } else if (selectedItem.equals(optionsSortList[5])) {
             builder.addPropOrderBy(MatchEntry.COLUMN_NAME_DURATION, ASC);
             builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
         }

@@ -1,7 +1,6 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,8 +39,6 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
-
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {

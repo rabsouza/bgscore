@@ -1,6 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,6 +28,8 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.common.base.Strings;
+
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -40,10 +44,6 @@ import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
-
-import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 public class GameFragment extends BaseFragment {
 

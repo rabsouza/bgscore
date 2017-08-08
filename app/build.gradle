@@ -47,8 +47,8 @@ android {
         }
         dev {
             applicationIdSuffix = ".dev"
-            versionCode 6
-            versionName "1.0.5-beta"
+            versionCode 7
+            versionName "1.0.6-beta"
         }
     }
     android.variantFilter { variant ->

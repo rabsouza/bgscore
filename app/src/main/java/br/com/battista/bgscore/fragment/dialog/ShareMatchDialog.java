@@ -1,7 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,6 +20,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+
 import java.text.MessageFormat;
 import java.util.Calendar;
 
@@ -34,9 +37,6 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 public class ShareMatchDialog extends DialogFragment {
 

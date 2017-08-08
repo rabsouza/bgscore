@@ -1,5 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -23,8 +25,6 @@ import android.widget.Button;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.AvatarAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
-
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
 
 public class ChangeAvatarDialog extends DialogFragment {
 

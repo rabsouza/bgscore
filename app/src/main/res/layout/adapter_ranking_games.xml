@@ -19,14 +19,14 @@
         android:padding="@dimen/element_padding">
 
         <TextView
-                android:id="@+id/card_view_ranking_games_info_name"
-                style="@style/CardHeadStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/element_margin"
-                android:layout_marginRight="@dimen/element_margin"
-                android:layout_marginBottom="@dimen/element_vertical_margin"
-                tools:text="Nome do meu jogo"/>
+            android:id="@+id/card_view_ranking_games_info_name"
+            style="@style/CardHeadStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:layout_marginLeft="@dimen/element_margin"
+            android:layout_marginRight="@dimen/element_margin"
+            tools:text="Nome do meu jogo"/>
 
         <ImageView
             android:id="@+id/card_view_ranking_games_info_my_game"
@@ -40,8 +40,8 @@
             android:id="@+id/card_view_ranking_games_info_image"
             android:layout_width="@dimen/dimen_game_img_width"
             android:layout_height="@dimen/dimen_game_img_height"
-            android:layout_centerVertical="true"
             android:layout_below="@id/card_view_ranking_games_info_name"
+            android:layout_centerVertical="true"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/boardgame_game"/>
 

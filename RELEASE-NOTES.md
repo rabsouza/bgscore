@@ -25,6 +25,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
+### Version - 1.0.6-Beta
+**Date release**
+ - 07/08/2017
+
+**Features**
+ - Ordenação da listas de jogos e partidas.
+
+**Bugs**
+ - Corrige bugs de textos.
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores.
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.5-Beta
 **Date release**
  - 06/08/2017

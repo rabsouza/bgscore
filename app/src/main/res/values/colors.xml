@@ -12,11 +12,11 @@
     <color name="colorTitleToolbar">#E6FFFFFF</color>
     <color name="colorTitle">#E6BA2126</color>
     <color name="colorText">#E6353434</color>
-    <color name="colorIcon">#D9353434</color>
+    <color name="colorIcon">#CC353434</color>
     <color name="colorCardTitle">#E6BA2126</color>
-    <color name="colorLine">#D9353434</color>
-    <color name="colorCard">#D9CFCFCF</color>
-    <color name="colorButton">#D9CFCFCF</color>
+    <color name="colorLine">#CC353434</color>
+    <color name="colorCard">#CCCFCFCF</color>
+    <color name="colorButton">#CCCFCFCF</color>
     <color name="colorImgFeedbackDissatisfied">@color/red</color>
     <color name="colorImgFeedbackNeutral">@color/colorIcon</color>
     <color name="colorImgFeedbackSatisfied">@color/green</color>

@@ -10,11 +10,6 @@ public class QueryBuilderUtils {
 
     private static final String PROP_SINGLE_ORDER_BY = "{0} {1}";
     private static final String PROP_SEPARATOR_ORDER_BY = ", ";
-
-    public enum Order {
-        DESC, ASC
-    }
-
     private Map<String, Order> mapOrderBy;
 
     private QueryBuilderUtils() {
@@ -44,6 +39,10 @@ public class QueryBuilderUtils {
             }
         }
         return orderBy.toString();
+    }
+
+    public enum Order {
+        DESC, ASC
     }
 
 }

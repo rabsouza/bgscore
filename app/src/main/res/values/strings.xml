@@ -104,7 +104,7 @@
     <string name="text_legend_game_players">Números de jogadores suportados pelo jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
-    <string name="text_legend_game_sort_list">Lista ordenada pela data de alteração do jogo em ordem decrescente.</string>
+    <string name="text_legend_game_sort_list">Alterar a ordenação da lista de jogos.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
     <string name="text_legend_game_my_game">Indicador para jogo da sua coleção.</string>
     <string name="text_legend_game_favorite">Indicador para jogo favorito.</string>
@@ -113,7 +113,7 @@
     <string name="text_legend_match_players">Quantidade de jogadores que estão jogando a partida.</string>
     <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
-    <string name="text_legend_match_sort_list">Lista ordenada pela data da partida em ordem decrescente.</string>
+    <string name="text_legend_match_sort_list">Alterar a ordenação da lista de partidas.</string>
     <string name="text_legend_ranking_game_matches">Números de partidas do jogo.</string>
     <string name="text_legend_ranking_game_date">Data em que aconteceu a última partida do jogo.</string>
     <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
@@ -202,7 +202,7 @@
 Versão publicada: {0} ({1})<br>
 Data Release: {2}<br><br>
 <b>Objetivo do aplicativo:</b><br>
-* Esse aplicativo tem como objetivo ajudar a gerenciar sua coleção e partidas de jogos de tabuleiro!
+* Esse aplicativo vai te ajudar a gerenciar suas partidas e coleção de jogos de tabuleiros!
 <br><br>
 <b>Contato:</b><br>
 Nome: Rafael Alessandro Batista<br>
@@ -219,7 +219,8 @@ Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a gerenciar suas par
 <b>Novidades:</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Tela inicial com dados estatísticos e ranking dos tops 5 jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para gerenciar suas partidas e coleção de jogos.<br>
-&nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e adicionar seus amigo(a)s.<br>
+&nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e amigo(a)s.<br>
+&nbsp;&nbsp;&nbsp;<b>4)</b> Integração com boardgamegeek.<br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>
@@ -278,6 +279,7 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
         <item>Padrão</item>
         <item>Mais recentes</item>
         <item>Finalizadas</item>
+        <item>Pendentes</item>
         <item>Maior duração</item>
         <item>Menor duração</item>
     </string-array>
