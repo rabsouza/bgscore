@@ -1,11 +1,12 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -30,13 +31,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
-import com.google.common.collect.Sets;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -67,6 +61,7 @@ import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
@@ -78,6 +73,12 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -165,7 +166,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             final User user = MainApplication.instance().getUser();
             swtIPlaying.setChecked(match.isIPlaying());
             if (match.isIPlaying()) {
-                playersSaved.add(user.getMyFriendDTO());
+                playersSaved.add(new FriendDto().username(user.getUsername()));
             }
 
             players.addAll(match.getPlayers());
@@ -225,13 +226,14 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         final MainApplication instance = MainApplication.instance();
         final User user = instance.getUser();
         if (swtIPlaying.isChecked()) {
-            friendsSelected.add(user.getMyFriendDTO());
+            match.addPlayer(user.getMyPlayer());
         }
         match.iPlaying(swtIPlaying.isChecked());
 
         for (FriendDto friendDto : friendsSelected) {
             Player player = new Player();
             player.initEntity();
+            player.setTypePlayer(TypePlayerEnum.FRIEND);
             player.name(friendDto.getUsername());
             match.addPlayer(player);
         }
@@ -413,7 +415,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         txtUsernamePlayer.setText(null);
 
         Log.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
-        final Player player = new Player().name(username);
+        final Player player = new Player().name(username).typePlayer(TypePlayerEnum.PLAYER);
         player.initEntity();
         return player;
     }

@@ -17,6 +17,7 @@ import java.util.Set;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.Player;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 
 import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
@@ -32,19 +33,22 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
     private Set<Player> playersWinners = Sets.newLinkedHashSet();
     private Boolean allowsDelete;
     private Boolean allowsSelect;
+    private Boolean showWinner;
 
     public PlayerAdapter(Context context, List<Player> players,
-                         Boolean allowsDelete, Boolean allowsSelect) {
+                         Boolean allowsDelete, Boolean allowsSelect,
+                         Boolean showWinner) {
         super(context);
         this.context = context;
         this.players = players;
         this.allowsDelete = allowsDelete;
         this.allowsSelect = allowsSelect;
+        this.showWinner = showWinner;
         playersWinners.clear();
     }
 
     public PlayerAdapter(Context context, List<Player> players) {
-        this(context, players, Boolean.TRUE, Boolean.FALSE);
+        this(context, players, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE);
     }
 
     @Override
@@ -65,6 +69,16 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                     "onBindViewHolder: Fill to row position: %S with %s.", position, player));
 
             holder.getTxtTitle().setText(SPACE_DRAWABLE + player.getName());
+            TypePlayerEnum typePlayer = player.getTypePlayer();
+            if(showWinner && player.isWinner()){
+                holder.getImgAvatar().setImageResource(R.drawable.ic_winner);
+            }else if (typePlayer == null || TypePlayerEnum.PLAYER.equals(typePlayer)) {
+                holder.getImgAvatar().setImageResource(R.drawable.ic_player);
+            } else if (TypePlayerEnum.FRIEND.equals(typePlayer)) {
+                holder.getImgAvatar().setImageResource(R.drawable.ic_friend);
+            } else if (TypePlayerEnum.USER.equals(typePlayer)) {
+                holder.getImgAvatar().setImageResource(R.drawable.ic_username);
+            }
             holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
 
             if (allowsDelete) {

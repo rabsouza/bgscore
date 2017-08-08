@@ -1,10 +1,11 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
+
+import android.support.annotation.DrawableRes;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;
@@ -17,6 +18,7 @@ import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
 @Table(name = UserEntry.TABLE_NAME)
@@ -280,13 +282,12 @@ public class User extends BaseEntity implements Serializable {
         rankingGames.clear();
     }
 
-    public FriendDto getMyFriendDTO() {
-        FriendDto userCurrent = new FriendDto()
-                .username(getUsername())
-                .mail(getMail())
-                .idResAvatar(getIdResAvatar())
-                .selected(Boolean.TRUE);
-        return userCurrent;
+    public Player getMyPlayer() {
+        Player player = new Player()
+                .name(getUsername())
+                .typePlayer(TypePlayerEnum.USER);
+        player.initEntity();
+        return player;
     }
 
     public User orderByGames(String orderByGames) {

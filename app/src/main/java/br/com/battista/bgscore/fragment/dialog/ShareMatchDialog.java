@@ -1,7 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +20,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
@@ -37,6 +35,9 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 public class ShareMatchDialog extends DialogFragment {
 
@@ -89,7 +90,7 @@ public class ShareMatchDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View viewFragment = inflater.inflate(R.layout.dialog_share_simple_match, container, false);
+        View viewFragment = inflater.inflate(R.layout.dialog_share_match, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         loadViews(viewFragment);
@@ -170,21 +171,40 @@ public class ShareMatchDialog extends DialogFragment {
         }
 
         imgInfoFeedback.setImageResource(match.getFeedbackIdRes());
+        imgInfoFeedback.setImageResource(match.getFeedbackIdRes());
+        final int colorFeedbackDissatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied);
+        final int colorFeedbackNeutral = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral);
+        final int colorFeedbackSatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied);
         switch (match.getFeedbackIdRes()) {
             case R.drawable.ic_feedback_very_dissatisfied:
+                imgInfoFeedback.setColorFilter(
+                        colorFeedbackDissatisfied);
                 txtInfoFeedback.setText(R.string.feedback_very_dissatisfied);
+                txtInfoFeedback.setTextColor(colorFeedbackDissatisfied);
                 break;
             case R.drawable.ic_feedback_dissatisfied:
+                imgInfoFeedback.setColorFilter(
+                        colorFeedbackDissatisfied);
                 txtInfoFeedback.setText(R.string.feedback_dissatisfied);
+                txtInfoFeedback.setTextColor(colorFeedbackDissatisfied);
                 break;
             case R.drawable.ic_feedback_neutral:
+                imgInfoFeedback.setColorFilter(
+                        colorFeedbackNeutral);
                 txtInfoFeedback.setText(R.string.feedback_neutral);
+                txtInfoFeedback.setTextColor(colorFeedbackNeutral);
                 break;
             case R.drawable.ic_feedback_satisfied:
+                imgInfoFeedback.setColorFilter(
+                        colorFeedbackSatisfied);
                 txtInfoFeedback.setText(R.string.feedback_satisfied);
+                txtInfoFeedback.setTextColor(colorFeedbackSatisfied);
                 break;
             case R.drawable.ic_feedback_very_satisfied:
+                imgInfoFeedback.setColorFilter(
+                        colorFeedbackSatisfied);
                 txtInfoFeedback.setText(R.string.feedback_very_satisfied);
+                txtInfoFeedback.setTextColor(colorFeedbackSatisfied);
                 break;
         }
     }

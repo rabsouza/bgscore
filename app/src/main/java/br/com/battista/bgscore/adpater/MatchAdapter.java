@@ -183,7 +183,9 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
         matchCopy.game(match.getGame());
 
         for (Player player : match.getPlayers()) {
-            Player newPlayer = new Player().name(player.getName());
+            Player newPlayer = new Player()
+                    .name(player.getName())
+                    .typePlayer(player.getTypePlayer());
             newPlayer.initEntity();
             matchCopy.addPlayer(newPlayer);
         }
