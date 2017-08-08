@@ -60,6 +60,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_NAME = "NAME";
         public static final String COLUMN_NAME_PUNCTUATION = "PUNCTUATION";
         public static final String COLUMN_NAME_WINNER = "WINNER";
+        public static final String COLUMN_NAME_TYPE_PLAYER = "TYPE_PLAYER";
     }
 
     public static abstract class MatchEntry extends BaseEntry {
