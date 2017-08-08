@@ -1,9 +1,7 @@
 package br.com.battista.bgscore.fragment;
 
 
-import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,8 +27,6 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
-
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -45,6 +41,10 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
+
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 
 public class MatchFragment extends BaseFragment {
@@ -192,7 +192,7 @@ public class MatchFragment extends BaseFragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView = inflater.inflate(R.layout.dialog_help_match, null);
 
-                new AlertDialog.Builder(getActivity())
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.title_help)
                         .setView(customView)
                         .setPositiveButton(R.string.btn_ok,
@@ -202,7 +202,9 @@ public class MatchFragment extends BaseFragment {
                                     }
                                 }
                         )
-                        .create().show();
+                        .create();
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+                alertDialog.show();
             }
         });
     }

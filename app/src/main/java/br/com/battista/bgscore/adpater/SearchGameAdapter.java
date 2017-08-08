@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,9 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -27,6 +25,8 @@ import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.fragment.dialog.SearchGameDialog;
 import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.util.AndroidUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder> {
@@ -81,7 +81,7 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
 
     private void createDialogAddGame(final GameResponse game, final View viewContent) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_add_game);
-        new AlertDialog.Builder(context)
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, game.getName()))
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -103,7 +103,9 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
                         }
                     }
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     @Override

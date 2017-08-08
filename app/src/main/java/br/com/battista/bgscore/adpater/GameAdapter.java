@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,9 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,6 +37,8 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
@@ -230,7 +230,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                                         final RecyclerView.Adapter adapterCurrent,
                                         final View itemView) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_game);
-        new AlertDialog.Builder(context)
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, game.getName()))
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -257,7 +257,9 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_GAME);
                     }
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     @Override

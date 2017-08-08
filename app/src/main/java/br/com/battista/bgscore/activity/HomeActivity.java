@@ -138,7 +138,7 @@ public class HomeActivity extends BaseActivity {
     private void dialogCloseActivity() {
         AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_HOME);
 
-        new AlertDialog.Builder(this)
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
                 .setMessage(R.string.alert_confirmation_dialog_text_exit_app)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -150,7 +150,9 @@ public class HomeActivity extends BaseActivity {
                                 finishAffinity();
                             }
                         })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
 }

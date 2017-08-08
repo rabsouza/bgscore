@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
+import com.google.common.collect.Sets;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,8 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.common.collect.Sets;
-
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
@@ -22,6 +20,8 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
+
+import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
@@ -115,7 +115,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
 
     private void createDialogRemoveFriend(final String friend, final int position) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_friend);
-        new AlertDialog.Builder(context)
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, friend))
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -131,7 +131,9 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
                         notifyDataSetChanged();
                     }
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     @Override

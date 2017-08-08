@@ -1,5 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,9 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -117,7 +117,7 @@ public class HomeFragment extends BaseFragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView = inflater.inflate(R.layout.dialog_help_ranking_game, null);
 
-                new AlertDialog.Builder(getActivity())
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.title_help)
                         .setView(customView)
                         .setPositiveButton(R.string.btn_ok,
@@ -127,7 +127,9 @@ public class HomeFragment extends BaseFragment {
                                     }
                                 }
                         )
-                        .create().show();
+                        .create();
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+                alertDialog.show();
             }
         });
     }

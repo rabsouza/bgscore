@@ -65,7 +65,7 @@ public class AboutDialog extends DialogFragment {
                         }
                 )
                 .create();
-        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
         return alertDialog;
     }
 

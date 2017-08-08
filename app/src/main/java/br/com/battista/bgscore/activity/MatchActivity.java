@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.activity;
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +14,9 @@ import br.com.battista.bgscore.fragment.match.FinishMatchFragment;
 import br.com.battista.bgscore.fragment.match.NewMatchFragment;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.util.AnswersUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 
 public class MatchActivity extends BaseActivity {
 
@@ -90,7 +90,7 @@ public class MatchActivity extends BaseActivity {
     private void dialogCloseActivity() {
         AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_MATCH);
 
-        new AlertDialog.Builder(this)
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
                 .setMessage(R.string.alert_confirmation_dialog_text_exit)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -100,7 +100,9 @@ public class MatchActivity extends BaseActivity {
                     }
 
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     private void superOnBackPressed() {
