@@ -47,21 +47,20 @@ public class CacheManageService extends Service {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onActionCache(ActionCacheEnum action) {
-        final MainApplication instance = MainApplication.instance();
-
         Log.i(TAG, MessageFormat.format("onActionCache: Process to action: {0}.", action));
         if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
-            loadAllDataGameAddToCache(instance);
-            loadAllDataRankingGamesAddToCache(instance);
+            loadAllDataGameAddToCache();
+            loadAllDataRankingGamesAddToCache();
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
-            loadAllDataMatchAddToCache(instance);
-            loadAllDataRankingGamesAddToCache(instance);
+            loadAllDataMatchAddToCache();
+            loadAllDataRankingGamesAddToCache();
         } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
-            loadAllDataRankingGamesAddToCache(instance);
+            loadAllDataRankingGamesAddToCache();
         }
     }
 
-    private void loadAllDataMatchAddToCache(MainApplication instance) {
+    private void loadAllDataMatchAddToCache() {
+        final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
         Log.i(TAG, "loadAllDataMatchAddToCache: Find all data in DB!");
         final MatchRepository matchRepository = new MatchRepository();
@@ -82,12 +81,13 @@ public class CacheManageService extends Service {
         instance.setUser(user);
     }
 
-    private void loadAllDataRankingGamesAddToCache(MainApplication instance) {
+    private void loadAllDataRankingGamesAddToCache() {
+        final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
-        user.clearRankingGamess();
 
         Log.i(TAG, "loadAllDataMatchAddToCache: Find all data in DB!");
         final List<Game> games = new GameRepository().findAll();
+        user.clearRankingGamess();
         for (Game game : games) {
 
             final List<Match> matches = new MatchRepository().findByGameId(game.getId());
@@ -110,7 +110,8 @@ public class CacheManageService extends Service {
         instance.setUser(user);
     }
 
-    private void loadAllDataGameAddToCache(MainApplication instance) {
+    private void loadAllDataGameAddToCache() {
+        final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
         Log.i(TAG, "loadAllDataGameAddToCache: Find all data in DB!");
         final GameRepository cardRepository = new GameRepository();

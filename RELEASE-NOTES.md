@@ -31,6 +31,7 @@ Os Pacotes liberados para testes e produção da aplicação.
 
 **Features**
  - Ordenação da listas de jogos e partidas.
+ - Opção para adicionar jogos favoritos.
 
 **Bugs**
  - Corrige bugs de textos.

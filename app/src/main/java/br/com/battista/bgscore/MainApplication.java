@@ -66,7 +66,8 @@ public class MainApplication extends MultiDexApplication {
 
     public User getUser() {
         if ((user == null
-                || Strings.isNullOrEmpty(user.getUsername()))
+                || Strings.isNullOrEmpty(user.getUsername())
+                || user.getVersion() == 0)
                 && preferences.contains(keyUser.name())) {
             try {
                 String jsonUSer = getPreferences(keyUser);

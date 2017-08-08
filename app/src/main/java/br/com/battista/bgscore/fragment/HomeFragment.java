@@ -71,8 +71,6 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: Create new HomeFragment!");
-        new CacheManageService().reloadAllDataCache();
-
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         refreshLayout = view.findViewById(R.id.refresh_layout);
@@ -102,6 +100,8 @@ public class HomeFragment extends BaseFragment {
 
         setupRecycleRanking(view);
         setupHelpRankingGame(view);
+
+        new CacheManageService().reloadAllDataCache();
 
         return view;
     }
