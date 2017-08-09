@@ -230,7 +230,7 @@ public class ShareMatchDialog extends DialogFragment {
 
                 String textShare = MessageFormat.format(
                         viewFragment.getContext().getString(R.string.hint_share_match),
-                        match.getAlias());
+                        match.getGame().getName());
 
                 new ScreenShareService(viewFragment.getContext()).shareScreen(cardContent, textShare);
                 AndroidUtils.toast(viewFragment.getContext(), R.string.msg_share_detail_match);

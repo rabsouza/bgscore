@@ -25,6 +25,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
+### Version - 1.0.7-Beta
+**Date release**
+ - 08/08/2017
+
+**Features**
+ - Compartilhamento completo de dados da partida.
+
+**Bugs**
+ - Corrige bugs de textos, layouts e ordenação.
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores.
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.6-Beta
 **Date release**
  - 07/08/2017
