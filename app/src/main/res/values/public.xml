@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="drawable" name="avatar_ackbar_admiral" id="0x7f099901"/>
+    <public type="drawable" name="avatar_boba_fett" id="0x7f099902"/>
+    <public type="drawable" name="avatar_c3p0" id="0x7f099903"/>
+    <public type="drawable" name="avatar_calrissian_lando" id="0x7f099904"/>
+    <public type="drawable" name="avatar_chewbacca" id="0x7f099905"/>
+    <public type="drawable" name="avatar_clone_trooper" id="0x7f099906"/>
+    <public type="drawable" name="avatar_darth_maul" id="0x7f099907"/>
+    <public type="drawable" name="avatar_darth_vader" id="0x7f099908"/>
+    <public type="drawable" name="avatar_emperor_palpatine" id="0x7f099909"/>
+    <public type="drawable" name="avatar_ewok" id="0x7f099910"/>
+    <public type="drawable" name="avatar_fett_jango" id="0x7f099911"/>
+    <public type="drawable" name="avatar_five_red" id="0x7f099912"/>
+    <public type="drawable" name="avatar_friend" id="0x7f099913"/>
+    <public type="drawable" name="avatar_gon_jinn_qui" id="0x7f099914"/>
+    <public type="drawable" name="avatar_greedo" id="0x7f099915"/>
+    <public type="drawable" name="avatar_han_solo" id="0x7f099916"/>
+    <public type="drawable" name="avatar_hutt_jabba_the" id="0x7f099917"/>
+    <public type="drawable" name="avatar_jawa" id="0x7f099918"/>
+    <public type="drawable" name="avatar_kenobi_obiwan" id="0x7f099919"/>
+    <public type="drawable" name="avatar_leia_princess" id="0x7f099920"/>
+    <public type="drawable" name="avatar_lobot" id="0x7f099921"/>
+    <public type="drawable" name="avatar_luke_skywalker" id="0x7f099922"/>
+    <public type="drawable" name="avatar_profile" id="0x7f099923"/>
+    <public type="drawable" name="avatar_r2d2" id="0x7f099924"/>
+    <public type="drawable" name="avatar_raider_tusken" id="0x7f099925"/>
+    <public type="drawable" name="avatar_stormtrooper" id="0x7f099926"/>
+    <public type="drawable" name="avatar_yoda" id="0x7f099927"/>
+
+    <public type="drawable" name="ic_feedback_very_dissatisfied" id="0x7f088801" />
+    <public type="drawable" name="ic_feedback_dissatisfied" id="0x7f088802" />
+    <public type="drawable" name="ic_feedback_neutral" id="0x7f088803" />
+    <public type="drawable" name="ic_feedback_satisfied" id="0x7f088804" />
+    <public type="drawable" name="ic_feedback_very_dissatisfied" id="0x7f088805" />
+
+</resources>
