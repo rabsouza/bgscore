@@ -193,9 +193,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/card_view_share_match_info"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/element_horizontal_margin"
+        android:layout_marginRight="@dimen/element_horizontal_margin"
+        android:layout_marginTop="@dimen/element_vertical_margin"
         android:weightSum="2">
 
         <Button
