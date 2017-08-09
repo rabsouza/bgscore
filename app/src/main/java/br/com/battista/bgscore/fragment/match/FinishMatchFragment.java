@@ -1,9 +1,11 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -22,12 +24,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-import com.google.common.collect.Sets;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -48,10 +44,15 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 
 public class FinishMatchFragment extends BaseFragment implements TimePickerDialog.OnTimeSetListener {
 
@@ -146,7 +147,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
             txtDuration.setText(DateUtils.formatTime(match.getDuration()));
             txtFeedbackObs.setText(match.getObs());
 
-            switch (match.getFeedbackIdRes()) {
+            switch (match.getFeedback().getIdResDrawable()) {
                 case R.drawable.ic_feedback_very_dissatisfied:
                     imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
                     break;
@@ -257,7 +258,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         imgFeedbackVeryDissatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_very_dissatisfied);
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_dissatisfied));
                 imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
                 imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
@@ -269,7 +270,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         imgFeedbackDissatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_dissatisfied);
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_dissatisfied));
                 imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
                 imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
@@ -281,7 +282,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         imgFeedbackNeutral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_neutral);
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_neutral));
                 imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
@@ -293,7 +294,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         imgFeedbackSatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_satisfied);
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_satisfied));
                 imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
@@ -305,7 +306,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         imgFeedbackVerySatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_very_satisfied);
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_satisfied));
                 imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
                 imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));

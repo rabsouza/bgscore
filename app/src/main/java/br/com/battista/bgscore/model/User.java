@@ -1,10 +1,9 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;
@@ -14,9 +13,9 @@ import java.util.Date;
 import java.util.Set;
 
 import br.com.battista.bgscore.BuildConfig;
-import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.enuns.AvatarEnum;
 import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
@@ -31,9 +30,8 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_MAIL)
     private String mail = null;
 
-    @Column(name = UserEntry.COLUMN_NAME_URL_AVATAR)
-    @DrawableRes
-    private int idResAvatar = R.drawable.avatar_profile;
+    @Column(name = UserEntry.COLUMN_NAME_AVATAR)
+    private AvatarEnum avatar = AvatarEnum.AVATAR_PROFILE;
 
     @Column(name = UserEntry.COLUMN_NAME_LAST_PLAY)
     private Date lastPlayed = null;
@@ -97,13 +95,12 @@ public class User extends BaseEntity implements Serializable {
         this.mail = mail;
     }
 
-    @DrawableRes
-    public int getIdResAvatar() {
-        return idResAvatar;
+    public AvatarEnum getAvatar() {
+        return avatar;
     }
 
-    public void setIdResAvatar(@DrawableRes int idResAvatar) {
-        this.idResAvatar = idResAvatar;
+    public void setAvatar(AvatarEnum avatar) {
+        this.avatar = avatar;
     }
 
     public Date getLastPlayed() {
@@ -189,7 +186,7 @@ public class User extends BaseEntity implements Serializable {
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
                 .add("mail", mail)
-                .add("idResAvatar", idResAvatar)
+                .add("avatar", avatar)
                 .add("lastPlayed", lastPlayed)
                 .add("numGames", numGames)
                 .add("numMatches", numMatches)
@@ -209,11 +206,6 @@ public class User extends BaseEntity implements Serializable {
 
     public User mail(String mail) {
         this.mail = mail;
-        return this;
-    }
-
-    public User idResAvatar(@DrawableRes int idResAvatar) {
-        this.idResAvatar = idResAvatar;
         return this;
     }
 
@@ -257,6 +249,21 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
+    public User orderByGames(String orderByGames) {
+        this.orderByGames = orderByGames;
+        return this;
+    }
+
+    public User orderByMatches(String orderByMatches) {
+        this.orderByMatches = orderByMatches;
+        return this;
+    }
+
+    public User avatar(AvatarEnum avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
     public boolean addFriend(FriendDto friendDto) {
         return friends.add(friendDto);
     }
@@ -287,16 +294,6 @@ public class User extends BaseEntity implements Serializable {
                 .typePlayer(TypePlayerEnum.USER);
         player.initEntity();
         return player;
-    }
-
-    public User orderByGames(String orderByGames) {
-        this.orderByGames = orderByGames;
-        return this;
-    }
-
-    public User orderByMatches(String orderByMatches) {
-        this.orderByMatches = orderByMatches;
-        return this;
     }
 
 }

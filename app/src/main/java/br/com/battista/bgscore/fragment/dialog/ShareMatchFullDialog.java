@@ -1,6 +1,9 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -22,11 +25,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -46,6 +44,8 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
 
 public class ShareMatchFullDialog extends DialogFragment {
 
@@ -195,12 +195,11 @@ public class ShareMatchFullDialog extends DialogFragment {
                     DateUtils.formatTime(match.getDuration()));
         }
 
-        imgInfoFeedback.setImageResource(match.getFeedbackIdRes());
-        imgInfoFeedback.setImageResource(match.getFeedbackIdRes());
+        imgInfoFeedback.setImageResource(match.getFeedback().getIdResDrawable());
         final int colorFeedbackDissatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied);
         final int colorFeedbackNeutral = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral);
         final int colorFeedbackSatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied);
-        switch (match.getFeedbackIdRes()) {
+        switch (match.getFeedback().getIdResDrawable()) {
             case R.drawable.ic_feedback_very_dissatisfied:
                 imgInfoFeedback.setColorFilter(
                         colorFeedbackDissatisfied);

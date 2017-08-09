@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ################### CONTENT_DESCRIPTION #################### -->
-    <string name="cd_image_main">Imagem da logo do BoardGame Score</string>
-
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
     <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
@@ -198,7 +195,7 @@
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
     <![CDATA[
-<h3>BoardGame Score &#xa9;2017</h3><br>
+<h3>BoardGame Score &#xa9;2017</h3>
 <b>Curta nossa página no Facebook:</b><br>
 <b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
 Versão publicada: {0} ({1})<br>
@@ -209,6 +206,9 @@ Data Release: {2}<br><br>
 <b>Contato:</b><br>
 Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
+<br>
+<b>Agradecimentos:</b><br>
+Gostaria de deixar uma agradecimento especial aos Beta Tester e Tradutores.
 <br><br>
 <b>Mais informações:</b><br>
 <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a></b>
@@ -224,10 +224,10 @@ Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a registrar suas par
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para registrar suas partidas e gerenciar sua coleção de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Integração com boardgamegeek para buscar jogos.<br>
+&nbsp;&nbsp;&nbsp;<b>5)</b> Compartilhamento de partidas (Simples e detalhada).<br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>
-<i><u>Obs.: Versão em beta teste, seus dados serão perdidos no lançamento da versão final.</u></i>
 ]]>
     </string>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
@@ -241,7 +241,7 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
 
     <!-- ################### OTHERS #################### -->
     <string name="avatar_boba_fett">Boba Fett</string>
-    <string name="avatar_feet_jango">Fett Jango</string>
+    <string name="avatar_fett_jango">Fett Jango</string>
     <string name="avatar_jawa">Jawa</string>
     <string name="avatar_leia_princess">Princesa Leia</string>
     <string name="avatar_lobot">Lobot</string>
@@ -265,6 +265,10 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="avatar_raider_tusken">Raider Tusken</string>
     <string name="avatar_stormtrooper">Stormtrooper</string>
     <string name="avatar_yoda">Yoda</string>
+    <string name="avatar_profile">Padrão</string>
+    <string name="avatar_friend">Amigo(a)</string>
+    <string name="avatar_woman">Mulher</string>
+    <string name="avatar_man">Homem</string>
     <string name="feedback_very_dissatisfied">Uma péssima partida</string>
     <string name="feedback_dissatisfied">Uma partida ruim</string>
     <string name="feedback_neutral">Uma partida normal</string>

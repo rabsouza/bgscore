@@ -1,9 +1,10 @@
 package br.com.battista.bgscore.fragment;
 
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,11 +26,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -47,9 +43,14 @@ import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.fragment.dialog.ExportImportDataDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.model.enuns.AvatarEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 
 public class ProfileFragment extends BaseFragment {
@@ -149,7 +150,7 @@ public class ProfileFragment extends BaseFragment {
     private void updateAvatarUser(int currentAvatar) {
         final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
-        user.setIdResAvatar(currentAvatar);
+        user.avatar(AvatarEnum.get(currentAvatar));
         instance.setUser(user);
     }
 
@@ -159,7 +160,7 @@ public class ProfileFragment extends BaseFragment {
         final Fragment currentFragment = this;
 
         txtAvatar = view.findViewById(R.id.card_view_profile_img);
-        txtAvatar.setImageResource(user.getIdResAvatar());
+        txtAvatar.setImageResource(user.getAvatar().getIdResDrawable());
         txtAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,7 +168,8 @@ public class ProfileFragment extends BaseFragment {
                         ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
 
                 final User user = MainApplication.instance().getUser();
-                ChangeAvatarDialog.newInstance(user.getIdResAvatar()).showDialog(currentFragment);
+                ChangeAvatarDialog.newInstance(user.getAvatar().getIdResDrawable())
+                        .showDialog(currentFragment);
             }
         });
 

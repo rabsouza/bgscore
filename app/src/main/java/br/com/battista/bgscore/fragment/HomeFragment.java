@@ -1,5 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,9 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -167,7 +167,7 @@ public class HomeFragment extends BaseFragment {
         User user = MainApplication.instance().getUser();
 
         txtAvatar = view.findViewById(R.id.card_view_home_img);
-        txtAvatar.setImageResource(user.getIdResAvatar());
+        txtAvatar.setImageResource(user.getAvatar().getIdResDrawable());
 
         txtUsername = view.findViewById(R.id.card_view_home_username);
         txtUsername.setText(getString(R.string.text_home_username, user.getUsername()));

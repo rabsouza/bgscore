@@ -1,7 +1,10 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,11 +20,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
 
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -39,6 +37,8 @@ import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 
 public class DetailMatchFragment extends BaseFragment {
 
@@ -153,11 +153,11 @@ public class DetailMatchFragment extends BaseFragment {
                 txtFeedbackObs.setVisibility(View.GONE);
             }
 
-            imgFeedback.setImageResource(match.getFeedbackIdRes());
+            imgFeedback.setImageResource(match.getFeedback().getIdResDrawable());
             final int colorFeedbackDissatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied);
             final int colorFeedbackNeutral = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral);
             final int colorFeedbackSatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied);
-            switch (match.getFeedbackIdRes()) {
+            switch (match.getFeedback().getIdResDrawable()) {
                 case R.drawable.ic_feedback_very_dissatisfied:
                     imgFeedback.setColorFilter(
                             colorFeedbackDissatisfied);

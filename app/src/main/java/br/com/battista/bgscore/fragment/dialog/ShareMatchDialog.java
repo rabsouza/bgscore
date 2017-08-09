@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,9 +21,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import java.text.MessageFormat;
 import java.util.Calendar;
 
@@ -37,6 +35,8 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FRAGMENT;
 
 public class ShareMatchDialog extends DialogFragment {
 
@@ -169,12 +169,11 @@ public class ShareMatchDialog extends DialogFragment {
                     DateUtils.formatTime(match.getDuration()));
         }
 
-        imgInfoFeedback.setImageResource(match.getFeedbackIdRes());
-        imgInfoFeedback.setImageResource(match.getFeedbackIdRes());
+        imgInfoFeedback.setImageResource(match.getFeedback().getIdResDrawable());
         final int colorFeedbackDissatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied);
         final int colorFeedbackNeutral = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral);
         final int colorFeedbackSatisfied = ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied);
-        switch (match.getFeedbackIdRes()) {
+        switch (match.getFeedback().getIdResDrawable()) {
             case R.drawable.ic_feedback_very_dissatisfied:
                 imgInfoFeedback.setColorFilter(
                         colorFeedbackDissatisfied);

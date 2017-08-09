@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card_view_players_recycler_view"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:drawableLeft="@drawable/ic_feedback"
+                    android:drawableLeft="@drawable/ic_info_feedback"
                     android:drawablePadding="@dimen/drawable_padding"
                     android:gravity="left|center_vertical"
                     android:text="@string/card_title_feedback_match"/>

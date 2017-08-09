@@ -12,17 +12,35 @@ Os Pacotes liberados para testes e produção da aplicação.
  - XX/XX/XXXX
 
 **Features**
- - 
+ - **VERSÃO INICIAL DO APLICATIVO**.
+ - Tela inicial com dados estatísticos e ranking dos tops 5 jogos.
+ - Telas para registrar suas partidas e gerenciar sua coleção de jogos.
+ - Tela para editar seu perfil e gerenciar seus amigo(a)s.
+ - Integração com boardgamegeek para buscar jogos.
+ - Compartilhamento de partidas (Simples e detalhada).
+ - Tela com informações sobre o aplicativo e contato.
  
 **Bugs**
- - 
 
 **Improvements**
- - 
 
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.8-Beta
+**Date release**
+ - 09/08/2017
+
+**Features**
+
+**Bugs**
+ - Corrige bug das imagens.
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores.
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.7-Beta

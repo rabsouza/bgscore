@@ -23,7 +23,7 @@ public class DatabaseContract {
         public static final String TABLE_NAME = "USER";
         public static final String COLUMN_NAME_USERNAME = "USERNAME";
         public static final String COLUMN_NAME_MAIL = "MAIL";
-        public static final String COLUMN_NAME_URL_AVATAR = "URL_AVATAR";
+        public static final String COLUMN_NAME_AVATAR = "AVATAR";
         public static final String COLUMN_NAME_LAST_PLAY = "LAST_PLAY";
         public static final String COLUMN_NAME_NUM_GAMES = "NUM_GAMES";
         public static final String COLUMN_NAME_NUM_MATCHES = "NUM_MATCHES";
@@ -74,6 +74,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_FINISHED = "FINISHED";
         public static final String COLUMN_NAME_DURATION = "DURATION";
         public static final String COLUMN_NAME_FEEDBACK = "FEEDBACK";
+        public static final String COLUMN_NAME_FEEDBACK_ENUM = "FEEDBACK_ENUM";
         public static final String COLUMN_NAME_OBS = "OBS";
     }
 }

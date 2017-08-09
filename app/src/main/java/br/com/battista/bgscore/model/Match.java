@@ -1,9 +1,10 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
+
+import android.support.annotation.DrawableRes;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 
 @Table(name = MatchEntry.TABLE_NAME)
@@ -43,6 +45,9 @@ public class Match extends BaseEntity implements Serializable {
     @DrawableRes
     @Column(name = MatchEntry.COLUMN_NAME_FEEDBACK)
     private int feedbackIdRes = R.drawable.ic_feedback_neutral;
+
+    @Column(name = MatchEntry.COLUMN_NAME_FEEDBACK_ENUM)
+    private FeedbackEnum feedback = FeedbackEnum.FEEDBACK_NEUTRAL;
 
     @Column(name = MatchEntry.COLUMN_NAME_OBS)
     private String obs;
@@ -98,11 +103,11 @@ public class Match extends BaseEntity implements Serializable {
         this.duration = duration;
     }
 
-    public int getFeedbackIdRes() {
+    public int getFeedbackIdRes1() {
         return feedbackIdRes;
     }
 
-    public void setFeedbackIdRes(@DrawableRes int feedbackIdRes) {
+    public void setFeedbackIdRes1(@DrawableRes int feedbackIdRes) {
         this.feedbackIdRes = feedbackIdRes;
     }
 
@@ -122,6 +127,14 @@ public class Match extends BaseEntity implements Serializable {
         this.iPlaying = iPlaying;
     }
 
+    public FeedbackEnum getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(FeedbackEnum feedback) {
+        this.feedback = feedback;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -133,6 +146,7 @@ public class Match extends BaseEntity implements Serializable {
                 .add("finished", finished)
                 .add("duration", duration)
                 .add("feedbackIdRes", feedbackIdRes)
+                .add("feedback", feedback)
                 .add("obs", obs)
                 .addValue(super.toString())
                 .toString();
@@ -177,7 +191,7 @@ public class Match extends BaseEntity implements Serializable {
         return this;
     }
 
-    public Match feedbackIdRes(@DrawableRes int feedbackIdRes) {
+    public Match feedbackIdRes1(@DrawableRes int feedbackIdRes) {
         this.feedbackIdRes = feedbackIdRes;
         return this;
     }
@@ -189,6 +203,11 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match iPlaying(Boolean iPlaying) {
         this.iPlaying = iPlaying;
+        return this;
+    }
+
+    public Match feedback(FeedbackEnum feedback) {
+        this.feedback = feedback;
         return this;
     }
 
