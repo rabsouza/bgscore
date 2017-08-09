@@ -9,7 +9,7 @@ Os Pacotes liberados para testes e produção da aplicação.
 
 ### Version - 1.0.0
 **Date release**
- - XX/XX/XXXX
+ - 09/08/2017
 
 **Features**
  - **VERSÃO INICIAL DO APLICATIVO**.
