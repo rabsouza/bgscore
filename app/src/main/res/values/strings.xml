@@ -127,6 +127,7 @@
     <string name="text_dialog_export_data_db">Deseja exportar os dados da sua coleção e suas partidas registradas?</string>
     <string name="text_dialog_import_data_db">Deseja importar os dados para sua coleção e partidas?</string>
     <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a sua coleção/partida.</string>
+    <string name="text_player_with_punctuation">%1$s (%2$s)</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
@@ -136,6 +137,7 @@
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
     <string name="field_name_new_game">Nome do jogo</string>
     <string name="field_id_bgg_new_game">Id do jogo BGG</string>
+    <string name="field_player_punctuation">Pontuação</string>
     <string name="field_is_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
     <string name="field_is_favorite_game">Esse jogo é favorito?</string>
     <string name="field_url_thumbnail_new_game">Link da imagem capa do jogo</string>

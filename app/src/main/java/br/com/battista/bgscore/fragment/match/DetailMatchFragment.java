@@ -112,7 +112,7 @@ public class DetailMatchFragment extends BaseFragment {
             }
         });
         recycleViewPlayers.setAdapter(new PlayerAdapter(getContext(),
-                players, false, false, false));
+                players, false, false, false, true, false));
 
         if (playersWinners.isEmpty()) {
             cardViewPlayersWinners.setVisibility(View.GONE);

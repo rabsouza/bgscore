@@ -126,7 +126,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
                 return left.compareTo(right);
             }
         });
-        playerAdapter = new PlayerAdapter(getContext(), players, false, true, false);
+        playerAdapter = new PlayerAdapter(getContext(), players, false, true, false, false, true);
         recycleViewPlayers.setAdapter(playerAdapter);
     }
 

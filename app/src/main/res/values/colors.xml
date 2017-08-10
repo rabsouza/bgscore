@@ -17,6 +17,7 @@
     <color name="colorLine">#CC353434</color>
     <color name="colorCard">#CCCFCFCF</color>
     <color name="colorButton">#CCCFCFCF</color>
+    <color name="colorActive">#ccFF80FF</color>
     <color name="colorImgFeedbackDissatisfied">@color/red</color>
     <color name="colorImgFeedbackNeutral">@color/colorIcon</color>
     <color name="colorImgFeedbackSatisfied">@color/green</color>

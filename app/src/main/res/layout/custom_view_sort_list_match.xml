@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="true"
-            android:drawable="@color/selector_spinner"
             android:entries="@array/sort_list_matches"
             android:prompt="@string/field_list_order_by"
             android:spinnerMode="dialog"/>

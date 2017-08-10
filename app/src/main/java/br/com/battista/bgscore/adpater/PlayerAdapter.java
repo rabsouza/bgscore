@@ -1,15 +1,20 @@
 package br.com.battista.bgscore.adpater;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Sets;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.common.collect.Sets;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -31,17 +36,30 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
     private Boolean allowsDelete;
     private Boolean allowsSelect;
     private Boolean showWinner;
+    private Boolean showPunctuation;
+    private Boolean editPunctuation;
 
     public PlayerAdapter(Context context, List<Player> players,
                          Boolean allowsDelete, Boolean allowsSelect,
-                         Boolean showWinner) {
+                         Boolean showWinner, Boolean showPunctuation,
+                         Boolean editPunctuation) {
         super(context);
         this.context = context;
         this.players = players;
         this.allowsDelete = allowsDelete;
         this.allowsSelect = allowsSelect;
         this.showWinner = showWinner;
+        this.showPunctuation = showPunctuation;
+        this.editPunctuation = editPunctuation;
         playersWinners.clear();
+    }
+
+    public PlayerAdapter(Context context, List<Player> players,
+                         Boolean allowsDelete, Boolean allowsSelect,
+                         Boolean showWinner) {
+        this(context, players, allowsDelete, allowsSelect,
+                showWinner, Boolean.FALSE, Boolean.FALSE);
+
     }
 
     public PlayerAdapter(Context context, List<Player> players) {
@@ -56,7 +74,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(PlayerViewHolder holder, int position) {
+    public void onBindViewHolder(final PlayerViewHolder holder, int position) {
         if (players != null && !players.isEmpty()) {
             View itemView = holder.itemView;
             setAnimationHolder(itemView, position);
@@ -82,6 +100,32 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                     holder.getImgAvatar().setImageResource(R.drawable.ic_username);
                 }
                 holder.getImgAvatar().setColorFilter(colorPlayer);
+            }
+
+            if (editPunctuation) {
+                holder.getPunctuationContainer().setVisibility(View.VISIBLE);
+                holder.getTxtPunctuation().setText(player.getPunctuation());
+                holder.getTxtPunctuation().setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                        if (actionId == EditorInfo.IME_ACTION_DONE) {
+                            String punctuation = holder.getTxtPunctuation().getText().toString().trim();
+                            player.punctuation(punctuation);
+                            if (!Strings.isNullOrEmpty(punctuation)) {
+                                holder.getTxtPunctuation()
+                                        .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+                            } else {
+                                holder.getTxtPunctuation()
+                                        .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            }
+                        }
+                        return false;
+                    }
+                });
+            } else if (showPunctuation && player.getPunctuation() != null) {
+                holder.getTxtTitle().setText(
+                        context.getString(R.string.text_player_with_punctuation,
+                                player.getName(), player.getPunctuation()));
             }
 
             if (allowsDelete) {
