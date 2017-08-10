@@ -80,7 +80,9 @@
     <string name="text_date_created">%1$s</string>
     <string name="text_dialog_change_avatar_info_01">*¹ Selecione na lista abaixo o avatar que deseja utilizar.</string>
     <string name="text_dialog_edit_profile_info_01">*¹ Preencha os campos abaixo com seus dados.</string>
+    <string name="text_dialog_edit_profile_custom_font_info_01">*¹ É necessário reiniciar a aplicação para que essa ação tenha efeito.</string>
     <string name="text_dialog_edit_profile_reset">Deseja resetar seu perfil?</string>
+    <string name="text_dialog_edit_custom_font">Deseja utilizar as fontes de texto customizada?</string>
     <string name="text_dialog_edit_profile_info_02">*² Todos os dados do seu úsuario serão perdidos e essa ação não pode ser revertida.</string>
     <string name="text_profile_friends_info_01">*¹ Adicione um novo amigo(a) para jogar nas suas partidas.</string>
     <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
@@ -96,6 +98,7 @@
     <string name="text_game_games_empty_view">Nenhum jogo adicionado. Por favor, adicione novos jogos.</string>
     <string name="text_game_games_error_view">Error ao tentar carregar a lista de jogos. Por favor, tentar novamente.</string>
     <string name="text_game_new_game_info_01">*¹ Para cadastrar um novo jogo você deve preencher os dados abaixo.</string>
+    <string name="text_game_new_game_info_02">*² Localize o id do jogo no site boardgamegeek.com, por exemplo: 143741.</string>
     <string name="text_match_matches_info_01">*¹ Lista com as últimas partidas registradas.</string>
     <string name="text_match_matches_empty_view">Nenhuma partida registrada. Por favor, adicione uma nova partida.</string>
     <string name="text_match_matches_error_view">Error ao tentar carregar a lista de partidas, favor tentar novamente.</string>
@@ -132,6 +135,7 @@
     <string name="field_mail">E-mail do seu usuário</string>
     <string name="field_name_game">Nome ou parte do nome do jogo</string>
     <string name="field_name_new_game">Nome do jogo</string>
+    <string name="field_id_bgg_new_game">Id do jogo BGG</string>
     <string name="field_is_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
     <string name="field_is_favorite_game">Esse jogo é favorito?</string>
     <string name="field_url_thumbnail_new_game">Link da imagem capa do jogo</string>
@@ -282,6 +286,9 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
         <item>Melhores avaliados</item>
         <item>Favoritos</item>
         <item>Meus jogos</item>
+        <item>Número de jogadores</item>
+        <item>Maior duração</item>
+        <item>Menor duração</item>
     </string-array>
     <string-array name="sort_list_matches">
         <item>Padrão</item>

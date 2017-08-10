@@ -54,6 +54,9 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_WELCOME)
     private Boolean welcome = Boolean.TRUE;
 
+    @Column(name = UserEntry.COLUMN_NAME_CUSTOM_FONT)
+    private Boolean customFont = Boolean.TRUE;
+
     @Column(name = UserEntry.COLUMN_NAME_LAST_BUILD_VERSION)
     private Integer lastBuildVersion = BuildConfig.VERSION_CODE;
 
@@ -167,6 +170,14 @@ public class User extends BaseEntity implements Serializable {
         this.lastBuildVersion = lastBuildVersion;
     }
 
+    public Boolean isCustomFont() {
+        return customFont;
+    }
+
+    public void setCustomFont(Boolean customFont) {
+        this.customFont = customFont;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -194,7 +205,10 @@ public class User extends BaseEntity implements Serializable {
                 .add("friends", friends)
                 .add("rankingGames", rankingGames)
                 .add("welcome", welcome)
+                .add("customFont", customFont)
                 .add("lastBuildVersion", lastBuildVersion)
+                .add("orderByGames", orderByGames)
+                .add("orderByMatches", orderByMatches)
                 .addValue(super.toString())
                 .toString();
     }
@@ -264,6 +278,11 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
+    public User customFont(Boolean customFont) {
+        this.customFont = customFont;
+        return this;
+    }
+
     public boolean addFriend(FriendDto friendDto) {
         return friends.add(friendDto);
     }
@@ -284,7 +303,7 @@ public class User extends BaseEntity implements Serializable {
         return rankingGames.remove(rankingGamesDto);
     }
 
-    public void clearRankingGamess() {
+    public void clearRankingGames() {
         rankingGames.clear();
     }
 

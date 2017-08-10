@@ -6,6 +6,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.1
+**Date release**
+ - 10/08/2017
+
+**Features**
+ - Opção apra desabilitar as fontes customizadas da aplicação.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+
+**Improvements**
+ - Opção para add id do bgg no jogo.
+ - Mais opções para ordenação dos jogos.
+
+------------------------------------------------------------------------
 
 ### Version - 1.0.0
 **Date release**
@@ -27,6 +42,41 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.10-Beta
+**Date release**
+ - 10/08/2017
+
+**Features**
+ - Opção apra desabilitar as fontes customizadas da aplicação.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+
+**Improvements**
+ - Opção para add id do bgg no jogo.
+ - Mais opções para ordenação dos jogos.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.9-Beta
+**Date release**
+ - 09/08/2017
+
+**Features**
+ - **VERSÃO INICIAL DO APLICATIVO**.
+ - Tela inicial com dados estatísticos e ranking dos tops 5 jogos.
+ - Telas para registrar suas partidas e gerenciar sua coleção de jogos.
+ - Tela para editar seu perfil e gerenciar seus amigo(a)s.
+ - Integração com boardgamegeek para buscar jogos.
+ - Compartilhamento de partidas (Simples e detalhada).
+ - Tela com informações sobre o aplicativo e contato.
+ 
+**Bugs**
+
+**Improvements**
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.8-Beta

@@ -32,7 +32,7 @@
             android:drawSelectorOnTop="true"
             android:drawable="@color/selector_spinner"
             android:entries="@array/sort_list_games"
-            android:prompt="@string/field_game_order_by"
+            android:prompt="@string/field_list_order_by"
             android:spinnerMode="dialog"/>
 
     </LinearLayout>

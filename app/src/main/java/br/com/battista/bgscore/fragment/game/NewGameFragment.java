@@ -1,10 +1,8 @@
 package br.com.battista.bgscore.fragment.game;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,8 +23,6 @@ import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,9 +48,15 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();
 
+    private EditText txtIdBgg;
     private EditText txtNameGame;
     private EditText txtUrlThumbnailGame;
     private EditText txtUrlImageGame;
@@ -160,6 +162,10 @@ public class NewGameFragment extends BaseFragment {
     }
 
     private void fillGameData() {
+        if (game.getIdBGG() != null) {
+            txtIdBgg.setText(String.valueOf(game.getIdBGG()));
+            txtIdBgg.setEnabled(false);
+        }
         txtNameGame.setText(game.getName());
         txtSearchNameGame.setText(game.getName());
         txtUrlThumbnailGame.setText(game.getUrlThumbnail());
@@ -197,6 +203,13 @@ public class NewGameFragment extends BaseFragment {
         }
         AndroidUtils.changeErrorEditText(txtNameGame);
         game.name(txtNameGame.getText().toString().trim());
+        if(game.getIdBGG() == null){
+            try {
+                game.setIdBGG(Long.valueOf(txtIdBgg.getText().toString().trim()));
+            }catch (Exception e){
+                Log.e(TAG, "fillDataAndSave: ID bgg invalid!", e);
+            }
+        }
         game.urlThumbnail(txtUrlThumbnailGame.getText().toString().trim());
         game.urlImage(txtUrlImageGame.getText().toString().trim());
         game.urlInfo(txtUrlInfoGame.getText().toString().trim());
@@ -222,6 +235,7 @@ public class NewGameFragment extends BaseFragment {
         Log.i(TAG, "setupDataForm: Load all form fields!");
 
         txtNameGame = view.findViewById(R.id.card_view_new_game_name);
+        txtIdBgg = view.findViewById(R.id.card_view_new_game_id_bgg);
         txtUrlThumbnailGame = view.findViewById(R.id.card_view_new_game_url_thumbnail);
         txtUrlImageGame = view.findViewById(R.id.card_view_new_game_url_image);
         txtUrlInfoGame = view.findViewById(R.id.card_view_new_game_url_info);

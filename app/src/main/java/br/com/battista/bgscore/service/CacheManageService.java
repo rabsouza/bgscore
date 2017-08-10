@@ -87,7 +87,7 @@ public class CacheManageService extends Service {
 
         Log.i(TAG, "loadAllDataMatchAddToCache: Find all data in DB!");
         final List<Game> games = new GameRepository().findAll();
-        user.clearRankingGamess();
+        user.clearRankingGames();
         for (Game game : games) {
 
             final List<Match> matches = new MatchRepository().findByGameId(game.getId());

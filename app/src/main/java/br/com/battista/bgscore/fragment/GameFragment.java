@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.fragment;
 
-import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,8 +26,6 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
-
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -44,6 +40,10 @@ import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
+
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 public class GameFragment extends BaseFragment {
 
@@ -164,6 +164,15 @@ public class GameFragment extends BaseFragment {
             builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
         } else if (selectedItem.equals(optionsSortList[4])) {
             builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
+        } else if (selectedItem.equals(optionsSortList[5])) {
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAYERS + " AS INTEGER)", DESC);
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAYERS + " AS INTEGER)", DESC);
+        } else if (selectedItem.equals(optionsSortList[6])) {
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", DESC);
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", DESC);
+        }  else if (selectedItem.equals(optionsSortList[7])) {
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", ASC);
+            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", ASC);
         }
         builder.addPropOrderBy(COLUMN_NAME_UPDATED_AT, DESC);
         builder.addPropOrderBy(GameEntry.COLUMN_NAME_NAME, ASC);
