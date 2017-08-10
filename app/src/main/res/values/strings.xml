@@ -3,15 +3,15 @@
 
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
-    <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
-    <string name="title_games">&#x265c; Coleção de jogos &#x265c;</string>
-    <string name="title_matches">&#x265c; Partidas &#x265c;</string>
-    <string name="title_about">&#x265c; Informações &#x265c;</string>
-    <string name="title_welcome">&#x265c; Novidades &#x265c;</string>
-    <string name="title_match">&#x265c; Partida &#x265c;</string>
-    <string name="title_game">&#x265c; Jogo &#x265c;</string>
-    <string name="title_help">&#x265c; Ajuda &#x265c;</string>
+    <string name="title_home">&#x265c; BoardGame Score</string>
+    <string name="title_profile">&#x265c; Meu perfil</string>
+    <string name="title_games">&#x265c; Coleção de jogos</string>
+    <string name="title_matches">&#x265c; Partidas</string>
+    <string name="title_about">&#x265c; Informações</string>
+    <string name="title_welcome">&#x265c; Novidades</string>
+    <string name="title_match">&#x265c; Partida</string>
+    <string name="title_game">&#x265c; Jogo</string>
+    <string name="title_help">&#x265c; Ajuda</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
@@ -282,21 +282,23 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="rating_step_size">1</string>
     <string-array name="sort_list_games">
         <item>Padrão</item>
-        <item>Mais recentes</item>
-        <item>Melhores avaliados</item>
-        <item>Favoritos</item>
-        <item>Meus jogos</item>
-        <item>Número de jogadores</item>
-        <item>Maior duração</item>
-        <item>Menor duração</item>
+        <item>Ordem alfabética [A&#x2192;Z]</item>
+        <item>Mais recentes [&#x2191;]</item>
+        <item>Melhores avaliados [&#x2191;]</item>
+        <item>Favoritos [&#x2191;]</item>
+        <item>Meus jogos [&#x2191;]</item>
+        <item>Número de jogadores [&#x2191;]</item>
+        <item>Maior duração [&#x2191;]</item>
+        <item>Menor duração [&#x2193;]</item>
     </string-array>
     <string-array name="sort_list_matches">
         <item>Padrão</item>
-        <item>Mais recentes</item>
-        <item>Finalizadas</item>
-        <item>Pendentes</item>
-        <item>Maior duração</item>
-        <item>Menor duração</item>
+        <item>Ordem alfabética [A&#x2192;Z]</item>
+        <item>Mais recentes [&#x2191;]</item>
+        <item>Finalizadas [&#x2191;]</item>
+        <item>Pendentes [&#x2193;]</item>
+        <item>Maior duração [&#x2191;]</item>
+        <item>Menor duração [&#x2193;]</item>
     </string-array>
 
 </resources>

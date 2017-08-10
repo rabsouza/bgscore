@@ -1,9 +1,7 @@
 package br.com.battista.bgscore.fragment;
 
 
-import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
+import com.google.common.base.Strings;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,8 +27,6 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
-
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -45,6 +41,10 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
+
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 
 public class MatchFragment extends BaseFragment {
@@ -159,19 +159,24 @@ public class MatchFragment extends BaseFragment {
 
         QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
         String[] optionsSortList = getResources().getStringArray(R.array.sort_list_matches);
-        if (selectedItem.equals(optionsSortList[2])) {
-            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
-        } else if (selectedItem.equals(optionsSortList[3])) {
-            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, ASC);
-        } else if (selectedItem.equals(optionsSortList[4])) {
-            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_DURATION, DESC);
-            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
-        } else if (selectedItem.equals(optionsSortList[5])) {
-            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_DURATION, ASC);
-            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
+        if (selectedItem.equals(optionsSortList[1])) {
+            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_ALIAS, ASC);
+            builder.addPropOrderBy(COLUMN_NAME_CREATED_AT, DESC);
+        } else {
+            if (selectedItem.equals(optionsSortList[3])) {
+                builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
+            } else if (selectedItem.equals(optionsSortList[4])) {
+                builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, ASC);
+            } else if (selectedItem.equals(optionsSortList[5])) {
+                builder.addPropOrderBy(MatchEntry.COLUMN_NAME_DURATION, DESC);
+                builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
+            } else if (selectedItem.equals(optionsSortList[6])) {
+                builder.addPropOrderBy(MatchEntry.COLUMN_NAME_DURATION, ASC);
+                builder.addPropOrderBy(MatchEntry.COLUMN_NAME_FINISHED, DESC);
+            }
+            builder.addPropOrderBy(COLUMN_NAME_CREATED_AT, DESC);
+            builder.addPropOrderBy(MatchEntry.COLUMN_NAME_ALIAS, ASC);
         }
-        builder.addPropOrderBy(COLUMN_NAME_CREATED_AT, DESC);
-        builder.addPropOrderBy(MatchEntry.COLUMN_NAME_ALIAS, ASC);
 
         MainApplication instance = MainApplication.instance();
         User user = instance.getUser();

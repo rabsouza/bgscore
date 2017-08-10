@@ -70,7 +70,7 @@ public class MainApplication extends MultiDexApplication {
     public synchronized User getUser() {
         if ((user == null
                 || Strings.isNullOrEmpty(user.getUsername())
-                || user.getVersion() == 0)
+                || user.getCreatedAt() == null)
                 && preferences.contains(keyUser.name())) {
             try {
                 String jsonUSer = getPreferences(keyUser);

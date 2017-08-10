@@ -1,9 +1,9 @@
 package br.com.battista.bgscore.model.dto;
 
-import android.support.annotation.NonNull;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -98,6 +98,14 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
         if (rankingGamesDto == null) {
             return -1;
         }
-        return Integer.compare(getCount(), rankingGamesDto.getCount());
+        int compare = Integer.compare(getCount(), rankingGamesDto.getCount());
+        if (compare != 0) {
+            return compare;
+        }
+
+        if (getLastPlayed() == null) {
+            return 1;
+        }
+        return getLastPlayed().compareTo(rankingGamesDto.getLastPlayed());
     }
 }

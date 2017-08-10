@@ -157,25 +157,30 @@ public class GameFragment extends BaseFragment {
 
         QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
         String[] optionsSortList = getResources().getStringArray(R.array.sort_list_games);
-        if (selectedItem.equals(optionsSortList[2])) {
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_RATING + " AS INTEGER)", DESC);
-        } else if (selectedItem.equals(optionsSortList[3])) {
-            builder.addPropOrderBy(GameEntry.COLUMN_NAME_FAVORITE, DESC);
-            builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
-        } else if (selectedItem.equals(optionsSortList[4])) {
-            builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
-        } else if (selectedItem.equals(optionsSortList[5])) {
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAYERS + " AS INTEGER)", DESC);
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAYERS + " AS INTEGER)", DESC);
-        } else if (selectedItem.equals(optionsSortList[6])) {
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", DESC);
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", DESC);
-        }  else if (selectedItem.equals(optionsSortList[7])) {
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", ASC);
-            builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", ASC);
+        if (selectedItem.equals(optionsSortList[1])) {
+            builder.addPropOrderBy(GameEntry.COLUMN_NAME_NAME, ASC);
+            builder.addPropOrderBy(COLUMN_NAME_UPDATED_AT, DESC);
+        } else {
+            if (selectedItem.equals(optionsSortList[3])) {
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_RATING + " AS INTEGER)", DESC);
+            } else if (selectedItem.equals(optionsSortList[4])) {
+                builder.addPropOrderBy(GameEntry.COLUMN_NAME_FAVORITE, DESC);
+                builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
+            } else if (selectedItem.equals(optionsSortList[5])) {
+                builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
+            } else if (selectedItem.equals(optionsSortList[6])) {
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAYERS + " AS INTEGER)", DESC);
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAYERS + " AS INTEGER)", DESC);
+            } else if (selectedItem.equals(optionsSortList[7])) {
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", DESC);
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", DESC);
+            } else if (selectedItem.equals(optionsSortList[8])) {
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", ASC);
+                builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", ASC);
+            }
+            builder.addPropOrderBy(COLUMN_NAME_UPDATED_AT, DESC);
+            builder.addPropOrderBy(GameEntry.COLUMN_NAME_NAME, ASC);
         }
-        builder.addPropOrderBy(COLUMN_NAME_UPDATED_AT, DESC);
-        builder.addPropOrderBy(GameEntry.COLUMN_NAME_NAME, ASC);
 
         MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
