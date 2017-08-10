@@ -22,7 +22,7 @@ import android.widget.Switch;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.service.CacheManageService;
+import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
@@ -118,7 +118,7 @@ public class EditProfileDialog extends DialogFragment {
                 }
                 instance.setUser(user);
 
-                new CacheManageService().reloadAllDataCache();
+                Inject.provideCacheManageService().reloadAllDataCache();
 
                 getTargetFragment().onActivityResult(getTargetRequestCode(),
                         Activity.RESULT_OK, getActivity().getIntent());

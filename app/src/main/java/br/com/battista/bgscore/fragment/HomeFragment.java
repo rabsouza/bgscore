@@ -6,6 +6,7 @@ import com.google.common.collect.Ordering;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -33,7 +34,9 @@ import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.service.CacheManageService;
+import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
@@ -77,10 +80,24 @@ public class HomeFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new CacheManageService().reloadAllDataCache();
-                loadUserInfo(view);
-                loadAllRankingGames();
-                refreshLayout.setRefreshing(false);
+                new AsyncTask<Void, Void, Void>(){
+
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        CacheManageService cacheManageService = Inject.provideCacheManageService();
+                        cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+                        cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+                        cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        loadUserInfo(view);
+                        loadAllRankingGames();
+                        refreshLayout.setRefreshing(false);
+                    }
+                }.execute();
             }
         });
 
@@ -101,7 +118,7 @@ public class HomeFragment extends BaseFragment {
         setupRecycleRanking(view);
         setupHelpRankingGame(view);
 
-        new CacheManageService().reloadAllDataCache();
+        Inject.provideCacheManageService().reloadAllDataCache();
 
         return view;
     }

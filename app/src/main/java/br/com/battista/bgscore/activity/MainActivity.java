@@ -14,6 +14,7 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.service.CacheManageService;
+import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
@@ -90,13 +91,14 @@ public class MainActivity extends BaseActivity {
                 currentProgress += incrementProgressBarMain;
                 publishProgress(currentProgress);
             } else {
-                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+                CacheManageService cacheManageService = Inject.provideCacheManageService();
+                cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
                 currentProgress += incrementProgressBarMain;
                 publishProgress(currentProgress);
-                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+                cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
                 currentProgress += incrementProgressBarMain;
                 publishProgress(currentProgress);
-                new CacheManageService().onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
+                cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
                 currentProgress += incrementProgressBarMain;
                 publishProgress(currentProgress);
             }

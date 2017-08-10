@@ -31,7 +31,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_FRIENDS = "FRIENDS";
         public static final String COLUMN_NAME_RANKING_GAMES = "RANKING_GAMES";
         public static final String COLUMN_NAME_WELCOME = "WELCOME";
-        public static final String COLUMN_NAME_LAST_BUILD_VERSION = "WELCOME";
+        public static final String COLUMN_NAME_LAST_BUILD_VERSION = "LAST_BUILD_VERSION";
         public static final String COLUMN_NAME_CUSTOM_FONT = "CUSTOM_FONT";
     }
 

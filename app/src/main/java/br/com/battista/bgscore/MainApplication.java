@@ -67,7 +67,7 @@ public class MainApplication extends MultiDexApplication {
         initializeCacheManager();
     }
 
-    public User getUser() {
+    public synchronized User getUser() {
         if ((user == null
                 || Strings.isNullOrEmpty(user.getUsername())
                 || user.getVersion() == 0)
@@ -83,7 +83,7 @@ public class MainApplication extends MultiDexApplication {
         return user;
     }
 
-    public void setUser(User user) {
+    public synchronized void setUser(User user) {
         Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
         this.user = user;
         try {
