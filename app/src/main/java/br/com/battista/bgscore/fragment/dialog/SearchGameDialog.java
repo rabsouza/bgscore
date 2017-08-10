@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import com.google.common.collect.Lists;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -10,15 +10,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
-
-import com.google.common.collect.Lists;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,8 @@ import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.response.GameResponse;
 
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+
 public class SearchGameDialog extends DialogFragment {
 
     public static final String DIALOG_SEARCH_GAME = "dialog_search_game";
@@ -36,7 +36,7 @@ public class SearchGameDialog extends DialogFragment {
     private RecycleEmptyErrorView recycleViewGames;
     private List<GameResponse> games = Lists.newArrayList();
 
-    private Button btnCancel;
+    private ImageView btnCancel;
 
     public SearchGameDialog() {
     }
@@ -93,7 +93,7 @@ public class SearchGameDialog extends DialogFragment {
 
     private void setupRecycleGames(View view) {
         recycleViewGames = view.findViewById(R.id.search_game_recycler_view);
-        recycleViewGames.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleViewGames.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recycleViewGames.setItemAnimator(new DefaultItemAnimator());
         recycleViewGames.setHasFixedSize(true);
     }
@@ -101,7 +101,7 @@ public class SearchGameDialog extends DialogFragment {
     private void loadViews(View viewFragment) {
         Log.i(TAG, "loadViews: load all views!");
 
-        btnCancel = viewFragment.findViewById(R.id.search_game_btn_cancel);
+        btnCancel = viewFragment.findViewById(R.id.search_game_btn_close);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
