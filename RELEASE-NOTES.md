@@ -15,6 +15,7 @@ Os Pacotes liberados para testes e produção da aplicação.
  
 **Bugs**
  - Correção de bugs de textos.
+ - Correção de bug da modal de Trocar Avatar e Novo Jogo.
 
 **Improvements**
  - Opção para add id do bgg no jogo.
@@ -53,6 +54,7 @@ Os Pacotes liberados para testes e produção da aplicação.
  
 **Bugs**
  - Correção de bugs de textos.
+ - Correção de bug da modal de Trocar Avatar e Novo Jogo.
 
 **Improvements**
  - Opção para add id do bgg no jogo.
