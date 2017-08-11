@@ -53,6 +53,21 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_MY_GAME = "MY_GAME";
         public static final String COLUMN_NAME_FAVORITE = "FAVORITE";
         public static final String COLUMN_NAME_BADGE_GAME = "BADGE_GAME";
+        public static final String COLUMN_NAME_EXPANSIONS = "EXPANSIONS";
+    }
+
+    public static abstract class ExpansionGameEntry extends BaseEntry {
+
+        public static final String TABLE_NAME = "GAME_EXPANSION";
+        public static final String COLUMN_NAME_ID_BGG = "ID_BGG";
+        public static final String FK_GAME_ID = "FK_GAME_ID";
+        public static final String COLUMN_NAME_NAME = "NAME";
+        public static final String COLUMN_NAME_YEAR_PUBLISHED = "YEAR_PUBLISHED";
+        public static final String COLUMN_NAME_URL_THUMBNAIL = "URL_THUMBNAIL";
+        public static final String COLUMN_NAME_MIN_PLAYERS = "MIN_PLAYERS";
+        public static final String COLUMN_NAME_MAX_PLAYERS = "MAX_PLAYERS";
+        public static final String COLUMN_NAME_MIN_PLAY_TIME = "MIN_PLAY_TIME";
+        public static final String COLUMN_NAME_MAX_PLAY_TIME = "MAX_PLAY_TIME";
     }
 
     public static abstract class PlayerEntry extends BaseEntry {

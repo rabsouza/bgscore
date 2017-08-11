@@ -2,11 +2,13 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
 
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
@@ -60,6 +62,9 @@ public class Game extends BaseEntity implements Serializable {
 
     @Column(name = GameEntry.COLUMN_NAME_BADGE_GAME)
     private BadgeGameEnum badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
+
+    @Column(name = GameEntry.COLUMN_NAME_EXPANSIONS)
+    private Set<ExpansionGame> expansions = Sets.newLinkedHashSet();
 
     public String getName() {
         return name;
@@ -188,6 +193,14 @@ public class Game extends BaseEntity implements Serializable {
         }
     }
 
+    public Set<ExpansionGame> getExpansions() {
+        return expansions;
+    }
+
+    public void setExpansions(Set<ExpansionGame> expansions) {
+        this.expansions = expansions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -220,6 +233,7 @@ public class Game extends BaseEntity implements Serializable {
                 .add("myGame", myGame)
                 .add("favorite", favorite)
                 .add("badgeGame", badgeGame)
+                .add("expansions", expansions)
                 .addValue(super.toString())
                 .toString();
     }
@@ -304,4 +318,8 @@ public class Game extends BaseEntity implements Serializable {
         return this;
     }
 
+    public Game expansions(Set<ExpansionGame> expansions) {
+        this.expansions = expansions;
+        return this;
+    }
 }

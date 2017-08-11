@@ -123,7 +123,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     private void reload(Match entity) {
         Log.i(TAG, "Reload data Matches.");
         if (entity != null) {
-            entity.reloadId();
+            reloadEntity(entity);
             if (entity.getGame() == null && entity.getGameId() != null) {
                 final Game game = new GameRepository().find(entity.getGameId());
                 entity.game(game);
@@ -132,7 +132,6 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
                 final List<Player> players = new PlayerRepository().findByMatchId(entity.getId());
                 entity.players(players);
             }
-            reloadEntity(entity);
         }
     }
 }
