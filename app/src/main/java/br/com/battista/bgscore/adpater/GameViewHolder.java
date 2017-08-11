@@ -11,6 +11,7 @@ import br.com.battista.bgscore.R;
 public class GameViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView imgInfoGame;
+    private ImageView imgInfoBadgeGame;
     private TextView txtInfoName;
     private TextView txtInfoTime;
     private TextView txtInfoPlayers;
@@ -25,6 +26,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         super(view);
 
         imgInfoGame = view.findViewById(R.id.card_view_games_info_image);
+        imgInfoBadgeGame = view.findViewById(R.id.card_view_games_info_badge_game);
         txtInfoName = view.findViewById(R.id.card_view_games_info_name);
         txtInfoPlayers = view.findViewById(R.id.card_view_games_info_players);
         txtInfoTime = view.findViewById(R.id.card_view_games_info_time);
@@ -76,4 +78,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         return imgFavorite;
     }
 
+    public ImageView getImgInfoBadgeGame() {
+        return imgInfoBadgeGame;
+    }
 }

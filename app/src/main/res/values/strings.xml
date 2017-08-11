@@ -104,6 +104,7 @@
     <string name="text_match_matches_empty_view">Nenhuma partida registrada. Por favor, adicione uma nova partida.</string>
     <string name="text_match_matches_error_view">Error ao tentar carregar a lista de partidas, favor tentar novamente.</string>
     <string name="text_legend_info_01">*¹ Legenda com a definição de cada um dos icones utilizados nessa tela do aplicativo.</string>
+    <string name="text_legend_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>
     <string name="text_legend_game_players">Números de jogadores suportados pelo jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
@@ -117,6 +118,7 @@
     <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Altera a ordenação da lista de partidas.</string>
+    <string name="text_legend_ranking_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>
     <string name="text_legend_ranking_game_matches">Número de partidas registradas do jogo.</string>
     <string name="text_legend_ranking_game_date">Data em que aconteceu a última partida registrada do jogo.</string>
     <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
@@ -152,6 +154,7 @@
     <string name="field_max_play_time_new_game">Duração máxima (Mins.)</string>
     <string name="field_age_new_game">Idade recomendada</string>
     <string name="field_rating_new_game">Sua avaliação/nota do jogo (0-10 &#x2605;)</string>
+    <string name="field_badge_game_new_game">Classificação do jogo</string>
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
@@ -284,6 +287,13 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="feedback_very_satisfied">Uma excelente partida</string>
     <string name="rating_num_stars">10</string>
     <string name="rating_step_size">1</string>
+    <string name="badge_game_abstract">Jogos Abstratos</string>
+    <string name="badge_game_ameritrash">Ameritrash Jogos</string>
+    <string name="badge_game_euros">Euros Jogos</string>
+    <string name="badge_game_family">Jogos Familiares</string>
+    <string name="badge_game_party">Jogos Festivos</string>
+    <string name="badge_game_wargamer">Jogos de Guerra</string>
+    <string name="badge_game_none">Nenhuma</string>
     <string-array name="sort_list_games">
         <item>Padrão</item>
         <item>Ordem alfabética [A&#x2192;Z]</item>

@@ -52,6 +52,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_RATING = "RATING";
         public static final String COLUMN_NAME_MY_GAME = "MY_GAME";
         public static final String COLUMN_NAME_FAVORITE = "FAVORITE";
+        public static final String COLUMN_NAME_BADGE_GAME = "BADGE_GAME";
     }
 
     public static abstract class PlayerEntry extends BaseEntry {

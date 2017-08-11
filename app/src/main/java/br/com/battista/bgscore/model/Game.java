@@ -2,11 +2,13 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
 
+import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 
 @Table(name = GameEntry.TABLE_NAME)
@@ -55,6 +57,9 @@ public class Game extends BaseEntity implements Serializable {
 
     @Column(name = GameEntry.COLUMN_NAME_FAVORITE)
     private Boolean favorite = Boolean.FALSE;
+
+    @Column(name = GameEntry.COLUMN_NAME_BADGE_GAME)
+    private BadgeGameEnum badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
 
     public String getName() {
         return name;
@@ -168,6 +173,21 @@ public class Game extends BaseEntity implements Serializable {
         this.favorite = favorite;
     }
 
+    public BadgeGameEnum getBadgeGame() {
+        if(badgeGame == null){
+            badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
+        }
+        return badgeGame;
+    }
+
+    public void setBadgeGame(BadgeGameEnum badgeGame) {
+        if(badgeGame == null){
+            this.badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
+        }else {
+            this.badgeGame = badgeGame;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -197,8 +217,9 @@ public class Game extends BaseEntity implements Serializable {
                 .add("maxPlayTime", maxPlayTime)
                 .add("age", age)
                 .add("rating", rating)
-                .add("favorite", favorite)
                 .add("myGame", myGame)
+                .add("favorite", favorite)
+                .add("badgeGame", badgeGame)
                 .addValue(super.toString())
                 .toString();
     }
@@ -277,4 +298,10 @@ public class Game extends BaseEntity implements Serializable {
         this.favorite = favorite;
         return this;
     }
+
+    public Game badgeGame(BadgeGameEnum badgeGame) {
+        this.badgeGame = badgeGame;
+        return this;
+    }
+
 }

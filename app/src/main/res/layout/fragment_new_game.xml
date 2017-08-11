@@ -385,13 +385,23 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/activity_vertical_margin"
                                 android:hint="@string/field_max_play_time_new_game"
-                                android:imeOptions="actionDone"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLines="1"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                            android:id="@+id/card_view_new_game_badge_game"
+                            style="@style/InputStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:hint="@string/field_badge_game_new_game"
+                            android:imeOptions="actionDone"
+                            app:met_floatingLabel="highlight"/>
 
                     <TextView
                         style="@style/TextStyle"

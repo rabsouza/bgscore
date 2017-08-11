@@ -17,6 +17,13 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/element_padding">
 
+        <ImageView
+                android:id="@+id/card_view_games_info_badge_game"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/badge_game_none"/>
+
         <TextView
             android:id="@+id/card_view_games_info_name"
             style="@style/CardHeadStyle"
@@ -24,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
+            android:layout_toRightOf="@id/card_view_games_info_badge_game"
             android:ellipsize="end"
             android:gravity="left"
             android:maxLines="3"/>

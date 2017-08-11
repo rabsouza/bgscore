@@ -14,6 +14,17 @@
         android:text="@string/text_legend_info_01"/>
 
     <TextView
+            style="@style/HintTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/badge_game_none"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:padding="@dimen/element_padding"
+            android:text="@string/text_legend_ranking_game_badge_game"/>
+
+    <TextView
         style="@style/HintTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
