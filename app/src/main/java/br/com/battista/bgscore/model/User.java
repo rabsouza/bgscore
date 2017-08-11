@@ -3,7 +3,6 @@ package br.com.battista.bgscore.model;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
-
 import com.orm.dsl.Column;
 import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;

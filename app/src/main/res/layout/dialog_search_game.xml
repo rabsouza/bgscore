@@ -8,54 +8,54 @@
                 android:padding="@dimen/activity_padding">
 
     <ImageView
-            android:id="@+id/search_game_btn_close"
-            style="@style/ButtonStyleWithBorder"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@color/transparent"
-            android:padding="@dimen/no_dimen"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_close"/>
+        android:id="@+id/search_game_btn_close"
+        style="@style/ButtonStyleWithBorder"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/transparent"
+        android:padding="@dimen/no_dimen"
+        android:src="@drawable/ic_close"/>
 
     <LinearLayout
-            android:id="@+id/container_dialog"
+        android:id="@+id/container_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/card_view_game_title"
+            style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <TextView
-                android:id="@+id/card_view_game_title"
-                style="@style/CardTitleStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/card_title_search_game_list"/>
+            android:text="@string/card_title_search_game_list"/>
 
         <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_line"
-                android:layout_marginBottom="@dimen/element_vertical_margin"
-                android:background="@color/colorLine"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_line"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:background="@color/colorLine"/>
 
         <TextView
-                style="@style/CardTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/element_vertical_margin"
-                android:text="@string/text_dialog_search_game_info_01"/>
+            style="@style/CardTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/element_vertical_margin"
+            android:text="@string/text_dialog_search_game_info_01"/>
 
         <br.com.battista.bgscore.custom.RecycleEmptyErrorView
-                android:id="@+id/search_game_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:cacheColorHint="@android:color/transparent"
-                android:clipToPadding="false"
-                android:dividerHeight="0dp"
-                android:listSelector="@android:color/transparent"
-                android:paddingBottom="@dimen/md_keylines"
-                android:paddingTop="@dimen/md_keylines"
-                android:scrollbarStyle="outsideOverlay"
-                android:scrollbars="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:id="@+id/search_game_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            android:dividerHeight="0dp"
+            android:listSelector="@android:color/transparent"
+            android:paddingBottom="@dimen/md_keylines"
+            android:paddingTop="@dimen/md_keylines"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </LinearLayout>
 

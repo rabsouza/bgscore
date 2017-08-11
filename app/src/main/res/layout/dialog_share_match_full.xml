@@ -174,7 +174,9 @@
                     android:cacheColorHint="@android:color/transparent"
                     android:clipToPadding="false"
                     android:dividerHeight="1dp"
-                    android:listSelector="@android:color/transparent"/>
+                    android:listSelector="@android:color/transparent"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 <TextView
                     android:id="@+id/card_view_share_match_full_obs_info"

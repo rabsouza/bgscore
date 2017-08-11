@@ -242,7 +242,9 @@
                         android:clipToPadding="false"
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
-                        android:paddingTop="@dimen/element_vertical_margin"/>
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="@dimen/element_vertical_margin"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 </LinearLayout>
 
@@ -289,7 +291,9 @@
                         android:clipToPadding="false"
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
-                        android:paddingTop="@dimen/element_vertical_margin"/>
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="@dimen/element_vertical_margin"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 </LinearLayout>
 

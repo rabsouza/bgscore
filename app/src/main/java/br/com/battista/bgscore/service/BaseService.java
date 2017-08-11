@@ -1,5 +1,12 @@
 package br.com.battista.bgscore.service;
 
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_CACHE_SIZE;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_KEY;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_VALUE;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_LOCALE_KEY;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_KEY;
+import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_VALUE;
+
 import android.net.http.HttpResponseCache;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -24,13 +31,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
-
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_CACHE_SIZE;
-import static br.com.battista.bgscore.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_KEY;
-import static br.com.battista.bgscore.constants.RestConstant.HEADER_CACHE_CONTROL_MAX_AGE_VALUE;
-import static br.com.battista.bgscore.constants.RestConstant.HEADER_LOCALE_KEY;
-import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_KEY;
-import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_VALUE;
 
 public class BaseService {
 

@@ -1,10 +1,9 @@
 package br.com.battista.bgscore.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.orm.dsl.Ignore;
 
 import java.io.Serializable;

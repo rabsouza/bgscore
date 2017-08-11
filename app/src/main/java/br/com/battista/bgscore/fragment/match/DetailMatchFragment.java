@@ -1,10 +1,7 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +17,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -37,8 +39,6 @@ import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
-
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 
 public class DetailMatchFragment extends BaseFragment {
 
@@ -124,7 +124,7 @@ public class DetailMatchFragment extends BaseFragment {
                 }
             });
             recycleViewPlayersWinners.setAdapter(new PlayerAdapter(getContext(),
-                    playersWinners, false, false, true));
+                    playersWinners, false, false, true, true, false));
         }
     }
 

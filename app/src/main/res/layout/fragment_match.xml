@@ -88,8 +88,10 @@
                             android:clipToPadding="false"
                             android:dividerHeight="1dp"
                             android:listSelector="@android:color/transparent"
+                            android:nestedScrollingEnabled="false"
                             android:paddingBottom="@dimen/md_keylines"
-                            android:paddingTop="@dimen/element_vertical_margin"/>
+                            android:paddingTop="@dimen/element_vertical_margin"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                         <TextView
                             android:id="@+id/card_view_matches_empty_view"

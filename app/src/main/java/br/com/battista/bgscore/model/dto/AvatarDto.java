@@ -1,11 +1,11 @@
 package br.com.battista.bgscore.model.dto;
 
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
-
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 

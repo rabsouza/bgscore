@@ -1,8 +1,10 @@
 package br.com.battista.bgscore.fragment.game;
 
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +25,8 @@ import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,11 +51,6 @@ import br.com.battista.bgscore.service.server.GameService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.RatingUtils;
-
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();
@@ -203,10 +202,10 @@ public class NewGameFragment extends BaseFragment {
         }
         AndroidUtils.changeErrorEditText(txtNameGame);
         game.name(txtNameGame.getText().toString().trim());
-        if(game.getIdBGG() == null){
+        if (game.getIdBGG() == null) {
             try {
                 game.setIdBGG(Long.valueOf(txtIdBgg.getText().toString().trim()));
-            }catch (Exception e){
+            } catch (Exception e) {
                 Log.e(TAG, "fillDataAndSave: ID bgg invalid!", e);
             }
         }

@@ -1,9 +1,9 @@
 package br.com.battista.bgscore.model.enuns;
 
-import com.google.common.collect.Maps;
-
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 
@@ -45,11 +45,6 @@ public enum AvatarEnum {
     AVATAR_STORMTROOPER(R.drawable.avatar_stormtrooper, R.string.avatar_stormtrooper),
     AVATAR_YODA(R.drawable.avatar_yoda, R.string.avatar_yoda);
 
-    @DrawableRes
-    private final int idResDrawable;
-    @StringRes
-    private final int idResString;
-
     private static final Map<String, AvatarEnum> LOOK_UP = Maps.newLinkedHashMap();
     private static final Map<Integer, AvatarEnum> LOOK_UP_ID = Maps.newLinkedHashMap();
 
@@ -60,17 +55,14 @@ public enum AvatarEnum {
         }
     }
 
+    @DrawableRes
+    private final int idResDrawable;
+    @StringRes
+    private final int idResString;
+
     AvatarEnum(@DrawableRes int idResDrawable, @StringRes int idResString) {
         this.idResDrawable = idResDrawable;
         this.idResString = idResString;
-    }
-
-    public int getIdResDrawable() {
-        return idResDrawable;
-    }
-
-    public int getIdResString() {
-        return idResString;
     }
 
     public static AvatarEnum get(String name) {
@@ -87,5 +79,13 @@ public enum AvatarEnum {
             return AVATAR_PROFILE;
         }
         return avatarEnum;
+    }
+
+    public int getIdResDrawable() {
+        return idResDrawable;
+    }
+
+    public int getIdResString() {
+        return idResString;
     }
 }

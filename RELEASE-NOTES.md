@@ -12,10 +12,12 @@ Os Pacotes liberados para testes e produção da aplicação.
 
 **Features**
  - Opção apra desabilitar as fontes customizadas da aplicação.
+ - Opção para adicionar pontuação dos jogadores.
  
 **Bugs**
  - Correção de bugs de textos.
  - Correção de bug da modal de Trocar Avatar e Novo Jogo.
+ - Correção da lentidão ao scrollar as telas.
 
 **Improvements**
  - Opção para add id do bgg no jogo.

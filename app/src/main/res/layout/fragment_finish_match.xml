@@ -265,6 +265,14 @@
                         android:layout_marginBottom="@dimen/element_vertical_margin"
                         android:text="@string/text_match_players_winners_info_01"/>
 
+                    <TextView
+                        android:id="@+id/card_view_players_info_02"
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/text_match_players_winners_info_02"/>
+
                     <br.com.battista.bgscore.custom.RecycleEmptyErrorView
                         android:id="@+id/card_view_players_recycler_view"
                         android:layout_width="match_parent"
@@ -274,7 +282,9 @@
                         android:clipToPadding="false"
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
-                        android:paddingTop="@dimen/element_vertical_margin"/>
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="@dimen/element_vertical_margin"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 </LinearLayout>
 

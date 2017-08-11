@@ -1,10 +1,9 @@
 package br.com.battista.bgscore.fragment;
 
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +24,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
@@ -47,10 +51,6 @@ import br.com.battista.bgscore.model.enuns.AvatarEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
-
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 
 public class ProfileFragment extends BaseFragment {

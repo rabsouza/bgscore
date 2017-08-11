@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.fragment;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -80,7 +80,7 @@ public class HomeFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new AsyncTask<Void, Void, Void>(){
+                new AsyncTask<Void, Void, Void>() {
 
                     @Override
                     protected Void doInBackground(Void... voids) {

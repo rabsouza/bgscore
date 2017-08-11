@@ -1,6 +1,9 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.DETAIL_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.google.common.base.Strings;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -39,11 +44,6 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
-
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.DETAIL_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
 
 
 public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {

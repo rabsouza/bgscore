@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Sets;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +12,9 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
+
+import com.google.common.base.Strings;
+import com.google.common.collect.Sets;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -113,7 +113,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                             player.punctuation(punctuation);
                             if (!Strings.isNullOrEmpty(punctuation)) {
                                 holder.getTxtPunctuation()
-                                        .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+                                        .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_player_check, 0);
                             } else {
                                 holder.getTxtPunctuation()
                                         .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -122,7 +122,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                         return false;
                     }
                 });
-            } else if (showPunctuation && player.getPunctuation() != null) {
+            } else if (showPunctuation && !Strings.isNullOrEmpty(player.getPunctuation())) {
                 holder.getTxtTitle().setText(
                         context.getString(R.string.text_player_with_punctuation,
                                 player.getName(), player.getPunctuation()));

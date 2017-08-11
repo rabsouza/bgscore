@@ -1,9 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -25,6 +22,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -44,8 +46,6 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
 
 public class ShareMatchFullDialog extends DialogFragment {
 
@@ -152,7 +152,7 @@ public class ShareMatchFullDialog extends DialogFragment {
             }
         });
         recycleViewPlayers.setAdapter(new PlayerAdapter(getContext(),
-                players, false, false, true));
+                players, false, false, true, true, false));
 
         txtInfoNameGame.setText(game.getName());
         txtInfoYear.setText(

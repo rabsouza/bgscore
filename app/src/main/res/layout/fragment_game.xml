@@ -15,8 +15,7 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,8 +87,10 @@
                             android:clipToPadding="false"
                             android:dividerHeight="1dp"
                             android:listSelector="@android:color/transparent"
+                            android:nestedScrollingEnabled="false"
                             android:paddingBottom="@dimen/md_keylines"
-                            android:paddingTop="@dimen/element_vertical_margin"/>
+                            android:paddingTop="@dimen/element_vertical_margin"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                         <TextView
                             android:id="@+id/card_view_games_empty_view"

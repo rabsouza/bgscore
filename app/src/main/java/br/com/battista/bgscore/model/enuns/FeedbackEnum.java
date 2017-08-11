@@ -1,9 +1,9 @@
 package br.com.battista.bgscore.model.enuns;
 
-import com.google.common.collect.Maps;
-
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 
@@ -17,11 +17,6 @@ public enum FeedbackEnum {
     FEEDBACK_VERY_DISSATISFIED(R.drawable.ic_feedback_very_dissatisfied, R.string.feedback_very_dissatisfied),
     FEEDBACK_VERY_SATISFIED(R.drawable.ic_feedback_very_satisfied, R.string.feedback_very_satisfied);
 
-    @DrawableRes
-    private final int idResDrawable;
-    @StringRes
-    private final int idResString;
-
     private static final Map<String, FeedbackEnum> LOOK_UP = Maps.newLinkedHashMap();
     private static final Map<Integer, FeedbackEnum> LOOK_UP_ID = Maps.newLinkedHashMap();
 
@@ -32,17 +27,14 @@ public enum FeedbackEnum {
         }
     }
 
+    @DrawableRes
+    private final int idResDrawable;
+    @StringRes
+    private final int idResString;
+
     FeedbackEnum(@DrawableRes int idResDrawable, @StringRes int idResString) {
         this.idResDrawable = idResDrawable;
         this.idResString = idResString;
-    }
-
-    public int getIdResDrawable() {
-        return idResDrawable;
-    }
-
-    public int getIdResString() {
-        return idResString;
     }
 
     public static FeedbackEnum get(String name) {
@@ -59,6 +51,14 @@ public enum FeedbackEnum {
             return FEEDBACK_NEUTRAL;
         }
         return FeedbackEnum;
+    }
+
+    public int getIdResDrawable() {
+        return idResDrawable;
+    }
+
+    public int getIdResString() {
+        return idResString;
     }
 
 }

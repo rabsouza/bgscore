@@ -1,11 +1,11 @@
 package br.com.battista.bgscore.repository;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.common.collect.Sets;
-
-import android.content.Context;
-import android.util.Log;
 
 import java.util.Collections;
 import java.util.List;

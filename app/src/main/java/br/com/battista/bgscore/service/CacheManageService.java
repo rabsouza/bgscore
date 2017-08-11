@@ -41,28 +41,34 @@ public class CacheManageService extends Service {
 
     public void reloadAllDataCache() {
         Log.i(TAG, "reloadAllDataCache: Reload all data cache!!!");
-        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_GAME);
-        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_MATCHES);
+        EventBus.getDefault().post(ActionCacheEnum.LOAD_ALL_DATA);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onActionCache(ActionCacheEnum action) {
         Log.i(TAG, MessageFormat.format("onActionCache: Process to action: {0}.", action));
-        if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
-            loadAllDataGameAddToCache();
-            loadAllDataRankingGamesAddToCache();
-        } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
-            loadAllDataMatchAddToCache();
-            loadAllDataRankingGamesAddToCache();
-        } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
-            loadAllDataRankingGamesAddToCache();
-        }
-    }
-
-    private void loadAllDataMatchAddToCache() {
         final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
-        Log.i(TAG, "loadAllDataMatchAddToCache: Find all data in DB!");
+
+        if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
+            loadAllDataGameAddToCache(user);
+            loadAllDataRankingGamesAddToCache(user);
+        } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
+            loadAllDataMatchAddToCache(user);
+            loadAllDataRankingGamesAddToCache(user);
+        } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
+            loadAllDataRankingGamesAddToCache(user);
+        } else if (ActionCacheEnum.LOAD_ALL_DATA.equals(action)) {
+            loadAllDataGameAddToCache(user);
+            loadAllDataMatchAddToCache(user);
+            loadAllDataRankingGamesAddToCache(user);
+        }
+
+        instance.setUser(user);
+    }
+
+    private synchronized void loadAllDataMatchAddToCache(User user) {
+        Log.i(TAG, "loadAllDataMatchAddToCache: Update data match user!");
         final MatchRepository matchRepository = new MatchRepository();
         final List<Match> matches = matchRepository.findAll();
         user.setNumMatches(matches.size());
@@ -78,18 +84,13 @@ public class CacheManageService extends Service {
             totalTime += match.getDuration();
         }
         user.setTotalTime(totalTime);
-        instance.setUser(user);
     }
 
-    private void loadAllDataRankingGamesAddToCache() {
-        final MainApplication instance = MainApplication.instance();
-        User user = instance.getUser();
-
-        Log.i(TAG, "loadAllDataRankingGamesAddToCache: Find all data in DB!");
+    private synchronized void loadAllDataRankingGamesAddToCache(User user) {
+        Log.i(TAG, "loadAllDataRankingGamesAddToCache: Update data racking user!");
         final List<Game> games = new GameRepository().findAll();
         user.clearRankingGames();
         for (Game game : games) {
-
             final List<Match> matches = new MatchRepository().findByGameId(game.getId());
             if (!matches.isEmpty()) {
 
@@ -106,18 +107,12 @@ public class CacheManageService extends Service {
                 user.addRankingGames(rankingGames);
             }
         }
-
-        instance.setUser(user);
     }
 
-    private void loadAllDataGameAddToCache() {
-        final MainApplication instance = MainApplication.instance();
-        User user = instance.getUser();
-        Log.i(TAG, "loadAllDataGameAddToCache: Find all data in DB!");
-        final GameRepository cardRepository = new GameRepository();
-        final List<Game> games = cardRepository.findAll();
+    private synchronized void loadAllDataGameAddToCache(User user) {
+        Log.i(TAG, "loadAllDataGameAddToCache: Update data game user!");
+        final List<Game> games = new GameRepository().findAll();
         user.setNumGames(games.size());
-        instance.setUser(user);
     }
 
     @Override
