@@ -55,9 +55,6 @@ public class MainApplication extends MultiDexApplication {
         Fabric.with(this, new Answers());
         Log.d(TAG, "onCreate: MainApplication!");
 
-        if (user != null && user.isCustomFont()) {
-            initializeSystemFont();
-        }
         initializePreferences();
         initializeLoadImage();
 

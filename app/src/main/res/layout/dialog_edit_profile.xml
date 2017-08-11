@@ -79,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_horizontal_margin"
             android:checked="false"
+            android:visibility="gone"
             android:text="@string/text_dialog_edit_custom_font"/>
 
         <TextView

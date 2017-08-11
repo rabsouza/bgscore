@@ -11,12 +11,13 @@
     <!-- ################# Element ################ -->
     <color name="colorTitleToolbar">#E6FFFFFF</color>
     <color name="colorTitle">#E6BA2126</color>
-    <color name="colorText">#E6353434</color>
-    <color name="colorIcon">#CC353434</color>
+    <color name="colorTextBold">#F2353434</color>
+    <color name="colorText">#D9353434</color>
+    <color name="colorIcon">#B3353434</color>
     <color name="colorCardTitle">#E6BA2126</color>
-    <color name="colorLine">#CC353434</color>
-    <color name="colorCard">#CCCFCFCF</color>
-    <color name="colorButton">#CCCFCFCF</color>
+    <color name="colorLine">#B3353434</color>
+    <color name="colorCard">#B3CFCFCF</color>
+    <color name="colorButton">#B3CFCFCF</color>
     <color name="colorActive">#80ff6096</color>
     <color name="colorImgFeedbackDissatisfied">@color/red</color>
     <color name="colorImgFeedbackNeutral">@color/colorIcon</color>
