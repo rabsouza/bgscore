@@ -128,7 +128,7 @@
     <string name="text_dialog_export_data_db">Deseja exportar os dados da sua coleção e suas partidas registradas?</string>
     <string name="text_dialog_import_data_db">Deseja importar os dados para sua coleção e partidas?</string>
     <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a sua coleção/partida.</string>
-    <string name="text_player_with_punctuation">%1$s [&#x265c;: %2$s]</string>
+    <string name="text_player_with_punctuation">%1$s [&#x265c;:%2$s]</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
@@ -232,6 +232,7 @@ Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a registrar suas par
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Integração com boardgamegeek para buscar jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>5)</b> Compartilhamento de partidas (Simples e detalhada).<br>
+&nbsp;&nbsp;&nbsp;<b>6)</b> Adicionar pontuação aos jogadores de uma partida.<br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>

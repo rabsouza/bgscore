@@ -11,7 +11,7 @@ Os Pacotes liberados para testes e produção da aplicação.
  - 10/08/2017
 
 **Features**
- - Opção apra desabilitar as fontes customizadas da aplicação.
+ - Opção para desabilitar as fontes customizadas da aplicação.
  - Opção para adicionar pontuação dos jogadores.
  
 **Bugs**

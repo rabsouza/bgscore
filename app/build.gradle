@@ -42,7 +42,7 @@ android {
         }
         prod {
             applicationIdSuffix = ".app"
-            versionCode 2
+            versionCode 3
             versionName "1.0.1"
         }
         dev {
