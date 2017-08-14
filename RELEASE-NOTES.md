@@ -6,6 +6,24 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.2
+**Date release**
+ - 13/08/2017
+
+**Features**
+ - Opção adicionar jogo na lista de desejo.
+ - Opção para classificar jogo.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+
+**Improvements**
+ - Remoção das fontes customizadas.
+ - Mais opções para ordenação dos jogos.
+ - Melhoria a forma de adicionar pontuação dos jogadores.
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.1
 **Date release**
  - 10/08/2017
@@ -45,6 +63,24 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.11-Beta
+**Date release**
+ - 13/08/2017
+
+**Features**
+ - Opção adicionar jogo na lista de desejo.
+ - Opção para classificar jogo.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+
+**Improvements**
+ - Remoção das fontes customizadas.
+ - Mais opções para ordenação dos jogos.
+ - Melhoria a forma de adicionar pontuação dos jogadores.
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.10-Beta

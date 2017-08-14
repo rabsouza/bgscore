@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -105,6 +107,10 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             if (editPunctuation) {
                 holder.getPunctuationContainer().setVisibility(View.VISIBLE);
                 holder.getTxtPunctuation().setText(player.getPunctuation());
+                if(!Strings.isNullOrEmpty(player.getPunctuation())){
+                    holder.getTxtPunctuation()
+                            .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_player_check, 0);
+                }
                 holder.getTxtPunctuation().setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
@@ -118,8 +124,30 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                                 holder.getTxtPunctuation()
                                         .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                             }
+                        } else {
+                            holder.getTxtPunctuation()
+                                    .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                         }
                         return false;
+                    }
+                });
+                holder.getTxtPunctuation().addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        boolean isPunctuationDone = !Strings.isNullOrEmpty(player.getPunctuation());
+                        if(isPunctuationDone){
+                            holder.getTxtPunctuation()
+                                    .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            player.punctuation(null);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
                     }
                 });
             } else if (showPunctuation && !Strings.isNullOrEmpty(player.getPunctuation())) {

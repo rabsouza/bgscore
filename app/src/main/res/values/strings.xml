@@ -3,15 +3,15 @@
 
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">&#x265c; BoardGame Score</string>
-    <string name="title_profile">&#x265c; Meu perfil</string>
-    <string name="title_games">&#x265c; Coleção de jogos</string>
-    <string name="title_matches">&#x265c; Partidas</string>
-    <string name="title_about">&#x265c; Informações</string>
-    <string name="title_welcome">&#x265c; Novidades</string>
-    <string name="title_match">&#x265c; Partida</string>
-    <string name="title_game">&#x265c; Jogo</string>
-    <string name="title_help">&#x265c; Ajuda</string>
+    <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
+    <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
+    <string name="title_games">&#x265c; Coleção de jogos &#x265c;</string>
+    <string name="title_matches">&#x265c; Partidas &#x265c;</string>
+    <string name="title_about">&#x265c; Informações &#x265c;</string>
+    <string name="title_welcome">&#x265c; Novidades &#x265c;</string>
+    <string name="title_match">&#x265c; Partida &#x265c;</string>
+    <string name="title_game">&#x265c; Jogo &#x265c;</string>
+    <string name="title_help">&#x265c; Ajuda &#x265c;</string>
 
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
@@ -238,6 +238,7 @@ Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a registrar suas par
 &nbsp;&nbsp;&nbsp;<b>4)</b> Integração com boardgamegeek para buscar jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>5)</b> Compartilhamento de partidas (Simples e detalhada).<br>
 &nbsp;&nbsp;&nbsp;<b>6)</b> Adicionar pontuação aos jogadores de uma partida.<br>
+&nbsp;&nbsp;&nbsp;<b>6)</b> Adicionar jogo a lista de desejo e classificação do jogo.<br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>
