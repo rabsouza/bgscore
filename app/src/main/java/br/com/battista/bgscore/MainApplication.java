@@ -1,11 +1,6 @@
 package br.com.battista.bgscore;
 
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
+import com.google.common.base.Strings;
 
 import android.app.Application;
 import android.content.Context;
@@ -19,7 +14,6 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
 import com.orm.SugarContext;
 
 import java.io.IOException;
@@ -31,6 +25,13 @@ import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.service.CacheManageService;
 import io.fabric.sdk.android.Fabric;
+
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 public class MainApplication extends MultiDexApplication {
 
@@ -63,30 +64,34 @@ public class MainApplication extends MultiDexApplication {
         initializeCacheManager();
     }
 
-    public synchronized User getUser() {
-        if ((user == null
-                || Strings.isNullOrEmpty(user.getUsername())
-                || user.getCreatedAt() == null)
-                && preferences.contains(keyUser.name())) {
-            try {
-                String jsonUSer = getPreferences(keyUser);
-                user = new ObjectMapper().readValue(jsonUSer, User.class);
-            } catch (IOException e) {
-                Log.e(TAG, "getUser: error convert user!", e);
+    public User getUser() {
+        synchronized (this) {
+            if ((user == null
+                    || Strings.isNullOrEmpty(user.getUsername())
+                    || user.getCreatedAt() == null)
+                    && preferences.contains(keyUser.name())) {
+                try {
+                    String jsonUSer = getPreferences(keyUser);
+                    user = new ObjectMapper().readValue(jsonUSer, User.class);
+                } catch (IOException e) {
+                    Log.e(TAG, "getUser: error convert user!", e);
+                }
             }
         }
         Log.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
         return user;
     }
 
-    public synchronized void setUser(User user) {
+    public void setUser(User user) {
         Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
-        this.user = user;
-        try {
-            String jsonUser = new ObjectMapper().writeValueAsString(user);
-            putPreferences(keyUser, jsonUser);
-        } catch (JsonProcessingException e) {
-            Log.e(TAG, "setUser: error convert user!", e);
+        synchronized (this) {
+            this.user = user;
+            try {
+                String jsonUser = new ObjectMapper().writeValueAsString(user);
+                putPreferences(keyUser, jsonUser);
+            } catch (JsonProcessingException e) {
+                Log.e(TAG, "setUser: error convert user!", e);
+            }
         }
     }
 

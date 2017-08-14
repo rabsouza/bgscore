@@ -1,6 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import com.google.common.collect.Lists;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -18,8 +18,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.google.common.collect.Lists;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +26,8 @@ import br.com.battista.bgscore.adpater.SearchGameAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.response.GameResponse;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
 public class SearchGameDialog extends DialogFragment {
 
@@ -62,6 +62,13 @@ public class SearchGameDialog extends DialogFragment {
         }
         ft.addToBackStack(null);
         show(ft, DIALOG_SEARCH_GAME);
+    }
+
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
     }
 
     @Override
