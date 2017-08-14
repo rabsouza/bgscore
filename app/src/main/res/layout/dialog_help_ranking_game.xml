@@ -56,7 +56,7 @@
         style="@style/HintTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_checked"
+        android:drawableLeft="@drawable/ic_game_my_game"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
         android:paddingBottom="@dimen/element_padding"

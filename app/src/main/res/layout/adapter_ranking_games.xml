@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_checked"/>
+            app:srcCompat="@drawable/ic_game_my_game"/>
 
         <ImageView
             android:id="@+id/card_view_ranking_games_info_image"

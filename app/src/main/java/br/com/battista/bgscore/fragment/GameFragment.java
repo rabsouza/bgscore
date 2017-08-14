@@ -169,12 +169,16 @@ public class GameFragment extends BaseFragment {
             } else if (selectedItem.equals(optionsSortList[5])) {
                 builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
             } else if (selectedItem.equals(optionsSortList[6])) {
+                builder.addPropOrderBy(GameEntry.COLUMN_NAME_WANT_GAME, DESC);
+                builder.addPropOrderBy(GameEntry.COLUMN_NAME_FAVORITE, DESC);
+                builder.addPropOrderBy(GameEntry.COLUMN_NAME_MY_GAME, DESC);
+            } else if (selectedItem.equals(optionsSortList[7])) {
                 builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAYERS + " AS INTEGER)", DESC);
                 builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAYERS + " AS INTEGER)", DESC);
-            } else if (selectedItem.equals(optionsSortList[7])) {
+            } else if (selectedItem.equals(optionsSortList[8])) {
                 builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", DESC);
                 builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", DESC);
-            } else if (selectedItem.equals(optionsSortList[8])) {
+            } else if (selectedItem.equals(optionsSortList[9])) {
                 builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MAX_PLAY_TIME + " AS INTEGER)", ASC);
                 builder.addPropOrderBy("CAST( " + GameEntry.COLUMN_NAME_MIN_PLAY_TIME + " AS INTEGER)", ASC);
             }
