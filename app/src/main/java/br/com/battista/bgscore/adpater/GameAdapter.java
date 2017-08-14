@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.text.MessageFormat;
@@ -31,6 +31,7 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
@@ -79,8 +80,12 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                         holder.getImgInfoGame());
             }
 
-            holder.getImgInfoBadgeGame().setImageResource(
-                    game.getBadgeGame().getIdResDrawable());
+            if (BadgeGameEnum.BADGE_GAME_NONE.equals(game.getBadgeGame())) {
+                holder.getImgInfoBadgeGame().setVisibility(View.GONE);
+            } else {
+                holder.getImgInfoBadgeGame().setImageResource(
+                        game.getBadgeGame().getIdResDrawable());
+            }
 
             holder.getTxtInfoName().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"));
@@ -123,15 +128,27 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
             } else {
                 holder.getImgMyGame().setVisibility(View.GONE);
 
-                RelativeLayout.LayoutParams layoutParams =
-                        (RelativeLayout.LayoutParams) holder.getImgFavorite().getLayoutParams();
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                if (game.isFavorite()) {
+                    RelativeLayout.LayoutParams layoutParams =
+                            (RelativeLayout.LayoutParams) holder.getImgFavorite().getLayoutParams();
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                } else if (game.isWantGame()) {
+                    RelativeLayout.LayoutParams layoutParams =
+                            (RelativeLayout.LayoutParams) holder.getImgWantGame().getLayoutParams();
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                }
             }
 
             if (game.isFavorite()) {
                 holder.getImgFavorite().setVisibility(View.VISIBLE);
             } else {
                 holder.getImgFavorite().setVisibility(View.GONE);
+            }
+
+            if (game.isWantGame()) {
+                holder.getImgWantGame().setVisibility(View.VISIBLE);
+            } else {
+                holder.getImgWantGame().setVisibility(View.GONE);
             }
 
             ImageView imageMoreActions = holder.getImgMoreActions();

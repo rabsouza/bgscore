@@ -4,25 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/element_padding">
+    android:overScrollMode="ifContentScrolls"
+    android:padding="@dimen/element_padding"
+    android:scrollbars="vertical">
 
     <TextView
         style="@style/CardTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/element_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="@string/text_legend_info_01"/>
 
     <TextView
-            style="@style/HintTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/badge_game_none"
-            android:drawablePadding="@dimen/drawable_padding"
-            android:visibility="gone"
-            android:gravity="center_vertical"
-            android:padding="@dimen/element_padding"
-            android:text="@string/text_legend_ranking_game_badge_game"/>
+        style="@style/HintTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/badge_game_none"
+        android:drawablePadding="@dimen/drawable_padding"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
+        android:text="@string/text_legend_ranking_game_badge_game"
+        android:visibility="gone"/>
 
     <TextView
         style="@style/HintTextStyle"
@@ -31,7 +35,9 @@
         android:drawableLeft="@drawable/ic_matches"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
-        android:padding="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_matches"/>
 
     <TextView
@@ -41,7 +47,9 @@
         android:drawableLeft="@drawable/ic_game_date"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
-        android:padding="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_date"/>
 
     <TextView
@@ -51,7 +59,9 @@
         android:drawableLeft="@drawable/ic_checked"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
-        android:padding="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
         android:text="@string/text_legend_game_my_game"
         android:visibility="gone"/>
 
@@ -62,13 +72,16 @@
         android:drawableLeft="@drawable/ic_match_time"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
-        android:padding="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_time"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_line"
-        android:layout_margin="@dimen/element_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:background="@color/colorLine"/>
 
     <TextView
@@ -78,7 +91,9 @@
         android:drawableLeft="@drawable/ic_sort_list"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"
-        android:padding="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
         android:text="@string/text_legend_ranking_game_sort_list"/>
 
 </LinearLayout>

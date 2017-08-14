@@ -60,6 +60,9 @@ public class Game extends BaseEntity implements Serializable {
     @Column(name = GameEntry.COLUMN_NAME_FAVORITE)
     private Boolean favorite = Boolean.FALSE;
 
+    @Column(name = GameEntry.COLUMN_NAME_WANT_GAME)
+    private Boolean wantGame = Boolean.FALSE;
+
     @Column(name = GameEntry.COLUMN_NAME_BADGE_GAME)
     private BadgeGameEnum badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
 
@@ -178,6 +181,14 @@ public class Game extends BaseEntity implements Serializable {
         this.favorite = favorite;
     }
 
+    public Boolean isWantGame() {
+        return wantGame;
+    }
+
+    public void setWantGame(Boolean wantGame) {
+        this.wantGame = wantGame;
+    }
+
     public BadgeGameEnum getBadgeGame() {
         if(badgeGame == null){
             badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
@@ -232,6 +243,7 @@ public class Game extends BaseEntity implements Serializable {
                 .add("rating", rating)
                 .add("myGame", myGame)
                 .add("favorite", favorite)
+                .add("wantGame", wantGame)
                 .add("badgeGame", badgeGame)
                 .add("expansions", expansions)
                 .addValue(super.toString())
@@ -320,6 +332,11 @@ public class Game extends BaseEntity implements Serializable {
 
     public Game expansions(Set<ExpansionGame> expansions) {
         this.expansions = expansions;
+        return this;
+    }
+
+    public Game wantGame(Boolean wantGame) {
+        this.wantGame = wantGame;
         return this;
     }
 }

@@ -21,6 +21,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
     private ImageView imgMoreActions;
     private ImageView imgMyGame;
     private ImageView imgFavorite;
+    private ImageView imgWantGame;
 
     public GameViewHolder(View view) {
         super(view);
@@ -36,6 +37,7 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
         imgMoreActions = view.findViewById(R.id.card_view_games_more_actions);
         imgMyGame = view.findViewById(R.id.card_view_games_info_my_game);
         imgFavorite = view.findViewById(R.id.card_view_games_info_favorite);
+        imgWantGame = view.findViewById(R.id.card_view_games_info_want_game);
     }
 
     public ImageView getImgInfoGame() {
@@ -80,5 +82,9 @@ public class GameViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView getImgInfoBadgeGame() {
         return imgInfoBadgeGame;
+    }
+
+    public ImageView getImgWantGame() {
+        return imgWantGame;
     }
 }

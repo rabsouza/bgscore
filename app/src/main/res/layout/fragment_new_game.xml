@@ -177,6 +177,16 @@
                         android:checked="false"
                         android:text="@string/field_is_favorite_game"/>
 
+                    <Switch
+                        android:id="@+id/card_view_new_game_want_game"
+                        style="@style/CardTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:checked="false"
+                        android:text="@string/field_is_want_game"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

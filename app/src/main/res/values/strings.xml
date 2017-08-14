@@ -68,7 +68,7 @@
     <string name="text_home_matches">partidas</string>
     <string name="text_home_matches_time">tempo</string>
     <string name="text_home_last_play">Última partida: %1$s</string>
-    <string name="text_home_stats_info_01">*¹ Seu ranking com os 5 jogos mais jogados da sua coleção.</string>
+    <string name="text_home_stats_info_01">*¹ Seu ranking com os 5 jogos mais jogados da minha coleção.</string>
     <string name="text_home_stats_empty_view">Nenhuma partida registrada. Por favor, adicione uma nova partida.</string>
     <string name="text_home_stats_error_view">Erro ao tentar carregar seu ranking de jogos, favor tentar novamente.</string>
     <string name="text_profile_friends_empty_view">Nenhum amigo(a) adicionado. Por favor, adicione novos amigos para jogar suas partidas.</string>
@@ -90,7 +90,7 @@
     <string name="text_match_players_winners_info_02">*² Para adiconar a pontuação final, preencha o campo e tecle enter para confirmar.</string>
     <string name="text_match_players_obs_info_01">*¹ Preencha o campo abaixo com as observações/anotações desta partida.</string>
     <string name="text_match_search_game_info_01">*¹ Busque um jogo a partir do site boardgamegeek.com.</string>
-    <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da sua coleção ou no site boardgamegeek.com.</string>
+    <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da minha coleção ou no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
     <string name="text_match_sort_list_info_01">*¹ Selecione uma das opções para alterar a ordenação da lista de partidas.</string>
@@ -110,8 +110,9 @@
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Altera a ordenação da lista de jogos.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
-    <string name="text_legend_game_my_game">Indicador para jogo da sua coleção.</string>
+    <string name="text_legend_game_my_game">Indicador para jogo da minha coleção.</string>
     <string name="text_legend_game_favorite">Indicador para jogo favorito.</string>
+    <string name="text_legend_game_want_game">Indicador para jogo que quero na minha coleção.</string>
     <string name="text_legend_match_match">Nome/Apelido da partida.</string>
     <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão participando da partida.</string>
@@ -127,9 +128,9 @@
     <string name="text_dialog_import_data_info_01">*¹ Selecione os tipos dados que você deseja importar a partir de um arquivo externo.</string>
     <string name="text_dialog_export_data_user">Deseja exportar os dados do seu úsuario?</string>
     <string name="text_dialog_import_data_user">Deseja importar os dados para o seu úsuario?</string>
-    <string name="text_dialog_export_data_db">Deseja exportar os dados da sua coleção e suas partidas registradas?</string>
-    <string name="text_dialog_import_data_db">Deseja importar os dados para sua coleção e partidas?</string>
-    <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a sua coleção/partida.</string>
+    <string name="text_dialog_export_data_db">Deseja exportar os dados da minha coleção e suas partidas registradas?</string>
+    <string name="text_dialog_import_data_db">Deseja importar os dados para minha coleção e partidas?</string>
+    <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a minha coleção/partida.</string>
     <string name="text_player_with_punctuation">%1$s [&#x265c;:%2$s]</string>
 
     <!-- ################### Field #################### -->
@@ -141,8 +142,9 @@
     <string name="field_name_new_game">Nome do jogo</string>
     <string name="field_id_bgg_new_game">Id do jogo BGG</string>
     <string name="field_player_punctuation">Pontuação final</string>
-    <string name="field_is_my_game">Esse jogo faz parte da minha coleção pessoal?</string>
-    <string name="field_is_favorite_game">Esse jogo é favorito?</string>
+    <string name="field_is_my_game">Eu tenho esse jogo na minha coleção?</string>
+    <string name="field_is_favorite_game">Esse jogo é meu favorito?</string>
+    <string name="field_is_want_game">Eu quero esse jogo na minha coleção?</string>
     <string name="field_url_thumbnail_new_game">Link da imagem capa do jogo</string>
     <string name="field_url_image_new_game">Link da imagem principal</string>
     <string name="field_url_info_new_game">Link da página (Ludopedia ou boardgamegeek.com)</string>
@@ -165,7 +167,7 @@
     <string name="alert_confirmation_dialog_text_remove_friend">Deseja remover o amigo(a) {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_match">Deseja remover a partida {0}? \n\nEssa operação não pode ser revetida.</string>
-    <string name="alert_confirmation_dialog_text_add_game">Deseja adicionar o jogo {0}? \n\nEsse jogo será adicionado automaticamente a sua coleção.</string>
+    <string name="alert_confirmation_dialog_text_add_game">Deseja adicionar o jogo {0}? \n\nEsse jogo será adicionado automaticamente a minha coleção.</string>
 
     <!-- ################### ELEMENTS #################### -->
     <string name="btn_login">ENTRAR</string>
