@@ -2,6 +2,7 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
 
 import com.orm.dsl.Column;
@@ -10,6 +11,7 @@ import com.orm.dsl.Table;
 import java.io.Serializable;
 import java.util.Set;
 
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 
@@ -102,7 +104,15 @@ public class Game extends BaseEntity implements Serializable {
     }
 
     public String getUrlInfo() {
-        return urlInfo;
+        if (Strings.isNullOrEmpty(urlInfo)) {
+            return EntityConstant.DEFAULT_URL_INFO_GAME;
+        } else {
+            return urlInfo;
+        }
+    }
+
+    public String getUrlBuy() {
+        return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
     }
 
     public void setUrlInfo(String urlInfo) {

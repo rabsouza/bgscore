@@ -2,27 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_action_copy"
-        android:enabled="true"
-        android:icon="@drawable/ic_copy"
-        android:title="@string/action_copy"/>
+            android:id="@+id/menu_action_copy"
+            android:enabled="true"
+            android:icon="@drawable/ic_copy"
+            android:title="@string/action_copy"/>
 
     <item
-        android:id="@+id/menu_action_detail"
-        android:enabled="true"
-        android:icon="@drawable/ic_detail"
-        android:title="@string/action_detail"/>
+            android:id="@+id/menu_action_detail"
+            android:enabled="true"
+            android:icon="@drawable/ic_detail"
+            android:title="@string/action_detail"/>
 
     <item
-        android:id="@+id/menu_action_edit"
-        android:enabled="true"
-        android:icon="@drawable/ic_edit"
-        android:title="@string/action_edit"/>
+            android:id="@+id/menu_action_buy"
+            android:enabled="true"
+            android:icon="@drawable/ic_buy"
+            android:title="@string/action_buy"/>
 
     <item
-        android:id="@+id/menu_action_remove"
-        android:enabled="true"
-        android:icon="@drawable/ic_remove"
-        android:title="@string/action_remove"/>
+            android:id="@+id/menu_action_edit"
+            android:enabled="true"
+            android:icon="@drawable/ic_edit"
+            android:title="@string/action_edit"/>
+
+    <item
+            android:id="@+id/menu_action_remove"
+            android:enabled="true"
+            android:icon="@drawable/ic_remove"
+            android:title="@string/action_remove"/>
 
 </menu>

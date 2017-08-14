@@ -198,6 +198,7 @@
     <string name="action_account">perfil</string>
     <string name="action_copy">duplicar</string>
     <string name="action_detail">detalhes</string>
+    <string name="action_buy">comprar</string>
     <string name="action_share">compartilhar</string>
     <string name="action_info">info</string>
     <string name="action_edit">editar</string>
@@ -238,7 +239,7 @@ Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a registrar suas par
 &nbsp;&nbsp;&nbsp;<b>4)</b> Integração com boardgamegeek para buscar jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>5)</b> Compartilhamento de partidas (Simples e detalhada).<br>
 &nbsp;&nbsp;&nbsp;<b>6)</b> Adicionar pontuação aos jogadores de uma partida.<br>
-&nbsp;&nbsp;&nbsp;<b>6)</b> Adicionar jogo a lista de desejo e classificação do jogo.<br>
+&nbsp;&nbsp;&nbsp;<b>7)</b> Adicionar jogo a lista de desejo e classificação do jogo.<br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>
