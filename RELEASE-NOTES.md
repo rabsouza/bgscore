@@ -6,6 +6,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.3
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Opção para comprar um jogo.
+ 
+**Bugs**
+ - Correção de bugs na home e ao tentar adicionar um novo jogo.
+
+**Improvements**
+ - Meloria no layouts e textos
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.2
 **Date release**
  - 13/08/2017
@@ -63,6 +78,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.11-Beta
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Opção para comprar um jogo.
+ 
+**Bugs**
+ - Correção de bugs na home e ao tentar adicionar um novo jogo.
+
+**Improvements**
+ - Meloria no layouts e textos
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.11-Beta
