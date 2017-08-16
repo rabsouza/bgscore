@@ -159,7 +159,7 @@ public class NewGameFragment extends BaseFragment {
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             game = (Game) bundle.getSerializable(BundleConstant.DATA);
             game.reloadId();
 

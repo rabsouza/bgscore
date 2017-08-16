@@ -37,11 +37,11 @@ public class MatchActivity extends BaseActivity {
 
     private void processDataActivity(Bundle bundle) {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
-        if (bundle.containsKey(DATA)) {
+        if (bundle != null && bundle.containsKey(DATA)) {
             match = (Match) bundle.getSerializable(DATA);
             match.reloadId();
 
-            if (bundle.containsKey(NAVIGATION_TO)) {
+            if (bundle != null && bundle.containsKey(NAVIGATION_TO)) {
                 int navigationTo = bundle.getInt(NAVIGATION_TO, NavigationTo.NEW_MATCH_FRAGMENT);
                 switch (navigationTo) {
                     case NavigationTo.NEW_MATCH_FRAGMENT:

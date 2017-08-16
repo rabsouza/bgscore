@@ -1,5 +1,8 @@
 package br.com.battista.bgscore.fragment;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,9 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -189,7 +189,7 @@ public class HomeFragment extends BaseFragment {
         txtUsername = view.findViewById(R.id.card_view_home_username);
         txtUsername.setText(getString(R.string.text_home_username, user.getUsername()));
 
-        txtLastPlay = view.findViewById(R.id.card_view_last_play);
+        txtLastPlay = view.findViewById(R.id.card_view_home_last_play);
         String lastPlay = "-";
         if (user.getLastPlayed() != null && user.getNumMatches() > 0) {
             Calendar lastPlayCalendar = Calendar.getInstance();

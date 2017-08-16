@@ -5,6 +5,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -20,6 +21,7 @@ android {
         multiDexEnabled true
         buildConfigField "long", "BUILD_UPDATED", System.currentTimeMillis() + "L"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -27,6 +29,7 @@ android {
             resValue "string", "app_name", "BGScore"
             resValue "string", "title_app", "BGScore"
         }
+
         debug {
             minifyEnabled false
             testCoverageEnabled = false
@@ -34,6 +37,7 @@ android {
             resValue "string", "title_app", "BGScore (debug)"
         }
     }
+
     productFlavors {
         mock {
             applicationIdSuffix = ".mock"
@@ -58,10 +62,15 @@ android {
             variant.setIgnore(true);
         }
     }
+
     testOptions.unitTests.all {
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'

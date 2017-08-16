@@ -14,6 +14,9 @@ import br.com.battista.bgscore.R;
 
 public class ScoreboardView extends LinearLayout {
 
+    public static final String TAG_SCORE_VALUE = "SCORE_VALUE";
+    public static final String TAG_SCORE_LABEL = "SCORE_LABEL";
+
     private TextView scoreView;
     private TextView labelView;
     private int iconView;
@@ -58,16 +61,17 @@ public class ScoreboardView extends LinearLayout {
 
         scoreView = new TextView(getContext());
 
+        scoreView.setTag(TAG_SCORE_VALUE);
         scoreView.setText(value);
         setStyle(scoreView, R.style.ScoreValueStyle);
         addView(scoreView);
 
         labelView = new TextView(getContext());
+        labelView.setTag(TAG_SCORE_LABEL);
         labelView.setText(label);
         labelView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
         if (iconView != 0) {
-            labelView.setCompoundDrawablePadding(
-                    getResources().getDimensionPixelSize(R.dimen.drawable_padding));
+            labelView.setCompoundDrawablePadding(getResources().getDimensionPixelSize(R.dimen.drawable_padding));
             labelView.setCompoundDrawablesWithIntrinsicBounds(iconView, 0, 0, 0);
         }
         setStyle(labelView, R.style.CardHeadStyle);

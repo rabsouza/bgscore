@@ -78,7 +78,7 @@
                                 tools:text="@string/text_default_username"/>
 
                             <TextView
-                                android:id="@+id/card_view_last_play"
+                                android:id="@+id/card_view_home_last_play"
                                 style="@style/CardTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

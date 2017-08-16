@@ -85,7 +85,7 @@ public class SearchGameDialog extends DialogFragment {
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             games.clear();
             final ArrayList<GameResponse> parcelables = bundle.getParcelableArrayList(BundleConstant.DATA);
             games.addAll(parcelables);

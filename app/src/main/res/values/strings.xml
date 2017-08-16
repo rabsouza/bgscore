@@ -4,10 +4,10 @@
     <!-- ################### TITLE #################### -->
     <string name="title_main">BoardGame\nScore</string>
     <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
-    <string name="title_profile">&#x265c; Meu perfil &#x265c;</string>
+    <string name="title_account">&#x265c; Meu perfil &#x265c;</string>
     <string name="title_games">&#x265c; Coleção de jogos &#x265c;</string>
     <string name="title_matches">&#x265c; Partidas &#x265c;</string>
-    <string name="title_about">&#x265c; Informações &#x265c;</string>
+    <string name="title_info">&#x265c; Informações &#x265c;</string>
     <string name="title_welcome">&#x265c; Novidades &#x265c;</string>
     <string name="title_match">&#x265c; Partida &#x265c;</string>
     <string name="title_game">&#x265c; Jogo &#x265c;</string>
@@ -222,9 +222,6 @@ Data Release: {2}<br><br>
 <b>Contato:</b><br>
 Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
-<br>
-<b>Agradecimentos:</b><br>
-Gostaria de deixar uma agradecimento especial aos Beta Tester e Tradutores.
 <br><br>
 <b>Mais informações:</b><br>
 <a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a></b>

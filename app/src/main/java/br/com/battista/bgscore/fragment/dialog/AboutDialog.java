@@ -55,7 +55,7 @@ public class AboutDialog extends DialogFragment {
         view.setMovementMethod(new LinkMovementMethod());
 
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.title_about)
+                .setTitle(R.string.title_info)
                 .setView(view)
                 .setPositiveButton(R.string.btn_ok,
                         new DialogInterface.OnClickListener() {

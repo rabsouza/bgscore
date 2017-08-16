@@ -47,7 +47,7 @@ public class HomeActivity extends BaseActivity {
     private void processDataActivity(Bundle bundle) {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
 
-        if (bundle.containsKey(BundleConstant.NAVIGATION_TO)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.NAVIGATION_TO)) {
             int navigationTo = bundle.getInt(BundleConstant.NAVIGATION_TO);
 
             switch (navigationTo) {
@@ -114,7 +114,7 @@ public class HomeActivity extends BaseActivity {
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);
-                                setUpToolbar(R.string.title_profile);
+                                setUpToolbar(R.string.title_account);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
                                         ValueActions.VALUE_CLICK_MENU_PROFILE);
                                 replaceFragment(ProfileFragment.newInstance());
