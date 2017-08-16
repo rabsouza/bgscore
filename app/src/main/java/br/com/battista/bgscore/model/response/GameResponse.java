@@ -1,10 +1,11 @@
 package br.com.battista.bgscore.model.response;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -17,12 +18,24 @@ import java.util.Map;
 
 @Root(name = "boardgame", strict = false)
 public class GameResponse implements Serializable, Parcelable {
+    public static final Creator<GameResponse> CREATOR = new Creator<GameResponse>() {
+        @Override
+        public GameResponse createFromParcel(Parcel source) {
+            return new GameResponse(source);
+        }
+
+        @Override
+        public GameResponse[] newArray(int size) {
+            return new GameResponse[size];
+        }
+    };
+
     private static final long serialVersionUID = 1L;
 
     @Attribute(name = "objectid")
     private Long boardgameId;
     @ElementMap(entry = "name", key = "primary", attribute = true, inline = true)
-    private Map<Boolean, String> nameMap;
+    private Map<Boolean, String> nameMap = Maps.newHashMap();
     @Element(name = "yearpublished", required = false)
     private String yearPublished;
     @Element(name = "minplayers", required = false)
@@ -40,19 +53,7 @@ public class GameResponse implements Serializable, Parcelable {
     @Element(name = "image", required = false)
     private String image;
     @ElementMap(entry = "boardgameexpansion", key = "objectid", attribute = true, inline = true, required = false)
-    private Map<Long, String> boardgameExpansionMap;
-
-    public static final Creator<GameResponse> CREATOR = new Creator<GameResponse>() {
-        @Override
-        public GameResponse createFromParcel(Parcel source) {
-            return new GameResponse(source);
-        }
-
-        @Override
-        public GameResponse[] newArray(int size) {
-            return new GameResponse[size];
-        }
-    };
+    private Map<Long, String> boardgameExpansionMap = Maps.newHashMap();
 
     public GameResponse() {
     }

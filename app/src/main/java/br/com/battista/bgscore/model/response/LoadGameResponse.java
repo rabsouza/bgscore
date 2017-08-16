@@ -25,7 +25,9 @@ public class LoadGameResponse implements Serializable, Parcelable {
             return new LoadGameResponse[size];
         }
     };
+
     private static final long serialVersionUID = 1L;
+
     @Element(name = "boardgame", required = false)
     private GameResponse boardgame;
 

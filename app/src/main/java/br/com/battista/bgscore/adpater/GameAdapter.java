@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -196,12 +196,12 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
     }
 
     private void openBuyInBrowser(View itemView, Game game) {
-            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BUY_GAME);
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BUY_GAME);
 
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(game.getUrlBuy()));
-            itemView.getContext().startActivity(intent);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(game.getUrlBuy()));
+        itemView.getContext().startActivity(intent);
     }
 
     private void openDetailInBrowser(View itemView, Game game) {

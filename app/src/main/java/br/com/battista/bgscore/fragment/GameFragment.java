@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.google.common.base.Strings;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -38,6 +39,7 @@ import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.adpater.GameAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
+import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.repository.GameRepository;
@@ -54,6 +56,10 @@ public class GameFragment extends BaseFragment {
     private TextView errorMsgGames;
     private ImageView imgHelpGame;
     private Spinner spnSortList;
+
+    private ScoreboardView scoreMyGame;
+    private ScoreboardView scoreWantGame;
+    private ScoreboardView scoreFavorite;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -109,8 +115,17 @@ public class GameFragment extends BaseFragment {
 
         setupRecycleGames(view);
         setupHelpGame(view);
+        setupDataGame(view);
 
         return view;
+    }
+
+    private void setupDataGame(View view) {
+        Log.i(TAG, "setupDataGame: Setup the data to games.");
+
+        scoreMyGame = view.findViewById(R.id.card_view_games_score_my_game);
+        scoreFavorite = view.findViewById(R.id.card_view_games_score_favorite);
+        scoreWantGame = view.findViewById(R.id.card_view_games_score_want_game);
     }
 
     private void processSortListGames(View view, View viewClicked) {
@@ -237,7 +252,33 @@ public class GameFragment extends BaseFragment {
         } else {
             games = new GameRepository().findAll(user.getOrderByGames());
         }
+        updateScoresGames(games);
         recycleViewGames.setAdapter(new GameAdapter(getContext(), games));
+    }
+
+    private void updateScoresGames(List<Game> games) {
+        Log.i(TAG, "updateScoresGames: Udapte the scores to games!");
+
+        int countMyGame = 0;
+        int countFavorite = 0;
+        int countWantGame = 0;
+        for (Game game : games) {
+            if (game.isMyGame()) {
+                countMyGame++;
+            }
+            if (game.isFavorite()) {
+                countFavorite++;
+            }
+            if (game.isWantGame()) {
+                countWantGame++;
+            }
+        }
+
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        scoreMyGame.setScoreText(decimalFormatScore.format(countMyGame));
+        scoreFavorite.setScoreText(decimalFormatScore.format(countFavorite));
+        scoreWantGame.setScoreText(decimalFormatScore.format(countWantGame));
+
     }
 
     private void setupRecycleGames(View view) {

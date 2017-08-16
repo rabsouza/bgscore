@@ -4,7 +4,6 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
-
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
@@ -111,12 +110,12 @@ public class Game extends BaseEntity implements Serializable {
         }
     }
 
-    public String getUrlBuy() {
-        return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
-    }
-
     public void setUrlInfo(String urlInfo) {
         this.urlInfo = urlInfo;
+    }
+
+    public String getUrlBuy() {
+        return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
     }
 
     public String getYearPublished() {
@@ -200,16 +199,16 @@ public class Game extends BaseEntity implements Serializable {
     }
 
     public BadgeGameEnum getBadgeGame() {
-        if(badgeGame == null){
+        if (badgeGame == null) {
             badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
         }
         return badgeGame;
     }
 
     public void setBadgeGame(BadgeGameEnum badgeGame) {
-        if(badgeGame == null){
+        if (badgeGame == null) {
             this.badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
-        }else {
+        } else {
             this.badgeGame = badgeGame;
         }
     }

@@ -1,12 +1,14 @@
 package br.com.battista.bgscore.adpater;
 
-import com.google.common.base.Strings;
+import static com.google.common.base.MoreObjects.firstNonNull;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.common.base.Strings;
 
 import java.util.Calendar;
 import java.util.List;
@@ -16,8 +18,6 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-
-import static com.google.common.base.MoreObjects.firstNonNull;
 
 
 public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHolder> {

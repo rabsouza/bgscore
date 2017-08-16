@@ -107,7 +107,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             if (editPunctuation) {
                 holder.getPunctuationContainer().setVisibility(View.VISIBLE);
                 holder.getTxtPunctuation().setText(player.getPunctuation());
-                if(!Strings.isNullOrEmpty(player.getPunctuation())){
+                if (!Strings.isNullOrEmpty(player.getPunctuation())) {
                     holder.getTxtPunctuation()
                             .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_player_check, 0);
                 }
@@ -139,7 +139,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         boolean isPunctuationDone = !Strings.isNullOrEmpty(player.getPunctuation());
-                        if(isPunctuationDone){
+                        if (isPunctuationDone) {
                             holder.getTxtPunctuation()
                                     .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                             player.punctuation(null);

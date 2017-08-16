@@ -1,9 +1,9 @@
 package br.com.battista.bgscore.model.enuns;
 
-import com.google.common.collect.Maps;
-
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 

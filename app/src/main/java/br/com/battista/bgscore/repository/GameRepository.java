@@ -1,10 +1,9 @@
 package br.com.battista.bgscore.repository;
 
 
-import com.google.common.collect.Sets;
-
 import android.util.Log;
 
+import com.google.common.collect.Sets;
 import com.orm.query.Select;
 
 import java.text.MessageFormat;

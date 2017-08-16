@@ -132,6 +132,9 @@
     <string name="text_dialog_import_data_db">Deseja importar os dados para minha coleção e partidas?</string>
     <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a minha coleção/partida.</string>
     <string name="text_player_with_punctuation">%1$s [&#x265c;:%2$s]</string>
+    <string name="text_games_score_my_game">tenho</string>
+    <string name="text_games_score_want_game">quero</string>
+    <string name="text_games_score_favorite_game">favorito</string>
 
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>

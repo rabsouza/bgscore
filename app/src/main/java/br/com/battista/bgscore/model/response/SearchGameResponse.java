@@ -26,7 +26,9 @@ public class SearchGameResponse implements Serializable, Parcelable {
             return new SearchGameResponse[size];
         }
     };
+
     private static final long serialVersionUID = 1L;
+
     @ElementList(name = "boardgame", inline = true, required = false)
     private List<GameResponse> boardgames = Lists.newArrayList();
 
