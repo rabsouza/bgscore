@@ -236,13 +236,10 @@ Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a registrar suas par
 <b>Curta nossa página no Facebook:</b><br>
 <b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
 <b>Novidades:</b><br>
-&nbsp;&nbsp;&nbsp;<b>1)</b> Tela inicial com dados estatísticos e ranking dos tops 5 jogos.<br>
+&nbsp;&nbsp;&nbsp;<b>1)</b> Tela inical com ranking de jogos e estáticas de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para registrar suas partidas e gerenciar sua coleção de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
-&nbsp;&nbsp;&nbsp;<b>4)</b> Integração com boardgamegeek para buscar jogos.<br>
-&nbsp;&nbsp;&nbsp;<b>5)</b> Compartilhamento de partidas (Simples e detalhada).<br>
-&nbsp;&nbsp;&nbsp;<b>6)</b> Adicionar pontuação aos jogadores de uma partida.<br>
-&nbsp;&nbsp;&nbsp;<b>7)</b> Adicionar jogo a lista de desejo e classificação do jogo.<br>
+&nbsp;&nbsp;&nbsp;<b>4)</b> Estaticas para seus jogos.<br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>

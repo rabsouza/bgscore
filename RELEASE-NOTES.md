@@ -6,6 +6,19 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.4
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Estáticas para jogos.
+ 
+**Bugs**
+
+**Improvements**
+ - Meloria no layouts e textos
+
+------------------------------------------------------------------------
 ### Version - 1.0.3
 **Date release**
  - 15/08/2017
@@ -78,6 +91,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+
+### Version - 1.0.12-Beta
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Estáticas para jogos.
+ 
+**Bugs**
+
+**Improvements**
+ - Meloria no layouts e textos
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.11-Beta
