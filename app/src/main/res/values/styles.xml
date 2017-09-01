@@ -100,7 +100,7 @@
     <style name="ScoreValueStyle" parent="Base.TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/colorTextBold</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="CardTextBoldStyle">
