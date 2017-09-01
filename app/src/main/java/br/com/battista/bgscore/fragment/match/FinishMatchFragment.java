@@ -8,6 +8,7 @@ import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATC
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -140,7 +141,17 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
             txtCreateAt.setText(DateUtils.format(match.getCreatedAt()));
 
             gameSelected = match.getGame();
+            if (!Strings.isNullOrEmpty(gameSelected.getUrlImage())) {
+                final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+                ImageLoadUtils.loadImage(getContext(), gameSelected.getUrlImage(), imgToolbar);
+            } else if (!Strings.isNullOrEmpty(gameSelected.getUrlThumbnail())) {
+                final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+                ImageLoadUtils.loadImage(getContext(), gameSelected.getUrlThumbnail(), imgToolbar);
+            }
             fillCardGame();
+
+            CollapsingToolbarLayout collapsingToolbar = getActivity().findViewById(R.id.collapsing_toolbar);
+            collapsingToolbar.setTitle(match.getAlias());
 
             players.addAll(match.getPlayers());
 

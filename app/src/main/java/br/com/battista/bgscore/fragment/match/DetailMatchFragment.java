@@ -4,6 +4,7 @@ package br.com.battista.bgscore.fragment.match;
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -139,6 +140,17 @@ public class DetailMatchFragment extends BaseFragment {
 
             gameSelected = match.getGame();
             fillCardGame();
+
+            if (!Strings.isNullOrEmpty(gameSelected.getUrlImage())) {
+                final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+                ImageLoadUtils.loadImage(getContext(), gameSelected.getUrlImage(), imgToolbar);
+            } else if (!Strings.isNullOrEmpty(gameSelected.getUrlThumbnail())) {
+                final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+                ImageLoadUtils.loadImage(getContext(), gameSelected.getUrlThumbnail(), imgToolbar);
+            }
+
+            CollapsingToolbarLayout collapsingToolbar = getActivity().findViewById(R.id.collapsing_toolbar);
+            collapsingToolbar.setTitle(match.getAlias());
 
             players.addAll(match.getPlayers());
             for (Player player : players) {
