@@ -6,6 +6,19 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.6
+**Date release**
+ - 01/09/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Corrigi bug da ordenação na lista.
+ 
+**Improvements** 
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.5
 **Date release**
  - 01/09/2017
@@ -108,6 +121,19 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.14-Beta
+**Date release**
+ - 01/09/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Corrigi bug da ordenação na lista.
+ 
+**Improvements** 
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.13-Beta

@@ -58,7 +58,7 @@ public class MatchFragment extends BaseFragment {
     private Spinner spnSortList;
 
     private SwipeRefreshLayout refreshLayout;
-    private boolean ignoreFirst = Boolean.FALSE;
+    private int lastSelectedItemPosition = 0;
 
     public MatchFragment() {
     }
@@ -132,20 +132,18 @@ public class MatchFragment extends BaseFragment {
         spnSortList = layout.findViewById(R.id.card_view_sort_list_value);
         spnSortList.setSelected(true);
         final User user = MainApplication.instance().getUser();
-        if (user.containsOrderBy(ViewConstant.MATCH_VIEW)) {
-            spnSortList.setSelection(user.getOrderBy(ViewConstant.MATCH_VIEW).getPosition(), Boolean.TRUE);
+        if (user.containsOrderBy(ViewConstant.MATCH_VIEW) && lastSelectedItemPosition != 0) {
+            spnSortList.setSelection(user.getOrderBy(ViewConstant.MATCH_VIEW).getPosition());
         }
         spnSortList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 final int selectedItemPosition = spnSortList.getSelectedItemPosition();
-                if (ignoreFirst || selectedItemPosition != 0) {
+                if (lastSelectedItemPosition != selectedItemPosition) {
                     String selectedItem = (String) spnSortList.getSelectedItem();
                     processNewOrderByMatches(selectedItem, selectedItemPosition);
                     popupWindow.dismiss();
-                } else {
-                    ignoreFirst = Boolean.TRUE;
                 }
             }
 
@@ -235,7 +233,9 @@ public class MatchFragment extends BaseFragment {
         User user = MainApplication.instance().getUser();
         List<Match> matches;
         if (user.containsOrderBy(ViewConstant.MATCH_VIEW)) {
-            matches = new MatchRepository().findAll(user.getOrderBy(ViewConstant.MATCH_VIEW).getQuery());
+            final OrderByDto orderBy = user.getOrderBy(ViewConstant.MATCH_VIEW);
+            lastSelectedItemPosition = orderBy.getPosition();
+            matches = new MatchRepository().findAll(orderBy.getQuery());
         } else {
             matches = new MatchRepository().findAll();
         }

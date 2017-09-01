@@ -2,8 +2,8 @@
 <resources>
 
     <!-- ################### TITLE #################### -->
-    <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
+    <string name="title_main">Board Game\nScore</string>
+    <string name="title_home">&#x265c; Board Game Score &#x265c;</string>
     <string name="title_account">&#x265c; Meu perfil &#x265c;</string>
     <string name="title_games">&#x265c; Coleção de jogos &#x265c;</string>
     <string name="title_matches">&#x265c; Partidas &#x265c;</string>
@@ -220,9 +220,9 @@
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
     <![CDATA[
-<h3>BoardGame Score &#xa9;2017</h3>
+<h3>Board Game Score &#xa9;2017</h3>
 <b>Curta nossa página no Facebook:</b><br>
-<b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
+<b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b><br><br>
 Versão publicada: {0} ({1})<br>
 Data release: {2}<br><br>
 <b>Objetivo do aplicativo:</b><br>
@@ -238,9 +238,9 @@ E-mail: rabsouza@gmail.com<br>
     </string>
     <string name="welcome_dialog_text">
     <![CDATA[
-Bem vindo ao BoardGame Score, esse aplicativo vai te ajudar a registrar suas partidas e gerenciar sua coleção de jogos de tabuleiros.<br><br>
+Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas partidas e gerenciar sua coleção de jogos de tabuleiros.<br><br>
 <b>Curta nossa página no Facebook:</b><br>
-<b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
+<b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b><br><br>
 <b>Novidades:</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Tela inical com ranking de jogos e estáticas de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para registrar suas partidas e gerenciar sua coleção de jogos.<br>
@@ -255,8 +255,8 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
     <string name="dialog_title_edit_profile">Editar informações</string>
     <string name="dialog_title_edit_profile_reset">Resetar dados</string>
-    <string name="dialog_title_export_data">Exportar dados do BoardGame Score</string>
-    <string name="dialog_title_import_data">Importar dados para o BoardGame Score</string>
+    <string name="dialog_title_export_data">Exportar dados do Board Game Score</string>
+    <string name="dialog_title_import_data">Importar dados para o Board Game Score</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>

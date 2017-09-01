@@ -62,7 +62,7 @@ public class GameFragment extends BaseFragment {
     private ScoreboardView scoreFavorite;
 
     private SwipeRefreshLayout refreshLayout;
-    private boolean ignoreFirst = Boolean.FALSE;
+    private int lastSelectedItemPosition = 0;
 
     public GameFragment() {
     }
@@ -145,20 +145,18 @@ public class GameFragment extends BaseFragment {
         spnSortList = layout.findViewById(R.id.card_view_sort_list_value);
         spnSortList.setSelected(true);
         final User user = MainApplication.instance().getUser();
-        if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
-            spnSortList.setSelection(user.getOrderBy(ViewConstant.GAME_VIEW).getPosition(), Boolean.TRUE);
+        if (user.containsOrderBy(ViewConstant.GAME_VIEW) && lastSelectedItemPosition != 0) {
+            spnSortList.setSelection(user.getOrderBy(ViewConstant.GAME_VIEW).getPosition());
         }
         spnSortList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 final int selectedItemPosition = spnSortList.getSelectedItemPosition();
-                if (ignoreFirst || selectedItemPosition != 0) {
+                if (lastSelectedItemPosition != selectedItemPosition) {
                     String selectedItem = (String) spnSortList.getSelectedItem();
                     processNewOrderByGames(selectedItem, selectedItemPosition);
                     popupWindow.dismiss();
-                } else {
-                    ignoreFirst = Boolean.TRUE;
                 }
             }
 
@@ -257,7 +255,9 @@ public class GameFragment extends BaseFragment {
         User user = MainApplication.instance().getUser();
         List<Game> games;
         if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
-            games = new GameRepository().findAll(user.getOrderBy(ViewConstant.GAME_VIEW).getQuery());
+            final OrderByDto orderBy = user.getOrderBy(ViewConstant.GAME_VIEW);
+            lastSelectedItemPosition = orderBy.getPosition();
+            games = new GameRepository().findAll(orderBy.getQuery());
         } else {
             games = new GameRepository().findAll();
         }

@@ -2,8 +2,8 @@
 <resources>
 
     <!-- ################### TITLE #################### -->
-    <string name="title_main">BoardGame\nScore</string>
-    <string name="title_home">&#x265c; BoardGame Score &#x265c;</string>
+    <string name="title_main">Board Game\nScore</string>
+    <string name="title_home">&#x265c; Board Game Score &#x265c;</string>
     <string name="title_account">&#x265c; My profile &#x265c;</string>
     <string name="title_games">&#x265c; Collection &#x265c;</string>
     <string name="title_matches">&#x265c; Matches &#x265c;</string>
@@ -220,9 +220,9 @@
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
     <![CDATA[
-<h3>BoardGame Score &#xa9;2017</h3>
+<h3>Board Game Score &#xa9;2017</h3>
 <b>Like our page on facebook :</b><br>
-<b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
+<b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b><br><br>
 Published version: {0} ({1})<br>
 Date release: {2}<br><br>
 <b>Purpose of the application:</b><br>
@@ -238,9 +238,9 @@ E-mail: rabsouza@gmail.com<br>
     </string>
     <string name="welcome_dialog_text">
     <![CDATA[
-Welcome to BoardGame Score, this application will help you to register your matches and manage your collection of board games.<br><br>
+Welcome to Board Game Score, this application will help you to register your matches and manage your collection of board games.<br><br>
 <b>Like our page on facebook :</b><br>
-<b><a href="https://www.facebook.com/boardgamescore">BoardGame Score</a></b><br><br>
+<b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b><br><br>
 <b>News:</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Home screen with game ranking and static games.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Screens to record your games and manage your game collection.<br>
@@ -255,8 +255,8 @@ Version <i>{0}</i> published in{1}.<br><br>
     <string name="dialog_title_change_avatar">Change avatar</string>
     <string name="dialog_title_edit_profile">Edit information</string>
     <string name="dialog_title_edit_profile_reset">Reset Data</string>
-    <string name="dialog_title_export_data">Export BoardGame Score data</string>
-    <string name="dialog_title_import_data">Import data into the BoardGame Score</string>
+    <string name="dialog_title_export_data">Export Board Game Score data</string>
+    <string name="dialog_title_import_data">Import data into the Board Game Score</string>
 
     <!-- TODO: Remove or change this placeholder text -->
         
