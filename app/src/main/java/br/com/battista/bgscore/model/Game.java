@@ -10,7 +10,9 @@ import com.orm.dsl.Table;
 import java.io.Serializable;
 import java.util.Set;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.constants.EntityConstant;
+import br.com.battista.bgscore.constants.LocaleConstant;
 import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 
@@ -115,7 +117,11 @@ public class Game extends BaseEntity implements Serializable {
     }
 
     public String getUrlBuy() {
-        return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
+        if (MainApplication.instance().getCurrentLocale().equals(LocaleConstant.DEFAULT_LOCALE)) {
+            return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
+        } else {
+            return EntityConstant.DEFAULT_URL_BUY_GAME_ENG.concat(getName());
+        }
     }
 
     public String getYearPublished() {

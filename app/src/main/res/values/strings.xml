@@ -13,6 +13,7 @@
     <string name="title_game">&#x265c; Game &#x265c;</string>
     <string name="title_help">&#x265c; Help &#x265c;</string>
 
+
     <!-- ################### CARD #################### -->
     <string name="card_title_game">My game</string>
     <string name="card_title_game_match">My match in game</string>
@@ -32,168 +33,174 @@
     <string name="card_title_feedback_match">Game notes/comments</string>
     <string name="card_title_sort_list">Sorting the list</string>
 
+
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
-    <string name="hint_detail_alias_match">Game Name/Nickname</string>
-    <string name="hint_detail_match_obs">Game Notes/Comments</string>
-    <string name="hint_detail_match_created_at">Date of departure (dd/mm/yyyy)</string>
-    <string name="hint_detail_match_duration">Duration of the game (HH:MM)</string>
-    <string name="hint_text_detail_alias_match">*¹ Match name/nickname will be used to identify your match.</string>
-    <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the game.</string>
-    <string name="hint_text_detail_feedback_match">*¹ Select a rating for your match (Normal rating is the default).</string>
-    <string name="hint_share_match">See my game match {0}!!!</string>
-    <string name="hint_share_match_full">See the details of my match {0} game {1}!!!</string>
-    <string name="hint_title_share_match">Match Details</string>
+    <string name="hint_detail_alias_match">Game Name/Nickname</string>
+    <string name="hint_detail_match_obs">Game Notes/Comments</string>
+    <string name="hint_detail_match_created_at">Date of departure (dd/mm/yyyy)</string>
+    <string name="hint_detail_match_duration">Duration of the game (HH:MM)</string>
+    <string name="hint_text_detail_alias_match">*¹ Match name/nickname will be used to identify your match.</string>
+    <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the game.</string>
+    <string name="hint_text_detail_feedback_match">*¹ Select a rating for your match (Normal rating is the default).</string>
+    <string name="hint_share_match">See my game match {0}!!!</string>
+    <string name="hint_share_match_full">See the details of my match {0} game {1}!!!</string>
+    <string name="hint_title_share_match">Match Details</string>
+
 
     <!-- ################### HINT #################### -->
     <string name="msg_username_friend_required">Your friends name is required!</string>
-    <string name="msg_username_player_required">Player name is required!</string>
-    <string name="msg_username_required">Username is required!</string>
-    <string name="msg_name_game_required">Game name is required!</string>
-    <string name="msg_alias_match_required">Match name/Nickname is required!</string>
-    <string name="msg_game_required">You must select at least 1 game to save/edit this match!</string>
-    <string name="msg_mail_required">Email is required!</string>
-    <string name="msg_game_dont_found_open">The game could not be found, please add a link from the game page.</string>
-    <string name="msg_game_dont_found_search">The game could not be found, please try again.</string>
-    <string name="msg_game_error_add_game">Error while trying to add game. Please try again.</string>
-    <string name="msg_error_game_with_partner">Error while trying to delete game %1$s. Check for matches associated with the game.</string>
-    <string name="msg_error_add_search_game">Error while trying to add the new game. Please try again.</string>
-    <string name="msg_share_detail_match">Generating the start image for the share, please wait.</string>
-    <string name="msg_action_searching">Please wait! Searching ...</string>
-    <string name="msg_action_saving">Please wait! Saving ...</string>
+    <string name="msg_username_player_required">Player name is required!</string>
+    <string name="msg_username_required">Username is required!</string>
+    <string name="msg_name_game_required">Game name is required!</string>
+    <string name="msg_alias_match_required">Match name/Nickname is required!</string>
+    <string name="msg_game_required">You must select at least 1 game to save/edit this match!</string>
+    <string name="msg_mail_required">Email is required!</string>
+    <string name="msg_game_dont_found_open">The game could not be found, please add a link from the game page.</string>
+    <string name="msg_game_dont_found_search">The game could not be found, please try again.</string>
+    <string name="msg_game_error_add_game">Error while trying to add game. Please try again.</string>
+    <string name="msg_error_game_with_partner">Error while trying to delete game %1$s. Check for matches associated with the game.</string>
+    <string name="msg_error_add_search_game">Error while trying to add the new game. Please try again.</string>
+    <string name="msg_share_detail_match">Generating the start image for the share, please wait.</string>
+    <string name="msg_action_searching">Please wait! Searching ...</string>
+    <string name="msg_action_saving">Please wait! Saving ...</string>
+
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Under construction, please wait!</string>
-    <string name="text_home_games">games</string>
-    <string name="text_home_matches">matches</string>
-    <string name="text_home_matches_time">time</string>
-    <string name="text_home_last_play">Last match: %1$s</string>
-    <string name="text_home_stats_info_01">*¹ Your ranking with the 5 most played games in my collection.</string>
-    <string name="text_home_stats_empty_view">No registered items. Please add a new match.</string>
-    <string name="text_home_stats_error_view">Error trying to load your game ranking, please try again.</string>
-    <string name="text_profile_friends_empty_view">No friends added. Please add new friends to play your games.</string>
-    <string name="text_profile_friends_error_view">Error while trying to load friends list. Please try again.</string>
-    <string name="text_default_username">Default User</string>
-    <string name="text_home_username">Hi, %1$s</string>
-    <string name="text_username">%1$s</string>
-    <string name="text_mail">%1$s</string>
-    <string name="text_date_created">%1$s</string>
-    <string name="text_dialog_change_avatar_info_01">*¹ Select the avatar you want to use from the list below.</string>
-    <string name="text_dialog_edit_profile_info_01">*¹ Fill in the fields below with your data.</string>
-    <string name="text_dialog_edit_profile_custom_font_info_01">*¹ You must restart the application for this action to take effect.</string>
-    <string name="text_dialog_edit_profile_reset">Do you want to reset your profile?</string>
-    <string name="text_dialog_edit_custom_font">Do you want to use custom text fonts?</string>
-    <string name="text_dialog_edit_profile_info_02">*² All data in your user will be lost and this action can not be reversed.</string>
-    <string name="text_profile_friends_info_01">*¹ Add a new friend to play in your matches.</string>
-    <string name="text_match_players_info_01">*¹ Select friends or add new players to play this game.</string>
-    <string name="text_match_players_winners_info_01">*¹ Select the winning players of this match.</string>
-    <string name="text_match_players_winners_info_02">*² To add the final score, fill in the field and press enter to confirm.</string>
-    <string name="text_match_players_obs_info_01">*¹ Fill in the field below with the notes of this match.</string>
-    <string name="text_match_search_game_info_01">*¹ Search for a game from boardgamegeek.com.</string>
-    <string name="text_match_game_info_01">*¹ Search for a new game from my collection or on boardgamegeek.com.</string>
-    <string name="text_match_friends_i_playing">Am I playing this game?</string>
-    <string name="text_match_search_online">Search game on site boardgamegeek.com?</string>
-    <string name="text_match_sort_list_info_01">*¹ Select one of the options to change the order of the list of matches.</string>
-    <string name="text_game_sort_list_info_01">*¹ Select one of the options to change the order of the game list.</string>
-    <string name="text_game_games_info_01">*¹ List with the latest registered games.</string>
-    <string name="text_game_games_empty_view">No games added yet. Please add new games.</string>
-    <string name="text_game_games_error_view">Error while trying to load the game list. Please try again.</string>
-    <string name="text_game_new_game_info_01">*¹ To register a new game you must fill in the information below.</string>
-    <string name="text_game_new_game_info_02">*² Find the game id at boardgamegeek.com, for example: 143741.</string>
-    <string name="text_match_matches_info_01">*¹ List with the last recorded matches.</string>
-    <string name="text_match_matches_empty_view">No registered items. Please add a new match.</string>
-    <string name="text_match_matches_error_view">Error trying to load list of matches, please try again.</string>
-    <string name="text_legend_info_01">*¹ Caption with the definition of each of the icons used in this application screen.</string>
+    <string name="text_home_games">games</string>
+    <string name="text_home_matches">matches</string>
+    <string name="text_home_matches_time">time</string>
+    <string name="text_home_last_play">Last match: %1$s</string>
+    <string name="text_home_stats_info_01">*¹ Your ranking with the 5 most played games in my collection.</string>
+    <string name="text_home_stats_empty_view">No registered items. Please add a new match.</string>
+    <string name="text_home_stats_error_view">Error trying to load your game ranking, please try again.</string>
+    <string name="text_profile_friends_empty_view">No friends added. Please add new friends to play your games.</string>
+    <string name="text_profile_friends_error_view">Error while trying to load friends list. Please try again.</string>
+    <string name="text_default_username">Default User</string>
+    <string name="text_home_username">Hi, %1$s</string>
+    <string name="text_username">%1$s</string>
+    <string name="text_mail">%1$s</string>
+    <string name="text_date_created">%1$s</string>
+    <string name="text_dialog_change_avatar_info_01">*¹ Select the avatar you want to use from the list below.</string>
+    <string name="text_dialog_edit_profile_info_01">*¹ Fill in the fields below with your data.</string>
+    <string name="text_dialog_edit_profile_custom_font_info_01">*¹ You must restart the application for this action to take effect.</string>
+    <string name="text_dialog_edit_profile_reset">Do you want to reset your profile?</string>
+    <string name="text_dialog_edit_custom_font">Do you want to use custom text fonts?</string>
+    <string name="text_dialog_edit_profile_info_02">*² All data in your user will be lost and this action can not be reversed.</string>
+    <string name="text_profile_friends_info_01">*¹ Add a new friend to play in your matches.</string>
+    <string name="text_match_players_info_01">*¹ Select friends or add new players to play this game.</string>
+    <string name="text_match_players_winners_info_01">*¹ Select the winning players of this match.</string>
+    <string name="text_match_players_winners_info_02">*² To add the final score, fill in the field and press enter to confirm.</string>
+    <string name="text_match_players_obs_info_01">*¹ Fill in the field below with the notes of this match.</string>
+    <string name="text_match_search_game_info_01">*¹ Search for a game from boardgamegeek.com.</string>
+    <string name="text_match_game_info_01">*¹ Search for a new game from my collection or on boardgamegeek.com.</string>
+    <string name="text_match_friends_i_playing">Am I playing this game?</string>
+    <string name="text_match_search_online">Search game on site boardgamegeek.com?</string>
+    <string name="text_match_sort_list_info_01">*¹ Select one of the options to change the order of the list of matches.</string>
+    <string name="text_game_sort_list_info_01">*¹ Select one of the options to change the order of the game list.</string>
+    <string name="text_game_games_info_01">*¹ List with the latest registered games.</string>
+    <string name="text_game_games_empty_view">No games added yet. Please add new games.</string>
+    <string name="text_game_games_error_view">Error while trying to load the game list. Please try again.</string>
+    <string name="text_game_new_game_info_01">*¹ To register a new game you must fill in the information below.</string>
+    <string name="text_game_new_game_info_02">*² Find the game id at boardgamegeek.com, for example: 143741.</string>
+    <string name="text_match_matches_info_01">*¹ List with the last recorded matches.</string>
+    <string name="text_match_matches_empty_view">No registered items. Please add a new match.</string>
+    <string name="text_match_matches_error_view">Error trying to load list of matches, please try again.</string>
+    <string name="text_legend_info_01">*¹ Caption with the definition of each of the icons used in this application screen.</string>
     <string name="text_legend_game_badge_game">Game rating (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
     <string name="text_legend_game_players">Player numbers supported by the game (Minimum-Maximum).</string>
-    <string name="text_legend_game_time">Average time spent for each game (Minimum-Maximum).</string>
-    <string name="text_legend_game_age">Recommended minimum age to play the game.</string>
-    <string name="text_legend_game_sort_list">Changes the ordering of the game list.</string>
-    <string name="text_legend_game_year">Year of publication of the game.</string>
-    <string name="text_legend_game_my_game">Gaming indicator for my collection.</string>
-    <string name="text_legend_game_favorite">Indicator for favorite game.</string>
-    <string name="text_legend_game_want_game">Game indicator I want in my collection.</string>
-    <string name="text_legend_match_match">Match Name/Nickname.</string>
-    <string name="text_legend_match_date">Date the match happened (dd/mm/yyyy).</string>
-    <string name="text_legend_match_players">Number of players participating in the match.</string>
-    <string name="text_legend_match_time">Estimated duration of the match (HH: MM).</string>
-    <string name="text_legend_match_feedback">Match rating (Bad, Bad, Normal, Good and Excellent).</string>
-    <string name="text_legend_match_sort_list">Change the ordering of the list of matches.</string>
+    <string name="text_legend_game_time">Average time spent for each game (Minimum-Maximum).</string>
+    <string name="text_legend_game_age">Recommended minimum age to play the game.</string>
+    <string name="text_legend_game_sort_list">Changes the ordering of the game list.</string>
+    <string name="text_legend_game_year">Year of publication of the game.</string>
+    <string name="text_legend_game_my_game">Gaming indicator for my collection.</string>
+    <string name="text_legend_game_favorite">Indicator for favorite game.</string>
+    <string name="text_legend_game_want_game">Game indicator I want in my collection.</string>
+    <string name="text_legend_match_match">Match Name/Nickname.</string>
+    <string name="text_legend_match_date">Date the match happened (dd/mm/yyyy).</string>
+    <string name="text_legend_match_players">Number of players participating in the match.</string>
+    <string name="text_legend_match_time">Estimated duration of the match (HH: MM).</string>
+    <string name="text_legend_match_feedback">Match rating (Bad, Bad, Normal, Good and Excellent).</string>
+    <string name="text_legend_match_sort_list">Change the ordering of the list of matches.</string>
     <string name="text_legend_ranking_game_badge_game">Rating of the game (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
-    <string name="text_legend_ranking_game_matches">Number of game starts recorded.</string>
-    <string name="text_legend_ranking_game_date">Date the last recorded match of the game occurred.</string>
-    <string name="text_legend_ranking_game_time">Total minutes played in the game (HH: MM).</string>
-    <string name="text_legend_ranking_game_sort_list">List sorted by the number of game matches in descending order, only the top 5 games.</string>
-    <string name="text_dialog_export_data_info_01">*¹ Select the data types you want to be exported to an external file.</string>
-    <string name="text_dialog_import_data_info_01">*¹ Select the data types you want to import from an external file.</string>
-    <string name="text_dialog_export_data_user">Do you want to export your user data?</string>
-    <string name="text_dialog_import_data_user">Do you want to import the data to your user?</string>
-    <string name="text_dialog_export_data_db">Do you want to export data from my collection and its registered items?</string>
-    <string name="text_dialog_import_data_db">Do you want to import data into my collection and matches?</string>
-    <string name="text_dialog_search_game_info_01">*¹ Select the game you want to add to my collection/game from the list below.</string>
-    <string name="text_player_with_punctuation">%1$s [&#x265c;:%2$s]</string>
-    <string name="text_games_score_my_game">i have</string>
-    <string name="text_games_score_want_game">want</string>
-    <string name="text_games_score_favorite_game">favorite</string>
+    <string name="text_legend_ranking_game_matches">Number of game starts recorded.</string>
+    <string name="text_legend_ranking_game_date">Date the last recorded match of the game occurred.</string>
+    <string name="text_legend_ranking_game_time">Total minutes played in the game (HH: MM).</string>
+    <string name="text_legend_ranking_game_sort_list">List sorted by the number of game matches in descending order, only the top 5 games.</string>
+    <string name="text_dialog_export_data_info_01">*¹ Select the data types you want to be exported to an external file.</string>
+    <string name="text_dialog_import_data_info_01">*¹ Select the data types you want to import from an external file.</string>
+    <string name="text_dialog_export_data_user">Do you want to export your user data?</string>
+    <string name="text_dialog_import_data_user">Do you want to import the data to your user?</string>
+    <string name="text_dialog_export_data_db">Do you want to export data from my collection and its registered items?</string>
+    <string name="text_dialog_import_data_db">Do you want to import data into my collection and matches?</string>
+    <string name="text_dialog_search_game_info_01">*¹ Select the game you want to add to my collection/game from the list below.</string>
+    <string name="text_player_with_punctuation">%1$s [&#x265c;:%2$s]</string>
+    <string name="text_games_score_my_game">i have</string>
+    <string name="text_games_score_want_game">want</string>
+    <string name="text_games_score_favorite_game">favorite</string>
 
 
     <!-- ################### Field #################### -->
     <string name="field_username">User Name</string>
-    <string name="field_username_friend">Your friends name</string>
-    <string name="field_username_player">Player name</string>
-    <string name="field_mail">Your users email</string>
-    <string name="field_name_game">Name or part of the game name</string>
-    <string name="field_name_new_game">Game Name</string>
-    <string name="field_id_bgg_new_game">BGG game id</string>
-    <string name="field_player_punctuation">Final score</string>
-    <string name="field_is_my_game">Do I have this game in my collection?</string>
-    <string name="field_is_favorite_game">Is this game my favorite?</string>
-    <string name="field_is_want_game">I want this game in my collection?</string>
-    <string name="field_url_thumbnail_new_game">Image Link game cover</string>
-    <string name="field_url_image_new_game">Main Image Link</string>
-    <string name="field_url_info_new_game">Page link (Ludopedia or boardgamegeek.com)</string>
-    <string name="field_year_published_new_game">Year of publication</string>
-    <string name="field_list_order_by">Sorted by</string>
-    <string name="field_min_players_new_game">Minimum of players</string>
-    <string name="field_max_players_new_game">Maximum players</string>
-    <string name="field_min_play_time_new_game">Minimum Duration (Min.)</string>
-    <string name="field_max_play_time_new_game">Maximum Duration (Min.)</string>
-    <string name="field_age_new_game">Recommended age</string>
-    <string name="field_rating_new_game">Your rating (0-10&#x2605;)</string>
-    <string name="field_badge_game_new_game">Game rating</string>
+    <string name="field_username_friend">Your friends name</string>
+    <string name="field_username_player">Player name</string>
+    <string name="field_mail">Your users email</string>
+    <string name="field_name_game">Name or part of the game name</string>
+    <string name="field_name_new_game">Game Name</string>
+    <string name="field_id_bgg_new_game">BGG game id</string>
+    <string name="field_player_punctuation">Final score</string>
+    <string name="field_is_my_game">Do I have this game in my collection?</string>
+    <string name="field_is_favorite_game">Is this game my favorite?</string>
+    <string name="field_is_want_game">I want this game in my collection?</string>
+    <string name="field_url_thumbnail_new_game">Image Link game cover</string>
+    <string name="field_url_image_new_game">Main Image Link</string>
+    <string name="field_url_info_new_game">Page link (Ludopedia or boardgamegeek.com)</string>
+    <string name="field_year_published_new_game">Year of publication</string>
+    <string name="field_list_order_by">Sorted by</string>
+    <string name="field_min_players_new_game">Minimum of players</string>
+    <string name="field_max_players_new_game">Maximum players</string>
+    <string name="field_min_play_time_new_game">Minimum Duration (Min.)</string>
+    <string name="field_max_play_time_new_game">Maximum Duration (Min.)</string>
+    <string name="field_age_new_game">Recommended age</string>
+    <string name="field_rating_new_game">Your rating (0-10&#x2605;)</string>
+    <string name="field_badge_game_new_game">Game rating</string>
+
 
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Are you sure?</string>
-    <string name="alert_confirmation_dialog_text_exit_app">Do you want to quit the application?</string>
-    <string name="alert_confirmation_dialog_text_exit">You have canceled saved changes on this screen. \nDo you want to leave without saving?</string>
-    <string name="alert_confirmation_dialog_title_delete">Are you sure?</string>
-    <string name="alert_confirmation_dialog_text_remove_player">Do you want to remove the player {0} from this game? \n\nThis operation can not be overridden.</string>
-    <string name="alert_confirmation_dialog_text_remove_friend">Do you want to remove the friend {0}? \n\nThis operation can not be overridden.</string>
-    <string name="alert_confirmation_dialog_text_remove_game">Do you want to remove the game {0}? \n\nThis operation can not be overridden.</string>
-    <string name="alert_confirmation_dialog_text_remove_match">Do you want to remove the game {0}? \n\nThis operation can not be overridden.</string>
-    <string name="alert_confirmation_dialog_text_add_game">Do you want to add the game {0}? \n\nThis game will be automatically added to my collection.</string>
+    <string name="alert_confirmation_dialog_text_exit_app">Do you want to quit the application?</string>
+    <string name="alert_confirmation_dialog_text_exit">You have canceled saved changes on this screen. \nDo you want to leave without saving?</string>
+    <string name="alert_confirmation_dialog_title_delete">Are you sure?</string>
+    <string name="alert_confirmation_dialog_text_remove_player">Do you want to remove the player {0} from this game? \n\nThis operation can not be overridden.</string>
+    <string name="alert_confirmation_dialog_text_remove_friend">Do you want to remove the friend {0}? \n\nThis operation can not be overridden.</string>
+    <string name="alert_confirmation_dialog_text_remove_game">Do you want to remove the game {0}? \n\nThis operation can not be overridden.</string>
+    <string name="alert_confirmation_dialog_text_remove_match">Do you want to remove the game {0}? \n\nThis operation can not be overridden.</string>
+    <string name="alert_confirmation_dialog_text_add_game">Do you want to add the game {0}? \n\nThis game will be automatically added to my collection.</string>
+
 
     <!-- ################### ELEMENTS #################### -->
     <string name="btn_login">ENTER</string>
-    <string name="btn_sign_in">CREATE ACCOUNT</string>
-    <string name="btn_save">SAVE</string>
-    <string name="btn_confirm">CONFIRM</string>
-    <string name="btn_create">CREATE</string>
-    <string name="btn_cancel">CANCEL</string>
-    <string name="btn_ok">OK</string>
-    <string name="btn_share">SHARE</string>
-    <string name="btn_confirmation_dialog_exit">EXIT</string>
-    <string name="btn_confirmation_dialog_cancel">CANCEL</string>
-    <string name="btn_confirmation_dialog_delete">DELETE</string>
-    <string name="btn_confirmation_dialog_remove">REMOVE</string>
-    <string name="btn_confirmation_dialog_add">ADD</string>
-    <string name="btn_confirmation_dialog_play">PLAY</string>
-    <string name="btn_confirmation_dialog_finish">FINISH</string>
-    <string name="btn_change_avatar">CHANGE AVATAR</string>
-    <string name="btn_edit">EDIT</string>
-    <string name="btn_export">EXPORT</string>
-    <string name="btn_import">IMPORT</string>
-    <string name="btn_export_import">EXPORT/IMPORT</string>
+    <string name="btn_sign_in">CREATE ACCOUNT</string>
+    <string name="btn_save">SAVE</string>
+    <string name="btn_confirm">CONFIRM</string>
+    <string name="btn_create">CREATE</string>
+    <string name="btn_cancel">CANCEL</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_share">SHARE</string>
+    <string name="btn_confirmation_dialog_exit">EXIT</string>
+    <string name="btn_confirmation_dialog_cancel">CANCEL</string>
+    <string name="btn_confirmation_dialog_delete">DELETE</string>
+    <string name="btn_confirmation_dialog_remove">REMOVE</string>
+    <string name="btn_confirmation_dialog_add">ADD</string>
+    <string name="btn_confirmation_dialog_play">PLAY</string>
+    <string name="btn_confirmation_dialog_finish">FINISH</string>
+    <string name="btn_change_avatar">CHANGE AVATAR</string>
+    <string name="btn_edit">EDIT</string>
+    <string name="btn_export">EXPORT</string>
+    <string name="btn_import">IMPORT</string>
+    <string name="btn_export_import">EXPORT/IMPORT</string>
+
 
     <!-- ################### ACTION BAR #################### -->
     <string name="action_home">home</string>
@@ -208,6 +215,7 @@
     <string name="action_edit">edit</string>
     <string name="action_finish">finish</string>
     <string name="action_remove">delete</string>
+
 
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
@@ -244,13 +252,15 @@ Version <i>{0}</i> published in{1}.<br><br>
 ]]>
     </string>
     <string name="dialog_title_change_avatar">Change avatar</string>
-    <string name="dialog_title_edit_profile">Edit information</string>
-    <string name="dialog_title_edit_profile_reset">Reset Data</string>
-    <string name="dialog_title_export_data">Export BoardGame Score data</string>
-    <string name="dialog_title_import_data">Import data into the BoardGame Score</string>
+    <string name="dialog_title_edit_profile">Edit information</string>
+    <string name="dialog_title_edit_profile_reset">Reset Data</string>
+    <string name="dialog_title_export_data">Export BoardGame Score data</string>
+    <string name="dialog_title_import_data">Import data into the BoardGame Score</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Under construction, please wait!</string>
+        
+    <string name="hello_blank_fragment">Under construction, please wait!</string>
+
 
     <!-- ################### OTHERS #################### -->
     <string name="avatar_boba_fett">Boba Fett</string>
@@ -279,23 +289,23 @@ Version <i>{0}</i> published in{1}.<br><br>
     <string name="avatar_stormtrooper">Stormtrooper</string>
     <string name="avatar_yoda">Yoda</string>
     <string name="avatar_profile">Default</string>
-    <string name="avatar_friend">Friend</string>
-    <string name="avatar_woman">Woman</string>
-    <string name="avatar_man">Man</string>
-    <string name="feedback_very_dissatisfied">A bad match</string>
-    <string name="feedback_dissatisfied">A bad match</string>
-    <string name="feedback_neutral">A normal match</string>
-    <string name="feedback_satisfied">A good match</string>
-    <string name="feedback_very_satisfied">An excellent match</string>
-    <string name="rating_num_stars">10</string>
-    <string name="rating_step_size">1</string>
-    <string name="badge_game_abstract">Abstract Games</string>
-    <string name="badge_game_ameritrash">Ameritrash Games</string>
-    <string name="badge_game_euros">Euros Games</string>
-    <string name="badge_game_family">Family Games</string>
-    <string name="badge_game_party">Holidays/Party Games</string>
-    <string name="badge_game_wargamer">War Games</string>
-    <string name="badge_game_none">None</string>
+    <string name="avatar_friend">Friend</string>
+    <string name="avatar_woman">Woman</string>
+    <string name="avatar_man">Man</string>
+    <string name="feedback_very_dissatisfied">A bad match</string>
+    <string name="feedback_dissatisfied">A bad match</string>
+    <string name="feedback_neutral">A normal match</string>
+    <string name="feedback_satisfied">A good match</string>
+    <string name="feedback_very_satisfied">An excellent match</string>
+    <string name="rating_num_stars">10</string>
+    <string name="rating_step_size">1</string>
+    <string name="badge_game_abstract">Abstract Games</string>
+    <string name="badge_game_ameritrash">Ameritrash Games</string>
+    <string name="badge_game_euros">Euros Games</string>
+    <string name="badge_game_family">Family Games</string>
+    <string name="badge_game_party">Holidays/Party Games</string>
+    <string name="badge_game_wargamer">War Games</string>
+    <string name="badge_game_none">None</string>
 
     <string-array name="sort_list_games">
         <item>Default</item>

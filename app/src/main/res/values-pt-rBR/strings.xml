@@ -13,6 +13,7 @@
     <string name="title_game">&#x265c; Jogo &#x265c;</string>
     <string name="title_help">&#x265c; Ajuda &#x265c;</string>
 
+
     <!-- ################### CARD #################### -->
     <string name="card_title_game">Meu jogo</string>
     <string name="card_title_game_match">Meu jogo da partida</string>
@@ -32,6 +33,7 @@
     <string name="card_title_feedback_match">Avaliação/Observações da partida</string>
     <string name="card_title_sort_list">Ordenação da lista</string>
 
+
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
     <string name="hint_detail_alias_match">Nome/Apelido da partida</string>
@@ -44,6 +46,7 @@
     <string name="hint_share_match">Veja a minha partida do jogo {0}!!!</string>
     <string name="hint_share_match_full">Veja os detalhes da minha partida {0} do jogo {1}!!!</string>
     <string name="hint_title_share_match">Detalhes da partida</string>
+
 
     <!-- ################### HINT #################### -->
     <string name="msg_username_friend_required">Nome do seu amigo(a) é obrigatório!</string>
@@ -61,6 +64,7 @@
     <string name="msg_share_detail_match">Gerando a imagem da partida para o compartilhamento, por favor aguarde.</string>
     <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
     <string name="msg_action_saving">Aguarde! Salvando&#8230;</string>
+
 
     <!-- ################### TEXT #################### -->
     <string name="text_under_construction">Em construção, por favor aguarde!</string>
@@ -136,6 +140,7 @@
     <string name="text_games_score_want_game">quero</string>
     <string name="text_games_score_favorite_game">favorito</string>
 
+
     <!-- ################### Field #################### -->
     <string name="field_username">Nome do usuário</string>
     <string name="field_username_friend">Nome do seu amigo(a)</string>
@@ -161,6 +166,7 @@
     <string name="field_rating_new_game">Sua avaliação/nota do jogo (0-10 &#x2605;)</string>
     <string name="field_badge_game_new_game">Classificação do jogo</string>
 
+
     <!-- ################### ALERT #################### -->
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
     <string name="alert_confirmation_dialog_text_exit_app">Deseja sair da aplicação?</string>
@@ -171,6 +177,7 @@
     <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_match">Deseja remover a partida {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_add_game">Deseja adicionar o jogo {0}? \n\nEsse jogo será adicionado automaticamente a minha coleção.</string>
+
 
     <!-- ################### ELEMENTS #################### -->
     <string name="btn_login">ENTRAR</string>
@@ -194,6 +201,7 @@
     <string name="btn_import">IMPORTAR</string>
     <string name="btn_export_import">EXPORTAR / IMPORTAR</string>
 
+
     <!-- ################### ACTION BAR #################### -->
     <string name="action_home">home</string>
     <string name="action_matches">partidas</string>
@@ -207,6 +215,7 @@
     <string name="action_edit">editar</string>
     <string name="action_finish">finalizar</string>
     <string name="action_remove">excluir</string>
+
 
     <!-- ################### DIALOG ####################### -->
     <string name="about_dialog_text">
@@ -250,6 +259,7 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>
+
 
     <!-- ################### OTHERS #################### -->
     <string name="avatar_boba_fett">Boba Fett</string>

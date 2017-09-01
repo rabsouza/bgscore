@@ -79,8 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_horizontal_margin"
             android:checked="false"
-            android:visibility="gone"
-            android:text="@string/text_dialog_edit_custom_font"/>
+            android:text="@string/text_dialog_edit_custom_font"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/dialog_view_edit_profile_custom_font_info_01"

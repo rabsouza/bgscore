@@ -18,11 +18,11 @@
         android:padding="@dimen/element_padding">
 
         <ImageView
-                android:id="@+id/card_view_games_info_badge_game"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/badge_game_none"/>
+            android:id="@+id/card_view_games_info_badge_game"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/badge_game_none"/>
 
         <TextView
             android:id="@+id/card_view_games_info_name"

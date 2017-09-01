@@ -80,8 +80,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_line"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/colorLine"/>
 
     <TextView
