@@ -293,7 +293,7 @@ Version <i>{0}</i> published in{1}.<br><br>
     <string name="badge_game_ameritrash">Ameritrash Games</string>
     <string name="badge_game_euros">Euros Games</string>
     <string name="badge_game_family">Family Games</string>
-    <string name="badge_game_party">Holidays</string>
+    <string name="badge_game_party">Holidays/Party Games</string>
     <string name="badge_game_wargamer">War Games</string>
     <string name="badge_game_none">None</string>
 

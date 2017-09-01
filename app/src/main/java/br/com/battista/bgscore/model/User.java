@@ -2,17 +2,19 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
-import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.enuns.AvatarEnum;
 import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
@@ -59,27 +61,8 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_LAST_BUILD_VERSION)
     private Integer lastBuildVersion = BuildConfig.VERSION_CODE;
 
-    @Ignore
-    private String orderByGames = null;
-
-    @Ignore
-    private String orderByMatches = null;
-
-    public String getOrderByGames() {
-        return orderByGames;
-    }
-
-    public void setOrderByGames(String orderByGames) {
-        this.orderByGames = orderByGames;
-    }
-
-    public String getOrderByMatches() {
-        return orderByMatches;
-    }
-
-    public void setOrderByMatches(String orderByMatches) {
-        this.orderByMatches = orderByMatches;
-    }
+    @Column(name = UserEntry.COLUMN_NAME_ORDER_BY)
+    private Map<String, OrderByDto> orderBy = Maps.newLinkedHashMap();
 
     public String getUsername() {
         return username;
@@ -177,6 +160,14 @@ public class User extends BaseEntity implements Serializable {
         this.customFont = customFont;
     }
 
+    public Map<String, OrderByDto> getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(Map<String, OrderByDto> orderBy) {
+        this.orderBy = orderBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -206,8 +197,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("welcome", welcome)
                 .add("customFont", customFont)
                 .add("lastBuildVersion", lastBuildVersion)
-                .add("orderByGames", orderByGames)
-                .add("orderByMatches", orderByMatches)
+                .add("orderBy", orderBy)
                 .addValue(super.toString())
                 .toString();
     }
@@ -262,16 +252,6 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
-    public User orderByGames(String orderByGames) {
-        this.orderByGames = orderByGames;
-        return this;
-    }
-
-    public User orderByMatches(String orderByMatches) {
-        this.orderByMatches = orderByMatches;
-        return this;
-    }
-
     public User avatar(AvatarEnum avatar) {
         this.avatar = avatar;
         return this;
@@ -314,4 +294,19 @@ public class User extends BaseEntity implements Serializable {
         return player;
     }
 
+    public OrderByDto getOrderBy(String orderBy) {
+        return this.orderBy.get(orderBy);
+    }
+
+    public OrderByDto putOrderBy(String key, OrderByDto orderBy) {
+        return this.orderBy.put(key, orderBy);
+    }
+
+    public void clearOrderBy() {
+        orderBy.clear();
+    }
+
+    public boolean containsOrderBy(String key) {
+        return orderBy.containsKey(key);
+    }
 }

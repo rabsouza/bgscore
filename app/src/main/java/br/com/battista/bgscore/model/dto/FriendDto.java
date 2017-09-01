@@ -1,6 +1,8 @@
 package br.com.battista.bgscore.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
@@ -10,6 +12,8 @@ import java.io.Serializable;
 
 import br.com.battista.bgscore.model.enuns.AvatarEnum;
 
+@JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FriendDto implements Serializable, Comparable<FriendDto> {
 
     private static final long serialVersionUID = 1L;

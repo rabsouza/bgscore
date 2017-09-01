@@ -3,12 +3,16 @@ package br.com.battista.bgscore.model.dto;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 
 import java.io.Serializable;
 
+@JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AvatarDto implements Serializable, Comparable<AvatarDto> {
 
     private static final long serialVersionUID = 1L;

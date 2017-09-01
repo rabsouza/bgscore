@@ -29,8 +29,6 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
-
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -38,9 +36,11 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.adpater.MatchAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.constants.ViewConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
@@ -58,6 +58,7 @@ public class MatchFragment extends BaseFragment {
     private Spinner spnSortList;
 
     private SwipeRefreshLayout refreshLayout;
+    private boolean ignoreFirst = Boolean.FALSE;
 
     public MatchFragment() {
     }
@@ -130,17 +131,21 @@ public class MatchFragment extends BaseFragment {
 
         spnSortList = layout.findViewById(R.id.card_view_sort_list_value);
         spnSortList.setSelected(true);
+        final User user = MainApplication.instance().getUser();
+        if (user.containsOrderBy(ViewConstant.MATCH_VIEW)) {
+            spnSortList.setSelection(user.getOrderBy(ViewConstant.MATCH_VIEW).getPosition(), Boolean.TRUE);
+        }
         spnSortList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            boolean ignoreFirst = Boolean.FALSE;
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = (String) spnSortList.getSelectedItem();
-                if (ignoreFirst) {
-                    processNewOrderByMatches(selectedItem);
+                final int selectedItemPosition = spnSortList.getSelectedItemPosition();
+                if (ignoreFirst || selectedItemPosition != 0) {
+                    String selectedItem = (String) spnSortList.getSelectedItem();
+                    processNewOrderByMatches(selectedItem, selectedItemPosition);
                     popupWindow.dismiss();
                 } else {
-                    ignoreFirst = true;
+                    ignoreFirst = Boolean.TRUE;
                 }
             }
 
@@ -152,13 +157,16 @@ public class MatchFragment extends BaseFragment {
         popupWindow.showAsDropDown(viewClicked);
     }
 
-    private void processNewOrderByMatches(@NonNull String selectedItem) {
+    private void processNewOrderByMatches(@NonNull String selectedItem, int selectedItemPosition) {
         Log.i(TAG, "processNewOrderByMatches: Process new order by!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SORT_LIST_MATCH);
 
         QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
         String[] optionsSortList = getResources().getStringArray(R.array.sort_list_matches);
+        OrderByDto orderBy = new OrderByDto();
+        orderBy.value(selectedItem);
+        orderBy.position(selectedItemPosition);
         if (selectedItem.equals(optionsSortList[1])) {
             builder.addPropOrderBy(MatchEntry.COLUMN_NAME_ALIAS, ASC);
             builder.addPropOrderBy(COLUMN_NAME_CREATED_AT, DESC);
@@ -180,7 +188,9 @@ public class MatchFragment extends BaseFragment {
 
         MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
-        user.setOrderByMatches(builder.buildOrderBy());
+
+        orderBy.query(builder.buildOrderBy());
+        user.putOrderBy(ViewConstant.MATCH_VIEW, orderBy);
         instance.setUser(user);
 
         loadAllMatches();
@@ -224,10 +234,10 @@ public class MatchFragment extends BaseFragment {
         Log.i(TAG, "loadAllMatches: Load all Matches in BD!");
         User user = MainApplication.instance().getUser();
         List<Match> matches;
-        if (Strings.isNullOrEmpty(user.getOrderByMatches())) {
-            matches = new MatchRepository().findAll();
+        if (user.containsOrderBy(ViewConstant.MATCH_VIEW)) {
+            matches = new MatchRepository().findAll(user.getOrderBy(ViewConstant.MATCH_VIEW).getQuery());
         } else {
-            matches = new MatchRepository().findAll(user.getOrderByMatches());
+            matches = new MatchRepository().findAll();
         }
         recycleViewMatches.setAdapter(new MatchAdapter(getContext(), matches));
     }
