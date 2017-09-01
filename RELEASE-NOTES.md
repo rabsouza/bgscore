@@ -6,6 +6,23 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.5
+**Date release**
+ - 01/09/2017
+
+**Features**
+ - Adiciona versão em inglês.
+ 
+**Bugs**
+ - Corrigi bug de não mostrar a ordenação selecionado.
+ - Corrigi bug das cores feedback.
+
+**Improvements**
+ - Meloria no layouts e textos.
+ - Meloria exibição partida e game.
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.4
 **Date release**
  - 15/08/2017
@@ -93,6 +110,22 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
+### Version - 1.0.13-Beta
+**Date release**
+ - 01/09/2017
+
+**Features**
+ - Adiciona versão em inglês.
+ 
+**Bugs**
+ - Corrigi bug de não mostrar a ordenação selecionado.
+ - Corrigi bug das cores feedback.
+
+**Improvements**
+ - Meloria no layouts e textos.
+ - Meloria exibição partida e game.
+
+------------------------------------------------------------------------
 
 ### Version - 1.0.12-Beta
 **Date release**

@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -58,6 +59,7 @@ import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.service.server.GameService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewGameFragment extends BaseFragment {
@@ -195,6 +197,14 @@ public class NewGameFragment extends BaseFragment {
         swtMyGame.setChecked(game.isMyGame());
         swtFavorite.setChecked(game.isFavorite());
         swtWantGame.setChecked(game.isWantGame());
+
+        if (!Strings.isNullOrEmpty(game.getUrlImage())) {
+            final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+            ImageLoadUtils.loadImage(getContext(), game.getUrlImage(), imgToolbar);
+        } else if (!Strings.isNullOrEmpty(game.getUrlThumbnail())) {
+            final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+            ImageLoadUtils.loadImage(getContext(), game.getUrlThumbnail(), imgToolbar);
+        }
     }
 
     private void finishFormAndProcessData() {
