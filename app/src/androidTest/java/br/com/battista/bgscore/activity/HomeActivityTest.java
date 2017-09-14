@@ -1,12 +1,12 @@
 package br.com.battista.bgscore.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,17 +17,9 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.helper.HomeActivityHelper;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.robot.HomeRobot;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.Assert.assertNotNull;
-import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -40,6 +32,7 @@ public class HomeActivityTest {
             new ActivityTestRule<>(HomeActivity.class, Boolean.TRUE, Boolean.FALSE);
 
     private User user;
+    private HomeRobot homeRobot;
 
     @Before
     public void setup() {
@@ -48,6 +41,9 @@ public class HomeActivityTest {
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
         MainApplication.init(application);
+
+        Context context = testRule.getActivity().getApplicationContext();
+        homeRobot = new HomeRobot(context);
 
         user = HomeActivityHelper.createNewUser();
         application.clearPreferences();
@@ -85,77 +81,32 @@ public class HomeActivityTest {
 
     @Test
     public void shouldShowHomeWhenClickActionHome() {
-        try {
-            onView(withText(R.string.btn_ok))
-                    .perform(click());
-        } catch (Exception e) {
-        }
-
-        onView(withId(R.id.action_home))
-                .perform(click());
-
-        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(R.string.title_home)));
+        homeRobot.closeWelcomeDialog();
+        homeRobot.navigationToHome();
     }
 
     @Test
     public void shouldShowMatchesWhenClickActionMatches() {
-        try {
-            onView(withText(R.string.btn_ok))
-                    .perform(click());
-        } catch (Exception e) {
-        }
-
-        onView(withId(R.id.action_matches))
-                .perform(click());
-
-        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(R.string.title_matches)));
+        homeRobot.closeWelcomeDialog();
+        homeRobot.navigationToMatches();
     }
 
     @Test
     public void shouldShowGamesWhenClickActionGames() {
-        try {
-            onView(withText(R.string.btn_ok))
-                    .perform(click());
-        } catch (Exception e) {
-        }
-
-        onView(withId(R.id.action_games))
-                .perform(click());
-
-        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(R.string.title_games)));
+        homeRobot.closeWelcomeDialog();
+        homeRobot.navigationToGames();
     }
 
     @Test
     public void shouldShowAccountWhenClickActionAccount() {
-        try {
-            onView(withText(R.string.btn_ok))
-                    .perform(click());
-        } catch (Exception e) {
-        }
-
-        onView(withId(R.id.action_account))
-                .perform(click());
-
-        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(R.string.title_account)));
+        homeRobot.closeWelcomeDialog();
+        homeRobot.navigationToAccount();
     }
 
     @Test
     public void shouldShowInfoWhenClickActionInfo() {
-        try {
-            onView(withText(R.string.btn_ok))
-                    .perform(click());
-        } catch (Exception e) {
-        }
-
-        onView(withId(R.id.action_info))
-                .perform(click());
-
-        onView(withText(R.string.title_info))
-                .check(matches(isDisplayed()));
+        homeRobot.closeWelcomeDialog();
+        homeRobot.navigationToInfo();
     }
 
 }

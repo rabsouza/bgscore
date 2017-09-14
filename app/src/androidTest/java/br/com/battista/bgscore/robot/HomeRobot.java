@@ -33,6 +33,38 @@ public class HomeRobot {
                 .check(matches(withText(R.string.title_home)));
     }
 
+    public void navigationToMatches() {
+        onView(withId(R.id.action_matches))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_matches)));
+    }
+
+    public void navigationToGames() {
+        onView(withId(R.id.action_games))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_games)));
+    }
+
+    public void navigationToAccount() {
+        onView(withId(R.id.action_account))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_account)));
+    }
+
+    public void navigationToInfo() {
+        onView(withId(R.id.action_info))
+                .perform(click());
+
+        onView(withText(R.string.title_info))
+                .check(matches(isDisplayed()));
+    }
+
     public void closeWelcomeDialog() {
         try {
             onView(withText(R.string.btn_ok))
