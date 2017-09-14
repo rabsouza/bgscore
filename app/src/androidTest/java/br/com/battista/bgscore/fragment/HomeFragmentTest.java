@@ -51,16 +51,16 @@ public class HomeFragmentTest {
 
     @Test
     public void shouldShowDataUserWhenFirstAccess() {
-        homeRobot.checkTextUsername(user.getUsername());
-        homeRobot.checkTextLastPlay("-");
-        homeRobot.checkDrawableUserAvatar(R.drawable.avatar_profile);
+        homeRobot.checkTextUsername(user.getUsername())
+                .checkTextLastPlay("-")
+                .checkDrawableUserAvatar(R.drawable.avatar_profile);
     }
 
     @Test
     public void shouldShowDataStaticsWhenFirstAccess() {
-        homeRobot.checkScoreValueGames("00");
-        homeRobot.checkScoreValueMatches("00");
-        homeRobot.checkScoreValueTotalTime("00:00");
+        homeRobot.checkScoreValueGames("00")
+                .checkScoreValueMatches("00")
+                .checkScoreValueTotalTime("00:00");
     }
 
     @Test

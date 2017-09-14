@@ -15,58 +15,61 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-/**
- * Created by rafaelbs on 14/09/17.
- */
 
-class BaseRobot {
+public abstract class BaseRobot {
 
-    public void navigationToHome() {
+    public BaseRobot navigationToHome() {
         onView(withId(R.id.action_home))
                 .perform(click());
 
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
                 .check(matches(withText(R.string.title_home)));
+        return this;
     }
 
-    public void navigationToMatches() {
+    public BaseRobot navigationToMatches() {
         onView(withId(R.id.action_matches))
                 .perform(click());
 
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
                 .check(matches(withText(R.string.title_matches)));
+        return this;
     }
 
-    public void navigationToGames() {
+    public BaseRobot navigationToGames() {
         onView(withId(R.id.action_games))
                 .perform(click());
 
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
                 .check(matches(withText(R.string.title_games)));
+        return this;
     }
 
-    public void navigationToAccount() {
+    public BaseRobot navigationToAccount() {
         onView(withId(R.id.action_account))
                 .perform(click());
 
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
                 .check(matches(withText(R.string.title_account)));
+        return this;
     }
 
-    public void navigationToInfo() {
+    public BaseRobot navigationToInfo() {
         onView(withId(R.id.action_info))
                 .perform(click());
 
         onView(withText(R.string.title_info))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void closeWelcomeDialog() {
+    public BaseRobot closeWelcomeDialog() {
         try {
             onView(withText(R.string.btn_ok))
                     .perform(click());
         } catch (Exception e) {
         }
+        return this;
     }
 
 }

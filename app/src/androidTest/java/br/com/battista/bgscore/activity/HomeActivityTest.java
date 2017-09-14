@@ -81,32 +81,32 @@ public class HomeActivityTest {
 
     @Test
     public void shouldShowHomeWhenClickActionHome() {
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToHome();
+        homeRobot.closeWelcomeDialog()
+                .navigationToHome();
     }
 
     @Test
     public void shouldShowMatchesWhenClickActionMatches() {
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToMatches();
+        homeRobot.closeWelcomeDialog()
+                .navigationToMatches();
     }
 
     @Test
     public void shouldShowGamesWhenClickActionGames() {
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToGames();
+        homeRobot.closeWelcomeDialog()
+                .navigationToGames();
     }
 
     @Test
     public void shouldShowAccountWhenClickActionAccount() {
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToAccount();
+        homeRobot.closeWelcomeDialog()
+                .navigationToAccount();
     }
 
     @Test
     public void shouldShowInfoWhenClickActionInfo() {
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToInfo();
+        homeRobot.closeWelcomeDialog()
+                .navigationToInfo();
     }
 
 }

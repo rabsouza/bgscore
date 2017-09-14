@@ -21,43 +21,49 @@ public class GameRobot extends BaseRobot {
         this.context = context;
     }
 
-    public void checkScoreValueMyGames(String value) {
+    public GameRobot checkScoreValueMyGames(String value) {
         onView(allOf(withText(value),
                 withParent(withId(R.id.card_view_games_score_my_game))))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkScoreValueFavoriteGames(String value) {
+    public GameRobot checkScoreValueFavoriteGames(String value) {
         onView(allOf(withText(value),
                 withParent(withId(R.id.card_view_games_score_favorite))))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkScoreValueWantGames(String value) {
+    public GameRobot checkScoreValueWantGames(String value) {
         onView(allOf(withText(value),
                 withParent(withId(R.id.card_view_games_score_want_game))))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkEmptyGames() {
+    public GameRobot checkEmptyGames() {
         onView(withText(R.string.text_game_games_empty_view))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkLegendGames() {
+    public GameRobot checkLegendGames() {
         onView(withId(R.id.card_view_games_help))
                 .perform(click());
 
         onView(withText(R.string.text_legend_info_01))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkPopupWindowOrderListGames() {
+    public GameRobot checkPopupWindowOrderListGames() {
         onView(withId(R.id.btn_sort_list))
                 .perform(click());
 
         onView(withText(R.string.text_game_sort_list_info_01))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
 }

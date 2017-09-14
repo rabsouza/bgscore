@@ -50,9 +50,9 @@ public class GameFragmentTest {
 
     @Test
     public void shouldShowDataStaticsGamesWhenFirstAccess() {
-        gameRobot.checkScoreValueMyGames("00");
-        gameRobot.checkScoreValueFavoriteGames("00");
-        gameRobot.checkScoreValueWantGames("00");
+        gameRobot.checkScoreValueMyGames("00")
+                .checkScoreValueFavoriteGames("00")
+                .checkScoreValueWantGames("00");
     }
 
     @Test

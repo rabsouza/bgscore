@@ -51,10 +51,10 @@ public class ProfileFragmentTest {
 
     @Test
     public void shouldShowDataUserWhenFirstAccess() {
-        profileRobot.checkTextUsername(user.getUsername());
-        profileRobot.checkTextMail(user.getMail());
-        profileRobot.checkTextDateCreated(user.getCreatedAt());
-        profileRobot.checkDrawableUserAvatar(R.drawable.avatar_profile);
+        profileRobot.checkTextUsername(user.getUsername())
+                .checkTextMail(user.getMail())
+                .checkTextDateCreated(user.getCreatedAt())
+                .checkDrawableUserAvatar(R.drawable.avatar_profile);
     }
 
     @Test

@@ -14,7 +14,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static br.com.battista.bgscore.helper.DrawableMatcher.withDrawable;
 import static org.hamcrest.Matchers.allOf;
 
-public class HomeRobot extends BaseRobot{
+public class HomeRobot extends BaseRobot {
 
     private Context context;
 
@@ -22,52 +22,60 @@ public class HomeRobot extends BaseRobot{
         this.context = context;
     }
 
-    public void checkDrawableUserAvatar(int avatar_profile) {
+    public HomeRobot checkDrawableUserAvatar(int avatar_profile) {
         onView(withId(R.id.card_view_home_img)).check(matches(
                 withDrawable(avatar_profile)));
+        return this;
     }
 
-    public void checkTextLastPlay(String lastPlay) {
+    public HomeRobot checkTextLastPlay(String lastPlay) {
         onView(withId(R.id.card_view_home_last_play))
                 .check(matches(
                         withText(context.getString(R.string.text_home_last_play, lastPlay))));
+        return this;
     }
 
-    public void checkTextUsername(String username) {
+    public HomeRobot checkTextUsername(String username) {
         onView(withId(R.id.card_view_home_username))
                 .check(matches(
                         withText(context.getString(R.string.text_home_username, username))));
+        return this;
     }
 
-    public void checkScoreValueTotalTime(String value) {
+    public HomeRobot checkScoreValueTotalTime(String value) {
         onView(allOf(withText(value),
                 withParent(withId(R.id.card_view_score_total_time))))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkScoreValueMatches(String value) {
+    public HomeRobot checkScoreValueMatches(String value) {
         onView(allOf(withText(value),
                 withParent(withId(R.id.card_view_score_matches))))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkScoreValueGames(String value) {
+    public HomeRobot checkScoreValueGames(String value) {
         onView(allOf(withText(value),
                 withParent(withId(R.id.card_view_score_games))))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkEmptyRanking() {
+    public HomeRobot checkEmptyRanking() {
         onView(withText(R.string.text_home_stats_empty_view))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
-    public void checkLegendRanking() {
+    public HomeRobot checkLegendRanking() {
         onView(withId(R.id.card_view_stats_help))
                 .perform(click());
 
         onView(withText(R.string.text_legend_info_01))
                 .check(matches(isDisplayed()));
+        return this;
     }
 
 }
