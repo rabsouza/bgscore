@@ -1,5 +1,6 @@
 package br.com.battista.bgscore;
 
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
 import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
 import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
 import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
@@ -27,6 +28,7 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 import br.com.battista.bgscore.adpater.FontsAdapter;
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.service.CacheManageService;
@@ -155,6 +157,11 @@ public class MainApplication extends MultiDexApplication {
         getApplicationContext().stopService(new Intent(getApplicationContext(),
                 CacheManageService.class));
         SugarContext.terminate();
+    }
+
+    public void cleanDB(){
+        Log.i(TAG, "cleanDB: Clean Database to App.");
+        getApplicationContext().deleteDatabase(DEFAULT_DATABASE_NAME);
     }
 
 }

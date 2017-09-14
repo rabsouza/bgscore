@@ -16,11 +16,11 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.helper.HomeActivityHelper;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.robot.HomeRobot;
+import br.com.battista.bgscore.robot.ProfileRobot;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class HomeFragmentTest {
+public class ProfileFragmentTest {
 
     @Rule
     public ActivityTestRule<HomeActivity> testRule =
@@ -28,14 +28,14 @@ public class HomeFragmentTest {
 
     private User user;
     private Context context;
-    private HomeRobot homeRobot;
+    private ProfileRobot profileRobot;
 
     @Before
     public void setup() {
         testRule.launchActivity(new Intent());
         context = testRule.getActivity().getApplicationContext();
 
-        homeRobot = new HomeRobot(context);
+        profileRobot = new ProfileRobot(context);
 
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
@@ -45,32 +45,21 @@ public class HomeFragmentTest {
         application.clearPreferences();
         application.setUser(user);
 
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToHome();
+        profileRobot.closeWelcomeDialog();
+        profileRobot.navigationToAccount();
     }
 
     @Test
     public void shouldShowDataUserWhenFirstAccess() {
-        homeRobot.checkTextUsername(user.getUsername());
-        homeRobot.checkTextLastPlay("-");
-        homeRobot.checkDrawableUserAvatar(R.drawable.avatar_profile);
+        profileRobot.checkTextUsername(user.getUsername());
+        profileRobot.checkTextMail(user.getMail());
+        profileRobot.checkTextDateCreated(user.getCreatedAt());
+        profileRobot.checkDrawableUserAvatar(R.drawable.avatar_profile);
     }
 
     @Test
-    public void shouldShowDataStaticsWhenFirstAccess() {
-        homeRobot.checkScoreValueGames("00");
-        homeRobot.checkScoreValueMatches("00");
-        homeRobot.checkScoreValueTotalTime("00:00");
-    }
-
-    @Test
-    public void shouldShowEmptyRankingWhenFirstAccess() {
-        homeRobot.checkEmptyRanking();
-    }
-
-    @Test
-    public void shouldShowLegendRankingWhenClickIconLegend() {
-        homeRobot.checkLegendRanking();
+    public void shouldShowEmptyFriendsWhenFirstAccess() {
+        profileRobot.checkEmptyFriends();
     }
 
 }

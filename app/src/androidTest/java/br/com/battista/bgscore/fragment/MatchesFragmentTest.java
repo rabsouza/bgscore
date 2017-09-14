@@ -12,15 +12,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import br.com.battista.bgscore.MainApplication;
-import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.helper.HomeActivityHelper;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.robot.HomeRobot;
+import br.com.battista.bgscore.robot.MatchRobot;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class HomeFragmentTest {
+public class MatchesFragmentTest {
 
     @Rule
     public ActivityTestRule<HomeActivity> testRule =
@@ -28,14 +27,14 @@ public class HomeFragmentTest {
 
     private User user;
     private Context context;
-    private HomeRobot homeRobot;
+    private MatchRobot matchRobot;
 
     @Before
     public void setup() {
         testRule.launchActivity(new Intent());
         context = testRule.getActivity().getApplicationContext();
 
-        homeRobot = new HomeRobot(context);
+        matchRobot = new MatchRobot(context);
 
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
@@ -45,32 +44,23 @@ public class HomeFragmentTest {
         application.clearPreferences();
         application.setUser(user);
 
-        homeRobot.closeWelcomeDialog();
-        homeRobot.navigationToHome();
+        matchRobot.closeWelcomeDialog();
+        matchRobot.navigationToMatches();
     }
 
     @Test
-    public void shouldShowDataUserWhenFirstAccess() {
-        homeRobot.checkTextUsername(user.getUsername());
-        homeRobot.checkTextLastPlay("-");
-        homeRobot.checkDrawableUserAvatar(R.drawable.avatar_profile);
-    }
-
-    @Test
-    public void shouldShowDataStaticsWhenFirstAccess() {
-        homeRobot.checkScoreValueGames("00");
-        homeRobot.checkScoreValueMatches("00");
-        homeRobot.checkScoreValueTotalTime("00:00");
-    }
-
-    @Test
-    public void shouldShowEmptyRankingWhenFirstAccess() {
-        homeRobot.checkEmptyRanking();
+    public void shouldShowEmptyMatchesWhenFirstAccess() {
+        matchRobot.checkEmptyMatches();
     }
 
     @Test
     public void shouldShowLegendRankingWhenClickIconLegend() {
-        homeRobot.checkLegendRanking();
+        matchRobot.checkLegendMatches();
+    }
+
+    @Test
+    public void shouldShowOrderPopupWindowWhenClickOrderList() {
+        matchRobot.checkPopupWindowOrderListMatches();
     }
 
 }
