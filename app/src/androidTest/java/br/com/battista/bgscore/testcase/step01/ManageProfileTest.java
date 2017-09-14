@@ -18,6 +18,7 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.helper.HomeActivityHelper;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.robot.HomeRobot;
 import br.com.battista.bgscore.robot.ProfileRobot;
 
 @LargeTest
@@ -204,6 +205,44 @@ public class ManageProfileTest {
                 .checkTextMail(mail)
                 .checkTextDateCreated(user.getCreatedAt())
                 .checkDrawableUserAvatar(R.drawable.avatar_c3p0);
+    }
+
+    @Test
+    public void shouldValidateStepHomeDataWhenFillAllData() {
+        shouldValidateStepInitialDataWhenFirstAccess();
+
+        String username = "teste02";
+        String mail = "teste02@teste.com";
+        profileRobot.openChangeProfile()
+                .changeTextUsername(username)
+                .changeTextMail(mail)
+                .saveChangeProfile();
+
+        profileRobot.openChangeAvatar()
+                .changeAvatar(context.getString(R.string.avatar_c3p0))
+                .saveChangeAvatar();
+
+        String friend = "friend00";
+        profileRobot.addNewFriend(friend)
+                .checkFriend(friend, 0);
+
+        friend = "friend01";
+        profileRobot.addNewFriend(friend)
+                .checkFriend(friend, 0);
+
+        friend = "friend02";
+        profileRobot.addNewFriend(friend)
+                .checkFriend(friend, 0);
+
+        profileRobot.checkTextUsername(username)
+                .checkTextMail(mail)
+                .checkTextDateCreated(user.getCreatedAt())
+                .checkDrawableUserAvatar(R.drawable.avatar_c3p0);
+
+        HomeRobot homeRobot = new HomeRobot(context);
+        homeRobot.navigationToHome();
+        homeRobot.checkTextUsername(username)
+        .checkDrawableUserAvatar(R.drawable.avatar_c3p0);
     }
 
 }
