@@ -251,10 +251,6 @@ public class MatchFragment extends BaseFragment {
         recycleViewMatches.setErrorView(errorMsgMatches);
         recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
-        recycleViewMatches.setHasFixedSize(false);
-
-        recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
         recycleViewMatches.setHasFixedSize(true);
     }
 
