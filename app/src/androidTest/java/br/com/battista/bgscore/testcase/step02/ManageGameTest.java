@@ -1,4 +1,4 @@
-package br.com.battista.bgscore.testcase.step01;
+package br.com.battista.bgscore.testcase.step02;
 
 import android.content.Context;
 import android.content.Intent;

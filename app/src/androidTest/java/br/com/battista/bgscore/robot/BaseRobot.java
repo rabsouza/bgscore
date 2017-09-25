@@ -18,6 +18,14 @@ import static org.hamcrest.Matchers.allOf;
 
 public abstract class BaseRobot {
 
+    protected void doWait(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException var4) {
+            throw new RuntimeException("Could not sleep.", var4);
+        }
+    }
+
     public BaseRobot navigationToHome() {
         onView(withId(R.id.action_home))
                 .perform(click());

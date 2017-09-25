@@ -117,6 +117,7 @@ public class ProfileRobot extends BaseRobot {
     }
 
     public ProfileRobot changeAvatar(String avatar) {
+        doWait(1000);
         onView(withText(avatar))
                 .perform(click());
         return this;
