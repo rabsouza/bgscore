@@ -6,7 +6,9 @@ import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.util.HumanReadables;
 import android.support.test.espresso.util.TreeIterables;
 import android.view.View;
+import android.widget.Checkable;
 
+import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
 import java.util.concurrent.TimeoutException;
@@ -14,6 +16,7 @@ import java.util.concurrent.TimeoutException;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.isA;
 
 public class CustomViewActions {
 
@@ -97,6 +100,46 @@ public class CustomViewActions {
             }
         };
 
+    }
+
+    public static ViewAction setChecked(final boolean checked) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return new Matcher<View>() {
+                    @Override
+                    public void describeTo(Description description) {
+                        description.appendText("is checked ").appendValue(checked);
+                    }
+
+                    @Override
+                    public boolean matches(Object item) {
+                        return isA(Checkable.class).matches(item);
+                    }
+
+                    @Override
+                    public void describeMismatch(Object item, Description mismatchDescription) {
+                    }
+
+                    @Override
+                    public void _dont_implement_Matcher___instead_extend_BaseMatcher_() {
+                    }
+
+
+                };
+            }
+
+            @Override
+            public String getDescription() {
+                return "check to value is" + checked + ".";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                Checkable checkableView = (Checkable) view;
+                checkableView.setChecked(checked);
+            }
+        };
     }
 
 }

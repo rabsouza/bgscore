@@ -68,6 +68,9 @@ public class ManageGameTest {
 
         gameRobot.openNewGame()
                 .fillTextName("Game 01")
+                .checkMyGame(Boolean.TRUE)
+                .checkFavorite(Boolean.FALSE)
+                .checkWantGame(Boolean.FALSE)
                 .fillTextYearPublished(YEAR_PUBLISHED)
                 .fillTextAge("10")
                 .fillTextMinPlayers("1")
