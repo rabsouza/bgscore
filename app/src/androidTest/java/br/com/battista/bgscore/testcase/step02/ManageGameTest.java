@@ -44,7 +44,8 @@ public class ManageGameTest {
 
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
-        MainApplication.init(application);
+        MainApplication.init(application, Boolean.FALSE);
+        application.cleanAllDataDB();
 
         user = HomeActivityHelper.createNewUser();
         application.clearPreferences();
@@ -78,10 +79,10 @@ public class ManageGameTest {
                 .fillTextGameBadge(context.getString(R.string.badge_game_family))
                 .saveGame();
 
+        gameRobot.closeWelcomeDialog();
         gameRobot.checkScoreValueMyGames("01")
                 .checkScoreValueFavoriteGames("00")
-                .checkScoreValueWantGames("00")
-                .checkEmptyGames();
+                .checkScoreValueWantGames("00");
     }
 
 }

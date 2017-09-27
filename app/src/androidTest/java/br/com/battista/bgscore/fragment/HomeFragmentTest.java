@@ -39,7 +39,7 @@ public class HomeFragmentTest {
 
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
-        MainApplication.init(application);
+        MainApplication.init(application, Boolean.FALSE);
 
         user = HomeActivityHelper.createNewUser();
         application.clearPreferences();

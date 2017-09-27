@@ -1,12 +1,6 @@
 package br.com.battista.bgscore;
 
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
+import com.google.common.base.Strings;
 
 import android.app.Application;
 import android.content.Context;
@@ -20,7 +14,6 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
 import com.orm.SugarContext;
 
 import java.io.IOException;
@@ -28,11 +21,21 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 import br.com.battista.bgscore.adpater.FontsAdapter;
-import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
+import br.com.battista.bgscore.repository.GameRepository;
+import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import io.fabric.sdk.android.Fabric;
+
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 public class MainApplication extends MultiDexApplication {
 
@@ -41,27 +44,35 @@ public class MainApplication extends MultiDexApplication {
     private final SharedPreferencesKeyEnum keyUser = SharedPreferencesKeyEnum.SAVED_USER;
     private User user;
     private SharedPreferences preferences;
+    private Boolean cleanDB = Boolean.FALSE;
 
     public static MainApplication instance() {
         return instance;
     }
 
-    public static void init(Application application) {
+    public static void init(Application application, boolean cleanDB) {
         instance = (MainApplication) application;
+        instance.cleanDB = cleanDB;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
-        Fabric.with(this, new Answers());
+        if (instance == null) {
+            instance = this;
+        }
+
+        Fabric.with(instance, new Crashlytics());
+        Fabric.with(instance, new Answers());
         Log.d(TAG, "onCreate: MainApplication!");
 
         initializePreferences();
         initializeLoadImage();
 
-        instance = this;
         initializeDB();
+        if(cleanDB){
+            cleanDB();
+        }
         initializeCacheManager();
     }
 
@@ -86,7 +97,7 @@ public class MainApplication extends MultiDexApplication {
     public void setUser(User user) {
         Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
         synchronized (this) {
-            this.user = user;
+            instance.user = user;
             try {
                 String jsonUser = new ObjectMapper().writeValueAsString(user);
                 putPreferences(keyUser, jsonUser);
@@ -139,10 +150,10 @@ public class MainApplication extends MultiDexApplication {
 
     private void initializeSystemFont() {
         Log.d(TAG, "initializeSystemFont: Add custom fonts to App.");
-        FontsAdapter.setDefaultFont(this, DEFAULT, DEFAULT_FONT);
-        FontsAdapter.setDefaultFont(this, MONOSPACE, DEFAULT_FONT);
-        FontsAdapter.setDefaultFont(this, SERIF, DEFAULT_FONT);
-        FontsAdapter.setDefaultFont(this, SANS_SERIF, SANS_SERIF_FONT);
+        FontsAdapter.setDefaultFont(instance, DEFAULT, DEFAULT_FONT);
+        FontsAdapter.setDefaultFont(instance, MONOSPACE, DEFAULT_FONT);
+        FontsAdapter.setDefaultFont(instance, SERIF, DEFAULT_FONT);
+        FontsAdapter.setDefaultFont(instance, SANS_SERIF, SANS_SERIF_FONT);
     }
 
     @Override
@@ -159,9 +170,16 @@ public class MainApplication extends MultiDexApplication {
         SugarContext.terminate();
     }
 
-    public void cleanDB(){
+    private void cleanDB() {
         Log.i(TAG, "cleanDB: Clean Database to App.");
         getApplicationContext().deleteDatabase(DEFAULT_DATABASE_NAME);
+    }
+
+    public void cleanAllDataDB() {
+        Log.i(TAG, "cleanDB: Clean Database to App.");
+        new GameRepository().deleteAll();
+        new MatchRepository().deleteAll();
+        new PlayerRepository().deleteAll();
     }
 
 }

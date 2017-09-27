@@ -18,6 +18,8 @@ import static org.hamcrest.Matchers.allOf;
 
 public abstract class BaseRobot {
 
+    public static final int DO_WAIT_MILLIS = 500;
+
     protected void doWait(long millis) {
         try {
             Thread.sleep(millis);

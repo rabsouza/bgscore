@@ -40,7 +40,7 @@ public class HomeActivityTest {
 
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
-        MainApplication.init(application);
+        MainApplication.init(application, Boolean.FALSE);
 
         Context context = testRule.getActivity().getApplicationContext();
         homeRobot = new HomeRobot(context);

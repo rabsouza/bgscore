@@ -38,7 +38,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_game_search_name))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         onView(withId(R.id.card_view_new_game_name))
                 .perform(replaceText(name), closeSoftKeyboard());
         return this;
@@ -49,7 +49,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_new_game_name))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         checkStateCheckedView(checked, R.id.card_view_new_game_my_game);
         return this;
     }
@@ -59,7 +59,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_new_game_my_game))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         checkStateCheckedView(checked, R.id.card_view_new_game_favorite);
         return this;
     }
@@ -69,7 +69,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_new_game_favorite))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         checkStateCheckedView(checked, R.id.card_view_new_game_want_game);
         return this;
     }
@@ -79,7 +79,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_new_game_want_game))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         onView(withId(R.id.card_view_new_game_year_published))
                 .perform(replaceText(yearPublished), closeSoftKeyboard());
         return this;
@@ -96,7 +96,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_new_game_year_published))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         onView(withId(R.id.card_view_new_game_min_players))
                 .perform(replaceText(minPlayers), closeSoftKeyboard());
         return this;
@@ -129,7 +129,7 @@ public class NewGameRobot extends BaseRobot {
                 .perform(swipeUp());
         onView(withId(R.id.card_view_new_game_min_play_time))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         onView(withId(R.id.card_view_new_game_badge_game))
                 .perform(replaceText(gameBadge), closeSoftKeyboard());
         return this;
@@ -138,7 +138,7 @@ public class NewGameRobot extends BaseRobot {
     public GameRobot saveGame() {
         onView(withId(R.id.card_view_new_game))
                 .perform(swipeUp());
-        doWait(1000);
+        doWait(DO_WAIT_MILLIS);
         onView(withId(R.id.fab_next_done_game))
                 .perform(click());
         return new GameRobot(context);
