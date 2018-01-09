@@ -1,12 +1,25 @@
 package br.com.battista.bgscore.activity;
 
-import android.content.Context;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static junit.framework.Assert.assertNotNull;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,11 +30,6 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.helper.HomeActivityHelper;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.robot.HomeRobot;
-
-import static junit.framework.Assert.assertNotNull;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -32,7 +40,6 @@ public class HomeActivityTest {
             new ActivityTestRule<>(HomeActivity.class, Boolean.TRUE, Boolean.FALSE);
 
     private User user;
-    private HomeRobot homeRobot;
 
     @Before
     public void setup() {
@@ -40,10 +47,7 @@ public class HomeActivityTest {
 
         MainApplication application = (MainApplication)
                 testRule.getActivity().getApplication();
-        MainApplication.init(application, Boolean.FALSE);
-
-        Context context = testRule.getActivity().getApplicationContext();
-        homeRobot = new HomeRobot(context);
+        MainApplication.init(application);
 
         user = HomeActivityHelper.createNewUser();
         application.clearPreferences();
@@ -54,10 +58,10 @@ public class HomeActivityTest {
     public void checkExistsTheElementsActivity() {
         HomeActivity activity = testRule.getActivity();
 
-        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        Toolbar toolbar = activity.findViewById(R.id.toolbar);
         assertNotNull(toolbar);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+        BottomNavigationView bottomNavigationView =
                 activity.findViewById(R.id.bottom_navigation);
         assertNotNull(bottomNavigationView);
     }
@@ -66,7 +70,7 @@ public class HomeActivityTest {
     public void checkExistMenuInBottomNavigationView() {
         HomeActivity activity = testRule.getActivity();
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+        BottomNavigationView bottomNavigationView =
                 activity.findViewById(R.id.bottom_navigation);
         assertNotNull(bottomNavigationView);
 
@@ -81,32 +85,77 @@ public class HomeActivityTest {
 
     @Test
     public void shouldShowHomeWhenClickActionHome() {
-        homeRobot.closeWelcomeDialog()
-                .navigationToHome();
+        try {
+            onView(withText(R.string.btn_ok))
+                    .perform(click());
+        } catch (Exception e) {
+        }
+
+        onView(withId(R.id.action_home))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_home)));
     }
 
     @Test
     public void shouldShowMatchesWhenClickActionMatches() {
-        homeRobot.closeWelcomeDialog()
-                .navigationToMatches();
+        try {
+            onView(withText(R.string.btn_ok))
+                    .perform(click());
+        } catch (Exception e) {
+        }
+
+        onView(withId(R.id.action_matches))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_matches)));
     }
 
     @Test
     public void shouldShowGamesWhenClickActionGames() {
-        homeRobot.closeWelcomeDialog()
-                .navigationToGames();
+        try {
+            onView(withText(R.string.btn_ok))
+                    .perform(click());
+        } catch (Exception e) {
+        }
+
+        onView(withId(R.id.action_games))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_games)));
     }
 
     @Test
     public void shouldShowAccountWhenClickActionAccount() {
-        homeRobot.closeWelcomeDialog()
-                .navigationToAccount();
+        try {
+            onView(withText(R.string.btn_ok))
+                    .perform(click());
+        } catch (Exception e) {
+        }
+
+        onView(withId(R.id.action_account))
+                .perform(click());
+
+        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(withText(R.string.title_account)));
     }
 
     @Test
     public void shouldShowInfoWhenClickActionInfo() {
-        homeRobot.closeWelcomeDialog()
-                .navigationToInfo();
+        try {
+            onView(withText(R.string.btn_ok))
+                    .perform(click());
+        } catch (Exception e) {
+        }
+
+        onView(withId(R.id.action_info))
+                .perform(click());
+
+        onView(withText(R.string.title_info))
+                .check(matches(isDisplayed()));
     }
 
 }
