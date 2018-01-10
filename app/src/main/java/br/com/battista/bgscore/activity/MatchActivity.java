@@ -37,11 +37,11 @@ public class MatchActivity extends BaseActivity {
 
     private void processDataActivity(Bundle bundle) {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
-        if (bundle.containsKey(DATA)) {
+        if (bundle != null && bundle.containsKey(DATA)) {
             match = (Match) bundle.getSerializable(DATA);
             match.reloadId();
 
-            if (bundle.containsKey(NAVIGATION_TO)) {
+            if (bundle != null && bundle.containsKey(NAVIGATION_TO)) {
                 int navigationTo = bundle.getInt(NAVIGATION_TO, NavigationTo.NEW_MATCH_FRAGMENT);
                 switch (navigationTo) {
                     case NavigationTo.NEW_MATCH_FRAGMENT:
@@ -90,7 +90,7 @@ public class MatchActivity extends BaseActivity {
     private void dialogCloseActivity() {
         AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_MATCH);
 
-        new AlertDialog.Builder(this)
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
                 .setMessage(R.string.alert_confirmation_dialog_text_exit)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -100,7 +100,9 @@ public class MatchActivity extends BaseActivity {
                     }
 
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     private void superOnBackPressed() {

@@ -3,6 +3,7 @@ package br.com.battista.bgscore.fragment.dialog;
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -23,7 +24,7 @@ import com.google.common.base.Strings;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.service.CacheManageService;
+import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 
 public class EditProfileDialog extends DialogFragment {
@@ -37,6 +38,7 @@ public class EditProfileDialog extends DialogFragment {
     private EditText txtUsername;
     private EditText txtMail;
     private Switch swtReset;
+    private Switch swtCustomFont;
 
     public EditProfileDialog() {
     }
@@ -75,8 +77,11 @@ public class EditProfileDialog extends DialogFragment {
     private void loadViews(View viewFragment) {
         Log.i(TAG, "loadViews: load all views!");
         final MainApplication instance = MainApplication.instance();
+        User user = instance.getUser();
 
         swtReset = viewFragment.findViewById(R.id.dialog_view_edit_profile_reset);
+        swtCustomFont = viewFragment.findViewById(R.id.dialog_view_edit_custom_font);
+        swtCustomFont.setChecked(user.isCustomFont());
 
         btnCancelChange = viewFragment.findViewById(R.id.dialog_view_edit_profile_btn_cancel);
         btnCancelChange.setOnClickListener(new View.OnClickListener() {
@@ -109,10 +114,11 @@ public class EditProfileDialog extends DialogFragment {
 
                     String mail = txtMail.getText().toString();
                     user.mail(mail);
+                    user.customFont(swtCustomFont.isChecked());
                 }
                 instance.setUser(user);
 
-                new CacheManageService().reloadAllDataCache();
+                Inject.provideCacheManageService().reloadAllDataCache();
 
                 getTargetFragment().onActivityResult(getTargetRequestCode(),
                         Activity.RESULT_OK, getActivity().getIntent());
@@ -120,11 +126,19 @@ public class EditProfileDialog extends DialogFragment {
             }
         });
 
-        User user = instance.getUser();
         txtUsername = viewFragment.findViewById(R.id.dialog_view_edit_profile_username);
         txtUsername.setText(user.getUsername());
+
         txtMail = viewFragment.findViewById(R.id.dialog_view_edit_profile_mail);
         txtMail.setText(user.getMail());
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
     }
 
 }

@@ -143,12 +143,13 @@
                             <TextView
                                 android:id="@+id/card_view_game_info_players"
                                 style="@style/NumberValueStyle"
-                                android:layout_width="60dp"
+                                android:layout_width="@dimen/first_column_card_width"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_name"
                                 android:layout_margin="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_image"
                                 android:drawableLeft="@drawable/ic_game_players"
+                                android:drawablePadding="@dimen/drawable_padding"
                                 android:gravity="center_vertical"/>
 
                             <TextView
@@ -158,17 +159,17 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_name"
                                 android:layout_marginBottom="@dimen/element_margin"
-                                android:layout_marginLeft="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                                 android:layout_marginTop="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_players"
                                 android:drawableLeft="@drawable/ic_game_time"
+                                android:drawablePadding="@dimen/drawable_padding"
                                 android:gravity="center_vertical"/>
 
                             <TextView
                                 android:id="@+id/card_view_game_info_ages"
                                 style="@style/NumberValueStyle"
-                                android:layout_width="60dp"
+                                android:layout_width="@dimen/first_column_card_width"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_players"
                                 android:layout_marginBottom="@dimen/element_margin"
@@ -176,6 +177,7 @@
                                 android:layout_marginRight="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_image"
                                 android:drawableLeft="@drawable/ic_game_age"
+                                android:drawablePadding="@dimen/drawable_padding"
                                 android:gravity="center_vertical"/>
 
                             <TextView
@@ -185,10 +187,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_players"
                                 android:layout_marginBottom="@dimen/element_margin"
-                                android:layout_marginLeft="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_ages"
                                 android:drawableLeft="@drawable/ic_game_date_year"
+                                android:drawablePadding="@dimen/drawable_padding"
                                 android:gravity="center_vertical"/>
 
                         </RelativeLayout>
@@ -240,7 +242,9 @@
                         android:clipToPadding="false"
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
-                        android:paddingTop="@dimen/element_vertical_margin"/>
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="@dimen/element_vertical_margin"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 </LinearLayout>
 
@@ -287,7 +291,9 @@
                         android:clipToPadding="false"
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
-                        android:paddingTop="@dimen/element_vertical_margin"/>
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="@dimen/element_vertical_margin"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 </LinearLayout>
 
@@ -373,7 +379,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_done_detail_match"
+        android:id="@+id/fab_share_detail_match"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
@@ -382,7 +388,7 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_done"/>
+        app:srcCompat="@drawable/ic_fab_share"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

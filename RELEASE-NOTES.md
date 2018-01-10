@@ -6,23 +6,279 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.6
+**Date release**
+ - 01/09/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Corrigi bug da ordenação na lista.
+ 
+**Improvements** 
+
+------------------------------------------------------------------------
+
+### Version - 1.0.5
+**Date release**
+ - 01/09/2017
+
+**Features**
+ - Adiciona versão em inglês.
+ 
+**Bugs**
+ - Corrigi bug de não mostrar a ordenação selecionado.
+ - Corrigi bug das cores feedback.
+
+**Improvements**
+ - Meloria no layouts e textos.
+ - Meloria exibição partida e game.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.4
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Estáticas para jogos.
+ 
+**Bugs**
+
+**Improvements**
+ - Meloria no layouts e textos
+
+------------------------------------------------------------------------
+### Version - 1.0.3
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Opção para comprar um jogo.
+ 
+**Bugs**
+ - Correção de bugs na home e ao tentar adicionar um novo jogo.
+
+**Improvements**
+ - Meloria no layouts e textos
+
+------------------------------------------------------------------------
+
+### Version - 1.0.2
+**Date release**
+ - 13/08/2017
+
+**Features**
+ - Opção adicionar jogo na lista de desejo.
+ - Opção para classificar jogo.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+
+**Improvements**
+ - Remoção das fontes customizadas.
+ - Mais opções para ordenação dos jogos.
+ - Melhoria a forma de adicionar pontuação dos jogadores.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.1
+**Date release**
+ - 10/08/2017
+
+**Features**
+ - Opção para desabilitar as fontes customizadas da aplicação.
+ - Opção para adicionar pontuação dos jogadores.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+ - Correção de bug da modal de Trocar Avatar e Novo Jogo.
+ - Correção da lentidão ao scrollar as telas.
+
+**Improvements**
+ - Opção para add id do bgg no jogo.
+ - Mais opções para ordenação dos jogos.
+
+------------------------------------------------------------------------
 
 ### Version - 1.0.0
 **Date release**
- - XX/XX/XXXX
+ - 09/08/2017
 
 **Features**
- - 
+ - **VERSÃO INICIAL DO APLICATIVO**.
+ - Tela inicial com dados estatísticos e ranking dos tops 5 jogos.
+ - Telas para registrar suas partidas e gerenciar sua coleção de jogos.
+ - Tela para editar seu perfil e gerenciar seus amigo(a)s.
+ - Integração com boardgamegeek para buscar jogos.
+ - Compartilhamento de partidas (Simples e detalhada).
+ - Tela com informações sobre o aplicativo e contato.
  
 **Bugs**
- - 
 
 **Improvements**
- - 
 
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.14-Beta
+**Date release**
+ - 01/09/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Corrigi bug da ordenação na lista.
+ 
+**Improvements** 
+
+------------------------------------------------------------------------
+
+### Version - 1.0.13-Beta
+**Date release**
+ - 01/09/2017
+
+**Features**
+ - Adiciona versão em inglês.
+ 
+**Bugs**
+ - Corrigi bug de não mostrar a ordenação selecionado.
+ - Corrigi bug das cores feedback.
+
+**Improvements**
+ - Meloria no layouts e textos.
+ - Meloria exibição partida e game.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.12-Beta
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Estáticas para jogos.
+ 
+**Bugs**
+
+**Improvements**
+ - Meloria no layouts e textos
+
+------------------------------------------------------------------------
+
+### Version - 1.0.11-Beta
+**Date release**
+ - 15/08/2017
+
+**Features**
+ - Opção para comprar um jogo.
+ 
+**Bugs**
+ - Correção de bugs na home e ao tentar adicionar um novo jogo.
+
+**Improvements**
+ - Meloria no layouts e textos
+
+------------------------------------------------------------------------
+
+### Version - 1.0.11-Beta
+**Date release**
+ - 13/08/2017
+
+**Features**
+ - Opção adicionar jogo na lista de desejo.
+ - Opção para classificar jogo.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+
+**Improvements**
+ - Remoção das fontes customizadas.
+ - Mais opções para ordenação dos jogos.
+ - Melhoria a forma de adicionar pontuação dos jogadores.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.10-Beta
+**Date release**
+ - 10/08/2017
+
+**Features**
+ - Opção apra desabilitar as fontes customizadas da aplicação.
+ 
+**Bugs**
+ - Correção de bugs de textos.
+ - Correção de bug da modal de Trocar Avatar e Novo Jogo.
+
+**Improvements**
+ - Opção para add id do bgg no jogo.
+ - Mais opções para ordenação dos jogos.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.9-Beta
+**Date release**
+ - 09/08/2017
+
+**Features**
+ - **VERSÃO INICIAL DO APLICATIVO**.
+ - Tela inicial com dados estatísticos e ranking dos tops 5 jogos.
+ - Telas para registrar suas partidas e gerenciar sua coleção de jogos.
+ - Tela para editar seu perfil e gerenciar seus amigo(a)s.
+ - Integração com boardgamegeek para buscar jogos.
+ - Compartilhamento de partidas (Simples e detalhada).
+ - Tela com informações sobre o aplicativo e contato.
+ 
+**Bugs**
+
+**Improvements**
+
+------------------------------------------------------------------------
+
+### Version - 1.0.8-Beta
+**Date release**
+ - 09/08/2017
+
+**Features**
+
+**Bugs**
+ - Corrige bug das imagens.
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.7-Beta
+**Date release**
+ - 08/08/2017
+
+**Features**
+ - Compartilhamento completo de dados da partida.
+
+**Bugs**
+ - Corrige bugs de textos, layouts e ordenação.
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.6-Beta
+**Date release**
+ - 07/08/2017
+
+**Features**
+ - Ordenação da listas de jogos e partidas.
+ - Opção para adicionar jogos favoritos.
+
+**Bugs**
+ - Corrige bugs de textos.
+
+**Improvements**
+ - Melhorias das mensagens, layouts e cores.
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.5-Beta
@@ -35,6 +291,8 @@ Os Pacotes liberados para testes e produção da aplicação.
  - Compartilhamento simples de partida.
 
 **Bugs**
+ - Corrige bugs de layouts.
+ - Corrige bugs de textos.
 
 **Improvements**
  - Melhorias das mensagens, layouts e cores.

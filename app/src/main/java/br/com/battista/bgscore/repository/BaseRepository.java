@@ -26,7 +26,7 @@ public abstract class BaseRepository {
     }
 
     protected void reloadEntity(@NonNull BaseEntity entity) {
-        if(entity != null) {
+        if (entity != null) {
             entity.reloadId();
         }
     }

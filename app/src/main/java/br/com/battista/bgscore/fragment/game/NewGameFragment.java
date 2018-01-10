@@ -5,6 +5,13 @@ import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_ABSTRACT;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_AMERITRASH;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_EUROS;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_FAMILY;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_NONE;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_PARTY;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_WARGAMER;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -34,6 +42,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
@@ -50,16 +59,19 @@ import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.service.server.GameService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();
 
+    private EditText txtIdBgg;
     private EditText txtNameGame;
     private EditText txtUrlThumbnailGame;
     private EditText txtUrlImageGame;
     private EditText txtUrlInfoGame;
-    private MaterialBetterSpinner txtYearPublishedGame;
+    private MaterialBetterSpinner spnYearPublishedGame;
+    private MaterialBetterSpinner spnBadgeGame;
     private EditText txtMinPlayersGame;
     private EditText txtMaxPlayersGame;
     private EditText txtMinPlayTimeGame;
@@ -67,6 +79,8 @@ public class NewGameFragment extends BaseFragment {
     private EditText txtAgeGame;
     private RatingBar rtbRatingGame;
     private Switch swtMyGame;
+    private Switch swtFavorite;
+    private Switch swtWantGame;
 
     private ImageButton btnSearchGame;
     private EditText txtSearchNameGame;
@@ -147,7 +161,7 @@ public class NewGameFragment extends BaseFragment {
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             game = (Game) bundle.getSerializable(BundleConstant.DATA);
             game.reloadId();
 
@@ -159,22 +173,38 @@ public class NewGameFragment extends BaseFragment {
     }
 
     private void fillGameData() {
+        if (game.getIdBGG() != null) {
+            txtIdBgg.setText(String.valueOf(game.getIdBGG()));
+            txtIdBgg.setEnabled(false);
+        }
         txtNameGame.setText(game.getName());
+        txtSearchNameGame.setText(game.getName());
         txtUrlThumbnailGame.setText(game.getUrlThumbnail());
         txtUrlImageGame.setText(game.getUrlImage());
         txtUrlInfoGame.setText(game.getUrlInfo());
-        txtYearPublishedGame.setText(game.getYearPublished());
+        spnYearPublishedGame.setText(game.getYearPublished());
+        spnBadgeGame.setText(getContext().getString(game.getBadgeGame().getIdResString()));
         txtMinPlayersGame.setText(game.getMinPlayers());
         txtMaxPlayersGame.setText(game.getMaxPlayers());
         txtMinPlayTimeGame.setText(game.getMinPlayTime());
         txtMaxPlayTimeGame.setText(game.getMaxPlayTime());
         txtAgeGame.setText(game.getAge());
-        if (!Strings.isNullOrEmpty(game.getRating())) {
-            rtbRatingGame.setRating(RatingUtils.convertFrom(game.getRating()));
+        if (game.getRating() != null) {
+            rtbRatingGame.setRating(game.getRating());
         } else {
             rtbRatingGame.setRating(0F);
         }
         swtMyGame.setChecked(game.isMyGame());
+        swtFavorite.setChecked(game.isFavorite());
+        swtWantGame.setChecked(game.isWantGame());
+
+        if (!Strings.isNullOrEmpty(game.getUrlImage())) {
+            final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+            ImageLoadUtils.loadImage(getContext(), game.getUrlImage(), imgToolbar);
+        } else if (!Strings.isNullOrEmpty(game.getUrlThumbnail())) {
+            final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+            ImageLoadUtils.loadImage(getContext(), game.getUrlThumbnail(), imgToolbar);
+        }
     }
 
     private void finishFormAndProcessData() {
@@ -194,10 +224,35 @@ public class NewGameFragment extends BaseFragment {
         }
         AndroidUtils.changeErrorEditText(txtNameGame);
         game.name(txtNameGame.getText().toString().trim());
+        if (game.getIdBGG() == null) {
+            try {
+                game.setIdBGG(Long.valueOf(txtIdBgg.getText().toString().trim()));
+            } catch (Exception e) {
+                Log.e(TAG, "fillDataAndSave: ID bgg invalid!", e);
+            }
+        }
         game.urlThumbnail(txtUrlThumbnailGame.getText().toString().trim());
         game.urlImage(txtUrlImageGame.getText().toString().trim());
         game.urlInfo(txtUrlInfoGame.getText().toString().trim());
-        game.yearPublished(txtYearPublishedGame.getText().toString().trim());
+        game.yearPublished(spnYearPublishedGame.getText().toString().trim());
+
+        String badgeGame = spnBadgeGame.getText().toString().trim();
+        if (getContext().getString(BADGE_GAME_ABSTRACT.getIdResString()).equals(badgeGame)) {
+            game.badgeGame(BADGE_GAME_ABSTRACT);
+        } else if (getContext().getString(BADGE_GAME_AMERITRASH.getIdResString()).equals(badgeGame)) {
+            game.badgeGame(BADGE_GAME_AMERITRASH);
+        } else if (getContext().getString(BADGE_GAME_EUROS.getIdResString()).equals(badgeGame)) {
+            game.badgeGame(BADGE_GAME_EUROS);
+        } else if (getContext().getString(BADGE_GAME_FAMILY.getIdResString()).equals(badgeGame)) {
+            game.badgeGame(BADGE_GAME_FAMILY);
+        } else if (getContext().getString(BADGE_GAME_PARTY.getIdResString()).equals(badgeGame)) {
+            game.badgeGame(BADGE_GAME_PARTY);
+        } else if (getContext().getString(BADGE_GAME_WARGAMER.getIdResString()).equals(badgeGame)) {
+            game.badgeGame(BADGE_GAME_WARGAMER);
+        } else {
+            game.badgeGame(BADGE_GAME_NONE);
+        }
+
         game.minPlayers(txtMinPlayersGame.getText().toString().trim());
         game.maxPlayers(txtMaxPlayersGame.getText().toString().trim());
         game.minPlayTime(txtMinPlayTimeGame.getText().toString().trim());
@@ -205,6 +260,8 @@ public class NewGameFragment extends BaseFragment {
         game.age(txtAgeGame.getText().toString().trim());
         game.rating(RatingUtils.convertTo(rtbRatingGame.getRating()));
         game.myGame(swtMyGame.isChecked());
+        game.favorite(swtFavorite.isChecked());
+        game.wantGame(swtWantGame.isChecked());
 
         Log.i(TAG, "fillDataAndSave: Save the data in BD.");
         new GameRepository().save(game);
@@ -218,21 +275,37 @@ public class NewGameFragment extends BaseFragment {
         Log.i(TAG, "setupDataForm: Load all form fields!");
 
         txtNameGame = view.findViewById(R.id.card_view_new_game_name);
+        txtIdBgg = view.findViewById(R.id.card_view_new_game_id_bgg);
         txtUrlThumbnailGame = view.findViewById(R.id.card_view_new_game_url_thumbnail);
         txtUrlImageGame = view.findViewById(R.id.card_view_new_game_url_image);
         txtUrlInfoGame = view.findViewById(R.id.card_view_new_game_url_info);
 
         final Calendar now = Calendar.getInstance();
-        ArrayList<Integer> namesHeroes = Lists.newArrayList(now.get(Calendar.YEAR));
-        for (int offset = 1; offset < 50; offset++) {
+        List<Integer> years = Lists.newArrayList(now.get(Calendar.YEAR));
+        for (int offset = 1; offset < 70; offset++) {
             now.add(Calendar.YEAR, -1);
-            namesHeroes.add(now.get(Calendar.YEAR));
+            years.add(now.get(Calendar.YEAR));
         }
-        ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_dropdown_item_1line, namesHeroes);
+        ArrayAdapter<Integer> arrayAdapterYears = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, years);
 
-        txtYearPublishedGame = view.findViewById(R.id.card_view_new_game_year_published);
-        txtYearPublishedGame.setAdapter(arrayAdapter);
+        spnYearPublishedGame = view.findViewById(R.id.card_view_new_game_year_published);
+        spnYearPublishedGame.setAdapter(arrayAdapterYears);
+
+        List<String> badgesGame = Lists.newArrayList();
+        badgesGame.add(getContext().getString(BADGE_GAME_ABSTRACT.getIdResString()));
+        badgesGame.add(getContext().getString(BADGE_GAME_AMERITRASH.getIdResString()));
+        badgesGame.add(getContext().getString(BADGE_GAME_EUROS.getIdResString()));
+        badgesGame.add(getContext().getString(BADGE_GAME_FAMILY.getIdResString()));
+        badgesGame.add(getContext().getString(BADGE_GAME_NONE.getIdResString()));
+        badgesGame.add(getContext().getString(BADGE_GAME_PARTY.getIdResString()));
+        badgesGame.add(getContext().getString(BADGE_GAME_WARGAMER.getIdResString()));
+        ArrayAdapter<String> arrayAdapterBadges = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, badgesGame);
+
+        spnBadgeGame = view.findViewById(R.id.card_view_new_game_badge_game);
+        spnBadgeGame.setAdapter(arrayAdapterBadges);
+
         txtMinPlayersGame = view.findViewById(R.id.card_view_new_game_min_players);
         txtMaxPlayersGame = view.findViewById(R.id.card_view_new_game_max_players);
         txtMinPlayTimeGame = view.findViewById(R.id.card_view_new_game_min_play_time);
@@ -240,6 +313,8 @@ public class NewGameFragment extends BaseFragment {
         txtAgeGame = view.findViewById(R.id.card_view_new_game_age);
         rtbRatingGame = view.findViewById(R.id.card_view_new_game_rating);
         swtMyGame = view.findViewById(R.id.card_view_new_game_my_game);
+        swtFavorite = view.findViewById(R.id.card_view_new_game_favorite);
+        swtWantGame = view.findViewById(R.id.card_view_new_game_want_game);
 
         btnSearchGame = view.findViewById(R.id.card_view_game_button_search);
         btnSearchGame.setOnClickListener(new View.OnClickListener() {

@@ -1,20 +1,21 @@
 package br.com.battista.bgscore.custom;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import br.com.battista.bgscore.R;
 
-public class ScoreboardView extends LinearLayout {
+public class ScoreboardView extends RelativeLayout {
+
+    public static final String TAG_SCORE_VALUE = "SCORE_VALUE";
+    public static final String TAG_SCORE_LABEL = "SCORE_LABEL";
 
     private TextView scoreView;
     private TextView labelView;
@@ -41,8 +42,6 @@ public class ScoreboardView extends LinearLayout {
     }
 
     private void init(@Nullable AttributeSet attrs) {
-        setOrientation(VERTICAL);
-
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.ScoreboardView,
@@ -60,22 +59,38 @@ public class ScoreboardView extends LinearLayout {
 
         scoreView = new TextView(getContext());
 
+        scoreView.setTag(TAG_SCORE_VALUE);
         scoreView.setText(value);
+        scoreView.setId(View.generateViewId());
         setStyle(scoreView, R.style.ScoreValueStyle);
         addView(scoreView);
 
         labelView = new TextView(getContext());
-        labelView.setText(SPACE_DRAWABLE + label);
-        labelView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        labelView.setTag(TAG_SCORE_LABEL);
+        labelView.setText(label);
         if (iconView != 0) {
-            labelView.setCompoundDrawablePadding(0);
+            labelView.setCompoundDrawablePadding(getResources().getDimensionPixelSize(R.dimen.drawable_padding));
             labelView.setCompoundDrawablesWithIntrinsicBounds(iconView, 0, 0, 0);
         }
-        setStyle(labelView, R.style.CardTextStyle);
+        setStyle(labelView, R.style.CardHeadStyle);
         addView(labelView);
+    }
 
-        scoreView.setWidth(labelView.getMeasuredWidthAndState());
-        scoreView.setGravity(Gravity.CENTER_HORIZONTAL);
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        final int dimensionPixelSize = getContext().getResources().getDimensionPixelSize(R.dimen.element_vertical_margin);
+        final RelativeLayout.LayoutParams layoutParamsScoreView = (RelativeLayout.LayoutParams) scoreView.getLayoutParams();
+        layoutParamsScoreView.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        layoutParamsScoreView.setMargins(0, dimensionPixelSize, 0, 0);
+        scoreView.setLayoutParams(layoutParamsScoreView);
+
+        final RelativeLayout.LayoutParams layoutParamsLabelView = (RelativeLayout.LayoutParams) labelView.getLayoutParams();
+        layoutParamsLabelView.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        layoutParamsLabelView.addRule(RelativeLayout.BELOW, scoreView.getId());
+        layoutParamsLabelView.setMargins(0, 0, 0, dimensionPixelSize);
+        labelView.setLayoutParams(layoutParamsLabelView);
     }
 
     public void setScoreText(String text) {

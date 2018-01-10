@@ -4,11 +4,11 @@ package br.com.battista.bgscore.fragment.match;
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -49,11 +49,11 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
-
 
 public class FinishMatchFragment extends BaseFragment implements TimePickerDialog.OnTimeSetListener {
 
@@ -127,13 +127,13 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
                 return left.compareTo(right);
             }
         });
-        playerAdapter = new PlayerAdapter(getContext(), players, false, true);
+        playerAdapter = new PlayerAdapter(getContext(), players, false, true, false, false, true);
         recycleViewPlayers.setAdapter(playerAdapter);
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
             match.reloadId();
 
@@ -141,14 +141,24 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
             txtCreateAt.setText(DateUtils.format(match.getCreatedAt()));
 
             gameSelected = match.getGame();
+            if (!Strings.isNullOrEmpty(gameSelected.getUrlImage())) {
+                final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+                ImageLoadUtils.loadImage(getContext(), gameSelected.getUrlImage(), imgToolbar);
+            } else if (!Strings.isNullOrEmpty(gameSelected.getUrlThumbnail())) {
+                final ImageView imgToolbar = getActivity().findViewById(R.id.detail_image_toolbar);
+                ImageLoadUtils.loadImage(getContext(), gameSelected.getUrlThumbnail(), imgToolbar);
+            }
             fillCardGame();
+
+            CollapsingToolbarLayout collapsingToolbar = getActivity().findViewById(R.id.collapsing_toolbar);
+            collapsingToolbar.setTitle(match.getAlias());
 
             players.addAll(match.getPlayers());
 
             txtDuration.setText(DateUtils.formatTime(match.getDuration()));
             txtFeedbackObs.setText(match.getObs());
 
-            switch (match.getFeedbackIdRes()) {
+            switch (match.getFeedback().getIdResDrawable()) {
                 case R.drawable.ic_feedback_very_dissatisfied:
                     imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
                     break;
@@ -259,59 +269,59 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         imgFeedbackVeryDissatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_very_dissatisfied);
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_dissatisfied));
                 imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
             }
         });
         imgFeedbackDissatisfied = view.findViewById(R.id.card_view_feedback_img_dissatisfied);
         imgFeedbackDissatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_dissatisfied);
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_dissatisfied));
+                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
                 imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
             }
         });
         imgFeedbackNeutral = view.findViewById(R.id.card_view_feedback_img_neutral);
         imgFeedbackNeutral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_neutral);
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_neutral));
+                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
                 imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
             }
         });
         imgFeedbackSatisfied = view.findViewById(R.id.card_view_feedback_img_satisfied);
         imgFeedbackSatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_satisfied);
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_satisfied));
+                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
                 imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
             }
         });
         imgFeedbackVerySatisfied = view.findViewById(R.id.card_view_feedback_img_very_satisfied);
         imgFeedbackVerySatisfied.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                match.feedbackIdRes(R.drawable.ic_feedback_very_satisfied);
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIcon));
+                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_satisfied));
+                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
                 imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
             }
         });
@@ -335,23 +345,23 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         txtInfoName.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getName()), "-"));
 
-        txtInfoYear.setText(SPACE_DRAWABLE +
+        txtInfoYear.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getYearPublished()), "****"));
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayers())) {
-            txtInfoPlayers.setText(MessageFormat.format(" {0}",
+            txtInfoPlayers.setText(MessageFormat.format("{0}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1")));
         } else {
-            txtInfoPlayers.setText(MessageFormat.format(" {0}-{1}",
+            txtInfoPlayers.setText(MessageFormat.format("{0}-{1}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayers()), "*")));
         }
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayTime())) {
-            txtInfoTime.setText(MessageFormat.format(" {0}´",
+            txtInfoTime.setText(MessageFormat.format("{0}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "∞")));
         } else {
-            txtInfoTime.setText(MessageFormat.format(" {0}-{1}´",
+            txtInfoTime.setText(MessageFormat.format("{0}-{1}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "*"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayTime()), "∞")));
         }
@@ -359,7 +369,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         if (Strings.isNullOrEmpty(gameSelected.getAge())) {
             txtInfoAges.setText("-");
         } else {
-            txtInfoAges.setText(MessageFormat.format(" {0}+", gameSelected.getAge()));
+            txtInfoAges.setText(MessageFormat.format("{0}+", gameSelected.getAge()));
         }
 
         cardViewGame.setVisibility(View.VISIBLE);

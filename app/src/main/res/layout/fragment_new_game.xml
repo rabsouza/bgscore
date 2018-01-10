@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/fab_margin_bottom"
+        android:scrollbars="horizontal"
+        android:overScrollMode="ifContentScrolls"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -152,7 +154,7 @@
                             android:hint="@string/field_name_new_game"
                             android:imeOptions="actionNext"
                             android:inputType="textAutoComplete"
-                            android:maxLength="50"
+                            android:maxLength="60"
                             android:maxLines="1"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -165,7 +167,67 @@
                         android:layout_marginBottom="@dimen/element_vertical_margin"
                         android:layout_marginTop="@dimen/element_vertical_margin"
                         android:checked="true"
-                        android:text="@string/field_name_new_my_game"/>
+                        android:text="@string/field_is_my_game"/>
+
+                    <Switch
+                        android:id="@+id/card_view_new_game_favorite"
+                        style="@style/CardTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:checked="false"
+                        android:text="@string/field_is_favorite_game"/>
+
+                    <Switch
+                        android:id="@+id/card_view_new_game_want_game"
+                        style="@style/CardTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:checked="false"
+                        android:text="@string/field_is_want_game"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/card_view_new_game_id_bgg"
+                                style="@style/InputStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:hint="@string/field_id_bgg_new_game"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/card_view_new_game_info_02"
+                            style="@style/HintTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_weight="2"
+                            android:paddingLeft="@dimen/element_vertical_margin"
+                            android:paddingRight="@dimen/element_vertical_margin"
+                            android:text="@string/text_game_new_game_info_02"/>
+
+                    </LinearLayout>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -335,13 +397,23 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/activity_vertical_margin"
                                 android:hint="@string/field_max_play_time_new_game"
-                                android:imeOptions="actionDone"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLines="1"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
+
+                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                        android:id="@+id/card_view_new_game_badge_game"
+                        style="@style/InputStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:hint="@string/field_badge_game_new_game"
+                        android:imeOptions="actionDone"
+                        app:met_floatingLabel="highlight"/>
 
                     <TextView
                         style="@style/TextStyle"
@@ -375,10 +447,11 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_next_done_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/fab_image_width"
+        android:layout_height="@dimen/fab_image_height"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="center"
         app:layout_anchor="@id/detail_scroll_view"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"

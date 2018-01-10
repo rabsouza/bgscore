@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -56,13 +54,13 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
 
             final GameResponse game = games.get(position);
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, game));
+                    "onBindViewHolder: Fill to row position: %S with %s.", position, game.getName()));
 
             holder.getTxtInfoName().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), " - "));
 
             if (game.getYearPublished() != null) {
-                holder.getTxtInfoYear().setText(SPACE_DRAWABLE + game.getYearPublished());
+                holder.getTxtInfoYear().setText(game.getYearPublished());
             } else {
                 holder.getTxtInfoYear().setVisibility(View.GONE);
             }
@@ -81,7 +79,7 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
 
     private void createDialogAddGame(final GameResponse game, final View viewContent) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_add_game);
-        new AlertDialog.Builder(context)
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, game.getName()))
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -103,7 +101,9 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
                         }
                     }
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     @Override

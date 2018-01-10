@@ -91,6 +91,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/element_padding"
                                     android:drawableLeft="@drawable/ic_username"
+                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:text="@string/text_username"/>
@@ -102,6 +103,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/element_padding"
                                     android:drawableLeft="@drawable/ic_mail"
+                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:text="@string/text_mail"/>
@@ -113,6 +115,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/element_padding"
                                     android:drawableLeft="@drawable/ic_date"
+                                    android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
                                     android:text="@string/text_date_created"/>
@@ -237,8 +240,10 @@
                             android:clipToPadding="false"
                             android:dividerHeight="1dp"
                             android:listSelector="@android:color/transparent"
+                            android:nestedScrollingEnabled="false"
                             android:paddingBottom="@dimen/md_keylines"
-                            android:paddingTop="@dimen/element_vertical_margin"/>
+                            android:paddingTop="@dimen/element_vertical_margin"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                         <TextView
                             android:id="@+id/card_view_friends_empty_view"

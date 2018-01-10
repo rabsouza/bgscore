@@ -5,6 +5,7 @@
                                     android:id="@+id/card_view_games_info"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/no_dimen"
                                     android:clickable="true"
                                     android:foreground="?attr/selectableItemBackground"
                                     android:padding="@dimen/no_dimen"
@@ -23,8 +24,8 @@
             android:id="@+id/card_view_games_info_image"
             android:layout_width="@dimen/dimen_profile_img_small_width"
             android:layout_height="@dimen/dimen_profile_img_small_height"
-            android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/element_vertical_margin"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/boardgame_game"/>
 
@@ -51,6 +52,7 @@
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
             android:drawableLeft="@drawable/ic_game_date_year"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"
             tools:text="1986"/>
 

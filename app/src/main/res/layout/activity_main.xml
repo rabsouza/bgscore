@@ -18,7 +18,6 @@
         android:layout_alignTop="@+id/title_main"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-150dp"
-        android:contentDescription="@string/cd_image_main"
         app:srcCompat="@drawable/logo_bgscore"/>
 
     <TextView

@@ -2,11 +2,18 @@ package br.com.battista.bgscore.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
+import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import br.com.battista.bgscore.MainApplication;
+import br.com.battista.bgscore.constants.EntityConstant;
+import br.com.battista.bgscore.constants.LocaleConstant;
+import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 
 @Table(name = GameEntry.TABLE_NAME)
@@ -48,13 +55,22 @@ public class Game extends BaseEntity implements Serializable {
     private String age = null;
 
     @Column(name = GameEntry.COLUMN_NAME_RATING)
-    private String rating = null;
+    private Long rating = null;
 
     @Column(name = GameEntry.COLUMN_NAME_MY_GAME)
     private Boolean myGame = Boolean.TRUE;
 
     @Column(name = GameEntry.COLUMN_NAME_FAVORITE)
-    private Boolean favorite = Boolean.TRUE;
+    private Boolean favorite = Boolean.FALSE;
+
+    @Column(name = GameEntry.COLUMN_NAME_WANT_GAME)
+    private Boolean wantGame = Boolean.FALSE;
+
+    @Column(name = GameEntry.COLUMN_NAME_BADGE_GAME)
+    private BadgeGameEnum badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
+
+    @Column(name = GameEntry.COLUMN_NAME_EXPANSIONS)
+    private Set<ExpansionGame> expansions = Sets.newLinkedHashSet();
 
     public String getName() {
         return name;
@@ -89,11 +105,23 @@ public class Game extends BaseEntity implements Serializable {
     }
 
     public String getUrlInfo() {
-        return urlInfo;
+        if (Strings.isNullOrEmpty(urlInfo)) {
+            return EntityConstant.DEFAULT_URL_INFO_GAME;
+        } else {
+            return urlInfo;
+        }
     }
 
     public void setUrlInfo(String urlInfo) {
         this.urlInfo = urlInfo;
+    }
+
+    public String getUrlBuy() {
+        if (MainApplication.instance().getCurrentLocale().equals(LocaleConstant.DEFAULT_LOCALE)) {
+            return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
+        } else {
+            return EntityConstant.DEFAULT_URL_BUY_GAME_ENG.concat(getName());
+        }
     }
 
     public String getYearPublished() {
@@ -144,11 +172,11 @@ public class Game extends BaseEntity implements Serializable {
         this.age = age;
     }
 
-    public String getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
     }
 
@@ -160,12 +188,43 @@ public class Game extends BaseEntity implements Serializable {
         this.myGame = myGame;
     }
 
-    public Boolean getFavorite() {
+    public Boolean isFavorite() {
         return favorite;
     }
 
     public void setFavorite(Boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public Boolean isWantGame() {
+        return wantGame;
+    }
+
+    public void setWantGame(Boolean wantGame) {
+        this.wantGame = wantGame;
+    }
+
+    public BadgeGameEnum getBadgeGame() {
+        if (badgeGame == null) {
+            badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
+        }
+        return badgeGame;
+    }
+
+    public void setBadgeGame(BadgeGameEnum badgeGame) {
+        if (badgeGame == null) {
+            this.badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
+        } else {
+            this.badgeGame = badgeGame;
+        }
+    }
+
+    public Set<ExpansionGame> getExpansions() {
+        return expansions;
+    }
+
+    public void setExpansions(Set<ExpansionGame> expansions) {
+        this.expansions = expansions;
     }
 
     @Override
@@ -197,8 +256,11 @@ public class Game extends BaseEntity implements Serializable {
                 .add("maxPlayTime", maxPlayTime)
                 .add("age", age)
                 .add("rating", rating)
-                .add("favorite", favorite)
                 .add("myGame", myGame)
+                .add("favorite", favorite)
+                .add("wantGame", wantGame)
+                .add("badgeGame", badgeGame)
+                .add("expansions", expansions)
                 .addValue(super.toString())
                 .toString();
     }
@@ -258,8 +320,13 @@ public class Game extends BaseEntity implements Serializable {
         return this;
     }
 
-    public Game rating(String rating) {
+    public Game rating(Long rating) {
         this.rating = rating;
+        return this;
+    }
+
+    public Game rating(String rating) {
+        this.rating = Long.valueOf(rating);
         return this;
     }
 
@@ -270,6 +337,21 @@ public class Game extends BaseEntity implements Serializable {
 
     public Game favorite(Boolean favorite) {
         this.favorite = favorite;
+        return this;
+    }
+
+    public Game badgeGame(BadgeGameEnum badgeGame) {
+        this.badgeGame = badgeGame;
+        return this;
+    }
+
+    public Game expansions(Set<ExpansionGame> expansions) {
+        this.expansions = expansions;
+        return this;
+    }
+
+    public Game wantGame(Boolean wantGame) {
+        this.wantGame = wantGame;
         return this;
     }
 }

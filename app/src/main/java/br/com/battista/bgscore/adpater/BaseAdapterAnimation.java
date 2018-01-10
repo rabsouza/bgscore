@@ -17,7 +17,7 @@ public abstract class BaseAdapterAnimation<VH extends RecyclerView.ViewHolder> e
     private int screenWidth;
 
     // used as a proportional delay when animating views on the entry screen (otherwise all would animate together).
-    private int firs_run_delay = 105;
+    private int firs_run_delay = 50;
 
     public BaseAdapterAnimation(Context context) {
         /*
@@ -36,7 +36,7 @@ public abstract class BaseAdapterAnimation<VH extends RecyclerView.ViewHolder> e
             public void run() {
                 firs_run_delay = 0;
             }
-        }, 700);
+        }, 400);
     }
 
     protected void setAnimationHolder(View viewToAnimate, int position) {
@@ -49,7 +49,7 @@ public abstract class BaseAdapterAnimation<VH extends RecyclerView.ViewHolder> e
                     translationX(0).
                     alpha(1f).
                     setStartDelay(firs_run_delay * position)
-                    .setDuration(400)
+                    .setDuration(300)
                     .setInterpolator(new DecelerateInterpolator())
                     .start();
             lastPosition = position;

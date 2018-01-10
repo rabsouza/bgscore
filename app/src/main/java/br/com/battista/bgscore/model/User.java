@@ -1,21 +1,23 @@
 package br.com.battista.bgscore.model;
 
-import android.support.annotation.DrawableRes;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 import br.com.battista.bgscore.BuildConfig;
-import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.enuns.AvatarEnum;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
 
 @Table(name = UserEntry.TABLE_NAME)
@@ -29,9 +31,8 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_MAIL)
     private String mail = null;
 
-    @Column(name = UserEntry.COLUMN_NAME_URL_AVATAR)
-    @DrawableRes
-    private int idResAvatar = R.drawable.avatar_profile;
+    @Column(name = UserEntry.COLUMN_NAME_AVATAR)
+    private AvatarEnum avatar = AvatarEnum.AVATAR_PROFILE;
 
     @Column(name = UserEntry.COLUMN_NAME_LAST_PLAY)
     private Date lastPlayed = null;
@@ -54,8 +55,14 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_WELCOME)
     private Boolean welcome = Boolean.TRUE;
 
+    @Column(name = UserEntry.COLUMN_NAME_CUSTOM_FONT)
+    private Boolean customFont = Boolean.TRUE;
+
     @Column(name = UserEntry.COLUMN_NAME_LAST_BUILD_VERSION)
     private Integer lastBuildVersion = BuildConfig.VERSION_CODE;
+
+    @Column(name = UserEntry.COLUMN_NAME_ORDER_BY)
+    private Map<String, OrderByDto> orderBy = Maps.newLinkedHashMap();
 
     public String getUsername() {
         return username;
@@ -73,13 +80,12 @@ public class User extends BaseEntity implements Serializable {
         this.mail = mail;
     }
 
-    @DrawableRes
-    public int getIdResAvatar() {
-        return idResAvatar;
+    public AvatarEnum getAvatar() {
+        return avatar;
     }
 
-    public void setIdResAvatar(@DrawableRes int idResAvatar) {
-        this.idResAvatar = idResAvatar;
+    public void setAvatar(AvatarEnum avatar) {
+        this.avatar = avatar;
     }
 
     public Date getLastPlayed() {
@@ -146,6 +152,22 @@ public class User extends BaseEntity implements Serializable {
         this.lastBuildVersion = lastBuildVersion;
     }
 
+    public Boolean isCustomFont() {
+        return customFont;
+    }
+
+    public void setCustomFont(Boolean customFont) {
+        this.customFont = customFont;
+    }
+
+    public Map<String, OrderByDto> getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(Map<String, OrderByDto> orderBy) {
+        this.orderBy = orderBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -165,7 +187,7 @@ public class User extends BaseEntity implements Serializable {
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
                 .add("mail", mail)
-                .add("idResAvatar", idResAvatar)
+                .add("avatar", avatar)
                 .add("lastPlayed", lastPlayed)
                 .add("numGames", numGames)
                 .add("numMatches", numMatches)
@@ -173,7 +195,9 @@ public class User extends BaseEntity implements Serializable {
                 .add("friends", friends)
                 .add("rankingGames", rankingGames)
                 .add("welcome", welcome)
+                .add("customFont", customFont)
                 .add("lastBuildVersion", lastBuildVersion)
+                .add("orderBy", orderBy)
                 .addValue(super.toString())
                 .toString();
     }
@@ -185,11 +209,6 @@ public class User extends BaseEntity implements Serializable {
 
     public User mail(String mail) {
         this.mail = mail;
-        return this;
-    }
-
-    public User idResAvatar(@DrawableRes int idResAvatar) {
-        this.idResAvatar = idResAvatar;
         return this;
     }
 
@@ -233,6 +252,16 @@ public class User extends BaseEntity implements Serializable {
         return this;
     }
 
+    public User avatar(AvatarEnum avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
+    public User customFont(Boolean customFont) {
+        this.customFont = customFont;
+        return this;
+    }
+
     public boolean addFriend(FriendDto friendDto) {
         return friends.add(friendDto);
     }
@@ -253,17 +282,31 @@ public class User extends BaseEntity implements Serializable {
         return rankingGames.remove(rankingGamesDto);
     }
 
-    public void clearRankingGamess() {
+    public void clearRankingGames() {
         rankingGames.clear();
     }
 
-    public FriendDto getMyFriendDTO() {
-        FriendDto userCurrent = new FriendDto()
-                .username(getUsername())
-                .mail(getMail())
-                .idResAvatar(getIdResAvatar())
-                .selected(Boolean.TRUE);
-        return userCurrent;
+    public Player getMyPlayer() {
+        Player player = new Player()
+                .name(getUsername())
+                .typePlayer(TypePlayerEnum.USER);
+        player.initEntity();
+        return player;
     }
 
+    public OrderByDto getOrderBy(String orderBy) {
+        return this.orderBy.get(orderBy);
+    }
+
+    public OrderByDto putOrderBy(String key, OrderByDto orderBy) {
+        return this.orderBy.put(key, orderBy);
+    }
+
+    public void clearOrderBy() {
+        orderBy.clear();
+    }
+
+    public boolean containsOrderBy(String key) {
+        return orderBy.containsKey(key);
+    }
 }

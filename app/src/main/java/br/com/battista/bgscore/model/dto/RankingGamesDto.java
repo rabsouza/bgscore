@@ -2,6 +2,8 @@ package br.com.battista.bgscore.model.dto;
 
 import android.support.annotation.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -10,6 +12,8 @@ import java.util.Date;
 
 import br.com.battista.bgscore.model.Game;
 
+@JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto> {
     private static final long serialVersionUID = 1L;
 
@@ -98,6 +102,14 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
         if (rankingGamesDto == null) {
             return -1;
         }
-        return Integer.compare(getCount(), rankingGamesDto.getCount());
+        int compare = Integer.compare(getCount(), rankingGamesDto.getCount());
+        if (compare != 0) {
+            return compare;
+        }
+
+        if (getLastPlayed() == null) {
+            return 1;
+        }
+        return getLastPlayed().compareTo(rankingGamesDto.getLastPlayed());
     }
 }

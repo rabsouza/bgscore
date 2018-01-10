@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -17,37 +18,42 @@ import java.util.Map;
 
 @Root(name = "boardgame", strict = false)
 public class GameResponse implements Serializable, Parcelable {
+    public static final Creator<GameResponse> CREATOR = new Creator<GameResponse>() {
+        @Override
+        public GameResponse createFromParcel(Parcel source) {
+            return new GameResponse(source);
+        }
+
+        @Override
+        public GameResponse[] newArray(int size) {
+            return new GameResponse[size];
+        }
+    };
+
     private static final long serialVersionUID = 1L;
 
     @Attribute(name = "objectid")
     private Long boardgameId;
-
     @ElementMap(entry = "name", key = "primary", attribute = true, inline = true)
-    private Map<Boolean, String> nameMap;
-
+    private Map<Boolean, String> nameMap = Maps.newHashMap();
     @Element(name = "yearpublished", required = false)
     private String yearPublished;
-
     @Element(name = "minplayers", required = false)
     private String minPlayers;
-
     @Element(name = "maxplayers", required = false)
     private String maxPlayers;
-
     @Element(name = "minplaytime", required = false)
     private String minPlayTime;
-
     @Element(name = "maxplaytime", required = false)
     private String maxPlayTime;
-
     @Element(name = "age", required = false)
     private String age;
-
     @Element(name = "thumbnail", required = false)
     private String thumbnail;
-
     @Element(name = "image", required = false)
     private String image;
+    @ElementMap(entry = "boardgameexpansion", key = "objectid", attribute = true, inline = true, required = false)
+    private Map<Long, String> boardgameExpansionMap = Maps.newHashMap();
 
     public GameResponse() {
     }
@@ -61,27 +67,50 @@ public class GameResponse implements Serializable, Parcelable {
             String value = in.readString();
             this.nameMap.put(key, value);
         }
-        this.yearPublished = (String) in.readValue(String.class.getClassLoader());
-        this.minPlayers = (String) in.readValue(String.class.getClassLoader());
-        this.maxPlayers = (String) in.readValue(String.class.getClassLoader());
-        this.minPlayTime = (String) in.readValue(String.class.getClassLoader());
-        this.maxPlayTime = (String) in.readValue(String.class.getClassLoader());
-        this.age = (String) in.readValue(String.class.getClassLoader());
+        this.yearPublished = in.readString();
+        this.minPlayers = in.readString();
+        this.maxPlayers = in.readString();
+        this.minPlayTime = in.readString();
+        this.maxPlayTime = in.readString();
+        this.age = in.readString();
         this.thumbnail = in.readString();
         this.image = in.readString();
+        int boardgameExpansionMapSize = in.readInt();
+        this.boardgameExpansionMap = new HashMap<Long, String>(boardgameExpansionMapSize);
+        for (int i = 0; i < boardgameExpansionMapSize; i++) {
+            Long key = (Long) in.readValue(Long.class.getClassLoader());
+            String value = in.readString();
+            this.boardgameExpansionMap.put(key, value);
+        }
     }
 
-    public static final Creator<GameResponse> CREATOR = new Creator<GameResponse>() {
-        @Override
-        public GameResponse createFromParcel(Parcel source) {
-            return new GameResponse(source);
-        }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-        @Override
-        public GameResponse[] newArray(int size) {
-            return new GameResponse[size];
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.boardgameId);
+        dest.writeInt(this.nameMap.size());
+        for (Map.Entry<Boolean, String> entry : this.nameMap.entrySet()) {
+            dest.writeValue(entry.getKey());
+            dest.writeString(entry.getValue());
         }
-    };
+        dest.writeString(this.yearPublished);
+        dest.writeString(this.minPlayers);
+        dest.writeString(this.maxPlayers);
+        dest.writeString(this.minPlayTime);
+        dest.writeString(this.maxPlayTime);
+        dest.writeString(this.age);
+        dest.writeString(this.thumbnail);
+        dest.writeString(this.image);
+        dest.writeInt(this.boardgameExpansionMap.size());
+        for (Map.Entry<Long, String> entry : this.boardgameExpansionMap.entrySet()) {
+            dest.writeValue(entry.getKey());
+            dest.writeString(entry.getValue());
+        }
+    }
 
     public String getName() {
         if (nameMap != null) {
@@ -181,10 +210,18 @@ public class GameResponse implements Serializable, Parcelable {
         this.image = image;
     }
 
+    public Map<Long, String> getBoardgameExpansionMap() {
+        return boardgameExpansionMap;
+    }
+
+    public void setBoardgameExpansionMap(Map<Long, String> boardgameExpansionMap) {
+        this.boardgameExpansionMap = boardgameExpansionMap;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GameResponse)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         GameResponse that = (GameResponse) o;
         return Objects.equal(getBoardgameId(), that.getBoardgameId());
     }
@@ -207,6 +244,7 @@ public class GameResponse implements Serializable, Parcelable {
                 .add("age", age)
                 .add("thumbnail", thumbnail)
                 .add("image", image)
+                .add("boardgameExpansionMap", boardgameExpansionMap)
                 .toString();
     }
 
@@ -260,27 +298,9 @@ public class GameResponse implements Serializable, Parcelable {
         return this;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.boardgameId);
-        dest.writeInt(this.nameMap.size());
-        for (Map.Entry<Boolean, String> entry : this.nameMap.entrySet()) {
-            dest.writeValue(entry.getKey());
-            dest.writeString(entry.getValue());
-        }
-        dest.writeValue(this.yearPublished);
-        dest.writeValue(this.minPlayers);
-        dest.writeValue(this.maxPlayers);
-        dest.writeValue(this.minPlayTime);
-        dest.writeValue(this.maxPlayTime);
-        dest.writeValue(this.age);
-        dest.writeString(this.thumbnail);
-        dest.writeString(this.image);
+    public GameResponse boardgameExpansionMap(Map<Long, String> boardgameExpansionMap) {
+        this.boardgameExpansionMap = boardgameExpansionMap;
+        return this;
     }
 
 }

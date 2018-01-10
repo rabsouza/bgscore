@@ -2,12 +2,14 @@
 
 buildscript {
     repositories {
+        google()
         jcenter()
-        maven { url 'https://maven.fabric.io/public' }
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'io.fabric.tools:gradle:1.+'
         classpath 'com.google.gms:google-services:3.0.0'
     }
@@ -15,9 +17,11 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url 'https://maven.google.com' }
     }
 }
 
@@ -31,21 +35,20 @@ task wrapper(type: Wrapper) {
 
 subprojects {
     apply plugin: 'com.android.application'
-    apply plugin: 'com.neenbedankt.android-apt'
 }
 
 ext {
     // Sdk and tools
     minSdkVersion = 21
-    targetSdkVersion = 26
-    compileSdkVersion = 26
-    buildToolsVersion = '26'
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
 
     // App dependencies
-    supportLibraryVersion = '26.0.0-alpha1'
+    supportLibraryVersion = '27.0.2'
     constraintVersion = '1.0.2'
-    guavaVersion = '20.0'
-    circleimageviewVersion = '2.1.0'
+    guavaVersion = '23.6-android'
+    circleimageviewVersion = '2.2.0'
     glideVersion = '3.7.0'
     junitVersion = '4.12'
     mockitoVersion = '2.0.2-beta'
@@ -56,10 +59,10 @@ ext {
     espressoVersion = '2.3-alpha'
     lombokVersion = '1.16.8'
     retrofitVersion = '2.3.0'
-    okhttpVersion = '3.8.1'
+    okhttpVersion = '3.9.1'
     sugarVersion = '1.5'
     libraryMaterialVersion = '1.1.0'
-    multidexVersion = '1.0.1'
+    multidexVersion = '1.0.2'
     rxjavaVersion = "1.1.8"
     eventBusVersion = "3.0.0"
     androidmaskVersion = "1.0.1"

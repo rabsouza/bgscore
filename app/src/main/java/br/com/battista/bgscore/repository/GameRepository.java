@@ -3,11 +3,13 @@ package br.com.battista.bgscore.repository;
 
 import android.util.Log;
 
+import com.google.common.collect.Sets;
 import com.orm.query.Select;
 
 import java.text.MessageFormat;
 import java.util.List;
 
+import br.com.battista.bgscore.model.ExpansionGame;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
@@ -44,7 +46,7 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     public Game find(Long id) {
         Log.i(TAG, MessageFormat.format("Find the Game by key: {0}.", id));
         final Game game = Game.findById(Game.class, id);
-        reloadEntity(game);
+        reload(game);
         return game;
     }
 
@@ -55,7 +57,7 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
                 .where(MessageFormat.format("{0} = ?", GameEntry.COLUMN_NAME_ID_BGG),
                         new String[]{String.valueOf(boardgameId)})
                 .first();
-        reloadEntity(game);
+        reload(game);
         return game;
     }
 
@@ -80,7 +82,17 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
                         DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, GameEntry.COLUMN_NAME_NAME))
                 .list();
-        reloadEntity(games);
+        reload(games);
+        return games;
+    }
+
+    public List<Game> findAll(String orderBy) {
+        Log.i(TAG, "Find all Games.");
+        final List<Game> games = Select
+                .from(Game.class)
+                .orderBy(orderBy)
+                .list();
+        reload(games);
         return games;
     }
 
@@ -88,5 +100,23 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     public void deleteAll() {
         Log.i(TAG, "Delete all Games.");
         Game.deleteAll(Game.class);
+    }
+
+    private void reload(List<Game> entities) {
+        for (Game game : entities) {
+            reload(game);
+        }
+    }
+
+    private void reload(Game entity) {
+        Log.i(TAG, "Reload data Expansions Game.");
+        if (entity != null) {
+            reloadEntity(entity);
+            if (entity.getId() != null) {
+                List<ExpansionGame> expansionsGame =
+                        new ExpansionGameRepository().findByGameId(entity.getId());
+                entity.expansions(Sets.newLinkedHashSet(expansionsGame));
+            }
+        }
     }
 }

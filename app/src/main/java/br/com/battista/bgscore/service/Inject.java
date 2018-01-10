@@ -8,4 +8,8 @@ public class Inject {
         return new GameService();
     }
 
+    public synchronized static CacheManageService provideCacheManageService() {
+        return new CacheManageService();
+    }
+
 }

@@ -5,7 +5,6 @@ import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -67,6 +66,7 @@ import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
@@ -152,7 +152,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
             match.reloadId();
 
@@ -165,7 +165,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             final User user = MainApplication.instance().getUser();
             swtIPlaying.setChecked(match.isIPlaying());
             if (match.isIPlaying()) {
-                playersSaved.add(user.getMyFriendDTO());
+                playersSaved.add(new FriendDto().username(user.getUsername()));
             }
 
             players.addAll(match.getPlayers());
@@ -225,13 +225,14 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         final MainApplication instance = MainApplication.instance();
         final User user = instance.getUser();
         if (swtIPlaying.isChecked()) {
-            friendsSelected.add(user.getMyFriendDTO());
+            match.addPlayer(user.getMyPlayer());
         }
         match.iPlaying(swtIPlaying.isChecked());
 
         for (FriendDto friendDto : friendsSelected) {
             Player player = new Player();
             player.initEntity();
+            player.setTypePlayer(TypePlayerEnum.FRIEND);
             player.name(friendDto.getUsername());
             match.addPlayer(player);
         }
@@ -413,7 +414,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         txtUsernamePlayer.setText(null);
 
         Log.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
-        final Player player = new Player().name(username);
+        final Player player = new Player().name(username).typePlayer(TypePlayerEnum.PLAYER);
         player.initEntity();
         return player;
     }
@@ -479,23 +480,23 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         txtInfoName.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getName()), "-"));
 
-        txtInfoYear.setText(SPACE_DRAWABLE +
+        txtInfoYear.setText(
                 MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getYearPublished()), "****"));
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayers())) {
-            txtInfoPlayers.setText(MessageFormat.format(" {0}",
+            txtInfoPlayers.setText(MessageFormat.format("{0}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1")));
         } else {
-            txtInfoPlayers.setText(MessageFormat.format(" {0}-{1}",
+            txtInfoPlayers.setText(MessageFormat.format("{0}-{1}",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayers()), "1"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayers()), "*")));
         }
 
         if (Strings.isNullOrEmpty(gameSelected.getMaxPlayTime())) {
-            txtInfoTime.setText(MessageFormat.format(" {0}´",
+            txtInfoTime.setText(MessageFormat.format("{0}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "∞")));
         } else {
-            txtInfoTime.setText(MessageFormat.format(" {0}-{1}´",
+            txtInfoTime.setText(MessageFormat.format("{0}-{1}´",
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMinPlayTime()), "*"),
                     MoreObjects.firstNonNull(Strings.emptyToNull(gameSelected.getMaxPlayTime()), "∞")));
         }
@@ -503,7 +504,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         if (Strings.isNullOrEmpty(gameSelected.getAge())) {
             txtInfoAges.setText("-");
         } else {
-            txtInfoAges.setText(MessageFormat.format(" {0}+", gameSelected.getAge()));
+            txtInfoAges.setText(MessageFormat.format("{0}+", gameSelected.getAge()));
         }
 
         cardViewGame.setVisibility(View.VISIBLE);

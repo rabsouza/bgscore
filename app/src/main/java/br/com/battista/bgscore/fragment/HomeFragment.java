@@ -3,6 +3,7 @@ package br.com.battista.bgscore.fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -33,7 +34,9 @@ import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.service.CacheManageService;
+import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
@@ -71,17 +74,13 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: Create new HomeFragment!");
-
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         refreshLayout = view.findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new CacheManageService().reloadAllDataCache();
-                loadUserInfo(view);
-                loadAllRankingGames();
-                refreshLayout.setRefreshing(false);
+                loadAllData(view);
             }
         });
 
@@ -99,9 +98,10 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        new CacheManageService().reloadAllDataCache();
         setupRecycleRanking(view);
         setupHelpRankingGame(view);
+
+        Inject.provideCacheManageService().reloadAllDataCache();
 
         return view;
     }
@@ -117,7 +117,7 @@ public class HomeFragment extends BaseFragment {
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView = inflater.inflate(R.layout.dialog_help_ranking_game, null);
 
-                new AlertDialog.Builder(getActivity())
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.title_help)
                         .setView(customView)
                         .setPositiveButton(R.string.btn_ok,
@@ -127,7 +127,9 @@ public class HomeFragment extends BaseFragment {
                                     }
                                 }
                         )
-                        .create().show();
+                        .create();
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+                alertDialog.show();
             }
         });
     }
@@ -135,7 +137,20 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadUserInfo(getView());
+        loadAllSyncData(getView());
+    }
+
+    private void loadAllData(final View view) {
+        Log.i(TAG, "loadAllData: Load all data in BD and update cache!");
+        if (!refreshLayout.isRefreshing()) {
+            refreshLayout.setRefreshing(true);
+        }
+        new LoadAllDataAsyncTask(view).execute();
+    }
+
+    private void loadAllSyncData(final View view) {
+        Log.i(TAG, "loadAllData: Load all data in BD!");
+        loadUserInfo(view);
         loadAllRankingGames();
     }
 
@@ -165,12 +180,12 @@ public class HomeFragment extends BaseFragment {
         User user = MainApplication.instance().getUser();
 
         txtAvatar = view.findViewById(R.id.card_view_home_img);
-        txtAvatar.setImageResource(user.getIdResAvatar());
+        txtAvatar.setImageResource(user.getAvatar().getIdResDrawable());
 
         txtUsername = view.findViewById(R.id.card_view_home_username);
         txtUsername.setText(getString(R.string.text_home_username, user.getUsername()));
 
-        txtLastPlay = view.findViewById(R.id.card_view_last_play);
+        txtLastPlay = view.findViewById(R.id.card_view_home_last_play);
         String lastPlay = "-";
         if (user.getLastPlayed() != null && user.getNumMatches() > 0) {
             Calendar lastPlayCalendar = Calendar.getInstance();
@@ -200,5 +215,33 @@ public class HomeFragment extends BaseFragment {
         recycleViewRankingGames.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewRankingGames.setItemAnimator(new DefaultItemAnimator());
         recycleViewRankingGames.setHasFixedSize(false);
+        recycleViewRankingGames.setItemViewCacheSize(10);
+        recycleViewRankingGames.setDrawingCacheEnabled(true);
+        recycleViewRankingGames.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+    }
+
+    private class LoadAllDataAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private final View view;
+
+        public LoadAllDataAsyncTask(View view) {
+            this.view = view;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            CacheManageService cacheManageService = Inject.provideCacheManageService();
+            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            loadUserInfo(view);
+            loadAllRankingGames();
+            refreshLayout.setRefreshing(false);
+        }
     }
 }

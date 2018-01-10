@@ -6,17 +6,19 @@
     <color name="colorPrimaryDark">#80171a</color>
     <color name="colorAccent">#ff6096</color>
     <color name="colorControlHighlight">#B3E5FC</color>
-    <color name="colorBG">#D9FFFFFF</color>
+    <color name="colorBG">#FFFFFF</color>
 
     <!-- ################# Element ################ -->
     <color name="colorTitleToolbar">#E6FFFFFF</color>
     <color name="colorTitle">#E6BA2126</color>
-    <color name="colorText">#E6353434</color>
-    <color name="colorIcon">#D9353434</color>
+    <color name="colorTextBold">#F2353434</color>
+    <color name="colorText">#D9353434</color>
+    <color name="colorIcon">#B3353434</color>
     <color name="colorCardTitle">#E6BA2126</color>
-    <color name="colorLine">#D9353434</color>
-    <color name="colorCard">#D9CFCFCF</color>
-    <color name="colorButton">#D9CFCFCF</color>
+    <color name="colorLine">#B3353434</color>
+    <color name="colorCard">#B3CFCFCF</color>
+    <color name="colorButton">#B3CFCFCF</color>
+    <color name="colorActive">#80ff6096</color>
     <color name="colorImgFeedbackDissatisfied">@color/red</color>
     <color name="colorImgFeedbackNeutral">@color/colorIcon</color>
     <color name="colorImgFeedbackSatisfied">@color/green</color>

@@ -47,7 +47,7 @@ public class HomeActivity extends BaseActivity {
     private void processDataActivity(Bundle bundle) {
         Log.d(TAG, "processDataActivity: Process bundle data Activity!");
 
-        if (bundle.containsKey(BundleConstant.NAVIGATION_TO)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.NAVIGATION_TO)) {
             int navigationTo = bundle.getInt(BundleConstant.NAVIGATION_TO);
 
             switch (navigationTo) {
@@ -114,7 +114,7 @@ public class HomeActivity extends BaseActivity {
                                 break;
                             case R.id.action_account:
                                 item.setChecked(true);
-                                setUpToolbar(R.string.title_profile);
+                                setUpToolbar(R.string.title_account);
                                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
                                         ValueActions.VALUE_CLICK_MENU_PROFILE);
                                 replaceFragment(ProfileFragment.newInstance());
@@ -138,7 +138,7 @@ public class HomeActivity extends BaseActivity {
     private void dialogCloseActivity() {
         AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_HOME);
 
-        new AlertDialog.Builder(this)
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.alert_confirmation_dialog_title_exit)
                 .setMessage(R.string.alert_confirmation_dialog_text_exit_app)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -150,7 +150,9 @@ public class HomeActivity extends BaseActivity {
                                 finishAffinity();
                             }
                         })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
 }

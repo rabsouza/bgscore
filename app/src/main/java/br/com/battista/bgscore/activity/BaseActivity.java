@@ -23,7 +23,7 @@ import com.crashlytics.android.answers.ContentViewEvent;
 import com.crashlytics.android.answers.CustomEvent;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.util.AnimationUtils;
+import br.com.battista.bgscore.util.AnimationActivityUtils;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class BaseActivity extends AppCompatActivity {
                 .putContentType(KEY_ACTIVITY));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setEnterTransition(AnimationUtils.makeEnterTransition());
+            getWindow().setEnterTransition(AnimationActivityUtils.makeEnterTransition());
         }
     }
 

@@ -8,6 +8,7 @@ import com.orm.dsl.Table;
 
 import java.io.Serializable;
 
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.PlayerEntry;
 
 @Table(name = PlayerEntry.TABLE_NAME)
@@ -26,6 +27,9 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
 
     @Column(name = PlayerEntry.COLUMN_NAME_WINNER)
     private Boolean winner = Boolean.FALSE;
+
+    @Column(name = PlayerEntry.COLUMN_NAME_TYPE_PLAYER)
+    private TypePlayerEnum typePlayer = TypePlayerEnum.PLAYER;
 
     public String getName() {
         return name;
@@ -57,6 +61,14 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
 
     public void setWinner(Boolean winner) {
         this.winner = winner;
+    }
+
+    public TypePlayerEnum getTypePlayer() {
+        return typePlayer;
+    }
+
+    public void setTypePlayer(TypePlayerEnum typePlayer) {
+        this.typePlayer = typePlayer;
     }
 
     @Override
@@ -91,6 +103,7 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
                 .add("matchId", matchId)
                 .add("punctuation", punctuation)
                 .add("winner", winner)
+                .add("typePlayer", typePlayer)
                 .addValue(super.toString())
                 .toString();
     }
@@ -112,6 +125,11 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
 
     public Player winner(Boolean winner) {
         this.winner = winner;
+        return this;
+    }
+
+    public Player typePlayer(TypePlayerEnum typePlayer) {
+        this.typePlayer = typePlayer;
         return this;
     }
 }

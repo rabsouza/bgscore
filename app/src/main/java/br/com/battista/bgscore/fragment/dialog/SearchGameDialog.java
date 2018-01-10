@@ -2,6 +2,7 @@ package br.com.battista.bgscore.fragment.dialog;
 
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -9,13 +10,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.common.collect.Lists;
 
@@ -30,13 +31,12 @@ import br.com.battista.bgscore.model.response.GameResponse;
 
 public class SearchGameDialog extends DialogFragment {
 
-    private static final String TAG = SearchGameDialog.class.getSimpleName();
     public static final String DIALOG_SEARCH_GAME = "dialog_search_game";
-
+    private static final String TAG = SearchGameDialog.class.getSimpleName();
     private RecycleEmptyErrorView recycleViewGames;
     private List<GameResponse> games = Lists.newArrayList();
 
-    private Button btnCancel;
+    private ImageView btnCancel;
 
     public SearchGameDialog() {
     }
@@ -65,6 +65,13 @@ public class SearchGameDialog extends DialogFragment {
     }
 
     @Override
+    public void show(FragmentManager manager, String tag) {
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View viewFragment = inflater.inflate(R.layout.dialog_search_game, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -78,7 +85,7 @@ public class SearchGameDialog extends DialogFragment {
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
         Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
-        if (bundle.containsKey(BundleConstant.DATA)) {
+        if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             games.clear();
             final ArrayList<GameResponse> parcelables = bundle.getParcelableArrayList(BundleConstant.DATA);
             games.addAll(parcelables);
@@ -93,7 +100,7 @@ public class SearchGameDialog extends DialogFragment {
 
     private void setupRecycleGames(View view) {
         recycleViewGames = view.findViewById(R.id.search_game_recycler_view);
-        recycleViewGames.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleViewGames.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recycleViewGames.setItemAnimator(new DefaultItemAnimator());
         recycleViewGames.setHasFixedSize(true);
     }
@@ -101,13 +108,21 @@ public class SearchGameDialog extends DialogFragment {
     private void loadViews(View viewFragment) {
         Log.i(TAG, "loadViews: load all views!");
 
-        btnCancel = viewFragment.findViewById(R.id.search_game_btn_cancel);
+        btnCancel = viewFragment.findViewById(R.id.search_game_btn_close);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
         });
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
+        return dialog;
     }
 
 }

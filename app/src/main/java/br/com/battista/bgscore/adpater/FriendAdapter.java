@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -66,8 +64,8 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             Log.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, friendDto));
 
-            holder.getTxtTitle().setText(SPACE_DRAWABLE + friendDto.getUsername());
-            holder.getImgAvatar().setImageResource(friendDto.getIdResAvatar());
+            holder.getTxtTitle().setText(friendDto.getUsername());
+            holder.getImgAvatar().setImageResource(friendDto.getAvatar().getIdResDrawable());
 
             holder.getImgAvatar().setColorFilter(AndroidUtils.generateRandomColor());
             final int positionRemoved = holder.getAdapterPosition();
@@ -115,7 +113,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
 
     private void createDialogRemoveFriend(final String friend, final int position) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_friend);
-        new AlertDialog.Builder(context)
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, friend))
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -131,7 +129,9 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
                         notifyDataSetChanged();
                     }
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     @Override

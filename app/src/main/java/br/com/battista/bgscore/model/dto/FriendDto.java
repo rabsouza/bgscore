@@ -1,8 +1,8 @@
 package br.com.battista.bgscore.model.dto;
 
-import android.support.annotation.DrawableRes;
-
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Strings;
@@ -10,8 +10,10 @@ import com.orm.dsl.Ignore;
 
 import java.io.Serializable;
 
-import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.enuns.AvatarEnum;
 
+@JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FriendDto implements Serializable, Comparable<FriendDto> {
 
     private static final long serialVersionUID = 1L;
@@ -20,8 +22,7 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
 
     private String mail;
 
-    @DrawableRes
-    private int idResAvatar = R.drawable.avatar_friend;
+    private AvatarEnum avatar = AvatarEnum.AVATAR_FRIEND;
 
     @Ignore
     @JsonIgnore
@@ -43,12 +44,12 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
         this.mail = mail;
     }
 
-    public int getIdResAvatar() {
-        return idResAvatar;
+    public AvatarEnum getAvatar() {
+        return avatar;
     }
 
-    public void setIdResAvatar(int idResAvatar) {
-        this.idResAvatar = idResAvatar;
+    public void setAvatar(AvatarEnum avatar) {
+        this.avatar = avatar;
     }
 
     public boolean isSelected() {
@@ -77,7 +78,7 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
                 .add("mail", mail)
-                .add("idResAvatar", idResAvatar)
+                .add("avatar", avatar)
                 .add("selected", selected)
                 .toString();
     }
@@ -103,13 +104,13 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
         return this;
     }
 
-    public FriendDto idResAvatar(int idResAvatar) {
-        this.idResAvatar = idResAvatar;
+    public FriendDto selected(boolean selected) {
+        this.selected = selected;
         return this;
     }
 
-    public FriendDto selected(boolean selected) {
-        this.selected = selected;
+    public FriendDto avatar(AvatarEnum avatar) {
+        this.avatar = avatar;
         return this;
     }
 }

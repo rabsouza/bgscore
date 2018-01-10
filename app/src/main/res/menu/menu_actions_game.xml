@@ -14,6 +14,12 @@
         android:title="@string/action_detail"/>
 
     <item
+        android:id="@+id/menu_action_buy"
+        android:enabled="true"
+        android:icon="@drawable/ic_buy"
+        android:title="@string/action_buy"/>
+
+    <item
         android:id="@+id/menu_action_edit"
         android:enabled="true"
         android:icon="@drawable/ic_edit"

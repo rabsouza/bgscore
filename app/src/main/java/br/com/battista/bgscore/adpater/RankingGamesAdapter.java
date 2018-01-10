@@ -1,6 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 import static com.google.common.base.MoreObjects.firstNonNull;
 
 import android.content.Context;
@@ -19,7 +18,6 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-import br.com.battista.bgscore.util.RatingUtils;
 
 
 public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHolder> {
@@ -63,30 +61,29 @@ public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHo
                         holder.getImgInfoGame());
             }
 
+            holder.getImgInfoBadgeGame().setImageResource(
+                    game.getBadgeGame().getIdResDrawable());
+
             holder.getTxtInfoName().setText(
                     firstNonNull(Strings.emptyToNull(game.getName()), "-"));
 
-            if (game.isMyGame()) {
-                holder.getImgMyGame().setVisibility(View.VISIBLE);
-            } else {
-                holder.getImgMyGame().setVisibility(View.GONE);
-            }
+            holder.getImgMyGame().setVisibility(View.GONE);
 
             holder.getTxtInfoCountMatches()
-                    .setText(SPACE_DRAWABLE + firstNonNull(rankingGames.getCount(), 0));
+                    .setText("" + firstNonNull(rankingGames.getCount(), 0));
 
             holder.getTxtInfoSumTime()
-                    .setText(SPACE_DRAWABLE +
+                    .setText(
                             DateUtils.formatTime(firstNonNull(rankingGames.getDuration(), 0L)));
 
             Calendar lastPlayed = Calendar.getInstance();
             lastPlayed.setTime(rankingGames.getLastPlayed());
-            holder.getTxtInfoLastPlayed().setText(SPACE_DRAWABLE + DateUtils.format(lastPlayed));
+            holder.getTxtInfoLastPlayed().setText(DateUtils.format(lastPlayed));
 
-            if (Strings.isNullOrEmpty(game.getRating())) {
+            if (game.getRating() == null) {
                 holder.getRtbInfoRating().setRating(0F);
             } else {
-                holder.getRtbInfoRating().setRating(RatingUtils.convertFrom(game.getRating()));
+                holder.getRtbInfoRating().setRating(game.getRating());
             }
 
         } else {

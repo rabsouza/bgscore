@@ -4,7 +4,6 @@ import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.DETAIL_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.NEW_MATCH_FRAGMENT;
-import static br.com.battista.bgscore.constants.ViewConstant.SPACE_DRAWABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,7 +43,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
-import br.com.battista.bgscore.util.PopupMenuUtils;
+import br.com.battista.bgscore.util.PopupUtils;
 
 
 public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
@@ -76,7 +75,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
             final Game game = match.getGame();
             itemView.setTag(match.getId());
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, match));
+                    "onBindViewHolder: Fill to row position: %S with %s.", position, match.getAlias()));
 
             String urlThumbnail = game.getUrlThumbnail();
             if (Strings.isNullOrEmpty(urlThumbnail)) {
@@ -89,22 +88,22 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                         holder.getImgInfoGame());
             }
 
-            holder.getTxtInfoAlias().setText(SPACE_DRAWABLE + match.getAlias());
+            holder.getTxtInfoAlias().setText(match.getAlias());
             holder.getTxtInfoNameGame().setText(game.getName());
 
             final Calendar createdAt = Calendar.getInstance();
             createdAt.setTime(match.getCreatedAt());
-            holder.getTxtInfoMatchDate().setText(SPACE_DRAWABLE + DateUtils.format(createdAt));
-            holder.getTxtInfoPlayers().setText(SPACE_DRAWABLE + match.getPlayers().size());
+            holder.getTxtInfoMatchDate().setText(DateUtils.format(createdAt));
+            holder.getTxtInfoPlayers().setText("0" + match.getPlayers().size());
             if (match.getDuration() == null) {
                 holder.getTxtInfoDuration().setText("00:00");
             } else {
-                holder.getTxtInfoDuration().setText(SPACE_DRAWABLE +
+                holder.getTxtInfoDuration().setText(
                         DateUtils.formatTime(match.getDuration()));
             }
             if (match.isFinished()) {
-                holder.getImgInfoFeedback().setImageResource(match.getFeedbackIdRes());
-                switch (match.getFeedbackIdRes()) {
+                holder.getImgInfoFeedback().setImageResource(match.getFeedback().getIdResDrawable());
+                switch (match.getFeedback().getIdResDrawable()) {
                     case R.drawable.ic_feedback_very_dissatisfied:
                     case R.drawable.ic_feedback_dissatisfied:
                         holder.getImgInfoFeedback().setColorFilter(
@@ -126,7 +125,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
 
             ImageView imageMoreActions = holder.getImgMoreActions();
             final PopupMenu popup = new PopupMenu(itemView.getContext(), imageMoreActions);
-            PopupMenuUtils.showPopupWindow(popup);
+            PopupUtils.showPopupWindow(popup);
             popup.getMenuInflater().inflate(R.menu.menu_actions_match, popup.getMenu());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -183,7 +182,9 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
         matchCopy.game(match.getGame());
 
         for (Player player : match.getPlayers()) {
-            Player newPlayer = new Player().name(player.getName());
+            Player newPlayer = new Player()
+                    .name(player.getName())
+                    .typePlayer(player.getTypePlayer());
             newPlayer.initEntity();
             matchCopy.addPlayer(newPlayer);
         }
@@ -248,7 +249,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                                          final RecyclerView.Adapter adapterCurrent,
                                          final View itemView) {
         String msgDelete = context.getResources().getString(R.string.alert_confirmation_dialog_text_remove_match);
-        new AlertDialog.Builder(context)
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.alert_confirmation_dialog_title_delete)
                 .setMessage(MessageFormat.format(msgDelete, match.getAlias()))
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -268,7 +269,9 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_MATCH);
                     }
                 })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).show();
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
     @Override

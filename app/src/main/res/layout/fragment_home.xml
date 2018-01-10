@@ -78,7 +78,7 @@
                                 tools:text="@string/text_default_username"/>
 
                             <TextView
-                                android:id="@+id/card_view_last_play"
+                                android:id="@+id/card_view_home_last_play"
                                 style="@style/CardTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -210,8 +210,10 @@
                             android:clipToPadding="false"
                             android:dividerHeight="1dp"
                             android:listSelector="@android:color/transparent"
+                            android:nestedScrollingEnabled="false"
                             android:paddingBottom="@dimen/md_keylines"
-                            android:paddingTop="@dimen/element_vertical_margin"/>
+                            android:paddingTop="@dimen/element_vertical_margin"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                         <TextView
                             android:id="@+id/card_view_stats_empty_view"
@@ -241,11 +243,15 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_new_match"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/fab_image_width"
+        android:layout_height="@dimen/fab_image_height"
         android:layout_gravity="bottom|right|end"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:scaleType="center"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@drawable/ic_fab_add"/>
 
 </android.support.design.widget.CoordinatorLayout>

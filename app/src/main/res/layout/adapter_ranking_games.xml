@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
                                     android:id="@+id/card_view_ranking_games_info"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -18,29 +19,40 @@
         android:padding="@dimen/element_padding">
 
         <ImageView
-            android:id="@+id/card_view_ranking_games_info_my_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:id="@+id/card_view_games_info_badge_game"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_checked"/>
-
-        <ImageView
-            android:id="@+id/card_view_ranking_games_info_image"
-            android:layout_width="@dimen/dimen_game_img_width"
-            android:layout_height="@dimen/dimen_game_img_height"
-            android:layout_centerVertical="true"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/boardgame_game"/>
+            android:visibility="gone"
+            app:srcCompat="@drawable/badge_game_none"/>
 
         <TextView
             android:id="@+id/card_view_ranking_games_info_name"
             style="@style/CardHeadStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
-            android:layout_toRightOf="@id/card_view_ranking_games_info_image"/>
+            android:layout_toRightOf="@id/card_view_games_info_badge_game"
+            tools:text="Nome do meu jogo"/>
+
+        <ImageView
+            android:id="@+id/card_view_ranking_games_info_my_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_game_my_game"/>
+
+        <ImageView
+            android:id="@+id/card_view_ranking_games_info_image"
+            android:layout_width="@dimen/dimen_game_img_width"
+            android:layout_height="@dimen/dimen_game_img_height"
+            android:layout_below="@id/card_view_ranking_games_info_name"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/boardgame_game"/>
 
         <TextView
             android:id="@+id/card_view_ranking_games_info_last_played"
@@ -49,24 +61,25 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_ranking_games_info_name"
             android:layout_marginLeft="@dimen/element_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/element_margin"
+            android:layout_marginRight="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_ranking_games_info_image"
             android:drawableLeft="@drawable/ic_game_date"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"/>
 
         <TextView
             android:id="@+id/card_view_ranking_games_info_count_matches"
             style="@style/NumberValueStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/first_column_card_width"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_ranking_games_info_last_played"
             android:layout_marginBottom="@dimen/element_margin"
             android:layout_marginLeft="@dimen/element_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_ranking_games_info_image"
             android:drawableLeft="@drawable/ic_matches"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"/>
 
         <TextView
@@ -76,11 +89,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_ranking_games_info_last_played"
             android:layout_marginBottom="@dimen/element_margin"
-            android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_margin"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:layout_toRightOf="@id/card_view_ranking_games_info_count_matches"
             android:drawableLeft="@drawable/ic_match_time"
+            android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"/>
 
         <RatingBar

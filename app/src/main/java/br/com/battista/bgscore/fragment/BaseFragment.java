@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
@@ -30,6 +32,11 @@ public class BaseFragment extends Fragment {
         Answers.getInstance().logContentView(new ContentViewEvent()
                 .putContentName(nameView)
                 .putContentType(KEY_FRAGMENT));
+
+        ImageButton btnSortList = getActivity().findViewById(R.id.btn_sort_list);
+        if (btnSortList != null) {
+            btnSortList.setVisibility(View.GONE);
+        }
 
     }
 
