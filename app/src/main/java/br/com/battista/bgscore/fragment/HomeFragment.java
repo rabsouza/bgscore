@@ -80,24 +80,7 @@ public class HomeFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new AsyncTask<Void, Void, Void>() {
-
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        CacheManageService cacheManageService = Inject.provideCacheManageService();
-                        cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
-                        cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
-                        cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        loadUserInfo(view);
-                        loadAllRankingGames();
-                        refreshLayout.setRefreshing(false);
-                    }
-                }.execute();
+                loadAllData(view);
             }
         });
 
@@ -154,7 +137,20 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadUserInfo(getView());
+        loadAllSyncData(getView());
+    }
+
+    private void loadAllData(final View view) {
+        Log.i(TAG, "loadAllData: Load all data in BD and update cache!");
+        if (!refreshLayout.isRefreshing()) {
+            refreshLayout.setRefreshing(true);
+        }
+        new LoadAllDataAsyncTask(view).execute();
+    }
+
+    private void loadAllSyncData(final View view) {
+        Log.i(TAG, "loadAllData: Load all data in BD!");
+        loadUserInfo(view);
         loadAllRankingGames();
     }
 
@@ -219,5 +215,33 @@ public class HomeFragment extends BaseFragment {
         recycleViewRankingGames.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewRankingGames.setItemAnimator(new DefaultItemAnimator());
         recycleViewRankingGames.setHasFixedSize(false);
+        recycleViewRankingGames.setItemViewCacheSize(10);
+        recycleViewRankingGames.setDrawingCacheEnabled(true);
+        recycleViewRankingGames.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+    }
+
+    private class LoadAllDataAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private final View view;
+
+        public LoadAllDataAsyncTask(View view) {
+            this.view = view;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            CacheManageService cacheManageService = Inject.provideCacheManageService();
+            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
+            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
+            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            loadUserInfo(view);
+            loadAllRankingGames();
+            refreshLayout.setRefreshing(false);
+        }
     }
 }

@@ -75,7 +75,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
             final Game game = match.getGame();
             itemView.setTag(match.getId());
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, match));
+                    "onBindViewHolder: Fill to row position: %S with %s.", position, match.getAlias()));
 
             String urlThumbnail = game.getUrlThumbnail();
             if (Strings.isNullOrEmpty(urlThumbnail)) {

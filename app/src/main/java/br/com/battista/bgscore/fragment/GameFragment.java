@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +39,6 @@ import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.adpater.GameAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
-import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.User;
@@ -51,7 +52,7 @@ public class GameFragment extends BaseFragment {
 
     private static final String TAG = GameFragment.class.getSimpleName();
 
-    private RecycleEmptyErrorView recycleViewGames;
+    private RecyclerView recycleViewGames;
     private TextView emptyMsgGames;
     private TextView errorMsgGames;
     private ImageView imgHelpGame;
@@ -86,7 +87,6 @@ public class GameFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 loadAllGames();
-                refreshLayout.setRefreshing(false);
             }
         });
 
@@ -252,17 +252,10 @@ public class GameFragment extends BaseFragment {
 
     private void loadAllGames() {
         Log.i(TAG, "loadAllMatches: Load all Games in BD!");
-        User user = MainApplication.instance().getUser();
-        List<Game> games;
-        if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
-            final OrderByDto orderBy = user.getOrderBy(ViewConstant.GAME_VIEW);
-            lastSelectedItemPosition = orderBy.getPosition();
-            games = new GameRepository().findAll(orderBy.getQuery());
-        } else {
-            games = new GameRepository().findAll();
+        if (!refreshLayout.isRefreshing()) {
+            refreshLayout.setRefreshing(true);
         }
-        updateScoresGames(games);
-        recycleViewGames.setAdapter(new GameAdapter(getContext(), games));
+        new LoadAllGamesAsyncTask().execute();
     }
 
     private void updateScoresGames(List<Game> games) {
@@ -294,12 +287,41 @@ public class GameFragment extends BaseFragment {
         recycleViewGames = view.findViewById(R.id.card_view_games_recycler_view);
         emptyMsgGames = view.findViewById(R.id.card_view_games_empty_view);
         errorMsgGames = view.findViewById(R.id.card_view_games_error_view);
-        recycleViewGames.setEmptyView(emptyMsgGames);
-        recycleViewGames.setErrorView(errorMsgGames);
 
         recycleViewGames.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewGames.setItemAnimator(new DefaultItemAnimator());
         recycleViewGames.setHasFixedSize(true);
+        recycleViewGames.setItemViewCacheSize(50);
+        recycleViewGames.setDrawingCacheEnabled(true);
+        recycleViewGames.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
+    private class LoadAllGamesAsyncTask extends AsyncTask<Void, Void, Void> {
+        List<Game> games;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            User user = MainApplication.instance().getUser();
+            if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
+                final OrderByDto orderBy = user.getOrderBy(ViewConstant.GAME_VIEW);
+                lastSelectedItemPosition = orderBy.getPosition();
+                games = new GameRepository().findAll(orderBy.getQuery());
+            } else {
+                games = new GameRepository().findAll();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            updateScoresGames(games);
+            recycleViewGames.setAdapter(new GameAdapter(getContext(), games));
+            if (games.isEmpty()) {
+                emptyMsgGames.setVisibility(View.VISIBLE);
+            } else {
+                emptyMsgGames.setVisibility(View.GONE);
+            }
+            refreshLayout.setRefreshing(false);
+        }
+    }
 }

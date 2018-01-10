@@ -67,7 +67,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
             final Game game = games.get(position);
             itemView.setTag(game.getId());
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, game));
+                    "onBindViewHolder: Fill to row position: %S with %s.", position, game.getName()));
 
             String urlThumbnail = game.getUrlThumbnail();
             if (Strings.isNullOrEmpty(urlThumbnail)) {

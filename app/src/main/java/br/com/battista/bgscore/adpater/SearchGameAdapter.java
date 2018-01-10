@@ -54,7 +54,7 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
 
             final GameResponse game = games.get(position);
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, game));
+                    "onBindViewHolder: Fill to row position: %S with %s.", position, game.getName()));
 
             holder.getTxtInfoName().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), " - "));

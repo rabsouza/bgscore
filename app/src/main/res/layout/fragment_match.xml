@@ -80,7 +80,7 @@
                             android:paddingBottom="@dimen/element_vertical_margin"
                             android:text="@string/text_match_matches_info_01"/>
 
-                        <br.com.battista.bgscore.custom.RecycleEmptyErrorView
+                        <android.support.v7.widget.RecyclerView
                             android:id="@+id/card_view_matches_recycler_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

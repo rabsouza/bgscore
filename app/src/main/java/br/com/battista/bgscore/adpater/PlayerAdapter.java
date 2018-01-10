@@ -83,7 +83,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
 
             final Player player = players.get(position);
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, player));
+                    "onBindViewHolder: Fill to row position: %S with %s.", position, player.getName()));
 
             holder.getTxtTitle().setText(player.getName());
             int colorPlayer = AndroidUtils.generateRandomColor();
