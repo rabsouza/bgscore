@@ -33,26 +33,16 @@
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:text="@string/text_dialog_export_data_info_01"/>
 
-        <Switch
-            android:id="@+id/dialog_view_export_data_user"
-            style="@style/CardTextStyle"
+        <TextView
+            android:id="@+id/dialog_view_export_data_info_02"
+            style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:checked="true"
-            android:text="@string/text_dialog_export_data_user"/>
-
-        <Switch
-            android:id="@+id/dialog_view_export_data_db"
-            style="@style/CardTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:checked="true"
-            android:text="@string/text_dialog_export_data_db"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="@string/text_dialog_export_data_info_02"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,40 +83,28 @@
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:text="@string/text_dialog_import_data_info_01"/>
 
-        <Switch
-            android:id="@+id/dialog_view_import_data_user"
-            style="@style/CardTextStyle"
+        <TextView
+            android:id="@+id/dialog_view_import_data_info_02"
+            style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:checked="true"
-            android:text="@string/text_dialog_import_data_user"/>
-
-        <Switch
-            android:id="@+id/dialog_view_import_data_db"
-            style="@style/CardTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:checked="true"
-            android:text="@string/text_dialog_import_data_db"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:weightSum="2">
 
             <Button
-                android:id="@+id/dialog_view_export_import_data_btn_cancel"
+                android:id="@+id/dialog_view_export_import_data_btn_close"
                 style="@style/ButtonStyleActive"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_cancel"/>
+                android:text="@string/btn_close"/>
 
             <Button
                 android:id="@+id/dialog_view_export_import_data_btn_import"

@@ -21,6 +21,7 @@ import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.util.AndroidUtils;
 
 public class CacheManageService extends Service {
 
@@ -41,7 +42,7 @@ public class CacheManageService extends Service {
 
     public void reloadAllDataCache() {
         Log.i(TAG, "reloadAllDataCache: Reload all data cache!!!");
-        EventBus.getDefault().post(ActionCacheEnum.LOAD_ALL_DATA);
+        AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

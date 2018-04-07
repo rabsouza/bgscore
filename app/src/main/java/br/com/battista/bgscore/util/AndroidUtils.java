@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
 import java.util.Random;
 
 public class AndroidUtils {
@@ -99,6 +102,18 @@ public class AndroidUtils {
 
     public static void snackbar(@NonNull View view, int msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
+    }
+
+    public static void postAction(@NonNull Object action) {
+        EventBus.getDefault().post(action);
+    }
+
+    public static File getFileDir(@NonNull Context context) {
+        File dirBackup = context.getExternalFilesDir(null);
+        if (dirBackup == null) {
+            dirBackup = context.getFilesDir();
+        }
+        return dirBackup;
     }
 
     @ColorInt

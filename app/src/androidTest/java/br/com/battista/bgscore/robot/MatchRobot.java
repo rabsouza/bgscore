@@ -1,15 +1,15 @@
 package br.com.battista.bgscore.robot;
 
-import android.content.Context;
-
-import br.com.battista.bgscore.R;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
+import android.content.Context;
+
+import br.com.battista.bgscore.R;
 
 public class MatchRobot extends BaseRobot {
 

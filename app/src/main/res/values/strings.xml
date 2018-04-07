@@ -62,8 +62,11 @@
     <string name="msg_error_game_with_partner">Error while trying to delete game %1$s. Check for matches associated with the game.</string>
     <string name="msg_error_add_search_game">Error while trying to add the new game. Please try again.</string>
     <string name="msg_share_detail_match">Generating the start image for the share, please wait.</string>
-    <string name="msg_action_searching">Please wait! Searching ...</string>
-    <string name="msg_action_saving">Please wait! Saving ...</string>
+    <string name="msg_action_searching">Please wait! Searching &#8230;</string>
+    <string name="msg_action_saving">Please wait! Saving &#8230;</string>
+    <string name="toast_start_export_data">Please wait! Data is being exported in the background &#8230;</string>
+    <string name="toast_finish_export_data">All data has been successfully exported!</string>
+    <string name="toast_error_export_data">An unexpected error occurred while trying to export the data, please try again!</string>
 
 
     <!-- ################### TEXT #################### -->
@@ -128,8 +131,10 @@
     <string name="text_legend_ranking_game_date">Date the last recorded match of the game occurred.</string>
     <string name="text_legend_ranking_game_time">Total minutes played in the game (HH: MM).</string>
     <string name="text_legend_ranking_game_sort_list">List sorted by the number of game matches in descending order, only the top 5 games.</string>
-    <string name="text_dialog_export_data_info_01">*¹ Select the data types you want to be exported to an external file.</string>
-    <string name="text_dialog_import_data_info_01">*¹ Select the data types you want to import from an external file.</string>
+    <string name="text_dialog_export_data_info_01">*¹ The data will be exported in the background and will be available in the application storage directory.</string>
+    <string name="text_dialog_export_data_info_02">*² Exported directory will be: %1$s.</string>
+    <string name="text_dialog_import_data_info_01">*¹ The data will be imported from the files in the application's storage directory.</string>
+    <string name="text_dialog_import_data_info_02">*² Default import directory is: %1$s.</ string>
     <string name="text_dialog_export_data_user">Do you want to export your user data?</string>
     <string name="text_dialog_import_data_user">Do you want to import the data to your user?</string>
     <string name="text_dialog_export_data_db">Do you want to export data from my collection and its registered items?</string>
@@ -186,6 +191,7 @@
     <string name="btn_confirm">CONFIRM</string>
     <string name="btn_create">CREATE</string>
     <string name="btn_cancel">CANCEL</string>
+    <string name="btn_close">CLOSE</string>
     <string name="btn_ok">OK</string>
     <string name="btn_share">SHARE</string>
     <string name="btn_confirmation_dialog_exit">EXIT</string>
@@ -255,8 +261,8 @@ Version <i>{0}</i> published in{1}.<br><br>
     <string name="dialog_title_change_avatar">Change avatar</string>
     <string name="dialog_title_edit_profile">Edit information</string>
     <string name="dialog_title_edit_profile_reset">Reset Data</string>
-    <string name="dialog_title_export_data">Export Board Game Score data</string>
-    <string name="dialog_title_import_data">Import data into the Board Game Score</string>
+    <string name="dialog_title_export_data">Export data</string>
+    <string name="dialog_title_import_data">Import data</string>
 
     <!-- TODO: Remove or change this placeholder text -->
         

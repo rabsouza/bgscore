@@ -1,5 +1,7 @@
 package br.com.battista.bgscore;
 
+import static org.junit.Assert.assertThat;
+
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SmallTest;
@@ -8,8 +10,6 @@ import android.support.test.runner.AndroidJUnit4;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.assertThat;
 
 @SmallTest
 @RunWith(AndroidJUnit4.class)

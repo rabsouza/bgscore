@@ -242,7 +242,7 @@ public class ManageProfileTest {
         HomeRobot homeRobot = new HomeRobot(context);
         homeRobot.navigationToHome();
         homeRobot.checkTextUsername(username)
-        .checkDrawableUserAvatar(R.drawable.avatar_c3p0);
+                .checkDrawableUserAvatar(R.drawable.avatar_c3p0);
     }
 
 }

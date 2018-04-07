@@ -16,9 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
-import br.com.battista.bgscore.MainApplication;
+import java.io.File;
+
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
+import br.com.battista.bgscore.util.AndroidUtils;
 
 public class ExportImportDataDialog extends DialogFragment {
 
@@ -27,7 +31,10 @@ public class ExportImportDataDialog extends DialogFragment {
 
     private Button btnExport;
     private Button btnImport;
-    private Button btnCancel;
+    private Button btnClose;
+
+    private TextView txtPathDirExport;
+    private TextView txtPathDirImport;
 
     public ExportImportDataDialog() {
     }
@@ -63,16 +70,24 @@ public class ExportImportDataDialog extends DialogFragment {
         return viewFragment;
     }
 
-    private void loadViews(View viewFragment) {
+    private void loadViews(final View viewFragment) {
         Log.i(TAG, "loadViews: load all views!");
-        final MainApplication instance = MainApplication.instance();
 
-        btnCancel = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_cancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        txtPathDirExport = viewFragment.findViewById(R.id.dialog_view_export_data_info_02);
+        txtPathDirImport = viewFragment.findViewById(R.id.dialog_view_import_data_info_02);
+
+        File dirBackup = AndroidUtils.getFileDir(getContext());
+        txtPathDirExport.setText(
+                getContext().getResources().getString(R.string.text_dialog_export_data_info_02, dirBackup.getAbsolutePath()));
+        txtPathDirImport.setText(
+                getContext().getResources().getString(R.string.text_dialog_import_data_info_02, dirBackup.getAbsolutePath()));
+
+        btnClose = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_close);
+        btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_CANCELED, getActivity().getIntent());
+                        Activity.RESULT_OK, getActivity().getIntent());
                 getDialog().dismiss();
             }
         });
@@ -81,9 +96,6 @@ public class ExportImportDataDialog extends DialogFragment {
         btnImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_OK, getActivity().getIntent());
-                getDialog().dismiss();
             }
         });
 
@@ -91,9 +103,11 @@ public class ExportImportDataDialog extends DialogFragment {
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_OK, getActivity().getIntent());
-                getDialog().dismiss();
+                btnExport.setEnabled(Boolean.FALSE);
+                btnExport.setAlpha(0.5f);
+
+                AndroidUtils.toast(getContext(), R.string.toast_start_export_data);
+                AndroidUtils.postAction(ActionDatabaseEnum.EXPORT_ALL_DATA);
             }
         });
 

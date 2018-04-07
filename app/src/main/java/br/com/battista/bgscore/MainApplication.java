@@ -1,6 +1,12 @@
 package br.com.battista.bgscore;
 
-import com.google.common.base.Strings;
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 import android.app.Application;
 import android.content.Context;
@@ -14,6 +20,7 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Strings;
 import com.orm.SugarContext;
 
 import java.io.IOException;
@@ -27,15 +34,8 @@ import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
+import br.com.battista.bgscore.service.DatabaseManageService;
 import io.fabric.sdk.android.Fabric;
-
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 public class MainApplication extends MultiDexApplication {
 
@@ -70,7 +70,7 @@ public class MainApplication extends MultiDexApplication {
         initializeLoadImage();
 
         initializeDB();
-        if(cleanDB){
+        if (cleanDB) {
             cleanDB();
         }
         initializeCacheManager();
@@ -119,6 +119,7 @@ public class MainApplication extends MultiDexApplication {
     private void initializeCacheManager() {
         Log.i(TAG, "initializeCacheManager: Initialize event cache manager!");
         getApplicationContext().startService(new Intent(getApplicationContext(), CacheManageService.class));
+        getApplicationContext().startService(new Intent(getApplicationContext(), DatabaseManageService.class));
     }
 
     private void initializePreferences() {
@@ -165,8 +166,8 @@ public class MainApplication extends MultiDexApplication {
 
     private void terminateCacheManager() {
         Log.i(TAG, "terminateCacheManager: Terminate event cache manager!");
-        getApplicationContext().stopService(new Intent(getApplicationContext(),
-                CacheManageService.class));
+        getApplicationContext().stopService(new Intent(getApplicationContext(), CacheManageService.class));
+        getApplicationContext().stopService(new Intent(getApplicationContext(), DatabaseManageService.class));
         SugarContext.terminate();
     }
 

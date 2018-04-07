@@ -1,5 +1,9 @@
 package br.com.battista.bgscore.util;
 
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
+
 import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -9,10 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import br.com.battista.bgscore.activity.MainActivity;
-
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
 
 @SmallTest
 @RunWith(AndroidJUnit4.class)

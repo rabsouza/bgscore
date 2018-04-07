@@ -37,8 +37,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 import com.google.common.collect.Sets;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -248,7 +246,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         instance.setUser(user);
 
         Log.i(TAG, "fillDataAndSave: Reload cache data.");
-        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_MATCHES);
+        AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
         finishFormAndProcessData();
     }

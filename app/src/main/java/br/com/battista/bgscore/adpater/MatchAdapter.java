@@ -24,8 +24,6 @@ import android.widget.ImageView;
 
 import com.google.common.base.Strings;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -40,6 +38,7 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
@@ -263,7 +262,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
                         adapterCurrent.notifyDataSetChanged();
 
                         Log.i(TAG, "fillDataAndSave: Reload cache data.");
-                        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_MATCHES);
+                        AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
                         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_MATCH);

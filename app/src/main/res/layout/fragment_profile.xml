@@ -137,8 +137,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="@string/btn_export_import"
-                                    android:visibility="invisible"/>
+                                    android:text="@string/btn_export_import"/>
 
                                 <Button
                                     android:id="@+id/button_profile_edit_profile"

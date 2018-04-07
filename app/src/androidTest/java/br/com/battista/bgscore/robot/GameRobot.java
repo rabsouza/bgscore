@@ -1,10 +1,5 @@
 package br.com.battista.bgscore.robot;
 
-import android.content.Context;
-import android.support.design.widget.CollapsingToolbarLayout;
-
-import br.com.battista.bgscore.R;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -16,6 +11,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static br.com.battista.bgscore.helper.CustomViewMatcher.withCollapsibleToolbarTitle;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+
+import android.content.Context;
+import android.support.design.widget.CollapsingToolbarLayout;
+
+import br.com.battista.bgscore.R;
 
 public class GameRobot extends BaseRobot {
 

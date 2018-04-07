@@ -19,8 +19,6 @@ import android.widget.RelativeLayout;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -280,7 +278,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
                         adapterCurrent.notifyDataSetChanged();
 
                         Log.i(TAG, "fillDataAndSave: Reload cache data.");
-                        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_GAME);
+                        AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_GAME);
 
                         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_REMOVE_GAME);

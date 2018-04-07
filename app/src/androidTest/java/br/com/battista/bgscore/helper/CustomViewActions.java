@@ -1,5 +1,10 @@
 package br.com.battista.bgscore.helper;
 
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.isA;
+
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -12,11 +17,6 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
 import java.util.concurrent.TimeoutException;
-
-import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.isA;
 
 public class CustomViewActions {
 

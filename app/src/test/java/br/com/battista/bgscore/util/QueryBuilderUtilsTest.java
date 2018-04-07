@@ -1,16 +1,16 @@
 package br.com.battista.bgscore.util;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.text.MessageFormat;
-
 import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
 import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.text.MessageFormat;
 
 public class QueryBuilderUtilsTest {
 

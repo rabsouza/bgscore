@@ -37,8 +37,6 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -266,7 +264,7 @@ public class NewGameFragment extends BaseFragment {
         Log.i(TAG, "fillDataAndSave: Save the data in BD.");
         new GameRepository().save(game);
         Log.i(TAG, "fillDataAndSave: Reload cache data.");
-        EventBus.getDefault().post(ActionCacheEnum.LOAD_DATA_GAME);
+        AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_GAME);
 
         finishFormAndProcessData();
     }

@@ -64,6 +64,9 @@
     <string name="msg_share_detail_match">Gerando a imagem da partida para o compartilhamento, por favor aguarde.</string>
     <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
     <string name="msg_action_saving">Aguarde! Salvando&#8230;</string>
+    <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background &#8230;</string>
+    <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
+    <string name="toast_error_export_data">Aconteceu um erro inesperado ao tentar exportar os dados, por favor tente novamente!</string>
 
 
     <!-- ################### TEXT #################### -->
@@ -128,8 +131,10 @@
     <string name="text_legend_ranking_game_date">Data em que aconteceu a última partida registrada do jogo.</string>
     <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
     <string name="text_legend_ranking_game_sort_list">Lista ordenada pela quantidade de partidas do jogo em ordem decrescente, somente os top 5 jogos.</string>
-    <string name="text_dialog_export_data_info_01">*¹ Selecione os tipos dados que você deseja que seja exportado para um arquivo externo.</string>
-    <string name="text_dialog_import_data_info_01">*¹ Selecione os tipos dados que você deseja importar a partir de um arquivo externo.</string>
+    <string name="text_dialog_export_data_info_01">*¹ Os dados serão exportados em background e estarão disponível no diretório de armazenamento da aplicação.</string>
+    <string name="text_dialog_export_data_info_02">*² Diretório exportado será: %1$s.</string>
+    <string name="text_dialog_import_data_info_01">*¹ Os dados serão importados a partir dos arquivos no diretório de armazenamento da aplicação.</string>
+    <string name="text_dialog_import_data_info_02">*² Diretório padrão de importação é: %1$s.</string>
     <string name="text_dialog_export_data_user">Deseja exportar os dados do seu úsuario?</string>
     <string name="text_dialog_import_data_user">Deseja importar os dados para o seu úsuario?</string>
     <string name="text_dialog_export_data_db">Deseja exportar os dados da minha coleção e suas partidas registradas?</string>
@@ -186,6 +191,7 @@
     <string name="btn_confirm">CONFIRMAR</string>
     <string name="btn_create">CRIAR</string>
     <string name="btn_cancel">CANCELAR</string>
+    <string name="btn_close">FECHAR</string>
     <string name="btn_ok">OK</string>
     <string name="btn_share">COMPARTILHAR</string>
     <string name="btn_confirmation_dialog_exit">SAIR</string>
@@ -223,7 +229,7 @@
 <h3>Board Game Score &#xa9;2017</h3>
 <b>Curta nossa página no Facebook:</b><br>
 <b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b>
-<br>
+<br><br>
 <b>Loja de BoardGame parceira:</b><br>
 <a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
 Versão publicada: {0} ({1})<br>
@@ -244,7 +250,7 @@ E-mail: rabsouza@gmail.com<br>
 Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas partidas e gerenciar sua coleção de jogos de tabuleiros.<br><br>
 <b>Curta nossa página no Facebook:</b><br>
 <b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b>
-<br>
+<br><br>
 <b>Loja de BoardGame parceira:</b><br>
 <a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
 <b>Novidades:</b><br>
@@ -261,8 +267,8 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="dialog_title_change_avatar">Trocar avatar</string>
     <string name="dialog_title_edit_profile">Editar informações</string>
     <string name="dialog_title_edit_profile_reset">Resetar dados</string>
-    <string name="dialog_title_export_data">Exportar dados do Board Game Score</string>
-    <string name="dialog_title_import_data">Importar dados para o Board Game Score</string>
+    <string name="dialog_title_export_data">Exportar dados</string>
+    <string name="dialog_title_import_data">Importar dados</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>
