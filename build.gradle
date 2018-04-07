@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
         classpath 'io.fabric.tools:gradle:1.+'
         classpath 'com.google.gms:google-services:3.0.0'
     }
@@ -45,7 +45,7 @@ ext {
     buildToolsVersion = '27.0.3'
 
     // App dependencies
-    supportLibraryVersion = '27.0.2'
+    supportLibraryVersion = '27.1.1'
     constraintVersion = '1.0.2'
     guavaVersion = '23.6-android'
     circleimageviewVersion = '2.2.0'
@@ -62,7 +62,7 @@ ext {
     okhttpVersion = '3.9.1'
     sugarVersion = '1.5'
     libraryMaterialVersion = '1.1.0'
-    multidexVersion = '1.0.2'
+    multidexVersion = '1.0.3'
     rxjavaVersion = "1.1.8"
     eventBusVersion = "3.0.0"
     androidmaskVersion = "1.0.1"
