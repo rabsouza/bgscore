@@ -94,4 +94,11 @@ public class DateUtils {
         return formatWithHours.format(date.getTime());
     }
 
+    public static String formatWithHours(Date date) {
+        Calendar now = Calendar.getInstance();
+        now.setTime(date);
+        return formatWithHours(now);
+    }
+
+
 }

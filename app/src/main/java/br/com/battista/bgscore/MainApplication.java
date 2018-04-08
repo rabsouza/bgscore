@@ -29,6 +29,7 @@ import java.util.Locale;
 
 import br.com.battista.bgscore.adpater.FontsAdapter;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.BackupDto;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
@@ -42,7 +43,9 @@ public class MainApplication extends MultiDexApplication {
     private static final String TAG = MainApplication.class.getSimpleName();
     private static MainApplication instance = null;
     private final SharedPreferencesKeyEnum keyUser = SharedPreferencesKeyEnum.SAVED_USER;
+    private final SharedPreferencesKeyEnum keyBackup = SharedPreferencesKeyEnum.SAVED_BACKUP;
     private User user;
+    private BackupDto backupDto;
     private SharedPreferences preferences;
     private Boolean cleanDB = Boolean.FALSE;
 
@@ -103,6 +106,35 @@ public class MainApplication extends MultiDexApplication {
                 putPreferences(keyUser, jsonUser);
             } catch (JsonProcessingException e) {
                 Log.e(TAG, "setUser: error convert user!", e);
+            }
+        }
+    }
+
+    public BackupDto getBackupData() {
+        synchronized (this) {
+            if (backupDto == null
+                    && preferences.contains(keyBackup.name())) {
+                try {
+                    String jsonBackup = getPreferences(keyBackup);
+                    backupDto = new ObjectMapper().readValue(jsonBackup, BackupDto.class);
+                } catch (IOException e) {
+                    Log.e(TAG, "getBackupData: error convert backup!", e);
+                }
+            }
+        }
+        Log.d(TAG, MessageFormat.format("Load backup by cache with data: {0}", backupDto));
+        return backupDto;
+    }
+
+    public void setBackupData(BackupDto backup) {
+        Log.d(TAG, MessageFormat.format("Update the cache backup with data: {0}", backup));
+        synchronized (this) {
+            instance.backupDto = backup;
+            try {
+                String jsonBackup = new ObjectMapper().writeValueAsString(backup);
+                putPreferences(keyBackup, jsonBackup);
+            } catch (JsonProcessingException e) {
+                Log.e(TAG, "setUser: error convert backup!", e);
             }
         }
     }

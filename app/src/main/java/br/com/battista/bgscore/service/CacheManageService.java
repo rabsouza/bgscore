@@ -19,6 +19,7 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
@@ -54,9 +55,15 @@ public class CacheManageService extends Service {
         if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
             loadAllDataGameAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            if (user.isAutomaticBackup()) {
+                AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+            }
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
             loadAllDataMatchAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            if (user.isAutomaticBackup()) {
+                AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+            }
         } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
             loadAllDataRankingGamesAddToCache(user);
         } else if (ActionCacheEnum.LOAD_ALL_DATA.equals(action)) {

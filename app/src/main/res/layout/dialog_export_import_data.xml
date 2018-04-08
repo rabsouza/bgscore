@@ -41,8 +41,18 @@
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:text="@string/text_dialog_export_data_info_02"/>
+
+        <TextView
+            android:id="@+id/dialog_view_export_data_info_03"
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_backup"
+            android:drawablePadding="@dimen/element_padding"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="@string/text_dialog_export_data_info_03"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +101,8 @@
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"

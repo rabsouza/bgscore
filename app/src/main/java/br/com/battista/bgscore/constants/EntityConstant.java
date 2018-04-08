@@ -10,6 +10,7 @@ public class EntityConstant {
     public static final String DEFAULT_DATABASE_NAME = "bgscore_db.db";
     public static final String DEFAULT_BACKUP_DATABASE_NAME = "bkp_bgscore_db.db";
     public static final String DEFAULT_BACKUP_SHARED_PREFERENCES_NAME = "bkp_user_data.json";
+    public static final String DEFAULT_BACKUP_INFO_NAME = "bkp_info.json";
 
     private EntityConstant() {
     }

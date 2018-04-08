@@ -90,6 +90,7 @@
     <string name="text_dialog_edit_profile_custom_font_info_01">*¹ You must restart the application for this action to take effect.</string>
     <string name="text_dialog_edit_profile_reset">Do you want to reset your profile?</string>
     <string name="text_dialog_edit_custom_font">Do you want to use custom text fonts?</string>
+    <string name="text_dialog_edit_automatic_backup">Do you want to use automatic backup?</string>
     <string name="text_dialog_edit_profile_info_02">*² All data in your user will be lost and this action can not be reversed.</string>
     <string name="text_profile_friends_info_01">*¹ Add a new friend to play in your matches.</string>
     <string name="text_match_players_info_01">*¹ Select friends or add new players to play this game.</string>
@@ -133,8 +134,9 @@
     <string name="text_legend_ranking_game_sort_list">List sorted by the number of game matches in descending order, only the top 5 games.</string>
     <string name="text_dialog_export_data_info_01">*¹ The data will be exported in the background and will be available in the application storage directory.</string>
     <string name="text_dialog_export_data_info_02">*² Exported directory will be: %1$s.</string>
+    <string name="text_dialog_export_data_info_03">Automatic backup %1$s.\nLast: %2$s.</string>
     <string name="text_dialog_import_data_info_01">*¹ The data will be imported from the files in the application's storage directory.</string>
-    <string name="text_dialog_import_data_info_02">*² Default import directory is: %1$s.</ string>
+    <string name="text_dialog_import_data_info_02">*² Default import directory is: %1$s.</string>
     <string name="text_dialog_export_data_user">Do you want to export your user data?</string>
     <string name="text_dialog_import_data_user">Do you want to import the data to your user?</string>
     <string name="text_dialog_export_data_db">Do you want to export data from my collection and its registered items?</string>
@@ -144,6 +146,8 @@
     <string name="text_games_score_my_game">i have</string>
     <string name="text_games_score_want_game">want</string>
     <string name="text_games_score_favorite_game">favorite</string>
+    <string name="text_active">active</string>
+    <string name="text_inactive">inactive</string>
 
 
     <!-- ################### Field #################### -->
@@ -203,9 +207,9 @@
     <string name="btn_confirmation_dialog_finish">FINISH</string>
     <string name="btn_change_avatar">CHANGE AVATAR</string>
     <string name="btn_edit">EDIT</string>
-    <string name="btn_export">EXPORT</string>
-    <string name="btn_import">IMPORT</string>
-    <string name="btn_export_import">EXPORT/IMPORT</string>
+    <string name="btn_export">BACKUP</string>
+    <string name="btn_import">RESTORE</string>
+    <string name="btn_export_import">BACKUP</string>
 
 
     <!-- ################### ACTION BAR #################### -->

@@ -4,6 +4,7 @@ import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMP
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -20,9 +21,15 @@ import android.widget.TextView;
 
 import java.io.File;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.BackupDto;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.DateUtils;
 
 public class ExportImportDataDialog extends DialogFragment {
 
@@ -33,6 +40,7 @@ public class ExportImportDataDialog extends DialogFragment {
     private Button btnImport;
     private Button btnClose;
 
+    private TextView txtBackupExport;
     private TextView txtPathDirExport;
     private TextView txtPathDirImport;
 
@@ -73,14 +81,26 @@ public class ExportImportDataDialog extends DialogFragment {
     private void loadViews(final View viewFragment) {
         Log.i(TAG, "loadViews: load all views!");
 
+        final User user = MainApplication.instance().getUser();
+        final BackupDto backup = MainApplication.instance().getBackupData();
+
+        txtBackupExport = viewFragment.findViewById(R.id.dialog_view_export_data_info_03);
+
+        final Resources resources = getContext().getResources();
+        String statusBackup = user.isAutomaticBackup() ? resources.getString(R.string.text_active) :
+                resources.getString(R.string.text_inactive);
+        String lastBackup = backup != null ? DateUtils.formatWithHours(backup.getCreatedAt()) : "-";
+        txtBackupExport.setText(resources.getString(R.string.text_dialog_export_data_info_03, statusBackup, lastBackup));
+
+
         txtPathDirExport = viewFragment.findViewById(R.id.dialog_view_export_data_info_02);
         txtPathDirImport = viewFragment.findViewById(R.id.dialog_view_import_data_info_02);
 
         File dirBackup = AndroidUtils.getFileDir(getContext());
         txtPathDirExport.setText(
-                getContext().getResources().getString(R.string.text_dialog_export_data_info_02, dirBackup.getAbsolutePath()));
+                resources.getString(R.string.text_dialog_export_data_info_02, dirBackup.getAbsolutePath()));
         txtPathDirImport.setText(
-                getContext().getResources().getString(R.string.text_dialog_import_data_info_02, dirBackup.getAbsolutePath()));
+                resources.getString(R.string.text_dialog_import_data_info_02, dirBackup.getAbsolutePath()));
 
         btnClose = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_close);
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +116,8 @@ public class ExportImportDataDialog extends DialogFragment {
         btnImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_IMPORT_DATA);
             }
         });
 
@@ -103,6 +125,9 @@ public class ExportImportDataDialog extends DialogFragment {
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_DATA);
+
                 btnExport.setEnabled(Boolean.FALSE);
                 btnExport.setAlpha(0.5f);
 

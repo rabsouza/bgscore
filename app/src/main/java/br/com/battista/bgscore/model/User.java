@@ -64,6 +64,9 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_ORDER_BY)
     private Map<String, OrderByDto> orderBy = Maps.newLinkedHashMap();
 
+    @Column(name = UserEntry.COLUMN_NAME_WELCOME)
+    private Boolean automaticBackup = Boolean.FALSE;
+
     public String getUsername() {
         return username;
     }
@@ -168,6 +171,14 @@ public class User extends BaseEntity implements Serializable {
         this.orderBy = orderBy;
     }
 
+    public Boolean isAutomaticBackup() {
+        return automaticBackup;
+    }
+
+    public void setAutomaticBackup(Boolean automaticBackup) {
+        this.automaticBackup = automaticBackup;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -198,6 +209,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("customFont", customFont)
                 .add("lastBuildVersion", lastBuildVersion)
                 .add("orderBy", orderBy)
+                .add("automaticBackup", automaticBackup)
                 .addValue(super.toString())
                 .toString();
     }
@@ -308,5 +320,15 @@ public class User extends BaseEntity implements Serializable {
 
     public boolean containsOrderBy(String key) {
         return orderBy.containsKey(key);
+    }
+
+    public User orderBy(Map<String, OrderByDto> orderBy) {
+        this.orderBy = orderBy;
+        return this;
+    }
+
+    public User automaticBackup(Boolean automaticBackup) {
+        this.automaticBackup = automaticBackup;
+        return this;
     }
 }

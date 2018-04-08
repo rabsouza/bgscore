@@ -90,6 +90,7 @@
     <string name="text_dialog_edit_profile_custom_font_info_01">*¹ É necessário reiniciar a aplicação para que essa ação tenha efeito.</string>
     <string name="text_dialog_edit_profile_reset">Deseja resetar seu perfil?</string>
     <string name="text_dialog_edit_custom_font">Deseja utilizar as fontes de texto customizada?</string>
+    <string name="text_dialog_edit_automatic_backup">Deseja utilizar backup automatico?</string>
     <string name="text_dialog_edit_profile_info_02">*² Todos os dados do seu úsuario serão perdidos e essa ação não pode ser revertida.</string>
     <string name="text_profile_friends_info_01">*¹ Adicione um novo amigo(a) para jogar nas suas partidas.</string>
     <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
@@ -133,6 +134,7 @@
     <string name="text_legend_ranking_game_sort_list">Lista ordenada pela quantidade de partidas do jogo em ordem decrescente, somente os top 5 jogos.</string>
     <string name="text_dialog_export_data_info_01">*¹ Os dados serão exportados em background e estarão disponível no diretório de armazenamento da aplicação.</string>
     <string name="text_dialog_export_data_info_02">*² Diretório exportado será: %1$s.</string>
+    <string name="text_dialog_export_data_info_03">Backup autómatico %1$s.\nÚltimo: %2$s.</string>
     <string name="text_dialog_import_data_info_01">*¹ Os dados serão importados a partir dos arquivos no diretório de armazenamento da aplicação.</string>
     <string name="text_dialog_import_data_info_02">*² Diretório padrão de importação é: %1$s.</string>
     <string name="text_dialog_export_data_user">Deseja exportar os dados do seu úsuario?</string>
@@ -144,6 +146,8 @@
     <string name="text_games_score_my_game">tenho</string>
     <string name="text_games_score_want_game">quero</string>
     <string name="text_games_score_favorite_game">favorito</string>
+    <string name="text_active">ativado</string>
+    <string name="text_inactive">desativado</string>
 
 
     <!-- ################### Field #################### -->
@@ -203,9 +207,9 @@
     <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
     <string name="btn_change_avatar">TROCAR AVATAR</string>
     <string name="btn_edit">EDITAR</string>
-    <string name="btn_export">EXPORTAR</string>
-    <string name="btn_import">IMPORTAR</string>
-    <string name="btn_export_import">EXPORTAR / IMPORTAR</string>
+    <string name="btn_export">BACKUP</string>
+    <string name="btn_import">RESTAURAR</string>
+    <string name="btn_export_import">BACKUP</string>
 
 
     <!-- ################### ACTION BAR #################### -->

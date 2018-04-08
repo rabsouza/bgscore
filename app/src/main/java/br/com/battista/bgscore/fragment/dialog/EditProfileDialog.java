@@ -23,9 +23,13 @@ import com.google.common.base.Strings;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
+import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 
 public class EditProfileDialog extends DialogFragment {
 
@@ -39,6 +43,7 @@ public class EditProfileDialog extends DialogFragment {
     private EditText txtMail;
     private Switch swtReset;
     private Switch swtCustomFont;
+    private Switch swtAutomaticBackup;
 
     public EditProfileDialog() {
     }
@@ -82,6 +87,8 @@ public class EditProfileDialog extends DialogFragment {
         swtReset = viewFragment.findViewById(R.id.dialog_view_edit_profile_reset);
         swtCustomFont = viewFragment.findViewById(R.id.dialog_view_edit_custom_font);
         swtCustomFont.setChecked(user.isCustomFont());
+        swtAutomaticBackup = viewFragment.findViewById(R.id.dialog_view_edit_automatic_backup);
+        swtAutomaticBackup.setChecked(user.isAutomaticBackup());
 
         btnCancelChange = viewFragment.findViewById(R.id.dialog_view_edit_profile_btn_cancel);
         btnCancelChange.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +122,12 @@ public class EditProfileDialog extends DialogFragment {
                     String mail = txtMail.getText().toString();
                     user.mail(mail);
                     user.customFont(swtCustomFont.isChecked());
+                    user.automaticBackup(swtAutomaticBackup.isChecked());
+                    if (swtAutomaticBackup.isChecked()) {
+                        AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                                ValueActions.VALUE_ACTION_CLICK_BUTTON_BACKUP_DATA);
+                        AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+                    }
                 }
                 instance.setUser(user);
 
