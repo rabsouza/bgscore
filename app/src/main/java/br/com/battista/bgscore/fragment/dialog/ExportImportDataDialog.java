@@ -4,6 +4,9 @@ import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMP
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +14,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +28,16 @@ import java.io.File;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.BackupDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.BackupUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
 public class ExportImportDataDialog extends DialogFragment {
@@ -43,6 +52,11 @@ public class ExportImportDataDialog extends DialogFragment {
     private TextView txtBackupExport;
     private TextView txtPathDirExport;
     private TextView txtPathDirImport;
+
+    private CardView cardViewBackup;
+    private TextView txtBackupDataVersion;
+    private TextView txtBackupDataUser;
+    private TextView txtBackupDataDate;
 
     public ExportImportDataDialog() {
     }
@@ -82,57 +96,81 @@ public class ExportImportDataDialog extends DialogFragment {
         Log.i(TAG, "loadViews: load all views!");
 
         final User user = MainApplication.instance().getUser();
-        final BackupDto backup = MainApplication.instance().getBackupData();
+        final BackupDto backup = MainApplication.instance().getBackup();
 
         txtBackupExport = viewFragment.findViewById(R.id.dialog_view_export_data_info_03);
 
         final Resources resources = getContext().getResources();
-        String statusBackup = user.isAutomaticBackup() ? resources.getString(R.string.text_active) :
-                resources.getString(R.string.text_inactive);
+        String statusBackup = user.isAutomaticBackup() ? resources.getString(R.string.text_active) : resources.getString(R.string.text_inactive);
         String lastBackup = backup != null ? DateUtils.formatWithHours(backup.getCreatedAt()) : "-";
         txtBackupExport.setText(resources.getString(R.string.text_dialog_export_data_info_03, statusBackup, lastBackup));
 
+        cardViewBackup = viewFragment.findViewById(R.id.dialog_view_import_card_view_backup_info);
+        txtBackupDataVersion = viewFragment.findViewById(R.id.dialog_view_import_card_view_backup_info_version);
+        txtBackupDataUser = viewFragment.findViewById(R.id.dialog_view_import_card_view_backup_info_user);
+        txtBackupDataDate = viewFragment.findViewById(R.id.dialog_view_import_card_view_backup_info_date);
+
+        btnClose = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_close);
+        btnImport = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_import);
+        btnExport = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_export);
+
+        final BackupDto backupFile = BackupUtils.getBackupData(getContext());
+        if (backupFile != null && BackupUtils.existsData(getContext())) {
+            cardViewBackup.setVisibility(View.VISIBLE);
+            btnImport.setEnabled(true);
+
+            txtBackupDataVersion.setText(resources.getString(R.string.text_dialog_import_last_data_version, backupFile.getVersionName()));
+            txtBackupDataUser.setText(resources.getString(R.string.text_dialog_import_last_data_user, backupFile.getUser()));
+            txtBackupDataDate.setText(resources.getString(R.string.text_dialog_import_last_data_date, DateUtils.formatWithHours(backupFile.getCreatedAt())));
+        } else {
+            cardViewBackup.setVisibility(View.GONE);
+            btnImport.setEnabled(false);
+        }
 
         txtPathDirExport = viewFragment.findViewById(R.id.dialog_view_export_data_info_02);
         txtPathDirImport = viewFragment.findViewById(R.id.dialog_view_import_data_info_02);
 
-        File dirBackup = AndroidUtils.getFileDir(getContext());
+        File dirBackup = BackupUtils.getFileDir(getContext());
         txtPathDirExport.setText(
                 resources.getString(R.string.text_dialog_export_data_info_02, dirBackup.getAbsolutePath()));
         txtPathDirImport.setText(
                 resources.getString(R.string.text_dialog_import_data_info_02, dirBackup.getAbsolutePath()));
 
-        btnClose = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_close);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_OK, getActivity().getIntent());
+                        Activity.RESULT_CANCELED, getActivity().getIntent());
                 getDialog().dismiss();
             }
         });
 
-        btnImport = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_import);
         btnImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
                 AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                         CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_IMPORT_DATA);
+
+                createDialogImportBackup(backupFile);
             }
         });
 
-        btnExport = viewFragment.findViewById(R.id.dialog_view_export_import_data_btn_export);
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
                 AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                         CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_DATA);
 
-                btnExport.setEnabled(Boolean.FALSE);
-                btnExport.setAlpha(0.5f);
-
                 AndroidUtils.toast(getContext(), R.string.toast_start_export_data);
                 AndroidUtils.postAction(ActionDatabaseEnum.EXPORT_ALL_DATA);
+
+                final Intent intent = getActivity().getIntent();
+                intent.putExtra(BundleConstant.ACTION, BundleConstant.Action.EXPORT);
+                getTargetFragment().onActivityResult(getTargetRequestCode(),
+                        Activity.RESULT_OK, getActivity().getIntent());
+                getDialog().dismiss();
             }
         });
 
@@ -144,6 +182,45 @@ public class ExportImportDataDialog extends DialogFragment {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
         return dialog;
+    }
+
+    private void createDialogImportBackup(BackupDto backupDto) {
+        final Context context = getContext();
+        String message = context.getResources().getString(R.string.alert_confirmation_dialog_text_import_backup,
+                DateUtils.formatWithHours(backupDto.getCreatedAt()));
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
+                .setTitle(R.string.alert_confirmation_dialog_title_backup)
+                .setMessage(message)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.btn_confirmation_dialog_restore, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        final Intent intent = getActivity().getIntent();
+                        intent.putExtra(BundleConstant.ACTION, BundleConstant.Action.IMPORT);
+
+                        try {
+                            Log.i(TAG, "createDialogImportBackup: import data from backup!");
+                            if (BackupUtils.existsData(getContext())) {
+                                final MainApplication instance = MainApplication.instance();
+                                BackupUtils.importDatabase(getContext());
+                                instance.setUser(BackupUtils.getUserData(getContext()));
+                                instance.setBackup(BackupUtils.getBackupData(getContext()));
+                                AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
+                            }
+
+                            intent.putExtra(BundleConstant.IMPORT_BACKUP, Boolean.TRUE);
+                        } catch (Exception e) {
+                            Log.e(TAG, "createDialogImportBackup: error import data from backup!", e);
+                            intent.putExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE);
+                        }
+
+                        getTargetFragment().onActivityResult(getTargetRequestCode(),
+                                Activity.RESULT_OK, getActivity().getIntent());
+                        getDialog().dismiss();
+                    }
+                })
+                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+        alertDialog.show();
     }
 
 }

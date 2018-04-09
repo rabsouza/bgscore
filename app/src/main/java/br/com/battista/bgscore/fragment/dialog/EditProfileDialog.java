@@ -25,6 +25,7 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.service.Inject;
@@ -124,6 +125,7 @@ public class EditProfileDialog extends DialogFragment {
                     user.customFont(swtCustomFont.isChecked());
                     user.automaticBackup(swtAutomaticBackup.isChecked());
                     if (swtAutomaticBackup.isChecked()) {
+                        AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
                         AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
                                 ValueActions.VALUE_ACTION_CLICK_BUTTON_BACKUP_DATA);
                         AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);

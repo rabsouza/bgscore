@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
              android:id="@+id/dialog_view_export_import_data"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
@@ -34,7 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:text="@string/text_dialog_export_data_info_01"/>
+            android:text="@string/text_dialog_export_data_info_01"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/dialog_view_export_data_info_02"
@@ -49,9 +52,9 @@
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:drawableLeft="@drawable/ic_backup"
             android:drawablePadding="@dimen/element_padding"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/text_dialog_export_data_info_03"/>
 
         <LinearLayout
@@ -101,8 +104,95 @@
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            tools:text="@string/text_dialog_import_data_info_02"
             android:visibility="gone"/>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/dialog_view_import_card_view_backup_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:padding="@dimen/no_dimen"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/element_padding">
+
+                <ImageView
+                    android:id="@+id/dialog_view_import_card_view_backup_info_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_backup_restore"/>
+
+                <TextView
+                    android:id="@+id/dialog_view_import_card_view_backup_info_text"
+                    style="@style/CardHeadStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/element_margin"
+                    android:layout_marginRight="@dimen/element_margin"
+                    android:layout_toRightOf="@id/dialog_view_import_card_view_backup_info_img"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:maxLines="3"
+                    android:text="@string/text_dialog_import_last_data"/>
+
+                <View
+                    android:id="@+id/dialog_view_import_card_view_backup_info_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_line"
+                    android:layout_below="@id/dialog_view_import_card_view_backup_info_text"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
+                    android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:background="@color/colorLine"/>
+
+                <TextView
+                    android:id="@+id/dialog_view_import_card_view_backup_info_version"
+                    style="@style/NumberValueStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dialog_view_import_card_view_backup_info_separator"
+                    android:layout_marginBottom="@dimen/element_margin"
+                    android:drawableLeft="@drawable/ic_info"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:gravity="center_vertical"
+                    tools:text="Version: 1.0.0 Beta"/>
+
+                <TextView
+                    android:id="@+id/dialog_view_import_card_view_backup_info_date"
+                    style="@style/NumberValueStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dialog_view_import_card_view_backup_info_version"
+                    android:layout_marginBottom="@dimen/element_margin"
+                    android:drawableLeft="@drawable/ic_date"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:gravity="center_vertical"
+                    tools:text="Date: 10/03/2018 10:24"/>
+
+                <TextView
+                    android:id="@+id/dialog_view_import_card_view_backup_info_user"
+                    style="@style/NumberValueStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dialog_view_import_card_view_backup_info_date"
+                    android:layout_marginBottom="@dimen/element_margin"
+                    android:drawableLeft="@drawable/ic_username"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:gravity="center_vertical"
+                    tools:text="User: rabsouza"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"

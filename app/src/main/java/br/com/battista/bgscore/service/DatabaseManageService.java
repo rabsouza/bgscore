@@ -1,13 +1,10 @@
 package br.com.battista.bgscore.service;
 
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_DATABASE_NAME;
 import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_INFO_NAME;
 import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_SHARED_PREFERENCES_NAME;
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Environment;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -19,14 +16,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.channels.FileChannel;
 import java.text.MessageFormat;
 
 import br.com.battista.bgscore.BuildConfig;
@@ -38,6 +29,7 @@ import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.model.enuns.ActionToastMainEnum;
 import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.BackupUtils;
 
 public class DatabaseManageService extends Service {
 
@@ -72,7 +64,7 @@ public class DatabaseManageService extends Service {
         Log.i(TAG, "backupAllData: Export all data from database and SharedPreferences!");
 
         try {
-            exportDatabase();
+            BackupUtils.exportDatabase(getBaseContext());
             exportSharedPreferences();
             createDatabaseInfo();
 
@@ -85,7 +77,7 @@ public class DatabaseManageService extends Service {
         Log.i(TAG, "exportAllData: Export all data from database and SharedPreferences!");
 
         try {
-            exportDatabase();
+            BackupUtils.exportDatabase(getBaseContext());
             exportSharedPreferences();
             createDatabaseInfo();
 
@@ -108,20 +100,12 @@ public class DatabaseManageService extends Service {
         } else {
             backupDto.user(user.getUsername());
         }
-        instance.setBackupData(backupDto);
+        instance.setBackup(backupDto);
 
-        File sd = AndroidUtils.getFileDir(getBaseContext());
+        File sd = BackupUtils.getFileDir(getBaseContext());
         File backupDB = new File(sd, DEFAULT_BACKUP_INFO_NAME);
-
         String jsonBackup = new ObjectMapper().writeValueAsString(backupDto);
-        InputStream source = new ByteArrayInputStream(jsonBackup.getBytes());
-        byte[] buffer = new byte[source.available()];
-        source.read(buffer);
-        OutputStream destination = new FileOutputStream(backupDB);
-        destination.write(buffer);
-
-        source.close();
-        destination.close();
+        BackupUtils.flushFileData(backupDB, jsonBackup);
 
         Log.i(TAG, "createDatabaseInfo: Finished create database info!");
     }
@@ -130,38 +114,11 @@ public class DatabaseManageService extends Service {
         Log.i(TAG, "exportSharedPreferences: Start exporting the sharedPreferences!");
         String userData = MainApplication.instance().getPreferences(SharedPreferencesKeyEnum.SAVED_USER);
 
-        File sd = AndroidUtils.getFileDir(getBaseContext());
+        File sd = BackupUtils.getFileDir(getBaseContext());
         File backupDB = new File(sd, DEFAULT_BACKUP_SHARED_PREFERENCES_NAME);
-
-        InputStream source = new ByteArrayInputStream(userData.getBytes());
-        byte[] buffer = new byte[source.available()];
-        source.read(buffer);
-        OutputStream destination = new FileOutputStream(backupDB);
-        destination.write(buffer);
-
-        source.close();
-        destination.close();
+        BackupUtils.flushFileData(backupDB, userData);
 
         Log.i(TAG, "exportDatabase: Finished exporting the sharedPreferences!");
-    }
-
-    private void exportDatabase() throws IOException {
-        Log.i(TAG, "exportDatabase: start exporting the database!");
-        String currentDBPath = String.format("/data/%1$s/databases/%2$s", BuildConfig.APPLICATION_ID, DEFAULT_DATABASE_NAME);
-
-        File sd = AndroidUtils.getFileDir(getBaseContext());
-        File data = Environment.getDataDirectory();
-        File currentDB = new File(data, currentDBPath);
-        File backupDB = new File(sd, DEFAULT_BACKUP_DATABASE_NAME);
-
-        FileChannel source = new FileInputStream(currentDB).getChannel();
-        FileChannel destination = new FileOutputStream(backupDB).getChannel();
-        destination.transferFrom(source, 0, source.size());
-
-        source.close();
-        destination.close();
-
-        Log.i(TAG, "exportDatabase: Finished exporting the database!");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

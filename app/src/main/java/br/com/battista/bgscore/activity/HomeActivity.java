@@ -16,6 +16,7 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.fragment.GameFragment;
 import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.fragment.MatchFragment;
@@ -23,6 +24,7 @@ import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {
@@ -41,6 +43,7 @@ public class HomeActivity extends BaseActivity {
         final User user = MainApplication.instance().getUser();
         if (user.isWelcome() || !user.getLastBuildVersion().equals(BuildConfig.VERSION_CODE)) {
             WelcomeDialog.newInstance(0).showAbout(getSupportFragmentManager());
+            AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
         }
     }
 

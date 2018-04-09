@@ -82,22 +82,23 @@
             android:text="@string/text_dialog_edit_custom_font"
             android:visibility="gone"/>
 
-        <Switch
-            android:id="@+id/dialog_view_edit_automatic_backup"
-            style="@style/CardTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/element_horizontal_margin"
-            android:checked="false"
-            android:text="@string/text_dialog_edit_automatic_backup"/>
-
         <TextView
             android:id="@+id/dialog_view_edit_profile_custom_font_info_01"
             style="@style/HintTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="@string/text_dialog_edit_profile_custom_font_info_01"/>
+            android:text="@string/text_dialog_edit_profile_custom_font_info_01"
+            android:visibility="gone"/>
+
+        <Switch
+            android:id="@+id/dialog_view_edit_automatic_backup"
+            style="@style/CardTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:checked="false"
+            android:text="@string/text_dialog_edit_automatic_backup"/>
 
         <TextView
             android:id="@+id/dialog_view_edit_profile_reset_title"

@@ -110,7 +110,7 @@ public class MainApplication extends MultiDexApplication {
         }
     }
 
-    public BackupDto getBackupData() {
+    public BackupDto getBackup() {
         synchronized (this) {
             if (backupDto == null
                     && preferences.contains(keyBackup.name())) {
@@ -118,7 +118,7 @@ public class MainApplication extends MultiDexApplication {
                     String jsonBackup = getPreferences(keyBackup);
                     backupDto = new ObjectMapper().readValue(jsonBackup, BackupDto.class);
                 } catch (IOException e) {
-                    Log.e(TAG, "getBackupData: error convert backup!", e);
+                    Log.e(TAG, "getBackup: error convert backup!", e);
                 }
             }
         }
@@ -126,7 +126,7 @@ public class MainApplication extends MultiDexApplication {
         return backupDto;
     }
 
-    public void setBackupData(BackupDto backup) {
+    public void setBackup(BackupDto backup) {
         Log.d(TAG, MessageFormat.format("Update the cache backup with data: {0}", backup));
         synchronized (this) {
             instance.backupDto = backup;
