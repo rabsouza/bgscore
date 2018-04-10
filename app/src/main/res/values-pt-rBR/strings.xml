@@ -28,7 +28,7 @@
     <string name="card_title_new_match">Minha partida</string>
     <string name="card_title_new_game">Meu jogo</string>
     <string name="card_title_search_game">Buscar um jogo</string>
-    <string name="card_title_search_game_list">Jogos da BoardgameGeek.com</string>
+    <string name="card_title_search_game_list">BoardgameGeek.com</string>
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação/Observações da partida</string>
     <string name="card_title_sort_list">Ordenação da lista</string>
@@ -282,6 +282,10 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="dialog_title_edit_profile_reset">Resetar dados</string>
     <string name="dialog_title_export_data">Exportar dados</string>
     <string name="dialog_title_import_data">Importar dados</string>
+    <string name="dialog_title_ranking_games">Ranking Games</string>
+    <string name="dialog_title_backup">Dados do backup</string>
+    <string name="dialog_title_search_game">Buscar jogo</string>
+    <string name="dialog_title_share_match">Compartilhar partida</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>

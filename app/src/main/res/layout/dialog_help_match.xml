@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:overScrollMode="ifContentScrolls"
-    android:padding="@dimen/element_padding"
+    android:padding="@dimen/activity_padding"
     android:scrollbars="vertical">
 
     <TextView

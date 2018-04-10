@@ -132,6 +132,9 @@ public class User extends BaseEntity implements Serializable {
     }
 
     public Set<RankingGamesDto> getRankingGames() {
+        if(rankingGames == null){
+            rankingGames = Sets.newHashSet();
+        }
         return rankingGames;
     }
 

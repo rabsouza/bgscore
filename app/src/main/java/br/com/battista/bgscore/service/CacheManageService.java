@@ -53,8 +53,8 @@ public class CacheManageService extends Service {
         User user = instance.getUser();
 
         if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
-            loadAllDataGameAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            loadAllDataGameAddToCache(user);
             if (user.isAutomaticBackup()) {
                 AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
             }
@@ -67,9 +67,9 @@ public class CacheManageService extends Service {
         } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
             loadAllDataRankingGamesAddToCache(user);
         } else if (ActionCacheEnum.LOAD_ALL_DATA.equals(action)) {
-            loadAllDataGameAddToCache(user);
             loadAllDataMatchAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            loadAllDataGameAddToCache(user);
         }
 
         instance.setUser(user);
@@ -119,8 +119,7 @@ public class CacheManageService extends Service {
 
     private synchronized void loadAllDataGameAddToCache(User user) {
         Log.i(TAG, "loadAllDataGameAddToCache: Update data game user!");
-        final List<Game> games = new GameRepository().findAll();
-        user.setNumGames(games.size());
+        user.setNumGames(user.getRankingGames().size());
     }
 
     @Override

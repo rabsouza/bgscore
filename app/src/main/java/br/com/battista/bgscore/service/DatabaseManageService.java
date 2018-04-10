@@ -33,8 +33,8 @@ import br.com.battista.bgscore.util.BackupUtils;
 
 public class DatabaseManageService extends Service {
 
-    private static final String TAG = DatabaseManageService.class.getSimpleName();
     public static final String DEFAULT_USER_BACKUP = "backup";
+    private static final String TAG = DatabaseManageService.class.getSimpleName();
 
     @Override
     public void onCreate() {

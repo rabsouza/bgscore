@@ -28,7 +28,7 @@
     <string name="card_title_new_match">My match</string>
     <string name="card_title_new_game">My game</string>
     <string name="card_title_search_game">Find a game</string>
-    <string name="card_title_search_game_list">BoardgameGeek.com Games</string>
+    <string name="card_title_search_game_list">BoardgameGeek.com</string>
     <string name="card_title_finish_match">My game</string>
     <string name="card_title_feedback_match">Game notes/comments</string>
     <string name="card_title_sort_list">Sorting the list</string>
@@ -273,9 +273,13 @@ Version <i>{0}</i> published in{1}.<br><br>
     </string>
     <string name="dialog_title_change_avatar">Change avatar</string>
     <string name="dialog_title_edit_profile">Edit information</string>
-    <string name="dialog_title_edit_profile_reset">Reset Data</string>
+    <string name="dialog_title_edit_profile_reset">Reset data</string>
     <string name="dialog_title_export_data">Export data</string>
     <string name="dialog_title_import_data">Import data</string>
+    <string name="dialog_title_ranking_games">Ranking games</string>
+    <string name="dialog_title_backup">Backup data</string>
+    <string name="dialog_title_search_game">Search game</string>
+    <string name="dialog_title_share_match">Share match</string>
 
     <!-- TODO: Remove or change this placeholder text -->
         

@@ -179,11 +179,21 @@
                                 android:text="@string/card_title_my_ranking_game"/>
 
                             <ImageView
-                                android:id="@+id/card_view_stats_help"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
+                                android:id="@+id/card_view_ranking_games"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
+                                android:tint="@color/colorAccent"
+                                app:srcCompat="@drawable/ic_all_data"/>
+
+                            <ImageView
+                                android:id="@+id/card_view_stats_help"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:clickable="true"
+                                android:tint="@color/colorAccent"
                                 app:srcCompat="@drawable/ic_help"/>
 
                         </LinearLayout>

@@ -14,7 +14,7 @@ import br.com.battista.bgscore.repository.contract.DatabaseContract.ExpansionGam
 
 public class ExpansionGameRepository extends BaseRepository implements Repository<ExpansionGame> {
 
-    public static final String TAG = ExpansionGameRepository.class.getSimpleName();
+    private static final String TAG = ExpansionGameRepository.class.getSimpleName();
 
     @Override
     public void save(ExpansionGame entity) {

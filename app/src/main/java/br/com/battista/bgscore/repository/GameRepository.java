@@ -16,7 +16,7 @@ import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 
 public class GameRepository extends BaseRepository implements Repository<Game> {
 
-    public static final String TAG = GameRepository.class.getSimpleName();
+    private static final String TAG = GameRepository.class.getSimpleName();
 
     @Override
     public void save(Game entity) {

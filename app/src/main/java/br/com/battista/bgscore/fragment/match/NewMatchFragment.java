@@ -524,6 +524,9 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         recycleViewPlayersFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewPlayersFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewPlayersFriends.setHasFixedSize(true);
+        recycleViewPlayersFriends.setItemViewCacheSize(20);
+        recycleViewPlayersFriends.setDrawingCacheEnabled(true);
+        recycleViewPlayersFriends.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
     }
 

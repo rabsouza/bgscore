@@ -206,6 +206,9 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
+        recycleViewFriends.setItemViewCacheSize(20);
+        recycleViewFriends.setDrawingCacheEnabled(true);
+        recycleViewFriends.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
     private void loadDataFriends(View view) {

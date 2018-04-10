@@ -45,6 +45,7 @@ public class SearchGameDialog extends DialogFragment {
         SearchGameDialog fragment = new SearchGameDialog();
         Bundle args = new Bundle();
         args.putParcelableArrayList(BundleConstant.DATA, games);
+        fragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         fragment.setArguments(args);
         return fragment;
     }
@@ -121,6 +122,7 @@ public class SearchGameDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setTitle(R.string.dialog_title_search_game);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
         return dialog;
     }

@@ -64,6 +64,7 @@ public class ExportImportDataDialog extends DialogFragment {
     public static ExportImportDataDialog newInstance() {
         ExportImportDataDialog fragment = new ExportImportDataDialog();
         Bundle args = new Bundle();
+        fragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         fragment.setArguments(args);
         return fragment;
     }
@@ -180,6 +181,7 @@ public class ExportImportDataDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setTitle(R.string.dialog_title_backup);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
         return dialog;
     }

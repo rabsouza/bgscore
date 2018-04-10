@@ -28,6 +28,7 @@ import br.com.battista.bgscore.model.dto.BackupDto;
 
 public class BackupUtils {
 
+    public static final String DEFAULT_DIR_APP = "bgscore";
     private static final String TAG = BackupUtils.class.getSimpleName();
 
     private BackupUtils() {
@@ -127,7 +128,7 @@ public class BackupUtils {
 
     public static File getFileDir(@NonNull Context context) {
         File fileDir = AndroidUtils.getFileDir(context);
-        File backupDir = new File(fileDir, "bgscore");
+        File backupDir = new File(fileDir, DEFAULT_DIR_APP);
         backupDir.mkdirs();
         return backupDir;
     }

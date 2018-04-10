@@ -14,8 +14,8 @@ import br.com.battista.bgscore.R;
 
 public class ScoreboardView extends RelativeLayout {
 
-    public static final String TAG_SCORE_VALUE = "SCORE_VALUE";
-    public static final String TAG_SCORE_LABEL = "SCORE_LABEL";
+    private static final String TAG_SCORE_VALUE = "SCORE_VALUE";
+    private static final String TAG_SCORE_LABEL = "SCORE_LABEL";
 
     private TextView scoreView;
     private TextView labelView;

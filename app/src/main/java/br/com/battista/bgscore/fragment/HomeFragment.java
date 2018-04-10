@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -32,6 +33,7 @@ import br.com.battista.bgscore.adpater.RankingGamesAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.custom.ScoreboardView;
+import br.com.battista.bgscore.fragment.dialog.RankingGamesDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
@@ -59,6 +61,7 @@ public class HomeFragment extends BaseFragment {
     private ScoreboardView scoreTotalTime;
 
     private ImageView imgHelpRankingGame;
+    private ImageView imgDataRankingGame;
 
     public HomeFragment() {
     }
@@ -100,6 +103,7 @@ public class HomeFragment extends BaseFragment {
 
         setupRecycleRanking(view);
         setupHelpRankingGame(view);
+        setupDataRankingGame(view);
 
         Inject.provideCacheManageService().reloadAllDataCache();
 
@@ -130,6 +134,20 @@ public class HomeFragment extends BaseFragment {
                         .create();
                 alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
                 alertDialog.show();
+            }
+        });
+    }
+
+    private void setupDataRankingGame(View view) {
+        imgDataRankingGame = view.findViewById(R.id.card_view_ranking_games);
+        imgDataRankingGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DATA_RANKING_GAME);
+
+                final FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
+                new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
             }
         });
     }
@@ -214,7 +232,7 @@ public class HomeFragment extends BaseFragment {
 
         recycleViewRankingGames.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewRankingGames.setItemAnimator(new DefaultItemAnimator());
-        recycleViewRankingGames.setHasFixedSize(false);
+        recycleViewRankingGames.setHasFixedSize(true);
         recycleViewRankingGames.setItemViewCacheSize(10);
         recycleViewRankingGames.setDrawingCacheEnabled(true);
         recycleViewRankingGames.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);

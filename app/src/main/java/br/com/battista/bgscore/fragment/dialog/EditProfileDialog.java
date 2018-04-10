@@ -52,6 +52,7 @@ public class EditProfileDialog extends DialogFragment {
     public static EditProfileDialog newInstance() {
         EditProfileDialog fragment = new EditProfileDialog();
         Bundle args = new Bundle();
+        fragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         fragment.setArguments(args);
         return fragment;
     }
@@ -152,6 +153,7 @@ public class EditProfileDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setTitle(R.string.dialog_title_edit_profile);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
         return dialog;
     }

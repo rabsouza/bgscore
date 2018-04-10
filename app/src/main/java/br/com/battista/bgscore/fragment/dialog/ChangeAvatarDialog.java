@@ -45,6 +45,7 @@ public class ChangeAvatarDialog extends DialogFragment {
         ChangeAvatarDialog fragment = new ChangeAvatarDialog();
         Bundle args = new Bundle();
         args.putInt(BundleConstant.CURRENT_AVATAR, currentAvatar);
+        fragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         fragment.setArguments(args);
         return fragment;
     }
@@ -105,6 +106,10 @@ public class ChangeAvatarDialog extends DialogFragment {
         recyclerViewAvatars.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerViewAvatars.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAvatars.setHasFixedSize(true);
+        recyclerViewAvatars.setItemViewCacheSize(30);
+        recyclerViewAvatars.setDrawingCacheEnabled(true);
+        recyclerViewAvatars.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
         avatarAdapter = new AvatarAdapter(getContext(), currentAvatar);
         recyclerViewAvatars.setAdapter(avatarAdapter);
     }
@@ -113,6 +118,7 @@ public class ChangeAvatarDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setTitle(R.string.dialog_title_change_avatar);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
         return dialog;
     }
