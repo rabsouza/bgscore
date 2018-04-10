@@ -193,7 +193,7 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    private void loadUserInfo(View view) {
+    private void loadUserInfo(final View view) {
         Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
 
@@ -215,9 +215,21 @@ public class HomeFragment extends BaseFragment {
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
         scoreGames = view.findViewById(R.id.card_view_score_games);
         scoreGames.setScoreText(decimalFormatScore.format(user.getNumGames()));
+        scoreGames.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.getRootView().findViewById(R.id.action_games).callOnClick();
+            }
+        });
 
         scoreMatches = view.findViewById(R.id.card_view_score_matches);
         scoreMatches.setScoreText(decimalFormatScore.format(user.getNumMatches()));
+        scoreMatches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.getRootView().findViewById(R.id.action_matches).callOnClick();
+            }
+        });
 
         scoreTotalTime = view.findViewById(R.id.card_view_score_total_time);
         scoreTotalTime.setScoreText(DateUtils.formatTime(user.getTotalTime()));

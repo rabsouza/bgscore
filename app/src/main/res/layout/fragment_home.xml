@@ -180,8 +180,8 @@
 
                             <ImageView
                                 android:id="@+id/card_view_ranking_games"
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
                                 android:tint="@color/colorAccent"
@@ -189,8 +189,8 @@
 
                             <ImageView
                                 android:id="@+id/card_view_stats_help"
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
                                 android:tint="@color/colorAccent"

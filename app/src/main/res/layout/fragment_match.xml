@@ -58,8 +58,8 @@
 
                             <ImageView
                                 android:id="@+id/card_view_matches_help"
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
                                 app:srcCompat="@drawable/ic_help"/>
@@ -79,6 +79,83 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/element_vertical_margin"
                             android:text="@string/text_match_matches_info_01"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <br.com.battista.bgscore.custom.ScoreboardView
+                                android:id="@+id/card_view_matches_score_very_dissatisfied"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:icon_score="@drawable/ic_feedback_very_dissatisfied"
+                                app:value_score="0"/>
+
+                            <View
+                                android:layout_width="@dimen/dimen_line"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:layout_marginRight="@dimen/element_horizontal_margin"
+                                android:background="@color/colorLine"/>
+
+                            <br.com.battista.bgscore.custom.ScoreboardView
+                                android:id="@+id/card_view_matches_score_dissatisfied"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:icon_score="@drawable/ic_feedback_dissatisfied"
+                                app:value_score="0"/>
+
+                            <View
+                                android:layout_width="@dimen/dimen_line"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:layout_marginRight="@dimen/element_horizontal_margin"
+                                android:background="@color/colorLine"/>
+
+                            <br.com.battista.bgscore.custom.ScoreboardView
+                                android:id="@+id/card_view_matches_score_neutral"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:icon_score="@drawable/ic_feedback_neutral"
+                                app:value_score="0"/>
+
+                            <View
+                                android:layout_width="@dimen/dimen_line"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:layout_marginRight="@dimen/element_horizontal_margin"
+                                android:background="@color/colorLine"/>
+
+                            <br.com.battista.bgscore.custom.ScoreboardView
+                                android:id="@+id/card_view_matches_score_satisfied"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:icon_score="@drawable/ic_feedback_satisfied"
+                                app:value_score="0"/>
+
+                            <View
+                                android:layout_width="@dimen/dimen_line"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/element_horizontal_margin"
+                                android:layout_marginRight="@dimen/element_horizontal_margin"
+                                android:background="@color/colorLine"/>
+
+                            <br.com.battista.bgscore.custom.ScoreboardView
+                                android:id="@+id/card_view_matches_score_very_satisfied"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:icon_score="@drawable/ic_feedback_very_satisfied"
+                                app:value_score="0"/>
+
+                        </LinearLayout>
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/card_view_matches_recycler_view"
