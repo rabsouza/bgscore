@@ -1,5 +1,6 @@
 package br.com.battista.bgscore.util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -8,10 +9,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Environment;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -109,11 +113,30 @@ public class AndroidUtils {
     }
 
     public static File getFileDir(@NonNull Context context) {
-        File dirBackup = context.getExternalFilesDir(null);
-        if (dirBackup == null) {
-            dirBackup = context.getFilesDir();
+        File dirBackup = Environment.getExternalStorageDirectory();
+        if (dirBackup == null || !isExternalStorageReadable()) {
+            dirBackup = context.getExternalFilesDir(null);
+            if (dirBackup == null) {
+                dirBackup = context.getFilesDir();
+            }
         }
         return dirBackup;
+    }
+
+    public static void checkPermissions(Activity activity, String[] storage_permissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        && ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    ActivityCompat.requestPermissions(activity, storage_permissions, 0);
+                } else {
+                    ActivityCompat.requestPermissions(activity, storage_permissions, 0);
+
+                }
+
+            }
+        }
     }
 
     @ColorInt
@@ -121,5 +144,17 @@ public class AndroidUtils {
         Random randomColorTint = new Random();
         return Color.argb(255, randomColorTint.nextInt(42), randomColorTint.nextInt(256), randomColorTint.nextInt(214) + 42);
     }
+
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    public static boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        return isExternalStorageWritable() ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
+    }
+
 
 }

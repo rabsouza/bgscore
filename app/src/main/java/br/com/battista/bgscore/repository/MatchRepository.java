@@ -16,7 +16,7 @@ import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 
 public class MatchRepository extends BaseRepository implements Repository<Match> {
 
-    public static final String TAG = MatchRepository.class.getSimpleName();
+    private static final String TAG = MatchRepository.class.getSimpleName();
 
     @Override
     public void save(Match entity) {

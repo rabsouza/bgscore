@@ -12,7 +12,7 @@ import java.text.MessageFormat;
 
 public class ProgressApp extends AsyncTask<Void, Integer, Boolean> {
 
-    public static final String TAG = ProgressApp.class.getSimpleName();
+    private static final String TAG = ProgressApp.class.getSimpleName();
 
     private ProgressDialog progress;
     private Integer currProgress = 0;

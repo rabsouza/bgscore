@@ -34,6 +34,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_LAST_BUILD_VERSION = "LAST_BUILD_VERSION";
         public static final String COLUMN_NAME_ORDER_BY = "ORDER_BY";
         public static final String COLUMN_NAME_CUSTOM_FONT = "CUSTOM_FONT";
+        public static final String COLUMN_NAME_AUTOMATC_BACKUP = "AUTOMATC_BACKUP";
     }
 
     public static abstract class GameEntry extends BaseEntry {

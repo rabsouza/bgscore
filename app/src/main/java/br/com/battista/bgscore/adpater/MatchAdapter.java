@@ -45,14 +45,13 @@ import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
 
 
-public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
+public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
     private static final String TAG = MatchAdapter.class.getSimpleName();
 
     private Context context;
     private List<Match> matches;
 
     public MatchAdapter(Context context, List<Match> matches) {
-        super(context);
         this.context = context;
         this.matches = matches;
     }
@@ -68,7 +67,7 @@ public class MatchAdapter extends BaseAdapterAnimation<MatchViewHolder> {
     public void onBindViewHolder(MatchViewHolder holder, int position) {
         if (matches != null && !matches.isEmpty()) {
             final View itemView = holder.itemView;
-            setAnimationHolder(itemView, position);
+            //setAnimationHolder(itemView, position);
 
             final Match match = matches.get(position);
             final Game game = match.getGame();

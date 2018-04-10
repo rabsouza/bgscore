@@ -34,7 +34,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class BaseService {
 
-    public static final String METHOD_GET = "GET";
+    private static final String METHOD_GET = "GET";
     private static final String TAG = BaseService.class.getSimpleName();
 
     protected Retrofit builder;

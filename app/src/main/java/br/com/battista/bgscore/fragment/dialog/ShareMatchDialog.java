@@ -40,7 +40,7 @@ import br.com.battista.bgscore.util.ImageLoadUtils;
 
 public class ShareMatchDialog extends DialogFragment {
 
-    public static final String DIALOG_SHARE_MATCH = "dialog_share_match";
+    private static final String DIALOG_SHARE_MATCH = "dialog_share_match";
     private static final String TAG = ShareMatchDialog.class.getSimpleName();
     private Button btnCancel;
     private Button btnShare;
@@ -68,6 +68,7 @@ public class ShareMatchDialog extends DialogFragment {
         ShareMatchDialog fragment = new ShareMatchDialog();
         Bundle args = new Bundle();
         args.putSerializable(BundleConstant.DATA, match);
+        fragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         fragment.setArguments(args);
         return fragment;
     }
@@ -256,6 +257,7 @@ public class ShareMatchDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setTitle(R.string.dialog_title_share_match);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animationPopup;
         return dialog;
     }

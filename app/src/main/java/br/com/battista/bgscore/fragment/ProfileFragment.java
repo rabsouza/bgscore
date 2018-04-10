@@ -138,12 +138,20 @@ public class ProfileFragment extends BaseFragment {
                 }
                 break;
             case DIALOG_EXPORT_IMPORT_DATA_FRAGMENT:
-                if (resultCode == Activity.RESULT_OK) {
-                    Log.i(TAG, "onActivityResult: Export/Import data!");
-
-                    AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                            ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
+                if (resultCode == Activity.RESULT_OK &&
+                        BundleConstant.Action.IMPORT == data.getIntExtra(BundleConstant.ACTION, 0)) {
+                    Log.i(TAG, "onActivityResult: Import data from backup!");
+                    if (data.getBooleanExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE)) {
+                        AndroidUtils.toast(getContext(), R.string.toast_finish_import_data);
+                    } else {
+                        AndroidUtils.toast(getContext(), R.string.toast_error_import_data);
+                    }
+                    loadUserInfo(getView());
+                    loadDataFriends(getView());
                 }
+                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                        ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
+                break;
         }
     }
 
@@ -198,6 +206,9 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleViewFriends.setItemAnimator(new DefaultItemAnimator());
         recycleViewFriends.setHasFixedSize(false);
+        recycleViewFriends.setItemViewCacheSize(20);
+        recycleViewFriends.setDrawingCacheEnabled(true);
+        recycleViewFriends.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
     private void loadDataFriends(View view) {

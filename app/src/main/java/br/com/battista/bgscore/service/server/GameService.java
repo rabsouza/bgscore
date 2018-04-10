@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class GameService extends BaseService {
 
-    public static final String TAG = GameService.class.getSimpleName();
+    private static final String TAG = GameService.class.getSimpleName();
 
     public List<GameResponse> searchGame(@NonNull String name) {
         Log.i(TAG, MessageFormat.format("Search BoardGame by name: {0} in server url:[{1}{2}{3}]!",

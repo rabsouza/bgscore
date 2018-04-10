@@ -31,6 +31,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -39,9 +40,11 @@ import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.adpater.MatchAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
+import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.OrderByDto;
+import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
@@ -54,12 +57,17 @@ public class MatchFragment extends BaseFragment {
 
     private RecyclerView recycleViewMatches;
     private TextView emptyMsgMatches;
-    private TextView errorMsgMatches;
     private ImageView imgHelpMatch;
     private Spinner spnSortList;
 
     private SwipeRefreshLayout refreshLayout;
     private int lastSelectedItemPosition = 0;
+
+    private ScoreboardView scoreMatchVeryDissatisfied;
+    private ScoreboardView scoreMatchDissatisfied;
+    private ScoreboardView scoreMatchNeutral;
+    private ScoreboardView scoreMatchSatisfied;
+    private ScoreboardView scoreMatchVerySatisfied;
 
     public MatchFragment() {
     }
@@ -112,8 +120,19 @@ public class MatchFragment extends BaseFragment {
 
         setupRecycleMatches(view);
         setupHelpMath(view);
+        setupDataMatch(view);
 
         return view;
+    }
+
+    private void setupDataMatch(View view) {
+        Log.i(TAG, "setupDataMatch: Setup the data to matches.");
+
+        scoreMatchVeryDissatisfied = view.findViewById(R.id.card_view_matches_score_very_dissatisfied);
+        scoreMatchDissatisfied = view.findViewById(R.id.card_view_matches_score_dissatisfied);
+        scoreMatchNeutral = view.findViewById(R.id.card_view_matches_score_neutral);
+        scoreMatchSatisfied = view.findViewById(R.id.card_view_matches_score_satisfied);
+        scoreMatchVerySatisfied = view.findViewById(R.id.card_view_matches_score_very_satisfied);
     }
 
     private void processSortListGames(View view, View viewClicked) {
@@ -236,10 +255,39 @@ public class MatchFragment extends BaseFragment {
         new LoadAllMatchesAsyncTask().execute();
     }
 
+    private void updateScoresMatches(List<Match> matches) {
+        Log.i(TAG, "updateScoresMatches: Udapte the scores to matches!");
+
+        int countVeryDissatisfied = 0;
+        int countDissatisfied = 0;
+        int countNeutral = 0;
+        int countSatisfied = 0;
+        int countVerySatisfied = 0;
+        for (Match match : matches) {
+            if (FeedbackEnum.FEEDBACK_VERY_DISSATISFIED.equals(match.getFeedback())) {
+                countVeryDissatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_DISSATISFIED.equals(match.getFeedback())) {
+                countDissatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_SATISFIED.equals(match.getFeedback())) {
+                countSatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_VERY_SATISFIED.equals(match.getFeedback())) {
+                countVerySatisfied++;
+            } else {
+                countNeutral++;
+            }
+        }
+
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        scoreMatchVeryDissatisfied.setScoreText(decimalFormatScore.format(countVeryDissatisfied));
+        scoreMatchDissatisfied.setScoreText(decimalFormatScore.format(countDissatisfied));
+        scoreMatchNeutral.setScoreText(decimalFormatScore.format(countNeutral));
+        scoreMatchSatisfied.setScoreText(decimalFormatScore.format(countSatisfied));
+        scoreMatchVerySatisfied.setScoreText(decimalFormatScore.format(countVerySatisfied));
+    }
+
     private void setupRecycleMatches(View view) {
         recycleViewMatches = view.findViewById(R.id.card_view_matches_recycler_view);
         emptyMsgMatches = view.findViewById(R.id.card_view_matches_empty_view);
-        errorMsgMatches = view.findViewById(R.id.card_view_matches_error_view);
 
         recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
@@ -267,6 +315,7 @@ public class MatchFragment extends BaseFragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            updateScoresMatches(matches);
             recycleViewMatches.setAdapter(new MatchAdapter(getContext(), matches));
             if (matches.isEmpty()) {
                 emptyMsgMatches.setVisibility(View.VISIBLE);

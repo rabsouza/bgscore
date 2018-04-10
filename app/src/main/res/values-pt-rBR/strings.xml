@@ -28,7 +28,7 @@
     <string name="card_title_new_match">Minha partida</string>
     <string name="card_title_new_game">Meu jogo</string>
     <string name="card_title_search_game">Buscar um jogo</string>
-    <string name="card_title_search_game_list">Jogos da BoardgameGeek.com</string>
+    <string name="card_title_search_game_list">BoardgameGeek.com</string>
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação/Observações da partida</string>
     <string name="card_title_sort_list">Ordenação da lista</string>
@@ -64,8 +64,10 @@
     <string name="msg_share_detail_match">Gerando a imagem da partida para o compartilhamento, por favor aguarde.</string>
     <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
     <string name="msg_action_saving">Aguarde! Salvando&#8230;</string>
-    <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background &#8230;</string>
+    <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
+    <string name="toast_finish_import_data">Todos os dados foram restaurados com sucesso!</string>
+    <string name="toast_error_import_data">Aconteceu um erro inesperado ao tentar restaurar os dados, por favor tente novamente!</string>
     <string name="toast_error_export_data">Aconteceu um erro inesperado ao tentar exportar os dados, por favor tente novamente!</string>
 
 
@@ -90,7 +92,8 @@
     <string name="text_dialog_edit_profile_custom_font_info_01">*¹ É necessário reiniciar a aplicação para que essa ação tenha efeito.</string>
     <string name="text_dialog_edit_profile_reset">Deseja resetar seu perfil?</string>
     <string name="text_dialog_edit_custom_font">Deseja utilizar as fontes de texto customizada?</string>
-    <string name="text_dialog_edit_profile_info_02">*² Todos os dados do seu úsuario serão perdidos e essa ação não pode ser revertida.</string>
+    <string name="text_dialog_edit_automatic_backup">Deseja utilizar backup automatico?</string>
+    <string name="text_dialog_edit_profile_info_02">*² Todos os dados do seu usuário serão perdidos e essa ação não pode ser revertida.</string>
     <string name="text_profile_friends_info_01">*¹ Adicione um novo amigo(a) para jogar nas suas partidas.</string>
     <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
     <string name="text_match_players_winners_info_01">*¹ Selecione os jogadores ganhadores desta partida.</string>
@@ -132,11 +135,16 @@
     <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
     <string name="text_legend_ranking_game_sort_list">Lista ordenada pela quantidade de partidas do jogo em ordem decrescente, somente os top 5 jogos.</string>
     <string name="text_dialog_export_data_info_01">*¹ Os dados serão exportados em background e estarão disponível no diretório de armazenamento da aplicação.</string>
-    <string name="text_dialog_export_data_info_02">*² Diretório exportado será: %1$s.</string>
+    <string name="text_dialog_export_data_info_02">*² Os dados serão exportados para o diretório: %1$s.</string>
+    <string name="text_dialog_export_data_info_03">Backup autómatico %1$s.\nÚltimo: %2$s.</string>
     <string name="text_dialog_import_data_info_01">*¹ Os dados serão importados a partir dos arquivos no diretório de armazenamento da aplicação.</string>
-    <string name="text_dialog_import_data_info_02">*² Diretório padrão de importação é: %1$s.</string>
-    <string name="text_dialog_export_data_user">Deseja exportar os dados do seu úsuario?</string>
-    <string name="text_dialog_import_data_user">Deseja importar os dados para o seu úsuario?</string>
+    <string name="text_dialog_import_data_info_02">*¹ Diretório padrão de importação é: %1$s.</string>
+    <string name="text_dialog_import_last_data">Dados do último backup</string>
+    <string name="text_dialog_import_last_data_version">Versão: %1$s</string>
+    <string name="text_dialog_import_last_data_date">Data: %1$s</string>
+    <string name="text_dialog_import_last_data_user">Usuário: %1$s</string>
+    <string name="text_dialog_export_data_user">Deseja exportar os dados do seu usuário?</string>
+    <string name="text_dialog_import_data_user">Deseja importar os dados para o seu usuário?</string>
     <string name="text_dialog_export_data_db">Deseja exportar os dados da minha coleção e suas partidas registradas?</string>
     <string name="text_dialog_import_data_db">Deseja importar os dados para minha coleção e partidas?</string>
     <string name="text_dialog_search_game_info_01">*¹ Selecione na lista abaixo o jogo que deseja adicionar a minha coleção/partida.</string>
@@ -144,6 +152,8 @@
     <string name="text_games_score_my_game">tenho</string>
     <string name="text_games_score_want_game">quero</string>
     <string name="text_games_score_favorite_game">favorito</string>
+    <string name="text_active">ativado</string>
+    <string name="text_inactive">desativado</string>
 
 
     <!-- ################### Field #################### -->
@@ -177,11 +187,13 @@
     <string name="alert_confirmation_dialog_text_exit_app">Deseja sair da aplicação?</string>
     <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. \nDeseja sair sem salvar?</string>
     <string name="alert_confirmation_dialog_title_delete">Tem certeza?</string>
+    <string name="alert_confirmation_dialog_title_backup">Tem certeza?</string>
     <string name="alert_confirmation_dialog_text_remove_player">Deseja remover o jogador(a) {0} dessa partida? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_friend">Deseja remover o amigo(a) {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_game">Deseja remover o jogo {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_remove_match">Deseja remover a partida {0}? \n\nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_text_add_game">Deseja adicionar o jogo {0}? \n\nEsse jogo será adicionado automaticamente a minha coleção.</string>
+    <string name="alert_confirmation_dialog_text_import_backup">Deseja restaurar os dados apartir do backup (%1$s)? \n\nEssa operação não pode ser revetida.</string>
 
 
     <!-- ################### ELEMENTS #################### -->
@@ -198,14 +210,15 @@
     <string name="btn_confirmation_dialog_cancel">CANCELAR</string>
     <string name="btn_confirmation_dialog_delete">EXCLUIR</string>
     <string name="btn_confirmation_dialog_remove">REMOVER</string>
+    <string name="btn_confirmation_dialog_restore">RESTAURAR</string>
     <string name="btn_confirmation_dialog_add">ADICIONAR</string>
     <string name="btn_confirmation_dialog_play">JOGAR</string>
     <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
     <string name="btn_change_avatar">TROCAR AVATAR</string>
     <string name="btn_edit">EDITAR</string>
-    <string name="btn_export">EXPORTAR</string>
-    <string name="btn_import">IMPORTAR</string>
-    <string name="btn_export_import">EXPORTAR / IMPORTAR</string>
+    <string name="btn_export">BACKUP</string>
+    <string name="btn_import">RESTAURAR</string>
+    <string name="btn_export_import">BACKUP</string>
 
 
     <!-- ################### ACTION BAR #################### -->
@@ -231,7 +244,7 @@
 <b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b>
 <br><br>
 <b>Loja de BoardGame parceira:</b><br>
-<a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
+<b><a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
 Versão publicada: {0} ({1})<br>
 Data release: {2}<br><br>
 <b>Objetivo do aplicativo:</b><br>
@@ -252,13 +265,14 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 <b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b>
 <br><br>
 <b>Loja de BoardGame parceira:</b><br>
-<a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
+<b><a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
 <b>Novidades:</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Tela inical com ranking de jogos e estáticas de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para registrar suas partidas e gerenciar sua coleção de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
-&nbsp;&nbsp;&nbsp;<b>4)</b> Estaticas para seus jogos.<br>
-&nbsp;&nbsp;&nbsp;<b>5) Nova ordenação da lista de jogos e partidas.</b><br>
+&nbsp;&nbsp;&nbsp;<b>4)</b> Estatistica e ordenação para seus jogos e partidas.<br>
+&nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
+&nbsp;&nbsp;&nbsp;<b>6) Tela para exibir o ranking de todos os seus jogos.</b><br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>
@@ -269,6 +283,10 @@ Versão <i>{0}</i> publicada em {1}.<br><br>
     <string name="dialog_title_edit_profile_reset">Resetar dados</string>
     <string name="dialog_title_export_data">Exportar dados</string>
     <string name="dialog_title_import_data">Importar dados</string>
+    <string name="dialog_title_ranking_games">Ranking Games</string>
+    <string name="dialog_title_backup">Dados do backup</string>
+    <string name="dialog_title_search_game">Buscar jogo</string>
+    <string name="dialog_title_share_match">Compartilhar partida</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Em construção, por favor aguarde!</string>

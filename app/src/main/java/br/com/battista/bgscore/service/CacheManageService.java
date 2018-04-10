@@ -19,6 +19,7 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
@@ -52,17 +53,23 @@ public class CacheManageService extends Service {
         User user = instance.getUser();
 
         if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
-            loadAllDataGameAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            loadAllDataGameAddToCache(user);
+            if (user.isAutomaticBackup()) {
+                AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+            }
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
             loadAllDataMatchAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            if (user.isAutomaticBackup()) {
+                AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+            }
         } else if (ActionCacheEnum.LOAD_DATA_RANKING_GAMES.equals(action)) {
             loadAllDataRankingGamesAddToCache(user);
         } else if (ActionCacheEnum.LOAD_ALL_DATA.equals(action)) {
-            loadAllDataGameAddToCache(user);
             loadAllDataMatchAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            loadAllDataGameAddToCache(user);
         }
 
         instance.setUser(user);
@@ -112,8 +119,7 @@ public class CacheManageService extends Service {
 
     private synchronized void loadAllDataGameAddToCache(User user) {
         Log.i(TAG, "loadAllDataGameAddToCache: Update data game user!");
-        final List<Game> games = new GameRepository().findAll();
-        user.setNumGames(games.size());
+        user.setNumGames(user.getRankingGames().size());
     }
 
     @Override

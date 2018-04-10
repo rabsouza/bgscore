@@ -57,8 +57,8 @@
 
                             <ImageView
                                 android:id="@+id/card_view_games_help"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
                                 app:srcCompat="@drawable/ic_help"/>

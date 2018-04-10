@@ -45,14 +45,11 @@
             android:listSelector="@android:color/transparent"
             android:paddingBottom="@dimen/element_vertical_margin"
             android:paddingTop="@dimen/element_vertical_margin"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:weightSum="2">
 
             <Button
