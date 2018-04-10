@@ -264,8 +264,9 @@ Welcome to Board Game Score, this application will help you to register your mat
 &nbsp;&nbsp;&nbsp;<b>1)</b> Home screen with game ranking and static games.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Screens to record your games and manage your game collection.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Screen to edit your profile and manage your friends.<br>
-&nbsp;&nbsp;&nbsp;<b>4)</b> Statics and ranking of your games.<br>
-&nbsp;&nbsp;&nbsp;<b>5) New sort order of games and matches list.</b><br>
+&nbsp;&nbsp;&nbsp;<b>4)</b> Statics and ordering for your games and games.<br>
+&nbsp;&nbsp;&nbsp;<b>5) Automatic backup, manual and backup restore.</b><br>
+&nbsp;&nbsp;&nbsp;<b>6) Screen to display the ranking of all your games.</b><br>
 <br>
 <b>Application Data:</b><br>
 Version <i>{0}</i> published in{1}.<br><br>

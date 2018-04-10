@@ -3,6 +3,7 @@ package br.com.battista.bgscore.adpater;
 import static com.google.common.base.MoreObjects.firstNonNull;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +21,13 @@ import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 
 
-public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHolder> {
+public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHolder> {
     private static final String TAG = RankingGamesAdapter.class.getSimpleName();
 
     private Context context;
     private List<RankingGamesDto> rankingGames;
 
     public RankingGamesAdapter(Context context, List<RankingGamesDto> rankingGames) {
-        super(context);
         this.context = context;
         this.rankingGames = rankingGames;
     }
@@ -43,7 +43,7 @@ public class RankingGamesAdapter extends BaseAdapterAnimation<RankingGamesViewHo
     public void onBindViewHolder(RankingGamesViewHolder holder, int position) {
         if (rankingGames != null && !rankingGames.isEmpty()) {
             final View itemView = holder.itemView;
-            setAnimationHolder(itemView, position);
+            //setAnimationHolder(itemView, position);
 
             final RankingGamesDto rankingGames = this.rankingGames.get(position);
             final Game game = rankingGames.getGame();

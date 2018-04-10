@@ -43,7 +43,6 @@ public class HomeActivity extends BaseActivity {
         final User user = MainApplication.instance().getUser();
         if (user.isWelcome() || !user.getLastBuildVersion().equals(BuildConfig.VERSION_CODE)) {
             WelcomeDialog.newInstance(0).showAbout(getSupportFragmentManager());
-            AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
         }
     }
 

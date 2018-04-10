@@ -244,7 +244,7 @@
 <b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b>
 <br><br>
 <b>Loja de BoardGame parceira:</b><br>
-<a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
+<b><a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
 Versão publicada: {0} ({1})<br>
 Data release: {2}<br><br>
 <b>Objetivo do aplicativo:</b><br>
@@ -265,13 +265,14 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 <b><a href="https://www.facebook.com/boardgamescore">Board Game Score</a></b>
 <br><br>
 <b>Loja de BoardGame parceira:</b><br>
-<a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
+<b><a href="https://www.ditabuleiro.com.br/">Ditabuleiro</a></b><br><br>
 <b>Novidades:</b><br>
 &nbsp;&nbsp;&nbsp;<b>1)</b> Tela inical com ranking de jogos e estáticas de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para registrar suas partidas e gerenciar sua coleção de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
-&nbsp;&nbsp;&nbsp;<b>4)</b> Estaticas para seus jogos.<br>
-&nbsp;&nbsp;&nbsp;<b>5) Nova ordenação da lista de jogos e partidas.</b><br>
+&nbsp;&nbsp;&nbsp;<b>4)</b> Estatistica e ordenação para seus jogos e partidas.<br>
+&nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
+&nbsp;&nbsp;&nbsp;<b>6) Tela para exibir o ranking de todos os seus jogos.</b><br>
 <br>
 <b>Dados do Aplicativo:</b><br>
 Versão <i>{0}</i> publicada em {1}.<br><br>

@@ -37,14 +37,13 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
 
-public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
+public class GameAdapter extends RecyclerView.Adapter<GameViewHolder> {
     private static final String TAG = GameAdapter.class.getSimpleName();
 
     private Context context;
     private List<Game> games;
 
     public GameAdapter(Context context, List<Game> games) {
-        super(context);
         this.context = context;
         this.games = games;
     }
@@ -60,7 +59,7 @@ public class GameAdapter extends BaseAdapterAnimation<GameViewHolder> {
     public void onBindViewHolder(GameViewHolder holder, int position) {
         if (games != null && !games.isEmpty()) {
             final View itemView = holder.itemView;
-            setAnimationHolder(itemView, position);
+            //setAnimationHolder(itemView, position);
 
             final Game game = games.get(position);
             itemView.setTag(game.getId());

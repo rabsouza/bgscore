@@ -24,7 +24,9 @@ import java.util.Calendar;
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.DateUtils;
 
 public class WelcomeDialog extends DialogFragment {
@@ -89,6 +91,8 @@ public class WelcomeDialog extends DialogFragment {
                                 user.welcome(false);
                                 user.lastBuildVersion(BuildConfig.VERSION_CODE);
                                 instance.setUser(user);
+
+                                AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
                                 dialog.dismiss();
                             }
                         }

@@ -6,6 +6,26 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+
+### Version - 1.0.7
+**Date release**
+ - 09/04/2017
+ 
+**Features** 
+ - Adiciona score para as partidas cadastradas.
+ - Adiciona tela para exibir ranking de todos os jogos.
+ - Adiciona opção para backup automatico.
+ - Adiciona opção para backup e restauração manual.
+ 
+**Bugs**
+ - Bug de desempenho
+ 
+**Improvements** 
+ - Atualiza libs e gradle
+ - Melhorias de telas e Modais
+ 
+------------------------------------------------------------------------
+
 ### Version - 1.0.6
 **Date release**
  - 01/09/2017
@@ -121,6 +141,26 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.16-Beta
+**Date release**
+ - 09/04/2017
+ 
+**Features** 
+ - Adiciona score para as partidas cadastradas.
+ - Adiciona tela para exibir ranking de todos os jogos.
+ - Adiciona opção para backup automatico.
+ - Adiciona opção para backup e restauração manual.
+ 
+**Bugs**
+ - Bug de desempenho
+ 
+**Improvements** 
+ - Atualiza libs e gradle
+ - Melhorias de telas e Modais
+
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.14-Beta

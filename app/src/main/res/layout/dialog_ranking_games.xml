@@ -9,8 +9,8 @@
     <ImageView
         android:id="@+id/card_view_ranking_games_close"
         style="@style/ButtonStyleWithBorder"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/element_margin"
         android:background="@color/transparent"
@@ -41,7 +41,7 @@
         <br.com.battista.bgscore.custom.RecycleEmptyErrorView
             android:id="@+id/card_view_ranking_games_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:cacheColorHint="@android:color/transparent"
             android:clipToPadding="false"
             android:dividerHeight="1dp"
