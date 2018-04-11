@@ -36,8 +36,6 @@ import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.fragment.dialog.RankingGamesDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
-import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
-import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
@@ -105,9 +103,13 @@ public class HomeFragment extends BaseFragment {
         setupHelpRankingGame(view);
         setupDataRankingGame(view);
 
-        Inject.provideCacheManageService().reloadAllDataCache();
-
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadAllSyncData(getView());
     }
 
     private void setupHelpRankingGame(View view) {
@@ -150,12 +152,6 @@ public class HomeFragment extends BaseFragment {
                 new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadAllSyncData(getView());
     }
 
     private void loadAllData(final View view) {
@@ -260,10 +256,7 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            CacheManageService cacheManageService = Inject.provideCacheManageService();
-            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_GAME);
-            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_MATCHES);
-            cacheManageService.onActionCache(ActionCacheEnum.LOAD_DATA_RANKING_GAMES);
+            Inject.provideCacheManageService().reloadSyncAllDataCache();
             return null;
         }
 

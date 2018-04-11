@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -37,8 +38,12 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
 
-public class GameAdapter extends RecyclerView.Adapter<GameViewHolder> {
+public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private static final String TAG = GameAdapter.class.getSimpleName();
+
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
 
     private Context context;
     private List<Game> games;
@@ -49,106 +54,170 @@ public class GameAdapter extends RecyclerView.Adapter<GameViewHolder> {
     }
 
     @Override
-    public GameViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(context)
-                .inflate(R.layout.adapter_game, viewGroup, false);
-        return new GameViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        if (TYPE_HEADER == viewType) {
+            View view = LayoutInflater.from(context)
+                    .inflate(R.layout.adapter_game_header, viewGroup, false);
+            return new GameViewHeaderHolder(view);
+        } else {
+            View view = LayoutInflater.from(context)
+                    .inflate(R.layout.adapter_game_item, viewGroup, false);
+            return new GameViewItemHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(GameViewHolder holder, int position) {
-        if (games != null && !games.isEmpty()) {
-            final View itemView = holder.itemView;
-            //setAnimationHolder(itemView, position);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof GameViewHeaderHolder) {
+            configItemHolder((GameViewHeaderHolder) holder);
+        } else {
+            configItemHolder((GameViewItemHolder) holder, position - 1);
+        }
+    }
 
+    private void configItemHolder(GameViewHeaderHolder holder) {
+        Log.i(TAG, "configItemHolder: configure help game button!");
+        holder.getImgHelpGame().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_GAME);
+
+                View customView = LayoutInflater.from(context).inflate(R.layout.dialog_help_game, null);
+
+                AlertDialog alertDialog = new AlertDialog.Builder(context)
+                        .setTitle(R.string.title_help)
+                        .setView(customView)
+                        .setPositiveButton(R.string.btn_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        )
+                        .create();
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+                alertDialog.show();
+            }
+        });
+
+        Log.i(TAG, "configItemHolder: Update the scores to games!");
+
+        int countMyGame = 0;
+        int countFavorite = 0;
+        int countWantGame = 0;
+        for (Game game : games) {
+            if (game.isMyGame()) {
+                countMyGame++;
+            }
+            if (game.isFavorite()) {
+                countFavorite++;
+            }
+            if (game.isWantGame()) {
+                countWantGame++;
+            }
+        }
+
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        holder.getScoreMyGame().setScoreText(decimalFormatScore.format(countMyGame));
+        holder.getScoreFavorite().setScoreText(decimalFormatScore.format(countFavorite));
+        holder.getScoreWantGame().setScoreText(decimalFormatScore.format(countWantGame));
+
+    }
+
+    private void configItemHolder(GameViewItemHolder holder, int position) {
+        GameViewItemHolder rowHolder = holder;
+        if (games != null && !games.isEmpty()) {
+
+            final View itemView = rowHolder.itemView;
             final Game game = games.get(position);
             itemView.setTag(game.getId());
             Log.i(TAG, String.format(
-                    "onBindViewHolder: Fill to row position: %S with %s.", position, game.getName()));
+                    "onBindViewHolder: Fill to rowHolder position: %S with %s.", position, game.getName()));
 
             String urlThumbnail = game.getUrlThumbnail();
             if (Strings.isNullOrEmpty(urlThumbnail)) {
                 ImageLoadUtils.loadImage(itemView.getContext(),
                         R.drawable.boardgame_game,
-                        holder.getImgInfoGame());
+                        rowHolder.getImgInfoGame());
             } else {
                 ImageLoadUtils.loadImage(itemView.getContext(),
                         urlThumbnail,
-                        holder.getImgInfoGame());
+                        rowHolder.getImgInfoGame());
             }
 
             if (BadgeGameEnum.BADGE_GAME_NONE.equals(game.getBadgeGame())) {
-                holder.getImgInfoBadgeGame().setVisibility(View.GONE);
+                rowHolder.getImgInfoBadgeGame().setVisibility(View.GONE);
             } else {
-                holder.getImgInfoBadgeGame().setImageResource(
+                rowHolder.getImgInfoBadgeGame().setImageResource(
                         game.getBadgeGame().getIdResDrawable());
             }
 
-            holder.getTxtInfoName().setText(
+            rowHolder.getTxtInfoName().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getName()), "-"));
 
-            holder.getTxtInfoYear().setText(
+            rowHolder.getTxtInfoYear().setText(
                     MoreObjects.firstNonNull(Strings.emptyToNull(game.getYearPublished()), "****"));
 
             if (Strings.isNullOrEmpty(game.getMaxPlayers())) {
-                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}",
+                rowHolder.getTxtInfoPlayers().setText(MessageFormat.format("{0}",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1")));
             } else {
-                holder.getTxtInfoPlayers().setText(MessageFormat.format("{0}-{1}",
+                rowHolder.getTxtInfoPlayers().setText(MessageFormat.format("{0}-{1}",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayers()), "1"),
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayers()), "*")));
             }
 
             if (Strings.isNullOrEmpty(game.getMaxPlayTime())) {
-                holder.getTxtInfoTime().setText(MessageFormat.format("{0}´",
+                rowHolder.getTxtInfoTime().setText(MessageFormat.format("{0}´",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "∞")));
             } else {
-                holder.getTxtInfoTime().setText(MessageFormat.format("{0}-{1}´",
+                rowHolder.getTxtInfoTime().setText(MessageFormat.format("{0}-{1}´",
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMinPlayTime()), "*"),
                         MoreObjects.firstNonNull(Strings.emptyToNull(game.getMaxPlayTime()), "∞")));
             }
 
             if (Strings.isNullOrEmpty(game.getAge())) {
-                holder.getTxtInfoAges().setText("-");
+                rowHolder.getTxtInfoAges().setText("-");
             } else {
-                holder.getTxtInfoAges().setText(MessageFormat.format("{0}+", game.getAge()));
+                rowHolder.getTxtInfoAges().setText(MessageFormat.format("{0}+", game.getAge()));
             }
 
             if (game.getRating() == null) {
-                holder.getRtbInfoRating().setRating(0F);
+                rowHolder.getRtbInfoRating().setRating(0F);
             } else {
-                holder.getRtbInfoRating().setRating(game.getRating());
+                rowHolder.getRtbInfoRating().setRating(game.getRating());
             }
 
             if (game.isMyGame()) {
-                holder.getImgMyGame().setVisibility(View.VISIBLE);
+                rowHolder.getImgMyGame().setVisibility(View.VISIBLE);
             } else {
-                holder.getImgMyGame().setVisibility(View.GONE);
+                rowHolder.getImgMyGame().setVisibility(View.GONE);
 
                 if (game.isFavorite()) {
                     RelativeLayout.LayoutParams layoutParams =
-                            (RelativeLayout.LayoutParams) holder.getImgFavorite().getLayoutParams();
+                            (RelativeLayout.LayoutParams) rowHolder.getImgFavorite().getLayoutParams();
                     layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 } else if (game.isWantGame()) {
                     RelativeLayout.LayoutParams layoutParams =
-                            (RelativeLayout.LayoutParams) holder.getImgWantGame().getLayoutParams();
+                            (RelativeLayout.LayoutParams) rowHolder.getImgWantGame().getLayoutParams();
                     layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 }
             }
 
             if (game.isFavorite()) {
-                holder.getImgFavorite().setVisibility(View.VISIBLE);
+                rowHolder.getImgFavorite().setVisibility(View.VISIBLE);
             } else {
-                holder.getImgFavorite().setVisibility(View.GONE);
+                rowHolder.getImgFavorite().setVisibility(View.GONE);
             }
 
             if (game.isWantGame()) {
-                holder.getImgWantGame().setVisibility(View.VISIBLE);
+                rowHolder.getImgWantGame().setVisibility(View.VISIBLE);
             } else {
-                holder.getImgWantGame().setVisibility(View.GONE);
+                rowHolder.getImgWantGame().setVisibility(View.GONE);
             }
 
-            ImageView imageMoreActions = holder.getImgMoreActions();
+            ImageView imageMoreActions = rowHolder.getImgMoreActions();
             final PopupMenu popup = new PopupMenu(itemView.getContext(), imageMoreActions);
             PopupUtils.showPopupWindow(popup);
             popup.getMenuInflater().inflate(R.menu.menu_actions_game, popup.getMenu());
@@ -160,7 +229,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameViewHolder> {
             });
 
             final RecyclerView.Adapter adapterCurrent = this;
-            final int positionRemoved = holder.getAdapterPosition();
+            final int positionRemoved = rowHolder.getAdapterPosition();
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -187,9 +256,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameViewHolder> {
             });
 
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            Log.w(TAG, "onBindViewHolder: No content to rowHolder!");
         }
-
     }
 
     private void openBuyInBrowser(View itemView, Game game) {
@@ -290,6 +358,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameViewHolder> {
 
     @Override
     public int getItemCount() {
-        return games != null ? games.size() : 0;
+        return games != null ? games.size() + 1 : 0;
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        return position == 0 ? TYPE_HEADER : TYPE_ITEM;
     }
 }

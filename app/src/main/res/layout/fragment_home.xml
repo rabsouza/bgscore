@@ -102,7 +102,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    app:icon_score="@drawable/ic_games"
+                                    app:icon_score="@drawable/ic_matches"
                                     app:label_score="@string/text_home_games"
                                     app:value_score="0"/>
 

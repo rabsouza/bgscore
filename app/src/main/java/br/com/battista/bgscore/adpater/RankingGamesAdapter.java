@@ -43,7 +43,6 @@ public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHo
     public void onBindViewHolder(RankingGamesViewHolder holder, int position) {
         if (rankingGames != null && !rankingGames.isEmpty()) {
             final View itemView = holder.itemView;
-            //setAnimationHolder(itemView, position);
 
             final RankingGamesDto rankingGames = this.rankingGames.get(position);
             final Game game = rankingGames.getGame();

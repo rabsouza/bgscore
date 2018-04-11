@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -16,7 +14,6 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
-import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.fragment.GameFragment;
 import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.fragment.MatchFragment;
@@ -24,7 +21,6 @@ import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
 import br.com.battista.bgscore.model.User;
-import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class HomeActivity extends BaseActivity {
@@ -134,27 +130,9 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        dialogCloseActivity();
-    }
-
-    private void dialogCloseActivity() {
-        AnswersUtils.onActionMetric(Actions.ACTION_BACK, ValueActions.VALUE_BACK_HOME);
-
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.alert_confirmation_dialog_title_exit)
-                .setMessage(R.string.alert_confirmation_dialog_text_exit_app)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(R.string.btn_confirmation_dialog_exit,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                AnswersUtils.onActionMetric(Actions.ACTION_EXIT,
-                                        ValueActions.VALUE_ACTION_EXIT);
-                                finishAffinity();
-                            }
-                        })
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
-        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
-        alertDialog.show();
+        AnswersUtils.onActionMetric(Actions.ACTION_EXIT,
+                ValueActions.VALUE_ACTION_EXIT);
+        finishAffinity();
     }
 
 }

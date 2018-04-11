@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import br.com.battista.bgscore.R;
 
-public class MatchViewHolder extends RecyclerView.ViewHolder {
+public class MatchViewItemHolder extends RecyclerView.ViewHolder {
 
     private ImageView imgInfoGame;
     private TextView txtInfoAlias;
@@ -18,7 +18,7 @@ public class MatchViewHolder extends RecyclerView.ViewHolder {
     private TextView txtInfoDuration;
     private ImageView imgMoreActions;
 
-    public MatchViewHolder(View view) {
+    public MatchViewItemHolder(View view) {
         super(view);
 
         imgInfoGame = view.findViewById(R.id.card_view_match_info_image);

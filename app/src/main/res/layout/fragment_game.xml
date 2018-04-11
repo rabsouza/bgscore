@@ -13,158 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_games"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/element_vertical_margin"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/no_dimen"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="1dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/no_dimen">
+                android:padding="@dimen/element_padding">
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/card_view_games"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/card_view_games_recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/element_vertical_margin"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="@dimen/no_dimen"
-                    app:cardBackgroundColor="@android:color/transparent"
-                    app:cardCornerRadius="2dp"
-                    app:cardElevation="1dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true">
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:clipToPadding="false"
+                    android:dividerHeight="1dp"
+                    android:listSelector="@android:color/transparent"
+                    android:paddingBottom="@dimen/md_keylines"
+                    android:paddingTop="@dimen/element_vertical_margin"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/element_padding">
+            </FrameLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/card_view_games_title"
-                                style="@style/CardTitleStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/card_title_games"/>
-
-                            <ImageView
-                                android:id="@+id/card_view_games_help"
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:layout_marginLeft="@dimen/element_horizontal_margin"
-                                android:clickable="true"
-                                app:srcCompat="@drawable/ic_help"/>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dimen_line"
-                            android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
-
-                        <TextView
-                            android:id="@+id/card_view_games_info_01"
-                            style="@style/HintTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/element_vertical_margin"
-                            android:text="@string/text_game_games_info_01"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="3">
-
-                            <br.com.battista.bgscore.custom.ScoreboardView
-                                android:id="@+id/card_view_games_score_my_game"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                app:icon_score="@drawable/ic_game_my_game"
-                                app:label_score="@string/text_games_score_my_game"
-                                app:value_score="0"/>
-
-                            <View
-                                android:layout_width="@dimen/dimen_line"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/element_horizontal_margin"
-                                android:layout_marginRight="@dimen/element_horizontal_margin"
-                                android:background="@color/colorLine"/>
-
-                            <br.com.battista.bgscore.custom.ScoreboardView
-                                android:id="@+id/card_view_games_score_favorite"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                app:icon_score="@drawable/ic_game_favorite"
-                                app:label_score="@string/text_games_score_favorite_game"
-                                app:value_score="0"/>
-
-                            <View
-                                android:layout_width="@dimen/dimen_line"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/element_horizontal_margin"
-                                android:layout_marginRight="@dimen/element_horizontal_margin"
-                                android:background="@color/colorLine"/>
-
-                            <br.com.battista.bgscore.custom.ScoreboardView
-                                android:id="@+id/card_view_games_score_want_game"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                app:icon_score="@drawable/ic_game_want_game"
-                                app:label_score="@string/text_games_score_want_game"
-                                app:value_score="0"/>
-
-                        </LinearLayout>
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/card_view_games_recycler_view"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:cacheColorHint="@android:color/transparent"
-                            android:clipToPadding="false"
-                            android:dividerHeight="1dp"
-                            android:listSelector="@android:color/transparent"
-                            android:nestedScrollingEnabled="false"
-                            android:paddingBottom="@dimen/md_keylines"
-                            android:paddingTop="@dimen/element_vertical_margin"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-                        <TextView
-                            android:id="@+id/card_view_games_empty_view"
-                            style="@style/CardTextBoldStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text_game_games_empty_view"
-                            android:visibility="gone"/>
-
-                        <TextView
-                            android:id="@+id/card_view_games_error_view"
-                            style="@style/CardTextBoldStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text_game_games_error_view"
-                            android:visibility="gone"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
+        </android.support.v7.widget.CardView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

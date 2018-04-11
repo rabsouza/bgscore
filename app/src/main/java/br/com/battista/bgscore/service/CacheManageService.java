@@ -41,9 +41,13 @@ public class CacheManageService extends Service {
         return null;
     }
 
-    public void reloadAllDataCache() {
-        Log.i(TAG, "reloadAllDataCache: Reload all data cache!!!");
-        AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
+    public void reloadSyncAllDataCache() {
+        Log.i(TAG, "reloadSyncAllDataCache: Reload all data cache!!!");
+        final MainApplication instance = MainApplication.instance();
+        User user = instance.getUser();
+        loadAllDataMatchAddToCache(user);
+        loadAllDataRankingGamesAddToCache(user);
+        loadAllDataGameAddToCache(user);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
