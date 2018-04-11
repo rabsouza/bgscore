@@ -6,7 +6,6 @@ import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,7 +14,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,13 +23,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
@@ -40,11 +35,9 @@ import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.adpater.MatchAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
-import br.com.battista.bgscore.custom.ScoreboardView;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.OrderByDto;
-import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
@@ -56,18 +49,10 @@ public class MatchFragment extends BaseFragment {
     private static final String TAG = MatchFragment.class.getSimpleName();
 
     private RecyclerView recycleViewMatches;
-    private TextView emptyMsgMatches;
-    private ImageView imgHelpMatch;
     private Spinner spnSortList;
 
     private SwipeRefreshLayout refreshLayout;
     private int lastSelectedItemPosition = 0;
-
-    private ScoreboardView scoreMatchVeryDissatisfied;
-    private ScoreboardView scoreMatchDissatisfied;
-    private ScoreboardView scoreMatchNeutral;
-    private ScoreboardView scoreMatchSatisfied;
-    private ScoreboardView scoreMatchVerySatisfied;
 
     public MatchFragment() {
     }
@@ -119,20 +104,7 @@ public class MatchFragment extends BaseFragment {
         });
 
         setupRecycleMatches(view);
-        setupHelpMath(view);
-        setupDataMatch(view);
-
         return view;
-    }
-
-    private void setupDataMatch(View view) {
-        Log.i(TAG, "setupDataMatch: Setup the data to matches.");
-
-        scoreMatchVeryDissatisfied = view.findViewById(R.id.card_view_matches_score_very_dissatisfied);
-        scoreMatchDissatisfied = view.findViewById(R.id.card_view_matches_score_dissatisfied);
-        scoreMatchNeutral = view.findViewById(R.id.card_view_matches_score_neutral);
-        scoreMatchSatisfied = view.findViewById(R.id.card_view_matches_score_satisfied);
-        scoreMatchVerySatisfied = view.findViewById(R.id.card_view_matches_score_very_satisfied);
     }
 
     private void processSortListGames(View view, View viewClicked) {
@@ -213,34 +185,6 @@ public class MatchFragment extends BaseFragment {
         loadAllMatches();
     }
 
-    private void setupHelpMath(View view) {
-        imgHelpMatch = view.findViewById(R.id.card_view_matches_help);
-        imgHelpMatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_MATCH);
-
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = inflater.inflate(R.layout.dialog_help_match, null);
-
-                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-                        .setTitle(R.string.title_help)
-                        .setView(customView)
-                        .setPositiveButton(R.string.btn_ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        dialog.dismiss();
-                                    }
-                                }
-                        )
-                        .create();
-                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
-                alertDialog.show();
-            }
-        });
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -255,39 +199,8 @@ public class MatchFragment extends BaseFragment {
         new LoadAllMatchesAsyncTask().execute();
     }
 
-    private void updateScoresMatches(List<Match> matches) {
-        Log.i(TAG, "updateScoresMatches: Udapte the scores to matches!");
-
-        int countVeryDissatisfied = 0;
-        int countDissatisfied = 0;
-        int countNeutral = 0;
-        int countSatisfied = 0;
-        int countVerySatisfied = 0;
-        for (Match match : matches) {
-            if (FeedbackEnum.FEEDBACK_VERY_DISSATISFIED.equals(match.getFeedback())) {
-                countVeryDissatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_DISSATISFIED.equals(match.getFeedback())) {
-                countDissatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_SATISFIED.equals(match.getFeedback())) {
-                countSatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_VERY_SATISFIED.equals(match.getFeedback())) {
-                countVerySatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_NEUTRAL.equals(match.getFeedback())){
-                countNeutral++;
-            }
-        }
-
-        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
-        scoreMatchVeryDissatisfied.setScoreText(decimalFormatScore.format(countVeryDissatisfied));
-        scoreMatchDissatisfied.setScoreText(decimalFormatScore.format(countDissatisfied));
-        scoreMatchNeutral.setScoreText(decimalFormatScore.format(countNeutral));
-        scoreMatchSatisfied.setScoreText(decimalFormatScore.format(countSatisfied));
-        scoreMatchVerySatisfied.setScoreText(decimalFormatScore.format(countVerySatisfied));
-    }
-
     private void setupRecycleMatches(View view) {
         recycleViewMatches = view.findViewById(R.id.card_view_matches_recycler_view);
-        emptyMsgMatches = view.findViewById(R.id.card_view_matches_empty_view);
 
         recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
@@ -315,13 +228,7 @@ public class MatchFragment extends BaseFragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            updateScoresMatches(matches);
             recycleViewMatches.setAdapter(new MatchAdapter(getContext(), matches));
-            if (matches.isEmpty()) {
-                emptyMsgMatches.setVisibility(View.VISIBLE);
-            } else {
-                emptyMsgMatches.setVisibility(View.GONE);
-            }
             refreshLayout.setRefreshing(false);
         }
     }

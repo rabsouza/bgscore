@@ -24,6 +24,7 @@ import android.widget.ImageView;
 
 import com.google.common.base.Strings;
 
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -37,6 +38,7 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
@@ -45,8 +47,12 @@ import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.PopupUtils;
 
 
-public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
+public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private static final String TAG = MatchAdapter.class.getSimpleName();
+
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
 
     private Context context;
     private List<Match> matches;
@@ -57,17 +63,87 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
     }
 
     @Override
-    public MatchViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(context)
-                .inflate(R.layout.adapter_match, viewGroup, false);
-        return new MatchViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        if (TYPE_HEADER == viewType) {
+            View view = LayoutInflater.from(context)
+                    .inflate(R.layout.adapter_match_header, viewGroup, false);
+            return new MatchViewHeaderHolder(view);
+        } else {
+            View view = LayoutInflater.from(context)
+                    .inflate(R.layout.adapter_match_item, viewGroup, false);
+            return new MatchViewItemHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(MatchViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof MatchViewHeaderHolder) {
+            configItemHolder((MatchViewHeaderHolder) holder);
+        } else {
+            configItemHolder((MatchViewItemHolder) holder, position - 1);
+        }
+    }
+
+    private void configItemHolder(MatchViewHeaderHolder holder) {
+        Log.i(TAG, "configItemHolder: configure help game button!");
+        holder.getImgHelpMatch().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_MATCH);
+
+                View customView = LayoutInflater.from(context).inflate(R.layout.dialog_help_match, null);
+
+                AlertDialog alertDialog = new AlertDialog.Builder(context)
+                        .setTitle(R.string.title_help)
+                        .setView(customView)
+                        .setPositiveButton(R.string.btn_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        )
+                        .create();
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+                alertDialog.show();
+            }
+        });
+
+        Log.i(TAG, "updateScoresMatches: Udapte the scores to matches!");
+
+        int countVeryDissatisfied = 0;
+        int countDissatisfied = 0;
+        int countNeutral = 0;
+        int countSatisfied = 0;
+        int countVerySatisfied = 0;
+        for (Match match : matches) {
+            if (FeedbackEnum.FEEDBACK_VERY_DISSATISFIED.equals(match.getFeedback())) {
+                countVeryDissatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_DISSATISFIED.equals(match.getFeedback())) {
+                countDissatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_SATISFIED.equals(match.getFeedback())) {
+                countSatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_VERY_SATISFIED.equals(match.getFeedback())) {
+                countVerySatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_NEUTRAL.equals(match.getFeedback())) {
+                countNeutral++;
+            }
+        }
+
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        holder.getScoreMatchVeryDissatisfied().setScoreText(decimalFormatScore.format(countVeryDissatisfied));
+        holder.getScoreMatchDissatisfied().setScoreText(decimalFormatScore.format(countDissatisfied));
+        holder.getScoreMatchNeutral().setScoreText(decimalFormatScore.format(countNeutral));
+        holder.getScoreMatchSatisfied().setScoreText(decimalFormatScore.format(countSatisfied));
+        holder.getScoreMatchVerySatisfied().setScoreText(decimalFormatScore.format(countVerySatisfied));
+
+    }
+
+    private void configItemHolder(MatchViewItemHolder holder, int position) {
+        MatchViewItemHolder rowHolder = holder;
         if (matches != null && !matches.isEmpty()) {
-            final View itemView = holder.itemView;
-            //setAnimationHolder(itemView, position);
+            final View itemView = rowHolder.itemView;
 
             final Match match = matches.get(position);
             final Game game = match.getGame();
@@ -79,49 +155,49 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
             if (Strings.isNullOrEmpty(urlThumbnail)) {
                 ImageLoadUtils.loadImage(itemView.getContext(),
                         R.drawable.boardgame_game,
-                        holder.getImgInfoGame());
+                        rowHolder.getImgInfoGame());
             } else {
                 ImageLoadUtils.loadImage(itemView.getContext(),
                         urlThumbnail,
-                        holder.getImgInfoGame());
+                        rowHolder.getImgInfoGame());
             }
 
-            holder.getTxtInfoAlias().setText(match.getAlias());
-            holder.getTxtInfoNameGame().setText(game.getName());
+            rowHolder.getTxtInfoAlias().setText(match.getAlias());
+            rowHolder.getTxtInfoNameGame().setText(game.getName());
 
             final Calendar createdAt = Calendar.getInstance();
             createdAt.setTime(match.getCreatedAt());
-            holder.getTxtInfoMatchDate().setText(DateUtils.format(createdAt));
-            holder.getTxtInfoPlayers().setText("0" + match.getPlayers().size());
+            rowHolder.getTxtInfoMatchDate().setText(DateUtils.format(createdAt));
+            rowHolder.getTxtInfoPlayers().setText("0" + match.getPlayers().size());
             if (match.getDuration() == null) {
-                holder.getTxtInfoDuration().setText("00:00");
+                rowHolder.getTxtInfoDuration().setText("00:00");
             } else {
-                holder.getTxtInfoDuration().setText(
+                rowHolder.getTxtInfoDuration().setText(
                         DateUtils.formatTime(match.getDuration()));
             }
             if (match.isFinished()) {
-                holder.getImgInfoFeedback().setImageResource(match.getFeedback().getIdResDrawable());
+                rowHolder.getImgInfoFeedback().setImageResource(match.getFeedback().getIdResDrawable());
                 switch (match.getFeedback().getIdResDrawable()) {
                     case R.drawable.ic_feedback_very_dissatisfied:
                     case R.drawable.ic_feedback_dissatisfied:
-                        holder.getImgInfoFeedback().setColorFilter(
+                        rowHolder.getImgInfoFeedback().setColorFilter(
                                 ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackDissatisfied));
                         break;
                     case R.drawable.ic_feedback_neutral:
-                        holder.getImgInfoFeedback().setColorFilter(
+                        rowHolder.getImgInfoFeedback().setColorFilter(
                                 ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackNeutral));
                         break;
                     case R.drawable.ic_feedback_satisfied:
                     case R.drawable.ic_feedback_very_satisfied:
-                        holder.getImgInfoFeedback().setColorFilter(
+                        rowHolder.getImgInfoFeedback().setColorFilter(
                                 ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackSatisfied));
                         break;
                 }
             } else {
-                holder.getImgInfoFeedback().setVisibility(View.GONE);
+                rowHolder.getImgInfoFeedback().setVisibility(View.GONE);
             }
 
-            ImageView imageMoreActions = holder.getImgMoreActions();
+            ImageView imageMoreActions = rowHolder.getImgMoreActions();
             final PopupMenu popup = new PopupMenu(itemView.getContext(), imageMoreActions);
             PopupUtils.showPopupWindow(popup);
             popup.getMenuInflater().inflate(R.menu.menu_actions_match, popup.getMenu());
@@ -133,7 +209,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
             });
 
             final RecyclerView.Adapter adapterCurrent = this;
-            final int positionRemoved = holder.getAdapterPosition();
+            final int positionRemoved = rowHolder.getAdapterPosition();
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -163,7 +239,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
             });
 
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            Log.w(TAG, "onBindViewHolder: No content to rowHolder!");
         }
 
     }
@@ -274,6 +350,12 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchViewHolder> {
 
     @Override
     public int getItemCount() {
-        return matches != null ? matches.size() : 0;
+        return matches != null ? matches.size() + 1 : 0;
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        return position == 0 ? TYPE_HEADER : TYPE_ITEM;
     }
 }

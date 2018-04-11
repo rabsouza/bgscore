@@ -268,8 +268,6 @@ Welcome to Board Game Score, this application will help you to register your mat
 &nbsp;&nbsp;&nbsp;<b>5) Automatic backup, manual and backup restore.</b><br>
 &nbsp;&nbsp;&nbsp;<b>6) Screen to display the ranking of all your games.</b><br>
 <br>
-<b>Application Data:</b><br>
-Version <i>{0}</i> published in {1}.<br><br>
 ]]>
     </string>
     <string name="dialog_title_change_avatar">Change avatar</string>

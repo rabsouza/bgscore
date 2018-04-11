@@ -274,8 +274,6 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 &nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
 &nbsp;&nbsp;&nbsp;<b>6) Tela para exibir o ranking de todos os seus jogos.</b><br>
 <br>
-<b>Dados do Aplicativo:</b><br>
-Versão <i>{0}</i> publicada em {1}.<br><br>
 ]]>
     </string>
     <string name="dialog_title_change_avatar">Trocar avatar</string>

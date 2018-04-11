@@ -134,7 +134,7 @@ public class EditProfileDialog extends DialogFragment {
                 }
                 instance.setUser(user);
 
-                Inject.provideCacheManageService().reloadAllDataCache();
+                Inject.provideCacheManageService().reloadSyncAllDataCache();
 
                 getTargetFragment().onActivityResult(getTargetRequestCode(),
                         Activity.RESULT_OK, getActivity().getIntent());
