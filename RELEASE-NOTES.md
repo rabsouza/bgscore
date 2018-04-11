@@ -6,6 +6,19 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.8
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug no Android O para utilizar os serviços em background.
+ 
+**Improvements** 
+ 
+------------------------------------------------------------------------
 
 ### Version - 1.0.7
 **Date release**
@@ -141,6 +154,20 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.17-Beta
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug no Android O para utilizar os serviços em background.
+ 
+**Improvements** 
+ 
 ------------------------------------------------------------------------
 
 ### Version - 1.0.16-Beta

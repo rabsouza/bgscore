@@ -92,14 +92,14 @@ public class MainApplication extends MultiDexApplication {
                     Log.e(TAG, "getUser: error convert user!", e);
                 }
             }
+            Log.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
         }
-        Log.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
         return user;
     }
 
     public void setUser(User user) {
-        Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
         synchronized (this) {
+            Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
             instance.user = user;
             try {
                 String jsonUser = new ObjectMapper().writeValueAsString(user);
@@ -121,14 +121,14 @@ public class MainApplication extends MultiDexApplication {
                     Log.e(TAG, "getBackup: error convert backup!", e);
                 }
             }
+            Log.d(TAG, MessageFormat.format("Load backup by cache with data: {0}", backupDto));
         }
-        Log.d(TAG, MessageFormat.format("Load backup by cache with data: {0}", backupDto));
         return backupDto;
     }
 
     public void setBackup(BackupDto backup) {
-        Log.d(TAG, MessageFormat.format("Update the cache backup with data: {0}", backup));
         synchronized (this) {
+            Log.d(TAG, MessageFormat.format("Update the cache backup with data: {0}", backup));
             instance.backupDto = backup;
             try {
                 String jsonBackup = new ObjectMapper().writeValueAsString(backup);

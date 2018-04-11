@@ -46,13 +46,13 @@ android {
         }
         prod {
             applicationIdSuffix = ".app"
-            versionCode 9
-            versionName "1.0.7"
+            versionCode 10
+            versionName "1.0.8"
         }
         dev {
             applicationIdSuffix = ".dev"
-            versionCode 17
-            versionName "1.0.17-beta"
+            versionCode 18
+            versionName "1.0.18-beta"
         }
     }
 
