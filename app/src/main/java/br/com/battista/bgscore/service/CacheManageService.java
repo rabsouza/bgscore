@@ -61,6 +61,7 @@ public class CacheManageService extends Service {
         } else if (ActionCacheEnum.LOAD_DATA_MATCHES.equals(action)) {
             loadAllDataMatchAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
+            loadAllDataGameAddToCache(user);
             if (user.isAutomaticBackup()) {
                 AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
             }

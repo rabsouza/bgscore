@@ -272,7 +272,7 @@ public class MatchFragment extends BaseFragment {
                 countSatisfied++;
             } else if (FeedbackEnum.FEEDBACK_VERY_SATISFIED.equals(match.getFeedback())) {
                 countVerySatisfied++;
-            } else {
+            } else if (FeedbackEnum.FEEDBACK_NEUTRAL.equals(match.getFeedback())){
                 countNeutral++;
             }
         }
