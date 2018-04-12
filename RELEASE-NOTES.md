@@ -6,6 +6,22 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.9
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug na importação de grande dados
+ 
+**Improvements**
+ - Desabilita log para release
+ - Adiciona cache para as informações estatistica de jogos e partidas. 
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.8
 **Date release**
  - 11/04/2017
@@ -154,6 +170,22 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.18-Beta
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug na importação de grande dados
+ 
+**Improvements**
+ - Desabilita log para release
+ - Adiciona cache para as informações estatistica de jogos e partidas. 
+ 
 ------------------------------------------------------------------------
 
 ### Version - 1.0.17-Beta
