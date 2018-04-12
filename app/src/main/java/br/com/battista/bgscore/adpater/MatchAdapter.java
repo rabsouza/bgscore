@@ -314,7 +314,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         LogUtils.d(TAG, "onClick: Success remove the match and refresh recyclerView!");
 
                         new MatchRepository().delete(match);
-                        matches.remove(position);
+                        matches.remove(position - 1);
                         adapterCurrent.notifyItemRemoved(position);
                         adapterCurrent.notifyDataSetChanged();
 

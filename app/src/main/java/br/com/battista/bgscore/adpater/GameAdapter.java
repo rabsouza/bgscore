@@ -327,7 +327,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         LogUtils.d(TAG, "onClick: Success remove the game and refresh recyclerView!");
 
                         new GameRepository().delete(game);
-                        games.remove(position);
+                        games.remove(position - 1);
                         adapterCurrent.notifyItemRemoved(position);
                         adapterCurrent.notifyDataSetChanged();
 
