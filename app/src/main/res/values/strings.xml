@@ -64,6 +64,7 @@
     <string name="msg_share_detail_match">Generating the start image for the share, please wait.</string>
     <string name="msg_action_searching">Please wait! Searching &#8230;</string>
     <string name="msg_action_saving">Please wait! Saving &#8230;</string>
+    <string name="msg_action_loading">Please wait! Loading &#8230;</string>
     <string name="toast_start_export_data">Please wait! Data is being exported in the background&#8230;</string>
     <string name="toast_finish_export_data">All data has been successfully exported!</string>
     <string name="toast_finish_import_data">All data has been successfully restored!</string>

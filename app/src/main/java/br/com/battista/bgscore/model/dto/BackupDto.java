@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import br.com.battista.bgscore.constants.EntityConstant;
+import br.com.battista.bgscore.util.LogUtils;
 
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -161,6 +162,10 @@ public class BackupDto implements Serializable {
 
     @Override
     public String toString() {
+        if(!LogUtils.isLoggable()){
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("createdAt", createdAt)

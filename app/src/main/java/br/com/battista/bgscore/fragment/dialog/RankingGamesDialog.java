@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import br.com.battista.bgscore.adpater.RankingGamesAdapter;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class RankingGamesDialog extends DialogFragment {
 
@@ -53,7 +53,7 @@ public class RankingGamesDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog ranking games!");
+        LogUtils.i(TAG, "showAbout: Show dialog ranking games!");
 
         setTargetFragment(fragment, DIALOG_RANKING_GAMES_FRAGMENT);
 
@@ -77,7 +77,7 @@ public class RankingGamesDialog extends DialogFragment {
     }
 
     private void loadAllRankingGames() {
-        Log.i(TAG, "loadAllRankingGames: Load all Ranking Games in BD!");
+        LogUtils.i(TAG, "loadAllRankingGames: Load all Ranking Games in BD!");
         User user = MainApplication.instance().getUser();
 
         List<RankingGamesDto> matches = Lists.newLinkedList(user.getRankingGames());
@@ -95,7 +95,7 @@ public class RankingGamesDialog extends DialogFragment {
     }
 
     private void loadViews(final View viewFragment) {
-        Log.i(TAG, "loadViews: load all views!");
+        LogUtils.i(TAG, "loadViews: load all views!");
 
         imgClose = viewFragment.findViewById(R.id.card_view_ranking_games_close);
         imgClose.setOnClickListener(new View.OnClickListener() {

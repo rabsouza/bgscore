@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.util;
 
-import android.util.Log;
-
 import com.google.common.base.Strings;
 
 import java.text.DecimalFormat;
@@ -50,7 +48,7 @@ public class DateUtils {
         try {
             return format.parse(date);
         } catch (ParseException e) {
-            Log.e(TAG, "parse: Error parse to DAte", e);
+            LogUtils.e(TAG, "parse: Error parse to DAte", e);
             return new Date();
         }
     }

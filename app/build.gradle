@@ -28,6 +28,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "BGScore"
             resValue "string", "title_app", "BGScore"
+            buildConfigField "boolean", "LOGGLABE", "false"
         }
 
         debug {
@@ -35,6 +36,7 @@ android {
             testCoverageEnabled = false
             resValue "string", "app_name", "BGScore (debug)"
             resValue "string", "title_app", "BGScore (debug)"
+            buildConfigField "boolean", "LOGGLABE", "true"
         }
     }
 

@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,7 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
 
@@ -82,7 +82,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             setAnimationHolder(itemView, position);
 
             final Player player = players.get(position);
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, player.getName()));
 
             holder.getTxtTitle().setText(player.getName());
@@ -195,7 +195,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             }
 
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
     }

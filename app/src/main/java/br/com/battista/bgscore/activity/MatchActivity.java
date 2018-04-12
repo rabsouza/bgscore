@@ -6,7 +6,6 @@ import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.BundleConstant.NavigationTo;
@@ -17,6 +16,7 @@ import br.com.battista.bgscore.fragment.match.FinishMatchFragment;
 import br.com.battista.bgscore.fragment.match.NewMatchFragment;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class MatchActivity extends BaseActivity {
 
@@ -36,7 +36,7 @@ public class MatchActivity extends BaseActivity {
     }
 
     private void processDataActivity(Bundle bundle) {
-        Log.d(TAG, "processDataActivity: Process bundle data Activity!");
+        LogUtils.d(TAG, "processDataActivity: Process bundle data Activity!");
         if (bundle != null && bundle.containsKey(DATA)) {
             match = (Match) bundle.getSerializable(DATA);
             match.reloadId();
@@ -45,19 +45,19 @@ public class MatchActivity extends BaseActivity {
                 int navigationTo = bundle.getInt(NAVIGATION_TO, NavigationTo.NEW_MATCH_FRAGMENT);
                 switch (navigationTo) {
                     case NavigationTo.NEW_MATCH_FRAGMENT:
-                        Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
+                        LogUtils.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
                         isDetailMatch = false;
                         replaceDetailFragment(NewMatchFragment.newInstance(match),
                                 R.id.detail_container);
                         break;
                     case NavigationTo.FINISH_MATCH_FRAGMENT:
-                        Log.i(TAG, "loadFragmentInitial: Load the FinishMatchFragment!");
+                        LogUtils.i(TAG, "loadFragmentInitial: Load the FinishMatchFragment!");
                         isDetailMatch = false;
                         replaceDetailFragment(FinishMatchFragment.newInstance(match),
                                 R.id.detail_container);
                         break;
                     case NavigationTo.DETAIL_MATCH_FRAGMENT:
-                        Log.i(TAG, "loadFragmentInitial: Load the DetailMatchFragment!");
+                        LogUtils.i(TAG, "loadFragmentInitial: Load the DetailMatchFragment!");
                         isDetailMatch = true;
                         replaceDetailFragment(DetailMatchFragment.newInstance(match),
                                 R.id.detail_container);
@@ -68,7 +68,7 @@ public class MatchActivity extends BaseActivity {
         } else {
             match = null;
         }
-        Log.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
+        LogUtils.i(TAG, "loadFragmentInitial: Load the NewMatchFragment!");
         replaceDetailFragment(NewMatchFragment.newInstance(match), R.id.detail_container);
     }
 

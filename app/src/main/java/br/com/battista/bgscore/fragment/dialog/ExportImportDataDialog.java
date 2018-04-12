@@ -16,7 +16,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +32,12 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.BackupDto;
-import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.BackupUtils;
 import br.com.battista.bgscore.util.DateUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class ExportImportDataDialog extends DialogFragment {
 
@@ -70,7 +69,7 @@ public class ExportImportDataDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog export/import data!");
+        LogUtils.i(TAG, "showAbout: Show dialog export/import data!");
 
         setTargetFragment(fragment, DIALOG_EXPORT_IMPORT_DATA_FRAGMENT);
 
@@ -94,7 +93,7 @@ public class ExportImportDataDialog extends DialogFragment {
     }
 
     private void loadViews(final View viewFragment) {
-        Log.i(TAG, "loadViews: load all views!");
+        LogUtils.i(TAG, "loadViews: load all views!");
 
         final User user = MainApplication.instance().getUser();
         final BackupDto backup = MainApplication.instance().getBackup();
@@ -196,22 +195,23 @@ public class ExportImportDataDialog extends DialogFragment {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(R.string.btn_confirmation_dialog_restore, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        btnImport.setEnabled(false);
+
                         final Intent intent = getActivity().getIntent();
                         intent.putExtra(BundleConstant.ACTION, BundleConstant.Action.IMPORT);
 
                         try {
-                            Log.i(TAG, "createDialogImportBackup: import data from backup!");
+                            LogUtils.i(TAG, "createDialogImportBackup: import data from backup!");
                             if (BackupUtils.existsData(getContext())) {
                                 final MainApplication instance = MainApplication.instance();
-                                BackupUtils.importDatabase(getContext());
                                 instance.setUser(BackupUtils.getUserData(getContext()));
                                 instance.setBackup(BackupUtils.getBackupData(getContext()));
-                                AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
+                                BackupUtils.importDatabase(getContext());
                             }
 
                             intent.putExtra(BundleConstant.IMPORT_BACKUP, Boolean.TRUE);
                         } catch (Exception e) {
-                            Log.e(TAG, "createDialogImportBackup: error import data from backup!", e);
+                            LogUtils.e(TAG, "createDialogImportBackup: error import data from backup!", e);
                             intent.putExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE);
                         }
 

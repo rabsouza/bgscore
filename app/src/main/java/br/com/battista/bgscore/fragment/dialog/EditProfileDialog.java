@@ -10,7 +10,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,7 @@ import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class EditProfileDialog extends DialogFragment {
 
@@ -58,7 +58,7 @@ public class EditProfileDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog edit profile!");
+        LogUtils.i(TAG, "showAbout: Show dialog edit profile!");
 
         setTargetFragment(fragment, DIALOG_EDIT_PROFILE_FRAGMENT);
 
@@ -82,7 +82,7 @@ public class EditProfileDialog extends DialogFragment {
     }
 
     private void loadViews(View viewFragment) {
-        Log.i(TAG, "loadViews: load all views!");
+        LogUtils.i(TAG, "loadViews: load all views!");
         final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
 

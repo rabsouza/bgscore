@@ -2,6 +2,7 @@ package br.com.battista.bgscore.constants;
 
 public class EntityConstant {
 
+    public static final String EMPTY_STRING = "";
     public static final Long DEFAULT_VERSION = 1L;
     public static final String DEFAULT_URL_INFO_GAME = "https://www.boardgamegeek.com/boardgame/";
     public static final String DEFAULT_URL_BUY_GAME = "https://pricequest.com.br/busca?q=";

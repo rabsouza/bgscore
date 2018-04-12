@@ -64,6 +64,7 @@
     <string name="msg_share_detail_match">Gerando a imagem da partida para o compartilhamento, por favor aguarde.</string>
     <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
     <string name="msg_action_saving">Aguarde! Salvando&#8230;</string>
+    <string name="msg_action_loading">Aguarde! Carregando&#8230;</string>
     <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
     <string name="toast_finish_import_data">Todos os dados foram restaurados com sucesso!</string>

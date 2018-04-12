@@ -11,7 +11,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +38,7 @@ import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
@@ -74,7 +74,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new HomeFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new HomeFragment!");
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         refreshLayout = view.findViewById(R.id.refresh_layout);
@@ -155,7 +155,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void loadAllData(final View view) {
-        Log.i(TAG, "loadAllData: Load all data in BD and update cache!");
+        LogUtils.i(TAG, "loadAllData: Load all data in BD and update cache!");
         if (!refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(true);
         }
@@ -163,13 +163,13 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void loadAllSyncData(final View view) {
-        Log.i(TAG, "loadAllData: Load all data in BD!");
+        LogUtils.i(TAG, "loadAllData: Load all data in BD!");
         loadUserInfo(view);
         loadAllRankingGames();
     }
 
     private void loadAllRankingGames() {
-        Log.i(TAG, "loadAllRankingGames: Load all Ranking Games in BD!");
+        LogUtils.i(TAG, "loadAllRankingGames: Load all Ranking Games in BD!");
         User user = MainApplication.instance().getUser();
 
         List<RankingGamesDto> matches = Lists.newLinkedList(user.getRankingGames());
@@ -190,7 +190,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void loadUserInfo(final View view) {
-        Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
+        LogUtils.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
 
         txtAvatar = view.findViewById(R.id.card_view_home_img);

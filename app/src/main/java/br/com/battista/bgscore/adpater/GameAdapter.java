@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,12 +22,14 @@ import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.List;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.dto.StatisticDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.GameRepository;
@@ -36,6 +37,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.PopupUtils;
 
 public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -76,7 +78,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void configItemHolder(GameViewHeaderHolder holder) {
-        Log.i(TAG, "configItemHolder: configure help game button!");
+        LogUtils.i(TAG, "configItemHolder: configure help game button!");
         holder.getImgHelpGame().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,27 +103,12 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
-        Log.i(TAG, "configItemHolder: Update the scores to games!");
-
-        int countMyGame = 0;
-        int countFavorite = 0;
-        int countWantGame = 0;
-        for (Game game : games) {
-            if (game.isMyGame()) {
-                countMyGame++;
-            }
-            if (game.isFavorite()) {
-                countFavorite++;
-            }
-            if (game.isWantGame()) {
-                countWantGame++;
-            }
-        }
-
+        LogUtils.i(TAG, "configItemHolder: Update the scores to games!");
+        final StatisticDto statistic = MainApplication.instance().getUser().getStatisticDto();
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
-        holder.getScoreMyGame().setScoreText(decimalFormatScore.format(countMyGame));
-        holder.getScoreFavorite().setScoreText(decimalFormatScore.format(countFavorite));
-        holder.getScoreWantGame().setScoreText(decimalFormatScore.format(countWantGame));
+        holder.getScoreMyGame().setScoreText(decimalFormatScore.format(statistic.getCountGameMyGame()));
+        holder.getScoreFavorite().setScoreText(decimalFormatScore.format(statistic.getCountGameFavorite()));
+        holder.getScoreWantGame().setScoreText(decimalFormatScore.format(statistic.getCountGameWantGame()));
 
     }
 
@@ -132,7 +119,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             final View itemView = rowHolder.itemView;
             final Game game = games.get(position);
             itemView.setTag(game.getId());
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to rowHolder position: %S with %s.", position, game.getName()));
 
             String urlThumbnail = game.getUrlThumbnail();
@@ -256,7 +243,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             });
 
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to rowHolder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to rowHolder!");
         }
     }
 
@@ -337,14 +324,14 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             return;
                         }
 
-                        Log.d(TAG, "onClick: Success remove the game and refresh recyclerView!");
+                        LogUtils.d(TAG, "onClick: Success remove the game and refresh recyclerView!");
 
                         new GameRepository().delete(game);
                         games.remove(position);
                         adapterCurrent.notifyItemRemoved(position);
                         adapterCurrent.notifyDataSetChanged();
 
-                        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+                        LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
                         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_GAME);
 
                         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,

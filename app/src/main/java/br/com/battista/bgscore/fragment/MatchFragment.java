@@ -17,7 +17,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +40,7 @@ import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
 
 
@@ -67,7 +67,7 @@ public class MatchFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new MatchFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new MatchFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_match, container, false);
 
@@ -108,7 +108,7 @@ public class MatchFragment extends BaseFragment {
     }
 
     private void processSortListGames(View view, View viewClicked) {
-        Log.i(TAG, "processSortListGames: Show sort list games!");
+        LogUtils.i(TAG, "processSortListGames: Show sort list games!");
 
         LayoutInflater inflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -147,7 +147,7 @@ public class MatchFragment extends BaseFragment {
     }
 
     private void processNewOrderByMatches(@NonNull String selectedItem, int selectedItemPosition) {
-        Log.i(TAG, "processNewOrderByMatches: Process new order by!");
+        LogUtils.i(TAG, "processNewOrderByMatches: Process new order by!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SORT_LIST_MATCH);
 
@@ -192,7 +192,7 @@ public class MatchFragment extends BaseFragment {
     }
 
     private void loadAllMatches() {
-        Log.i(TAG, "loadAllMatches: Load all Matches in BD!");
+        LogUtils.i(TAG, "loadAllMatches: Load all Matches in BD!");
         if (!refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(true);
         }

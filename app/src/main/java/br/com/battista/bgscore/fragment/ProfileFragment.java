@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,16 +40,20 @@ import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
+import br.com.battista.bgscore.custom.ProgressApp;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
 import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.fragment.dialog.ExportImportDataDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.AvatarEnum;
+import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 public class ProfileFragment extends BaseFragment {
@@ -85,7 +88,7 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new ProfileFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new ProfileFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -112,13 +115,13 @@ public class ProfileFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         switch (requestCode) {
             case DIALOG_CHANGE_AVATAR_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     final int currentAvatar = data.getIntExtra(BundleConstant.CURRENT_AVATAR,
                             R.drawable.avatar_profile);
-                    Log.i(TAG, MessageFormat.format("onActivityResult: Change avatar to res: {0}",
+                    LogUtils.i(TAG, MessageFormat.format("onActivityResult: Change avatar to res: {0}",
                             currentAvatar));
 
                     updateAvatarUser(currentAvatar);
@@ -129,7 +132,7 @@ public class ProfileFragment extends BaseFragment {
                 break;
             case DIALOG_EDIT_PROFILE_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
-                    Log.i(TAG, "onActivityResult: Edit my user!");
+                    LogUtils.i(TAG, "onActivityResult: Edit my user!");
 
                     loadUserInfo(getView());
                     loadDataFriends(getView());
@@ -140,14 +143,30 @@ public class ProfileFragment extends BaseFragment {
             case DIALOG_EXPORT_IMPORT_DATA_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK &&
                         BundleConstant.Action.IMPORT == data.getIntExtra(BundleConstant.ACTION, 0)) {
-                    Log.i(TAG, "onActivityResult: Import data from backup!");
-                    if (data.getBooleanExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE)) {
-                        AndroidUtils.toast(getContext(), R.string.toast_finish_import_data);
-                    } else {
-                        AndroidUtils.toast(getContext(), R.string.toast_error_import_data);
-                    }
-                    loadUserInfo(getView());
-                    loadDataFriends(getView());
+                    LogUtils.i(TAG, "onActivityResult: Import data from backup!");
+
+                    new ProgressApp(this.getActivity(), R.string.msg_action_loading, false) {
+
+                        @Override
+                        protected void onPostExecute(Boolean result) {
+                            if (data.getBooleanExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE)) {
+                                AndroidUtils.toast(getContext(), R.string.toast_finish_import_data);
+                            } else {
+                                AndroidUtils.toast(getContext(), R.string.toast_error_import_data);
+                            }
+                            loadUserInfo(getView());
+                            loadDataFriends(getView());
+                            AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
+                            dismissProgress();
+                        }
+
+                        @Override
+                        protected Boolean doInBackground(Void... params) {
+                            Inject.provideCacheManageService().reloadSyncAllDataCache();
+                            return true;
+                        }
+                    }.execute();
+
                 }
                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
                         ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
@@ -163,7 +182,7 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void loadUserInfo(View view) {
-        Log.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
+        LogUtils.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
         final Fragment currentFragment = this;
 
@@ -259,7 +278,7 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private FriendDto addNewFriend() {
-        Log.i(TAG, "addNewFriend: Add new friend!");
+        LogUtils.i(TAG, "addNewFriend: Add new friend!");
 
         if (Strings.isNullOrEmpty(txtUsernameFriend.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_username_friend_required);
@@ -270,7 +289,7 @@ public class ProfileFragment extends BaseFragment {
         final String username = txtUsernameFriend.getText().toString().trim();
         txtUsernameFriend.setText(null);
 
-        Log.d(TAG, MessageFormat.format("Create new friend with username: {0}.", username));
+        LogUtils.d(TAG, MessageFormat.format("Create new friend with username: {0}.", username));
         return new FriendDto().username(username);
     }
 

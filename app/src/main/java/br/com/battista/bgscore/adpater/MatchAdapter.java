@@ -15,7 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,7 @@ import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.constants.BundleConstant;
@@ -37,13 +37,14 @@ import br.com.battista.bgscore.fragment.dialog.ShareMatchDialog;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
+import br.com.battista.bgscore.model.dto.StatisticDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
-import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.PopupUtils;
 
 
@@ -85,7 +86,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void configItemHolder(MatchViewHeaderHolder holder) {
-        Log.i(TAG, "configItemHolder: configure help game button!");
+        LogUtils.i(TAG, "configItemHolder: configure help game button!");
         holder.getImgHelpMatch().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,33 +111,14 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
         });
 
-        Log.i(TAG, "updateScoresMatches: Udapte the scores to matches!");
-
-        int countVeryDissatisfied = 0;
-        int countDissatisfied = 0;
-        int countNeutral = 0;
-        int countSatisfied = 0;
-        int countVerySatisfied = 0;
-        for (Match match : matches) {
-            if (FeedbackEnum.FEEDBACK_VERY_DISSATISFIED.equals(match.getFeedback())) {
-                countVeryDissatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_DISSATISFIED.equals(match.getFeedback())) {
-                countDissatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_SATISFIED.equals(match.getFeedback())) {
-                countSatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_VERY_SATISFIED.equals(match.getFeedback())) {
-                countVerySatisfied++;
-            } else if (FeedbackEnum.FEEDBACK_NEUTRAL.equals(match.getFeedback())) {
-                countNeutral++;
-            }
-        }
-
+        LogUtils.i(TAG, "updateScoresMatches: Update the scores to matches!");
+        final StatisticDto statistic = MainApplication.instance().getUser().getStatisticDto();
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
-        holder.getScoreMatchVeryDissatisfied().setScoreText(decimalFormatScore.format(countVeryDissatisfied));
-        holder.getScoreMatchDissatisfied().setScoreText(decimalFormatScore.format(countDissatisfied));
-        holder.getScoreMatchNeutral().setScoreText(decimalFormatScore.format(countNeutral));
-        holder.getScoreMatchSatisfied().setScoreText(decimalFormatScore.format(countSatisfied));
-        holder.getScoreMatchVerySatisfied().setScoreText(decimalFormatScore.format(countVerySatisfied));
+        holder.getScoreMatchVeryDissatisfied().setScoreText(decimalFormatScore.format(statistic.getCountMatchVeryDissatisfied()));
+        holder.getScoreMatchDissatisfied().setScoreText(decimalFormatScore.format(statistic.getCountMatchDissatisfied()));
+        holder.getScoreMatchNeutral().setScoreText(decimalFormatScore.format(statistic.getCountMatchNeutral()));
+        holder.getScoreMatchSatisfied().setScoreText(decimalFormatScore.format(statistic.getCountMatchSatisfied()));
+        holder.getScoreMatchVerySatisfied().setScoreText(decimalFormatScore.format(statistic.getCountMatchVerySatisfied()));
 
     }
 
@@ -148,7 +130,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             final Match match = matches.get(position);
             final Game game = match.getGame();
             itemView.setTag(match.getId());
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, match.getAlias()));
 
             String urlThumbnail = game.getUrlThumbnail();
@@ -239,13 +221,13 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             });
 
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to rowHolder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to rowHolder!");
         }
 
     }
 
     private void processCopyMatch(View itemView, Match match) {
-        Log.i(TAG, "processCopyMatch: Copy the match!");
+        LogUtils.i(TAG, "processCopyMatch: Copy the match!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_COPY_MATCH);
 
@@ -272,13 +254,13 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void processShareMatch(View itemView, Match match) {
-        Log.i(TAG, "processShareMatch: Share the match!");
+        LogUtils.i(TAG, "processShareMatch: Share the match!");
         final FragmentManager supportFragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
         new ShareMatchDialog().newInstance(match).showDialog(supportFragmentManager.findFragmentById(R.id.container));
     }
 
     private void processDetailMatch(View itemView, Match match) {
-        Log.i(TAG, "processDetailMatch: Detail the macth!");
+        LogUtils.i(TAG, "processDetailMatch: Detail the macth!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DETAIL_MATCH);
 
@@ -292,7 +274,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void processFinishMatch(View itemView, Match match) {
-        Log.i(TAG, "processFinishMatch: Finish the match!");
+        LogUtils.i(TAG, "processFinishMatch: Finish the match!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_FINISH_MATCH);
 
@@ -306,7 +288,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void processEditMatch(View itemView, Match match) {
-        Log.i(TAG, "processEditMatch: Edit the match!");
+        LogUtils.i(TAG, "processEditMatch: Edit the match!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_MATCH);
 
@@ -329,14 +311,14 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(R.string.btn_confirmation_dialog_remove, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        Log.d(TAG, "onClick: Success remove the match and refresh recyclerView!");
+                        LogUtils.d(TAG, "onClick: Success remove the match and refresh recyclerView!");
 
                         new MatchRepository().delete(match);
                         matches.remove(position);
                         adapterCurrent.notifyItemRemoved(position);
                         adapterCurrent.notifyDataSetChanged();
 
-                        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+                        LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
                         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
                         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,

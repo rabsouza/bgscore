@@ -15,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +74,7 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
@@ -128,7 +128,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new NewMatchFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new NewMatchFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_new_match, container, false);
 
@@ -149,7 +149,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
             match.reloadId();
@@ -190,7 +190,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void fillDataAndSave() {
-        Log.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
+        LogUtils.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
         if (Strings.isNullOrEmpty(txtMatchAlias.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_alias_match_required);
             AndroidUtils.changeErrorEditText(txtMatchAlias, msgErrorUsername, true);
@@ -239,13 +239,13 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             match.addPlayer(player);
         }
 
-        Log.i(TAG, "fillDataAndSave: Save the data in BD.");
+        LogUtils.i(TAG, "fillDataAndSave: Save the data in BD.");
         new MatchRepository().save(match);
 
         user.lastPlayed(match.getCreatedAt());
         instance.setUser(user);
 
-        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+        LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
         finishFormAndProcessData();
@@ -261,7 +261,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void setupDataForm(final View view) {
-        Log.i(TAG, "setupDataForm: Load all form fields!");
+        LogUtils.i(TAG, "setupDataForm: Load all form fields!");
         final List<Game> games = new GameRepository().findAll();
         for (Game game : games) {
             gameMap.put(game.getName(), game);
@@ -364,7 +364,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             case DIALOG_SEARCH_GAME_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     final long gameId = data.getLongExtra(BundleConstant.SEARCH_GAME_ID, 0l);
-                    Log.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
+                    LogUtils.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
                             gameId));
 
                     new ProgressApp(this.getActivity(), R.string.msg_action_saving, false) {
@@ -400,7 +400,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private Player addNewPlayer() {
-        Log.i(TAG, "addNewFriend: Add new player!");
+        LogUtils.i(TAG, "addNewFriend: Add new player!");
 
         if (Strings.isNullOrEmpty(txtUsernamePlayer.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_username_player_required);
@@ -411,7 +411,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         final String username = txtUsernamePlayer.getText().toString().trim();
         txtUsernamePlayer.setText(null);
 
-        Log.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
+        LogUtils.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
         final Player player = new Player().name(username).typePlayer(TypePlayerEnum.PLAYER);
         player.initEntity();
         return player;
@@ -427,7 +427,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         final String nameGame = txtSearchNameGame.getText().toString().trim();
 
         if (swtSearchOnline.isChecked()) {
-            Log.i(TAG, "processDataSearchGame: Search game in server!");
+            LogUtils.i(TAG, "processDataSearchGame: Search game in server!");
 
             final Fragment currentFragment = this;
             new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {
@@ -451,7 +451,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
                 }
             }.execute();
         } else {
-            Log.i(TAG, "processDataSearchGame: Search game in BD!");
+            LogUtils.i(TAG, "processDataSearchGame: Search game in BD!");
             if (gameMap.containsKey(nameGame)) {
                 gameSelected = gameMap.get(nameGame);
                 fillCardGame();
@@ -462,7 +462,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void fillCardGame() {
-        Log.i(TAG, "processDataSearchGame: Fill the data Game!");
+        LogUtils.i(TAG, "processDataSearchGame: Fill the data Game!");
 
         String urlThumbnail = gameSelected.getUrlThumbnail();
         if (Strings.isNullOrEmpty(urlThumbnail)) {

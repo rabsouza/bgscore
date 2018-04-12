@@ -9,7 +9,6 @@ import static br.com.battista.bgscore.constants.RestConstant.HEADER_USER_AGENT_V
 
 import android.net.http.HttpResponseCache;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +22,7 @@ import br.com.battista.bgscore.exception.BGScoreException;
 import br.com.battista.bgscore.exception.EntityAlreadyExistsException;
 import br.com.battista.bgscore.exception.EntityNotFoundException;
 import br.com.battista.bgscore.exception.ValidatorException;
+import br.com.battista.bgscore.util.LogUtils;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -93,7 +93,7 @@ public class BaseService {
     private Cache createCache() {
         MainApplication instance = MainApplication.instance();
         try {
-            Log.i(TAG, "createCache: default cache file!");
+            LogUtils.i(TAG, "createCache: default cache file!");
             File cacheFile = instance.getCacheDir();
             cacheFile.setReadable(true);
 
@@ -101,7 +101,7 @@ public class BaseService {
             return new Cache(cacheFile, DEFAULT_CACHE_SIZE);
 
         } catch (IOException e) {
-            Log.e(TAG, "createCache: " + e.getLocalizedMessage(), e);
+            LogUtils.e(TAG, "createCache: " + e.getLocalizedMessage(), e);
             throw new BGScoreException("Error create to cache!", e);
         }
     }
@@ -115,19 +115,19 @@ public class BaseService {
 
     protected void validateErrorResponse(Response<?> response, String errorMessage) {
         if (response != null && response.code() == HttpStatus.BAD_REQUEST.value()) {
-            Log.e(TAG, errorMessage);
+            LogUtils.e(TAG, errorMessage);
             throw new ValidatorException(errorMessage);
         } else if (response != null && response.code() == HttpStatus.UNAUTHORIZED.value()) {
-            Log.e(TAG, errorMessage);
+            LogUtils.e(TAG, errorMessage);
             throw new AuthenticationException(errorMessage);
         } else if (response != null && response.code() == HttpStatus.NOT_FOUND.value()) {
-            Log.e(TAG, errorMessage);
+            LogUtils.e(TAG, errorMessage);
             throw new EntityNotFoundException(errorMessage);
         } else if (response != null && response.code() == HttpStatus.CONFLICT.value()) {
-            Log.e(TAG, errorMessage);
+            LogUtils.e(TAG, errorMessage);
             throw new EntityAlreadyExistsException(errorMessage);
         } else {
-            Log.e(TAG, errorMessage);
+            LogUtils.e(TAG, errorMessage);
         }
     }
 }

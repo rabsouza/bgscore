@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +57,7 @@ import br.com.battista.bgscore.service.server.GameService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.RatingUtils;
 
 public class NewGameFragment extends BaseFragment {
@@ -101,7 +101,7 @@ public class NewGameFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new NewGameFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new NewGameFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_new_game, container, false);
 
@@ -125,7 +125,7 @@ public class NewGameFragment extends BaseFragment {
             case DIALOG_SEARCH_GAME_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     final long gameId = data.getLongExtra(BundleConstant.SEARCH_GAME_ID, 0l);
-                    Log.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
+                    LogUtils.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
                             gameId));
 
                     new ProgressApp(this.getActivity(), R.string.msg_action_saving, false) {
@@ -158,7 +158,7 @@ public class NewGameFragment extends BaseFragment {
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             game = (Game) bundle.getSerializable(BundleConstant.DATA);
             game.reloadId();
@@ -226,7 +226,7 @@ public class NewGameFragment extends BaseFragment {
             try {
                 game.setIdBGG(Long.valueOf(txtIdBgg.getText().toString().trim()));
             } catch (Exception e) {
-                Log.e(TAG, "fillDataAndSave: ID bgg invalid!", e);
+                LogUtils.e(TAG, "fillDataAndSave: ID bgg invalid!", e);
             }
         }
         game.urlThumbnail(txtUrlThumbnailGame.getText().toString().trim());
@@ -261,16 +261,16 @@ public class NewGameFragment extends BaseFragment {
         game.favorite(swtFavorite.isChecked());
         game.wantGame(swtWantGame.isChecked());
 
-        Log.i(TAG, "fillDataAndSave: Save the data in BD.");
+        LogUtils.i(TAG, "fillDataAndSave: Save the data in BD.");
         new GameRepository().save(game);
-        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+        LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_GAME);
 
         finishFormAndProcessData();
     }
 
     private void setupDataForm(final View view) {
-        Log.i(TAG, "setupDataForm: Load all form fields!");
+        LogUtils.i(TAG, "setupDataForm: Load all form fields!");
 
         txtNameGame = view.findViewById(R.id.card_view_new_game_name);
         txtIdBgg = view.findViewById(R.id.card_view_new_game_id_bgg);
@@ -344,7 +344,7 @@ public class NewGameFragment extends BaseFragment {
         AndroidUtils.changeErrorEditText(txtSearchNameGame);
         final String nameGame = txtSearchNameGame.getText().toString().trim();
 
-        Log.i(TAG, "processDataSearchGame: Search game in server!");
+        LogUtils.i(TAG, "processDataSearchGame: Search game in server!");
 
         final Fragment currentFragment = this;
         new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {

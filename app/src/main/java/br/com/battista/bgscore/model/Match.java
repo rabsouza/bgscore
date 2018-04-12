@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Set;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 @Table(name = MatchEntry.TABLE_NAME)
 public class Match extends BaseEntity implements Serializable {
@@ -136,6 +138,10 @@ public class Match extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
+        if(!LogUtils.isLoggable()){
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("alias", alias)
                 .add("game", game)

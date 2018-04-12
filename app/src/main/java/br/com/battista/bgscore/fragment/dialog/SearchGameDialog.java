@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,7 @@ import br.com.battista.bgscore.adpater.SearchGameAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.response.GameResponse;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class SearchGameDialog extends DialogFragment {
 
@@ -51,7 +51,7 @@ public class SearchGameDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog search game!");
+        LogUtils.i(TAG, "showAbout: Show dialog search game!");
 
         setTargetFragment(fragment, DIALOG_SEARCH_GAME_FRAGMENT);
 
@@ -85,7 +85,7 @@ public class SearchGameDialog extends DialogFragment {
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             games.clear();
             final ArrayList<GameResponse> parcelables = bundle.getParcelableArrayList(BundleConstant.DATA);
@@ -95,7 +95,7 @@ public class SearchGameDialog extends DialogFragment {
     }
 
     private void loadAllGames() {
-        Log.i(TAG, "loadAllMatches: Load all Games in Server!");
+        LogUtils.i(TAG, "loadAllMatches: Load all Games in Server!");
         recycleViewGames.setAdapter(new SearchGameAdapter(getContext(), games));
     }
 
@@ -107,7 +107,7 @@ public class SearchGameDialog extends DialogFragment {
     }
 
     private void loadViews(View viewFragment) {
-        Log.i(TAG, "loadViews: load all views!");
+        LogUtils.i(TAG, "loadViews: load all views!");
 
         btnCancel = viewFragment.findViewById(R.id.search_game_btn_close);
         btnCancel.setOnClickListener(new View.OnClickListener() {

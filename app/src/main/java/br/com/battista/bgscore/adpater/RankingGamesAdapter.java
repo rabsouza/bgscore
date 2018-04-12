@@ -4,7 +4,6 @@ import static com.google.common.base.MoreObjects.firstNonNull;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHolder> {
@@ -46,7 +46,7 @@ public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHo
 
             final RankingGamesDto rankingGames = this.rankingGames.get(position);
             final Game game = rankingGames.getGame();
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, rankingGames));
 
             String urlThumbnail = game.getUrlThumbnail();
@@ -86,7 +86,7 @@ public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHo
             }
 
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
     }

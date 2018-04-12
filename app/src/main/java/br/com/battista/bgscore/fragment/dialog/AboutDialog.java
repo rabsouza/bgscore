@@ -11,7 +11,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
@@ -21,13 +20,14 @@ import java.util.Calendar;
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.util.DateUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class AboutDialog extends DialogFragment {
 
     private static final String TAG = AboutDialog.class.getSimpleName();
 
     public static void showAbout(android.support.v4.app.FragmentManager fm) {
-        Log.i(TAG, "showAbout: Show dialog about!");
+        LogUtils.i(TAG, "showAbout: Show dialog about!");
         FragmentTransaction ft = fm.beginTransaction();
         Fragment prev = fm.findFragmentByTag("dialog_about");
         if (prev != null) {

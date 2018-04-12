@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.view.View;
 
 import java.io.File;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 public class ScreenShareService {
@@ -35,17 +35,17 @@ public class ScreenShareService {
 
     public void shareScreen(@NonNull View activity, String textShare) {
         String nameFile = DEFAULT_NAME_FILE.replace(KEY_NAME_FILE, String.valueOf(SystemClock.currentThreadTimeMillis()));
-        Log.i(TAG, MessageFormat.format("shareScreen: Share to match in the file name: {0}.", nameFile));
+        LogUtils.i(TAG, MessageFormat.format("shareScreen: Share to match in the file name: {0}.", nameFile));
 
         Bitmap bitmap = takeScreenshot(activity);
         saveImageToDisk(bitmap, nameFile);
 
-        Log.i(TAG, "shareScreen: Success to save image to disk!");
+        LogUtils.i(TAG, "shareScreen: Success to save image to disk!");
         shareImage(nameFile, textShare);
     }
 
     private Bitmap takeScreenshot(View rootView) {
-        Log.i(TAG, "takeScreenshot: Take Screenshot to view!");
+        LogUtils.i(TAG, "takeScreenshot: Take Screenshot to view!");
         rootView.setDrawingCacheEnabled(true);
         rootView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         rootView.buildDrawingCache(true);
@@ -60,7 +60,7 @@ public class ScreenShareService {
     }
 
     private boolean saveImageToDisk(Bitmap screenshot, String nameFile) {
-        Log.i(TAG, "saveImageToDisk: Save to img to disk!");
+        LogUtils.i(TAG, "saveImageToDisk: Save to img to disk!");
         try {
             File cachePath = new File(context.getCacheDir(), IMAGES_PATH_CACHE);
             cachePath.delete();
@@ -71,17 +71,17 @@ public class ScreenShareService {
             stream.close();
 
         } catch (FileNotFoundException e) {
-            Log.e(TAG, "saveImageToDisk: error in save to disk.", e);
+            LogUtils.e(TAG, "saveImageToDisk: error in save to disk.", e);
             return false;
         } catch (IOException e) {
-            Log.e(TAG, "saveImageToDisk: error in save to disk.", e);
+            LogUtils.e(TAG, "saveImageToDisk: error in save to disk.", e);
             return false;
         }
         return true;
     }
 
     private void shareImage(String nameFile, String description) {
-        Log.i(TAG, "shareImage: share to image!");
+        LogUtils.i(TAG, "shareImage: share to image!");
         File imagePath = new File(context.getCacheDir(), IMAGES_PATH_CACHE);
         File newFile = new File(imagePath, nameFile);
         Uri contentUri = FileProvider.getUriForFile(context, APP_PACKAGE,
@@ -98,7 +98,7 @@ public class ScreenShareService {
             shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, context.getString(R.string.hint_title_share_match));
 
             context.startActivity(Intent.createChooser(shareIntent, description));
-            Log.i(TAG, "shareImage: success and start to share!");
+            LogUtils.i(TAG, "shareImage: success and start to share!");
         }
     }
 
