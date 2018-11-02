@@ -244,8 +244,8 @@ public class Game extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
-          return EntityConstant.EMPTY_STRING;
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
         }
 
         return MoreObjects.toStringHelper(this)

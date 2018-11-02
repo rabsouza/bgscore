@@ -27,13 +27,10 @@ public class CacheManageService {
     private static CacheManageService instance;
 
     public static CacheManageService getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new CacheManageService();
         }
         return instance;
-    }
-
-    private CacheManageService(){
     }
 
     public void onCreate() {

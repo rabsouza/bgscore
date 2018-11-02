@@ -229,6 +229,16 @@ public class HomeFragment extends BaseFragment {
 
         scoreTotalTime = view.findViewById(R.id.card_view_score_total_time);
         scoreTotalTime.setScoreText(DateUtils.formatTime(user.getTotalTime()));
+        scoreTotalTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DATA_RANKING_GAME);
+
+                final FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
+                new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
+            }
+        });
     }
 
     private void setupRecycleRanking(View view) {

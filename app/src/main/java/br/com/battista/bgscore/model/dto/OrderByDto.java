@@ -80,7 +80,7 @@ public class OrderByDto implements Serializable {
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 

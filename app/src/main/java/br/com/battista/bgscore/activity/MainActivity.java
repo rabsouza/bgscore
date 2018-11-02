@@ -18,7 +18,7 @@ import br.com.battista.bgscore.util.AnswersUtils;
 
 public class MainActivity extends BaseActivity {
 
-    public static final int DEFAULT_SLEEP_PROGRESS_BAR = 150;
+    public static final int DEFAULT_SLEEP_PROGRESS_BAR = 50;
     private static final int DEFAULT_STEPS_PROGRESS_BAR = 5;
     private static final int MAX_PROGRESS_BAR = 100;
 

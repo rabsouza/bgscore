@@ -100,7 +100,7 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 

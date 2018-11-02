@@ -57,7 +57,7 @@ public class AvatarDto implements Serializable, Comparable<AvatarDto> {
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 

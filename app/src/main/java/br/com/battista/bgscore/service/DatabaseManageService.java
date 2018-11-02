@@ -28,7 +28,7 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.BackupUtils;
 import br.com.battista.bgscore.util.LogUtils;
 
-public class DatabaseManageService{
+public class DatabaseManageService {
 
     private static final String DEFAULT_USER_BACKUP = "backup";
     private static final String TAG = DatabaseManageService.class.getSimpleName();
@@ -36,15 +36,18 @@ public class DatabaseManageService{
 
     private Context baseContext;
 
+    public DatabaseManageService(){
+    }
+
+    public DatabaseManageService(Context baseContext) {
+        this.baseContext = baseContext;
+    }
+
     public static DatabaseManageService getInstance(Context baseContext) {
-        if(instance == null){
+        if (instance == null) {
             instance = new DatabaseManageService(baseContext);
         }
         return instance;
-    }
-
-    private DatabaseManageService(Context baseContext){
-        this.baseContext = baseContext;
     }
 
     public void onCreate() {

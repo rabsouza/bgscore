@@ -82,6 +82,7 @@ public class HomeActivity extends BaseActivity {
             itemView.setShiftingMode(false);
             itemView.setChecked(false);
         }
+        ((BottomNavigationItemView) menuView.getChildAt(0)).setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {

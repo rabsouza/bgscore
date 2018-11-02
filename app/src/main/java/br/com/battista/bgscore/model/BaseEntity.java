@@ -141,7 +141,7 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 

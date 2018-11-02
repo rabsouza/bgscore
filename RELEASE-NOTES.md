@@ -6,6 +6,19 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+
+### Version - 1.0.11
+**Date release**
+ - 01/11/2018
+
+**Features** 
+- Atualiza o target sdk para Android 28
+ 
+**Bugs**
+- Bug da atualização do Android 28
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.10
 **Date release**
  - 23/09/2018
@@ -175,12 +188,35 @@ Adiciona Politica de privacidade
 
 **Improvements**
 
+
+
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
 ------------------------------------------------------------------------
 
-### Version - 1.0.18-Beta
+
+### Version - 1.0.20-Beta
+**Date release**
+ - 01/11/2018
+ 
+**Features** 
+- Atualiza o target sdk para Android 28
+ 
+**Bugs**
+- Bug da atualização do Android 28
+
+------------------------------------------------------------------------
+
+### Version - 1.0.22-Beta
+**Date release**
+ - 23/09/2018
+ 
+Adiciona Politica de privacidade
+
+------------------------------------------------------------------------
+
+### Version - 1.0.21-Beta
 **Date release**
  - 11/04/2017
  

@@ -72,7 +72,7 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 

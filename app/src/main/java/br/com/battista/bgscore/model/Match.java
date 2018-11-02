@@ -138,7 +138,7 @@ public class Match extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 

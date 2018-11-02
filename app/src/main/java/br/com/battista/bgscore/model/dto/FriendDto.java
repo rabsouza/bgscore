@@ -77,7 +77,7 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
 
     @Override
     public String toString() {
-        if(!LogUtils.isLoggable()){
+        if (!LogUtils.isLoggable()) {
             return EntityConstant.EMPTY_STRING;
         }
 
