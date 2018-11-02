@@ -1,10 +1,5 @@
 package br.com.battista.bgscore.service;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -26,21 +21,24 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.LogUtils;
 
-public class CacheManageService extends Service {
+public class CacheManageService {
 
     private static final String TAG = CacheManageService.class.getSimpleName();
+    private static CacheManageService instance;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        LogUtils.i(TAG, "onCreate: Register event bus to Action!");
-        EventBus.getDefault().register(this);
+    public static CacheManageService getInstance() {
+        if(instance == null){
+            instance = new CacheManageService();
+        }
+        return instance;
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    private CacheManageService(){
+    }
+
+    public void onCreate() {
+        LogUtils.i(TAG, "onCreate: Register event bus to Action!");
+        EventBus.getDefault().register(this);
     }
 
     public void reloadSyncAllDataCache() {
@@ -182,10 +180,8 @@ public class CacheManageService extends Service {
         user.setNumGames(user.getRankingGames().size());
     }
 
-    @Override
     public void onDestroy() {
         LogUtils.i(TAG, "onCreate: Unregister event bus to Action!");
         EventBus.getDefault().unregister(this);
-        super.onDestroy();
     }
 }

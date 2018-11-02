@@ -10,7 +10,6 @@ import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
@@ -150,8 +149,9 @@ public class MainApplication extends MultiDexApplication {
 
     private void initializeCacheManager() {
         LogUtils.i(TAG, "initializeCacheManager: Initialize event cache manager!");
-        getApplicationContext().startService(new Intent(getApplicationContext(), CacheManageService.class));
-        getApplicationContext().startService(new Intent(getApplicationContext(), DatabaseManageService.class));
+
+        CacheManageService.getInstance().onCreate();
+        DatabaseManageService.getInstance(getApplicationContext()).onCreate();
     }
 
     private void initializePreferences() {
@@ -198,8 +198,9 @@ public class MainApplication extends MultiDexApplication {
 
     private void terminateCacheManager() {
         LogUtils.i(TAG, "terminateCacheManager: Terminate event cache manager!");
-        getApplicationContext().stopService(new Intent(getApplicationContext(), CacheManageService.class));
-        getApplicationContext().stopService(new Intent(getApplicationContext(), DatabaseManageService.class));
+
+        CacheManageService.getInstance().onDestroy();
+        DatabaseManageService.getInstance(getApplicationContext()).onDestroy();
         SugarContext.terminate();
     }
 
