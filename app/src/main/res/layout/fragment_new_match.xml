@@ -78,6 +78,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
@@ -116,8 +117,47 @@
                         style="@style/CardTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:layout_marginLeft="4dp"
                         android:checked="false"
                         android:text="@string/text_match_schedule_match"/>
+
+                    <LinearLayout
+                        android:id="@+id/card_view_players_group_schedule_match"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/card_view_players_group_schedule_match_time"
+                                style="@style/InputStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/element_vertical_margin"
+                                android:hint="@string/hint_detail_match_schedule_time"
+                                android:imeOptions="actionDone"
+                                android:inputType="time"
+                                android:maxLength="5"
+                                android:maxLines="1"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/card_view_players_group_schedule_match_btn_time"
+                            style="?android:attr/buttonStyle"
+                            android:layout_width="@dimen/cards_button_width"
+                            android:layout_height="@dimen/cards_button_height"
+                            android:layout_marginLeft="@dimen/element_horizontal_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            app:srcCompat="@drawable/ic_match_time"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

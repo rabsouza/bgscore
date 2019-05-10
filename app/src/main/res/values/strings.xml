@@ -38,7 +38,8 @@
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
     <string name="hint_detail_alias_match">Game Name/Nickname</string>
     <string name="hint_detail_match_obs">Game Notes/Comments</string>
-    <string name="hint_detail_match_created_at">Date of departure (dd/mm/yyyy)</string>
+    <string name="hint_detail_match_created_at">Date of match (dd/mm/yyyy)</string>
+    <string name="hint_detail_match_schedule_time">Match scheduling time (HH:MM)</string>
     <string name="hint_detail_match_duration">Duration of the game (HH:MM)</string>
     <string name="hint_text_detail_alias_match">*¹ Match name/nickname will be used to identify your match.</string>
     <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the game.</string>

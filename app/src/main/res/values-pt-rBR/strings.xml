@@ -40,6 +40,7 @@
     <string name="hint_detail_match_obs">Observações/Anotações da partida</string>
     <string name="hint_detail_match_created_at">Data da partida (dd/mm/yyyy)</string>
     <string name="hint_detail_match_duration">Duração da partida (HH:MM)</string>
+    <string name="hint_detail_match_schedule_time">Hora do agendamento da partida (HH:MM)</string>
     <string name="hint_text_detail_alias_match">*¹ O nome/apelido da partida será utilizado para identificar sua partida.</string>
     <string name="hint_text_detail_finish_match">*¹ Preencha os dados abaixo para finalizar a partida.</string>
     <string name="hint_text_detail_feedback_match">*¹ Selecione uma avaliação para sua partida (A avaliação Normal é a padrão).</string>
