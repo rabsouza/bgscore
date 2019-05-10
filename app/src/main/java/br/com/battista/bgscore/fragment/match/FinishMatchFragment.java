@@ -154,8 +154,8 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
             players.addAll(match.getPlayers());
 
-            if (match.getDuration() == null || match.getDuration() == 0) {
-                long duration = System.currentTimeMillis() - match.getCreatedAt().getTime();
+            if (match.getDuration() == null || match.getDuration() <= 0) {
+                long duration = (System.currentTimeMillis() - match.getCreatedAt().getTime()) / DateUtils.MIN_IN_MILLIS;
                 txtDuration.setText(DateUtils.formatTime(duration));
             } else {
                 txtDuration.setText(DateUtils.formatTime(match.getDuration()));

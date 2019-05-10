@@ -37,6 +37,9 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.COLUMN_NAME_I_PLAYING)
     private Boolean iPlaying = Boolean.TRUE;
 
+    @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_MODULE)
+    private Boolean scheduleMatch = Boolean.FALSE;
+
     @Column(name = MatchEntry.COLUMN_NAME_FINISHED)
     private Boolean finished = Boolean.FALSE;
 
@@ -128,6 +131,14 @@ public class Match extends BaseEntity implements Serializable {
         this.iPlaying = iPlaying;
     }
 
+    public Boolean isScheduleMatch() {
+        return scheduleMatch;
+    }
+
+    public void setScheduleMatch(Boolean scheduleMatch) {
+        this.scheduleMatch = scheduleMatch;
+    }
+
     public FeedbackEnum getFeedback() {
         return feedback;
     }
@@ -148,6 +159,7 @@ public class Match extends BaseEntity implements Serializable {
                 .add("gameId", gameId)
                 .add("players", players)
                 .add("iPlaying", iPlaying)
+                .add("scheduleMatch", scheduleMatch)
                 .add("finished", finished)
                 .add("duration", duration)
                 .add("feedbackIdRes", feedbackIdRes)
@@ -208,6 +220,11 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match iPlaying(Boolean iPlaying) {
         this.iPlaying = iPlaying;
+        return this;
+    }
+
+    public Match scheduleMatch(Boolean scheduleMatch) {
+        this.scheduleMatch = scheduleMatch;
         return this;
     }
 

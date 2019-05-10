@@ -92,6 +92,7 @@ public class DatabaseContract {
         public static final String FK_GAME_ID = "FK_GAME_ID";
         public static final String COLUMN_NAME_PLAYERS = "PLAYERS";
         public static final String COLUMN_NAME_I_PLAYING = "I_PLAYING";
+        public static final String COLUMN_NAME_SCHEDULE_MODULE = "SCHEDULE_MATCH";
         public static final String COLUMN_NAME_FINISHED = "FINISHED";
         public static final String COLUMN_NAME_DURATION = "DURATION";
         public static final String COLUMN_NAME_FEEDBACK = "FEEDBACK";

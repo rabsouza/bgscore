@@ -103,6 +103,7 @@
     <string name="text_match_search_game_info_01">*¹ Busque um jogo a partir do site boardgamegeek.com.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da minha coleção ou no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
+    <string name="text_match_schedule_match">Deseja agendar essa partida?</string>
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
     <string name="text_match_sort_list_info_01">*¹ Selecione uma das opções para alterar a ordenação da lista de partidas.</string>
     <string name="text_game_sort_list_info_01">*¹ Selecione uma das opções para alterar a ordenação da lista de jogos.</string>

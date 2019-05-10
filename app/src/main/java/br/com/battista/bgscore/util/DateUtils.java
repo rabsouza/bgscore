@@ -13,17 +13,15 @@ import java.util.regex.Pattern;
 
 public class DateUtils {
 
-    public static final int HOURS_IN_SECS = 3600;
+    public static final int MIN_IN_MILLIS = 60000;
     public static final int HOURS_IN_MINS = 60;
     public static final String DD_MM_YYYY = "dd/MM/yyyy";
     public static final String DD_MM_YYYY_HH_MM = "dd/MM/yyyy HH:mm";
     public static final String REGEX_TIME = "(?m)^(\\d\\d:\\d\\d)";
     private static final String TAG = DateUtils.class.getSimpleName();
-    private static final String FORMAT_HOURS_MINUTES = "%02d:%02d";
     private static SimpleDateFormat format = new SimpleDateFormat(DD_MM_YYYY, Locale.getDefault());
     private static SimpleDateFormat formatWithHours = new SimpleDateFormat(DD_MM_YYYY_HH_MM, Locale.getDefault());
     private static Pattern patternTime = Pattern.compile(REGEX_TIME);
-    ;
 
     private DateUtils() {
     }
@@ -47,6 +45,18 @@ public class DateUtils {
         }
         try {
             return format.parse(date);
+        } catch (ParseException e) {
+            LogUtils.e(TAG, "parse: Error parse to DAte", e);
+            return new Date();
+        }
+    }
+
+    public static Date parseWithHours(String date) {
+        if (date == null) {
+            return null;
+        }
+        try {
+            return formatWithHours.parse(date);
         } catch (ParseException e) {
             LogUtils.e(TAG, "parse: Error parse to DAte", e);
             return new Date();

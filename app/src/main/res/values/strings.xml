@@ -104,6 +104,7 @@
     <string name="text_match_game_info_01">*¹ Search for a new game from my collection or on boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Am I playing this game?</string>
     <string name="text_match_search_online">Search game on site boardgamegeek.com?</string>
+    <string name="text_match_schedule_match">Do you want to schedule this game?</string>
     <string name="text_match_sort_list_info_01">*¹ Select one of the options to change the order of the list of matches.</string>
     <string name="text_game_sort_list_info_01">*¹ Select one of the options to change the order of the game list.</string>
     <string name="text_game_games_info_01">*¹ List with the latest registered games.</string>
