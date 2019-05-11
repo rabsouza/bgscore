@@ -59,7 +59,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void setUpToolbar(@StringRes int title) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             changeTitleToolbar(title);
 
@@ -73,13 +73,13 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void changeActionActive(@IdRes int idAction) {
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(idAction);
     }
 
     protected void changeTitleCollapsingToolbar(@StringRes int titleResId) {
         CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+                findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(getContext().getString(titleResId));
     }
 

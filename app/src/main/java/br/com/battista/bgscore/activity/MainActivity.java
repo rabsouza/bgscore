@@ -32,12 +32,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadVersionName() {
-        final TextView hintVersion = (TextView) findViewById(R.id.hint_version);
+        final TextView hintVersion = findViewById(R.id.hint_version);
         hintVersion.setText(getString(R.string.hint_version, AndroidUtils.getVersionName(this)));
     }
 
     private void processProgressBarMain() {
-        final ProgressBar progressBarMain = (ProgressBar) findViewById(R.id.progress_bar_main);
+        final ProgressBar progressBarMain = findViewById(R.id.progress_bar_main);
         new ProgressBarAsyncTask(progressBarMain).execute();
     }
 

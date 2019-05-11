@@ -36,7 +36,7 @@ public class DatabaseManageService {
 
     private Context baseContext;
 
-    public DatabaseManageService(){
+    public DatabaseManageService() {
     }
 
     public DatabaseManageService(Context baseContext) {

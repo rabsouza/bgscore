@@ -40,8 +40,8 @@
                     android:clipToPadding="false"
                     android:dividerHeight="1dp"
                     android:listSelector="@android:color/transparent"
-                    android:paddingBottom="@dimen/md_keylines"
                     android:paddingTop="@dimen/element_vertical_margin"
+                    android:paddingBottom="@dimen/md_keylines"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
             </FrameLayout>
@@ -58,6 +58,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin_bottom"
         android:scaleType="center"
+        app:fabCustomSize="@dimen/fab_image_width"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

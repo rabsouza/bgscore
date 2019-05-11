@@ -1,5 +1,6 @@
 package br.com.battista.bgscore.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -72,16 +73,11 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private void setUpBottomNavigation() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
-        for (int i = 0; i < menuView.getChildCount(); i++) {
-            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
-            itemView.setShiftingMode(false);
-            itemView.setChecked(false);
-        }
         ((BottomNavigationItemView) menuView.getChildAt(0)).setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
