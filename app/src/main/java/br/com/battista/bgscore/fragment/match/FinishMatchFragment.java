@@ -240,7 +240,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
             @Override
             public void onClick(View view) {
-                if (!Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
+                if (!Strings.isNullOrEmpty(txtDuration.getText().toString())) {
                     final Long time = DateUtils.parseTime(txtDuration.getText().toString().trim());
                     int minute = time.intValue() % 60;
                     int hour = time.intValue() / 60;

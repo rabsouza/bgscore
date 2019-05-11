@@ -175,7 +175,13 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 ContextCompat.getColor(itemView.getContext(), R.color.colorImgFeedbackSatisfied));
                         break;
                 }
+                rowHolder.getImgInfoAlarm().setVisibility(View.GONE);
             } else {
+                if (match.isScheduleMatch()) {
+                    rowHolder.getImgInfoAlarm().setVisibility(View.VISIBLE);
+                } else {
+                    rowHolder.getImgInfoAlarm().setVisibility(View.GONE);
+                }
                 rowHolder.getImgInfoFeedback().setVisibility(View.GONE);
             }
 

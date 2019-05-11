@@ -130,6 +130,7 @@
     <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão participando da partida.</string>
     <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
+    <string name="text_legend_match_alarm">Se existe agendamento para a partida.</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Altera a ordenação da lista de partidas.</string>
     <string name="text_legend_ranking_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>

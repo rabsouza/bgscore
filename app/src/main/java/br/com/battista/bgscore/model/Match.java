@@ -8,6 +8,7 @@ import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -37,8 +38,11 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.COLUMN_NAME_I_PLAYING)
     private Boolean iPlaying = Boolean.TRUE;
 
-    @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_MODULE)
+    @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_MATCH)
     private Boolean scheduleMatch = Boolean.FALSE;
+
+    @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_DATE)
+    private Date schedule;
 
     @Column(name = MatchEntry.COLUMN_NAME_FINISHED)
     private Boolean finished = Boolean.FALSE;
@@ -139,6 +143,14 @@ public class Match extends BaseEntity implements Serializable {
         this.scheduleMatch = scheduleMatch;
     }
 
+    public Date getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Date schedule) {
+        this.schedule = schedule;
+    }
+
     public FeedbackEnum getFeedback() {
         return feedback;
     }
@@ -225,6 +237,11 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match scheduleMatch(Boolean scheduleMatch) {
         this.scheduleMatch = scheduleMatch;
+        return this;
+    }
+
+    public Match schedule(Date schedule) {
+        this.schedule = schedule;
         return this;
     }
 

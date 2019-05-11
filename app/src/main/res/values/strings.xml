@@ -131,6 +131,7 @@
     <string name="text_legend_match_players">Number of players participating in the match.</string>
     <string name="text_legend_match_time">Estimated duration of the match (HH: MM).</string>
     <string name="text_legend_match_feedback">Match rating (Bad, Bad, Normal, Good and Excellent).</string>
+    <string name="text_legend_match_alarm">If there is an active scheduling for the match.</string>
     <string name="text_legend_match_sort_list">Change the ordering of the list of matches.</string>
     <string name="text_legend_ranking_game_badge_game">Rating of the game (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
     <string name="text_legend_ranking_game_matches">Number of game starts recorded.</string>

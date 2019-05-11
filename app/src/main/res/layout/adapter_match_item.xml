@@ -33,6 +33,14 @@
             tools:text="Partida CN"/>
 
         <ImageView
+            android:id="@+id/card_view_match_info_alarm"
+            android:layout_width="@dimen/dimen_feedback_img_width"
+            android:layout_height="@dimen/dimen_feedback_img_height"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_alarm_add"/>
+
+        <ImageView
             android:id="@+id/card_view_match_info_feedback"
             android:layout_width="@dimen/dimen_feedback_img_width"
             android:layout_height="@dimen/dimen_feedback_img_height"
