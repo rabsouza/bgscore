@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
@@ -61,7 +61,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
             setAnimationHolder(itemView, position);
 
             final FriendDto friendDto = friends.get(position);
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, friendDto));
 
             holder.getTxtTitle().setText(friendDto.getUsername());
@@ -106,7 +106,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
                 cardView.setSelected(false);
             }
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
     }

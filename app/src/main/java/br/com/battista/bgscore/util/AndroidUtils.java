@@ -16,7 +16,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -46,7 +45,7 @@ public class AndroidUtils {
             versionName = "N/A";
         }
 
-        Log.d(TAG, String.format("getVersionName: Version app: %s!", versionName));
+        LogUtils.d(TAG, String.format("getVersionName: Version app: %s!", versionName));
         return versionName;
     }
 
@@ -69,7 +68,7 @@ public class AndroidUtils {
     public static void changeErrorSpinner(@NonNull MaterialBetterSpinner spinner,
                                           String msgError, Boolean error) {
         if (error) {
-            Log.e(TAG, msgError);
+            LogUtils.e(TAG, msgError);
             spinner.setError(msgError);
             spinner.requestFocus();
         } else {
@@ -79,7 +78,7 @@ public class AndroidUtils {
 
     public static void changeErrorEditText(@NonNull EditText editText, String msgError, Boolean error) {
         if (error) {
-            Log.e(TAG, msgError);
+            LogUtils.e(TAG, msgError);
             editText.setError(msgError);
             editText.requestFocus();
         } else {

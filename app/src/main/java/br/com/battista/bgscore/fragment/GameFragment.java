@@ -16,7 +16,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,7 @@ import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
 
 public class GameFragment extends BaseFragment {
@@ -65,7 +65,7 @@ public class GameFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new GameFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new GameFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_game, container, false);
 
@@ -106,9 +106,8 @@ public class GameFragment extends BaseFragment {
     }
 
 
-
     private void processSortListGames(View view, View viewClicked) {
-        Log.i(TAG, "processSortListGames: Show sort list games!");
+        LogUtils.i(TAG, "processSortListGames: Show sort list games!");
 
         LayoutInflater inflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -147,7 +146,7 @@ public class GameFragment extends BaseFragment {
     }
 
     private void processNewOrderByGames(@NonNull String selectedItem, int selectedItemPosition) {
-        Log.i(TAG, "processNewOrderByGames: Process new order by!");
+        LogUtils.i(TAG, "processNewOrderByGames: Process new order by!");
         AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                 CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SORT_LIST_GAME);
 
@@ -201,13 +200,12 @@ public class GameFragment extends BaseFragment {
     }
 
     private void loadAllGames() {
-        Log.i(TAG, "loadAllMatches: Load all Games in BD!");
+        LogUtils.i(TAG, "loadAllMatches: Load all Games in BD!");
         if (!refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(true);
         }
         new LoadAllGamesAsyncTask().execute();
     }
-
 
 
     private void setupRecycleGames(View view) {

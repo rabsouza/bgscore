@@ -10,11 +10,14 @@ import com.google.common.base.Objects;
 import java.io.Serializable;
 import java.util.Date;
 
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.util.LogUtils;
 
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto> {
+
     private static final long serialVersionUID = 1L;
 
     private Game game;
@@ -69,6 +72,10 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("game", game)
                 .add("count", count)

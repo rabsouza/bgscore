@@ -1,11 +1,11 @@
 package br.com.battista.bgscore.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.util.Log;
 import android.view.MenuItem;
 
 import br.com.battista.bgscore.BuildConfig;
@@ -22,6 +22,7 @@ import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AnswersUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class HomeActivity extends BaseActivity {
 
@@ -43,45 +44,41 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void processDataActivity(Bundle bundle) {
-        Log.d(TAG, "processDataActivity: Process bundle data Activity!");
+        LogUtils.d(TAG, "processDataActivity: Process bundle data Activity!");
 
         if (bundle != null && bundle.containsKey(BundleConstant.NAVIGATION_TO)) {
             int navigationTo = bundle.getInt(BundleConstant.NAVIGATION_TO);
 
             switch (navigationTo) {
                 case BundleConstant.NavigationTo.GAME_FRAGMENT:
-                    Log.i(TAG, "loadFragmentInitial: Load the GameFragment!");
+                    LogUtils.i(TAG, "loadFragmentInitial: Load the GameFragment!");
                     changeActionActive(R.id.action_games);
                     replaceFragment(GameFragment.newInstance());
                     break;
                 case BundleConstant.NavigationTo.MATCH_FRAGMENT:
-                    Log.i(TAG, "loadFragmentInitial: Load the MatchFragment!");
+                    LogUtils.i(TAG, "loadFragmentInitial: Load the MatchFragment!");
                     changeActionActive(R.id.action_matches);
                     replaceFragment(MatchFragment.newInstance());
                     break;
                 default:
-                    Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
+                    LogUtils.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
                     changeActionActive(R.id.action_home);
                     replaceFragment(HomeFragment.newInstance());
                     break;
             }
 
         } else {
-            Log.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
+            LogUtils.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
             replaceFragment(HomeFragment.newInstance());
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private void setUpBottomNavigation() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
-        for (int i = 0; i < menuView.getChildCount(); i++) {
-            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
-            itemView.setShiftingMode(false);
-            itemView.setChecked(false);
-        }
+        ((BottomNavigationItemView) menuView.getChildAt(0)).setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {

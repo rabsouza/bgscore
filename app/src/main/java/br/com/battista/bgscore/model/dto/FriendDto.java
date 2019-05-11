@@ -10,7 +10,9 @@ import com.orm.dsl.Ignore;
 
 import java.io.Serializable;
 
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.enuns.AvatarEnum;
+import br.com.battista.bgscore.util.LogUtils;
 
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -75,6 +77,10 @@ public class FriendDto implements Serializable, Comparable<FriendDto> {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
                 .add("mail", mail)

@@ -1,11 +1,11 @@
 package br.com.battista.bgscore.repository;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.List;
 
 import br.com.battista.bgscore.model.BaseEntity;
+import br.com.battista.bgscore.util.LogUtils;
 
 public abstract class BaseRepository {
 
@@ -15,11 +15,11 @@ public abstract class BaseRepository {
         entity.reloadId();
         entity.synchronize();
         if (entity.getId() != null && entity.getId() > 0 && entity.getVersion() != null) {
-            Log.i(TAG, "saveEntity: Update the entity!");
+            LogUtils.i(TAG, "saveEntity: Update the entity!");
             entity.updateEntity();
             entity.update();
         } else {
-            Log.i(TAG, "saveEntity: Save the entity!");
+            LogUtils.i(TAG, "saveEntity: Save the entity!");
             entity.setId(entity.save());
             entity.update();
         }

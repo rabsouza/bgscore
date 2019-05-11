@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.repository;
 
 
-import android.util.Log;
-
 import com.google.common.collect.Sets;
 import com.orm.query.Select;
 
@@ -13,6 +11,7 @@ import br.com.battista.bgscore.model.ExpansionGame;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class GameRepository extends BaseRepository implements Repository<Game> {
 
@@ -21,37 +20,37 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     @Override
     public void save(Game entity) {
         if (entity != null) {
-            Log.i(TAG, MessageFormat.format("Save to Game with name: {0}.", entity.getName()));
+            LogUtils.i(TAG, MessageFormat.format("Save to Game with name: {0}.", entity.getName()));
             saveEntity(entity);
         } else {
-            Log.w(TAG, "Entity can not be null!");
+            LogUtils.w(TAG, "Entity can not be null!");
         }
     }
 
     @Override
     public void saveAll(List<Game> entities) {
         if (entities != null) {
-            Log.i(TAG, MessageFormat.format("Save {0} Games.", entities.size()));
+            LogUtils.i(TAG, MessageFormat.format("Save {0} Games.", entities.size()));
             for (Game entity : entities) {
                 if (entity != null) {
-                    Log.i(TAG, MessageFormat.format("Save to Game with key: {0}.", entity.getId()));
+                    LogUtils.i(TAG, MessageFormat.format("Save to Game with key: {0}.", entity.getId()));
                     saveEntity(entity);
                 }
             }
         } else {
-            Log.w(TAG, "Entities can not be null!");
+            LogUtils.w(TAG, "Entities can not be null!");
         }
     }
 
     public Game find(Long id) {
-        Log.i(TAG, MessageFormat.format("Find the Game by key: {0}.", id));
+        LogUtils.i(TAG, MessageFormat.format("Find the Game by key: {0}.", id));
         final Game game = Game.findById(Game.class, id);
         reload(game);
         return game;
     }
 
     public Game findByBoardGameId(Long boardgameId) {
-        Log.i(TAG, MessageFormat.format("Find the Game by boardgameId: {0}.", boardgameId));
+        LogUtils.i(TAG, MessageFormat.format("Find the Game by boardgameId: {0}.", boardgameId));
         final Game game = Select
                 .from(Game.class)
                 .where(MessageFormat.format("{0} = ?", GameEntry.COLUMN_NAME_ID_BGG),
@@ -65,18 +64,18 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     public void delete(Game entity) {
         if (entity != null) {
             entity.reloadId();
-            Log.i(TAG, MessageFormat.format("Delete to Game with id: {0}.", entity.getId()));
+            LogUtils.i(TAG, MessageFormat.format("Delete to Game with id: {0}.", entity.getId()));
             Game.deleteAll(entity.getClass(),
                     MessageFormat.format("{0} = ?", DatabaseContract.BaseEntry.COLUMN_NAME_ID),
                     String.valueOf(entity.getId()));
         } else {
-            Log.w(TAG, "Entity can not be null!");
+            LogUtils.w(TAG, "Entity can not be null!");
         }
     }
 
     @Override
     public List<Game> findAll() {
-        Log.i(TAG, "Find all Games.");
+        LogUtils.i(TAG, "Find all Games.");
         final List<Game> games = Select
                 .from(Game.class)
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
@@ -87,7 +86,7 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     }
 
     public List<Game> findAll(String orderBy) {
-        Log.i(TAG, "Find all Games.");
+        LogUtils.i(TAG, "Find all Games.");
         final List<Game> games = Select
                 .from(Game.class)
                 .orderBy(orderBy)
@@ -98,7 +97,7 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
 
     @Override
     public void deleteAll() {
-        Log.i(TAG, "Delete all Games.");
+        LogUtils.i(TAG, "Delete all Games.");
         Game.deleteAll(Game.class);
     }
 
@@ -109,7 +108,7 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     }
 
     private void reload(Game entity) {
-        Log.i(TAG, "Reload data Expansions Game.");
+        LogUtils.i(TAG, "Reload data Expansions Game.");
         if (entity != null) {
             reloadEntity(entity);
             if (entity.getId() != null) {

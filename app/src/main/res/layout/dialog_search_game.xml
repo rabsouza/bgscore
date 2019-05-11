@@ -53,8 +53,8 @@
             android:clipToPadding="false"
             android:dividerHeight="1dp"
             android:listSelector="@android:color/transparent"
-            android:paddingBottom="@dimen/md_keylines"
             android:paddingTop="@dimen/md_keylines"
+            android:paddingBottom="@dimen/md_keylines"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </LinearLayout>

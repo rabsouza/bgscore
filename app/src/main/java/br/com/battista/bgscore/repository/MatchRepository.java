@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.repository;
 
 
-import android.util.Log;
-
 import com.orm.query.Select;
 
 import java.text.MessageFormat;
@@ -13,6 +11,7 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class MatchRepository extends BaseRepository implements Repository<Match> {
 
@@ -21,34 +20,34 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     @Override
     public void save(Match entity) {
         if (entity != null) {
-            Log.i(TAG, MessageFormat.format("Save to Match with alias: {0}.", entity.getAlias()));
+            LogUtils.i(TAG, MessageFormat.format("Save to Match with alias: {0}.", entity.getAlias()));
             saveEntity(entity);
             for (Player player : entity.getPlayers()) {
                 player.matchId(entity.getId());
                 new PlayerRepository().save(player);
             }
         } else {
-            Log.w(TAG, "Entity can not be null!");
+            LogUtils.w(TAG, "Entity can not be null!");
         }
     }
 
     @Override
     public void saveAll(List<Match> entities) {
         if (entities != null) {
-            Log.i(TAG, MessageFormat.format("Save {0} Matches.", entities.size()));
+            LogUtils.i(TAG, MessageFormat.format("Save {0} Matches.", entities.size()));
             for (Match entity : entities) {
                 if (entity != null) {
-                    Log.i(TAG, MessageFormat.format("Save to Match with key: {0}.", entity.getId()));
+                    LogUtils.i(TAG, MessageFormat.format("Save to Match with key: {0}.", entity.getId()));
                     saveEntity(entity);
                 }
             }
         } else {
-            Log.w(TAG, "Entities can not be null!");
+            LogUtils.w(TAG, "Entities can not be null!");
         }
     }
 
     public Match find(Long id) {
-        Log.i(TAG, MessageFormat.format("Find the Match by key: {0}.", id));
+        LogUtils.i(TAG, MessageFormat.format("Find the Match by key: {0}.", id));
         final Match match = Match.findById(Match.class, id);
         reload(match);
         return match;
@@ -58,18 +57,18 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     public void delete(Match entity) {
         if (entity != null) {
             entity.reloadId();
-            Log.i(TAG, MessageFormat.format("Delete to Match with id: {0}.", entity.getId()));
+            LogUtils.i(TAG, MessageFormat.format("Delete to Match with id: {0}.", entity.getId()));
             Match.deleteAll(entity.getClass(),
                     MessageFormat.format("{0} = ?", BaseEntry.COLUMN_NAME_ID),
                     String.valueOf(entity.getId()));
         } else {
-            Log.w(TAG, "Entity can not be null!");
+            LogUtils.w(TAG, "Entity can not be null!");
         }
     }
 
     @Override
     public List<Match> findAll() {
-        Log.i(TAG, "Find all Matches.");
+        LogUtils.i(TAG, "Find all Matches.");
         final List<Match> matches = Select
                 .from(Match.class)
                 .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
@@ -84,7 +83,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     }
 
     public List<Match> findAll(String orderBy) {
-        Log.i(TAG, "Find all Matches.");
+        LogUtils.i(TAG, "Find all Matches.");
         final List<Match> matches = Select
                 .from(Match.class)
                 .orderBy(orderBy)
@@ -98,7 +97,7 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
     }
 
     public List<Match> findByGameId(Long idGame) {
-        Log.i(TAG, MessageFormat.format("Find Matches by Id Game: {0}.", idGame));
+        LogUtils.i(TAG, MessageFormat.format("Find Matches by Id Game: {0}.", idGame));
         final List<Match> matches = Select
                 .from(Match.class)
                 .where(MessageFormat.format("{0} = ?", MatchEntry.FK_GAME_ID),
@@ -116,12 +115,12 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
 
     @Override
     public void deleteAll() {
-        Log.i(TAG, "Delete all Matches.");
+        LogUtils.i(TAG, "Delete all Matches.");
         Match.deleteAll(Match.class);
     }
 
     private void reload(Match entity) {
-        Log.i(TAG, "Reload data Matches.");
+        LogUtils.i(TAG, "Reload data Matches.");
         if (entity != null) {
             reloadEntity(entity);
             if (entity.getGame() == null && entity.getGameId() != null) {

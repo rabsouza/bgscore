@@ -70,8 +70,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card_view_share_match_full_info_line"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_marginLeft="@dimen/element_horizontal_margin"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_toRightOf="@id/card_view_share_match_full_info_date"
                     android:drawableLeft="@drawable/ic_match_time"
                     android:drawablePadding="@dimen/drawable_padding"
@@ -83,8 +83,8 @@
                     android:layout_width="@dimen/dimen_game_img_width"
                     android:layout_height="@dimen/dimen_game_img_height"
                     android:layout_below="@id/card_view_share_match_full_info_date"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_marginTop="@dimen/element_vertical_margin"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/boardgame_game"/>
 
@@ -94,8 +94,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card_view_share_match_full_info_date"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_marginLeft="@dimen/element_vertical_margin"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_toRightOf="@id/card_view_share_match_full_info_image"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
@@ -108,8 +108,8 @@
                     android:layout_width="@dimen/first_column_card_width"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card_view_share_match_full_info_name_game"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_marginLeft="@dimen/element_horizontal_margin"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_toRightOf="@id/card_view_share_match_full_info_image"
                     android:drawableLeft="@drawable/ic_game_players"
                     android:drawablePadding="@dimen/drawable_padding"
@@ -135,8 +135,8 @@
                     android:layout_width="@dimen/first_column_card_width"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/card_view_share_match_full_info_players"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_marginLeft="@dimen/element_horizontal_margin"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_toRightOf="@id/card_view_share_match_full_info_image"
                     android:drawableLeft="@drawable/ic_game_age"
                     android:drawablePadding="@dimen/drawable_padding"
@@ -196,8 +196,8 @@
                     android:layout_width="@dimen/item_dialog_img_width"
                     android:layout_height="@dimen/item_dialog_img_height"
                     android:layout_below="@id/card_view_share_match_full_obs_info"
-                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:layout_marginRight="@dimen/element_horizontal_margin"
+                    android:layout_marginBottom="@dimen/element_vertical_margin"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_feedback_neutral"/>
 
@@ -229,10 +229,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_share_match_info"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/element_horizontal_margin"
-            android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_marginTop="@dimen/element_vertical_margin"
+            android:layout_marginRight="@dimen/element_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:weightSum="2">
 
             <Button

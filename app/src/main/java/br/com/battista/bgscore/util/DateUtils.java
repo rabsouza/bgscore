@@ -1,9 +1,8 @@
 package br.com.battista.bgscore.util;
 
-import android.util.Log;
-
 import com.google.common.base.Strings;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,44 +14,89 @@ import java.util.regex.Pattern;
 
 public class DateUtils {
 
-    public static final int HOURS_IN_SECS = 3600;
+    public static final int MIN_IN_MILLIS = 60000;
     public static final int HOURS_IN_MINS = 60;
     public static final String DD_MM_YYYY = "dd/MM/yyyy";
     public static final String DD_MM_YYYY_HH_MM = "dd/MM/yyyy HH:mm";
+    public static final String HH_MM = "HH:mm";
     public static final String REGEX_TIME = "(?m)^(\\d\\d:\\d\\d)";
-    private static final String TAG = DateUtils.class.getSimpleName();
-    private static final String FORMAT_HOURS_MINUTES = "%02d:%02d";
-    private static SimpleDateFormat format = new SimpleDateFormat(DD_MM_YYYY, Locale.getDefault());
-    private static SimpleDateFormat formatWithHours = new SimpleDateFormat(DD_MM_YYYY_HH_MM, Locale.getDefault());
-    private static Pattern patternTime = Pattern.compile(REGEX_TIME);
-    ;
+    public static final String REGEX_DATE = "(?m)^(\\d\\d/\\d\\d/\\d\\d\\d\\d)";
+    public static final String REGEX_DATE_WITH_HOURS = "(?m)^(\\d\\d/\\d\\d/\\d\\d\\d\\d\\s\\d\\d:\\d\\d)";
 
     private DateUtils() {
     }
 
+    public static String formatHours(Date date) {
+        if (date == null) {
+            return "00:00";
+        }
+        return format(date, HH_MM);
+    }
+
+    public static String formatHours(Calendar date) {
+        if (date == null) {
+            return "00:00";
+        }
+        return formatHours(date.getTime());
+    }
+
     public static String format(Date date) {
-        Calendar now = Calendar.getInstance();
-        now.setTime(date);
-        return format(now);
+        if (date == null) {
+            return "";
+        }
+        return format(date, DD_MM_YYYY);
     }
 
     public static String format(Calendar date) {
         if (date == null) {
             return "";
         }
-        return format.format(date.getTime());
+        return format(date.getTime());
+    }
+
+    public static String formatWithHours(Calendar date) {
+        if (date == null) {
+            return "";
+        }
+        return format(date.getTime(), DD_MM_YYYY_HH_MM);
+    }
+
+    public static String formatWithHours(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return format(date, DD_MM_YYYY_HH_MM);
+    }
+
+    private static String format(Date date, String parten) {
+        DateFormat format = new SimpleDateFormat(parten, Locale.getDefault());
+        return format.format(date);
     }
 
     public static Date parse(String date) {
         if (date == null) {
             return null;
         }
-        try {
-            return format.parse(date);
-        } catch (ParseException e) {
-            Log.e(TAG, "parse: Error parse to DAte", e);
-            return new Date();
+
+        Pattern patternDate = Pattern.compile(REGEX_DATE);
+        if (!patternDate.matcher(date).find()) {
+            return null;
         }
+
+        return parse(date, DD_MM_YYYY);
+    }
+
+    public static Date parseWithHours(String date) {
+        if (Strings.isNullOrEmpty(date)) {
+            return null;
+        }
+
+        Pattern patternDate = Pattern.compile(REGEX_DATE_WITH_HOURS);
+        if (!patternDate.matcher(date).find()) {
+            return null;
+        }
+
+        return parse(date, DD_MM_YYYY_HH_MM);
     }
 
     public static Long parseTime(String time) {
@@ -60,6 +104,7 @@ public class DateUtils {
             return 0L;
         }
 
+        Pattern patternTime = Pattern.compile(REGEX_TIME);
         if (!patternTime.matcher(time).find()) {
             return 0L;
         }
@@ -69,6 +114,15 @@ public class DateUtils {
         Long minutes = Long.valueOf(tokenizer.nextElement().toString());
 
         return hours * 60 + minutes;
+    }
+
+    private static Date parse(String date, String parten) {
+        DateFormat format = new SimpleDateFormat(parten, Locale.getDefault());
+        try {
+            return format.parse(date);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     public static String formatTime(Long time) {
@@ -86,19 +140,5 @@ public class DateUtils {
                 .append(decimalFormatScore.format(minute));
         return newTime.toString();
     }
-
-    public static String formatWithHours(Calendar date) {
-        if (date == null) {
-            return "";
-        }
-        return formatWithHours.format(date.getTime());
-    }
-
-    public static String formatWithHours(Date date) {
-        Calendar now = Calendar.getInstance();
-        now.setTime(date);
-        return formatWithHours(now);
-    }
-
 
 }

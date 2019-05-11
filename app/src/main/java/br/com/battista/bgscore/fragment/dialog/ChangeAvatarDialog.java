@@ -15,7 +15,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import android.widget.Button;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.adpater.AvatarAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class ChangeAvatarDialog extends DialogFragment {
 
@@ -51,7 +51,7 @@ public class ChangeAvatarDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog change avatar!");
+        LogUtils.i(TAG, "showAbout: Show dialog change avatar!");
 
         setTargetFragment(fragment, DIALOG_CHANGE_AVATAR_FRAGMENT);
 
@@ -78,7 +78,7 @@ public class ChangeAvatarDialog extends DialogFragment {
     }
 
     private void loadViews(View viewFragment) {
-        Log.i(TAG, "loadViews: load all views!");
+        LogUtils.i(TAG, "loadViews: load all views!");
 
         btnCancelChange = viewFragment.findViewById(R.id.dialog_view_change_avatar_btn_cancel);
         btnCancelChange.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,9 @@ import com.google.common.base.Strings;
 
 import java.io.Serializable;
 
+import br.com.battista.bgscore.constants.EntityConstant;
+import br.com.battista.bgscore.util.LogUtils;
+
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AvatarDto implements Serializable, Comparable<AvatarDto> {
@@ -54,6 +57,10 @@ public class AvatarDto implements Serializable, Comparable<AvatarDto> {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("idResAvatar", idResAvatar)
                 .add("nameAvatar", nameAvatar)

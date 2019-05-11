@@ -7,6 +7,56 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 
 
+### Version - 1.0.11
+**Date release**
+ - 01/11/2018
+
+**Features** 
+- Atualiza o target sdk para Android 28
+ 
+**Bugs**
+- Bug da atualização do Android 28
+
+------------------------------------------------------------------------
+
+### Version - 1.0.10
+**Date release**
+ - 23/09/2018
+ 
+Adiciona Politica de privacidade
+
+------------------------------------------------------------------------
+
+### Version - 1.0.9
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug na importação de grande dados
+ 
+**Improvements**
+ - Desabilita log para release
+ - Adiciona cache para as informações estatistica de jogos e partidas. 
+
+------------------------------------------------------------------------
+
+### Version - 1.0.8
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug no Android O para utilizar os serviços em background.
+ 
+**Improvements** 
+ 
+------------------------------------------------------------------------
+
 ### Version - 1.0.7
 **Date release**
  - 09/04/2017
@@ -138,9 +188,62 @@ Os Pacotes liberados para testes e produção da aplicação.
 
 **Improvements**
 
+
+
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+
+### Version - 1.0.20-Beta
+**Date release**
+ - 01/11/2018
+ 
+**Features** 
+- Atualiza o target sdk para Android 28
+ 
+**Bugs**
+- Bug da atualização do Android 28
+
+------------------------------------------------------------------------
+
+### Version - 1.0.22-Beta
+**Date release**
+ - 23/09/2018
+ 
+Adiciona Politica de privacidade
+
+------------------------------------------------------------------------
+
+### Version - 1.0.21-Beta
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug na importação de grande dados
+ 
+**Improvements**
+ - Desabilita log para release
+ - Adiciona cache para as informações estatistica de jogos e partidas. 
+ 
+------------------------------------------------------------------------
+
+### Version - 1.0.17-Beta
+**Date release**
+ - 11/04/2017
+ 
+**Features** 
+ 
+**Bugs**
+ - Bug de problema de desempenho ao carrega lista de jogos e partidas
+ - Bug no Android O para utilizar os serviços em background.
+ 
+**Improvements** 
+ 
 ------------------------------------------------------------------------
 
 ### Version - 1.0.16-Beta

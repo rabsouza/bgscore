@@ -1,11 +1,5 @@
 package br.com.battista.bgscore.service;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -18,47 +12,53 @@ import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.dto.StatisticDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
+import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
-public class CacheManageService extends Service {
+public class CacheManageService {
 
     private static final String TAG = CacheManageService.class.getSimpleName();
+    private static CacheManageService instance;
 
-    @Override
+    public static CacheManageService getInstance() {
+        if (instance == null) {
+            instance = new CacheManageService();
+        }
+        return instance;
+    }
+
     public void onCreate() {
-        super.onCreate();
-        Log.i(TAG, "onCreate: Register event bus to Action!");
+        LogUtils.i(TAG, "onCreate: Register event bus to Action!");
         EventBus.getDefault().register(this);
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
     public void reloadSyncAllDataCache() {
-        Log.i(TAG, "reloadSyncAllDataCache: Reload all data cache!!!");
+        LogUtils.i(TAG, "reloadSyncAllDataCache: Reload all data cache!!!");
         final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
         loadAllDataMatchAddToCache(user);
         loadAllDataRankingGamesAddToCache(user);
         loadAllDataGameAddToCache(user);
+        loadAllDataStatisticGamesAddToCache(user);
+        instance.setUser(user);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onActionCache(ActionCacheEnum action) {
-        Log.i(TAG, MessageFormat.format("onActionCache: Process to action: {0}.", action));
+        LogUtils.i(TAG, MessageFormat.format("onActionCache: Process to action: {0}.", action));
         final MainApplication instance = MainApplication.instance();
         User user = instance.getUser();
 
         if (ActionCacheEnum.LOAD_DATA_GAME.equals(action)) {
             loadAllDataRankingGamesAddToCache(user);
             loadAllDataGameAddToCache(user);
+            loadAllDataStatisticGamesAddToCache(user);
             if (user.isAutomaticBackup()) {
                 AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
             }
@@ -81,7 +81,7 @@ public class CacheManageService extends Service {
     }
 
     private synchronized void loadAllDataMatchAddToCache(User user) {
-        Log.i(TAG, "loadAllDataMatchAddToCache: Update data match user!");
+        LogUtils.i(TAG, "loadAllDataMatchAddToCache: Update data match user!");
         final MatchRepository matchRepository = new MatchRepository();
         final List<Match> matches = matchRepository.findAll();
         user.setNumMatches(matches.size());
@@ -97,10 +97,36 @@ public class CacheManageService extends Service {
             totalTime += match.getDuration();
         }
         user.setTotalTime(totalTime);
+
+        LogUtils.i(TAG, "loadAllDataMatchAddToCache: Update the scores to matches!");
+        int countVeryDissatisfied = 0;
+        int countDissatisfied = 0;
+        int countNeutral = 0;
+        int countSatisfied = 0;
+        int countVerySatisfied = 0;
+        for (Match match : matches) {
+            if (FeedbackEnum.FEEDBACK_VERY_DISSATISFIED.equals(match.getFeedback())) {
+                countVeryDissatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_DISSATISFIED.equals(match.getFeedback())) {
+                countDissatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_SATISFIED.equals(match.getFeedback())) {
+                countSatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_VERY_SATISFIED.equals(match.getFeedback())) {
+                countVerySatisfied++;
+            } else if (FeedbackEnum.FEEDBACK_NEUTRAL.equals(match.getFeedback())) {
+                countNeutral++;
+            }
+        }
+        final StatisticDto statistic = user.getStatisticDto();
+        statistic.setCountMatchVeryDissatisfied(countVeryDissatisfied);
+        statistic.setCountMatchDissatisfied(countDissatisfied);
+        statistic.setCountMatchNeutral(countNeutral);
+        statistic.setCountMatchSatisfied(countSatisfied);
+        statistic.setCountMatchVerySatisfied(countVerySatisfied);
     }
 
     private synchronized void loadAllDataRankingGamesAddToCache(User user) {
-        Log.i(TAG, "loadAllDataRankingGamesAddToCache: Update data racking user!");
+        LogUtils.i(TAG, "loadAllDataRankingGamesAddToCache: Update data racking user!");
         final List<Game> games = new GameRepository().findAll();
         user.clearRankingGames();
         for (Game game : games) {
@@ -122,15 +148,37 @@ public class CacheManageService extends Service {
         }
     }
 
+    private synchronized void loadAllDataStatisticGamesAddToCache(User user) {
+        LogUtils.i(TAG, "loadAllDataStatisticGamesAddToCache: Update the scores to games!");
+        final List<Game> games = new GameRepository().findAll();
+        int countMyGame = 0;
+        int countFavorite = 0;
+        int countWantGame = 0;
+        for (Game game : games) {
+            if (game.isMyGame()) {
+                countMyGame++;
+            }
+            if (game.isFavorite()) {
+                countFavorite++;
+            }
+            if (game.isWantGame()) {
+                countWantGame++;
+            }
+        }
+        final StatisticDto statistic = user.getStatisticDto();
+        statistic.countGameMyGame(countMyGame);
+        statistic.countGameFavorite(countFavorite);
+        statistic.countGameWantGame(countWantGame);
+
+    }
+
     private synchronized void loadAllDataGameAddToCache(User user) {
-        Log.i(TAG, "loadAllDataGameAddToCache: Update data game user!");
+        LogUtils.i(TAG, "loadAllDataGameAddToCache: Update data game user!");
         user.setNumGames(user.getRankingGames().size());
     }
 
-    @Override
     public void onDestroy() {
-        Log.i(TAG, "onCreate: Unregister event bus to Action!");
+        LogUtils.i(TAG, "onCreate: Unregister event bus to Action!");
         EventBus.getDefault().unregister(this);
-        super.onDestroy();
     }
 }

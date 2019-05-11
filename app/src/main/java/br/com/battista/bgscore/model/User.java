@@ -13,12 +13,15 @@ import java.util.Map;
 import java.util.Set;
 
 import br.com.battista.bgscore.BuildConfig;
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
+import br.com.battista.bgscore.model.dto.StatisticDto;
 import br.com.battista.bgscore.model.enuns.AvatarEnum;
 import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.UserEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 @Table(name = UserEntry.TABLE_NAME)
 public class User extends BaseEntity implements Serializable {
@@ -64,8 +67,11 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_ORDER_BY)
     private Map<String, OrderByDto> orderBy = Maps.newLinkedHashMap();
 
-    @Column(name = UserEntry.COLUMN_NAME_WELCOME)
+    @Column(name = UserEntry.COLUMN_NAME_AUTOMATIC_BACKUP)
     private Boolean automaticBackup = Boolean.FALSE;
+
+    @Column(name = UserEntry.COLUMN_NAME_STATISTIC)
+    private StatisticDto statisticDto = new StatisticDto();
 
     public String getUsername() {
         return username;
@@ -132,7 +138,7 @@ public class User extends BaseEntity implements Serializable {
     }
 
     public Set<RankingGamesDto> getRankingGames() {
-        if(rankingGames == null){
+        if (rankingGames == null) {
             rankingGames = Sets.newHashSet();
         }
         return rankingGames;
@@ -182,6 +188,14 @@ public class User extends BaseEntity implements Serializable {
         this.automaticBackup = automaticBackup;
     }
 
+    public StatisticDto getStatisticDto() {
+        return statisticDto;
+    }
+
+    public void setStatisticDto(StatisticDto statisticDto) {
+        this.statisticDto = statisticDto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -198,6 +212,10 @@ public class User extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("username", username)
                 .add("mail", mail)
@@ -213,7 +231,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("lastBuildVersion", lastBuildVersion)
                 .add("orderBy", orderBy)
                 .add("automaticBackup", automaticBackup)
-                .addValue(super.toString())
+                .add("statisticDto", statisticDto)
                 .toString();
     }
 
@@ -332,6 +350,11 @@ public class User extends BaseEntity implements Serializable {
 
     public User automaticBackup(Boolean automaticBackup) {
         this.automaticBackup = automaticBackup;
+        return this;
+    }
+
+    public User statisticDto(StatisticDto statisticDto) {
+        this.statisticDto = statisticDto;
         return this;
     }
 }

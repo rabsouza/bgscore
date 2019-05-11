@@ -43,8 +43,8 @@
             android:clipToPadding="false"
             android:dividerHeight="0dp"
             android:listSelector="@android:color/transparent"
-            android:paddingBottom="@dimen/element_vertical_margin"
             android:paddingTop="@dimen/element_vertical_margin"
+            android:paddingBottom="@dimen/element_vertical_margin"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <LinearLayout

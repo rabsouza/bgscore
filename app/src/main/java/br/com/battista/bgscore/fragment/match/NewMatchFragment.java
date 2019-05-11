@@ -8,6 +8,7 @@ import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAM
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +23,14 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
@@ -75,9 +77,10 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
-public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
+public class NewMatchFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private static final String TAG = NewMatchFragment.class.getSimpleName();
     final List<Player> players = Lists.newLinkedList();
@@ -102,6 +105,10 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     private EditText txtCreateAt;
     private ImageButton btnCreateAt;
     private Switch swtIPlaying;
+    private Switch swtScheduleMatch;
+    private ViewGroup grpSchedule;
+    private EditText txtScheduleTime;
+    private ImageButton btnScheduleTime;
 
     private ImageView imgInfoGame;
     private TextView txtInfoName;
@@ -128,7 +135,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new NewMatchFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new NewMatchFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_new_match, container, false);
 
@@ -149,19 +156,28 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
             match.reloadId();
 
             txtMatchAlias.setText(match.getAlias());
             txtCreateAt.setText(DateUtils.format(match.getCreatedAt()));
+
+            if (match.getSchedule() == null) {
+                txtScheduleTime.setText(DateUtils.formatHours(new Date()));
+            } else {
+                txtScheduleTime.setText(DateUtils.formatHours(match.getSchedule()));
+            }
+
             gameSelected = match.getGame();
             txtSearchNameGame.setText(gameSelected.getName());
             fillCardGame();
 
             final User user = MainApplication.instance().getUser();
             swtIPlaying.setChecked(match.isIPlaying());
+
+            swtScheduleMatch.setChecked(match.isScheduleMatch());
             if (match.isIPlaying()) {
                 playersSaved.add(new FriendDto().username(user.getUsername()));
             }
@@ -190,7 +206,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void fillDataAndSave() {
-        Log.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
+        LogUtils.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
         if (Strings.isNullOrEmpty(txtMatchAlias.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_alias_match_required);
             AndroidUtils.changeErrorEditText(txtMatchAlias, msgErrorUsername, true);
@@ -202,7 +218,32 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         if (Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
             match.createdAt(new Date());
         } else {
-            match.createdAt(DateUtils.parse(txtCreateAt.getText().toString().trim()));
+            Calendar calendarCreatedAt = Calendar.getInstance();
+            Date createdAt = DateUtils.parse(txtCreateAt.getText().toString().trim());
+            calendarCreatedAt.setTime(createdAt);
+
+            Calendar now = Calendar.getInstance();
+            calendarCreatedAt.set(Calendar.HOUR_OF_DAY, now.get(Calendar.HOUR_OF_DAY));
+            calendarCreatedAt.set(Calendar.MINUTE, now.get(Calendar.MINUTE));
+
+            match.createdAt(calendarCreatedAt.getTime());
+        }
+
+        if (swtScheduleMatch.isChecked()) {
+            Calendar calendarCreatedAt = Calendar.getInstance();
+            calendarCreatedAt.setTime(match.getCreatedAt());
+
+            Calendar calendarSchedule = Calendar.getInstance();
+            String strDateSchedule = String.format("%s %s", txtCreateAt.getText().toString().trim(), txtScheduleTime.getText().toString().trim());
+            Date schedule = DateUtils.parseWithHours(strDateSchedule);
+            calendarSchedule.setTime(schedule);
+            calendarSchedule.set(Calendar.YEAR, calendarCreatedAt.get(Calendar.YEAR));
+            calendarSchedule.set(Calendar.MONTH, calendarCreatedAt.get(Calendar.MONTH));
+            calendarSchedule.set(Calendar.DAY_OF_MONTH, calendarCreatedAt.get(Calendar.DAY_OF_MONTH));
+
+            match.schedule(calendarSchedule.getTime());
+        } else {
+            match.schedule(null);
         }
 
         if (gameSelected == null) {
@@ -226,6 +267,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             match.addPlayer(user.getMyPlayer());
         }
         match.iPlaying(swtIPlaying.isChecked());
+        match.scheduleMatch(swtScheduleMatch.isChecked());
 
         for (FriendDto friendDto : friendsSelected) {
             Player player = new Player();
@@ -239,13 +281,13 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             match.addPlayer(player);
         }
 
-        Log.i(TAG, "fillDataAndSave: Save the data in BD.");
+        LogUtils.i(TAG, "fillDataAndSave: Save the data in BD.");
         new MatchRepository().save(match);
 
         user.lastPlayed(match.getCreatedAt());
         instance.setUser(user);
 
-        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+        LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
         finishFormAndProcessData();
@@ -261,7 +303,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void setupDataForm(final View view) {
-        Log.i(TAG, "setupDataForm: Load all form fields!");
+        LogUtils.i(TAG, "setupDataForm: Load all form fields!");
         final List<Game> games = new GameRepository().findAll();
         for (Game game : games) {
             gameMap.put(game.getName(), game);
@@ -317,6 +359,46 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         });
 
         swtIPlaying = view.findViewById(R.id.card_view_players_i_playing_switch);
+        grpSchedule = view.findViewById(R.id.card_view_players_group_schedule_match);
+        swtScheduleMatch = view.findViewById(R.id.card_view_players_schedule_match);
+        swtScheduleMatch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if (checked) {
+                    grpSchedule.setVisibility(View.VISIBLE);
+                } else {
+                    grpSchedule.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        txtScheduleTime = view.findViewById(R.id.card_view_players_group_schedule_match_time);
+        txtScheduleTime.addTextChangedListener(new MaskEditTextChangedListener("##:##", txtScheduleTime));
+
+        btnScheduleTime = view.findViewById(R.id.card_view_players_group_schedule_match_btn_time);
+        btnScheduleTime.setOnClickListener(new View.OnClickListener() {
+            Calendar now = Calendar.getInstance();
+
+            @Override
+            public void onClick(View view) {
+                if (!Strings.isNullOrEmpty(txtScheduleTime.getText().toString())) {
+                    final Long time = DateUtils.parseTime(txtScheduleTime.getText().toString().trim());
+                    int minute = time.intValue() % 60;
+                    int hour = time.intValue() / 60;
+                    now.set(Calendar.HOUR_OF_DAY, hour);
+                    now.set(Calendar.MINUTE, minute);
+                } else {
+                    now.set(Calendar.HOUR_OF_DAY, 0);
+                    now.set(Calendar.MINUTE, 0);
+                }
+
+                new TimePickerDialog(getContext(),
+                        currentFragment,
+                        now.get(Calendar.HOUR_OF_DAY),
+                        now.get(Calendar.MINUTE),
+                        true).show();
+            }
+        });
 
         imgInfoGame = view.findViewById(R.id.card_view_game_info_image);
         txtInfoName = view.findViewById(R.id.card_view_game_info_name);
@@ -364,7 +446,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             case DIALOG_SEARCH_GAME_FRAGMENT:
                 if (resultCode == Activity.RESULT_OK) {
                     final long gameId = data.getLongExtra(BundleConstant.SEARCH_GAME_ID, 0l);
-                    Log.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
+                    LogUtils.i(TAG, MessageFormat.format("onActivityResult: Add new game: {0}",
                             gameId));
 
                     new ProgressApp(this.getActivity(), R.string.msg_action_saving, false) {
@@ -400,7 +482,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private Player addNewPlayer() {
-        Log.i(TAG, "addNewFriend: Add new player!");
+        LogUtils.i(TAG, "addNewFriend: Add new player!");
 
         if (Strings.isNullOrEmpty(txtUsernamePlayer.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_username_player_required);
@@ -411,7 +493,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         final String username = txtUsernamePlayer.getText().toString().trim();
         txtUsernamePlayer.setText(null);
 
-        Log.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
+        LogUtils.d(TAG, MessageFormat.format("Create new player with username: {0}.", username));
         final Player player = new Player().name(username).typePlayer(TypePlayerEnum.PLAYER);
         player.initEntity();
         return player;
@@ -427,7 +509,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         final String nameGame = txtSearchNameGame.getText().toString().trim();
 
         if (swtSearchOnline.isChecked()) {
-            Log.i(TAG, "processDataSearchGame: Search game in server!");
+            LogUtils.i(TAG, "processDataSearchGame: Search game in server!");
 
             final Fragment currentFragment = this;
             new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {
@@ -451,7 +533,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
                 }
             }.execute();
         } else {
-            Log.i(TAG, "processDataSearchGame: Search game in BD!");
+            LogUtils.i(TAG, "processDataSearchGame: Search game in BD!");
             if (gameMap.containsKey(nameGame)) {
                 gameSelected = gameMap.get(nameGame);
                 fillCardGame();
@@ -462,7 +544,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void fillCardGame() {
-        Log.i(TAG, "processDataSearchGame: Fill the data Game!");
+        LogUtils.i(TAG, "processDataSearchGame: Fill the data Game!");
 
         String urlThumbnail = gameSelected.getUrlThumbnail();
         if (Strings.isNullOrEmpty(urlThumbnail)) {
@@ -573,5 +655,16 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
                 .append(year);
 
         txtCreateAt.setText(newDate.toString());
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+        DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+        StringBuilder newTime = new StringBuilder();
+        newTime.append(decimalFormatScore.format(hour))
+                .append(":")
+                .append(decimalFormatScore.format(minute));
+
+        txtScheduleTime.setText(newTime.toString());
     }
 }

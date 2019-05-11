@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.fragment.dialog.SearchGameDialog;
 import br.com.battista.bgscore.model.response.GameResponse;
 import br.com.battista.bgscore.util.AndroidUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder> {
@@ -53,7 +53,7 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
             setAnimationHolder(itemView, position);
 
             final GameResponse game = games.get(position);
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, game.getName()));
 
             holder.getTxtInfoName().setText(
@@ -72,7 +72,7 @@ public class SearchGameAdapter extends BaseAdapterAnimation<SearchGameViewHolder
                 }
             });
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
     }

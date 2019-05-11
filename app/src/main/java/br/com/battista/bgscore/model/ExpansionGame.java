@@ -7,7 +7,9 @@ import com.orm.dsl.Table;
 
 import java.io.Serializable;
 
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.ExpansionGameEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 @Table(name = ExpansionGameEntry.TABLE_NAME)
 public class ExpansionGame extends BaseEntity implements Serializable {
@@ -129,6 +131,10 @@ public class ExpansionGame extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("name", name)
                 .add("idBGG", idBGG)

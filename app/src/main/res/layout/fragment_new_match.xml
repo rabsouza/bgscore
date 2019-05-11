@@ -78,6 +78,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
@@ -105,9 +106,57 @@
                             android:layout_width="@dimen/cards_button_width"
                             android:layout_height="@dimen/cards_button_height"
                             android:layout_marginLeft="@dimen/element_horizontal_margin"
-                            android:layout_marginRight="@dimen/element_horizontal_margin"
                             android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
                             app:srcCompat="@drawable/ic_date"/>
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/card_view_players_schedule_match"
+                        style="@style/CardTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:checked="false"
+                        android:text="@string/text_match_schedule_match"/>
+
+                    <LinearLayout
+                        android:id="@+id/card_view_players_group_schedule_match"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/card_view_players_group_schedule_match_time"
+                                style="@style/InputStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/element_vertical_margin"
+                                android:hint="@string/hint_detail_match_schedule_time"
+                                android:imeOptions="actionDone"
+                                android:inputType="time"
+                                android:maxLength="5"
+                                android:maxLines="1"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/card_view_players_group_schedule_match_btn_time"
+                            style="?android:attr/buttonStyle"
+                            android:layout_width="@dimen/cards_button_width"
+                            android:layout_height="@dimen/cards_button_height"
+                            android:layout_marginLeft="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
+                            app:srcCompat="@drawable/ic_match_time"/>
 
                     </LinearLayout>
 
@@ -166,8 +215,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/element_margin"
                         android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:layout_marginBottom="@dimen/element_margin"
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
@@ -195,8 +244,8 @@
                             android:layout_width="@dimen/cards_button_width"
                             android:layout_height="@dimen/cards_button_height"
                             android:layout_marginLeft="@dimen/element_horizontal_margin"
-                            android:layout_marginRight="@dimen/element_horizontal_margin"
                             android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
                             app:srcCompat="@drawable/ic_search_game"/>
 
                     </LinearLayout>
@@ -254,9 +303,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_name"
-                                android:layout_marginBottom="@dimen/element_margin"
-                                android:layout_marginRight="@dimen/activity_horizontal_margin"
                                 android:layout_marginTop="@dimen/element_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_players"
                                 android:drawableLeft="@drawable/ic_game_time"
                                 android:drawablePadding="@dimen/drawable_padding"
@@ -268,9 +317,9 @@
                                 android:layout_width="@dimen/first_column_card_width"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_players"
-                                android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_marginLeft="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/element_margin"
+                                android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_image"
                                 android:drawableLeft="@drawable/ic_game_age"
                                 android:drawablePadding="@dimen/drawable_padding"
@@ -282,8 +331,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/card_view_game_info_players"
-                                android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_marginBottom="@dimen/element_margin"
                                 android:layout_toRightOf="@id/card_view_game_info_ages"
                                 android:drawableLeft="@drawable/ic_game_date_year"
                                 android:drawablePadding="@dimen/drawable_padding"
@@ -376,8 +425,8 @@
                             android:layout_width="@dimen/cards_button_width"
                             android:layout_height="@dimen/cards_button_height"
                             android:layout_marginLeft="@dimen/element_horizontal_margin"
-                            android:layout_marginRight="@dimen/element_horizontal_margin"
                             android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
                             app:srcCompat="@drawable/ic_add_friend"/>
 
                     </LinearLayout>
@@ -417,8 +466,8 @@
                         android:dividerHeight="1dp"
                         android:listSelector="@android:color/transparent"
                         android:nestedScrollingEnabled="false"
-                        android:paddingBottom="@dimen/md_keylines"
                         android:paddingTop="@dimen/element_vertical_margin"
+                        android:paddingBottom="@dimen/md_keylines"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                     <TextView
@@ -452,6 +501,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:scaleType="center"
+        app:fabCustomSize="@dimen/fab_image_width"
         app:layout_anchor="@id/detail_scroll_view"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"

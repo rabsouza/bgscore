@@ -6,7 +6,6 @@ import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -54,7 +53,7 @@ public class BackupUtils {
             try {
                 backupFile = new ObjectMapper().readValue(new FileReader(backupDB), BackupDto.class);
             } catch (IOException e) {
-                Log.e(TAG, "getBackup: invalid backup file.", e);
+                LogUtils.e(TAG, "getBackup: invalid backup file.", e);
                 backupFile = backup;
             }
         } else {
@@ -73,7 +72,7 @@ public class BackupUtils {
             try {
                 userFile = new ObjectMapper().readValue(new FileReader(userDB), User.class);
             } catch (IOException e) {
-                Log.e(TAG, "getBackup: invalid user file.", e);
+                LogUtils.e(TAG, "getBackup: invalid user file.", e);
                 userFile = user;
             }
         } else {
@@ -83,12 +82,15 @@ public class BackupUtils {
     }
 
     public static void exportDatabase(@NonNull Context context) throws IOException {
-        Log.i(TAG, "exportDatabase: start exporting the database!");
+        LogUtils.i(TAG, "exportDatabase: start exporting the database!");
         String currentDBPath = String.format("/data/%1$s/databases/%2$s", BuildConfig.APPLICATION_ID, DEFAULT_DATABASE_NAME);
 
         File sd = getFileDir(context);
         File data = Environment.getDataDirectory();
         File currentDB = new File(data, currentDBPath);
+        if (!currentDB.exists()) {
+            currentDB.createNewFile();
+        }
         File backupDB = new File(sd, DEFAULT_BACKUP_DATABASE_NAME);
         if (!backupDB.exists()) {
             backupDB.createNewFile();
@@ -101,16 +103,19 @@ public class BackupUtils {
         source.close();
         destination.close();
 
-        Log.i(TAG, "exportDatabase: finished exporting the database!");
+        LogUtils.i(TAG, "exportDatabase: finished exporting the database!");
     }
 
     public static void importDatabase(@NonNull Context context) throws IOException {
-        Log.i(TAG, "importDatabase: start importing the database!");
+        LogUtils.i(TAG, "importDatabase: start importing the database!");
         String currentDBPath = String.format("/data/%1$s/databases/%2$s", BuildConfig.APPLICATION_ID, DEFAULT_DATABASE_NAME);
 
         File sd = getFileDir(context);
         File data = Environment.getDataDirectory();
         File currentDB = new File(data, currentDBPath);
+        if (!currentDB.exists()) {
+            currentDB.createNewFile();
+        }
         File backupDB = new File(sd, DEFAULT_BACKUP_DATABASE_NAME);
         if (!backupDB.exists()) {
             backupDB.createNewFile();
@@ -123,7 +128,7 @@ public class BackupUtils {
         source.close();
         destination.close();
 
-        Log.i(TAG, "importDatabase: finished importing the database!");
+        LogUtils.i(TAG, "importDatabase: finished importing the database!");
     }
 
     public static File getFileDir(@NonNull Context context) {

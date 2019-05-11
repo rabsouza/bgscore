@@ -13,7 +13,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +45,7 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class ShareMatchFullDialog extends DialogFragment {
 
@@ -83,7 +83,7 @@ public class ShareMatchFullDialog extends DialogFragment {
     }
 
     public void showDialog(@NonNull Fragment fragment) {
-        Log.i(TAG, "showAbout: Show dialog share match!");
+        LogUtils.i(TAG, "showAbout: Show dialog share match!");
 
         setTargetFragment(fragment, DIALOG_SHARE_MATCH_FULL_FRAGMENT);
 
@@ -110,7 +110,7 @@ public class ShareMatchFullDialog extends DialogFragment {
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
         } else {
@@ -131,7 +131,7 @@ public class ShareMatchFullDialog extends DialogFragment {
     }
 
     private void loadDataMatch() {
-        Log.i(TAG, "loadDataMatch: Load data match");
+        LogUtils.i(TAG, "loadDataMatch: Load data match");
 
         final Game game = match.getGame();
         String urlThumbnail = game.getUrlThumbnail();
@@ -241,7 +241,7 @@ public class ShareMatchFullDialog extends DialogFragment {
     }
 
     private void loadViews(final View viewFragment) {
-        Log.i(TAG, "loadViews: load all views!");
+        LogUtils.i(TAG, "loadViews: load all views!");
 
         cardContent = viewFragment.findViewById(R.id.card_view_share_match_full_info);
 

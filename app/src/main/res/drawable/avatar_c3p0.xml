@@ -2,8 +2,8 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
         android:width="157dp"
         android:height="186dp"
-        android:viewportHeight="186"
-        android:viewportWidth="157">
+        android:viewportWidth="157"
+        android:viewportHeight="186">
 
     <group
         android:translateX="-648.000000"
@@ -162,8 +162,8 @@ C27.9922,52.5642 46.8682,33.6882 70.0762,33.6882 C71.6242,33.6882
 72.8782,34.9422 72.8782,36.4962 C72.8782,38.0442 71.6242,39.2982 70.0762,39.2982
 C49.9642,39.2982 33.6082,55.6602 33.6082,75.7662 C33.6082,77.3202
 32.3482,78.5742 30.8002,78.5742"
-                android:strokeAlpha="0.25"
-                android:strokeWidth="1"/>
+                android:strokeWidth="1"
+                android:strokeAlpha="0.25"/>
         </group>
     </group>
 </vector>

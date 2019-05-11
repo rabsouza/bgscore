@@ -9,7 +9,7 @@ public class Inject {
     }
 
     public synchronized static CacheManageService provideCacheManageService() {
-        return new CacheManageService();
+        return CacheManageService.getInstance();
     }
 
 }

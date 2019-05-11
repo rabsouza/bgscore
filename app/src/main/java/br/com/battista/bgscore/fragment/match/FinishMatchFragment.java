@@ -14,7 +14,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +51,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class FinishMatchFragment extends BaseFragment implements TimePickerDialog.OnTimeSetListener {
@@ -99,7 +99,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new FinishMatchFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new FinishMatchFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_finish_match, container, false);
 
@@ -131,7 +131,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
             match.reloadId();
@@ -154,7 +154,12 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
             players.addAll(match.getPlayers());
 
-            txtDuration.setText(DateUtils.formatTime(match.getDuration()));
+            if (match.getDuration() == null || match.getDuration() <= 0) {
+                long duration = (System.currentTimeMillis() - match.getCreatedAt().getTime()) / DateUtils.MIN_IN_MILLIS;
+                txtDuration.setText(DateUtils.formatTime(duration));
+            } else {
+                txtDuration.setText(DateUtils.formatTime(match.getDuration()));
+            }
             txtFeedbackObs.setText(match.getObs());
 
             switch (match.getFeedback().getIdResDrawable()) {
@@ -181,7 +186,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     }
 
     private void fillDataAndSave() {
-        Log.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
+        LogUtils.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
         match.duration(DateUtils.parseTime(txtDuration.getText().toString().trim()));
 
         match.obs(txtFeedbackObs.getText().toString().trim());
@@ -193,10 +198,10 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
             playerWinner.winner(Boolean.TRUE);
         }
 
-        Log.i(TAG, "fillDataAndSave: Save the data in BD.");
+        LogUtils.i(TAG, "fillDataAndSave: Save the data in BD.");
         new MatchRepository().save(match);
 
-        Log.i(TAG, "fillDataAndSave: Reload cache data.");
+        LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
         finishFormAndProcessData();
@@ -220,7 +225,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     }
 
     private void setupDataForm(final View view) {
-        Log.i(TAG, "setupDataForm: Load all form fields!");
+        LogUtils.i(TAG, "setupDataForm: Load all form fields!");
 
         txtMatchAlias = view.findViewById(R.id.card_view_match_info_alias);
         txtCreateAt = view.findViewById(R.id.card_view_match_info_created_at);
@@ -235,7 +240,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
             @Override
             public void onClick(View view) {
-                if (!Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
+                if (!Strings.isNullOrEmpty(txtDuration.getText().toString())) {
                     final Long time = DateUtils.parseTime(txtDuration.getText().toString().trim());
                     int minute = time.intValue() % 60;
                     int hour = time.intValue() / 60;
@@ -328,7 +333,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     }
 
     private void fillCardGame() {
-        Log.i(TAG, "processDataSearchGame: Fill the data Game!");
+        LogUtils.i(TAG, "processDataSearchGame: Fill the data Game!");
 
         String urlThumbnail = gameSelected.getUrlThumbnail();
         if (Strings.isNullOrEmpty(urlThumbnail)) {

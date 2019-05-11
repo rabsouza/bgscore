@@ -10,11 +10,9 @@ import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
-import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
@@ -36,6 +34,7 @@ import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.service.DatabaseManageService;
+import br.com.battista.bgscore.util.LogUtils;
 import io.fabric.sdk.android.Fabric;
 
 public class MainApplication extends MultiDexApplication {
@@ -67,7 +66,7 @@ public class MainApplication extends MultiDexApplication {
 
         Fabric.with(instance, new Crashlytics());
         Fabric.with(instance, new Answers());
-        Log.d(TAG, "onCreate: MainApplication!");
+        LogUtils.d(TAG, "onCreate: MainApplication!");
 
         initializePreferences();
         initializeLoadImage();
@@ -89,23 +88,23 @@ public class MainApplication extends MultiDexApplication {
                     String jsonUSer = getPreferences(keyUser);
                     user = new ObjectMapper().readValue(jsonUSer, User.class);
                 } catch (IOException e) {
-                    Log.e(TAG, "getUser: error convert user!", e);
+                    LogUtils.e(TAG, "getUser: error convert user!", e);
                 }
             }
+            LogUtils.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
         }
-        Log.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
         return user;
     }
 
     public void setUser(User user) {
-        Log.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
         synchronized (this) {
+            LogUtils.d(TAG, MessageFormat.format("Update the cache user with data: {0}", user));
             instance.user = user;
             try {
                 String jsonUser = new ObjectMapper().writeValueAsString(user);
                 putPreferences(keyUser, jsonUser);
             } catch (JsonProcessingException e) {
-                Log.e(TAG, "setUser: error convert user!", e);
+                LogUtils.e(TAG, "setUser: error convert user!", e);
             }
         }
     }
@@ -118,23 +117,23 @@ public class MainApplication extends MultiDexApplication {
                     String jsonBackup = getPreferences(keyBackup);
                     backupDto = new ObjectMapper().readValue(jsonBackup, BackupDto.class);
                 } catch (IOException e) {
-                    Log.e(TAG, "getBackup: error convert backup!", e);
+                    LogUtils.e(TAG, "getBackup: error convert backup!", e);
                 }
             }
+            LogUtils.d(TAG, MessageFormat.format("Load backup by cache with data: {0}", backupDto));
         }
-        Log.d(TAG, MessageFormat.format("Load backup by cache with data: {0}", backupDto));
         return backupDto;
     }
 
     public void setBackup(BackupDto backup) {
-        Log.d(TAG, MessageFormat.format("Update the cache backup with data: {0}", backup));
         synchronized (this) {
+            LogUtils.d(TAG, MessageFormat.format("Update the cache backup with data: {0}", backup));
             instance.backupDto = backup;
             try {
                 String jsonBackup = new ObjectMapper().writeValueAsString(backup);
                 putPreferences(keyBackup, jsonBackup);
             } catch (JsonProcessingException e) {
-                Log.e(TAG, "setUser: error convert backup!", e);
+                LogUtils.e(TAG, "setUser: error convert backup!", e);
             }
         }
     }
@@ -145,13 +144,14 @@ public class MainApplication extends MultiDexApplication {
     }
 
     private void initializeLoadImage() {
-        Log.i(TAG, "initializeLoadImage: Initialize Glide to load image!");
+        LogUtils.i(TAG, "initializeLoadImage: Initialize Glide to load image!");
     }
 
     private void initializeCacheManager() {
-        Log.i(TAG, "initializeCacheManager: Initialize event cache manager!");
-        getApplicationContext().startService(new Intent(getApplicationContext(), CacheManageService.class));
-        getApplicationContext().startService(new Intent(getApplicationContext(), DatabaseManageService.class));
+        LogUtils.i(TAG, "initializeCacheManager: Initialize event cache manager!");
+
+        CacheManageService.getInstance().onCreate();
+        DatabaseManageService.getInstance(getApplicationContext()).onCreate();
     }
 
     private void initializePreferences() {
@@ -177,12 +177,12 @@ public class MainApplication extends MultiDexApplication {
     }
 
     protected void initializeDB() {
-        Log.i(TAG, "initializeDB: Initialize Database to App.");
+        LogUtils.i(TAG, "initializeDB: Initialize Database to App.");
         SugarContext.init(getApplicationContext());
     }
 
     private void initializeSystemFont() {
-        Log.d(TAG, "initializeSystemFont: Add custom fonts to App.");
+        LogUtils.d(TAG, "initializeSystemFont: Add custom fonts to App.");
         FontsAdapter.setDefaultFont(instance, DEFAULT, DEFAULT_FONT);
         FontsAdapter.setDefaultFont(instance, MONOSPACE, DEFAULT_FONT);
         FontsAdapter.setDefaultFont(instance, SERIF, DEFAULT_FONT);
@@ -192,24 +192,25 @@ public class MainApplication extends MultiDexApplication {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        Log.d(TAG, "onTerminate: MainApplication!");
+        LogUtils.d(TAG, "onTerminate: MainApplication!");
         terminateCacheManager();
     }
 
     private void terminateCacheManager() {
-        Log.i(TAG, "terminateCacheManager: Terminate event cache manager!");
-        getApplicationContext().stopService(new Intent(getApplicationContext(), CacheManageService.class));
-        getApplicationContext().stopService(new Intent(getApplicationContext(), DatabaseManageService.class));
+        LogUtils.i(TAG, "terminateCacheManager: Terminate event cache manager!");
+
+        CacheManageService.getInstance().onDestroy();
+        DatabaseManageService.getInstance(getApplicationContext()).onDestroy();
         SugarContext.terminate();
     }
 
     private void cleanDB() {
-        Log.i(TAG, "cleanDB: Clean Database to App.");
+        LogUtils.i(TAG, "cleanDB: Clean Database to App.");
         getApplicationContext().deleteDatabase(DEFAULT_DATABASE_NAME);
     }
 
     public void cleanAllDataDB() {
-        Log.i(TAG, "cleanDB: Clean Database to App.");
+        LogUtils.i(TAG, "cleanDB: Clean Database to App.");
         new GameRepository().deleteAll();
         new MatchRepository().deleteAll();
         new PlayerRepository().deleteAll();

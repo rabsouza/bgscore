@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -16,6 +15,7 @@ import com.crashlytics.android.answers.ContentViewEvent;
 import com.crashlytics.android.answers.CustomEvent;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class BaseFragment extends Fragment {
 
@@ -42,7 +42,7 @@ public class BaseFragment extends Fragment {
 
     protected void replaceDetailFragment(Fragment fragment, int containerResID) {
         if (fragment != null) {
-            Log.d(TAG, "replaceFragment: Change to detail fragment!");
+            LogUtils.d(TAG, "replaceFragment: Change to detail fragment!");
             final FragmentTransaction transaction = getActivity().
                     getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(

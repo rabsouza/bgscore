@@ -1,7 +1,6 @@
 package br.com.battista.bgscore.repository;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
@@ -14,6 +13,7 @@ import java.util.Set;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.model.dto.AvatarDto;
 import br.com.battista.bgscore.model.enuns.AvatarEnum;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class AvatarRepository {
 
@@ -36,7 +36,7 @@ public class AvatarRepository {
     }
 
     public List<AvatarDto> findAll() {
-        Log.i(TAG, "Find all Avatars.");
+        LogUtils.i(TAG, "Find all Avatars.");
 
         final List<AvatarDto> avatarDtos = Lists.newLinkedList(avatars);
         Collections.sort(avatarDtos, new Ordering<AvatarDto>() {

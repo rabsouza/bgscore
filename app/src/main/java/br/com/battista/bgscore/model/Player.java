@@ -8,8 +8,10 @@ import com.orm.dsl.Table;
 
 import java.io.Serializable;
 
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.PlayerEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 @Table(name = PlayerEntry.TABLE_NAME)
 public class Player extends BaseEntity implements Serializable, Comparable<Player> {
@@ -98,6 +100,10 @@ public class Player extends BaseEntity implements Serializable, Comparable<Playe
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("name", name)
                 .add("matchId", matchId)

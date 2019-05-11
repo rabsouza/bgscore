@@ -5,10 +5,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.text.MessageFormat;
+
+import br.com.battista.bgscore.util.LogUtils;
 
 public class ProgressApp extends AsyncTask<Void, Integer, Boolean> {
 
@@ -49,7 +50,7 @@ public class ProgressApp extends AsyncTask<Void, Integer, Boolean> {
     private void createNewProgressDialog(Activity activity, Integer messageResId) {
         if (activity == null) {
             String detailMessage = "Activity don't null!";
-            Log.e(TAG, detailMessage);
+            LogUtils.e(TAG, detailMessage);
             throw new RuntimeException(detailMessage);
         }
 
@@ -70,7 +71,7 @@ public class ProgressApp extends AsyncTask<Void, Integer, Boolean> {
         }
         progress.setIcon(android.R.drawable.ic_dialog_info);
 
-        Log.i(TAG,
+        LogUtils.i(TAG,
                 MessageFormat.format("New progress dialog [progress:{0}, max:{1}, offset:{2}, message:{3}, activity:{4}]",
                         currProgress, maxProgress, offsetProgress, message, activity.getTitle()));
     }
@@ -130,7 +131,7 @@ public class ProgressApp extends AsyncTask<Void, Integer, Boolean> {
                 publishProgress(currProgress);
             }
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            LogUtils.e(TAG, e.getMessage());
             return false;
         }
         return true;

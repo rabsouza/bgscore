@@ -2,8 +2,8 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
         android:width="157dp"
         android:height="175dp"
-        android:viewportHeight="175"
-        android:viewportWidth="157">
+        android:viewportWidth="157"
+        android:viewportHeight="175">
 
     <group
         android:translateX="-1014.000000"
@@ -61,8 +61,8 @@ L90.1206,174.6434 L90.1206,90.6434 L147.0906,79.2494 Z"
                 android:pathData="M96.12,24.644 C113.418,24.734 126.216,28.838 135.714,34.73 C127.128,20.96
 110.46,6.812 78.12,6.644 C14.946,6.974 11.502,60.644 11.502,60.644
 L34.368,60.644 C41.184,45.014 57.462,24.848 96.12,24.644"
-                android:strokeAlpha="0.25"
-                android:strokeWidth="1"/>
+                android:strokeWidth="1"
+                android:strokeAlpha="0.25"/>
         </group>
     </group>
 </vector>

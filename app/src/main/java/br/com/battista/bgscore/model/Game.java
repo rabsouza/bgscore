@@ -15,6 +15,7 @@ import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.constants.LocaleConstant;
 import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 @Table(name = GameEntry.TABLE_NAME)
 public class Game extends BaseEntity implements Serializable {
@@ -243,6 +244,10 @@ public class Game extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("name", name)
                 .add("idBGG", idBGG)

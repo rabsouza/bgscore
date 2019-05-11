@@ -13,6 +13,7 @@ import java.util.Date;
 
 import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 @JsonAutoDetect
@@ -140,6 +141,10 @@ public abstract class BaseEntity extends SugarRecord implements Serializable {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("id", getId())
                 .add("createdAt", createdAt)

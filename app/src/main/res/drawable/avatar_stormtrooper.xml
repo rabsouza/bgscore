@@ -2,8 +2,8 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
         android:width="168dp"
         android:height="181dp"
-        android:viewportHeight="181"
-        android:viewportWidth="168">
+        android:viewportWidth="168"
+        android:viewportHeight="181">
 
     <group
         android:translateX="-642.000000"
@@ -74,8 +74,8 @@ C96.2126,153.1856 93.5246,150.4976 90.2126,150.4976"
 40.1996,9.614 63.4076,9.614 C64.9556,9.614 66.2096,10.868 66.2096,12.422
 C66.2096,13.97 64.9556,15.224 63.4076,15.224 C43.2956,15.224 26.9396,31.586
 26.9396,51.692 C26.9396,53.246 25.6796,54.5 24.1316,54.5"
-                android:strokeAlpha="0.5"
-                android:strokeWidth="1"/>
+                android:strokeWidth="1"
+                android:strokeAlpha="0.5"/>
             <path
                 android:fillColor="#323232"
                 android:fillType="evenOdd"

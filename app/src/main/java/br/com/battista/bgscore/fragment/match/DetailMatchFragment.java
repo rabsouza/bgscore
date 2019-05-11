@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +38,7 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
+import br.com.battista.bgscore.util.LogUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 public class DetailMatchFragment extends BaseFragment {
@@ -83,7 +83,7 @@ public class DetailMatchFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: Create new DetailMatchFragment!");
+        LogUtils.d(TAG, "onCreateView: Create new DetailMatchFragment!");
 
         final View view = inflater.inflate(R.layout.fragment_detail_match, container, false);
 
@@ -92,7 +92,7 @@ public class DetailMatchFragment extends BaseFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View viewClicked) {
-                Log.i(TAG, "processShareMatch: Share the match!");
+                LogUtils.i(TAG, "processShareMatch: Share the match!");
                 new ShareMatchFullDialog().newInstance(match).showDialog(currentFragment);
             }
         });
@@ -130,7 +130,7 @@ public class DetailMatchFragment extends BaseFragment {
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
-        Log.d(TAG, "processDataFragment: Process bundle data Fragment!");
+        LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             match = (Match) bundle.getSerializable(BundleConstant.DATA);
             match.reloadId();
@@ -222,7 +222,7 @@ public class DetailMatchFragment extends BaseFragment {
     }
 
     private void setupDataForm(final View view) {
-        Log.i(TAG, "setupDataForm: Load all form fields!");
+        LogUtils.i(TAG, "setupDataForm: Load all form fields!");
 
         txtMatchAlias = view.findViewById(R.id.card_view_match_info_alias);
         txtCreateAt = view.findViewById(R.id.card_view_match_info_created_at);
@@ -248,7 +248,7 @@ public class DetailMatchFragment extends BaseFragment {
     }
 
     private void fillCardGame() {
-        Log.i(TAG, "processDataSearchGame: Fill the data Game!");
+        LogUtils.i(TAG, "processDataSearchGame: Fill the data Game!");
 
         String urlThumbnail = gameSelected.getUrlThumbnail();
         if (Strings.isNullOrEmpty(urlThumbnail)) {

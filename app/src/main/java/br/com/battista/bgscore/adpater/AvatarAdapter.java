@@ -3,7 +3,6 @@ package br.com.battista.bgscore.adpater;
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import java.util.List;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.model.dto.AvatarDto;
 import br.com.battista.bgscore.repository.AvatarRepository;
+import br.com.battista.bgscore.util.LogUtils;
 
 
 public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
@@ -48,7 +48,7 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
             final CardView cardView = itemView.findViewById(R.id.card_view_avatar);
 
             final AvatarDto avatarDto = avatars.get(position);
-            Log.i(TAG, String.format(
+            LogUtils.i(TAG, String.format(
                     "onBindViewHolder: Fill to row position: %S with %s.", position, avatarDto));
 
             holder.getTxtTitle().setText(avatarDto.getNameAvatar());
@@ -72,7 +72,7 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
                 }
             });
         } else {
-            Log.w(TAG, "onBindViewHolder: No content to holder!");
+            LogUtils.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
     }

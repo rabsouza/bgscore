@@ -8,12 +8,15 @@ import com.orm.dsl.Column;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.enuns.FeedbackEnum;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
+import br.com.battista.bgscore.util.LogUtils;
 
 @Table(name = MatchEntry.TABLE_NAME)
 public class Match extends BaseEntity implements Serializable {
@@ -34,6 +37,12 @@ public class Match extends BaseEntity implements Serializable {
 
     @Column(name = MatchEntry.COLUMN_NAME_I_PLAYING)
     private Boolean iPlaying = Boolean.TRUE;
+
+    @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_MATCH)
+    private Boolean scheduleMatch = Boolean.FALSE;
+
+    @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_DATE)
+    private Date schedule;
 
     @Column(name = MatchEntry.COLUMN_NAME_FINISHED)
     private Boolean finished = Boolean.FALSE;
@@ -126,6 +135,22 @@ public class Match extends BaseEntity implements Serializable {
         this.iPlaying = iPlaying;
     }
 
+    public Boolean isScheduleMatch() {
+        return scheduleMatch;
+    }
+
+    public void setScheduleMatch(Boolean scheduleMatch) {
+        this.scheduleMatch = scheduleMatch;
+    }
+
+    public Date getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Date schedule) {
+        this.schedule = schedule;
+    }
+
     public FeedbackEnum getFeedback() {
         return feedback;
     }
@@ -136,12 +161,17 @@ public class Match extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
+        if (!LogUtils.isLoggable()) {
+            return EntityConstant.EMPTY_STRING;
+        }
+
         return MoreObjects.toStringHelper(this)
                 .add("alias", alias)
                 .add("game", game)
                 .add("gameId", gameId)
                 .add("players", players)
                 .add("iPlaying", iPlaying)
+                .add("scheduleMatch", scheduleMatch)
                 .add("finished", finished)
                 .add("duration", duration)
                 .add("feedbackIdRes", feedbackIdRes)
@@ -202,6 +232,16 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match iPlaying(Boolean iPlaying) {
         this.iPlaying = iPlaying;
+        return this;
+    }
+
+    public Match scheduleMatch(Boolean scheduleMatch) {
+        this.scheduleMatch = scheduleMatch;
+        return this;
+    }
+
+    public Match schedule(Date schedule) {
+        this.schedule = schedule;
         return this;
     }
 

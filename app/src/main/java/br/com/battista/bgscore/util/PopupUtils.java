@@ -1,7 +1,6 @@
 package br.com.battista.bgscore.util;
 
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -28,7 +27,7 @@ public class PopupUtils {
             }
 
         } catch (Exception e) {
-            Log.e(TAG, "showPopupWindow: Error show popup menu!", e);
+            LogUtils.e(TAG, "showPopupWindow: Error show popup menu!", e);
         }
     }
 }

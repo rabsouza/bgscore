@@ -34,7 +34,8 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_LAST_BUILD_VERSION = "LAST_BUILD_VERSION";
         public static final String COLUMN_NAME_ORDER_BY = "ORDER_BY";
         public static final String COLUMN_NAME_CUSTOM_FONT = "CUSTOM_FONT";
-        public static final String COLUMN_NAME_AUTOMATC_BACKUP = "AUTOMATC_BACKUP";
+        public static final String COLUMN_NAME_AUTOMATIC_BACKUP = "AUTOMATIC_BACKUP";
+        public static final String COLUMN_NAME_STATISTIC = "STATISTIC";
     }
 
     public static abstract class GameEntry extends BaseEntry {
@@ -91,6 +92,8 @@ public class DatabaseContract {
         public static final String FK_GAME_ID = "FK_GAME_ID";
         public static final String COLUMN_NAME_PLAYERS = "PLAYERS";
         public static final String COLUMN_NAME_I_PLAYING = "I_PLAYING";
+        public static final String COLUMN_NAME_SCHEDULE_MATCH = "SCHEDULE_MATCH";
+        public static final String COLUMN_NAME_SCHEDULE_DATE = "SCHEDULE_DATE";
         public static final String COLUMN_NAME_FINISHED = "FINISHED";
         public static final String COLUMN_NAME_DURATION = "DURATION";
         public static final String COLUMN_NAME_FEEDBACK = "FEEDBACK";

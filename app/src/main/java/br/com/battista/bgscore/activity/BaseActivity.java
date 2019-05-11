@@ -16,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
@@ -24,6 +23,7 @@ import com.crashlytics.android.answers.CustomEvent;
 
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.util.AnimationActivityUtils;
+import br.com.battista.bgscore.util.LogUtils;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -59,11 +59,11 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void setUpToolbar(@StringRes int title) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             changeTitleToolbar(title);
 
-            Log.d(TAG, "setUpToolbar: Active support toolbar!");
+            LogUtils.d(TAG, "setUpToolbar: Active support toolbar!");
             setSupportActionBar(toolbar);
         }
     }
@@ -73,13 +73,13 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void changeActionActive(@IdRes int idAction) {
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(idAction);
     }
 
     protected void changeTitleCollapsingToolbar(@StringRes int titleResId) {
         CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+                findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(getContext().getString(titleResId));
     }
 
@@ -91,7 +91,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void replaceFragment(Fragment fragment) {
         if (fragment != null) {
-            Log.d(TAG, "replaceFragment: Change to fragment!");
+            LogUtils.d(TAG, "replaceFragment: Change to fragment!");
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(
                     R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -103,7 +103,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void replaceDetailFragment(Fragment fragment, int resIdContainer) {
         if (fragment != null) {
-            Log.d(TAG, "replaceFragment: Change to detail fragment!");
+            LogUtils.d(TAG, "replaceFragment: Change to detail fragment!");
             final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(
                     R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
