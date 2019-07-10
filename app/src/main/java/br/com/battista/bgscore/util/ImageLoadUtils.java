@@ -16,8 +16,7 @@ public class ImageLoadUtils {
                                  @NonNull ImageView img) {
         Glide.with(context)
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(img);
     }
 
@@ -25,8 +24,7 @@ public class ImageLoadUtils {
                                  @NonNull ImageView img) {
         Glide.with(context)
                 .load(resId)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(img);
     }
 
@@ -35,8 +33,7 @@ public class ImageLoadUtils {
                                                int resIdError) {
         Glide.with(context)
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .error(resIdError)
                 .into(img);
     }
@@ -46,8 +43,7 @@ public class ImageLoadUtils {
                                                         int resIdError) {
         Glide.with(context)
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .error(resIdError)
                 .into(img);
     }

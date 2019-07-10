@@ -3,6 +3,7 @@ package br.com.battista.bgscore.robot;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -19,6 +20,7 @@ import br.com.battista.bgscore.R;
 
 public class GameRobot extends BaseRobot {
 
+    private static final String EMPTY_SCORE_VALUE = "00";
     private Context context;
 
     public GameRobot(Context context) {
@@ -47,7 +49,14 @@ public class GameRobot extends BaseRobot {
     }
 
     public GameRobot checkEmptyGames() {
-        onView(withText(R.string.text_game_games_empty_view))
+        onView(allOf(withId(R.id.card_view_games_score_my_game),
+                hasDescendant(withText(EMPTY_SCORE_VALUE))))
+                .check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.card_view_games_score_favorite),
+                hasDescendant(withText(EMPTY_SCORE_VALUE))))
+                .check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.card_view_games_score_want_game),
+                hasDescendant(withText(EMPTY_SCORE_VALUE))))
                 .check(matches(isDisplayed()));
         return this;
     }
