@@ -6,7 +6,7 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
-### Version - 1.0.12
+### Version - 1.0.14
 **Date release**
  - 09/07/2019
 
@@ -17,6 +17,9 @@ Os Pacotes liberados para testes e produção da aplicação.
 **Improvements**
 - Atualização das libs e configurações
 - Melhoria de desempenhos
+
+**Bugs**
+- Corrige link do pricequest
 
 ------------------------------------------------------------------------
 
@@ -207,6 +210,18 @@ Adiciona Politica de privacidade
 ------------------------------------------------------------------------
 ## PHASE - BETA
 ------------------------------------------------------------------------
+
+### Version - 1.0.23-Beta
+**Date release**
+ - 09/07/2019
+
+**Features** 
+- Adiciona duração automatica para partida
+- Adiciona opção para agendar uma partida
+ 
+**Improvements**
+- Atualização das libs e configurações
+- Melhoria de desempenhos
 
 
 ### Version - 1.0.20-Beta

@@ -118,10 +118,11 @@ public class Game extends BaseEntity implements Serializable {
     }
 
     public String getUrlBuy() {
+        final String nameGame = getName();
         if (MainApplication.instance().getCurrentLocale().equals(LocaleConstant.DEFAULT_LOCALE)) {
-            return EntityConstant.DEFAULT_URL_BUY_GAME.concat(getName());
+            return String.format(EntityConstant.DEFAULT_URL_BUY_GAME, nameGame);
         } else {
-            return EntityConstant.DEFAULT_URL_BUY_GAME_ENG.concat(getName());
+            return EntityConstant.DEFAULT_URL_BUY_GAME_ENG.concat(nameGame);
         }
     }
 

@@ -35,7 +35,7 @@ public class NewGameRobot extends BaseRobot {
     public NewGameRobot fillTextName(String name) {
         onView(withId(R.id.card_view_new_game_name))
                 .perform(scrollTo());
-        
+
         onView(withId(R.id.card_view_new_game_name))
                 .perform(replaceText(name), closeSoftKeyboard());
         return this;
@@ -44,7 +44,7 @@ public class NewGameRobot extends BaseRobot {
     public NewGameRobot checkMyGame(boolean checked) {
         onView(withId(R.id.card_view_new_game_my_game))
                 .perform(scrollTo());
-        
+
         checkStateCheckedView(checked, R.id.card_view_new_game_my_game);
         return this;
     }
@@ -52,7 +52,7 @@ public class NewGameRobot extends BaseRobot {
     public NewGameRobot checkFavorite(boolean checked) {
         onView(withId(R.id.card_view_new_game_favorite))
                 .perform(scrollTo());
-        
+
         checkStateCheckedView(checked, R.id.card_view_new_game_favorite);
         return this;
     }
@@ -60,7 +60,7 @@ public class NewGameRobot extends BaseRobot {
     public NewGameRobot checkWantGame(boolean checked) {
         onView(withId(R.id.card_view_new_game_want_game))
                 .perform(scrollTo());
-        
+
         checkStateCheckedView(checked, R.id.card_view_new_game_want_game);
         return this;
     }
@@ -86,7 +86,7 @@ public class NewGameRobot extends BaseRobot {
     public NewGameRobot fillTextMinPlayers(String minPlayers) {
         onView(withId(R.id.card_view_new_game_min_players))
                 .perform(scrollTo());
-        
+
         onView(withId(R.id.card_view_new_game_min_players))
                 .perform(replaceText(minPlayers), closeSoftKeyboard());
         return this;
@@ -122,7 +122,7 @@ public class NewGameRobot extends BaseRobot {
     public NewGameRobot fillTextGameBadge(String gameBadge) {
         onView(withId(R.id.card_view_new_game_badge_game))
                 .perform(scrollTo());
-        
+
         onView(withId(R.id.card_view_new_game_badge_game))
                 .perform(replaceText(gameBadge), closeSoftKeyboard());
         return this;
@@ -131,7 +131,7 @@ public class NewGameRobot extends BaseRobot {
     public GameRobot saveGame() {
         onView(withId(R.id.fab_next_done_game))
                 .perform(scrollTo());
-        
+
         onView(withId(R.id.fab_next_done_game))
                 .perform(click());
         return new GameRobot(context);
