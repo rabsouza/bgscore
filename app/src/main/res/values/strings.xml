@@ -69,6 +69,7 @@
     <string name="toast_start_export_data">Please wait! Data is being exported in the background&#8230;</string>
     <string name="toast_finish_export_data">All data has been successfully exported!</string>
     <string name="toast_finish_import_data">All data has been successfully restored!</string>
+    <string name="toast_reload_all_img_data">All images will be reloaded in the background!</string>
     <string name="toast_error_import_data">An unexpected error occurred while trying to restore the data, please try again!</string>
     <string name="toast_error_export_data">An unexpected error occurred while trying to export the data, please try again!</string>
 

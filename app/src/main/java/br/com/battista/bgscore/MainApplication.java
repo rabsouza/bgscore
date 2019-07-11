@@ -14,6 +14,8 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.MemoryCategory;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -145,6 +147,7 @@ public class MainApplication extends MultiDexApplication {
 
     private void initializeLoadImage() {
         LogUtils.i(TAG, "initializeLoadImage: Initialize Glide to load image!");
+        Glide.get(getApplicationContext()).setMemoryCategory(MemoryCategory.HIGH);
     }
 
     private void initializeCacheManager() {

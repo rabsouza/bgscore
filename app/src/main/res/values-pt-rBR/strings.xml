@@ -68,6 +68,7 @@
     <string name="msg_action_loading">Aguarde! Carregando&#8230;</string>
     <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
+    <string name="toast_reload_all_img_data">Todas as imagens serão recarregadas em background!</string>
     <string name="toast_finish_import_data">Todos os dados foram restaurados com sucesso!</string>
     <string name="toast_error_import_data">Aconteceu um erro inesperado ao tentar restaurar os dados, por favor tente novamente!</string>
     <string name="toast_error_export_data">Aconteceu um erro inesperado ao tentar exportar os dados, por favor tente novamente!</string>
