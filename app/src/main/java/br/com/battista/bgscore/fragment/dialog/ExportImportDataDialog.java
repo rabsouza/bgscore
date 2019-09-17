@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -38,6 +36,8 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.BackupUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 public class ExportImportDataDialog extends DialogFragment {
 

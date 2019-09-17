@@ -1,12 +1,12 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:layout_marginTop="?attr/actionBarSize"
-                                                 android:animateLayoutChanges="true"
-                                                 android:paddingBottom="?attr/actionBarSize"
-                                                 tools:context="br.com.battista.bgscore.fragment.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:animateLayoutChanges="true"
+    android:paddingBottom="?attr/actionBarSize"
+    tools:context="br.com.battista.bgscore.fragment.HomeFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
@@ -47,13 +47,13 @@
                             style="@style/CardTitleStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_title_my_profile"/>
+                            android:text="@string/card_title_my_profile" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dimen_line"
                             android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
+                            android:background="@color/colorLine" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                                 android:layout_width="@dimen/dimen_profile_img_width"
                                 android:layout_height="@dimen/dimen_profile_img_height"
                                 android:padding="@dimen/element_padding"
-                                android:scaleType="fitCenter"/>
+                                android:scaleType="fitCenter" />
 
                             <TextView
                                 android:id="@+id/card_view_home_username"
@@ -75,7 +75,7 @@
                                 android:gravity="center_horizontal"
                                 android:paddingLeft="@dimen/element_padding"
                                 android:paddingTop="@dimen/element_padding"
-                                tools:text="@string/text_default_username"/>
+                                tools:text="@string/text_default_username" />
 
                             <TextView
                                 android:id="@+id/card_view_home_last_play"
@@ -87,7 +87,7 @@
                                 android:gravity="center_horizontal"
                                 android:paddingLeft="@dimen/element_padding"
                                 android:paddingTop="@dimen/element_padding"
-                                tools:text="@string/text_home_last_play"/>
+                                tools:text="@string/text_home_last_play" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -104,14 +104,14 @@
                                     android:layout_weight="1"
                                     app:icon_score="@drawable/ic_matches"
                                     app:label_score="@string/text_home_games"
-                                    app:value_score="0"/>
+                                    app:value_score="0" />
 
                                 <View
                                     android:layout_width="@dimen/dimen_line"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="@dimen/element_horizontal_margin"
                                     android:layout_marginRight="@dimen/element_horizontal_margin"
-                                    android:background="@color/colorLine"/>
+                                    android:background="@color/colorLine" />
 
                                 <br.com.battista.bgscore.custom.ScoreboardView
                                     android:id="@+id/card_view_score_matches"
@@ -120,14 +120,14 @@
                                     android:layout_weight="1"
                                     app:icon_score="@drawable/ic_matches"
                                     app:label_score="@string/text_home_matches"
-                                    app:value_score="0"/>
+                                    app:value_score="0" />
 
                                 <View
                                     android:layout_width="@dimen/dimen_line"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="@dimen/element_horizontal_margin"
                                     android:layout_marginRight="@dimen/element_horizontal_margin"
-                                    android:background="@color/colorLine"/>
+                                    android:background="@color/colorLine" />
 
                                 <br.com.battista.bgscore.custom.ScoreboardView
                                     android:id="@+id/card_view_score_total_time"
@@ -136,7 +136,7 @@
                                     android:layout_weight="1"
                                     app:icon_score="@drawable/ic_total_time"
                                     app:label_score="@string/text_home_matches_time"
-                                    app:value_score="00:00"/>
+                                    app:value_score="00:00" />
 
                             </LinearLayout>
 
@@ -176,7 +176,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/card_title_my_ranking_game"/>
+                                android:text="@string/card_title_my_ranking_game" />
 
                             <ImageView
                                 android:id="@+id/card_view_ranking_games"
@@ -185,7 +185,7 @@
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
                                 android:tint="@color/colorAccent"
-                                app:srcCompat="@drawable/ic_all_data"/>
+                                app:srcCompat="@drawable/ic_all_data" />
 
                             <ImageView
                                 android:id="@+id/card_view_stats_help"
@@ -194,7 +194,7 @@
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:clickable="true"
                                 android:tint="@color/colorAccent"
-                                app:srcCompat="@drawable/ic_help"/>
+                                app:srcCompat="@drawable/ic_help" />
 
                         </LinearLayout>
 
@@ -202,7 +202,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dimen_line"
                             android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
+                            android:background="@color/colorLine" />
 
                         <TextView
                             android:id="@+id/card_view_stats_info_01"
@@ -210,7 +210,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/element_vertical_margin"
-                            android:text="@string/text_home_stats_info_01"/>
+                            android:text="@string/text_home_stats_info_01" />
 
                         <br.com.battista.bgscore.custom.RecycleEmptyErrorView
                             android:id="@+id/card_view_stats_recycler_view"
@@ -223,7 +223,7 @@
                             android:nestedScrollingEnabled="false"
                             android:paddingTop="@dimen/element_vertical_margin"
                             android:paddingBottom="@dimen/md_keylines"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                         <TextView
                             android:id="@+id/card_view_stats_empty_view"
@@ -231,7 +231,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/text_home_stats_empty_view"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/card_view_stats_error_view"
@@ -239,7 +239,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/text_home_stats_error_view"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -263,6 +263,6 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_add"/>
+        app:srcCompat="@drawable/ic_fab_add" />
 
 </android.support.design.widget.CoordinatorLayout>

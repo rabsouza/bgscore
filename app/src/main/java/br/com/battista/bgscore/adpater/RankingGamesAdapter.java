@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.adpater;
 
-import static com.google.common.base.MoreObjects.firstNonNull;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +17,8 @@ import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static com.google.common.base.MoreObjects.firstNonNull;
 
 
 public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHolder> {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -13,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="@string/text_legend_info_01"/>
+        android:text="@string/text_legend_info_01" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -25,7 +24,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_match"/>
+        android:text="@string/text_legend_match_match" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -37,7 +36,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_date"/>
+        android:text="@string/text_legend_match_date" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -49,7 +48,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_players"/>
+        android:text="@string/text_legend_match_players" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -61,7 +60,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_time"/>
+        android:text="@string/text_legend_match_time" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -73,7 +72,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_feedback"/>
+        android:text="@string/text_legend_match_feedback" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -85,14 +84,14 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_alarm"/>
+        android:text="@string/text_legend_match_alarm" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_line"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:background="@color/colorLine"/>
+        android:background="@color/colorLine" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -104,6 +103,6 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_sort_list"/>
+        android:text="@string/text_legend_match_sort_list" />
 
 </LinearLayout>

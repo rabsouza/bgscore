@@ -2,5 +2,5 @@
 <paths>
     <cache-path
         name="shared_images"
-        path="images/"/>
+        path="images/" />
 </paths>

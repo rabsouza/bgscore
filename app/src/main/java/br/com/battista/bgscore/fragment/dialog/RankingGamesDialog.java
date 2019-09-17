@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_RANKING_GAMES_FRAGMENT;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +28,8 @@ import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_RANKING_GAMES_FRAGMENT;
 
 public class RankingGamesDialog extends DialogFragment {
 

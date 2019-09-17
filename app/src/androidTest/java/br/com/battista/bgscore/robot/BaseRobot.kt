@@ -7,6 +7,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
 import br.com.battista.bgscore.R
+import br.com.battista.bgscore.helper.CustomViewMatcher.withBottomBarItemCheckedStatus
 import org.hamcrest.Matchers.allOf
 
 
@@ -21,63 +22,75 @@ abstract class BaseRobot {
 
     }
 
-    fun navigationToHome(): BaseRobot {
+    fun navigationToHome() = apply {
         onView(withId(R.id.action_home))
                 .perform(click())
 
         onView(allOf(isAssignableFrom(TextView::class.java), withParent(isAssignableFrom(Toolbar::class.java))))
                 .check(matches(withText(R.string.title_home)))
-        return this
     }
 
-    fun navigationToMatches(): BaseRobot {
+    fun navigationToMatches() = apply {
         onView(withId(R.id.action_matches))
                 .perform(click())
 
         onView(allOf(isAssignableFrom(TextView::class.java), withParent(isAssignableFrom(Toolbar::class.java))))
                 .check(matches(withText(R.string.title_matches)))
-        return this
     }
 
-    fun navigationToGames(): BaseRobot {
+    fun navigationToGames() = apply {
         onView(withId(R.id.action_games))
                 .perform(click())
 
         onView(allOf(isAssignableFrom(TextView::class.java), withParent(isAssignableFrom(Toolbar::class.java))))
                 .check(matches(withText(R.string.title_games)))
-        return this
     }
 
-    fun navigationToAccount(): BaseRobot {
+    fun navigationToAccount() = apply {
         onView(withId(R.id.action_account))
                 .perform(click())
 
         onView(allOf(isAssignableFrom(TextView::class.java), withParent(isAssignableFrom(Toolbar::class.java))))
                 .check(matches(withText(R.string.title_account)))
-        return this
     }
 
-    fun navigationToInfo(): BaseRobot {
+    fun navigationToInfo() = apply {
         onView(withId(R.id.action_info))
                 .perform(click())
 
         onView(withText(R.string.title_info))
                 .check(matches(isDisplayed()))
-        return this
     }
 
-    fun closeWelcomeDialog(): BaseRobot {
+    fun checkBottomBarHomeChecked() = apply {
+        onView(withId(R.id.action_home))
+                .check(matches(withBottomBarItemCheckedStatus(true)))
+    }
+
+    fun checkBottomBarMatchesChecked() = apply {
+        onView(withId(R.id.action_matches))
+                .check(matches(withBottomBarItemCheckedStatus(true)))
+    }
+
+    fun checkBottomBarGamesChecked() = apply {
+        onView(withId(R.id.action_games))
+                .check(matches(withBottomBarItemCheckedStatus(true)))
+    }
+
+    fun checkBottomBarAccountChecked() = apply {
+        onView(withId(R.id.action_account))
+                .check(matches(withBottomBarItemCheckedStatus(true)))
+    }
+
+    fun closeWelcomeDialog() = apply {
         try {
             onView(withText(R.string.btn_ok))
                     .perform(click())
         } catch (e: Exception) {
         }
-
-        return this
     }
 
     companion object {
-
         val DO_WAIT_MILLIS = 500
     }
 

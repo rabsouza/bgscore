@@ -7,18 +7,16 @@ import android.os.SystemClock;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
-import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 
 public class MainActivity extends BaseActivity {
 
-    public static final int DEFAULT_SLEEP_PROGRESS_BAR = 50;
+    private static final int DEFAULT_SLEEP_PROGRESS_BAR = 20;
     private static final int DEFAULT_STEPS_PROGRESS_BAR = 5;
     private static final int MAX_PROGRESS_BAR = 100;
 
@@ -79,19 +77,9 @@ public class MainActivity extends BaseActivity {
         }
 
         private void step01CheckUser() {
-            MainApplication instance = MainApplication.instance();
-            User user = instance.getUser();
-            if (user == null) {
-                user = new User().username(getString(R.string.text_default_username));
-                user.initEntity();
-                instance.setUser(user);
-                currentProgress += incrementProgressBarMain;
-                publishProgress(currentProgress);
-            } else {
-                Inject.provideCacheManageService().reloadSyncAllDataCache();
-                currentProgress += incrementProgressBarMain;
-                publishProgress(currentProgress);
-            }
+            Inject.provideCacheManageService().reloadSyncAllDataCache();
+            currentProgress += incrementProgressBarMain;
+            publishProgress(currentProgress);
         }
 
         @Override

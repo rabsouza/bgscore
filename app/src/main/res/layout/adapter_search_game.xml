@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:id="@+id/card_view_games_info"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="@dimen/no_dimen"
-                                    android:clickable="true"
-                                    android:foreground="?attr/selectableItemBackground"
-                                    android:padding="@dimen/no_dimen"
-                                    app:cardBackgroundColor="@color/colorCard"
-                                    app:cardCornerRadius="3dp"
-                                    app:cardElevation="2dp"
-                                    app:cardPreventCornerOverlap="true"
-                                    app:cardUseCompatPadding="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_games_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/no_dimen"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="@dimen/no_dimen"
+    app:cardBackgroundColor="@color/colorCard"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/boardgame_game"/>
+            app:srcCompat="@drawable/boardgame_game" />
 
         <TextView
             android:id="@+id/card_view_games_info_name"
@@ -38,7 +38,7 @@
             android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
             android:gravity="left|center_vertical"
-            tools:text="Game B"/>
+            tools:text="Game B" />
 
         <TextView
             android:id="@+id/card_view_games_info_year"
@@ -54,7 +54,7 @@
             android:drawableLeft="@drawable/ic_game_date_year"
             android:drawablePadding="@dimen/drawable_padding"
             android:gravity="center_vertical"
-            tools:text="1986"/>
+            tools:text="1986" />
 
     </RelativeLayout>
 

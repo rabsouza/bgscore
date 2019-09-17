@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -13,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="@string/text_legend_info_01"/>
+        android:text="@string/text_legend_info_01" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -25,7 +24,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_badge_game"/>
+        android:text="@string/text_legend_game_badge_game" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -37,7 +36,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_players"/>
+        android:text="@string/text_legend_game_players" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -49,7 +48,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_time"/>
+        android:text="@string/text_legend_game_time" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -61,7 +60,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_age"/>
+        android:text="@string/text_legend_game_age" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -73,7 +72,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_year"/>
+        android:text="@string/text_legend_game_year" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -85,7 +84,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_my_game"/>
+        android:text="@string/text_legend_game_my_game" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -97,7 +96,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_favorite"/>
+        android:text="@string/text_legend_game_favorite" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -109,14 +108,14 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_want_game"/>
+        android:text="@string/text_legend_game_want_game" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_line"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:background="@color/colorLine"/>
+        android:background="@color/colorLine" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -128,6 +127,6 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_sort_list"/>
+        android:text="@string/text_legend_game_sort_list" />
 
 </LinearLayout>

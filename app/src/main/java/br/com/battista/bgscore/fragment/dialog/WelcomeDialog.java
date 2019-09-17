@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.fragment.dialog;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.WELCOME_DIALOG_CONTENT;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -24,6 +22,8 @@ import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.WELCOME_DIALOG_CONTENT;
 
 public class WelcomeDialog extends DialogFragment {
 
