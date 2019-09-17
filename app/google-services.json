@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "83699085403",
+    "firebase_url": "https://bg-score.firebaseio.com",
+    "project_id": "bg-score",
+    "storage_bucket": "bg-score.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83699085403:android:2e56c2628d848727f34f7e",
+        "android_client_info": {
+          "package_name": "br.com.battista.bgscore.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83699085403-etphbg6pl5cf3qvq03fr7d7qft54qqd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVYnmkELvNubdLPcAFcSXt0Y3J83dyIA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83699085403-etphbg6pl5cf3qvq03fr7d7qft54qqd5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83699085403:android:c86266fa4be66abdf34f7e",
+        "android_client_info": {
+          "package_name": "br.com.battista.bgscore.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83699085403-etphbg6pl5cf3qvq03fr7d7qft54qqd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVYnmkELvNubdLPcAFcSXt0Y3J83dyIA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83699085403-etphbg6pl5cf3qvq03fr7d7qft54qqd5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

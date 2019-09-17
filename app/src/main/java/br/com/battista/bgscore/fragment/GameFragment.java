@@ -36,8 +36,10 @@ import br.com.battista.bgscore.constants.ViewConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.OrderByDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
+import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
@@ -83,6 +85,21 @@ public class GameFragment extends BaseFragment {
             @Override
             public void onClick(View viewClicked) {
                 processSortListGames(view, viewClicked);
+            }
+        });
+
+        ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
+        btnBrokenImg.setVisibility(View.VISIBLE);
+        btnBrokenImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View viewClicked) {
+                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
+                AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
+
+                LogUtils.i(TAG, "onCreateView: Reload all games images.");
+                AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
+                btnBrokenImg.setVisibility(View.GONE);
             }
         });
 

@@ -68,6 +68,7 @@
     <string name="msg_action_loading">Aguarde! Carregando&#8230;</string>
     <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
+    <string name="toast_reload_all_img_data">Todas as imagens serão recarregadas em background!</string>
     <string name="toast_finish_import_data">Todos os dados foram restaurados com sucesso!</string>
     <string name="toast_error_import_data">Aconteceu um erro inesperado ao tentar restaurar os dados, por favor tente novamente!</string>
     <string name="toast_error_export_data">Aconteceu um erro inesperado ao tentar exportar os dados, por favor tente novamente!</string>
@@ -259,6 +260,7 @@ Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
 <br><br>
 <b>Mais informações:</b><br>
+<b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Avalie nosso app na loja</a></b><br>
 <b><a href="https://github.com/rabsouza/bgscore/blob/master/politicaprivacidade.md">POLÍTICA DE PRIVACIDADE</a></b><br>
 <b><a href="https://github.com/rabsouza/bgscore/blob/master/RELEASE-NOTES.md">Release Notes</a></b>
 ]]>
@@ -277,7 +279,8 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Estatistica e ordenação para seus jogos e partidas.<br>
 &nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
-&nbsp;&nbsp;&nbsp;<b>6) Tela para exibir o ranking de todos os seus jogos.</b><br>
+&nbsp;&nbsp;&nbsp;<b>6) Tela para exibir o ranking de todos os seus jogos.</b><br><br>
+<b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Avalie nosso app na loja</a></b><br>
 <br>
 ]]>
     </string>

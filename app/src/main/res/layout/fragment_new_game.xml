@@ -9,7 +9,7 @@
         android:id="@+id/detail_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="ifContentScrolls"
+        android:overScrollMode="always"
         android:paddingBottom="@dimen/fab_margin_bottom"
         android:scrollbars="horizontal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">

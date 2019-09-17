@@ -6,7 +6,25 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.15
+**Date release**
+ - 10/07/2019
+
+**Improvements**
+- Link para avaliar o app
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.14
+**Date release**
+ - 10/07/2019
+
+**Bugs**
+- Corrige problema de imagem quebrada do bgg
+
+------------------------------------------------------------------------
+
+### Version - 1.0.13
 **Date release**
  - 09/07/2019
 

@@ -14,6 +14,8 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.MemoryCategory;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -52,7 +54,7 @@ public class MainApplication extends MultiDexApplication {
         return instance;
     }
 
-    public static void init(Application application, boolean cleanDB) {
+    public static synchronized void init(Application application, boolean cleanDB) {
         instance = (MainApplication) application;
         instance.cleanDB = cleanDB;
     }
@@ -78,6 +80,7 @@ public class MainApplication extends MultiDexApplication {
         initializeCacheManager();
     }
 
+    @NonNull
     public User getUser() {
         synchronized (this) {
             if ((user == null
@@ -92,6 +95,11 @@ public class MainApplication extends MultiDexApplication {
                 }
             }
             LogUtils.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
+        }
+
+        if (user == null) {
+            user = new User();
+            user.initEntity();
         }
         return user;
     }
@@ -145,6 +153,7 @@ public class MainApplication extends MultiDexApplication {
 
     private void initializeLoadImage() {
         LogUtils.i(TAG, "initializeLoadImage: Initialize Glide to load image!");
+        Glide.get(getApplicationContext()).setMemoryCategory(MemoryCategory.HIGH);
     }
 
     private void initializeCacheManager() {
@@ -173,7 +182,7 @@ public class MainApplication extends MultiDexApplication {
     }
 
     public void clearPreferences() {
-        preferences.edit().clear();
+        preferences.edit().clear().apply();
     }
 
     protected void initializeDB() {

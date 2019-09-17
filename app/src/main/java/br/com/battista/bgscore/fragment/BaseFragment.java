@@ -38,6 +38,11 @@ public class BaseFragment extends Fragment {
             btnSortList.setVisibility(View.GONE);
         }
 
+        ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
+        if (btnBrokenImg != null) {
+            btnBrokenImg.setVisibility(View.GONE);
+        }
+
     }
 
     protected void replaceDetailFragment(Fragment fragment, int containerResID) {

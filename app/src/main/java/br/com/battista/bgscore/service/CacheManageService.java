@@ -5,7 +5,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.MessageFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.model.Game;
@@ -75,9 +77,27 @@ public class CacheManageService {
             loadAllDataMatchAddToCache(user);
             loadAllDataRankingGamesAddToCache(user);
             loadAllDataGameAddToCache(user);
+        } else if (ActionCacheEnum.RELOAD_ALL_GAME_IMAGES.equals(action)) {
+            reloadAllGameImages(user);
+            if (user.isAutomaticBackup()) {
+                AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+            }
         }
 
         instance.setUser(user);
+    }
+
+    private void reloadAllGameImages(User user) {
+        LogUtils.i(TAG, "reloadAllGameImages: Reload all game images!");
+        final List<Game> games = new GameRepository().findAll();
+        for (Game game : games) {
+            final long currentThreadTimeMillis = Calendar.getInstance().getTimeInMillis();
+            final long gameUpdated = game.getUpdatedAt().getTime();
+            if(game.getIdBGG() != null && game.getIdBGG() > 0 &&
+                    currentThreadTimeMillis - gameUpdated >= TimeUnit.HOURS.toMillis(1)){
+                Inject.provideGameService().reloadImageGame(game);
+            }
+        }
     }
 
     private synchronized void loadAllDataMatchAddToCache(User user) {

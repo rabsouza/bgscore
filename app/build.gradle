@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -48,20 +50,20 @@ android {
         }
         prod {
             applicationIdSuffix = ".app"
-            versionCode 15
-            versionName "1.0.13"
+            versionCode 17
+            versionName "1.0.15"
         }
         dev {
             applicationIdSuffix = ".dev"
-            versionCode 23
-            versionName "1.0.23-beta"
+            versionCode 25
+            versionName "1.0.25-beta"
         }
     }
 
     android.variantFilter { variant ->
-        if (variant.buildType.name.equals('release')
-                && (variant.getFlavors().get(0).name.equals('mock')
-                || variant.getFlavors().get(0).name.equals('dev'))) {
+        if (variant.buildType.name == 'release'
+                && (variant.getFlavors().get(0).name == 'mock'
+                || variant.getFlavors().get(0).name == 'dev')) {
             variant.setIgnore(true)
         }
     }
@@ -95,6 +97,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"

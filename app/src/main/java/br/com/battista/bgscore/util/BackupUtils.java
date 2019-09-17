@@ -24,6 +24,7 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.BackupDto;
+import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 
 public class BackupUtils {
 
@@ -128,6 +129,7 @@ public class BackupUtils {
         source.close();
         destination.close();
 
+        AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
         LogUtils.i(TAG, "importDatabase: finished importing the database!");
     }
 

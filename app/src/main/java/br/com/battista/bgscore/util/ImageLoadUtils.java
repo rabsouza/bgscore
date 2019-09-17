@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import br.com.battista.bgscore.R;
+
 public class ImageLoadUtils {
 
     private ImageLoadUtils() {
@@ -16,7 +18,8 @@ public class ImageLoadUtils {
                                  @NonNull ImageView img) {
         Glide.with(context)
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.broken_img)
                 .into(img);
     }
 
@@ -24,27 +27,8 @@ public class ImageLoadUtils {
                                  @NonNull ImageView img) {
         Glide.with(context)
                 .load(resId)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .into(img);
-    }
-
-    public static void loadImageWithImageError(@NonNull Context context,
-                                               @NonNull String url, @NonNull ImageView img,
-                                               int resIdError) {
-        Glide.with(context)
-                .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .error(resIdError)
-                .into(img);
-    }
-
-    public static void loadImageWithPlaceHolderAndError(@NonNull Context context,
-                                                        @NonNull String url, @NonNull ImageView img,
-                                                        int resIdError) {
-        Glide.with(context)
-                .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .error(resIdError)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.broken_img)
                 .into(img);
     }
 

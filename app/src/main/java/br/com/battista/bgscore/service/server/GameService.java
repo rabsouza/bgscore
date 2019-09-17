@@ -112,4 +112,40 @@ public class GameService extends BaseService {
 
         return game;
     }
+
+    public Game reloadImageGame(@NonNull Game game) {
+        LogUtils.i(TAG, MessageFormat.format("Load BoardGame by id: {0} in server url:[{1}{2}{3}]!",
+                game.getIdBGG(), RestConstant.REST_API_ENDPOINT, RestConstant.REST_API_VERSION,
+                GameListener.URI_LOAD_GAME));
+
+        GameListener listener = builder.create(GameListener.class);
+        try {
+            Response<LoadGameResponse> response = listener.load(game.getIdBGG()).execute();
+            if (response != null && response.code() == HttpStatus.NO_CONTENT.value()) {
+                LogUtils.i(TAG, "Found 0 games!");
+            } else if (response != null && response.code() == HttpStatus.OK.value() && response.body() != null) {
+                GameResponse gameResponse = response.body().getBoardgame();
+                LogUtils.i(TAG, MessageFormat.format("Found the game {0}!", gameResponse.getName()));
+
+                final GameRepository gameRepository = new GameRepository();
+                game.urlThumbnail(gameResponse.getThumbnail());
+                game.urlImage(gameResponse.getImage());
+                game.updateEntity();
+
+                LogUtils.i(TAG, "loadGame: Merge the entity with server and save in BD!");
+                gameRepository.save(game);
+
+                return game;
+            } else {
+                String errorMessage = MessageFormat.format(
+                        "Not found games! Return the code status: {0}.",
+                        HttpStatus.valueOf(response.code()));
+                validateErrorResponse(response, errorMessage);
+            }
+        } catch (Exception e) {
+            LogUtils.e(TAG, e.getLocalizedMessage(), e);
+        }
+
+        return game;
+    }
 }
