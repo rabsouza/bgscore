@@ -6,6 +6,20 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+
+### Version - 1.0.16
+**Date release**
+ - 21/09/2019
+
+**Bugs**
+- Corrige o bug ao tentar restaurar um backup no Android Pie (9+)
+
+**Improvements**
+- Melhoras de layout
+- Ajuste na funcionalidade de restaurar imagem dos jogos
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.15
 **Date release**
  - 10/07/2019
@@ -227,6 +241,37 @@ Adiciona Politica de privacidade
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.26-Beta
+**Date release**
+ - 21/09/2019
+
+**Bugs**
+- Corrige o bug ao tentar restaurar um backup no Android Pie (9+)
+
+**Improvements**
+- Melhoras de layout
+- Ajuste na funcionalidade de restaurar imagem dos jogos
+
+------------------------------------------------------------------------
+
+### Version - 1.0.25-Beta
+**Date release**
+ - 10/07/2019
+
+**Improvements**
+- Link para avaliar o app
+
+------------------------------------------------------------------------
+
+### Version - 1.0.24-Beta
+**Date release**
+ - 10/07/2019
+
+**Bugs**
+- Corrige problema de imagem quebrada do bgg
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.23-Beta

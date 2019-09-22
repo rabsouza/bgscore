@@ -287,9 +287,9 @@ public class ProfileFragment extends BaseFragment {
         @Override
         protected void onPostExecute(Boolean result) {
             if (data.getBooleanExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE)) {
-                AndroidUtils.toast(getContext(), R.string.toast_finish_import_data);
+                AndroidUtils.toastLong(getContext(), R.string.toast_finish_import_data);
             } else {
-                AndroidUtils.toast(getContext(), R.string.toast_error_import_data);
+                AndroidUtils.toastLong(getContext(), R.string.toast_error_import_data);
             }
             loadUserInfo(getView());
             loadDataFriends(getView());

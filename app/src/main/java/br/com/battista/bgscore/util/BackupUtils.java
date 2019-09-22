@@ -129,7 +129,16 @@ public class BackupUtils {
         source.close();
         destination.close();
 
-        AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
+        // Corrige bug do banco de dados para Android Pie (9+)
+        File dbshm = new File(currentDB.getPath() + "-shm");
+        File dbwal = new File(currentDB.getPath() + "-wal");
+        if (dbshm.exists()) {
+            dbshm.delete();
+        }
+        if (dbwal.exists()) {
+            dbwal.delete();
+        }
+
         LogUtils.i(TAG, "importDatabase: finished importing the database!");
     }
 

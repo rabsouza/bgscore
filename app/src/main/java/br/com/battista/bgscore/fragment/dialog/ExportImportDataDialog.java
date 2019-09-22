@@ -136,42 +136,33 @@ public class ExportImportDataDialog extends DialogFragment {
         txtPathDirImport.setText(
                 resources.getString(R.string.text_dialog_import_data_info_02, dirBackup.getAbsolutePath()));
 
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_CANCELED, getActivity().getIntent());
-                getDialog().dismiss();
-            }
+        btnClose.setOnClickListener(view -> {
+            getTargetFragment().onActivityResult(getTargetRequestCode(),
+                    Activity.RESULT_CANCELED, getActivity().getIntent());
+            getDialog().dismiss();
         });
 
-        btnImport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_IMPORT_DATA);
+        btnImport.setOnClickListener(view -> {
+            AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_IMPORT_DATA);
 
-                createDialogImportBackup(backupFile);
-            }
+            createDialogImportBackup(backupFile);
         });
 
-        btnExport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_DATA);
+        btnExport.setOnClickListener(view -> {
+            AndroidUtils.checkPermissions(getActivity(), PermissionConstant.STORAGE_PERMISSIONS);
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_DATA);
 
-                AndroidUtils.toast(getContext(), R.string.toast_start_export_data);
-                AndroidUtils.postAction(ActionDatabaseEnum.EXPORT_ALL_DATA);
+            AndroidUtils.toast(getContext(), R.string.toast_start_export_data);
+            AndroidUtils.postAction(ActionDatabaseEnum.EXPORT_ALL_DATA);
 
-                final Intent intent = getActivity().getIntent();
-                intent.putExtra(BundleConstant.ACTION, BundleConstant.Action.EXPORT);
-                getTargetFragment().onActivityResult(getTargetRequestCode(),
-                        Activity.RESULT_OK, getActivity().getIntent());
-                getDialog().dismiss();
-            }
+            final Intent intent = getActivity().getIntent();
+            intent.putExtra(BundleConstant.ACTION, BundleConstant.Action.EXPORT);
+            getTargetFragment().onActivityResult(getTargetRequestCode(),
+                    Activity.RESULT_OK, getActivity().getIntent());
+            getDialog().dismiss();
         });
 
     }
