@@ -1,18 +1,6 @@
 package br.com.battista.bgscore.fragment.game;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
-import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_ABSTRACT;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_AMERITRASH;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_EUROS;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_FAMILY;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_NONE;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_PARTY;
-import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_WARGAMER;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -59,6 +47,18 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.RatingUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_ABSTRACT;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_AMERITRASH;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_EUROS;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_FAMILY;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_NONE;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_PARTY;
+import static br.com.battista.bgscore.model.enuns.BadgeGameEnum.BADGE_GAME_WARGAMER;
 
 public class NewGameFragment extends BaseFragment {
     private static final String TAG = NewGameFragment.class.getSimpleName();

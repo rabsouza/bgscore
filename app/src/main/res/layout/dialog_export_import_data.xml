@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:id="@+id/dialog_view_export_import_data"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_margin="@dimen/no_dimen"
-             android:animateLayoutChanges="true"
-             android:orientation="vertical"
-             android:padding="@dimen/activity_padding"
-             android:scrollbars="none">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_view_export_import_data"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/no_dimen"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    android:scrollbars="none">
 
     <LinearLayout
         android:id="@+id/container_dialog"
@@ -22,13 +22,13 @@
             style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_title_export_data"/>
+            android:text="@string/dialog_title_export_data" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_line"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:background="@color/colorLine"/>
+            android:background="@color/colorLine" />
 
         <TextView
             android:id="@+id/dialog_view_export_data_info_01"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin"
             android:text="@string/text_dialog_export_data_info_01"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/dialog_view_export_data_info_02"
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:text="@string/text_dialog_export_data_info_02"/>
+            android:text="@string/text_dialog_export_data_info_02" />
 
         <TextView
             android:id="@+id/dialog_view_export_data_info_03"
@@ -55,7 +55,7 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:drawableLeft="@drawable/ic_backup"
             android:drawablePadding="@dimen/element_padding"
-            android:text="@string/text_dialog_export_data_info_03"/>
+            android:text="@string/text_dialog_export_data_info_03" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/dialog_view_export_import_data_btn_export"
@@ -73,7 +73,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_export"/>
+                android:text="@string/btn_export" />
 
         </LinearLayout>
 
@@ -83,13 +83,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/dialog_title_import_data"/>
+            android:text="@string/dialog_title_import_data" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_line"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:background="@color/colorLine"/>
+            android:background="@color/colorLine" />
 
         <TextView
             android:id="@+id/dialog_view_import_data_info_01"
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:text="@string/text_dialog_import_data_info_01"/>
+            android:text="@string/text_dialog_import_data_info_01" />
 
         <TextView
             android:id="@+id/dialog_view_import_data_info_02"
@@ -105,8 +105,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:visibility="gone"
-            tools:text="@string/text_dialog_import_data_info_02"/>
+            android:text="@string/text_dialog_import_data_info_02" />
+
+        <TextView
+            android:id="@+id/dialog_view_import_data_info_03"
+            style="@style/HintTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:text="@string/text_dialog_import_data_info_03" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/dialog_view_import_card_view_backup_info"
@@ -130,7 +137,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_backup_restore"/>
+                    app:srcCompat="@drawable/ic_backup_restore" />
 
                 <TextView
                     android:id="@+id/dialog_view_import_card_view_backup_info_text"
@@ -143,7 +150,7 @@
                     android:ellipsize="end"
                     android:gravity="left"
                     android:maxLines="3"
-                    android:text="@string/text_dialog_import_last_data"/>
+                    android:text="@string/text_dialog_import_last_data" />
 
                 <View
                     android:id="@+id/dialog_view_import_card_view_backup_info_separator"
@@ -152,7 +159,7 @@
                     android:layout_below="@id/dialog_view_import_card_view_backup_info_text"
                     android:layout_marginTop="@dimen/element_vertical_margin"
                     android:layout_marginBottom="@dimen/element_vertical_margin"
-                    android:background="@color/colorLine"/>
+                    android:background="@color/colorLine" />
 
                 <TextView
                     android:id="@+id/dialog_view_import_card_view_backup_info_version"
@@ -164,7 +171,7 @@
                     android:drawableLeft="@drawable/ic_info"
                     android:drawablePadding="@dimen/drawable_padding"
                     android:gravity="center_vertical"
-                    tools:text="Version: 1.0.0 Beta"/>
+                    tools:text="Version: 1.0.0 Beta" />
 
                 <TextView
                     android:id="@+id/dialog_view_import_card_view_backup_info_date"
@@ -176,7 +183,7 @@
                     android:drawableLeft="@drawable/ic_date"
                     android:drawablePadding="@dimen/drawable_padding"
                     android:gravity="center_vertical"
-                    tools:text="Date: 10/03/2018 10:24"/>
+                    tools:text="Date: 10/03/2018 10:24" />
 
                 <TextView
                     android:id="@+id/dialog_view_import_card_view_backup_info_user"
@@ -188,7 +195,7 @@
                     android:drawableLeft="@drawable/ic_username"
                     android:drawablePadding="@dimen/drawable_padding"
                     android:gravity="center_vertical"
-                    tools:text="User: rabsouza"/>
+                    tools:text="User: rabsouza" />
 
             </RelativeLayout>
 
@@ -205,7 +212,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_close"/>
+                android:text="@string/btn_close" />
 
             <Button
                 android:id="@+id/dialog_view_export_import_data_btn_import"
@@ -213,7 +220,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_import"/>
+                android:text="@string/btn_import" />
 
         </LinearLayout>
 

@@ -93,8 +93,8 @@ public class CacheManageService {
         for (Game game : games) {
             final long currentThreadTimeMillis = Calendar.getInstance().getTimeInMillis();
             final long gameUpdated = game.getUpdatedAt().getTime();
-            if(game.getIdBGG() != null && game.getIdBGG() > 0 &&
-                    currentThreadTimeMillis - gameUpdated >= TimeUnit.HOURS.toMillis(1)){
+            if (game.getIdBGG() != null && game.getIdBGG() > 0 &&
+                    currentThreadTimeMillis - gameUpdated >= TimeUnit.HOURS.toMillis(1)) {
                 Inject.provideGameService().reloadImageGame(game);
             }
         }

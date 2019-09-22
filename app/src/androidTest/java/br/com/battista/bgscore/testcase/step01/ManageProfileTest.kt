@@ -41,14 +41,14 @@ class ManageProfileTest {
         testRule.launchActivity(Intent())
         context = testRule.activity.applicationContext
 
-        profileRobot = ProfileRobot(context!!)
+        profileRobot = ProfileRobot(context)
 
         val application = testRule.activity.application as MainApplication
         MainApplication.init(application, false)
 
         user = HomeActivityHelper.createNewUser()
         application.clearPreferences()
-        application.setUser(user)
+        application.user = user
 
         profileRobot.closeWelcomeDialog()
         profileRobot.navigationToAccount()
@@ -241,7 +241,7 @@ class ManageProfileTest {
                 .checkTextDateCreated(user.createdAt)
                 .checkDrawableUserAvatar(R.drawable.avatar_c3p0)
 
-        val homeRobot = HomeRobot(context!!)
+        val homeRobot = HomeRobot(context)
         homeRobot.navigationToHome()
         homeRobot.checkTextUsername(username)
                 .checkDrawableUserAvatar(R.drawable.avatar_c3p0)

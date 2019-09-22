@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:id="@+id/dialog_view_edit_profile"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_margin="@dimen/no_dimen"
-             android:animateLayoutChanges="true"
-             android:orientation="vertical"
-             android:padding="@dimen/activity_padding"
-             android:scrollbars="none">
+    android:id="@+id/dialog_view_edit_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/no_dimen"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    android:scrollbars="none">
 
     <LinearLayout
         android:id="@+id/container_dialog"
@@ -20,13 +20,13 @@
             style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_title_edit_profile"/>
+            android:text="@string/dialog_title_edit_profile" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_line"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:background="@color/colorLine"/>
+            android:background="@color/colorLine" />
 
         <TextView
             android:id="@+id/dialog_view_edit_profile_info_01"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="@string/text_dialog_edit_profile_info_01"/>
+            android:text="@string/text_dialog_edit_profile_info_01" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textAutoComplete"
                 android:maxLength="30"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +68,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:maxLength="50"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -80,7 +80,7 @@
             android:layout_marginBottom="@dimen/element_horizontal_margin"
             android:checked="false"
             android:text="@string/text_dialog_edit_custom_font"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/dialog_view_edit_profile_custom_font_info_01"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/text_dialog_edit_profile_custom_font_info_01"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <Switch
             android:id="@+id/dialog_view_edit_automatic_backup"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:checked="false"
-            android:text="@string/text_dialog_edit_automatic_backup"/>
+            android:text="@string/text_dialog_edit_automatic_backup" />
 
         <TextView
             android:id="@+id/dialog_view_edit_profile_reset_title"
@@ -106,13 +106,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/dialog_title_edit_profile_reset"/>
+            android:text="@string/dialog_title_edit_profile_reset" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_line"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:background="@color/colorLine"/>
+            android:background="@color/colorLine" />
 
         <TextView
             android:id="@+id/dialog_view_edit_profile_info_02"
@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="@string/text_dialog_edit_profile_info_02"/>
+            android:text="@string/text_dialog_edit_profile_info_02" />
 
         <Switch
             android:id="@+id/dialog_view_edit_profile_reset"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:checked="false"
-            android:text="@string/text_dialog_edit_profile_reset"/>
+            android:text="@string/text_dialog_edit_profile_reset" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_cancel"/>
+                android:text="@string/btn_cancel" />
 
             <Button
                 android:id="@+id/dialog_view_edit_profile_btn_save"
@@ -151,7 +151,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_save"/>
+                android:text="@string/btn_save" />
 
         </LinearLayout>
 

@@ -1,7 +1,5 @@
 package br.com.battista.bgscore.fragment.dialog;
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -46,6 +44,8 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SHARE_MATCH_FULL_FRAGMENT;
 
 public class ShareMatchFullDialog extends DialogFragment {
 

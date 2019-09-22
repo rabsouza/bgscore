@@ -1,8 +1,6 @@
 package br.com.battista.bgscore.fragment.match;
 
 
-import static br.com.battista.bgscore.constants.BundleConstant.DATA;
-
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -40,6 +38,8 @@ import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.LogUtils;
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
+
+import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 
 public class DetailMatchFragment extends BaseFragment {
 

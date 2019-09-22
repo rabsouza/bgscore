@@ -51,12 +51,12 @@ android {
         prod {
             applicationIdSuffix = ".app"
             versionCode 17
-            versionName "1.0.15"
+            versionName "1.0.16"
         }
         dev {
             applicationIdSuffix = ".dev"
             versionCode 25
-            versionName "1.0.25-beta"
+            versionName "1.0.26-beta"
         }
     }
 

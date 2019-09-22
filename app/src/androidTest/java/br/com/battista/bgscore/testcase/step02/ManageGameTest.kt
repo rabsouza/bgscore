@@ -41,7 +41,7 @@ class ManageGameTest {
         testRule.launchActivity(Intent())
         context = testRule.activity.applicationContext
 
-        gameRobot = GameRobot(context!!)
+        gameRobot = GameRobot(context)
 
         val application = testRule.activity.application as MainApplication
         MainApplication.init(application, false)

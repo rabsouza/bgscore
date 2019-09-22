@@ -1,10 +1,6 @@
 package br.com.battista.bgscore.fragment;
 
 
-import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
-import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -45,6 +41,10 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
 
+import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
+import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
+
 
 public class MatchFragment extends BaseFragment {
 
@@ -74,50 +74,34 @@ public class MatchFragment extends BaseFragment {
         final View view = inflater.inflate(R.layout.fragment_match, container, false);
 
         refreshLayout = view.findViewById(R.id.refresh_layout);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadAllMatches();
-            }
-        });
+        refreshLayout.setOnRefreshListener(() -> loadAllMatches());
 
         ImageButton btnSortList = getActivity().findViewById(R.id.btn_sort_list);
         btnSortList.setVisibility(View.VISIBLE);
-        btnSortList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View viewClicked) {
-                processSortListGames(view, viewClicked);
-            }
-        });
+        btnSortList.setOnClickListener(viewClicked -> processSortListGames(view, viewClicked));
 
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
-        btnBrokenImg.setVisibility(View.VISIBLE);
-        btnBrokenImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View viewClicked) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
-                AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
+        btnBrokenImg.setVisibility(View.GONE);
+        btnBrokenImg.setOnClickListener(viewClicked -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
+            AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
 
-                LogUtils.i(TAG, "onCreateView: Reload all games images.");
-                AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
-                btnBrokenImg.setVisibility(View.GONE);
-            }
+            LogUtils.i(TAG, "onCreateView: Reload all games images.");
+            AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
+            btnBrokenImg.setVisibility(View.GONE);
         });
 
         FloatingActionButton fab = view.findViewById(R.id.fab_new_match);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
-                Bundle args = new Bundle();
-                Intent intent = new Intent(getContext(), MatchActivity.class);
-                intent.putExtras(args);
+        fab.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
+            Bundle args = new Bundle();
+            Intent intent = new Intent(getContext(), MatchActivity.class);
+            intent.putExtras(args);
 
-                getContext().startActivity(intent);
+            getContext().startActivity(intent);
 
-            }
         });
 
         setupRecycleMatches(view);

@@ -1,9 +1,9 @@
 package br.com.battista.bgscore.util;
 
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTION;
-
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.CustomEvent;
+
+import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTION;
 
 public class AnswersUtils {
 

@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.util;
 
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_DATABASE_NAME;
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
-
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -25,6 +22,9 @@ import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.BackupDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
+
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_DATABASE_NAME;
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
 
 public class BackupUtils {
 
@@ -129,7 +129,16 @@ public class BackupUtils {
         source.close();
         destination.close();
 
-        AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
+        // Corrige bug do banco de dados para Android Pie (9+)
+        File dbshm = new File(currentDB.getPath() + "-shm");
+        File dbwal = new File(currentDB.getPath() + "-wal");
+        if (dbshm.exists()) {
+            dbshm.delete();
+        }
+        if (dbwal.exists()) {
+            dbwal.delete();
+        }
+
         LogUtils.i(TAG, "importDatabase: finished importing the database!");
     }
 

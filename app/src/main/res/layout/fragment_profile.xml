@@ -1,12 +1,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:layout_marginTop="?attr/actionBarSize"
-             android:animateLayoutChanges="true"
-             android:paddingBottom="?attr/actionBarSize"
-             tools:context="br.com.battista.bgscore.fragment.ProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:animateLayoutChanges="true"
+    android:paddingBottom="?attr/actionBarSize"
+    tools:context="br.com.battista.bgscore.fragment.ProfileFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
@@ -47,13 +47,13 @@
                             style="@style/CardTitleStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_title_my_profile"/>
+                            android:text="@string/card_title_my_profile" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dimen_line"
                             android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
+                            android:background="@color/colorLine" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                                 android:layout_marginTop="25dp"
                                 android:clickable="true"
                                 android:padding="@dimen/element_padding"
-                                android:scaleType="fitCenter"/>
+                                android:scaleType="fitCenter" />
 
                             <ImageView
                                 android:layout_width="20dp"
@@ -75,7 +75,7 @@
                                 android:layout_marginTop="20dp"
                                 android:layout_toRightOf="@id/card_view_profile_img"
                                 android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/ic_reload"/>
+                                app:srcCompat="@drawable/ic_reload" />
 
                             <LinearLayout
                                 android:id="@+id/group_data_profile"
@@ -94,7 +94,7 @@
                                     android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
-                                    android:text="@string/text_username"/>
+                                    android:text="@string/text_username" />
 
                                 <TextView
                                     android:id="@+id/card_view_profile_mail"
@@ -106,7 +106,7 @@
                                     android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
-                                    android:text="@string/text_mail"/>
+                                    android:text="@string/text_mail" />
 
                                 <TextView
                                     android:id="@+id/card_view_profile_date_created"
@@ -118,7 +118,7 @@
                                     android:drawablePadding="@dimen/drawable_padding"
                                     android:gravity="left|center_vertical"
                                     android:paddingLeft="@dimen/element_padding"
-                                    android:text="@string/text_date_created"/>
+                                    android:text="@string/text_date_created" />
 
                             </LinearLayout>
 
@@ -137,7 +137,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="@string/btn_export_import"/>
+                                    android:text="@string/btn_export_import" />
 
                                 <Button
                                     android:id="@+id/button_profile_edit_profile"
@@ -145,7 +145,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="@string/btn_edit"/>
+                                    android:text="@string/btn_edit" />
 
                             </LinearLayout>
 
@@ -179,20 +179,20 @@
                             style="@style/CardTitleStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_title_friends"/>
+                            android:text="@string/card_title_friends" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dimen_line"
                             android:layout_marginBottom="@dimen/element_vertical_margin"
-                            android:background="@color/colorLine"/>
+                            android:background="@color/colorLine" />
 
                         <TextView
                             android:id="@+id/card_view_friends_info_01"
                             style="@style/HintTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/text_profile_friends_info_01"/>
+                            android:text="@string/text_profile_friends_info_01" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -215,7 +215,7 @@
                                     android:imeOptions="actionDone"
                                     android:inputType="textAutoComplete"
                                     android:maxLength="30"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1" />
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -227,7 +227,7 @@
                                 android:layout_marginLeft="@dimen/element_horizontal_margin"
                                 android:layout_marginTop="@dimen/element_vertical_margin"
                                 android:layout_marginRight="@dimen/element_horizontal_margin"
-                                app:srcCompat="@drawable/ic_add_friend"/>
+                                app:srcCompat="@drawable/ic_add_friend" />
 
                         </LinearLayout>
 
@@ -242,7 +242,7 @@
                             android:nestedScrollingEnabled="false"
                             android:paddingTop="@dimen/element_vertical_margin"
                             android:paddingBottom="@dimen/md_keylines"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                         <TextView
                             android:id="@+id/card_view_friends_empty_view"
@@ -250,7 +250,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/text_profile_friends_empty_view"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/card_view_friends_error_view"
@@ -258,7 +258,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/text_profile_friends_error_view"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                     </LinearLayout>
 

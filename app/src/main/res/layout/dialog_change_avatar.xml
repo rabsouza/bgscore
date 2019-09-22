@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/dialog_view_change_avatar"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_margin="@dimen/no_dimen"
-             android:animateLayoutChanges="true"
-             android:padding="@dimen/activity_padding">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_view_change_avatar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/no_dimen"
+    android:animateLayoutChanges="true"
+    android:padding="@dimen/activity_padding">
 
     <LinearLayout
         android:id="@+id/container_dialog"
@@ -19,13 +19,13 @@
             style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_title_change_avatar"/>
+            android:text="@string/dialog_title_change_avatar" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_line"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:background="@color/colorLine"/>
+            android:background="@color/colorLine" />
 
         <TextView
             android:id="@+id/dialog_view_change_avatar_info_01"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:text="@string/text_dialog_change_avatar_info_01"/>
+            android:text="@string/text_dialog_change_avatar_info_01" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/dialog_view_change_avatar_recycler_view"
@@ -45,7 +45,7 @@
             android:listSelector="@android:color/transparent"
             android:paddingTop="@dimen/element_vertical_margin"
             android:paddingBottom="@dimen/element_vertical_margin"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_cancel"/>
+                android:text="@string/btn_cancel" />
 
             <Button
                 android:id="@+id/dialog_view_change_avatar_btn_confirm"
@@ -66,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_confirm"/>
+                android:text="@string/btn_confirm" />
 
         </LinearLayout>
 

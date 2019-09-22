@@ -1,7 +1,6 @@
 package br.com.battista.bgscore.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -78,25 +77,17 @@ public class HomeFragment extends BaseFragment {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         refreshLayout = view.findViewById(R.id.refresh_layout);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadAllData(view);
-            }
-        });
+        refreshLayout.setOnRefreshListener(() -> loadAllData(view));
 
         FloatingActionButton fab = view.findViewById(R.id.fab_new_match);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
-                Bundle args = new Bundle();
-                Intent intent = new Intent(getContext(), MatchActivity.class);
-                intent.putExtras(args);
+        fab.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
+            Bundle args = new Bundle();
+            Intent intent = new Intent(getContext(), MatchActivity.class);
+            intent.putExtras(args);
 
-                getContext().startActivity(intent);
-            }
+            getContext().startActivity(intent);
         });
 
         setupRecycleRanking(view);
@@ -114,43 +105,33 @@ public class HomeFragment extends BaseFragment {
 
     private void setupHelpRankingGame(View view) {
         imgHelpRankingGame = view.findViewById(R.id.card_view_stats_help);
-        imgHelpRankingGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_RANKING_GAME);
+        imgHelpRankingGame.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_RANKING_GAME);
 
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = inflater.inflate(R.layout.dialog_help_ranking_game, null);
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View customView = inflater.inflate(R.layout.dialog_help_ranking_game, null);
 
-                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-                        .setTitle(R.string.title_help)
-                        .setView(customView)
-                        .setPositiveButton(R.string.btn_ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        dialog.dismiss();
-                                    }
-                                }
-                        )
-                        .create();
-                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
-                alertDialog.show();
-            }
+            AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.title_help)
+                    .setView(customView)
+                    .setPositiveButton(R.string.btn_ok,
+                            (dialog, whichButton) -> dialog.dismiss()
+                    )
+                    .create();
+            alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+            alertDialog.show();
         });
     }
 
     private void setupDataRankingGame(View view) {
         imgDataRankingGame = view.findViewById(R.id.card_view_ranking_games);
-        imgDataRankingGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DATA_RANKING_GAME);
+        imgDataRankingGame.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DATA_RANKING_GAME);
 
-                final FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
-                new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
-            }
+            final FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
+            new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
         });
     }
 
@@ -211,33 +192,20 @@ public class HomeFragment extends BaseFragment {
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
         scoreGames = view.findViewById(R.id.card_view_score_games);
         scoreGames.setScoreText(decimalFormatScore.format(user.getNumGames()));
-        scoreGames.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                view.getRootView().findViewById(R.id.action_games).callOnClick();
-            }
-        });
+        scoreGames.setOnClickListener(v -> view.getRootView().findViewById(R.id.action_games).callOnClick());
 
         scoreMatches = view.findViewById(R.id.card_view_score_matches);
         scoreMatches.setScoreText(decimalFormatScore.format(user.getNumMatches()));
-        scoreMatches.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                view.getRootView().findViewById(R.id.action_matches).callOnClick();
-            }
-        });
+        scoreMatches.setOnClickListener(v -> view.getRootView().findViewById(R.id.action_matches).callOnClick());
 
         scoreTotalTime = view.findViewById(R.id.card_view_score_total_time);
         scoreTotalTime.setScoreText(DateUtils.formatTime(user.getTotalTime()));
-        scoreTotalTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DATA_RANKING_GAME);
+        scoreTotalTime.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_DATA_RANKING_GAME);
 
-                final FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
-                new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
-            }
+            final FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
+            new RankingGamesDialog().newInstance().showDialog(supportFragmentManager.findFragmentById(R.id.container));
         });
     }
 

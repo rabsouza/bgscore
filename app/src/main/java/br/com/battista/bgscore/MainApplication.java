@@ -1,13 +1,5 @@
 package br.com.battista.bgscore;
 
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
-import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
-import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
-import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -38,6 +30,14 @@ import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.service.DatabaseManageService;
 import br.com.battista.bgscore.util.LogUtils;
 import io.fabric.sdk.android.Fabric;
+
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT;
+import static br.com.battista.bgscore.constants.FontsConstant.DEFAULT_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.MONOSPACE;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF;
+import static br.com.battista.bgscore.constants.FontsConstant.SANS_SERIF_FONT;
+import static br.com.battista.bgscore.constants.FontsConstant.SERIF;
 
 public class MainApplication extends MultiDexApplication {
 
@@ -95,12 +95,15 @@ public class MainApplication extends MultiDexApplication {
                 }
             }
             LogUtils.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
+
+            if (user == null) {
+                user = new User().username(getString(R.string.text_default_username));
+                user.initEntity();
+                setUser(user);
+                LogUtils.d(TAG, MessageFormat.format("Create new user with data: {0}", user));
+            }
         }
 
-        if (user == null) {
-            user = new User();
-            user.initEntity();
-        }
         return user;
     }
 

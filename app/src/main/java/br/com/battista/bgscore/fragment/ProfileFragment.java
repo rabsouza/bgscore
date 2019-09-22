@@ -1,10 +1,6 @@
 package br.com.battista.bgscore.fragment;
 
 
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
-import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -54,6 +48,10 @@ import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EDIT_PROFILE_FRAGMENT;
+import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_EXPORT_IMPORT_DATA_FRAGMENT;
 
 
 public class ProfileFragment extends BaseFragment {
@@ -93,13 +91,10 @@ public class ProfileFragment extends BaseFragment {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         refreshLayout = view.findViewById(R.id.refresh_layout);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadUserInfo(getView());
-                loadDataFriends(getView());
-                refreshLayout.setRefreshing(false);
-            }
+        refreshLayout.setOnRefreshListener(() -> {
+            loadUserInfo(getView());
+            loadDataFriends(getView());
+            refreshLayout.setRefreshing(false);
         });
 
         setupRecycleViewFriends(view);
@@ -145,27 +140,7 @@ public class ProfileFragment extends BaseFragment {
                         BundleConstant.Action.IMPORT == data.getIntExtra(BundleConstant.ACTION, 0)) {
                     LogUtils.i(TAG, "onActivityResult: Import data from backup!");
 
-                    new ProgressApp(this.getActivity(), R.string.msg_action_loading, false) {
-
-                        @Override
-                        protected void onPostExecute(Boolean result) {
-                            if (data.getBooleanExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE)) {
-                                AndroidUtils.toast(getContext(), R.string.toast_finish_import_data);
-                            } else {
-                                AndroidUtils.toast(getContext(), R.string.toast_error_import_data);
-                            }
-                            loadUserInfo(getView());
-                            loadDataFriends(getView());
-                            AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
-                            dismissProgress();
-                        }
-
-                        @Override
-                        protected Boolean doInBackground(Void... params) {
-                            Inject.provideCacheManageService().reloadSyncAllDataCache();
-                            return true;
-                        }
-                    }.execute();
+                    new ProfileProgressApp(data).execute();
 
                 }
                 AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
@@ -188,16 +163,13 @@ public class ProfileFragment extends BaseFragment {
 
         txtAvatar = view.findViewById(R.id.card_view_profile_img);
         txtAvatar.setImageResource(user.getAvatar().getIdResDrawable());
-        txtAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                        ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
+        txtAvatar.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                    ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
 
-                final User user = MainApplication.instance().getUser();
-                ChangeAvatarDialog.newInstance(user.getAvatar().getIdResDrawable())
-                        .showDialog(currentFragment);
-            }
+            final User user1 = MainApplication.instance().getUser();
+            ChangeAvatarDialog.newInstance(user1.getAvatar().getIdResDrawable())
+                    .showDialog(currentFragment);
         });
 
         txtUsername = view.findViewById(R.id.card_view_profile_username);
@@ -244,23 +216,15 @@ public class ProfileFragment extends BaseFragment {
         recycleViewFriends.setAdapter(new FriendAdapter(getContext(), friends));
 
         txtUsernameFriend = view.findViewById(R.id.card_view_friends_username);
-        txtUsernameFriend.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    processDataFriends(friends, user, instance);
-                }
-                return false;
+        txtUsernameFriend.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                processDataFriends(friends, user, instance);
             }
+            return false;
         });
 
         btnAddFriend = view.findViewById(R.id.card_view_friends_button_add);
-        btnAddFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                processDataFriends(friends, user, instance);
-            }
-        });
+        btnAddFriend.setOnClickListener(view1 -> processDataFriends(friends, user, instance));
     }
 
     private void processDataFriends(List<FriendDto> friends, User user, MainApplication instance) {
@@ -296,24 +260,47 @@ public class ProfileFragment extends BaseFragment {
     private void setupButtonsProfile(View view) {
         final Fragment currentFragment = this;
         btnExportImportData = view.findViewById(R.id.button_profile_export_import_data);
-        btnExportImportData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                        ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
-                ExportImportDataDialog.newInstance().showDialog(currentFragment);
-            }
+        btnExportImportData.setOnClickListener(view12 -> {
+            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                    ValueActions.VALUE_ACTION_CLICK_BUTTON_EXPORT_IMPORT_DATA);
+            ExportImportDataDialog.newInstance().showDialog(currentFragment);
         });
 
         btnEditProfile = view.findViewById(R.id.button_profile_edit_profile);
-        btnEditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                        ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_PROFILE);
+        btnEditProfile.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                    ValueActions.VALUE_ACTION_CLICK_BUTTON_EDIT_PROFILE);
 
-                EditProfileDialog.newInstance().showDialog(currentFragment);
-            }
+            EditProfileDialog.newInstance().showDialog(currentFragment);
         });
+    }
+
+    private class ProfileProgressApp extends ProgressApp {
+
+        private final Intent data;
+
+        ProfileProgressApp(Intent data) {
+            super(ProfileFragment.this.getActivity(), R.string.msg_action_loading, false);
+            this.data = data;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (data.getBooleanExtra(BundleConstant.IMPORT_BACKUP, Boolean.FALSE)) {
+                AndroidUtils.toastLong(getContext(), R.string.toast_finish_import_data);
+            } else {
+                AndroidUtils.toastLong(getContext(), R.string.toast_error_import_data);
+            }
+            loadUserInfo(getView());
+            loadDataFriends(getView());
+            AndroidUtils.postAction(ActionCacheEnum.LOAD_ALL_DATA);
+            dismissProgress();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            Inject.provideCacheManageService().reloadSyncAllDataCache();
+            return true;
+        }
     }
 }

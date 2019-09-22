@@ -1,9 +1,9 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 tools:context="br.com.battista.bgscore.fragment.match.FinishMatchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.battista.bgscore.fragment.match.FinishMatchFragment">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/detail_scroll_view"
@@ -42,20 +42,20 @@
                         style="@style/CardTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_title_finish_match"/>
+                        android:text="@string/card_title_finish_match" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen_line"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:background="@color/colorLine"/>
+                        android:background="@color/colorLine" />
 
                     <TextView
                         style="@style/HintTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:text="@string/hint_text_detail_finish_match"/>
+                        android:text="@string/hint_text_detail_finish_match" />
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                             android:focusable="false"
                             android:hint="@string/hint_detail_alias_match"
                             android:maxLength="30"
-                            android:maxLines="1"/>
+                            android:maxLines="1" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -89,7 +89,7 @@
                             android:focusable="false"
                             android:hint="@string/hint_detail_match_created_at"
                             android:maxLength="30"
-                            android:maxLines="1"/>
+                            android:maxLines="1" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -113,7 +113,7 @@
                                 android:imeOptions="actionDone"
                                 android:inputType="time"
                                 android:maxLength="5"
-                                android:maxLines="1"/>
+                                android:maxLines="1" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -125,7 +125,7 @@
                             android:layout_marginLeft="@dimen/element_horizontal_margin"
                             android:layout_marginTop="@dimen/element_vertical_margin"
                             android:layout_marginRight="@dimen/element_horizontal_margin"
-                            app:srcCompat="@drawable/ic_match_time"/>
+                            app:srcCompat="@drawable/ic_match_time" />
 
                     </LinearLayout>
 
@@ -153,7 +153,7 @@
                                 android:layout_height="@dimen/dimen_game_img_height"
                                 android:layout_centerVertical="true"
                                 android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/boardgame_game"/>
+                                app:srcCompat="@drawable/boardgame_game" />
 
                             <TextView
                                 android:id="@+id/card_view_game_info_name"
@@ -162,7 +162,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/element_margin"
                                 android:layout_marginRight="@dimen/element_margin"
-                                android:layout_toRightOf="@id/card_view_game_info_image"/>
+                                android:layout_toRightOf="@id/card_view_game_info_image" />
 
                             <TextView
                                 android:id="@+id/card_view_game_info_players"
@@ -174,7 +174,7 @@
                                 android:layout_toRightOf="@id/card_view_game_info_image"
                                 android:drawableLeft="@drawable/ic_game_players"
                                 android:drawablePadding="@dimen/drawable_padding"
-                                android:gravity="center_vertical"/>
+                                android:gravity="center_vertical" />
 
                             <TextView
                                 android:id="@+id/card_view_game_info_time"
@@ -188,7 +188,7 @@
                                 android:layout_toRightOf="@id/card_view_game_info_players"
                                 android:drawableLeft="@drawable/ic_game_time"
                                 android:drawablePadding="@dimen/drawable_padding"
-                                android:gravity="center_vertical"/>
+                                android:gravity="center_vertical" />
 
                             <TextView
                                 android:id="@+id/card_view_game_info_ages"
@@ -202,7 +202,7 @@
                                 android:layout_toRightOf="@id/card_view_game_info_image"
                                 android:drawableLeft="@drawable/ic_game_age"
                                 android:drawablePadding="@dimen/drawable_padding"
-                                android:gravity="center_vertical"/>
+                                android:gravity="center_vertical" />
 
                             <TextView
                                 android:id="@+id/card_view_game_info_year"
@@ -215,7 +215,7 @@
                                 android:layout_toRightOf="@id/card_view_game_info_ages"
                                 android:drawableLeft="@drawable/ic_game_date_year"
                                 android:drawablePadding="@dimen/drawable_padding"
-                                android:gravity="center_vertical"/>
+                                android:gravity="center_vertical" />
 
                         </RelativeLayout>
 
@@ -249,13 +249,13 @@
                         style="@style/CardTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_title_players_winners"/>
+                        android:text="@string/card_title_players_winners" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen_line"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:background="@color/colorLine"/>
+                        android:background="@color/colorLine" />
 
                     <TextView
                         android:id="@+id/card_view_players_info_01"
@@ -263,7 +263,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:text="@string/text_match_players_winners_info_01"/>
+                        android:text="@string/text_match_players_winners_info_01" />
 
                     <TextView
                         android:id="@+id/card_view_players_info_02"
@@ -271,7 +271,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:text="@string/text_match_players_winners_info_02"/>
+                        android:text="@string/text_match_players_winners_info_02" />
 
                     <br.com.battista.bgscore.custom.RecycleEmptyErrorView
                         android:id="@+id/card_view_players_recycler_view"
@@ -284,7 +284,7 @@
                         android:listSelector="@android:color/transparent"
                         android:nestedScrollingEnabled="false"
                         android:paddingTop="@dimen/element_vertical_margin"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                 </LinearLayout>
 
@@ -314,20 +314,20 @@
                         style="@style/CardTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_title_feedback_match"/>
+                        android:text="@string/card_title_feedback_match" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen_line"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:background="@color/colorLine"/>
+                        android:background="@color/colorLine" />
 
                     <TextView
                         style="@style/HintTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/element_vertical_margin"
-                        android:text="@string/hint_text_detail_feedback_match"/>
+                        android:text="@string/hint_text_detail_feedback_match" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -343,7 +343,7 @@
                             android:layout_marginBottom="@dimen/element_padding"
                             android:clickable="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_feedback_very_dissatisfied"/>
+                            android:src="@drawable/ic_feedback_very_dissatisfied" />
 
                         <ImageView
                             android:id="@+id/card_view_feedback_img_dissatisfied"
@@ -354,7 +354,7 @@
                             android:layout_marginBottom="@dimen/element_padding"
                             android:clickable="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_feedback_dissatisfied"/>
+                            android:src="@drawable/ic_feedback_dissatisfied" />
 
                         <ImageView
                             android:id="@+id/card_view_feedback_img_neutral"
@@ -365,7 +365,7 @@
                             android:layout_marginBottom="@dimen/element_padding"
                             android:clickable="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_feedback_neutral"/>
+                            android:src="@drawable/ic_feedback_neutral" />
 
                         <ImageView
                             android:id="@+id/card_view_feedback_img_satisfied"
@@ -376,7 +376,7 @@
                             android:layout_marginBottom="@dimen/element_padding"
                             android:clickable="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_feedback_satisfied"/>
+                            android:src="@drawable/ic_feedback_satisfied" />
 
                         <ImageView
                             android:id="@+id/card_view_feedback_img_very_satisfied"
@@ -387,7 +387,7 @@
                             android:layout_marginBottom="@dimen/element_padding"
                             android:clickable="true"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ic_feedback_very_satisfied"/>
+                            android:src="@drawable/ic_feedback_very_satisfied" />
 
                     </LinearLayout>
 
@@ -406,7 +406,7 @@
                             android:imeOptions="actionDone"
                             android:inputType="textMultiLine"
                             android:maxLines="5"
-                            android:minLines="5"/>
+                            android:minLines="5" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -430,7 +430,7 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_finish"/>
+        app:srcCompat="@drawable/ic_fab_finish" />
 
 </android.support.design.widget.CoordinatorLayout>
 

@@ -1,8 +1,5 @@
 package br.com.battista.bgscore.service;
 
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_INFO_NAME;
-import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_SHARED_PREFERENCES_NAME;
-
 import android.content.Context;
 import android.provider.Settings;
 
@@ -27,6 +24,9 @@ import br.com.battista.bgscore.model.enuns.SharedPreferencesKeyEnum;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.BackupUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_INFO_NAME;
+import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_SHARED_PREFERENCES_NAME;
 
 public class DatabaseManageService {
 

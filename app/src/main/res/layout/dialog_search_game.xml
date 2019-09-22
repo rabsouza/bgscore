@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/dialog_view_add_new_game"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_view_add_new_game"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true">
 
     <ImageView
         android:id="@+id/search_game_btn_close"
@@ -16,7 +16,7 @@
         android:background="@color/transparent"
         android:clickable="true"
         android:padding="@dimen/no_dimen"
-        android:src="@drawable/ic_close_dialog"/>
+        android:src="@drawable/ic_close_dialog" />
 
     <LinearLayout
         android:id="@+id/container_dialog"
@@ -30,20 +30,20 @@
             style="@style/CardTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/card_title_search_game_list"/>
+            android:text="@string/card_title_search_game_list" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_line"
             android:layout_marginBottom="@dimen/element_vertical_margin"
-            android:background="@color/colorLine"/>
+            android:background="@color/colorLine" />
 
         <TextView
             style="@style/CardTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/element_vertical_margin"
-            android:text="@string/text_dialog_search_game_info_01"/>
+            android:text="@string/text_dialog_search_game_info_01" />
 
         <br.com.battista.bgscore.custom.RecycleEmptyErrorView
             android:id="@+id/search_game_recycler_view"
@@ -55,7 +55,7 @@
             android:listSelector="@android:color/transparent"
             android:paddingTop="@dimen/md_keylines"
             android:paddingBottom="@dimen/md_keylines"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </LinearLayout>
 

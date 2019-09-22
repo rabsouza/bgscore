@@ -99,6 +99,10 @@ public class AndroidUtils {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
+    public static void toastLong(@NonNull Context context, int msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    }
+
     public static void snackbar(@NonNull View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
     }

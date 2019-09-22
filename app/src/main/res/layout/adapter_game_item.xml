@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:id="@+id/card_view_games_info"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:foreground="?attr/selectableItemBackground"
-                                    android:padding="@dimen/no_dimen"
-                                    app:cardBackgroundColor="@color/colorCard"
-                                    app:cardCornerRadius="3dp"
-                                    app:cardElevation="2dp"
-                                    app:cardPreventCornerOverlap="true"
-                                    app:cardUseCompatPadding="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_games_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="@dimen/no_dimen"
+    app:cardBackgroundColor="@color/colorCard"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/badge_game_none"/>
+            app:srcCompat="@drawable/badge_game_none" />
 
         <TextView
             android:id="@+id/card_view_games_info_name"
@@ -34,7 +34,7 @@
             android:layout_toRightOf="@id/card_view_games_info_badge_game"
             android:ellipsize="end"
             android:gravity="left"
-            android:maxLines="3"/>
+            android:maxLines="3" />
 
         <ImageView
             android:id="@+id/card_view_games_info_my_game"
@@ -43,7 +43,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/element_horizontal_margin"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_game_my_game"/>
+            app:srcCompat="@drawable/ic_game_my_game" />
 
         <ImageView
             android:id="@+id/card_view_games_info_favorite"
@@ -52,7 +52,7 @@
             android:layout_marginLeft="@dimen/element_horizontal_margin"
             android:layout_toLeftOf="@id/card_view_games_info_my_game"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_game_favorite"/>
+            app:srcCompat="@drawable/ic_game_favorite" />
 
         <ImageView
             android:id="@+id/card_view_games_info_want_game"
@@ -61,7 +61,7 @@
             android:layout_marginLeft="@dimen/element_horizontal_margin"
             android:layout_toLeftOf="@id/card_view_games_info_favorite"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_game_want_game"/>
+            app:srcCompat="@drawable/ic_game_want_game" />
 
         <ImageView
             android:id="@+id/card_view_games_info_image"
@@ -70,7 +70,7 @@
             android:layout_below="@id/card_view_games_info_name"
             android:layout_marginTop="@dimen/element_vertical_margin"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/boardgame_game"/>
+            app:srcCompat="@drawable/boardgame_game" />
 
         <TextView
             android:id="@+id/card_view_games_info_players"
@@ -82,7 +82,7 @@
             android:layout_toRightOf="@id/card_view_games_info_image"
             android:drawableLeft="@drawable/ic_game_players"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical" />
 
         <TextView
             android:id="@+id/card_view_games_info_time"
@@ -96,7 +96,7 @@
             android:layout_toRightOf="@id/card_view_games_info_players"
             android:drawableLeft="@drawable/ic_game_time"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical" />
 
         <TextView
             android:id="@+id/card_view_games_info_ages"
@@ -110,7 +110,7 @@
             android:layout_toRightOf="@id/card_view_games_info_image"
             android:drawableLeft="@drawable/ic_game_age"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical" />
 
         <TextView
             android:id="@+id/card_view_games_info_year"
@@ -123,7 +123,7 @@
             android:layout_toRightOf="@id/card_view_games_info_ages"
             android:drawableLeft="@drawable/ic_game_date_year"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical" />
 
         <RatingBar
             android:id="@+id/card_view_games_info_rating"
@@ -134,7 +134,7 @@
             android:layout_marginLeft="@dimen/element_margin"
             android:layout_marginRight="@dimen/element_horizontal_margin"
             android:layout_toRightOf="@id/card_view_games_info_image"
-            android:numStars="@string/rating_num_stars"/>
+            android:numStars="@string/rating_num_stars" />
 
         <ImageView
             android:id="@+id/card_view_games_more_actions"
@@ -144,7 +144,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="-4dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_more_actions"/>
+            app:srcCompat="@drawable/ic_more_actions" />
 
     </RelativeLayout>
 

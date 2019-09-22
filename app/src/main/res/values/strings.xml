@@ -68,7 +68,7 @@
     <string name="msg_action_loading">Please wait! Loading &#8230;</string>
     <string name="toast_start_export_data">Please wait! Data is being exported in the background&#8230;</string>
     <string name="toast_finish_export_data">All data has been successfully exported!</string>
-    <string name="toast_finish_import_data">All data has been successfully restored!</string>
+    <string name="toast_finish_import_data">All data has been successfully restored! ANDROID PIE (9+) NEEDED TO RESTART APPLICATION TO RUN NEW BACKUP!!!</string>
     <string name="toast_reload_all_img_data">All images will be reloaded in the background!</string>
     <string name="toast_error_import_data">An unexpected error occurred while trying to restore the data, please try again!</string>
     <string name="toast_error_export_data">An unexpected error occurred while trying to export the data, please try again!</string>
@@ -144,6 +144,7 @@
     <string name="text_dialog_export_data_info_03">Automatic backup %1$s.\nLast: %2$s.</string>
     <string name="text_dialog_import_data_info_01">*¹ The data will be imported from the files in the applications storage directory.</string>
     <string name="text_dialog_import_data_info_02">*² Default import directory is: %1$s.</string>
+    <string name="text_dialog_import_data_info_03">*³ ANDROID PIE (9+) NEEDED TO RESTART APPLICATION TO RUN NEW BACKUP !!!</string>
     <string name="text_dialog_import_last_data">The last backup data</string>
     <string name="text_dialog_import_last_data_version">Version: %1$s</string>
     <string name="text_dialog_import_last_data_date">Date: %1$s</string>

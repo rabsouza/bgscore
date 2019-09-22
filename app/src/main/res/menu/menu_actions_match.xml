@@ -5,36 +5,36 @@
         android:id="@+id/menu_action_copy"
         android:enabled="true"
         android:icon="@drawable/ic_copy"
-        android:title="@string/action_copy"/>
+        android:title="@string/action_copy" />
 
     <item
         android:id="@+id/menu_action_detail"
         android:enabled="true"
         android:icon="@drawable/ic_detail"
-        android:title="@string/action_detail"/>
+        android:title="@string/action_detail" />
 
     <item
         android:id="@+id/menu_action_share"
         android:enabled="true"
         android:icon="@drawable/ic_share"
-        android:title="@string/action_share"/>
+        android:title="@string/action_share" />
 
     <item
         android:id="@+id/menu_action_edit"
         android:enabled="true"
         android:icon="@drawable/ic_edit"
-        android:title="@string/action_edit"/>
+        android:title="@string/action_edit" />
 
     <item
         android:id="@+id/menu_action_finish"
         android:enabled="true"
         android:icon="@drawable/ic_finish"
-        android:title="@string/action_finish"/>
+        android:title="@string/action_finish" />
 
     <item
         android:id="@+id/menu_action_remove"
         android:enabled="true"
         android:icon="@drawable/ic_remove"
-        android:title="@string/action_remove"/>
+        android:title="@string/action_remove" />
 
 </menu>
