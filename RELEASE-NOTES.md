@@ -7,7 +7,7 @@ Os Pacotes liberados para testes e produção da aplicação.
 ------------------------------------------------------------------------
 
 
-### Version - 1.0.16
+### Version - 1.0.18
 **Date release**
  - 21/09/2019
 

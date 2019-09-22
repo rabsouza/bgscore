@@ -43,27 +43,21 @@ android {
     }
 
     productFlavors {
-        mock {
-            applicationIdSuffix = ".mock"
-            versionCode 1
-            versionName "1.0.0"
-        }
         prod {
             applicationIdSuffix = ".app"
-            versionCode 17
-            versionName "1.0.16"
+            versionCode 18
+            versionName "1.0.18"
         }
         dev {
             applicationIdSuffix = ".dev"
-            versionCode 25
+            versionCode 26
             versionName "1.0.26-beta"
         }
     }
 
     android.variantFilter { variant ->
         if (variant.buildType.name == 'release'
-                && (variant.getFlavors().get(0).name == 'mock'
-                || variant.getFlavors().get(0).name == 'dev')) {
+                && variant.getFlavors().get(0).name == 'dev') {
             variant.setIgnore(true)
         }
     }
