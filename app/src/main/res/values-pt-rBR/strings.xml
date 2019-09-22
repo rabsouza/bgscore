@@ -72,6 +72,7 @@
     <string name="toast_finish_import_data">Todos os dados foram restaurados com sucesso! ANDROID PIE(9+) NECESSITA DE REINICIAR O APLICATIVO PARA QUE FUNCIONE O NOVO BACKUP!!!</string>
     <string name="toast_error_import_data">Aconteceu um erro inesperado ao tentar restaurar os dados, por favor tente novamente!</string>
     <string name="toast_error_export_data">Aconteceu um erro inesperado ao tentar exportar os dados, por favor tente novamente!</string>
+    <string name="toast_error_login_google">Aconteceu um erro ao tentar logar no google, por favor tente novamente!</string>
 
 
     <!-- ################### TEXT #################### -->
@@ -225,6 +226,7 @@
     <string name="btn_export">BACKUP</string>
     <string name="btn_import">RESTAURAR</string>
     <string name="btn_export_import">BACKUP</string>
+    <string name="btn_disconnect">DESCONECTAR</string>
 
 
     <!-- ################### ACTION BAR #################### -->

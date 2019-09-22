@@ -24,6 +24,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_USERNAME = "USERNAME";
         public static final String COLUMN_NAME_MAIL = "MAIL";
         public static final String COLUMN_NAME_AVATAR = "AVATAR";
+        public static final String COLUMN_NAME_URL_AVATAR = "URL_AVATAR";
         public static final String COLUMN_NAME_LAST_PLAY = "LAST_PLAY";
         public static final String COLUMN_NAME_NUM_GAMES = "NUM_GAMES";
         public static final String COLUMN_NAME_NUM_MATCHES = "NUM_MATCHES";
@@ -35,6 +36,7 @@ public class DatabaseContract {
         public static final String COLUMN_NAME_ORDER_BY = "ORDER_BY";
         public static final String COLUMN_NAME_CUSTOM_FONT = "CUSTOM_FONT";
         public static final String COLUMN_NAME_AUTOMATIC_BACKUP = "AUTOMATIC_BACKUP";
+        public static final String COLUMN_NAME_SIGNED_SUCCESSFULLY = "SIGNED_SUCCESSFULLY";
         public static final String COLUMN_NAME_STATISTIC = "STATISTIC";
     }
 

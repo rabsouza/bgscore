@@ -72,6 +72,7 @@
     <string name="toast_reload_all_img_data">All images will be reloaded in the background!</string>
     <string name="toast_error_import_data">An unexpected error occurred while trying to restore the data, please try again!</string>
     <string name="toast_error_export_data">An unexpected error occurred while trying to export the data, please try again!</string>
+    <string name="toast_error_login_google">There was an error trying to log in to google, please try again!</string>
 
 
     <!-- ################### TEXT #################### -->
@@ -225,6 +226,7 @@
     <string name="btn_export">BACKUP</string>
     <string name="btn_import">RESTORE</string>
     <string name="btn_export_import">BACKUP</string>
+    <string name="btn_disconnect">DISCONNECT</string>
 
 
     <!-- ################### ACTION BAR #################### -->

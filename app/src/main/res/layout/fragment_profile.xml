@@ -59,22 +59,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <ImageView
+                            <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/card_view_profile_img"
                                 android:layout_width="@dimen/dimen_profile_img_width"
                                 android:layout_height="@dimen/dimen_profile_img_height"
                                 android:layout_marginTop="25dp"
                                 android:clickable="true"
+                                android:focusable="true"
                                 android:padding="@dimen/element_padding"
-                                android:scaleType="fitCenter" />
+                                android:scaleType="centerCrop" />
 
                             <ImageView
+                                android:id="@+id/card_view_profile_img_change"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginLeft="-20dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_toRightOf="@id/card_view_profile_img"
-                                android:scaleType="fitCenter"
+                                android:scaleType="centerCrop"
                                 app:srcCompat="@drawable/ic_reload" />
 
                             <LinearLayout

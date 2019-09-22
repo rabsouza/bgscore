@@ -37,6 +37,9 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = UserEntry.COLUMN_NAME_AVATAR)
     private AvatarEnum avatar = AvatarEnum.AVATAR_PROFILE;
 
+    @Column(name = UserEntry.COLUMN_NAME_URL_AVATAR)
+    private String urlAvatar;
+
     @Column(name = UserEntry.COLUMN_NAME_LAST_PLAY)
     private Date lastPlayed = null;
 
@@ -69,6 +72,9 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_AUTOMATIC_BACKUP)
     private Boolean automaticBackup = Boolean.FALSE;
+
+    @Column(name = UserEntry.COLUMN_NAME_SIGNED_SUCCESSFULLY)
+    private Boolean signedSuccessfully = Boolean.FALSE;
 
     @Column(name = UserEntry.COLUMN_NAME_STATISTIC)
     private StatisticDto statisticDto = new StatisticDto();
@@ -196,6 +202,22 @@ public class User extends BaseEntity implements Serializable {
         this.statisticDto = statisticDto;
     }
 
+    public Boolean isSignedSuccessfully() {
+        return signedSuccessfully;
+    }
+
+    public void setSignedSuccessfully(Boolean signedSuccessfully) {
+        this.signedSuccessfully = signedSuccessfully;
+    }
+
+    public String getUrlAvatar() {
+        return urlAvatar;
+    }
+
+    public void setUrlAvatar(String urlAvatar) {
+        this.urlAvatar = urlAvatar;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -220,6 +242,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("username", username)
                 .add("mail", mail)
                 .add("avatar", avatar)
+                .add("urlAvatar", avatar)
                 .add("lastPlayed", lastPlayed)
                 .add("numGames", numGames)
                 .add("numMatches", numMatches)
@@ -231,6 +254,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("lastBuildVersion", lastBuildVersion)
                 .add("orderBy", orderBy)
                 .add("automaticBackup", automaticBackup)
+                .add("signedSuccessfully", signedSuccessfully)
                 .add("statisticDto", statisticDto)
                 .toString();
     }
@@ -350,6 +374,11 @@ public class User extends BaseEntity implements Serializable {
 
     public User automaticBackup(Boolean automaticBackup) {
         this.automaticBackup = automaticBackup;
+        return this;
+    }
+
+    public User signedSuccessfully(Boolean signedSuccessfully) {
+        this.signedSuccessfully = signedSuccessfully;
         return this;
     }
 
