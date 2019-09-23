@@ -15,6 +15,7 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
     private ImageView imgInfoBadgeGame;
     private TextView txtInfoName;
     private TextView txtInfoCountMatches;
+    private TextView txtInfoCountWinners;
     private TextView txtInfoSumTime;
     private TextView txtInfoLastPlayed;
     private RatingBar rtbInfoRating;
@@ -29,6 +30,7 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
         txtInfoSumTime = view.findViewById(R.id.card_view_ranking_games_info_sum_time);
         txtInfoLastPlayed = view.findViewById(R.id.card_view_ranking_games_info_last_played);
         txtInfoCountMatches = view.findViewById(R.id.card_view_ranking_games_info_count_matches);
+        txtInfoCountWinners = view.findViewById(R.id.card_view_ranking_games_info_count_winners);
         rtbInfoRating = view.findViewById(R.id.card_view_ranking_games_info_rating);
     }
 
@@ -62,5 +64,9 @@ public class RankingGamesViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView getImgInfoBadgeGame() {
         return imgInfoBadgeGame;
+    }
+
+    public TextView getTxtInfoCountWinners() {
+        return txtInfoCountWinners;
     }
 }

@@ -35,7 +35,6 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.constants.PermissionConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
-import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;

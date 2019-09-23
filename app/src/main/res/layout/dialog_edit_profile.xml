@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_view_edit_profile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -39,21 +38,21 @@
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/dialog_view_edit_profile_sign_in_button"
-            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_vertical_margin" />
 
         <Button
             android:id="@+id/dialog_view_edit_profile_sign_out_button"
             style="@style/ButtonStyleWithBorder"
-            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_disconnect"
-            android:visibility="gone"
-            android:drawableLeft="@drawable/ic_sing_out"
+            android:layout_marginBottom="@dimen/element_vertical_margin"
             android:drawableStart="@drawable/ic_sing_out"
-            android:drawablePadding="5dp"/>
+            android:drawableLeft="@drawable/ic_sing_out"
+            android:drawablePadding="5dp"
+            android:text="@string/btn_disconnect"
+            android:visibility="gone" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

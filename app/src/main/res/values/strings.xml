@@ -70,6 +70,7 @@
     <string name="toast_finish_export_data">All data has been successfully exported!</string>
     <string name="toast_finish_import_data">All data has been successfully restored! ANDROID PIE (9+) NEEDED TO RESTART APPLICATION TO RUN NEW BACKUP!!!</string>
     <string name="toast_reload_all_img_data">All images will be reloaded in the background!</string>
+    <string name="toast_reload_all_winners_matches">All winners matches will be reloaded in the background!</string>
     <string name="toast_error_import_data">An unexpected error occurred while trying to restore the data, please try again!</string>
     <string name="toast_error_export_data">An unexpected error occurred while trying to export the data, please try again!</string>
     <string name="toast_error_login_google">There was an error trying to log in to google, please try again!</string>
@@ -131,15 +132,17 @@
     <string name="text_legend_match_match">Match Name/Nickname.</string>
     <string name="text_legend_match_date">Date the match happened (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Number of players participating in the match.</string>
+    <string name="text_legend_match_i_won">Indicates if you are the winner of the match.</string>
     <string name="text_legend_match_time">Estimated duration of the match (HH: MM).</string>
     <string name="text_legend_match_feedback">Match rating (Bad, Bad, Normal, Good and Excellent).</string>
     <string name="text_legend_match_alarm">If there is an active scheduling for the match.</string>
     <string name="text_legend_match_sort_list">Change the ordering of the list of matches.</string>
     <string name="text_legend_ranking_game_badge_game">Rating of the game (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
     <string name="text_legend_ranking_game_matches">Number of game starts recorded.</string>
+    <string name="text_legend_ranking_game_winners">Number of recorded wins of the game.</string>
     <string name="text_legend_ranking_game_date">Date the last recorded match of the game occurred.</string>
     <string name="text_legend_ranking_game_time">Total minutes played in the game (HH: MM).</string>
-    <string name="text_legend_ranking_game_sort_list">List sorted by the number of game matches in descending order, only the top 5 games.</string>
+    <string name="text_legend_ranking_game_sort_list">Ordered list of top five games played, in descending order.</string>
     <string name="text_dialog_export_data_info_01">*¹ The data will be exported in the background and will be available in the application storage directory.</string>
     <string name="text_dialog_export_data_info_02">*¹ The data will be exported to the directory: %1$s.</string>
     <string name="text_dialog_export_data_info_03">Automatic backup %1$s.\nLast: %2$s.</string>
@@ -276,7 +279,8 @@ Welcome to Board Game Score, this application will help you to register your mat
 &nbsp;&nbsp;&nbsp;<b>3)</b> Screen to edit your profile and manage your friends.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Statics and ordering for your games and games.<br>
 &nbsp;&nbsp;&nbsp;<b>5) Automatic backup, manual and backup restore.</b><br>
-&nbsp;&nbsp;&nbsp;<b>6) Screen to display the ranking of all your games.</b><br><br>
+&nbsp;&nbsp;&nbsp;<b>6) Integration with your google account.</b><br>
+&nbsp;&nbsp;&nbsp;<b>7) Adjustment in win engine and ranking list and matches.</b><br><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Rate our app in store</a></b><br>
 <br>
 ]]>

@@ -7,17 +7,20 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.model.dto.StatisticDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.ActionDatabaseEnum;
 import br.com.battista.bgscore.model.enuns.FeedbackEnum;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
@@ -82,9 +85,35 @@ public class CacheManageService {
             if (user.isAutomaticBackup()) {
                 AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
             }
+        } else if (ActionCacheEnum.RELOAD_WINNERS_MATCHES.equals(action)) {
+            reloadWinnersMatches(user);
+            if (user.isAutomaticBackup()) {
+                AndroidUtils.postAction(ActionDatabaseEnum.BACKUP_ALL_DATA);
+            }
         }
 
         instance.setUser(user);
+    }
+
+    private void reloadWinnersMatches(User user) {
+        LogUtils.i(TAG, "reloadWinnersMatches: Reload all winners matches!");
+        MatchRepository matchRepository = new MatchRepository();
+        final List<Match> matches = matchRepository.findAll();
+        String username = user.getUsername();
+        for (Match match : matches) {
+            Set<Player> players = match.getPlayers();
+            for (Player player : players) {
+                if (player.isWinner() &&
+                        (TypePlayerEnum.USER.equals(player.getTypePlayer()) ||
+                                username.equals(player.getName()))) {
+                    match.iWon(Boolean.TRUE);
+                    match.update();
+                    matchRepository.save(match);
+                    break;
+                }
+            }
+        }
+        loadAllDataRankingGamesAddToCache(user);
     }
 
     private void reloadAllGameImages(User user) {
@@ -154,12 +183,17 @@ public class CacheManageService {
             if (!matches.isEmpty()) {
 
                 Match lastMatch = matches.get(0);
+                int countWinners = 0;
                 long durationTotal = 0;
                 for (Match match : matches) {
                     durationTotal += match.getDuration();
+                    if (match.isIWon()) {
+                        countWinners++;
+                    }
                 }
                 final RankingGamesDto rankingGames = new RankingGamesDto()
-                        .count(matches.size())
+                        .countMatches(matches.size())
+                        .countWinners(countWinners)
                         .lastPlayed(lastMatch.getCreatedAt())
                         .game(game)
                         .duration(durationTotal);

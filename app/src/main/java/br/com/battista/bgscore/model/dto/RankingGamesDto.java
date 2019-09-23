@@ -21,7 +21,8 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
     private static final long serialVersionUID = 1L;
 
     private Game game;
-    private int count = 0;
+    private int countMatches = 0;
+    private int countWinner = 0;
     private Date lastPlayed;
     private Long duration;
 
@@ -33,12 +34,20 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
         this.game = game;
     }
 
-    public int getCount() {
-        return count;
+    public int getCountMatches() {
+        return countMatches;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setCountMatches(int countMatches) {
+        this.countMatches = countMatches;
+    }
+
+    public int getCountWinners() {
+        return countWinner;
+    }
+
+    public void setCountWinner(int countWinner) {
+        this.countWinner = countWinner;
     }
 
     public Date getLastPlayed() {
@@ -78,7 +87,8 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
 
         return MoreObjects.toStringHelper(this)
                 .add("game", game)
-                .add("count", count)
+                .add("countMatches", countMatches)
+                .add("countWinners", countWinner)
                 .add("lastPlayed", lastPlayed)
                 .add("duration", duration)
                 .toString();
@@ -89,8 +99,13 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
         return this;
     }
 
-    public RankingGamesDto count(int count) {
-        this.count = count;
+    public RankingGamesDto countMatches(int count) {
+        this.countMatches = count;
+        return this;
+    }
+
+    public RankingGamesDto countWinners(int countWinner) {
+        this.countWinner = countWinner;
         return this;
     }
 
@@ -109,7 +124,7 @@ public class RankingGamesDto implements Serializable, Comparable<RankingGamesDto
         if (rankingGamesDto == null) {
             return -1;
         }
-        int compare = Integer.compare(getCount(), rankingGamesDto.getCount());
+        int compare = Integer.compare(getCountMatches(), rankingGamesDto.getCountMatches());
         if (compare != 0) {
             return compare;
         }

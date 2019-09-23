@@ -6,13 +6,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
@@ -111,25 +109,14 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                     holder.getTxtPunctuation()
                             .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_player_check, 0);
                 }
-                holder.getTxtPunctuation().setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                        if (actionId == EditorInfo.IME_ACTION_DONE) {
-                            String punctuation = holder.getTxtPunctuation().getText().toString().trim();
-                            player.punctuation(punctuation);
-                            if (!Strings.isNullOrEmpty(punctuation)) {
-                                holder.getTxtPunctuation()
-                                        .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_player_check, 0);
-                            } else {
-                                holder.getTxtPunctuation()
-                                        .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                            }
-                        } else {
-                            holder.getTxtPunctuation()
-                                    .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        }
-                        return false;
+                holder.getTxtPunctuation().setOnEditorActionListener((textView, actionId, keyEvent) -> {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        fillPunctuationPlayer(player, holder.getTxtPunctuation());
+                    } else {
+                        holder.getTxtPunctuation()
+                                .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     }
+                    return false;
                 });
                 holder.getTxtPunctuation().addTextChangedListener(new TextWatcher() {
                     @Override
@@ -148,6 +135,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
 
                     @Override
                     public void afterTextChanged(Editable editable) {
+                        fillPunctuationPlayer(player, holder.getTxtPunctuation());
                     }
                 });
             } else if (showPunctuation && !Strings.isNullOrEmpty(player.getPunctuation())) {
@@ -198,6 +186,18 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
             LogUtils.w(TAG, "onBindViewHolder: No content to holder!");
         }
 
+    }
+
+    private void fillPunctuationPlayer(Player player, EditText txtPunctuation) {
+        String punctuation = txtPunctuation.getText().toString().trim();
+        player.punctuation(punctuation);
+        if (!Strings.isNullOrEmpty(punctuation)) {
+            txtPunctuation
+                    .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_player_check, 0);
+        } else {
+            txtPunctuation
+                    .setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
     }
 
     private void createDialogRemovePlayer(final String friend, final int position) {

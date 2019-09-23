@@ -69,7 +69,10 @@ public class RankingGamesAdapter extends RecyclerView.Adapter<RankingGamesViewHo
             holder.getImgMyGame().setVisibility(View.GONE);
 
             holder.getTxtInfoCountMatches()
-                    .setText("" + firstNonNull(rankingGames.getCount(), 0));
+                    .setText("" + firstNonNull(rankingGames.getCountMatches(), 0));
+
+            holder.getTxtInfoCountWinners()
+                    .setText("" + firstNonNull(rankingGames.getCountWinners(), 0));
 
             holder.getTxtInfoSumTime()
                     .setText(

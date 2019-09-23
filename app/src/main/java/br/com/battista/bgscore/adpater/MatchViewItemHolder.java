@@ -18,6 +18,7 @@ public class MatchViewItemHolder extends RecyclerView.ViewHolder {
     private TextView txtInfoPlayers;
     private TextView txtInfoDuration;
     private ImageView imgMoreActions;
+    private TextView txtIWon;
 
     public MatchViewItemHolder(View view) {
         super(view);
@@ -31,6 +32,7 @@ public class MatchViewItemHolder extends RecyclerView.ViewHolder {
         txtInfoPlayers = view.findViewById(R.id.card_view_match_info_players);
         txtInfoDuration = view.findViewById(R.id.card_view_match_info_duration);
         imgMoreActions = view.findViewById(R.id.card_view_match_more_actions);
+        txtIWon = view.findViewById(R.id.card_view_match_i_won);
     }
 
     public ImageView getImgInfoGame() {
@@ -67,5 +69,9 @@ public class MatchViewItemHolder extends RecyclerView.ViewHolder {
 
     public ImageView getImgInfoAlarm() {
         return imgInfoAlarm;
+    }
+
+    public TextView getTxtIWon() {
+        return txtIWon;
     }
 }

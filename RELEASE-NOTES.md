@@ -6,8 +6,20 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.19
+**Date release**
+ - 22/09/2019
 
-### Version - 1.0.16
+
+**Features**
+- Adiciona integração com o google conta.
+
+**Improvements**
+- Ajusta o mecanismo de vitória e exibe na lista de partidas e ranking.
+
+------------------------------------------------------------------------
+
+### Version - 1.0.17
 **Date release**
  - 21/09/2019
 
@@ -241,6 +253,19 @@ Adiciona Politica de privacidade
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+### Version - 1.0.28-Beta
+**Date release**
+ - 22/09/2019
+
+
+**Features**
+- Adiciona integração com o google conta.
+
+**Improvements**
+- Ajusta o mecanismo de vitória e exibe na lista de partidas e ranking.
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.26-Beta

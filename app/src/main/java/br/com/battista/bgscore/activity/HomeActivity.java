@@ -2,11 +2,9 @@ package br.com.battista.bgscore.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.view.MenuItem;
 
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.MainApplication;
