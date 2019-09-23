@@ -32,6 +32,16 @@ public class BaseFragment extends Fragment {
             btnBrokenImg.setVisibility(View.GONE);
         }
 
+        ImageButton btnFilterList = getActivity().findViewById(R.id.btn_filter_list);
+        if (btnFilterList != null) {
+            btnFilterList.setVisibility(View.GONE);
+        }
+
+        ImageButton btnReloadWinners = getActivity().findViewById(R.id.btn_reload_winners);
+        if (btnReloadWinners != null) {
+            btnReloadWinners.setVisibility(View.GONE);
+        }
+
     }
 
     protected void replaceDetailFragment(Fragment fragment, int containerResID) {
