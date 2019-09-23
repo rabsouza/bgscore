@@ -80,6 +80,18 @@ public class MatchFragment extends BaseFragment {
         btnSortList.setVisibility(View.VISIBLE);
         btnSortList.setOnClickListener(viewClicked -> processSortListGames(view, viewClicked));
 
+        ImageButton btnReloadWinners = getActivity().findViewById(R.id.btn_reload_winners);
+        btnReloadWinners.setVisibility(View.VISIBLE);
+        btnReloadWinners.setOnClickListener(viewClicked -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_RELOAD_WINNERS);
+            AndroidUtils.toast(getContext(), R.string.toast_reload_all_winners_matches);
+
+            LogUtils.i(TAG, "onCreateView: Reload all winners Matches.");
+            AndroidUtils.postAction(ActionCacheEnum.RELOAD_WINNERS_MATCHES);
+            btnReloadWinners.setVisibility(View.GONE);
+        });
+
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
         btnBrokenImg.setVisibility(View.GONE);
         btnBrokenImg.setOnClickListener(viewClicked -> {

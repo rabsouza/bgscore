@@ -43,6 +43,7 @@ import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.Player;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.FeedbackEnum;
+import br.com.battista.bgscore.model.enuns.TypePlayerEnum;
 import br.com.battista.bgscore.repository.MatchRepository;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.DateUtils;
@@ -104,12 +105,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
         final View view = inflater.inflate(R.layout.fragment_finish_match, container, false);
 
         FloatingActionButton fab = view.findViewById(R.id.fab_finish_finish_match);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View viewClicked) {
-                fillDataAndSave();
-            }
-        });
+        fab.setOnClickListener(viewClicked -> fillDataAndSave());
 
         setupRecycleViewPlayers(view);
         setupDataForm(view);
@@ -126,7 +122,8 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
                 return left.compareTo(right);
             }
         });
-        playerAdapter = new PlayerAdapter(getContext(), players, false, true, false, false, true);
+        playerAdapter = new PlayerAdapter(getContext(), players, false, true,
+                false, false, true);
         recycleViewPlayers.setAdapter(playerAdapter);
     }
 
@@ -187,15 +184,20 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
     private void fillDataAndSave() {
         LogUtils.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
+
         match.duration(DateUtils.parseTime(txtDuration.getText().toString().trim()));
 
         match.obs(txtFeedbackObs.getText().toString().trim());
         match.finished(Boolean.TRUE);
+        match.iWon(Boolean.FALSE);
 
         playersWinners.clear();
         playersWinners.addAll(playerAdapter.getPlayersWinners());
         for (Player playerWinner : playersWinners) {
             playerWinner.winner(Boolean.TRUE);
+            if (TypePlayerEnum.USER.equals(playerWinner.getTypePlayer())) {
+                match.iWon(Boolean.TRUE);
+            }
         }
 
         LogUtils.i(TAG, "fillDataAndSave: Save the data in BD.");
@@ -270,64 +272,49 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
 
         txtFeedbackObs = view.findViewById(R.id.card_view_match_obs_text);
         imgFeedbackVeryDissatisfied = view.findViewById(R.id.card_view_feedback_img_very_dissatisfied);
-        imgFeedbackVeryDissatisfied.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_dissatisfied));
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-            }
+        imgFeedbackVeryDissatisfied.setOnClickListener(view15 -> {
+            match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_dissatisfied));
+            imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
+            imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+            imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+            imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
         });
         imgFeedbackDissatisfied = view.findViewById(R.id.card_view_feedback_img_dissatisfied);
-        imgFeedbackDissatisfied.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_dissatisfied));
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-            }
+        imgFeedbackDissatisfied.setOnClickListener(view1 -> {
+            match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_dissatisfied));
+            imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
+            imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+            imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+            imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
         });
         imgFeedbackNeutral = view.findViewById(R.id.card_view_feedback_img_neutral);
-        imgFeedbackNeutral.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_neutral));
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-            }
+        imgFeedbackNeutral.setOnClickListener(view12 -> {
+            match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_neutral));
+            imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
+            imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+            imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
         });
         imgFeedbackSatisfied = view.findViewById(R.id.card_view_feedback_img_satisfied);
-        imgFeedbackSatisfied.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_satisfied));
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-            }
+        imgFeedbackSatisfied.setOnClickListener(view13 -> {
+            match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_satisfied));
+            imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+            imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
+            imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
         });
         imgFeedbackVerySatisfied = view.findViewById(R.id.card_view_feedback_img_very_satisfied);
-        imgFeedbackVerySatisfied.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_satisfied));
-                imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
-                imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
-                imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
-                imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
-            }
+        imgFeedbackVerySatisfied.setOnClickListener(view14 -> {
+            match.feedback(FeedbackEnum.get(R.drawable.ic_feedback_very_satisfied));
+            imgFeedbackDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackVeryDissatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackDissatisfied));
+            imgFeedbackNeutral.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackNeutral));
+            imgFeedbackSatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorImgFeedbackSatisfied));
+            imgFeedbackVerySatisfied.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorAccent));
         });
 
     }

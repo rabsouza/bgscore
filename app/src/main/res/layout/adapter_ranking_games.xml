@@ -65,12 +65,13 @@
             android:layout_toRightOf="@id/card_view_ranking_games_info_image"
             android:drawableLeft="@drawable/ic_game_date"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            tools:text="99/99/9999" />
 
         <TextView
             android:id="@+id/card_view_ranking_games_info_count_matches"
             style="@style/NumberValueStyle"
-            android:layout_width="@dimen/first_column_card_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_ranking_games_info_last_played"
             android:layout_marginLeft="@dimen/element_horizontal_margin"
@@ -80,7 +81,24 @@
             android:layout_toRightOf="@id/card_view_ranking_games_info_image"
             android:drawableLeft="@drawable/ic_matches"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            tools:text="9999" />
+
+        <TextView
+            android:id="@+id/card_view_ranking_games_info_count_winners"
+            style="@style/NumberValueStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_view_ranking_games_info_last_played"
+            android:layout_marginLeft="@dimen/element_horizontal_margin"
+            android:layout_marginTop="@dimen/element_vertical_margin"
+            android:layout_marginRight="@dimen/element_horizontal_margin"
+            android:layout_marginBottom="@dimen/element_margin"
+            android:layout_toRightOf="@id/card_view_ranking_games_info_count_matches"
+            android:drawableLeft="@drawable/ic_winner"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:gravity="center_vertical"
+            tools:text="9999" />
 
         <TextView
             android:id="@+id/card_view_ranking_games_info_sum_time"
@@ -88,13 +106,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_ranking_games_info_last_played"
+            android:layout_marginLeft="@dimen/element_horizontal_margin"
             android:layout_marginTop="@dimen/element_vertical_margin"
-            android:layout_marginRight="@dimen/element_margin"
             android:layout_marginBottom="@dimen/element_margin"
-            android:layout_toRightOf="@id/card_view_ranking_games_info_count_matches"
+            android:layout_toRightOf="@id/card_view_ranking_games_info_count_winners"
             android:drawableLeft="@drawable/ic_match_time"
             android:drawablePadding="@dimen/drawable_padding"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            tools:text="999:99" />
 
         <RatingBar
             android:id="@+id/card_view_ranking_games_info_rating"

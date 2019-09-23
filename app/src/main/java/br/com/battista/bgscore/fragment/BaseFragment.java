@@ -7,15 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
-import com.crashlytics.android.answers.CustomEvent;
-
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
-
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_FRAGMENT;
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_FRAGMENT;
 
 public class BaseFragment extends Fragment {
 
@@ -26,12 +20,7 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         String nameView = this.getClass().getSimpleName();
-        Answers.getInstance().logCustom(new CustomEvent(KEY_OPEN_FRAGMENT)
-                .putCustomAttribute(KEY_FRAGMENT, nameView));
-
-        Answers.getInstance().logContentView(new ContentViewEvent()
-                .putContentName(nameView)
-                .putContentType(KEY_FRAGMENT));
+        AnswersUtils.onOpenFragment(nameView);
 
         ImageButton btnSortList = getActivity().findViewById(R.id.btn_sort_list);
         if (btnSortList != null) {
@@ -41,6 +30,16 @@ public class BaseFragment extends Fragment {
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
         if (btnBrokenImg != null) {
             btnBrokenImg.setVisibility(View.GONE);
+        }
+
+        ImageButton btnFilterList = getActivity().findViewById(R.id.btn_filter_list);
+        if (btnFilterList != null) {
+            btnFilterList.setVisibility(View.GONE);
+        }
+
+        ImageButton btnReloadWinners = getActivity().findViewById(R.id.btn_reload_winners);
+        if (btnReloadWinners != null) {
+            btnReloadWinners.setVisibility(View.GONE);
         }
 
     }

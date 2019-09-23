@@ -69,9 +69,11 @@
     <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
     <string name="toast_reload_all_img_data">Todas as imagens serão recarregadas em background!</string>
+    <string name="toast_reload_all_winners_matches">Todas as vitórias de partidas serão recarregadas em background!</string>
     <string name="toast_finish_import_data">Todos os dados foram restaurados com sucesso! ANDROID PIE(9+) NECESSITA DE REINICIAR O APLICATIVO PARA QUE FUNCIONE O NOVO BACKUP!!!</string>
     <string name="toast_error_import_data">Aconteceu um erro inesperado ao tentar restaurar os dados, por favor tente novamente!</string>
     <string name="toast_error_export_data">Aconteceu um erro inesperado ao tentar exportar os dados, por favor tente novamente!</string>
+    <string name="toast_error_login_google">Aconteceu um erro ao tentar logar no google, por favor tente novamente!</string>
 
 
     <!-- ################### TEXT #################### -->
@@ -130,15 +132,17 @@
     <string name="text_legend_match_match">Nome/Apelido da partida.</string>
     <string name="text_legend_match_date">Data em que aconteceu a partida (dd/mm/yyyy).</string>
     <string name="text_legend_match_players">Quantidade de jogadores que estão participando da partida.</string>
+    <string name="text_legend_match_i_won">Indica se você é o vencendor da partida.</string>
     <string name="text_legend_match_time">Duração estimada da partida (HH:MM).</string>
     <string name="text_legend_match_alarm">Se existe agendamento para a partida.</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Altera a ordenação da lista de partidas.</string>
     <string name="text_legend_ranking_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>
     <string name="text_legend_ranking_game_matches">Número de partidas registradas do jogo.</string>
+    <string name="text_legend_ranking_game_winners">Número de vitórias registradas do jogo.</string>
     <string name="text_legend_ranking_game_date">Data em que aconteceu a última partida registrada do jogo.</string>
     <string name="text_legend_ranking_game_time">Total de minutos jogados do jogo (HH:MM).</string>
-    <string name="text_legend_ranking_game_sort_list">Lista ordenada pela quantidade de partidas do jogo em ordem decrescente, somente os top 5 jogos.</string>
+    <string name="text_legend_ranking_game_sort_list">Lista ordenada dos cinco jogos mais jogados, em ordem decrescente.</string>
     <string name="text_dialog_export_data_info_01">*¹ Os dados serão exportados em background e estarão disponível no diretório de armazenamento da aplicação.</string>
     <string name="text_dialog_export_data_info_02">*² Os dados serão exportados para o diretório: %1$s.</string>
     <string name="text_dialog_export_data_info_03">Backup autómatico %1$s.\nÚltimo: %2$s.</string>
@@ -225,6 +229,7 @@
     <string name="btn_export">BACKUP</string>
     <string name="btn_import">RESTAURAR</string>
     <string name="btn_export_import">BACKUP</string>
+    <string name="btn_disconnect">DESCONECTAR</string>
 
 
     <!-- ################### ACTION BAR #################### -->
@@ -280,7 +285,8 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Estatistica e ordenação para seus jogos e partidas.<br>
 &nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
-&nbsp;&nbsp;&nbsp;<b>6) Tela para exibir o ranking de todos os seus jogos.</b><br><br>
+&nbsp;&nbsp;&nbsp;<b>6) Integração com sua conta do google.</b><br>
+&nbsp;&nbsp;&nbsp;<b>7) Ajuste no mecanismo de vitória e lista ranking e partidas.</b><br><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Avalie nosso app na loja</a></b><br>
 <br>
 ]]>

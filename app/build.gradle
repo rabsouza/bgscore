@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -45,13 +46,14 @@ android {
     productFlavors {
         prod {
             applicationIdSuffix = ".app"
-            versionCode 18
-            versionName "1.0.18"
+            versionCode 19
+            versionName "1.0.19"
         }
+
         dev {
             applicationIdSuffix = ".dev"
-            versionCode 26
-            versionName "1.0.26-beta"
+            versionCode 27
+            versionName "1.0.27-beta"
         }
     }
 
@@ -71,6 +73,7 @@ android {
     testOptions {
         animationsDisabled = true
     }
+
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/LICENSE.txt'
@@ -93,6 +96,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "com.google.firebase:firebase-core:$rootProject.ext.firebaseSdkVersion"
+    implementation "com.google.firebase:firebase-analytics:$rootProject.ext.firebaseAnalyticsVersion"
+    implementation "com.google.firebase:firebase-auth:17.0.0"
+    implementation "com.google.android.gms:play-services-auth:16.0.1"
 
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
@@ -138,8 +146,6 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
 
-    implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintVersion"
     implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }

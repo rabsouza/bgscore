@@ -119,7 +119,6 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.getScoreMatchNeutral().setScoreText(decimalFormatScore.format(statistic.getCountMatchNeutral()));
         holder.getScoreMatchSatisfied().setScoreText(decimalFormatScore.format(statistic.getCountMatchSatisfied()));
         holder.getScoreMatchVerySatisfied().setScoreText(decimalFormatScore.format(statistic.getCountMatchVerySatisfied()));
-
     }
 
     private void configItemHolder(MatchViewItemHolder holder, int position) {
@@ -142,6 +141,12 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 ImageLoadUtils.loadImage(itemView.getContext(),
                         urlThumbnail,
                         rowHolder.getImgInfoGame());
+            }
+
+            if (match.isIWon()) {
+                rowHolder.getTxtIWon().setVisibility(View.VISIBLE);
+            } else {
+                rowHolder.getTxtIWon().setVisibility(View.GONE);
             }
 
             rowHolder.getTxtInfoAlias().setText(match.getAlias());

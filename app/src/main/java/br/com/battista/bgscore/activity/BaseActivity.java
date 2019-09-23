@@ -14,16 +14,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
-import com.crashlytics.android.answers.CustomEvent;
-
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.util.AnimationActivityUtils;
+import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
-
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_ACTIVITY;
-import static br.com.battista.bgscore.constants.CrashlyticsConstant.KEY_OPEN_ACTIVITY;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -38,12 +32,7 @@ public class BaseActivity extends AppCompatActivity {
 
         String nameView = this.getClass().getSimpleName();
 
-        Answers.getInstance().logCustom(new CustomEvent(KEY_OPEN_ACTIVITY)
-                .putCustomAttribute(KEY_ACTIVITY, nameView));
-
-        Answers.getInstance().logContentView(new ContentViewEvent()
-                .putContentName(nameView)
-                .putContentType(KEY_ACTIVITY));
+        AnswersUtils.onOpenActivity(nameView);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setEnterTransition(AnimationActivityUtils.makeEnterTransition());

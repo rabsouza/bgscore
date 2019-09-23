@@ -59,12 +59,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <ImageView
+                            <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/card_view_home_img"
                                 android:layout_width="@dimen/dimen_profile_img_width"
                                 android:layout_height="@dimen/dimen_profile_img_height"
                                 android:padding="@dimen/element_padding"
-                                android:scaleType="fitCenter" />
+                                android:scaleType="centerCrop" />
 
                             <TextView
                                 android:id="@+id/card_view_home_username"

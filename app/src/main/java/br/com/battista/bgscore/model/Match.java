@@ -38,6 +38,9 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.COLUMN_NAME_I_PLAYING)
     private Boolean iPlaying = Boolean.TRUE;
 
+    @Column(name = MatchEntry.COLUMN_NAME_I_WON)
+    private Boolean iWon = Boolean.FALSE;
+
     @Column(name = MatchEntry.COLUMN_NAME_SCHEDULE_MATCH)
     private Boolean scheduleMatch = Boolean.FALSE;
 
@@ -159,6 +162,14 @@ public class Match extends BaseEntity implements Serializable {
         this.feedback = feedback;
     }
 
+    public Boolean isIWon() {
+        return iWon;
+    }
+
+    public void setIWon(Boolean iWon) {
+        this.iWon = iWon;
+    }
+
     @Override
     public String toString() {
         if (!LogUtils.isLoggable()) {
@@ -171,6 +182,7 @@ public class Match extends BaseEntity implements Serializable {
                 .add("gameId", gameId)
                 .add("players", players)
                 .add("iPlaying", iPlaying)
+                .add("iWon", iWon)
                 .add("scheduleMatch", scheduleMatch)
                 .add("finished", finished)
                 .add("duration", duration)
@@ -232,6 +244,11 @@ public class Match extends BaseEntity implements Serializable {
 
     public Match iPlaying(Boolean iPlaying) {
         this.iPlaying = iPlaying;
+        return this;
+    }
+
+    public Match iWon(Boolean iWon) {
+        this.iWon = iWon;
         return this;
     }
 

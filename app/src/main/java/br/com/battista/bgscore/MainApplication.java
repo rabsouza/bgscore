@@ -13,6 +13,7 @@ import com.crashlytics.android.answers.Answers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orm.SugarContext;
 
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class MainApplication extends MultiDexApplication {
     private static MainApplication instance = null;
     private final SharedPreferencesKeyEnum keyUser = SharedPreferencesKeyEnum.SAVED_USER;
     private final SharedPreferencesKeyEnum keyBackup = SharedPreferencesKeyEnum.SAVED_BACKUP;
+    private FirebaseAnalytics firebaseAnalytics;
     private User user;
     private BackupDto backupDto;
     private SharedPreferences preferences;
@@ -68,6 +70,7 @@ public class MainApplication extends MultiDexApplication {
 
         Fabric.with(instance, new Crashlytics());
         Fabric.with(instance, new Answers());
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         LogUtils.d(TAG, "onCreate: MainApplication!");
 
         initializePreferences();
@@ -228,4 +231,7 @@ public class MainApplication extends MultiDexApplication {
         new PlayerRepository().deleteAll();
     }
 
+    public FirebaseAnalytics getFirebaseAnalytics() {
+        return firebaseAnalytics;
+    }
 }

@@ -47,6 +47,7 @@ import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
+import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.LogUtils;
 
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_CHANGE_AVATAR_FRAGMENT;
@@ -69,7 +70,8 @@ public class ProfileFragment extends BaseFragment {
     private TextView txtUsername;
     private TextView txtMail;
     private TextView txtDateCreated;
-    private ImageView txtAvatar;
+    private ImageView imgAvatar;
+    private ImageView imgAvatarChange;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -161,16 +163,25 @@ public class ProfileFragment extends BaseFragment {
         User user = MainApplication.instance().getUser();
         final Fragment currentFragment = this;
 
-        txtAvatar = view.findViewById(R.id.card_view_profile_img);
-        txtAvatar.setImageResource(user.getAvatar().getIdResDrawable());
-        txtAvatar.setOnClickListener(view1 -> {
-            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
-                    ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
+        imgAvatarChange = view.findViewById(R.id.card_view_profile_img_change);
+        imgAvatar = view.findViewById(R.id.card_view_profile_img);
+        if (user.isSignedSuccessfully() && user.getUrlAvatar() != null) {
+            ImageLoadUtils.loadImage(view.getContext(),
+                    user.getUrlAvatar(),
+                    imgAvatar);
+            imgAvatarChange.setVisibility(View.GONE);
+        } else {
+            imgAvatarChange.setVisibility(View.VISIBLE);
+            imgAvatar.setImageResource(user.getAvatar().getIdResDrawable());
+            imgAvatar.setOnClickListener(view1 -> {
+                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_BUTTON,
+                        ValueActions.VALUE_ACTION_CLICK_BUTTON_CHANGE_AVATAR);
 
-            final User user1 = MainApplication.instance().getUser();
-            ChangeAvatarDialog.newInstance(user1.getAvatar().getIdResDrawable())
-                    .showDialog(currentFragment);
-        });
+                final User user1 = MainApplication.instance().getUser();
+                ChangeAvatarDialog.newInstance(user1.getAvatar().getIdResDrawable())
+                        .showDialog(currentFragment);
+            });
+        }
 
         txtUsername = view.findViewById(R.id.card_view_profile_username);
         txtUsername.setText(getString(R.string.text_username, user.getUsername()));
@@ -273,6 +284,7 @@ public class ProfileFragment extends BaseFragment {
 
             EditProfileDialog.newInstance().showDialog(currentFragment);
         });
+
     }
 
     private class ProfileProgressApp extends ProgressApp {

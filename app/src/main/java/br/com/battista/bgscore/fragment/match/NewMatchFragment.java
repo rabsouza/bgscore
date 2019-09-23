@@ -220,7 +220,9 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         } else {
             Calendar calendarCreatedAt = Calendar.getInstance();
             Date createdAt = DateUtils.parse(txtCreateAt.getText().toString().trim());
-            calendarCreatedAt.setTime(createdAt);
+            if (createdAt != null) {
+                calendarCreatedAt.setTime(createdAt);
+            }
 
             Calendar now = Calendar.getInstance();
             calendarCreatedAt.set(Calendar.HOUR_OF_DAY, now.get(Calendar.HOUR_OF_DAY));
@@ -347,7 +349,13 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 if (!Strings.isNullOrEmpty(txtCreateAt.getText().toString())) {
-                    now.setTime(DateUtils.parse(txtCreateAt.getText().toString().trim()));
+                    Date dateNow = DateUtils.parse(txtCreateAt.getText().toString().trim());
+                    if (dateNow != null) {
+                        now.setTime(dateNow);
+                    } else {
+                        now.setTime(new Date());
+                    }
+
                 }
 
                 new DatePickerDialog(getContext(),

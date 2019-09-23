@@ -21,7 +21,6 @@ import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.constants.EntityConstant;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.model.dto.BackupDto;
-import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 
 import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_BACKUP_DATABASE_NAME;
 import static br.com.battista.bgscore.constants.EntityConstant.DEFAULT_DATABASE_NAME;

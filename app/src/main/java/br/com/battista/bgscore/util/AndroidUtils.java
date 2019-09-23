@@ -92,11 +92,11 @@ public class AndroidUtils {
     }
 
     public static void toast(@NonNull Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
     public static void toast(@NonNull Context context, int msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
     public static void toastLong(@NonNull Context context, int msg) {

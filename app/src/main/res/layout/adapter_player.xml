@@ -34,7 +34,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:hint="@string/field_player_punctuation"
                 android:imeOptions="actionDone"
-                android:inputType="number"
+                android:inputType="numberSigned"
                 android:maxLength="15"
                 android:maxLines="1" />
 

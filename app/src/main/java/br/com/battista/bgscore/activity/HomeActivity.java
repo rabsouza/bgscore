@@ -2,11 +2,9 @@ package br.com.battista.bgscore.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.view.MenuItem;
 
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.MainApplication;
@@ -81,47 +79,43 @@ public class HomeActivity extends BaseActivity {
         ((BottomNavigationItemView) menuView.getChildAt(0)).setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.action_home:
-                                item.setChecked(true);
-                                setUpToolbar(R.string.title_home);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
-                                        ValueActions.VALUE_CLICK_MENU_HOME);
-                                replaceFragment(HomeFragment.newInstance());
-                                break;
-                            case R.id.action_matches:
-                                item.setChecked(true);
-                                setUpToolbar(R.string.title_matches);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
-                                        ValueActions.VALUE_CLICK_MENU_MATCHES);
-                                replaceFragment(MatchFragment.newInstance());
-                                break;
-                            case R.id.action_games:
-                                item.setChecked(true);
-                                setUpToolbar(R.string.title_games);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
-                                        ValueActions.VALUE_CLICK_MENU_GAMES);
-                                replaceFragment(GameFragment.newInstance());
-                                break;
-                            case R.id.action_account:
-                                item.setChecked(true);
-                                setUpToolbar(R.string.title_account);
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
-                                        ValueActions.VALUE_CLICK_MENU_PROFILE);
-                                replaceFragment(ProfileFragment.newInstance());
-                                break;
-                            case R.id.action_info:
-                                AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
-                                        ValueActions.VALUE_CLICK_MENU_INFO);
-                                AboutDialog.showAbout(getSupportFragmentManager());
-                                break;
-                        }
-                        return false;
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.action_home:
+                            item.setChecked(true);
+                            setUpToolbar(R.string.title_home);
+                            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                    ValueActions.VALUE_CLICK_MENU_HOME);
+                            replaceFragment(HomeFragment.newInstance());
+                            break;
+                        case R.id.action_matches:
+                            item.setChecked(true);
+                            setUpToolbar(R.string.title_matches);
+                            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                    ValueActions.VALUE_CLICK_MENU_MATCHES);
+                            replaceFragment(MatchFragment.newInstance());
+                            break;
+                        case R.id.action_games:
+                            item.setChecked(true);
+                            setUpToolbar(R.string.title_games);
+                            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                    ValueActions.VALUE_CLICK_MENU_GAMES);
+                            replaceFragment(GameFragment.newInstance());
+                            break;
+                        case R.id.action_account:
+                            item.setChecked(true);
+                            setUpToolbar(R.string.title_account);
+                            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                    ValueActions.VALUE_CLICK_MENU_PROFILE);
+                            replaceFragment(ProfileFragment.newInstance());
+                            break;
+                        case R.id.action_info:
+                            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                                    ValueActions.VALUE_CLICK_MENU_INFO);
+                            AboutDialog.showAbout(getSupportFragmentManager());
+                            break;
                     }
+                    return false;
                 });
     }
 

@@ -37,6 +37,7 @@ import br.com.battista.bgscore.model.dto.RankingGamesDto;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.DateUtils;
+import br.com.battista.bgscore.util.ImageLoadUtils;
 import br.com.battista.bgscore.util.LogUtils;
 
 public class HomeFragment extends BaseFragment {
@@ -51,7 +52,7 @@ public class HomeFragment extends BaseFragment {
 
     private TextView txtUsername;
     private TextView txtLastPlay;
-    private ImageView txtAvatar;
+    private ImageView imgAvatar;
 
     private ScoreboardView scoreGames;
     private ScoreboardView scoreMatches;
@@ -174,8 +175,14 @@ public class HomeFragment extends BaseFragment {
         LogUtils.i(TAG, "loadUserInfo: Load all info user to cache and update user statistics!");
         User user = MainApplication.instance().getUser();
 
-        txtAvatar = view.findViewById(R.id.card_view_home_img);
-        txtAvatar.setImageResource(user.getAvatar().getIdResDrawable());
+        imgAvatar = view.findViewById(R.id.card_view_home_img);
+        if (user.isSignedSuccessfully() && user.getUrlAvatar() != null) {
+            ImageLoadUtils.loadImage(view.getContext(),
+                    user.getUrlAvatar(),
+                    imgAvatar);
+        } else {
+            imgAvatar.setImageResource(user.getAvatar().getIdResDrawable());
+        }
 
         txtUsername = view.findViewById(R.id.card_view_home_username);
         txtUsername.setText(getString(R.string.text_home_username, user.getUsername()));
