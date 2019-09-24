@@ -42,6 +42,11 @@ public class BaseFragment extends Fragment {
             btnReloadWinners.setVisibility(View.GONE);
         }
 
+        ImageButton btnImportCollection = getActivity().findViewById(R.id.btn_import_collection);
+        if (btnImportCollection != null) {
+            btnImportCollection.setVisibility(View.GONE);
+        }
+
     }
 
     protected void replaceDetailFragment(Fragment fragment, int containerResID) {

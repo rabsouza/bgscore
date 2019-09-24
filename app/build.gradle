@@ -133,6 +133,7 @@ dependencies {
     implementation "org.greenrobot:eventbus:$rootProject.ext.eventBusVersion"
     implementation "br.com.jansenfelipe:androidmask:$rootProject.ext.androidmaskVersion"
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
     testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"

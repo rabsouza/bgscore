@@ -7,17 +7,23 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.ColorInt;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
@@ -27,11 +33,27 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.util.Random;
 
+import br.com.battista.bgscore.R;
+
 public class AndroidUtils {
 
     private static final String TAG = AndroidUtils.class.getSimpleName();
 
     private AndroidUtils() {
+    }
+
+    @NonNull
+    public static PopupWindow createPopupWindow(@NonNull Context context, @LayoutRes int resourcePopupWindow) {
+        LayoutInflater inflater = (LayoutInflater)
+                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(resourcePopupWindow, null);
+        final PopupWindow popupWindow = new PopupWindow(layout, LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setAnimationStyle(R.style.animationPopup);
+        return popupWindow;
     }
 
     public static String getVersionName(@NonNull Activity activity) {

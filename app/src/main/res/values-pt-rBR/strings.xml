@@ -12,6 +12,7 @@
     <string name="title_match">&#x265c; Partida &#x265c;</string>
     <string name="title_game">&#x265c; Jogo &#x265c;</string>
     <string name="title_help">&#x265c; Ajuda &#x265c;</string>
+    <string name="title_import_collection">&#x265c; BGG &#x265c;</string>
 
 
     <!-- ################### CARD #################### -->
@@ -32,6 +33,8 @@
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação/Observações da partida</string>
     <string name="card_title_sort_list">Ordenação da lista</string>
+    <string name="card_title_search_collection_bgg">Buscar coleção no BGG</string>
+    <string name="card_title_new_collection_bgg">Minha coleção no BGG</string>
 
 
     <!-- ################### HINT #################### -->
@@ -105,6 +108,7 @@
     <string name="text_match_players_winners_info_02">*² Para adiconar a pontuação final, preencha o campo e tecle enter para confirmar.</string>
     <string name="text_match_players_obs_info_01">*¹ Preencha o campo abaixo com as observações/anotações desta partida.</string>
     <string name="text_match_search_game_info_01">*¹ Busque um jogo a partir do site boardgamegeek.com.</string>
+    <string name="text_import_collection_search_collection_bgg_info_01">*¹ Busque sua coleção de jogos a partir do seu usuário do boardgamegeek.com.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da minha coleção ou no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_schedule_match">Deseja agendar essa partida?</string>
@@ -164,6 +168,8 @@
     <string name="text_games_score_favorite_game">favorito</string>
     <string name="text_active">ativado</string>
     <string name="text_inactive">desativado</string>
+    <string name="text_import_collection_info_01">*¹ Clique no botão do servidor que você deseja importar a coleção de jogos.</string>
+    <string name="text_import_collection_new_collection_info_01">*¹ Abaixo os dados da sua coleção no BoardGameGeek.</string>
 
 
     <!-- ################### Field #################### -->
@@ -190,6 +196,7 @@
     <string name="field_age_new_game">Idade recomendada</string>
     <string name="field_rating_new_game">Sua avaliação/nota do jogo (0-10 &#x2605;)</string>
     <string name="field_badge_game_new_game">Classificação do jogo</string>
+    <string name="field_username_collection_bgg">Usuário BoardGameGeek</string>
 
 
     <!-- ################### ALERT #################### -->
@@ -230,6 +237,7 @@
     <string name="btn_import">RESTAURAR</string>
     <string name="btn_export_import">BACKUP</string>
     <string name="btn_disconnect">DESCONECTAR</string>
+    <string name="btn_boardgamegeek">BOARDGAMEGEEK</string>
 
 
     <!-- ################### ACTION BAR #################### -->

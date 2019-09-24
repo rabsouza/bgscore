@@ -20,6 +20,7 @@ public class CrashlyticsConstant {
         String VALUE_BACK_HOME = "HOME";
         String VALUE_BACK_GAME = "GAME";
         String VALUE_BACK_MATCH = "MATCH";
+        String VALUE_BACK_IMPORT_COLLECTION = "IMPORT_COLLECTION";
         String VALUE_CLICK_MENU_HOME = "HOME";
         String VALUE_CLICK_MENU_MATCHES = "MATCHES";
         String VALUE_CLICK_MENU_GAMES = "GAMES";
@@ -60,6 +61,7 @@ public class CrashlyticsConstant {
         String VALUE_ACTION_CLICK_BUTTON_SIGN_IN = "SIGN_IN";
         String VALUE_ACTION_CLICK_BUTTON_SIGN_OUT = "SIGN_OUT";
         String VALUE_ACTION_CLICK_BUTTON_RELOAD_WINNERS = "RELOAD_WINNERS";
+        String VALUE_ACTION_CLICK_IMPORT_COLLECTION_BGG = "IMPORT_COLLECTION_BGG";
     }
 
 }

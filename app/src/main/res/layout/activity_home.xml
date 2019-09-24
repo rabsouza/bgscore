@@ -70,6 +70,18 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/ic_winner" />
 
+            <ImageButton
+                android:id="@+id/btn_import_collection"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/button_toolbar_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:layout_marginEnd="@dimen/element_horizontal_margin"
+                android:layout_marginRight="@dimen/element_horizontal_margin"
+                android:tint="@color/colorTitleToolbar"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_import" />
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

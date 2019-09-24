@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.battista.bgscore.fragment.collection.NewImportCollectionFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/detail_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="always"
+        android:paddingBottom="@dimen/fab_margin_bottom"
+        android:scrollbars="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/no_dimen">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_import_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_vertical_margin"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/no_dimen"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/element_padding">
+
+                    <TextView
+                        android:id="@+id/card_view_import_collection_title"
+                        style="@style/CardTitleStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/card_title_search_collection_bgg" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_line"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:background="@color/colorLine" />
+
+                    <TextView
+                        android:id="@+id/card_view_import_collection_info_01"
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/text_import_collection_search_collection_bgg_info_01" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/element_vertical_margin"
+                        android:layout_marginBottom="@dimen/element_margin"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/card_view_import_collection_search_name"
+                                style="@style/InputStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:hint="@string/field_username_collection_bgg"
+                                android:imeOptions="actionSearch"
+                                android:inputType="textAutoComplete"
+                                android:maxLines="1" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/card_view_import_collection_button_search"
+                            style="?android:attr/buttonStyle"
+                            android:layout_width="@dimen/cards_button_width"
+                            android:layout_height="@dimen/cards_button_height"
+                            android:layout_marginLeft="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginRight="@dimen/element_horizontal_margin"
+                            app:srcCompat="@drawable/ic_search" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_new_import_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_vertical_margin"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/no_dimen"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/element_padding">
+
+                    <TextView
+                        android:id="@+id/card_view_new_import_collection_title"
+                        style="@style/CardTitleStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/card_title_new_collection_bgg" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_line"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:background="@color/colorLine" />
+
+                    <TextView
+                        android:id="@+id/card_view_new_import_collection_info_01"
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:text="@string/text_import_collection_new_collection_info_01" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_next_import_collection"
+        android:layout_width="@dimen/fab_image_width"
+        android:layout_height="@dimen/fab_image_height"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="center"
+        app:fabCustomSize="@dimen/fab_image_width"
+        app:layout_anchor="@id/detail_scroll_view"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/ic_fab_done" />
+
+</android.support.design.widget.CoordinatorLayout>
