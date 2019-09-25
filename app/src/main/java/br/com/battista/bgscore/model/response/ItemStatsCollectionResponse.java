@@ -28,13 +28,13 @@ public class ItemStatsCollectionResponse implements Serializable, Parcelable {
 
     private static final long serialVersionUID = 1L;
 
-    @Attribute(name = "minplayers")
+    @Attribute(name = "minplayers", required = false)
     private String minPlayers;
-    @Attribute(name = "maxplayers")
+    @Attribute(name = "maxplayers", required = false)
     private String maxPlayers;
-    @Attribute(name = "minplaytime")
+    @Attribute(name = "minplaytime", required = false)
     private String minPlayTime;
-    @Attribute(name = "maxplaytime")
+    @Attribute(name = "maxplaytime", required = false)
     private String maxPlayTime;
 
     public ItemStatsCollectionResponse() {

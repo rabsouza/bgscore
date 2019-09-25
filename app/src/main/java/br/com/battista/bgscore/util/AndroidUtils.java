@@ -21,6 +21,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -179,6 +180,13 @@ public class AndroidUtils {
         String state = Environment.getExternalStorageState();
         return isExternalStorageWritable() ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
+    }
+
+    public static void hideKeyboard(View view, Activity activity){
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 

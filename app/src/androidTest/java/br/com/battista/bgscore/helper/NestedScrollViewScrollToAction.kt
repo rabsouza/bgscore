@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.ListView
 import android.widget.ScrollView
+import br.com.battista.bgscore.util.LogUtils
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.anyOf
@@ -32,7 +33,7 @@ class NestedScrollViewScrollToAction : ViewAction {
 
     override fun perform(uiController: UiController, view: View) {
         if (isDisplayingAtLeast(95).matches(view)) {
-            Log.i(TAG, "View is already displayed. Returning.")
+            LogUtils.i(TAG, "View is already displayed. Returning.")
             return
         }
 
@@ -47,7 +48,7 @@ class NestedScrollViewScrollToAction : ViewAction {
         val rect = Rect()
         view.getDrawingRect(rect)
         if (!/* immediate */view.requestRectangleOnScreen(rect, true)) {
-            Log.w(TAG, "Scrolling to view was requested, but none of the parents scrolled.")
+            LogUtils.w(TAG, "Scrolling to view was requested, but none of the parents scrolled.")
         }
 
         uiController.loopMainThreadUntilIdle()

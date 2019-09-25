@@ -16,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -215,6 +216,7 @@ public class NewGameFragment extends BaseFragment {
     }
 
     private void fillDataAndSave() {
+        LogUtils.i(TAG, "fillDataAndSave: Fill and save te game!");
         if (Strings.isNullOrEmpty(txtNameGame.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_name_game_required);
             AndroidUtils.changeErrorEditText(txtNameGame, msgErrorUsername, true);
@@ -343,12 +345,15 @@ public class NewGameFragment extends BaseFragment {
         }
         AndroidUtils.changeErrorEditText(txtSearchNameGame);
         final String nameGame = txtSearchNameGame.getText().toString().trim();
+        AndroidUtils.hideKeyboard(txtSearchNameGame, getActivity());
 
         LogUtils.i(TAG, "processDataSearchGame: Search game in server!");
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SEARCH_GAME_ONLINE);
 
         final Fragment currentFragment = this;
         new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {
-            ArrayList<GameResponse> gameResponses;
+            List<GameResponse> gameResponses;
 
             @Override
             protected void onPostExecute(Boolean result) {

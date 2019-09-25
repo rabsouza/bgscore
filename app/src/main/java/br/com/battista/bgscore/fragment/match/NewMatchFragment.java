@@ -515,13 +515,16 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         }
         AndroidUtils.changeErrorEditText(txtSearchNameGame);
         final String nameGame = txtSearchNameGame.getText().toString().trim();
+        AndroidUtils.hideKeyboard(txtSearchNameGame, getActivity());
 
         if (swtSearchOnline.isChecked()) {
             LogUtils.i(TAG, "processDataSearchGame: Search game in server!");
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SEARCH_GAME_ONLINE);
 
             final Fragment currentFragment = this;
             new ProgressApp(this.getActivity(), R.string.msg_action_searching, false) {
-                ArrayList<GameResponse> gameResponses;
+                List<GameResponse> gameResponses;
 
                 @Override
                 protected void onPostExecute(Boolean result) {

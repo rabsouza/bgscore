@@ -35,9 +35,9 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
     private String subtype;
     @Element(name = "name")
     private String name;
-    @Element(name = "thumbnail")
+    @Element(name = "thumbnail", required = false)
     private String thumbnail;
-    @Element(name = "image")
+    @Element(name = "image", required = false)
     private String image;
     @Element(name = "stats")
     private ItemStatsCollectionResponse stats;
@@ -186,5 +186,9 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
         dest.writeString(this.thumbnail);
         dest.writeString(this.image);
         dest.writeParcelable(this.stats, flags);
+    }
+
+    public enum ItemCollectionType{
+        boardgame
     }
 }

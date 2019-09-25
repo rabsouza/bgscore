@@ -142,6 +142,132 @@
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:text="@string/text_import_collection_new_collection_info_01" />
 
+                    <TextView
+                        android:id="@+id/card_view_new_import_collection_info_02"
+                        style="@style/HintTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:text="@string/text_import_collection_new_collection_info_02" />
+
+                    <TextView
+                        android:id="@+id/card_view_new_import_collection_text"
+                        style="@style/TextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/element_vertical_margin"
+                        android:text="@string/text_import_collection_new_collection_text" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Switch
+                            android:id="@+id/card_view_new_import_collection_own"
+                            style="@style/CardTextStyle"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_game_my_game"
+                            android:drawablePadding="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:checked="true"
+                            android:text="Meus jogos" />
+
+
+                        <EditText
+                            android:id="@+id/card_view_new_import_collection_own_value"
+                            style="@style/TextStyle"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="0" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Switch
+                            android:id="@+id/card_view_new_import_collection_favorite"
+                            style="@style/CardTextStyle"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_game_favorite"
+                            android:drawablePadding="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:checked="false"
+                            android:enabled="false"
+                            android:text="Meus jogos favoritos" />
+
+
+                        <EditText
+                            android:id="@+id/card_view_new_import_collection_favorite_value"
+                            style="@style/TextStyle"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="00" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Switch
+                            android:id="@+id/card_view_new_import_collection_wishlist"
+                            style="@style/CardTextStyle"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_game_want_game"
+                            android:drawablePadding="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:checked="true"
+                            android:text="Jogos na lista de desejo" />
+
+
+                        <EditText
+                            android:id="@+id/card_view_new_import_collection_wishlist_value"
+                            style="@style/TextStyle"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="0" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Switch
+                            android:id="@+id/card_view_new_import_collection_played"
+                            style="@style/CardTextStyle"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_matches"
+                            android:drawablePadding="@dimen/element_padding"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:checked="true"
+                            android:text="Jogos jogados" />
+
+
+                        <EditText
+                            android:id="@+id/card_view_new_import_collection_played_value"
+                            style="@style/TextStyle"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="0" />
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -151,7 +277,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_next_import_collection"
+        android:id="@+id/fab_done_import_collection"
         android:layout_width="@dimen/fab_image_width"
         android:layout_height="@dimen/fab_image_height"
         android:layout_margin="@dimen/fab_margin"

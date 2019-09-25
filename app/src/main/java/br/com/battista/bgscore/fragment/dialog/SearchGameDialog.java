@@ -2,6 +2,7 @@ package br.com.battista.bgscore.fragment.dialog;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -41,10 +42,10 @@ public class SearchGameDialog extends DialogFragment {
     public SearchGameDialog() {
     }
 
-    public static SearchGameDialog newInstance(ArrayList<GameResponse> games) {
+    public static SearchGameDialog newInstance(List<GameResponse> games) {
         SearchGameDialog fragment = new SearchGameDialog();
         Bundle args = new Bundle();
-        args.putParcelableArrayList(BundleConstant.DATA, games);
+        args.putParcelableArrayList(BundleConstant.DATA, (ArrayList<? extends Parcelable>) games);
         fragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         fragment.setArguments(args);
         return fragment;
@@ -88,7 +89,7 @@ public class SearchGameDialog extends DialogFragment {
         LogUtils.d(TAG, "processDataFragment: Process bundle data Fragment!");
         if (bundle != null && bundle.containsKey(BundleConstant.DATA)) {
             games.clear();
-            final ArrayList<GameResponse> parcelables = bundle.getParcelableArrayList(BundleConstant.DATA);
+            final List<GameResponse> parcelables = bundle.getParcelableArrayList(BundleConstant.DATA);
             games.addAll(parcelables);
         }
         loadAllGames();

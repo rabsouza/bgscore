@@ -33,8 +33,8 @@
     <string name="card_title_finish_match">My game</string>
     <string name="card_title_feedback_match">Game notes/comments</string>
     <string name="card_title_sort_list">Sorting the list</string>
-    <string name="card_title_search_collection_bgg">Search BGG Collection</string>
-    <string name="card_title_new_collection_bgg">My BGG Collection</string>
+    <string name="card_title_search_collection_bgg">Search Collection</string>
+    <string name="card_title_new_collection_bgg">My Collection</string>
 
 
     <!-- ################### HINT #################### -->
@@ -56,6 +56,7 @@
     <string name="msg_username_friend_required">Your friends name is required!</string>
     <string name="msg_username_player_required">Player name is required!</string>
     <string name="msg_username_required">Username is required!</string>
+    <string name="msg_username_bgg_required">BoardGameGeek user  is required!</string>
     <string name="msg_name_game_required">Game name is required!</string>
     <string name="msg_alias_match_required">Match name/Nickname is required!</string>
     <string name="msg_game_required">You must select at least 1 game to save/edit this match!</string>
@@ -63,6 +64,8 @@
     <string name="msg_game_dont_found_open">The game could not be found, please add a link from the game page.</string>
     <string name="msg_game_dont_found_search">The game could not be found, please try again.</string>
     <string name="msg_game_error_add_game">Error while trying to add game. Please try again.</string>
+    <string name="msg_collection_dont_found_search">The BoardGameGeek collection could not be found, please try again.</string>
+    <string name="msg_collection_dont_found_import">You must select at least one collection type to import, please try again.</string>
     <string name="msg_error_game_with_partner">Error while trying to delete game %1$s. Check for matches associated with the game.</string>
     <string name="msg_error_add_search_game">Error while trying to add the new game. Please try again.</string>
     <string name="msg_share_detail_match">Generating the start image for the share, please wait.</string>
@@ -170,6 +173,8 @@
     <string name="text_inactive">inactive</string>
     <string name="text_import_collection_info_01">*¹ Click the server button you want to import the game collection into.</string>
     <string name="text_import_collection_new_collection_info_01">*¹ Below is the data from your BoardGameGeek collection.</string>
+    <string name="text_import_collection_new_collection_info_02">*¹ Select the list of games you want to import into the app.</string>
+    <string name="text_import_collection_new_collection_text">Quantity of games available for import:</string>
 
 
     <!-- ################### Field #################### -->
@@ -200,6 +205,8 @@
 
 
     <!-- ################### ALERT #################### -->
+    <string name="alert_confirmation_dialog_title_import">Are you sure?</string>
+    <string name="alert_confirmation_dialog_text_import">¹ The games will be imported in the background.\n² Track through your collection. \n\nConfirm the import? \nThis operation can not be overridden.</string>
     <string name="alert_confirmation_dialog_title_exit">Are you sure?</string>
     <string name="alert_confirmation_dialog_text_exit_app">Do you want to quit the application?</string>
     <string name="alert_confirmation_dialog_text_exit">You have canceled saved changes on this screen. \nDo you want to leave without saving?</string>
@@ -231,6 +238,7 @@
     <string name="btn_confirmation_dialog_add">ADD</string>
     <string name="btn_confirmation_dialog_play">PLAY</string>
     <string name="btn_confirmation_dialog_finish">FINISH</string>
+    <string name="btn_confirmation_dialog_import">IMPORT</string>
     <string name="btn_change_avatar">CHANGE AVATAR</string>
     <string name="btn_edit">EDIT</string>
     <string name="btn_export">BACKUP</string>
