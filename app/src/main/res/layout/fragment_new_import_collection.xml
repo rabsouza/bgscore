@@ -29,8 +29,8 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="@dimen/no_dimen"
                 app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
@@ -110,8 +110,8 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="@dimen/no_dimen"
                 app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
