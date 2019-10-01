@@ -13,7 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +52,7 @@ public class ExportImportDataDialog extends DialogFragment {
     private TextView txtPathDirExport;
     private TextView txtPathDirImport;
 
-    private CardView cardViewBackup;
+    private MaterialCardView cardViewBackup;
     private TextView txtBackupDataVersion;
     private TextView txtBackupDataUser;
     private TextView txtBackupDataDate;

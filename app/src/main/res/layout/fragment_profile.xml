@@ -24,7 +24,7 @@
                 android:orientation="vertical"
                 android:padding="@dimen/no_dimen">
 
-                <android.support.v7.widget.CardView
+                <android.support.design.card.MaterialCardView
                     android:id="@+id/card_view_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                                 android:orientation="horizontal"
                                 android:weightSum="2">
 
-                                <Button
+                                <android.support.design.button.MaterialButton
                                     android:id="@+id/button_profile_export_import_data"
                                     style="@style/ButtonStyleWithBorder"
                                     android:layout_width="0dp"
@@ -141,7 +141,7 @@
                                     android:layout_weight="1"
                                     android:text="@string/btn_export_import" />
 
-                                <Button
+                                <android.support.design.button.MaterialButton
                                     android:id="@+id/button_profile_edit_profile"
                                     style="@style/ButtonStyleWithBorder"
                                     android:layout_width="0dp"
@@ -155,9 +155,9 @@
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </android.support.design.card.MaterialCardView>
 
-                <android.support.v7.widget.CardView
+                <android.support.design.card.MaterialCardView
                     android:id="@+id/card_view_friends"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -264,7 +264,7 @@
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </android.support.design.card.MaterialCardView>
 
             </LinearLayout>
 

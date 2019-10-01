@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.KeyEvent;
@@ -98,7 +98,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
 
     private ImageButton btnSearchGame;
     private AutoCompleteTextView txtSearchNameGame;
-    private CardView cardViewGame;
+    private MaterialCardView cardViewGame;
     private Switch swtSearchOnline;
 
     private EditText txtMatchAlias;

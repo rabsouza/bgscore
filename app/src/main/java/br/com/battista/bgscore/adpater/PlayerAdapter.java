@@ -3,7 +3,7 @@ package br.com.battista.bgscore.adpater;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -156,7 +156,7 @@ public class PlayerAdapter extends BaseAdapterAnimation<PlayerViewHolder> {
                 holder.getBtnRemove().setVisibility(View.GONE);
             }
 
-            final CardView cardView = itemView.findViewById(R.id.card_view_player);
+            final MaterialCardView cardView = itemView.findViewById(R.id.card_view_player);
             if (allowsSelect) {
                 if (player.isWinner()) {
                     cardView.setSelected(Boolean.TRUE);

@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/element_vertical_margin" />
 
-        <Button
+        <android.support.design.button.MaterialButton
             android:id="@+id/dialog_view_edit_profile_sign_out_button"
             style="@style/ButtonStyleWithBorder"
             android:layout_width="match_parent"
@@ -155,7 +155,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:weightSum="2">
 
-            <Button
+            <android.support.design.button.MaterialButton
                 android:id="@+id/dialog_view_edit_profile_btn_cancel"
                 style="@style/ButtonStyleWithBorder"
                 android:layout_width="0dp"
@@ -163,7 +163,7 @@
                 android:layout_weight="1"
                 android:text="@string/btn_cancel" />
 
-            <Button
+            <android.support.design.button.MaterialButton
                 android:id="@+id/dialog_view_edit_profile_btn_save"
                 style="@style/ButtonStyleActive"
                 android:layout_width="0dp"

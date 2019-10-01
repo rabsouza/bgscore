@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:padding="@dimen/no_dimen">
 
-            <android.support.v7.widget.CardView
+            <android.support.design.card.MaterialCardView
                 android:id="@+id/card_view_match"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,9 +162,9 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </android.support.design.card.MaterialCardView>
 
-            <android.support.v7.widget.CardView
+            <android.support.design.card.MaterialCardView
                 android:id="@+id/card_view_game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,7 +250,7 @@
 
                     </LinearLayout>
 
-                    <android.support.v7.widget.CardView
+                    <android.support.design.card.MaterialCardView
                         android:id="@+id/card_view_game_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -340,13 +340,13 @@
 
                         </RelativeLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </android.support.design.card.MaterialCardView>
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </android.support.design.card.MaterialCardView>
 
-            <android.support.v7.widget.CardView
+            <android.support.design.card.MaterialCardView
                 android:id="@+id/card_view_players"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -488,7 +488,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </android.support.design.card.MaterialCardView>
 
         </LinearLayout>
 

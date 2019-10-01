@@ -2,7 +2,7 @@ package br.com.battista.bgscore.adpater;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +45,7 @@ public class AvatarAdapter extends BaseAdapterAnimation<AvatarViewHolder> {
         if (avatars != null && !avatars.isEmpty()) {
             View itemView = holder.itemView;
             setAnimationHolder(itemView, position);
-            final CardView cardView = itemView.findViewById(R.id.card_view_avatar);
+            final MaterialCardView cardView = itemView.findViewById(R.id.card_view_avatar);
 
             final AvatarDto avatarDto = avatars.get(position);
             LogUtils.i(TAG, String.format(

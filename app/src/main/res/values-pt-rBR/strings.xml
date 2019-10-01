@@ -229,7 +229,7 @@
     <string name="btn_cancel">CANCELAR</string>
     <string name="btn_close">FECHAR</string>
     <string name="btn_ok">OK</string>
-    <string name="btn_share">COMPARTILHAR</string>
+    <string name="btn_share">ENVIAR</string>
     <string name="btn_confirmation_dialog_exit">SAIR</string>
     <string name="btn_confirmation_dialog_cancel">CANCELAR</string>
     <string name="btn_confirmation_dialog_delete">EXCLUIR</string>
