@@ -13,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.adpater.RankingGamesAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
@@ -61,6 +64,10 @@ public class HomeFragment extends BaseFragment {
     private ImageView imgHelpRankingGame;
     private ImageView imgDataRankingGame;
 
+    private Boolean isFabOpen = Boolean.FALSE;
+    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+
+
     public HomeFragment() {
     }
 
@@ -80,10 +87,22 @@ public class HomeFragment extends BaseFragment {
         refreshLayout = view.findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(() -> loadAllData(view));
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_new_match);
-        fab.setOnClickListener(view1 -> {
+        setupFabs(view);
+        setupRecycleRanking(view);
+        setupHelpRankingGame(view);
+        setupDataRankingGame(view);
+
+        return view;
+    }
+
+    private void setupFabs(View view) {
+        LogUtils.d(TAG, "setupFabs: Stup all FloatingActionButton!");
+
+        FloatingActionButton fabNewMatch = view.findViewById(R.id.fab_new_match);
+        fabNewMatch.setOnClickListener(view1 -> {
             AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                     CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_MATCH);
+
             Bundle args = new Bundle();
             Intent intent = new Intent(getContext(), MatchActivity.class);
             intent.putExtras(args);
@@ -91,11 +110,44 @@ public class HomeFragment extends BaseFragment {
             getContext().startActivity(intent);
         });
 
-        setupRecycleRanking(view);
-        setupHelpRankingGame(view);
-        setupDataRankingGame(view);
+        FloatingActionButton fabNewGame = view.findViewById(R.id.fab_new_game);
+        fabNewGame.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_GAME);
 
-        return view;
+            Bundle args = new Bundle();
+            Intent intent = new Intent(getContext(), GameActivity.class);
+            intent.putExtras(args);
+
+            getContext().startActivity(intent);
+        });
+
+        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getContext(),R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getContext(),R.anim.rotate_backward);
+
+        FloatingActionButton fabNewOption = view.findViewById(R.id.fab_new_option);
+        fabNewOption.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_OPTION);
+
+            if(isFabOpen){
+                fabNewOption.startAnimation(rotate_backward);
+                fabNewMatch.startAnimation(fab_close);
+                fabNewGame.startAnimation(fab_close);
+                fabNewMatch.setClickable(false);
+                fabNewGame.setClickable(false);
+                isFabOpen = false;
+            } else {
+                fabNewOption.startAnimation(rotate_forward);
+                fabNewMatch.startAnimation(fab_open);
+                fabNewGame.startAnimation(fab_open);
+                fabNewMatch.setClickable(true);
+                fabNewGame.setClickable(true);
+                isFabOpen = true;
+            }
+        });
     }
 
     @Override

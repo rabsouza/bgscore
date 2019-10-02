@@ -6,15 +6,17 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.card.MaterialCardView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -47,6 +49,7 @@ import java.util.Set;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
+import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.adpater.PlayerAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
@@ -77,6 +80,7 @@ import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 
 import static br.com.battista.bgscore.constants.BundleConstant.DATA;
 import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.MATCH_FRAGMENT;
 import static br.com.battista.bgscore.constants.DialogConstant.DIALOG_SEARCH_GAME_FRAGMENT;
 
@@ -119,6 +123,9 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
 
     private Match match;
 
+    private Boolean isFabOpen = Boolean.FALSE;
+    private Animation fab_open, fab_close, rotate_forward, rotate_backward;
+
     public NewMatchFragment() {
     }
 
@@ -139,13 +146,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
 
         final View view = inflater.inflate(R.layout.fragment_new_match, container, false);
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_next_edit_match);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View viewClicked) {
-                fillDataAndSave();
-            }
-        });
+        setupFabs(view);
 
         setupRecycleViewPlayersAndFriends(view);
         setupDataForm(view);
@@ -153,6 +154,53 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         processDataFragment(view, getArguments());
         loadDataPlayers();
         return view;
+    }
+
+    private void setupFabs(View view) {
+        LogUtils.d(TAG, "setupFabs: Stup all FloatingActionButton!");
+
+        FloatingActionButton fabFinishMatch = view.findViewById(R.id.fab_next_finish_match);
+        fabFinishMatch.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_FINISH_MATCH);
+
+            fillDataAndSave(Boolean.TRUE);
+        });
+
+        FloatingActionButton fabSaveMatch = view.findViewById(R.id.fab_next_save_match);
+        fabSaveMatch.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_SAVE_MATCH);
+
+            fillDataAndSave(Boolean.FALSE);
+        });
+
+        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_backward);
+
+        FloatingActionButton fabNewOption = view.findViewById(R.id.fab_next_option_match);
+        fabNewOption.setOnClickListener(view1 -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_OPTION);
+
+            if (isFabOpen) {
+                fabNewOption.startAnimation(rotate_backward);
+                fabFinishMatch.startAnimation(fab_close);
+                fabSaveMatch.startAnimation(fab_close);
+                fabFinishMatch.setClickable(false);
+                fabSaveMatch.setClickable(false);
+                isFabOpen = false;
+            } else {
+                fabNewOption.startAnimation(rotate_forward);
+                fabFinishMatch.startAnimation(fab_open);
+                fabSaveMatch.startAnimation(fab_open);
+                fabFinishMatch.setClickable(true);
+                fabSaveMatch.setClickable(true);
+                isFabOpen = true;
+            }
+        });
     }
 
     private void processDataFragment(View viewFragment, Bundle bundle) {
@@ -205,7 +253,7 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         }
     }
 
-    private void fillDataAndSave() {
+    private void fillDataAndSave(Boolean finishMatch) {
         LogUtils.i(TAG, "fillDataAndSave: Validate form data and fill data to save!");
         if (Strings.isNullOrEmpty(txtMatchAlias.getText().toString())) {
             String msgErrorUsername = getContext().getString(R.string.msg_alias_match_required);
@@ -292,16 +340,21 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         LogUtils.i(TAG, "fillDataAndSave: Reload cache data.");
         AndroidUtils.postAction(ActionCacheEnum.LOAD_DATA_MATCHES);
 
-        finishFormAndProcessData();
+        finishFormAndProcessData(finishMatch);
     }
 
-    private void finishFormAndProcessData() {
-        Bundle args = new Bundle();
-        args.putInt(NAVIGATION_TO, MATCH_FRAGMENT);
-        Intent intent = new Intent(getContext(), HomeActivity.class);
-        intent.putExtras(args);
+    private void finishFormAndProcessData(Boolean finishMatch) {
+            Bundle args = new Bundle();
+            if(finishMatch){
+                args.putInt(NAVIGATION_TO, FINISH_MATCH_FRAGMENT);
+                args.putSerializable(BundleConstant.DATA, match);
+            }else{
+                args.putInt(NAVIGATION_TO, MATCH_FRAGMENT);
+            }
+            Intent intent = new Intent(getContext(), HomeActivity.class);
+            intent.putExtras(args);
 
-        getContext().startActivity(intent);
+            getContext().startActivity(intent);
     }
 
     private void setupDataForm(final View view) {
@@ -316,26 +369,18 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
 
         txtSearchNameGame = view.findViewById(R.id.card_view_game_search_name);
         txtSearchNameGame.setAdapter(adapter);
-        txtSearchNameGame.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    processDataSearchGame(view);
-                }
-                return false;
+        txtSearchNameGame.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                processDataSearchGame(view);
             }
+            return false;
         });
 
         cardViewGame = view.findViewById(R.id.card_view_game_info);
 
         swtSearchOnline = view.findViewById(R.id.card_view_players_search_online_switch);
         btnSearchGame = view.findViewById(R.id.card_view_game_button_search);
-        btnSearchGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View viewClicked) {
-                processDataSearchGame(view);
-            }
-        });
+        btnSearchGame.setOnClickListener(viewClicked -> processDataSearchGame(view));
 
         txtMatchAlias = view.findViewById(R.id.card_view_match_info_alias);
         txtCreateAt = view.findViewById(R.id.card_view_match_info_created_at);
@@ -369,14 +414,11 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         swtIPlaying = view.findViewById(R.id.card_view_players_i_playing_switch);
         grpSchedule = view.findViewById(R.id.card_view_players_group_schedule_match);
         swtScheduleMatch = view.findViewById(R.id.card_view_players_schedule_match);
-        swtScheduleMatch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                if (checked) {
-                    grpSchedule.setVisibility(View.VISIBLE);
-                } else {
-                    grpSchedule.setVisibility(View.GONE);
-                }
+        swtScheduleMatch.setOnCheckedChangeListener((compoundButton, checked) -> {
+            if (checked) {
+                grpSchedule.setVisibility(View.VISIBLE);
+            } else {
+                grpSchedule.setVisibility(View.GONE);
             }
         });
 
@@ -416,23 +458,15 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
         txtInfoYear = view.findViewById(R.id.card_view_game_info_year);
 
         txtUsernamePlayer = view.findViewById(R.id.card_view_players_username);
-        txtUsernamePlayer.setOnEditorActionListener(new AutoCompleteTextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    processDataPlayers();
-                }
-                return false;
+        txtUsernamePlayer.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                processDataPlayers();
             }
+            return false;
         });
 
         btnAddPlayer = view.findViewById(R.id.card_view_players_button_add);
-        btnAddPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                processDataPlayers();
-            }
-        });
+        btnAddPlayer.setOnClickListener(view1 -> processDataPlayers());
     }
 
     private void processDataPlayers() {

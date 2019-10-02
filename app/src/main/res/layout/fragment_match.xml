@@ -62,7 +62,7 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_add" />
+        app:srcCompat="@drawable/ic_fab_matches" />
 
 </android.support.design.widget.CoordinatorLayout>
 

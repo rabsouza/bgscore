@@ -457,6 +457,6 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_done" />
+        app:srcCompat="@drawable/ic_fab_save" />
 
 </android.support.design.widget.CoordinatorLayout>

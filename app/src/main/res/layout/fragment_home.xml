@@ -253,6 +253,40 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_new_match"
+        android:visibility="invisible"
+        android:layout_width="@dimen/fab_image_width"
+        android:layout_height="@dimen/fab_image_height"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="100dp"
+        android:scaleType="center"
+        app:fabCustomSize="@dimen/fab_image_width"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/ic_fab_matches" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_new_game"
+        android:visibility="invisible"
+        android:layout_width="@dimen/fab_image_width"
+        android:layout_height="@dimen/fab_image_height"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="55dp"
+        android:scaleType="center"
+        app:fabCustomSize="@dimen/fab_image_width"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/ic_fab_games" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_new_option"
         android:layout_width="@dimen/fab_image_width"
         android:layout_height="@dimen/fab_image_height"
         android:layout_gravity="bottom|right|end"
