@@ -95,6 +95,7 @@
     <string name="text_profile_friends_empty_view">No friends added. Please add new friends to play your games.</string>
     <string name="text_profile_friends_error_view">Error while trying to load friends list. Please try again.</string>
     <string name="text_default_username">Default User</string>
+    <string name="text_default_mail">user@mail.com</string>
     <string name="text_home_username">Hi, %1$s</string>
     <string name="text_username">%1$s</string>
     <string name="text_mail">%1$s</string>
@@ -127,10 +128,10 @@
     <string name="text_match_matches_info_01">*¹ List with the last recorded matches.</string>
     <string name="text_match_matches_empty_view">No registered items. Please add a new match.</string>
     <string name="text_match_matches_error_view">Error trying to load list of matches, please try again.</string>
-    <string name="text_legend_info_01">*¹ Caption with the definition of each of the icons used in this application screen.</string>
-    <string name="text_legend_game_badge_game">Game rating (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
-    <string name="text_legend_game_players">Player numbers supported by the game (Minimum-Maximum).</string>
-    <string name="text_legend_game_time">Average time spent for each game (Minimum-Maximum).</string>
+    <string name="text_legend_info_01">*¹ Legend with the definition of the icons used.</string>
+    <string name="text_legend_game_badge_game">Game rating.</string>
+    <string name="text_legend_game_players">Player numbers supported.</string>
+    <string name="text_legend_game_time">Average time spent.</string>
     <string name="text_legend_game_age">Recommended minimum age to play the game.</string>
     <string name="text_legend_game_sort_list">Changes the ordering of the game list.</string>
     <string name="text_legend_game_broken_imgt">Fixes "broken" image issue by BGG image.</string>
@@ -304,7 +305,7 @@ Welcome to Board Game Score, this application will help you to register your mat
 &nbsp;&nbsp;&nbsp;<b>4)</b> Statics and ordering for your games and games.<br>
 &nbsp;&nbsp;&nbsp;<b>5) Automatic backup, manual and backup restore.</b><br>
 &nbsp;&nbsp;&nbsp;<b>6) Integration with your google account.</b><br>
-&nbsp;&nbsp;&nbsp;<b>7) Adjustment in win engine and ranking list and matches.</b><br><br>
+&nbsp;&nbsp;&nbsp;<b>7) Import from BGG collection.</b><br><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Rate our app in store</a></b><br>
 <br>
 ]]>

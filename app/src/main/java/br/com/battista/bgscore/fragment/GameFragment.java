@@ -119,7 +119,6 @@ public class GameFragment extends BaseFragment {
     }
 
 
-
     private void processBrokenImg(ImageButton btnBrokenImg) {
         LogUtils.i(TAG, "processBrokenImg: Reload all games images.");
 

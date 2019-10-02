@@ -6,6 +6,21 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+
+### Version - 1.0.20
+**Date release**
+ - 02/10/2019
+
+
+**Features**
+- Importar coleção do BGG.
+
+**Improvements**
+- Melhorias de layout e bugs.
+- Ajusta FAB para ter multipla ações na Home e Partida.
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.19
 **Date release**
  - 22/09/2019
@@ -253,6 +268,21 @@ Adiciona Politica de privacidade
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ## PHASE - BETA
+------------------------------------------------------------------------
+
+
+### Version - 1.0.28-Beta
+**Date release**
+ - 02/10/2019
+
+
+**Features**
+- Importar coleção do BGG.
+
+**Improvements**
+- Melhorias de layout e bugs.
+- Ajusta FAB para ter multipla ações na Home e Partida.
+
 ------------------------------------------------------------------------
 
 ### Version - 1.0.28-Beta

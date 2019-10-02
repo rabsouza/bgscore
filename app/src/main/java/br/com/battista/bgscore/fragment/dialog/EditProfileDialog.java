@@ -10,7 +10,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -194,7 +193,9 @@ public class EditProfileDialog extends DialogFragment {
         btnSaveChange.setOnClickListener(view -> {
             User currentUser;
             if (swtReset.isChecked()) {
-                currentUser = new User().username(getString(R.string.text_default_username));
+                currentUser = new User()
+                        .username(getString(R.string.text_default_username))
+                        .mail(getString(R.string.text_default_mail));
                 currentUser.initEntity();
             } else {
                 currentUser = instance.getUser();

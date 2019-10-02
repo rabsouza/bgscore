@@ -16,8 +16,18 @@ import java.io.Serializable;
 public class ItemCollectionResponse implements Serializable, Parcelable {
 
 
-    private static final long serialVersionUID = 1L;
+    public static final Creator<ItemCollectionResponse> CREATOR = new Creator<ItemCollectionResponse>() {
+        @Override
+        public ItemCollectionResponse createFromParcel(Parcel source) {
+            return new ItemCollectionResponse(source);
+        }
 
+        @Override
+        public ItemCollectionResponse[] newArray(int size) {
+            return new ItemCollectionResponse[size];
+        }
+    };
+    private static final long serialVersionUID = 1L;
     @Attribute(name = "objectid")
     private Long boardGameId;
     @Attribute(name = "subtype")
@@ -34,6 +44,16 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
     private ItemStatsCollectionResponse stats;
 
     public ItemCollectionResponse() {
+    }
+
+    protected ItemCollectionResponse(Parcel in) {
+        this.boardGameId = (Long) in.readValue(Long.class.getClassLoader());
+        this.subtype = in.readString();
+        this.name = in.readString();
+        this.yearPublished = in.readString();
+        this.thumbnail = in.readString();
+        this.image = in.readString();
+        this.stats = in.readParcelable(ItemStatsCollectionResponse.class.getClassLoader());
     }
 
     public Long getBoardGameId() {
@@ -169,10 +189,6 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
         return this;
     }
 
-    public enum ItemCollectionType{
-        boardgame
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -189,25 +205,7 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
         dest.writeParcelable(this.stats, flags);
     }
 
-    protected ItemCollectionResponse(Parcel in) {
-        this.boardGameId = (Long) in.readValue(Long.class.getClassLoader());
-        this.subtype = in.readString();
-        this.name = in.readString();
-        this.yearPublished = in.readString();
-        this.thumbnail = in.readString();
-        this.image = in.readString();
-        this.stats = in.readParcelable(ItemStatsCollectionResponse.class.getClassLoader());
+    public enum ItemCollectionType {
+        boardgame
     }
-
-    public static final Creator<ItemCollectionResponse> CREATOR = new Creator<ItemCollectionResponse>() {
-        @Override
-        public ItemCollectionResponse createFromParcel(Parcel source) {
-            return new ItemCollectionResponse(source);
-        }
-
-        @Override
-        public ItemCollectionResponse[] newArray(int size) {
-            return new ItemCollectionResponse[size];
-        }
-    };
 }

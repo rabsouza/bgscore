@@ -29,9 +29,9 @@
         <item name="android:windowBackground">@color/colorBG</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="ButtonBorderLessStyle" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">@color/colorText</item>

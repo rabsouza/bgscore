@@ -2,11 +2,11 @@ package br.com.battista.bgscore.fragment.match;
 
 
 import android.os.Bundle;
+import android.support.design.card.MaterialCardView;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;

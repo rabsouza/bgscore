@@ -8,7 +8,6 @@ import android.support.test.espresso.ViewAction
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.espresso.util.HumanReadables
 import android.support.v4.widget.NestedScrollView
-import android.util.Log
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.ListView

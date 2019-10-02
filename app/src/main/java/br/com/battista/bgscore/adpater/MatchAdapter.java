@@ -99,11 +99,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         .setTitle(R.string.title_help)
                         .setView(customView)
                         .setPositiveButton(R.string.btn_ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        dialog.dismiss();
-                                    }
-                                }
+                                (dialog, whichButton) -> dialog.dismiss()
                         )
                         .create();
                 alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;

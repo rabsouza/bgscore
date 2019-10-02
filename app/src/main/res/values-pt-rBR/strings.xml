@@ -95,6 +95,7 @@
     <string name="text_profile_friends_empty_view">Nenhum amigo(a) adicionado. Por favor, adicione novos amigos para jogar suas partidas.</string>
     <string name="text_profile_friends_error_view">Erro ao tentar carregar a lista de amigos. Por favor, tentar novamente.</string>
     <string name="text_default_username">Usuário Padrão</string>
+    <string name="text_default_mail">user@mail.com</string>
     <string name="text_home_username">Ola, %1$s</string>
     <string name="text_username">%1$s</string>
     <string name="text_mail">%1$s</string>
@@ -127,13 +128,13 @@
     <string name="text_match_matches_info_01">*¹ Lista com as últimas partidas registradas.</string>
     <string name="text_match_matches_empty_view">Nenhuma partida registrada. Por favor, adicione uma nova partida.</string>
     <string name="text_match_matches_error_view">Error ao tentar carregar a lista de partidas, favor tentar novamente.</string>
-    <string name="text_legend_info_01">*¹ Legenda com a definição de cada um dos icones utilizados nessa tela do aplicativo.</string>
-    <string name="text_legend_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>
-    <string name="text_legend_game_players">Números de jogadores suportados pelo jogo (Mínimo-Máximo).</string>
-    <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
+    <string name="text_legend_info_01">*¹ Legenda com a definição dos icones utilizados.</string>
+    <string name="text_legend_game_badge_game">Classificação do jogo.</string>
+    <string name="text_legend_game_players">Números de jogadores suportados.</string>
+    <string name="text_legend_game_time">Tempo médio gasto para cada partida.</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Altera a ordenação da lista de jogos.</string>
-    <string name="text_legend_game_broken_imgt">Corrige o problema de imagens "quebradas", atualizando para a imagem do BGG.</string>
+    <string name="text_legend_game_broken_imgt">Corrige o problema de imagens "quebradas".</string>
     <string name="text_legend_game_import_collection">Importa uma nova coleção de jogos.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
     <string name="text_legend_game_my_game">Indicador para jogo da minha coleção.</string>
@@ -310,7 +311,7 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 &nbsp;&nbsp;&nbsp;<b>4)</b> Estatistica e ordenação para seus jogos e partidas.<br>
 &nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
 &nbsp;&nbsp;&nbsp;<b>6) Integração com sua conta do google.</b><br>
-&nbsp;&nbsp;&nbsp;<b>7) Ajuste no mecanismo de vitória e lista ranking e partidas.</b><br><br>
+&nbsp;&nbsp;&nbsp;<b>7) Importação da coleção atráves do BGG.</b><br><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Avalie nosso app na loja</a></b><br>
 <br>
 ]]>

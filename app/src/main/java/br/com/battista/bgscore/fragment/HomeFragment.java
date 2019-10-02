@@ -65,7 +65,7 @@ public class HomeFragment extends BaseFragment {
     private ImageView imgDataRankingGame;
 
     private Boolean isFabOpen = Boolean.FALSE;
-    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+    private Animation fab_open, fab_close, rotate_forward, rotate_backward;
 
 
     public HomeFragment() {
@@ -123,16 +123,16 @@ public class HomeFragment extends BaseFragment {
         });
 
         fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getContext(),R.anim.fab_close);
-        rotate_forward = AnimationUtils.loadAnimation(getContext(),R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getContext(),R.anim.rotate_backward);
+        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_backward);
 
         FloatingActionButton fabNewOption = view.findViewById(R.id.fab_new_option);
         fabNewOption.setOnClickListener(view1 -> {
             AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
                     CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_ADD_OPTION);
 
-            if(isFabOpen){
+            if (isFabOpen) {
                 fabNewOption.startAnimation(rotate_backward);
                 fabNewMatch.startAnimation(fab_close);
                 fabNewGame.startAnimation(fab_close);

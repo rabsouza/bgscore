@@ -40,8 +40,8 @@ public class CollectionManageService {
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void onActionCache(@NonNull ActionCollection actionCollection){
-        
+    public void onActionCache(@NonNull ActionCollection actionCollection) {
+
         ActionCollectionEnum action = actionCollection.getAction();
         List<Game> gamesOwn = actionCollection.getGamesOwn();
         List<Game> gamesWishlist = actionCollection.getGamesWishlist();
@@ -73,13 +73,13 @@ public class CollectionManageService {
         final GameRepository gameRepository = new GameRepository();
         Map<Long, Game> mapGames = createCacheGame();
 
-        for (Game gameOwn: gamesOwn) {
-            if(mapGames.containsKey(gameOwn.getIdBGG())){
+        for (Game gameOwn : gamesOwn) {
+            if (mapGames.containsKey(gameOwn.getIdBGG())) {
                 final Game game = mapGames.get(gameOwn.getIdBGG());
                 game.myGame(Boolean.TRUE);
                 game.update();
                 gameRepository.save(game);
-            }else{
+            } else {
                 gameOwn.update();
                 gameOwn.myGame(Boolean.TRUE);
                 gameRepository.save(gameOwn);
@@ -94,13 +94,13 @@ public class CollectionManageService {
         final GameRepository gameRepository = new GameRepository();
         Map<Long, Game> mapGames = createCacheGame();
 
-        for (Game gameWishlist: gamesWishlist) {
-            if(mapGames.containsKey(gameWishlist.getIdBGG())){
+        for (Game gameWishlist : gamesWishlist) {
+            if (mapGames.containsKey(gameWishlist.getIdBGG())) {
                 final Game game = mapGames.get(gameWishlist.getIdBGG());
                 game.wantGame(Boolean.TRUE);
                 game.update();
                 gameRepository.save(game);
-            }else{
+            } else {
                 gameWishlist.update();
                 gameWishlist.wantGame(Boolean.TRUE);
                 gameRepository.save(gameWishlist);
@@ -115,12 +115,12 @@ public class CollectionManageService {
         final GameRepository gameRepository = new GameRepository();
         Map<Long, Game> mapGames = createCacheGame();
 
-        for (Game gamePlayed: gamesPlayed) {
-            if(mapGames.containsKey(gamePlayed.getIdBGG())){
+        for (Game gamePlayed : gamesPlayed) {
+            if (mapGames.containsKey(gamePlayed.getIdBGG())) {
                 final Game game = mapGames.get(gamePlayed.getIdBGG());
                 game.update();
                 gameRepository.save(game);
-            }else{
+            } else {
                 gamePlayed.update();
                 gameRepository.save(gamePlayed);
             }
@@ -131,8 +131,8 @@ public class CollectionManageService {
     private synchronized Map<Long, Game> createCacheGame() {
         Map<Long, Game> mapGames = new HashMap();
         final List<Game> games = new GameRepository().findAll();
-        for (Game game: games) {
-            if(game.getIdBGG() != null && game.getIdBGG() >0) {
+        for (Game game : games) {
+            if (game.getIdBGG() != null && game.getIdBGG() > 0) {
                 mapGames.put(game.getIdBGG(), game);
             }
         }

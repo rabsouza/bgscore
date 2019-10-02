@@ -1,12 +1,9 @@
 package br.com.battista.bgscore.listener;
 
 import br.com.battista.bgscore.model.response.CollectionResponse;
-import br.com.battista.bgscore.model.response.LoadGameResponse;
-import br.com.battista.bgscore.model.response.SearchGameResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface CollectionListener {
 

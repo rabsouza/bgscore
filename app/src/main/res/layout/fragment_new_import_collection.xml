@@ -168,10 +168,10 @@
                             style="@style/CardTextStyle"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_game_my_game"
-                            android:drawablePadding="@dimen/element_padding"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:checked="true"
+                            android:drawableLeft="@drawable/ic_game_my_game"
+                            android:drawablePadding="@dimen/element_padding"
                             android:text="@string/field_collection_own" />
 
 
@@ -195,10 +195,10 @@
                             style="@style/CardTextStyle"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_game_favorite"
-                            android:drawablePadding="@dimen/element_padding"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:checked="false"
+                            android:drawableLeft="@drawable/ic_game_favorite"
+                            android:drawablePadding="@dimen/element_padding"
                             android:enabled="false"
                             android:text="@string/field_collection_favorite" />
 
@@ -223,10 +223,10 @@
                             style="@style/CardTextStyle"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_game_want_game"
-                            android:drawablePadding="@dimen/element_padding"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:checked="true"
+                            android:drawableLeft="@drawable/ic_game_want_game"
+                            android:drawablePadding="@dimen/element_padding"
                             android:text="@string/field_collection_wishlist" />
 
 
@@ -250,10 +250,10 @@
                             style="@style/CardTextStyle"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_matches"
-                            android:drawablePadding="@dimen/element_padding"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:checked="true"
+                            android:drawableLeft="@drawable/ic_matches"
+                            android:drawablePadding="@dimen/element_padding"
                             android:text="@string/field_collection_played" />
 
 

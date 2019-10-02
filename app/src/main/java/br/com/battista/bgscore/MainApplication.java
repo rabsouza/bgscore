@@ -30,7 +30,6 @@ import br.com.battista.bgscore.repository.PlayerRepository;
 import br.com.battista.bgscore.service.CacheManageService;
 import br.com.battista.bgscore.service.CollectionManageService;
 import br.com.battista.bgscore.service.DatabaseManageService;
-import br.com.battista.bgscore.service.server.CollectionService;
 import br.com.battista.bgscore.util.LogUtils;
 import io.fabric.sdk.android.Fabric;
 
@@ -102,7 +101,9 @@ public class MainApplication extends MultiDexApplication {
             LogUtils.d(TAG, MessageFormat.format("Load user by cache with data: {0}", user));
 
             if (user == null) {
-                user = new User().username(getString(R.string.text_default_username));
+                user = new User()
+                        .username(getString(R.string.text_default_username))
+                        .mail(getString(R.string.text_default_mail));
                 user.initEntity();
                 setUser(user);
                 LogUtils.d(TAG, MessageFormat.format("Create new user with data: {0}", user));

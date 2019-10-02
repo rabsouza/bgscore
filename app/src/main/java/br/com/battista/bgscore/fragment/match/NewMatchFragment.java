@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,7 +47,6 @@ import java.util.Set;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.HomeActivity;
-import br.com.battista.bgscore.activity.MatchActivity;
 import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.adpater.PlayerAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
@@ -344,17 +341,17 @@ public class NewMatchFragment extends BaseFragment implements DatePickerDialog.O
     }
 
     private void finishFormAndProcessData(Boolean finishMatch) {
-            Bundle args = new Bundle();
-            if(finishMatch){
-                args.putInt(NAVIGATION_TO, FINISH_MATCH_FRAGMENT);
-                args.putSerializable(BundleConstant.DATA, match);
-            }else{
-                args.putInt(NAVIGATION_TO, MATCH_FRAGMENT);
-            }
-            Intent intent = new Intent(getContext(), HomeActivity.class);
-            intent.putExtras(args);
+        Bundle args = new Bundle();
+        if (finishMatch) {
+            args.putInt(NAVIGATION_TO, FINISH_MATCH_FRAGMENT);
+            args.putSerializable(BundleConstant.DATA, match);
+        } else {
+            args.putInt(NAVIGATION_TO, MATCH_FRAGMENT);
+        }
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.putExtras(args);
 
-            getContext().startActivity(intent);
+        getContext().startActivity(intent);
     }
 
     private void setupDataForm(final View view) {

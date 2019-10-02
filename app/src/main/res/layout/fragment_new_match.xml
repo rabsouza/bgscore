@@ -496,14 +496,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_next_finish_match"
-        android:visibility="invisible"
         android:layout_width="@dimen/fab_image_width"
         android:layout_height="@dimen/fab_image_height"
         android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="100dp"
         android:scaleType="center"
+        android:visibility="invisible"
         app:fabCustomSize="@dimen/fab_image_width"
         app:layout_anchor="@id/detail_scroll_view"
         app:layout_anchorGravity="bottom|right|end"
@@ -513,14 +513,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_next_save_match"
-        android:visibility="invisible"
         android:layout_width="@dimen/fab_image_width"
         android:layout_height="@dimen/fab_image_height"
         android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="55dp"
         android:scaleType="center"
+        android:visibility="invisible"
         app:fabCustomSize="@dimen/fab_image_width"
         app:layout_anchor="@id/detail_scroll_view"
         app:layout_anchorGravity="bottom|right|end"
