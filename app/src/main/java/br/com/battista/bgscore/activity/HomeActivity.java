@@ -73,7 +73,6 @@ public class HomeActivity extends BaseActivity {
                     intent.putExtras(args);
 
                     getContext().startActivity(intent);
-                    break;
                 default:
                     LogUtils.i(TAG, "loadFragmentInitial: Load the HomeFragment!");
                     changeActionActive(R.id.action_home);

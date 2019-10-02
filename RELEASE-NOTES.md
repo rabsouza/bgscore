@@ -6,6 +6,16 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+### Version - 1.0.21
+**Date release**
+ - 02/10/2019
+
+
+**Buga**
+- Correção do bug ao cancelar finalizar partida.
+- Remove a confirmação na tela de importar coleção.
+
+------------------------------------------------------------------------
 
 ### Version - 1.0.20
 **Date release**

@@ -10,8 +10,6 @@ import br.com.battista.bgscore.util.AnswersUtils;
 
 public class ImportCollectionActivity extends BaseActivity {
 
-    private static final String TAG = ImportCollectionActivity.class.getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,27 +25,5 @@ public class ImportCollectionActivity extends BaseActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        dialogCloseActivity();
-    }
-
-    private void dialogCloseActivity() {
-        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_BACK, CrashlyticsConstant.ValueActions.VALUE_BACK_IMPORT_COLLECTION);
-
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.alert_confirmation_dialog_title_exit)
-                .setMessage(R.string.alert_confirmation_dialog_text_exit)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(R.string.btn_confirmation_dialog_exit, (dialog, whichButton) -> superOnBackPressed())
-                .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
-        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
-        alertDialog.show();
-    }
-
-    private void superOnBackPressed() {
-        super.onBackPressed();
     }
 }
