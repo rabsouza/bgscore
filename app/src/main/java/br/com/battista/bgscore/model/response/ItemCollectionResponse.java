@@ -15,26 +15,17 @@ import java.io.Serializable;
 @Root(name = "item", strict = false)
 public class ItemCollectionResponse implements Serializable, Parcelable {
 
-    public static final Creator<ItemCollectionResponse> CREATOR = new Creator<ItemCollectionResponse>() {
-        @Override
-        public ItemCollectionResponse createFromParcel(Parcel source) {
-            return new ItemCollectionResponse(source);
-        }
-
-        @Override
-        public ItemCollectionResponse[] newArray(int size) {
-            return new ItemCollectionResponse[size];
-        }
-    };
 
     private static final long serialVersionUID = 1L;
 
     @Attribute(name = "objectid")
-    private Long boardgameId;
+    private Long boardGameId;
     @Attribute(name = "subtype")
     private String subtype;
     @Element(name = "name")
     private String name;
+    @Element(name = "yearpublished")
+    private String yearPublished;
     @Element(name = "thumbnail", required = false)
     private String thumbnail;
     @Element(name = "image", required = false)
@@ -45,21 +36,12 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
     public ItemCollectionResponse() {
     }
 
-    protected ItemCollectionResponse(Parcel in) {
-        this.boardgameId = (Long) in.readValue(Long.class.getClassLoader());
-        this.subtype = in.readString();
-        this.name = in.readString();
-        this.thumbnail = in.readString();
-        this.image = in.readString();
-        this.stats = in.readParcelable(ItemStatsCollectionResponse.class.getClassLoader());
+    public Long getBoardGameId() {
+        return boardGameId;
     }
 
-    public Long getBoardgameId() {
-        return boardgameId;
-    }
-
-    public void setBoardgameId(Long boardgameId) {
-        this.boardgameId = boardgameId;
+    public void setBoardGameId(Long boardGameId) {
+        this.boardGameId = boardGameId;
     }
 
     public String getSubtype() {
@@ -76,6 +58,14 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getYearPublished() {
+        return yearPublished;
+    }
+
+    public void setYearPublished(String yearPublished) {
+        this.yearPublished = yearPublished;
     }
 
     public String getThumbnail() {
@@ -123,20 +113,21 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemCollectionResponse that = (ItemCollectionResponse) o;
-        return Objects.equal(getBoardgameId(), that.getBoardgameId());
+        return Objects.equal(getBoardGameId(), that.getBoardGameId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getBoardgameId());
+        return Objects.hashCode(getBoardGameId());
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("boardgameId", boardgameId)
+                .add("boardGameId", boardGameId)
                 .add("subtype", subtype)
                 .add("name", name)
+                .add("yearPublished", yearPublished)
                 .add("thumbnail", thumbnail)
                 .add("image", image)
                 .add("stats", stats)
@@ -144,7 +135,7 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
     }
 
     public ItemCollectionResponse boardgameId(final Long boardgameId) {
-        this.boardgameId = boardgameId;
+        this.boardGameId = boardgameId;
         return this;
     }
 
@@ -155,6 +146,11 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
 
     public ItemCollectionResponse name(final String name) {
         this.name = name;
+        return this;
+    }
+
+    public ItemCollectionResponse yearpublished(final String yearpublished) {
+        this.yearPublished = yearpublished;
         return this;
     }
 
@@ -173,6 +169,10 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
         return this;
     }
 
+    public enum ItemCollectionType{
+        boardgame
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -180,15 +180,34 @@ public class ItemCollectionResponse implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.boardgameId);
+        dest.writeValue(this.boardGameId);
         dest.writeString(this.subtype);
         dest.writeString(this.name);
+        dest.writeString(this.yearPublished);
         dest.writeString(this.thumbnail);
         dest.writeString(this.image);
         dest.writeParcelable(this.stats, flags);
     }
 
-    public enum ItemCollectionType{
-        boardgame
+    protected ItemCollectionResponse(Parcel in) {
+        this.boardGameId = (Long) in.readValue(Long.class.getClassLoader());
+        this.subtype = in.readString();
+        this.name = in.readString();
+        this.yearPublished = in.readString();
+        this.thumbnail = in.readString();
+        this.image = in.readString();
+        this.stats = in.readParcelable(ItemStatsCollectionResponse.class.getClassLoader());
     }
+
+    public static final Creator<ItemCollectionResponse> CREATOR = new Creator<ItemCollectionResponse>() {
+        @Override
+        public ItemCollectionResponse createFromParcel(Parcel source) {
+            return new ItemCollectionResponse(source);
+        }
+
+        @Override
+        public ItemCollectionResponse[] newArray(int size) {
+            return new ItemCollectionResponse[size];
+        }
+    };
 }

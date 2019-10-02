@@ -72,6 +72,7 @@
     <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
     <string name="msg_action_saving">Aguarde! Salvando&#8230;</string>
     <string name="msg_action_loading">Aguarde! Carregando&#8230;</string>
+    <string name="toast_start_import_collection">Aguarde! Os dados estão sendo importados em background&#8230;</string>
     <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
     <string name="toast_reload_all_img_data">Todas as imagens serão recarregadas em background!</string>
@@ -132,6 +133,8 @@
     <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Altera a ordenação da lista de jogos.</string>
+    <string name="text_legend_game_broken_imgt">Corrige o problema de imagens "quebradas", atualizando para a imagem do BGG.</string>
+    <string name="text_legend_game_import_collection">Importa uma nova coleção de jogos.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
     <string name="text_legend_game_my_game">Indicador para jogo da minha coleção.</string>
     <string name="text_legend_game_favorite">Indicador para jogo favorito.</string>
@@ -144,6 +147,7 @@
     <string name="text_legend_match_alarm">Se existe agendamento para a partida.</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Altera a ordenação da lista de partidas.</string>
+    <string name="text_legend_match_winners">Atualiza a lista de vencedores da partidas cadastradas.</string>
     <string name="text_legend_ranking_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>
     <string name="text_legend_ranking_game_matches">Número de partidas registradas do jogo.</string>
     <string name="text_legend_ranking_game_winners">Número de vitórias registradas do jogo.</string>
@@ -202,6 +206,10 @@
     <string name="field_rating_new_game">Sua avaliação/nota do jogo (0-10 &#x2605;)</string>
     <string name="field_badge_game_new_game">Classificação do jogo</string>
     <string name="field_username_collection_bgg">Usuário BoardGameGeek</string>
+    <string name="field_collection_own">Meus jogos</string>
+    <string name="field_collection_favorite">Meus jogos favoritos</string>
+    <string name="field_collection_wishlist">Jogos na lista de desejo</string>
+    <string name="field_collection_played">Jogos jogados</string>
 
 
     <!-- ################### ALERT #################### -->

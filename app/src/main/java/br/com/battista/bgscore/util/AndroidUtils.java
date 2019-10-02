@@ -13,7 +13,6 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.ColorInt;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +34,7 @@ import java.io.File;
 import java.util.Random;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.model.dto.ActionCollection;
 
 public class AndroidUtils {
 
@@ -135,6 +135,10 @@ public class AndroidUtils {
     }
 
     public static void postAction(@NonNull Object action) {
+        EventBus.getDefault().post(action);
+    }
+
+    public static void postActionCollection(@NonNull ActionCollection action) {
         EventBus.getDefault().post(action);
     }
 

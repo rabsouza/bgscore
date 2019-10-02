@@ -39,13 +39,13 @@
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
-    <string name="hint_detail_alias_match">Game Name/Nickname</string>
-    <string name="hint_detail_match_obs">Game Notes/Comments</string>
+    <string name="hint_detail_alias_match">Match Name/Nickname</string>
+    <string name="hint_detail_match_obs">Match Notes/Comments</string>
     <string name="hint_detail_match_created_at">Date of match (dd/mm/yyyy)</string>
     <string name="hint_detail_match_schedule_time">Match scheduling time (HH:MM)</string>
-    <string name="hint_detail_match_duration">Duration of the game (HH:MM)</string>
+    <string name="hint_detail_match_duration">Duration of the match (HH:MM)</string>
     <string name="hint_text_detail_alias_match">*¹ Match name/nickname will be used to identify your match.</string>
-    <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the game.</string>
+    <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the match.</string>
     <string name="hint_text_detail_feedback_match">*¹ Select a rating for your match (Normal rating is the default).</string>
     <string name="hint_share_match">See my game match {0}!!!</string>
     <string name="hint_share_match_full">See the details of my match {0} game {1}!!!</string>
@@ -72,6 +72,7 @@
     <string name="msg_action_searching">Please wait! Searching &#8230;</string>
     <string name="msg_action_saving">Please wait! Saving &#8230;</string>
     <string name="msg_action_loading">Please wait! Loading &#8230;</string>
+    <string name="toast_start_import_collection">Please wait! Data is being imported in the background&#8230;</string>
     <string name="toast_start_export_data">Please wait! Data is being exported in the background&#8230;</string>
     <string name="toast_finish_export_data">All data has been successfully exported!</string>
     <string name="toast_finish_import_data">All data has been successfully restored! ANDROID PIE (9+) NEEDED TO RESTART APPLICATION TO RUN NEW BACKUP!!!</string>
@@ -132,6 +133,8 @@
     <string name="text_legend_game_time">Average time spent for each game (Minimum-Maximum).</string>
     <string name="text_legend_game_age">Recommended minimum age to play the game.</string>
     <string name="text_legend_game_sort_list">Changes the ordering of the game list.</string>
+    <string name="text_legend_game_broken_imgt">Fixes "broken" image issue by BGG image.</string>
+    <string name="text_legend_game_import_collection">Import a new collection of games.</string>
     <string name="text_legend_game_year">Year of publication of the game.</string>
     <string name="text_legend_game_my_game">Gaming indicator for my collection.</string>
     <string name="text_legend_game_favorite">Indicator for favorite game.</string>
@@ -144,6 +147,7 @@
     <string name="text_legend_match_feedback">Match rating (Bad, Bad, Normal, Good and Excellent).</string>
     <string name="text_legend_match_alarm">If there is an active scheduling for the match.</string>
     <string name="text_legend_match_sort_list">Change the ordering of the list of matches.</string>
+    <string name="text_legend_match_winners">Updates the list of winners of the registered matches.</string>
     <string name="text_legend_ranking_game_badge_game">Rating of the game (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
     <string name="text_legend_ranking_game_matches">Number of game starts recorded.</string>
     <string name="text_legend_ranking_game_winners">Number of recorded wins of the game.</string>
@@ -202,6 +206,10 @@
     <string name="field_rating_new_game">Your rating (0-10&#x2605;)</string>
     <string name="field_badge_game_new_game">Game rating</string>
     <string name="field_username_collection_bgg">Username BoardGameGeek</string>
+    <string name="field_collection_own">My games</string>
+    <string name="field_collection_favorite">My favorite games</string>
+    <string name="field_collection_wishlist">Wish list games</string>
+    <string name="field_collection_played">Games played</string>
 
 
     <!-- ################### ALERT #################### -->

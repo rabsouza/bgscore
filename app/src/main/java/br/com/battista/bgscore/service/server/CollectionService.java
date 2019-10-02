@@ -105,14 +105,18 @@ public class CollectionService extends BaseService {
 
             final List<ItemCollectionResponse> items = response.body().getItems();
             for (ItemCollectionResponse item : items) {
-                if (!ItemCollectionType.boardgame.name().equals(item.getSubtype())) {
+                if (item.getBoardGameId() == null ||
+                        item.getName() == null ||
+                        !ItemCollectionType.boardgame.name().equals(item.getSubtype())) {
                     break;
                 }
 
                 Game game = new Game()
-                        .idBGG(item.getBoardgameId())
+                        .idBGG(item.getBoardGameId())
+                        .name(item.getName())
                         .myGame(own)
                         .wantGame(wishlist)
+                        .yearPublished(item.getYearPublished())
                         .maxPlayers(item.getMaxPlayers())
                         .minPlayers(item.getMinPlayers())
                         .maxPlayTime(item.getMaxPlayTime())

@@ -82,7 +82,7 @@ public class GameFragment extends BaseFragment {
         btnBrokenImg.setOnClickListener(viewClicked -> processBrokenImg(btnBrokenImg));
 
         ImageButton btnImportCollection = getActivity().findViewById(R.id.btn_import_collection);
-        btnImportCollection.setVisibility(View.GONE);
+        btnImportCollection.setVisibility(View.VISIBLE);
         btnImportCollection.setOnClickListener(viewClicked -> processImportCollection(view, viewClicked));
 
         FloatingActionButton fab = view.findViewById(R.id.fab_new_game);

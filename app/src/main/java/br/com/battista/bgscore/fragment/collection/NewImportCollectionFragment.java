@@ -1,9 +1,10 @@
 package br.com.battista.bgscore.fragment.collection;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,15 +20,21 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.HomeActivity;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.custom.ProgressApp;
 import br.com.battista.bgscore.fragment.BaseFragment;
 import br.com.battista.bgscore.model.Game;
+import br.com.battista.bgscore.model.dto.ActionCollection;
+import br.com.battista.bgscore.model.enuns.ActionCollectionEnum;
 import br.com.battista.bgscore.service.Inject;
 import br.com.battista.bgscore.service.server.CollectionService;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.GAME_FRAGMENT;
 
 
 public class NewImportCollectionFragment extends BaseFragment {
@@ -174,12 +181,30 @@ public class NewImportCollectionFragment extends BaseFragment {
                 .setMessage(R.string.alert_confirmation_dialog_text_import)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(R.string.btn_confirmation_dialog_import, (dialog, whichButton) -> {
-                    AndroidUtils.toast(getContext(), "A ser implementado");
+                    ActionCollection actionCollection = new ActionCollection();
+                    actionCollection.action(ActionCollectionEnum.LOAD_BGG_COLLECTION);
+                    actionCollection.gamesOwn(gamesOwnResponses);
+                    actionCollection.gamesWishlist(gamesWishlistResponses);
+                    actionCollection.gamesPlayed(gamesPlayedResponses);
+                    AndroidUtils.postActionCollection(actionCollection);
+
+                    AndroidUtils.toast(getContext(), R.string.toast_start_import_collection);
+                    dialog.dismiss();
+                    finishFormAndProcessData();
                 })
                 .setNegativeButton(R.string.btn_confirmation_dialog_cancel, null).create();
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
         alertDialog.show();
 
+    }
+
+    private void finishFormAndProcessData() {
+        Bundle args = new Bundle();
+        args.putInt(NAVIGATION_TO, GAME_FRAGMENT);
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.putExtras(args);
+
+        getContext().startActivity(intent);
     }
 
 }

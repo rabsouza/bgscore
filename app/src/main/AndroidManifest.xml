@@ -29,6 +29,10 @@
             android:name=".service.DatabaseManageService"
             android:enabled="true"
             android:exported="false" />
+        <service
+            android:name=".service.CollectionManageService"
+            android:enabled="true"
+            android:exported="false" />
 
         <activity android:name=".activity.BaseActivity" />
 
