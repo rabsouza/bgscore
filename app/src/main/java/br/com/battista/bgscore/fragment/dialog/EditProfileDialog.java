@@ -115,7 +115,7 @@ public class EditProfileDialog extends DialogFragment {
 
     private void updateUI(GoogleSignInAccount account, Boolean singOut) {
         if (account != null) {
-            Log.i(TAG, String.format("updateUI - SignIn: Update user with data [name=%s, e-mail:%s].",
+            LogUtils.i(TAG, String.format("updateUI - SignIn: Update user with data [name=%s, e-mail:%s].",
                     account.getDisplayName(), account.getEmail()));
             signedSuccessfully = Boolean.TRUE;
 
@@ -137,7 +137,7 @@ public class EditProfileDialog extends DialogFragment {
                 user.setUrlAvatar(photoUrl.toString());
             }
         } else if (singOut) {
-            Log.i(TAG, "updateUI - SingOut: Update user with data ");
+            LogUtils.i(TAG, "updateUI - SingOut: Update user with data ");
             signedSuccessfully = Boolean.FALSE;
 
             swtReset.setEnabled(Boolean.TRUE);

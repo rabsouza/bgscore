@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.CardView
+        <android.support.design.card.MaterialCardView
             android:id="@+id/card_view_matches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,8 +21,8 @@
             android:foreground="?attr/selectableItemBackground"
             android:padding="@dimen/no_dimen"
             app:cardBackgroundColor="@android:color/transparent"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="1dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true">
 
@@ -46,7 +46,7 @@
 
             </FrameLayout>
 
-        </android.support.v7.widget.CardView>
+        </android.support.design.card.MaterialCardView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -62,7 +62,7 @@
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_fab_add" />
+        app:srcCompat="@drawable/ic_fab_matches" />
 
 </android.support.design.widget.CoordinatorLayout>
 

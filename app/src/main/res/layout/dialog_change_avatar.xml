@@ -52,15 +52,15 @@
             android:layout_height="wrap_content"
             android:weightSum="2">
 
-            <Button
+            <android.support.design.button.MaterialButton
                 android:id="@+id/dialog_view_change_avatar_btn_cancel"
                 style="@style/ButtonStyleWithBorder"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_cancel" />
+                android:text="@string/btn_cancel"/>
 
-            <Button
+            <android.support.design.button.MaterialButton
                 android:id="@+id/dialog_view_change_avatar_btn_confirm"
                 style="@style/ButtonStyleActive"
                 android:layout_width="0dp"

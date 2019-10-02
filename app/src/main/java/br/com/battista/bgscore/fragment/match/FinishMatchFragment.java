@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
@@ -65,7 +65,7 @@ public class FinishMatchFragment extends BaseFragment implements TimePickerDialo
     private EditText txtCreateAt;
     private EditText txtDuration;
     private ImageButton btnDuration;
-    private CardView cardViewGame;
+    private MaterialCardView cardViewGame;
     private ImageView imgInfoGame;
     private TextView txtInfoName;
     private TextView txtInfoTime;

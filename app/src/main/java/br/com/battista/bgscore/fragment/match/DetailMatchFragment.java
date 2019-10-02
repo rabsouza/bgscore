@@ -6,7 +6,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
@@ -51,7 +51,7 @@ public class DetailMatchFragment extends BaseFragment {
     private EditText txtMatchAlias;
     private EditText txtCreateAt;
     private EditText txtDuration;
-    private CardView cardViewGame;
+    private MaterialCardView cardViewGame;
     private ImageView imgInfoGame;
     private TextView txtInfoName;
     private TextView txtInfoTime;
@@ -59,7 +59,7 @@ public class DetailMatchFragment extends BaseFragment {
     private TextView txtInfoAges;
     private TextView txtInfoYear;
     private RecycleEmptyErrorView recycleViewPlayers;
-    private CardView cardViewPlayersWinners;
+    private MaterialCardView cardViewPlayersWinners;
     private RecycleEmptyErrorView recycleViewPlayersWinners;
     private ImageView imgFeedback;
     private TextView txtFeedback;

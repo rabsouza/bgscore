@@ -95,7 +95,7 @@ public class CacheManageService {
         instance.setUser(user);
     }
 
-    private void reloadWinnersMatches(User user) {
+    private synchronized void reloadWinnersMatches(User user) {
         LogUtils.i(TAG, "reloadWinnersMatches: Reload all winners matches!");
         MatchRepository matchRepository = new MatchRepository();
         final List<Match> matches = matchRepository.findAll();
@@ -116,7 +116,7 @@ public class CacheManageService {
         loadAllDataRankingGamesAddToCache(user);
     }
 
-    private void reloadAllGameImages(User user) {
+    private synchronized void reloadAllGameImages(User user) {
         LogUtils.i(TAG, "reloadAllGameImages: Reload all game images!");
         final List<Game> games = new GameRepository().findAll();
         for (Game game : games) {

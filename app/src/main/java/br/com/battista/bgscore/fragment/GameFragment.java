@@ -1,9 +1,6 @@
 package br.com.battista.bgscore.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
@@ -26,6 +23,7 @@ import java.util.List;
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.GameActivity;
+import br.com.battista.bgscore.activity.ImportCollectionActivity;
 import br.com.battista.bgscore.adpater.GameAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
@@ -50,6 +48,7 @@ public class GameFragment extends BaseFragment {
 
     private RecyclerView recycleViewGames;
     private Spinner spnSortList;
+    private Button btnImportCollection;
 
     private SwipeRefreshLayout refreshLayout;
     private int lastSelectedItemPosition = 0;
@@ -80,15 +79,11 @@ public class GameFragment extends BaseFragment {
 
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
         btnBrokenImg.setVisibility(View.VISIBLE);
-        btnBrokenImg.setOnClickListener(viewClicked -> {
-            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
-            AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
+        btnBrokenImg.setOnClickListener(viewClicked -> processBrokenImg(btnBrokenImg));
 
-            LogUtils.i(TAG, "onCreateView: Reload all games images.");
-            AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
-            btnBrokenImg.setVisibility(View.GONE);
-        });
+        ImageButton btnImportCollection = getActivity().findViewById(R.id.btn_import_collection);
+        btnImportCollection.setVisibility(View.VISIBLE);
+        btnImportCollection.setOnClickListener(viewClicked -> processImportCollection(view, viewClicked));
 
         FloatingActionButton fab = view.findViewById(R.id.fab_new_game);
         fab.setOnClickListener(view1 -> {
@@ -106,21 +101,44 @@ public class GameFragment extends BaseFragment {
         return view;
     }
 
+    private void processImportCollection(View view, View viewClicked) {
+        LogUtils.i(TAG, "processImportCollection: Start flow to import collection.");
+
+        final int resourcePopupWindow = R.layout.custom_view_import_collection;
+        final PopupWindow popupWindow = AndroidUtils.createPopupWindow(getContext(), resourcePopupWindow);
+
+        btnImportCollection = popupWindow.getContentView().findViewById(R.id.button_card_view_import_collection_bgg);
+        btnImportCollection.setOnClickListener(v -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_IMPORT_COLLECTION_BGG);
+
+            startActivity(new Intent(getContext(), ImportCollectionActivity.class));
+        });
+
+        popupWindow.showAsDropDown(viewClicked);
+    }
+
+
+
+    private void processBrokenImg(ImageButton btnBrokenImg) {
+        LogUtils.i(TAG, "processBrokenImg: Reload all games images.");
+
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
+        AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
+
+        AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
+        btnBrokenImg.setVisibility(View.GONE);
+    }
+
 
     private void processSortListGames(View view, View viewClicked) {
         LogUtils.i(TAG, "processSortListGames: Show sort list games!");
 
-        LayoutInflater inflater = (LayoutInflater)
-                getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.custom_view_sort_list_game, null);
-        final PopupWindow popupWindow = new PopupWindow(layout, LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setFocusable(true);
-        popupWindow.setAnimationStyle(R.style.animationPopup);
+        final int resourcePopupWindow = R.layout.custom_view_sort_list_game;
+        final PopupWindow popupWindow = AndroidUtils.createPopupWindow(getContext(), resourcePopupWindow);
 
-        spnSortList = layout.findViewById(R.id.card_view_sort_list_value);
+        spnSortList = popupWindow.getContentView().findViewById(R.id.card_view_sort_list_value);
         spnSortList.setSelected(true);
         final User user = MainApplication.instance().getUser();
         if (user.containsOrderBy(ViewConstant.GAME_VIEW) && lastSelectedItemPosition != 0) {

@@ -19,14 +19,18 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup, android:label">
+        <activity android:name=".activity.ImportCollectionActivity"></activity>
 
         <service
             android:name=".service.CacheManageService"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".service.DatabaseManageService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".service.CollectionManageService"
             android:enabled="true"
             android:exported="false" />
 
@@ -57,17 +61,17 @@
             android:name=".activity.HomeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.MatchActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.GameActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="DATABASE"
@@ -84,7 +88,6 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="259f20ad704f17270f36dedac2ff04ed2f044dfb" />
-
     </application>
 
 </manifest>

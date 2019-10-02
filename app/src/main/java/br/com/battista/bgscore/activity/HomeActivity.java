@@ -1,6 +1,7 @@
 package br.com.battista.bgscore.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -18,9 +19,13 @@ import br.com.battista.bgscore.fragment.MatchFragment;
 import br.com.battista.bgscore.fragment.ProfileFragment;
 import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
+import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
+
+import static br.com.battista.bgscore.constants.BundleConstant.NAVIGATION_TO;
+import static br.com.battista.bgscore.constants.BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT;
 
 public class HomeActivity extends BaseActivity {
 
@@ -57,6 +62,17 @@ public class HomeActivity extends BaseActivity {
                     LogUtils.i(TAG, "loadFragmentInitial: Load the MatchFragment!");
                     changeActionActive(R.id.action_matches);
                     replaceFragment(MatchFragment.newInstance());
+                    break;
+                case BundleConstant.NavigationTo.FINISH_MATCH_FRAGMENT:
+                    LogUtils.i(TAG, "loadFragmentInitial: Start finish match!");
+                    Match match = (Match) bundle.get(BundleConstant.DATA);
+                    Bundle args = new Bundle();
+                    Intent intent = new Intent(getContext(), MatchActivity.class);
+                    args.putSerializable(BundleConstant.DATA, match);
+                    args.putInt(NAVIGATION_TO, FINISH_MATCH_FRAGMENT);
+                    intent.putExtras(args);
+
+                    getContext().startActivity(intent);
                     break;
                 default:
                     LogUtils.i(TAG, "loadFragmentInitial: Load the HomeFragment!");

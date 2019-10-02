@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
@@ -67,7 +67,7 @@ public class ShareMatchFullDialog extends DialogFragment {
     private TextView txtInfoMatchDate;
     private TextView txtInfoDuration;
     private TextView txtFeedbackObs;
-    private CardView cardContent;
+    private MaterialCardView cardContent;
     private RecycleEmptyErrorView recycleViewPlayers;
 
     public ShareMatchFullDialog() {

@@ -35,9 +35,9 @@ public class GameService extends BaseService {
         List<GameResponse> games = Lists.newArrayList();
         try {
             Response<SearchGameResponse> response = listener.search(name).execute();
-            if (response != null && response.code() == HttpStatus.NO_CONTENT.value()) {
+            if (response.code() == HttpStatus.NO_CONTENT.value()) {
                 LogUtils.i(TAG, "Found 0 games!");
-            } else if (response != null && response.code() == HttpStatus.OK.value() && response.body() != null) {
+            } else if (response.code() == HttpStatus.OK.value() && response.body() != null) {
                 final List<GameResponse> boardgames = response.body().getBoardgames();
                 for (GameResponse gameResponse : boardgames) {
                     if (!Strings.isNullOrEmpty(gameResponse.getName()) &&
@@ -70,9 +70,9 @@ public class GameService extends BaseService {
         Game game = null;
         try {
             Response<LoadGameResponse> response = listener.load(boardgameId).execute();
-            if (response != null && response.code() == HttpStatus.NO_CONTENT.value()) {
+            if (response.code() == HttpStatus.NO_CONTENT.value()) {
                 LogUtils.i(TAG, "Found 0 games!");
-            } else if (response != null && response.code() == HttpStatus.OK.value() && response.body() != null) {
+            } else if (response.code() == HttpStatus.OK.value() && response.body() != null) {
                 GameResponse gameResponse = response.body().getBoardgame();
                 LogUtils.i(TAG, MessageFormat.format("Found the game {0}!", gameResponse.getName()));
 
@@ -121,9 +121,9 @@ public class GameService extends BaseService {
         GameListener listener = builder.create(GameListener.class);
         try {
             Response<LoadGameResponse> response = listener.load(game.getIdBGG()).execute();
-            if (response != null && response.code() == HttpStatus.NO_CONTENT.value()) {
+            if (response.code() == HttpStatus.NO_CONTENT.value()) {
                 LogUtils.i(TAG, "Found 0 games!");
-            } else if (response != null && response.code() == HttpStatus.OK.value() && response.body() != null) {
+            } else if (response.code() == HttpStatus.OK.value() && response.body() != null) {
                 GameResponse gameResponse = response.body().getBoardgame();
                 LogUtils.i(TAG, MessageFormat.format("Found the game {0}!", gameResponse.getName()));
 

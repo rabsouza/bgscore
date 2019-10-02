@@ -12,6 +12,7 @@
     <string name="title_match">&#x265c; Match &#x265c;</string>
     <string name="title_game">&#x265c; Game &#x265c;</string>
     <string name="title_help">&#x265c; Help &#x265c;</string>
+    <string name="title_import_collection">&#x265c; BGG &#x265c;</string>
 
 
     <!-- ################### CARD #################### -->
@@ -32,17 +33,19 @@
     <string name="card_title_finish_match">My game</string>
     <string name="card_title_feedback_match">Game notes/comments</string>
     <string name="card_title_sort_list">Sorting the list</string>
+    <string name="card_title_search_collection_bgg">Search Collection</string>
+    <string name="card_title_new_collection_bgg">My Collection</string>
 
 
     <!-- ################### HINT #################### -->
     <string name="hint_version">Battista Software &#xa9;2017 - %1$s</string>
-    <string name="hint_detail_alias_match">Game Name/Nickname</string>
-    <string name="hint_detail_match_obs">Game Notes/Comments</string>
+    <string name="hint_detail_alias_match">Match Name/Nickname</string>
+    <string name="hint_detail_match_obs">Match Notes/Comments</string>
     <string name="hint_detail_match_created_at">Date of match (dd/mm/yyyy)</string>
     <string name="hint_detail_match_schedule_time">Match scheduling time (HH:MM)</string>
-    <string name="hint_detail_match_duration">Duration of the game (HH:MM)</string>
+    <string name="hint_detail_match_duration">Duration of the match (HH:MM)</string>
     <string name="hint_text_detail_alias_match">*¹ Match name/nickname will be used to identify your match.</string>
-    <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the game.</string>
+    <string name="hint_text_detail_finish_match">*¹ Fill in the data below to end the match.</string>
     <string name="hint_text_detail_feedback_match">*¹ Select a rating for your match (Normal rating is the default).</string>
     <string name="hint_share_match">See my game match {0}!!!</string>
     <string name="hint_share_match_full">See the details of my match {0} game {1}!!!</string>
@@ -53,6 +56,7 @@
     <string name="msg_username_friend_required">Your friends name is required!</string>
     <string name="msg_username_player_required">Player name is required!</string>
     <string name="msg_username_required">Username is required!</string>
+    <string name="msg_username_bgg_required">BoardGameGeek user  is required!</string>
     <string name="msg_name_game_required">Game name is required!</string>
     <string name="msg_alias_match_required">Match name/Nickname is required!</string>
     <string name="msg_game_required">You must select at least 1 game to save/edit this match!</string>
@@ -60,12 +64,15 @@
     <string name="msg_game_dont_found_open">The game could not be found, please add a link from the game page.</string>
     <string name="msg_game_dont_found_search">The game could not be found, please try again.</string>
     <string name="msg_game_error_add_game">Error while trying to add game. Please try again.</string>
+    <string name="msg_collection_dont_found_search">The BoardGameGeek collection could not be found, please try again.</string>
+    <string name="msg_collection_dont_found_import">You must select at least one collection type to import, please try again.</string>
     <string name="msg_error_game_with_partner">Error while trying to delete game %1$s. Check for matches associated with the game.</string>
     <string name="msg_error_add_search_game">Error while trying to add the new game. Please try again.</string>
     <string name="msg_share_detail_match">Generating the start image for the share, please wait.</string>
     <string name="msg_action_searching">Please wait! Searching &#8230;</string>
     <string name="msg_action_saving">Please wait! Saving &#8230;</string>
     <string name="msg_action_loading">Please wait! Loading &#8230;</string>
+    <string name="toast_start_import_collection">Please wait! Data is being imported in the background&#8230;</string>
     <string name="toast_start_export_data">Please wait! Data is being exported in the background&#8230;</string>
     <string name="toast_finish_export_data">All data has been successfully exported!</string>
     <string name="toast_finish_import_data">All data has been successfully restored! ANDROID PIE (9+) NEEDED TO RESTART APPLICATION TO RUN NEW BACKUP!!!</string>
@@ -105,6 +112,7 @@
     <string name="text_match_players_winners_info_02">*² To add the final score, fill in the field and press enter to confirm.</string>
     <string name="text_match_players_obs_info_01">*¹ Fill in the field below with the notes of this match.</string>
     <string name="text_match_search_game_info_01">*¹ Search for a game from boardgamegeek.com.</string>
+    <string name="text_import_collection_search_collection_bgg_info_01">*¹ Search your game collection from the username boardgamegeek.com.</string>
     <string name="text_match_game_info_01">*¹ Search for a new game from my collection or on boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Am I playing this game?</string>
     <string name="text_match_search_online">Search game on site boardgamegeek.com?</string>
@@ -125,6 +133,8 @@
     <string name="text_legend_game_time">Average time spent for each game (Minimum-Maximum).</string>
     <string name="text_legend_game_age">Recommended minimum age to play the game.</string>
     <string name="text_legend_game_sort_list">Changes the ordering of the game list.</string>
+    <string name="text_legend_game_broken_imgt">Fixes "broken" image issue by BGG image.</string>
+    <string name="text_legend_game_import_collection">Import a new collection of games.</string>
     <string name="text_legend_game_year">Year of publication of the game.</string>
     <string name="text_legend_game_my_game">Gaming indicator for my collection.</string>
     <string name="text_legend_game_favorite">Indicator for favorite game.</string>
@@ -137,6 +147,7 @@
     <string name="text_legend_match_feedback">Match rating (Bad, Bad, Normal, Good and Excellent).</string>
     <string name="text_legend_match_alarm">If there is an active scheduling for the match.</string>
     <string name="text_legend_match_sort_list">Change the ordering of the list of matches.</string>
+    <string name="text_legend_match_winners">Updates the list of winners of the registered matches.</string>
     <string name="text_legend_ranking_game_badge_game">Rating of the game (Abstract Games, Ameritrash Games, Euros Games, Family Games, Holidays, War Games and None).</string>
     <string name="text_legend_ranking_game_matches">Number of game starts recorded.</string>
     <string name="text_legend_ranking_game_winners">Number of recorded wins of the game.</string>
@@ -164,6 +175,10 @@
     <string name="text_games_score_favorite_game">favorite</string>
     <string name="text_active">active</string>
     <string name="text_inactive">inactive</string>
+    <string name="text_import_collection_info_01">*¹ Click the server button you want to import the game collection into.</string>
+    <string name="text_import_collection_new_collection_info_01">*¹ Below is the data from your BoardGameGeek collection.</string>
+    <string name="text_import_collection_new_collection_info_02">*¹ Select the list of games you want to import into the app.</string>
+    <string name="text_import_collection_new_collection_text">Quantity of games available for import:</string>
 
 
     <!-- ################### Field #################### -->
@@ -190,9 +205,16 @@
     <string name="field_age_new_game">Recommended age</string>
     <string name="field_rating_new_game">Your rating (0-10&#x2605;)</string>
     <string name="field_badge_game_new_game">Game rating</string>
+    <string name="field_username_collection_bgg">Username BoardGameGeek</string>
+    <string name="field_collection_own">My games</string>
+    <string name="field_collection_favorite">My favorite games</string>
+    <string name="field_collection_wishlist">Wish list games</string>
+    <string name="field_collection_played">Games played</string>
 
 
     <!-- ################### ALERT #################### -->
+    <string name="alert_confirmation_dialog_title_import">Are you sure?</string>
+    <string name="alert_confirmation_dialog_text_import">¹ The games will be imported in the background.\n² Track through your collection. \n\nConfirm the import? \nThis operation can not be overridden.</string>
     <string name="alert_confirmation_dialog_title_exit">Are you sure?</string>
     <string name="alert_confirmation_dialog_text_exit_app">Do you want to quit the application?</string>
     <string name="alert_confirmation_dialog_text_exit">You have canceled saved changes on this screen. \nDo you want to leave without saving?</string>
@@ -224,12 +246,14 @@
     <string name="btn_confirmation_dialog_add">ADD</string>
     <string name="btn_confirmation_dialog_play">PLAY</string>
     <string name="btn_confirmation_dialog_finish">FINISH</string>
+    <string name="btn_confirmation_dialog_import">IMPORT</string>
     <string name="btn_change_avatar">CHANGE AVATAR</string>
     <string name="btn_edit">EDIT</string>
     <string name="btn_export">BACKUP</string>
     <string name="btn_import">RESTORE</string>
     <string name="btn_export_import">BACKUP</string>
     <string name="btn_disconnect">DISCONNECT</string>
+    <string name="btn_boardgamegeek">BOARDGAMEGEEK</string>
 
 
     <!-- ################### ACTION BAR #################### -->

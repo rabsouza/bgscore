@@ -12,6 +12,7 @@
     <string name="title_match">&#x265c; Partida &#x265c;</string>
     <string name="title_game">&#x265c; Jogo &#x265c;</string>
     <string name="title_help">&#x265c; Ajuda &#x265c;</string>
+    <string name="title_import_collection">&#x265c; BGG &#x265c;</string>
 
 
     <!-- ################### CARD #################### -->
@@ -32,6 +33,8 @@
     <string name="card_title_finish_match">Minha partida</string>
     <string name="card_title_feedback_match">Avaliação/Observações da partida</string>
     <string name="card_title_sort_list">Ordenação da lista</string>
+    <string name="card_title_search_collection_bgg">Buscar coleção</string>
+    <string name="card_title_new_collection_bgg">Minha coleção</string>
 
 
     <!-- ################### HINT #################### -->
@@ -53,6 +56,7 @@
     <string name="msg_username_friend_required">Nome do seu amigo(a) é obrigatório!</string>
     <string name="msg_username_player_required">Nome do jogador(a) é obrigatório!</string>
     <string name="msg_username_required">Nome do usuário é obrigatório!</string>
+    <string name="msg_username_bgg_required">Usuário do BoardGameGeek é obrigatório!</string>
     <string name="msg_name_game_required">Nome do jogo é obrigatório!</string>
     <string name="msg_alias_match_required">Nome/Apelido da partida é obrigatório!</string>
     <string name="msg_game_required">Você deve selecionar pelo menos 1 jogo para salvar/editar essa partida!</string>
@@ -60,12 +64,15 @@
     <string name="msg_game_dont_found_open">Não foi possível localizar o jogo, por favor adicione link da página do jogo.</string>
     <string name="msg_game_dont_found_search">Não foi possível localizar o jogo, por favor tente novamente.</string>
     <string name="msg_game_error_add_game">Erro ao tentar adicionar o jogo. Por favor tente novamente.</string>
+    <string name="msg_collection_dont_found_search">Não foi possível localizar a coleção no BoardGameGeek, por favor tente novamente.</string>
+    <string name="msg_collection_dont_found_import">Você deve selecionar pelo menos um tipo de coleção para importar, por favor tente novamente.</string>
     <string name="msg_error_game_with_partner">Erro ao tentar excluir o jogo %1$s. Verifique se existe partidas associadas ao jogo.</string>
     <string name="msg_error_add_search_game">Erro ao tentar adicionar o novo jogo. Por favor tente novamente.</string>
     <string name="msg_share_detail_match">Gerando a imagem da partida para o compartilhamento, por favor aguarde.</string>
     <string name="msg_action_searching">Aguarde! Buscando&#8230;</string>
     <string name="msg_action_saving">Aguarde! Salvando&#8230;</string>
     <string name="msg_action_loading">Aguarde! Carregando&#8230;</string>
+    <string name="toast_start_import_collection">Aguarde! Os dados estão sendo importados em background&#8230;</string>
     <string name="toast_start_export_data">Aguarde! Os dados estão sendo exportados em background&#8230;</string>
     <string name="toast_finish_export_data">Todos os dados foram exportados com sucesso!</string>
     <string name="toast_reload_all_img_data">Todas as imagens serão recarregadas em background!</string>
@@ -105,6 +112,7 @@
     <string name="text_match_players_winners_info_02">*² Para adiconar a pontuação final, preencha o campo e tecle enter para confirmar.</string>
     <string name="text_match_players_obs_info_01">*¹ Preencha o campo abaixo com as observações/anotações desta partida.</string>
     <string name="text_match_search_game_info_01">*¹ Busque um jogo a partir do site boardgamegeek.com.</string>
+    <string name="text_import_collection_search_collection_bgg_info_01">*¹ Busque sua coleção de jogos a partir do seu usuário do boardgamegeek.com.</string>
     <string name="text_match_game_info_01">*¹ Busque um novo jogo a partir da minha coleção ou no site boardgamegeek.com.</string>
     <string name="text_match_friends_i_playing">Estou jogando esse partida?</string>
     <string name="text_match_schedule_match">Deseja agendar essa partida?</string>
@@ -125,6 +133,8 @@
     <string name="text_legend_game_time">Tempo médio gasto para cada partida do jogo (Mínimo-Máximo).</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Altera a ordenação da lista de jogos.</string>
+    <string name="text_legend_game_broken_imgt">Corrige o problema de imagens "quebradas", atualizando para a imagem do BGG.</string>
+    <string name="text_legend_game_import_collection">Importa uma nova coleção de jogos.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
     <string name="text_legend_game_my_game">Indicador para jogo da minha coleção.</string>
     <string name="text_legend_game_favorite">Indicador para jogo favorito.</string>
@@ -137,6 +147,7 @@
     <string name="text_legend_match_alarm">Se existe agendamento para a partida.</string>
     <string name="text_legend_match_feedback">Avaliação da partida (Péssimo, Ruim, Normal, Boa e Excelente).</string>
     <string name="text_legend_match_sort_list">Altera a ordenação da lista de partidas.</string>
+    <string name="text_legend_match_winners">Atualiza a lista de vencedores da partidas cadastradas.</string>
     <string name="text_legend_ranking_game_badge_game">Classificação do jogo (Jogos Abstratos, Ameritrash Jogos, Euros Jogos, Jogos Familiares, Jogos Festivos, Jogos de Guerra e Nenhuma).</string>
     <string name="text_legend_ranking_game_matches">Número de partidas registradas do jogo.</string>
     <string name="text_legend_ranking_game_winners">Número de vitórias registradas do jogo.</string>
@@ -164,6 +175,10 @@
     <string name="text_games_score_favorite_game">favorito</string>
     <string name="text_active">ativado</string>
     <string name="text_inactive">desativado</string>
+    <string name="text_import_collection_info_01">*¹ Clique no botão do servidor que você deseja importar a coleção de jogos.</string>
+    <string name="text_import_collection_new_collection_info_01">*¹ Abaixo os dados da sua coleção no BoardGameGeek.</string>
+    <string name="text_import_collection_new_collection_info_02">*² Selecione as lista de jogos que você deseja importar para o aplicativo.</string>
+    <string name="text_import_collection_new_collection_text">Quantidade de jogos disponíveis para a importação:</string>
 
 
     <!-- ################### Field #################### -->
@@ -190,9 +205,16 @@
     <string name="field_age_new_game">Idade recomendada</string>
     <string name="field_rating_new_game">Sua avaliação/nota do jogo (0-10 &#x2605;)</string>
     <string name="field_badge_game_new_game">Classificação do jogo</string>
+    <string name="field_username_collection_bgg">Usuário BoardGameGeek</string>
+    <string name="field_collection_own">Meus jogos</string>
+    <string name="field_collection_favorite">Meus jogos favoritos</string>
+    <string name="field_collection_wishlist">Jogos na lista de desejo</string>
+    <string name="field_collection_played">Jogos jogados</string>
 
 
     <!-- ################### ALERT #################### -->
+    <string name="alert_confirmation_dialog_title_import">Tem certeza?</string>
+    <string name="alert_confirmation_dialog_text_import">¹ A importação dos jogos será realizada em background.\n² Acompanhe através da sua coleção. \n\nConfirma a importação? \nEssa operação não pode ser revetida.</string>
     <string name="alert_confirmation_dialog_title_exit">Tem certeza?</string>
     <string name="alert_confirmation_dialog_text_exit_app">Deseja sair da aplicação?</string>
     <string name="alert_confirmation_dialog_text_exit">Você cancelou as alterações salvas nessa tela. \nDeseja sair sem salvar?</string>
@@ -215,7 +237,7 @@
     <string name="btn_cancel">CANCELAR</string>
     <string name="btn_close">FECHAR</string>
     <string name="btn_ok">OK</string>
-    <string name="btn_share">COMPARTILHAR</string>
+    <string name="btn_share">ENVIAR</string>
     <string name="btn_confirmation_dialog_exit">SAIR</string>
     <string name="btn_confirmation_dialog_cancel">CANCELAR</string>
     <string name="btn_confirmation_dialog_delete">EXCLUIR</string>
@@ -224,12 +246,14 @@
     <string name="btn_confirmation_dialog_add">ADICIONAR</string>
     <string name="btn_confirmation_dialog_play">JOGAR</string>
     <string name="btn_confirmation_dialog_finish">FINALIZAR</string>
+    <string name="btn_confirmation_dialog_import">IMPORTAR</string>
     <string name="btn_change_avatar">TROCAR AVATAR</string>
     <string name="btn_edit">EDITAR</string>
     <string name="btn_export">BACKUP</string>
     <string name="btn_import">RESTAURAR</string>
     <string name="btn_export_import">BACKUP</string>
     <string name="btn_disconnect">DESCONECTAR</string>
+    <string name="btn_boardgamegeek">BOARDGAMEGEEK</string>
 
 
     <!-- ################### ACTION BAR #################### -->

@@ -3,7 +3,7 @@ package br.com.battista.bgscore.adpater;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
+import android.support.design.card.MaterialCardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +80,7 @@ public class FriendAdapter extends BaseAdapterAnimation<FriendViewHolder> {
                 holder.getBtnRemove().setVisibility(View.GONE);
             }
 
-            final CardView cardView = itemView.findViewById(R.id.card_view_friend);
+            final MaterialCardView cardView = itemView.findViewById(R.id.card_view_friend);
             if (allowsSelect) {
                 if (friendDto.isSelected()) {
                     cardView.setSelected(Boolean.TRUE);
