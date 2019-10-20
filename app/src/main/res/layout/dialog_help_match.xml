@@ -126,6 +126,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_match_winners" />
+        android:text="@string/text_legend_match_winners"
+        android:visibility="gone" />
 
 </LinearLayout>

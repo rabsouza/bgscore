@@ -56,8 +56,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/field_username"
-            android:layout_marginBottom="@dimen/element_vertical_margin">
+            android:layout_marginBottom="@dimen/element_vertical_margin"
+            android:hint="@string/field_username">
 
             <EditText
                 android:id="@+id/dialog_view_edit_profile_username"
@@ -75,8 +75,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/field_mail"
-            android:layout_marginBottom="@dimen/element_horizontal_margin">
+            android:layout_marginBottom="@dimen/element_horizontal_margin"
+            android:hint="@string/field_mail">
 
             <EditText
                 android:id="@+id/dialog_view_edit_profile_mail"

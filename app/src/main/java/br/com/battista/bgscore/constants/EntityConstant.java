@@ -2,6 +2,8 @@ package br.com.battista.bgscore.constants;
 
 public class EntityConstant {
 
+    public static final Integer SIZE_PAGE_DATA = 20;
+    public static final String SYNTAX_LIMIT_SQL_LITE = "%s,%s ";
     public static final String EMPTY_STRING = "";
     public static final Long DEFAULT_VERSION = 1L;
     public static final String DEFAULT_URL_INFO_GAME = "https://www.boardgamegeek.com/boardgame/";

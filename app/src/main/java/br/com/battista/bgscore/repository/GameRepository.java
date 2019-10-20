@@ -13,6 +13,8 @@ import br.com.battista.bgscore.repository.contract.DatabaseContract;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 import br.com.battista.bgscore.util.LogUtils;
 
+import static br.com.battista.bgscore.constants.EntityConstant.SYNTAX_LIMIT_SQL_LITE;
+
 public class GameRepository extends BaseRepository implements Repository<Game> {
 
     private static final String TAG = GameRepository.class.getSimpleName();
@@ -86,10 +88,33 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
     }
 
     public List<Game> findAll(String orderBy) {
-        LogUtils.i(TAG, "Find all Games.");
+        LogUtils.i(TAG, "\"Find all Games orderly.");
         final List<Game> games = Select
                 .from(Game.class)
                 .orderBy(orderBy)
+                .list();
+        reload(games);
+        return games;
+    }
+
+    public List<Game> findAll(int offset, int limit) {
+        LogUtils.i(TAG, String.format("Find all Games with offset[%s] and limit[%s].", offset, limit));
+        final List<Game> games = Select
+                .from(Game.class)
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
+                        DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT, GameEntry.COLUMN_NAME_NAME))
+                .limit(String.format(SYNTAX_LIMIT_SQL_LITE, offset, limit))
+                .list();
+        reload(games);
+        return games;
+    }
+
+    public List<Game> findAll(String orderBy, int offset, int limit) {
+        LogUtils.i(TAG, String.format("Find all Games orderly with offset[%s] and limit[%s].", offset, limit));
+        final List<Game> games = Select
+                .from(Game.class)
+                .orderBy(orderBy)
+                .limit(String.format(SYNTAX_LIMIT_SQL_LITE, offset, limit))
                 .list();
         reload(games);
         return games;

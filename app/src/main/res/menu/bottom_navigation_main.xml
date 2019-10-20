@@ -22,13 +22,7 @@
     <item
         android:id="@+id/action_account"
         android:enabled="true"
-        android:icon="@drawable/ic_account"
-        android:title="@string/action_account" />
-
-    <item
-        android:id="@+id/action_info"
-        android:enabled="true"
-        android:icon="@drawable/ic_info"
-        android:title="@string/action_info" />
+        android:icon="@drawable/ic_more_options"
+        android:title="@string/action_more" />
 
 </menu>

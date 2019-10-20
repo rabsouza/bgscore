@@ -158,6 +158,80 @@
                 </android.support.design.card.MaterialCardView>
 
                 <android.support.design.card.MaterialCardView
+                    android:id="@+id/card_view_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
+
+                        <TextView
+                            android:id="@+id/card_view_options_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_options" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine" />
+
+                        <TextView
+                            android:id="@+id/card_view_options_info_01"
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:text="@string/text_profile_options_info_01" />
+
+                        <android.support.design.button.MaterialButton
+                            android:id="@+id/button_option_reload_winners"
+                            style="@style/ButtonStyleWithBorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginEnd="@dimen/element_horizontal_margin"
+                            android:text="@string/btn_option_reload_winners" />
+
+                        <android.support.design.button.MaterialButton
+                            android:id="@+id/button_option_broken_img"
+                            style="@style/ButtonStyleWithBorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginEnd="@dimen/element_horizontal_margin"
+                            android:text="@string/btn_option_broken_img" />
+
+                        <android.support.design.button.MaterialButton
+                            android:id="@+id/button_option_import_bgg"
+                            style="@style/ButtonStyleWithBorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginEnd="@dimen/element_horizontal_margin"
+                            android:text="@string/btn_option_import_bgg" />
+
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
                     android:id="@+id/card_view_friends"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -261,6 +335,59 @@
                             android:layout_height="wrap_content"
                             android:text="@string/text_profile_friends_error_view"
                             android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/card_view_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/no_dimen"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/element_padding">
+
+                        <TextView
+                            android:id="@+id/card_view_about_title"
+                            style="@style/CardTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_title_about" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_line"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:background="@color/colorLine" />
+
+                        <TextView
+                            android:id="@+id/card_view_about_info_01"
+                            style="@style/HintTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/element_vertical_margin"
+                            android:text="@string/text_profile_about_info_01" />
+
+                        <android.support.design.button.MaterialButton
+                            android:id="@+id/button_about"
+                            style="@style/ButtonStyleWithBorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/element_horizontal_margin"
+                            android:layout_marginTop="@dimen/element_vertical_margin"
+                            android:layout_marginEnd="@dimen/element_horizontal_margin"
+                            android:text="@string/btn_about" />
 
                     </LinearLayout>
 

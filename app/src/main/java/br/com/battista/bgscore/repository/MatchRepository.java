@@ -13,6 +13,8 @@ import br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry;
 import br.com.battista.bgscore.repository.contract.DatabaseContract.MatchEntry;
 import br.com.battista.bgscore.util.LogUtils;
 
+import static br.com.battista.bgscore.constants.EntityConstant.SYNTAX_LIMIT_SQL_LITE;
+
 public class MatchRepository extends BaseRepository implements Repository<Match> {
 
     private static final String TAG = MatchRepository.class.getSimpleName();
@@ -87,6 +89,37 @@ public class MatchRepository extends BaseRepository implements Repository<Match>
         final List<Match> matches = Select
                 .from(Match.class)
                 .orderBy(orderBy)
+                .list();
+        if (matches != null) {
+            for (Match match : matches) {
+                reload(match);
+            }
+        }
+        return matches;
+    }
+
+    public List<Match> findAll(String orderBy, int offset, int limit) {
+        LogUtils.i(TAG, String.format("Find all Matches orderly with offset[%s] and limit[%s].", offset, limit));
+        final List<Match> matches = Select
+                .from(Match.class)
+                .orderBy(orderBy)
+                .limit(String.format(SYNTAX_LIMIT_SQL_LITE, offset, limit))
+                .list();
+        if (matches != null) {
+            for (Match match : matches) {
+                reload(match);
+            }
+        }
+        return matches;
+    }
+
+    public List<Match> findAll(int offset, int limit) {
+        LogUtils.i(TAG, String.format("Find all Matches with offset[%s] and limit[%s].", offset, limit));
+        final List<Match> matches = Select
+                .from(Match.class)
+                .orderBy(MessageFormat.format("{0} DESC, {1} ASC",
+                        BaseEntry.COLUMN_NAME_CREATED_AT, MatchEntry.COLUMN_NAME_ALIAS))
+                .limit(String.format(SYNTAX_LIMIT_SQL_LITE, offset, limit))
                 .list();
         if (matches != null) {
             for (Match match : matches) {

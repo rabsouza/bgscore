@@ -79,28 +79,21 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private void configItemHolder(GameViewHeaderHolder holder) {
         LogUtils.i(TAG, "configItemHolder: configure help game button!");
-        holder.getImgHelpGame().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_GAME);
+        holder.getImgHelpGame().setOnClickListener(view -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_GAME);
 
-                View customView = LayoutInflater.from(context).inflate(R.layout.dialog_help_game, null);
+            View customView = LayoutInflater.from(context).inflate(R.layout.dialog_help_game, null);
 
-                AlertDialog alertDialog = new AlertDialog.Builder(context)
-                        .setTitle(R.string.title_help)
-                        .setView(customView)
-                        .setPositiveButton(R.string.btn_ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        dialog.dismiss();
-                                    }
-                                }
-                        )
-                        .create();
-                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
-                alertDialog.show();
-            }
+            AlertDialog alertDialog = new AlertDialog.Builder(context)
+                    .setTitle(R.string.title_help)
+                    .setView(customView)
+                    .setPositiveButton(R.string.btn_ok,
+                            (dialog, whichButton) -> dialog.dismiss()
+                    )
+                    .create();
+            alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+            alertDialog.show();
         });
 
         LogUtils.i(TAG, "configItemHolder: Update the scores to games!");

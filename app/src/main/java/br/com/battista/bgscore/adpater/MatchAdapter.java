@@ -87,24 +87,21 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void configItemHolder(MatchViewHeaderHolder holder) {
         LogUtils.i(TAG, "configItemHolder: configure help game button!");
-        holder.getImgHelpMatch().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                        CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_MATCH);
+        holder.getImgHelpMatch().setOnClickListener(view -> {
+            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_LEGEND_MATCH);
 
-                View customView = LayoutInflater.from(context).inflate(R.layout.dialog_help_match, null);
+            View customView = LayoutInflater.from(context).inflate(R.layout.dialog_help_match, null);
 
-                AlertDialog alertDialog = new AlertDialog.Builder(context)
-                        .setTitle(R.string.title_help)
-                        .setView(customView)
-                        .setPositiveButton(R.string.btn_ok,
-                                (dialog, whichButton) -> dialog.dismiss()
-                        )
-                        .create();
-                alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
-                alertDialog.show();
-            }
+            AlertDialog alertDialog = new AlertDialog.Builder(context)
+                    .setTitle(R.string.title_help)
+                    .setView(customView)
+                    .setPositiveButton(R.string.btn_ok,
+                            (dialog, whichButton) -> dialog.dismiss()
+                    )
+                    .create();
+            alertDialog.getWindow().getAttributes().windowAnimations = R.style.animationAlert;
+            alertDialog.show();
         });
 
         LogUtils.i(TAG, "updateScoresMatches: Update the scores to matches!");

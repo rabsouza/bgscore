@@ -54,14 +54,6 @@ abstract class BaseRobot {
                 .check(matches(withText(R.string.title_account)))
     }
 
-    fun navigationToInfo() = apply {
-        onView(withId(R.id.action_info))
-                .perform(click())
-
-        onView(withText(R.string.title_info))
-                .check(matches(isDisplayed()))
-    }
-
     fun checkBottomBarHomeChecked() = apply {
         onView(withId(R.id.action_home))
                 .check(matches(withBottomBarItemCheckedStatus(true)))

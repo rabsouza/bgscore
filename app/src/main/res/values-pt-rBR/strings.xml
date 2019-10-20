@@ -23,8 +23,10 @@
     <string name="card_title_players">Jogadores/Amigos da partida</string>
     <string name="card_title_players_winners">Ganhadores da partida</string>
     <string name="card_title_players_with_winners">Jogadores/Ganhadores da partida</string>
+    <string name="card_title_about">Informações do App</string>
     <string name="card_title_friends">Meus amigos</string>
     <string name="card_title_my_profile">Meu perfil</string>
+    <string name="card_title_options">Opções</string>
     <string name="card_title_my_ranking_game">Meu ranking de jogos</string>
     <string name="card_title_new_match">Minha partida</string>
     <string name="card_title_new_game">Meu jogo</string>
@@ -108,6 +110,8 @@
     <string name="text_dialog_edit_automatic_backup">Deseja utilizar backup automatico?</string>
     <string name="text_dialog_edit_profile_info_02">*² Todos os dados do seu usuário serão perdidos e essa ação não pode ser revertida.</string>
     <string name="text_profile_friends_info_01">*¹ Adicione um novo amigo(a) para jogar nas suas partidas.</string>
+    <string name="text_profile_options_info_01">*¹ Algumas funcionalidades extras do aplicativo.</string>
+    <string name="text_profile_about_info_01">*¹ Informações sobre o app, autor, página do facebook e outras.</string>
     <string name="text_match_players_info_01">*¹ Selecione amigos ou adicione novos jogadores para jogar esta partida.</string>
     <string name="text_match_players_winners_info_01">*¹ Selecione os jogadores ganhadores desta partida.</string>
     <string name="text_match_players_winners_info_02">*² Para adiconar a pontuação final, preencha o campo e tecle enter para confirmar.</string>
@@ -255,6 +259,10 @@
     <string name="btn_export_import">BACKUP</string>
     <string name="btn_disconnect">DESCONECTAR</string>
     <string name="btn_boardgamegeek">BOARDGAMEGEEK</string>
+    <string name="btn_option_reload_winners">RECARREGAR VITÓRIAS</string>
+    <string name="btn_option_broken_img">CORRIGE IMAGEM QUEBRADA</string>
+    <string name="btn_option_import_bgg">IMPORTAR BOARDGAMEGEEK</string>
+    <string name="btn_about">ABOUT APP!</string>
 
 
     <!-- ################### ACTION BAR #################### -->
@@ -267,6 +275,7 @@
     <string name="action_buy">comprar</string>
     <string name="action_share">compartilhar</string>
     <string name="action_info">info</string>
+    <string name="action_more">mais</string>
     <string name="action_edit">editar</string>
     <string name="action_finish">finalizar</string>
     <string name="action_remove">excluir</string>

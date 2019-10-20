@@ -138,7 +138,8 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_broken_imgt" />
+        android:text="@string/text_legend_game_broken_imgt"
+        android:visibility="gone" />
 
     <TextView
         style="@style/HintTextStyle"
@@ -150,6 +151,7 @@
         android:paddingLeft="@dimen/element_padding"
         android:paddingRight="@dimen/element_padding"
         android:paddingBottom="@dimen/element_padding"
-        android:text="@string/text_legend_game_import_collection" />
+        android:text="@string/text_legend_game_import_collection"
+        android:visibility="gone" />
 
 </LinearLayout>

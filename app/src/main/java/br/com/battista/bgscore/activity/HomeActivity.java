@@ -17,7 +17,6 @@ import br.com.battista.bgscore.fragment.GameFragment;
 import br.com.battista.bgscore.fragment.HomeFragment;
 import br.com.battista.bgscore.fragment.MatchFragment;
 import br.com.battista.bgscore.fragment.ProfileFragment;
-import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.WelcomeDialog;
 import br.com.battista.bgscore.model.Match;
 import br.com.battista.bgscore.model.User;
@@ -123,11 +122,6 @@ public class HomeActivity extends BaseActivity {
                             AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
                                     ValueActions.VALUE_CLICK_MENU_PROFILE);
                             replaceFragment(ProfileFragment.newInstance());
-                            break;
-                        case R.id.action_info:
-                            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
-                                    ValueActions.VALUE_CLICK_MENU_INFO);
-                            AboutDialog.showAbout(getSupportFragmentManager());
                             break;
                     }
                     return false;

@@ -1,12 +1,9 @@
 package br.com.battista.bgscore.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 
 import br.com.battista.bgscore.R;
-import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.fragment.collection.NewImportCollectionFragment;
-import br.com.battista.bgscore.util.AnswersUtils;
 
 public class ImportCollectionActivity extends BaseActivity {
 

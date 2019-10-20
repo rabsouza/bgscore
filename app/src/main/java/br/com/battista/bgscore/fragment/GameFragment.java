@@ -18,12 +18,14 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.activity.ImportCollectionActivity;
+import br.com.battista.bgscore.adpater.EndlessRecyclerViewScrollListener;
 import br.com.battista.bgscore.adpater.GameAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
@@ -38,6 +40,7 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
 
+import static br.com.battista.bgscore.constants.EntityConstant.SIZE_PAGE_DATA;
 import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_UPDATED_AT;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
@@ -45,11 +48,13 @@ import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 public class GameFragment extends BaseFragment {
 
     private static final String TAG = GameFragment.class.getSimpleName();
-
+    private static final int PAGE_INITIAL = 0;
     private RecyclerView recycleViewGames;
+    private List<Game> games = new ArrayList<>();
+    private GameAdapter gameAdapter;
+    private EndlessRecyclerViewScrollListener scrollListener;
     private Spinner spnSortList;
     private Button btnImportCollection;
-
     private SwipeRefreshLayout refreshLayout;
     private int lastSelectedItemPosition = 0;
 
@@ -78,11 +83,11 @@ public class GameFragment extends BaseFragment {
         btnSortList.setOnClickListener(viewClicked -> processSortListGames(view, viewClicked));
 
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
-        btnBrokenImg.setVisibility(View.VISIBLE);
+        btnBrokenImg.setVisibility(View.GONE);
         btnBrokenImg.setOnClickListener(viewClicked -> processBrokenImg(btnBrokenImg));
 
         ImageButton btnImportCollection = getActivity().findViewById(R.id.btn_import_collection);
-        btnImportCollection.setVisibility(View.VISIBLE);
+        btnImportCollection.setVisibility(View.GONE);
         btnImportCollection.setOnClickListener(viewClicked -> processImportCollection(view, viewClicked));
 
         FloatingActionButton fab = view.findViewById(R.id.fab_new_game);
@@ -222,23 +227,43 @@ public class GameFragment extends BaseFragment {
         if (!refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(true);
         }
-        new LoadAllGamesAsyncTask().execute();
+
+        // Reajustar o scrool infinito
+        games.clear();
+        scrollListener.resetState();
+
+        new LoadAllGamesAsyncTask(PAGE_INITIAL).execute();
     }
 
 
     private void setupRecycleGames(View view) {
         recycleViewGames = view.findViewById(R.id.card_view_games_recycler_view);
 
-        recycleViewGames.setLayoutManager(new LinearLayoutManager(getContext()));
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recycleViewGames.setLayoutManager(linearLayoutManager);
         recycleViewGames.setItemAnimator(new DefaultItemAnimator());
-        recycleViewGames.setHasFixedSize(true);
-        recycleViewGames.setItemViewCacheSize(50);
+        recycleViewGames.setHasFixedSize(false);
+        recycleViewGames.setItemViewCacheSize(SIZE_PAGE_DATA);
         recycleViewGames.setDrawingCacheEnabled(true);
         recycleViewGames.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                new LoadAllGamesAsyncTask(page * SIZE_PAGE_DATA).execute();
+            }
+        };
+        recycleViewGames.addOnScrollListener(scrollListener);
+        gameAdapter = new GameAdapter(getContext(), games);
+        recycleViewGames.setAdapter(gameAdapter);
     }
 
     private class LoadAllGamesAsyncTask extends AsyncTask<Void, Void, Void> {
-        List<Game> games;
+
+        private int offset;
+
+        LoadAllGamesAsyncTask(int offset) {
+            this.offset = offset;
+        }
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -246,16 +271,16 @@ public class GameFragment extends BaseFragment {
             if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
                 final OrderByDto orderBy = user.getOrderBy(ViewConstant.GAME_VIEW);
                 lastSelectedItemPosition = orderBy.getPosition();
-                games = new GameRepository().findAll(orderBy.getQuery());
+                games.addAll(new GameRepository().findAll(orderBy.getQuery(), offset, SIZE_PAGE_DATA));
             } else {
-                games = new GameRepository().findAll();
+                games.addAll(new GameRepository().findAll(offset, SIZE_PAGE_DATA));
             }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            recycleViewGames.setAdapter(new GameAdapter(getContext(), games));
+            gameAdapter.notifyDataSetChanged();
             refreshLayout.setRefreshing(false);
         }
     }

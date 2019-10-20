@@ -22,11 +22,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.MatchActivity;
+import br.com.battista.bgscore.adpater.EndlessRecyclerViewScrollListener;
 import br.com.battista.bgscore.adpater.MatchAdapter;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
@@ -41,6 +43,7 @@ import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.LogUtils;
 import br.com.battista.bgscore.util.QueryBuilderUtils;
 
+import static br.com.battista.bgscore.constants.EntityConstant.SIZE_PAGE_DATA;
 import static br.com.battista.bgscore.repository.contract.DatabaseContract.BaseEntry.COLUMN_NAME_CREATED_AT;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.ASC;
 import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
@@ -49,8 +52,12 @@ import static br.com.battista.bgscore.util.QueryBuilderUtils.Order.DESC;
 public class MatchFragment extends BaseFragment {
 
     private static final String TAG = MatchFragment.class.getSimpleName();
+    private static final int PAGE_INITIAL = 0;
 
     private RecyclerView recycleViewMatches;
+    private List<Match> matches = new ArrayList<>();
+    private EndlessRecyclerViewScrollListener scrollListener;
+    private MatchAdapter matchAdapter;
     private Spinner spnSortList;
 
     private SwipeRefreshLayout refreshLayout;
@@ -81,27 +88,13 @@ public class MatchFragment extends BaseFragment {
         btnSortList.setOnClickListener(viewClicked -> processSortListGames(view, viewClicked));
 
         ImageButton btnReloadWinners = getActivity().findViewById(R.id.btn_reload_winners);
-        btnReloadWinners.setVisibility(View.VISIBLE);
-        btnReloadWinners.setOnClickListener(viewClicked -> {
-            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_RELOAD_WINNERS);
-            AndroidUtils.toast(getContext(), R.string.toast_reload_all_winners_matches);
-
-            LogUtils.i(TAG, "onCreateView: Reload all winners Matches.");
-            AndroidUtils.postAction(ActionCacheEnum.RELOAD_WINNERS_MATCHES);
-            btnReloadWinners.setVisibility(View.GONE);
-        });
+        btnReloadWinners.setVisibility(View.GONE);
+        btnReloadWinners.setOnClickListener(viewClicked -> processReloadWinners(btnReloadWinners));
 
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
         btnBrokenImg.setVisibility(View.GONE);
         btnBrokenImg.setOnClickListener(viewClicked -> {
-            AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
-                    CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
-            AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
-
-            LogUtils.i(TAG, "onCreateView: Reload all games images.");
-            AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
-            btnBrokenImg.setVisibility(View.GONE);
+            processBrokenImg(btnBrokenImg);
         });
 
         FloatingActionButton fab = view.findViewById(R.id.fab_new_match);
@@ -118,6 +111,28 @@ public class MatchFragment extends BaseFragment {
 
         setupRecycleMatches(view);
         return view;
+    }
+
+    private void processBrokenImg(ImageButton btnBrokenImg) {
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
+        AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
+
+        LogUtils.i(TAG, "onCreateView: Reload all games images.");
+        AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
+        btnBrokenImg.setVisibility(View.GONE);
+    }
+
+    private void processReloadWinners(ImageButton btnReloadWinners) {
+        LogUtils.i(TAG, "processReloadWinners: Process reload winners!");
+
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_RELOAD_WINNERS);
+        AndroidUtils.toast(getContext(), R.string.toast_reload_all_winners_matches);
+
+        LogUtils.i(TAG, "onCreateView: Reload all winners Matches.");
+        AndroidUtils.postAction(ActionCacheEnum.RELOAD_WINNERS_MATCHES);
+        btnReloadWinners.setVisibility(View.GONE);
     }
 
     private void processSortListGames(View view, View viewClicked) {
@@ -209,22 +224,42 @@ public class MatchFragment extends BaseFragment {
         if (!refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(true);
         }
-        new LoadAllMatchesAsyncTask().execute();
+
+        // Reajustar o scrool infinito
+        matches.clear();
+        scrollListener.resetState();
+
+        new LoadAllMatchesAsyncTask(PAGE_INITIAL).execute();
     }
 
     private void setupRecycleMatches(View view) {
         recycleViewMatches = view.findViewById(R.id.card_view_matches_recycler_view);
 
-        recycleViewMatches.setLayoutManager(new LinearLayoutManager(getContext()));
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recycleViewMatches.setLayoutManager(linearLayoutManager);
         recycleViewMatches.setItemAnimator(new DefaultItemAnimator());
-        recycleViewMatches.setHasFixedSize(true);
+        recycleViewMatches.setHasFixedSize(false);
         recycleViewMatches.setItemViewCacheSize(50);
         recycleViewMatches.setDrawingCacheEnabled(true);
         recycleViewMatches.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                new LoadAllMatchesAsyncTask(page * SIZE_PAGE_DATA).execute();
+            }
+        };
+        recycleViewMatches.addOnScrollListener(scrollListener);
+        matchAdapter = new MatchAdapter(getContext(), matches);
+        recycleViewMatches.setAdapter(matchAdapter);
     }
 
     private class LoadAllMatchesAsyncTask extends AsyncTask<Void, Void, Void> {
-        List<Match> matches;
+
+        private int offset;
+
+        LoadAllMatchesAsyncTask(int offset) {
+            this.offset = offset;
+        }
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -232,16 +267,16 @@ public class MatchFragment extends BaseFragment {
             if (user.containsOrderBy(ViewConstant.MATCH_VIEW)) {
                 final OrderByDto orderBy = user.getOrderBy(ViewConstant.MATCH_VIEW);
                 lastSelectedItemPosition = orderBy.getPosition();
-                matches = new MatchRepository().findAll(orderBy.getQuery());
+                matches.addAll(new MatchRepository().findAll(orderBy.getQuery(), offset, SIZE_PAGE_DATA));
             } else {
-                matches = new MatchRepository().findAll();
+                matches.addAll(new MatchRepository().findAll(offset, SIZE_PAGE_DATA));
             }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            recycleViewMatches.setAdapter(new MatchAdapter(getContext(), matches));
+            matchAdapter.notifyDataSetChanged();
             refreshLayout.setRefreshing(false);
         }
     }

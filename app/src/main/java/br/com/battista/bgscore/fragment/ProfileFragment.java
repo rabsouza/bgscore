@@ -30,12 +30,15 @@ import java.util.List;
 
 import br.com.battista.bgscore.MainApplication;
 import br.com.battista.bgscore.R;
+import br.com.battista.bgscore.activity.ImportCollectionActivity;
 import br.com.battista.bgscore.adpater.FriendAdapter;
 import br.com.battista.bgscore.constants.BundleConstant;
+import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.Actions;
 import br.com.battista.bgscore.constants.CrashlyticsConstant.ValueActions;
 import br.com.battista.bgscore.custom.ProgressApp;
 import br.com.battista.bgscore.custom.RecycleEmptyErrorView;
+import br.com.battista.bgscore.fragment.dialog.AboutDialog;
 import br.com.battista.bgscore.fragment.dialog.ChangeAvatarDialog;
 import br.com.battista.bgscore.fragment.dialog.EditProfileDialog;
 import br.com.battista.bgscore.fragment.dialog.ExportImportDataDialog;
@@ -62,6 +65,10 @@ public class ProfileFragment extends BaseFragment {
     private TextView emptyMsgFriends;
     private TextView errorMsgFriends;
 
+    private Button btnAbout;
+    private Button btnOptionReloadWinners;
+    private Button btnOptionBrokenImg;
+    private Button btnOptionImportBgg;
     private Button btnExportImportData;
     private Button btnEditProfile;
     private ImageButton btnAddFriend;
@@ -285,6 +292,51 @@ public class ProfileFragment extends BaseFragment {
             EditProfileDialog.newInstance().showDialog(currentFragment);
         });
 
+        btnOptionReloadWinners = view.findViewById(R.id.button_option_reload_winners);
+        btnOptionReloadWinners.setOnClickListener(viewClicked -> processReloadWinners());
+
+        btnOptionBrokenImg = view.findViewById(R.id.button_option_broken_img);
+        btnOptionBrokenImg.setOnClickListener(viewClicked -> processBrokenImg());
+
+        btnOptionImportBgg = view.findViewById(R.id.button_option_import_bgg);
+        btnOptionImportBgg.setOnClickListener(viewClicked -> processImportCollection(view, viewClicked));
+
+        btnAbout = view.findViewById(R.id.button_about);
+        btnAbout.setOnClickListener(viewClicked -> {
+            AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,
+                    ValueActions.VALUE_CLICK_MENU_INFO);
+            AboutDialog.showAbout(getActivity().getSupportFragmentManager());
+        });
+
+    }
+
+    private void processReloadWinners() {
+        LogUtils.i(TAG, "processReloadWinners: Process reload winners!");
+
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_RELOAD_WINNERS);
+        AndroidUtils.toast(getContext(), R.string.toast_reload_all_winners_matches);
+
+        LogUtils.i(TAG, "onCreateView: Reload all winners Matches.");
+        AndroidUtils.postAction(ActionCacheEnum.RELOAD_WINNERS_MATCHES);
+    }
+
+    private void processImportCollection(View view, View viewClicked) {
+        LogUtils.i(TAG, "processImportCollection: Start flow to import BGG collection.");
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_IMPORT_COLLECTION_BGG);
+
+        startActivity(new Intent(getContext(), ImportCollectionActivity.class));
+    }
+
+    private void processBrokenImg() {
+        LogUtils.i(TAG, "processBrokenImg: Reload all games images.");
+
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_BROKEN_IMG);
+        AndroidUtils.toast(getContext(), R.string.toast_reload_all_img_data);
+
+        AndroidUtils.postAction(ActionCacheEnum.RELOAD_ALL_GAME_IMAGES);
     }
 
     private class ProfileProgressApp extends ProgressApp {
