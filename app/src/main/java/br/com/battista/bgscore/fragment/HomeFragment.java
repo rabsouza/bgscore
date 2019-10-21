@@ -235,6 +235,7 @@ public class HomeFragment extends BaseFragment {
         } else {
             imgAvatar.setImageResource(user.getAvatar().getIdResDrawable());
         }
+        imgAvatar.setOnClickListener(v -> view.getRootView().findViewById(R.id.action_more).callOnClick());
 
         txtUsername = view.findViewById(R.id.card_view_home_username);
         txtUsername.setText(getString(R.string.text_home_username, user.getUsername()));

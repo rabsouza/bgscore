@@ -6,12 +6,27 @@ Os Pacotes liberados para testes e produção da aplicação.
 ## PHASE - PRD
 ------------------------------------------------------------------------
 
+
+### Version - 1.1.0
+**Date release**
+ - 20/10/2019
+
+
+**Features**
+- Adiciona nova tela de opeções.
+- Adiciona opção para filtar a lista de coleções.
+
+**Improvements**
+- Adiciona scroll infinito para a lista de games e partidas
+
+------------------------------------------------------------------------
+
 ### Version - 1.0.21
 **Date release**
  - 02/10/2019
 
 
-**Buga**
+**Bugs**
 - Correção do bug ao cancelar finalizar partida.
 - Remove a confirmação na tela de importar coleção.
 

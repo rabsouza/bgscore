@@ -5,6 +5,7 @@ import android.support.annotation.DrawableRes;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
+import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
@@ -32,6 +33,7 @@ public class Match extends BaseEntity implements Serializable {
     @Column(name = MatchEntry.FK_GAME_ID)
     private Long gameId;
 
+    @Ignore
     @Column(name = MatchEntry.COLUMN_NAME_PLAYERS)
     private Set<Player> players = Sets.newLinkedHashSet();
 

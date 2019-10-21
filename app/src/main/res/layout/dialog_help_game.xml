@@ -132,6 +132,19 @@
         style="@style/HintTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_filter_list"
+        android:drawablePadding="@dimen/drawable_padding"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/element_padding"
+        android:paddingRight="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:text="@string/text_legend_game_sort_list" />
+
+
+    <TextView
+        style="@style/HintTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_broken_img"
         android:drawablePadding="@dimen/drawable_padding"
         android:gravity="center_vertical"

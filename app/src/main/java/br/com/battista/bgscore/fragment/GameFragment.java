@@ -31,6 +31,7 @@ import br.com.battista.bgscore.constants.CrashlyticsConstant;
 import br.com.battista.bgscore.constants.ViewConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.FilterByDto;
 import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.repository.GameRepository;
@@ -53,10 +54,10 @@ public class GameFragment extends BaseFragment {
     private List<Game> games = new ArrayList<>();
     private GameAdapter gameAdapter;
     private EndlessRecyclerViewScrollListener scrollListener;
-    private Spinner spnSortList;
     private Button btnImportCollection;
     private SwipeRefreshLayout refreshLayout;
-    private int lastSelectedItemPosition = 0;
+    private int lastSelectedItemSortedPosition = 0;
+    private int lastSelectedItemFilteredPosition = 0;
 
     public GameFragment() {
     }
@@ -81,6 +82,10 @@ public class GameFragment extends BaseFragment {
         ImageButton btnSortList = getActivity().findViewById(R.id.btn_sort_list);
         btnSortList.setVisibility(View.VISIBLE);
         btnSortList.setOnClickListener(viewClicked -> processSortListGames(view, viewClicked));
+
+        ImageButton btnFilterList = getActivity().findViewById(R.id.btn_filter_list);
+        btnFilterList.setVisibility(View.VISIBLE);
+        btnFilterList.setOnClickListener(viewClicked -> processFilterListGames(view, viewClicked));
 
         ImageButton btnBrokenImg = getActivity().findViewById(R.id.btn_broken_img);
         btnBrokenImg.setVisibility(View.GONE);
@@ -136,16 +141,48 @@ public class GameFragment extends BaseFragment {
     }
 
 
+    private void processFilterListGames(View view, View viewClicked) {
+        LogUtils.i(TAG, "processSortListGames: Show filter list games!");
+
+        final int resourcePopupWindow = R.layout.custom_view_filter_list_game;
+        final PopupWindow popupWindow = AndroidUtils.createPopupWindow(getContext(), resourcePopupWindow);
+
+        Spinner spnFilterList = popupWindow.getContentView().findViewById(R.id.card_view_filter_list_value);
+        spnFilterList.setSelected(true);
+        final User user = MainApplication.instance().getUser();
+        if (user.containsFilterBy(ViewConstant.GAME_VIEW) && lastSelectedItemFilteredPosition != 0) {
+            spnFilterList.setSelection(user.getFilterBy(ViewConstant.GAME_VIEW).getPosition());
+        }
+        spnFilterList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                final int selectedItemPosition = spnFilterList.getSelectedItemPosition();
+                if (lastSelectedItemFilteredPosition != selectedItemPosition) {
+                    String selectedItem = (String) spnFilterList.getSelectedItem();
+                    processFilteredListByGames(selectedItem, selectedItemPosition);
+                    popupWindow.dismiss();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        popupWindow.showAsDropDown(viewClicked);
+    }
+
     private void processSortListGames(View view, View viewClicked) {
         LogUtils.i(TAG, "processSortListGames: Show sort list games!");
 
         final int resourcePopupWindow = R.layout.custom_view_sort_list_game;
         final PopupWindow popupWindow = AndroidUtils.createPopupWindow(getContext(), resourcePopupWindow);
 
-        spnSortList = popupWindow.getContentView().findViewById(R.id.card_view_sort_list_value);
+        Spinner spnSortList = popupWindow.getContentView().findViewById(R.id.card_view_sort_list_value);
         spnSortList.setSelected(true);
         final User user = MainApplication.instance().getUser();
-        if (user.containsOrderBy(ViewConstant.GAME_VIEW) && lastSelectedItemPosition != 0) {
+        if (user.containsOrderBy(ViewConstant.GAME_VIEW) && lastSelectedItemSortedPosition != 0) {
             spnSortList.setSelection(user.getOrderBy(ViewConstant.GAME_VIEW).getPosition());
         }
         spnSortList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -153,7 +190,7 @@ public class GameFragment extends BaseFragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 final int selectedItemPosition = spnSortList.getSelectedItemPosition();
-                if (lastSelectedItemPosition != selectedItemPosition) {
+                if (lastSelectedItemSortedPosition != selectedItemPosition) {
                     String selectedItem = (String) spnSortList.getSelectedItem();
                     processNewOrderByGames(selectedItem, selectedItemPosition);
                     popupWindow.dismiss();
@@ -166,6 +203,38 @@ public class GameFragment extends BaseFragment {
         });
 
         popupWindow.showAsDropDown(viewClicked);
+    }
+
+    private void processFilteredListByGames(@NonNull String selectedItem, int selectedItemPosition) {
+        LogUtils.i(TAG, "processNewOrderByGames: Process new order by!");
+        AnswersUtils.onActionMetric(CrashlyticsConstant.Actions.ACTION_CLICK_BUTTON,
+                CrashlyticsConstant.ValueActions.VALUE_ACTION_CLICK_BUTTON_FILTER_LIST_GAME);
+        MainApplication instance = MainApplication.instance();
+        User user = instance.getUser();
+
+        String[] optionsFilterList = getResources().getStringArray(R.array.filter_list_games);
+
+        FilterByDto filterByDto = new FilterByDto();
+        filterByDto.position(selectedItemPosition);
+        if (selectedItemPosition > 0 && selectedItemPosition < optionsFilterList.length) {
+            if (selectedItem.equals(optionsFilterList[1])) {
+                filterByDto.value("1");
+                filterByDto.query(GameEntry.COLUMN_NAME_MY_GAME);
+            } else if (selectedItem.equals(optionsFilterList[2])) {
+                filterByDto.value("1");
+                filterByDto.query(GameEntry.COLUMN_NAME_FAVORITE);
+            } else if (selectedItem.equals(optionsFilterList[3])) {
+                filterByDto.value("1");
+                filterByDto.query(GameEntry.COLUMN_NAME_WANT_GAME);
+            }
+            user.putFilterBy(ViewConstant.GAME_VIEW, filterByDto);
+        } else {
+            lastSelectedItemFilteredPosition = 0;
+            user.clearFilterBy();
+        }
+
+        instance.setUser(user);
+        loadAllGames();
     }
 
     private void processNewOrderByGames(@NonNull String selectedItem, int selectedItemPosition) {
@@ -268,12 +337,38 @@ public class GameFragment extends BaseFragment {
         @Override
         protected Void doInBackground(Void... voids) {
             User user = MainApplication.instance().getUser();
-            if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
+
+            if (user.containsFilterBy(ViewConstant.GAME_VIEW)) {
+                final FilterByDto filterBy = user.getFilterBy(ViewConstant.GAME_VIEW);
+                lastSelectedItemFilteredPosition = filterBy.getPosition();
+
+                OrderByDto orderBy = user.getOrderBy(ViewConstant.GAME_VIEW);
+                if (orderBy == null) {
+                    QueryBuilderUtils builder = QueryBuilderUtils.newInstance();
+                    builder.addPropOrderBy(COLUMN_NAME_UPDATED_AT, DESC);
+                    builder.addPropOrderBy(GameEntry.COLUMN_NAME_NAME, ASC);
+
+                    orderBy = new OrderByDto();
+                    orderBy.setPosition(0);
+                    orderBy.setQuery(builder.buildOrderBy());
+                }
+                lastSelectedItemSortedPosition = orderBy.getPosition();
+
+                if (filterBy.getQuery() == null || filterBy.getQuery().trim().isEmpty()) {
+                    games.addAll(new GameRepository().findAll(orderBy.getQuery(), offset, SIZE_PAGE_DATA));
+                } else {
+                    games.addAll(new GameRepository().findAll(filterBy.getQuery(), filterBy.getValue(),
+                            orderBy.getQuery(), offset, SIZE_PAGE_DATA));
+                }
+
+            } else if (user.containsOrderBy(ViewConstant.GAME_VIEW)) {
                 final OrderByDto orderBy = user.getOrderBy(ViewConstant.GAME_VIEW);
-                lastSelectedItemPosition = orderBy.getPosition();
+                lastSelectedItemSortedPosition = orderBy.getPosition();
                 games.addAll(new GameRepository().findAll(orderBy.getQuery(), offset, SIZE_PAGE_DATA));
+
             } else {
                 games.addAll(new GameRepository().findAll(offset, SIZE_PAGE_DATA));
+
             }
             return null;
         }

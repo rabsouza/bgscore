@@ -124,6 +124,7 @@
     <string name="text_match_search_online">Buscar jogo no site boardgamegeek.com?</string>
     <string name="text_match_sort_list_info_01">*¹ Selecione uma das opções para alterar a ordenação da lista de partidas.</string>
     <string name="text_game_sort_list_info_01">*¹ Selecione uma das opções para alterar a ordenação da lista de jogos.</string>
+    <string name="text_game_filter_list_info_01">*¹ Selecione uma das opções para filtar a lista de jogos.</string>
     <string name="text_game_games_info_01">*¹ Lista com os últimos jogos registrados.</string>
     <string name="text_game_games_empty_view">Nenhum jogo adicionado. Por favor, adicione novos jogos.</string>
     <string name="text_game_games_error_view">Error ao tentar carregar a lista de jogos. Por favor, tentar novamente.</string>
@@ -138,6 +139,7 @@
     <string name="text_legend_game_time">Tempo médio gasto para cada partida.</string>
     <string name="text_legend_game_age">Idade mínima recomendada para jogar o jogo.</string>
     <string name="text_legend_game_sort_list">Altera a ordenação da lista de jogos.</string>
+    <string name="text_legend_game_filter_list">Altera o filtro da lista de jogos.</string>
     <string name="text_legend_game_broken_imgt">Corrige o problema de imagens "quebradas".</string>
     <string name="text_legend_game_import_collection">Importa uma nova coleção de jogos.</string>
     <string name="text_legend_game_year">Ano de publicação do jogo.</string>
@@ -203,6 +205,7 @@
     <string name="field_url_info_new_game">Link da página (Ludopedia ou boardgamegeek.com)</string>
     <string name="field_year_published_new_game">Ano de publicação</string>
     <string name="field_list_order_by">Ordenada por</string>
+    <string name="field_list_filter_by">Filtrado por</string>
     <string name="field_min_players_new_game">Mínimo de jogadores</string>
     <string name="field_max_players_new_game">Máximo de jogadores</string>
     <string name="field_min_play_time_new_game">Duração mínima (Mins.)</string>
@@ -296,6 +299,7 @@ Data release: {2}<br><br>
 <b>Contato:</b><br>
 Nome: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
+<a href="mailto:rabsouza@gmail.com?subject=\\"[BGScore]Sugestão para o App BGScore\\"">Envie sua sugestão</a><br>
 <br><br>
 <b>Mais informações:</b><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Avalie nosso app na loja</a></b><br>
@@ -314,9 +318,9 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
 &nbsp;&nbsp;&nbsp;<b>2)</b> Telas para registrar suas partidas e gerenciar sua coleção de jogos.<br>
 &nbsp;&nbsp;&nbsp;<b>3)</b> Tela para editar seu perfil e gerenciar seus amigo(a)s.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Estatistica e ordenação para seus jogos e partidas.<br>
-&nbsp;&nbsp;&nbsp;<b>5) Backup automatico, manual e restauração de backup.</b><br>
-&nbsp;&nbsp;&nbsp;<b>6) Integração com sua conta do google.</b><br>
-&nbsp;&nbsp;&nbsp;<b>7) Importação da coleção atráves do BGG.</b><br><br>
+&nbsp;&nbsp;&nbsp;<b>5)</b> Backup automatico, manual e restauração de backup.<br>
+&nbsp;&nbsp;&nbsp;<b>6) Integração com sua conta do google e com sua coleção no BGG.</b><br>
+&nbsp;&nbsp;&nbsp;<b>7) Filtro para a lista de jogos e nova opções no app.</b><br><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Avalie nosso app na loja</a></b><br>
 <br>
 ]]>
@@ -390,6 +394,12 @@ Bem vindo ao Board Game Score, esse aplicativo vai te ajudar a registrar suas pa
         <item>Número de jogadores [&#x2191;]</item>
         <item>Maior duração [&#x2191;]</item>
         <item>Menor duração [&#x2193;]</item>
+    </string-array>
+    <string-array name="filter_list_games">
+        <item>Sem filtro</item>
+        <item>Meus games</item>
+        <item>Favoritos games</item>
+        <item>Games na lista de desejo</item>
     </string-array>
     <string-array name="sort_list_matches">
         <item>Padrão</item>

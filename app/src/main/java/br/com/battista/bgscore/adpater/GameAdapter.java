@@ -3,8 +3,11 @@ package br.com.battista.bgscore.adpater;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -27,13 +30,17 @@ import br.com.battista.bgscore.R;
 import br.com.battista.bgscore.activity.GameActivity;
 import br.com.battista.bgscore.constants.BundleConstant;
 import br.com.battista.bgscore.constants.CrashlyticsConstant;
+import br.com.battista.bgscore.constants.ViewConstant;
 import br.com.battista.bgscore.model.Game;
 import br.com.battista.bgscore.model.Match;
+import br.com.battista.bgscore.model.User;
+import br.com.battista.bgscore.model.dto.FilterByDto;
 import br.com.battista.bgscore.model.dto.StatisticDto;
 import br.com.battista.bgscore.model.enuns.ActionCacheEnum;
 import br.com.battista.bgscore.model.enuns.BadgeGameEnum;
 import br.com.battista.bgscore.repository.GameRepository;
 import br.com.battista.bgscore.repository.MatchRepository;
+import br.com.battista.bgscore.repository.contract.DatabaseContract.GameEntry;
 import br.com.battista.bgscore.util.AndroidUtils;
 import br.com.battista.bgscore.util.AnswersUtils;
 import br.com.battista.bgscore.util.ImageLoadUtils;
@@ -97,12 +104,41 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
 
         LogUtils.i(TAG, "configItemHolder: Update the scores to games!");
-        final StatisticDto statistic = MainApplication.instance().getUser().getStatisticDto();
+        final User user = MainApplication.instance().getUser();
+        final StatisticDto statistic = user.getStatisticDto();
         DecimalFormat decimalFormatScore = new DecimalFormat("#00");
+
         holder.getScoreMyGame().setScoreText(decimalFormatScore.format(statistic.getCountGameMyGame()));
         holder.getScoreFavorite().setScoreText(decimalFormatScore.format(statistic.getCountGameFavorite()));
         holder.getScoreWantGame().setScoreText(decimalFormatScore.format(statistic.getCountGameWantGame()));
 
+        final int colorUnselected = ContextCompat.getColor(context, R.color.transparent);
+        final int colorSelected = ContextCompat.getColor(context, R.color.colorControlHighlight);
+
+        if (user.containsFilterBy(ViewConstant.GAME_VIEW)) {
+            final FilterByDto userFilterBy = user.getFilterBy(ViewConstant.GAME_VIEW);
+            if (GameEntry.COLUMN_NAME_MY_GAME.equalsIgnoreCase(userFilterBy.getQuery())) {
+                holder.getScoreMyGame().setBackgroundColor(colorSelected);
+                holder.getScoreFavorite().setBackgroundColor(colorSelected);
+                holder.getScoreWantGame().setBackgroundColor(colorUnselected);
+
+            } else if (GameEntry.COLUMN_NAME_FAVORITE.equalsIgnoreCase(userFilterBy.getQuery())) {
+                holder.getScoreFavorite().setBackgroundColor(colorSelected);
+                holder.getScoreMyGame().setBackgroundColor(colorUnselected);
+                holder.getScoreWantGame().setBackgroundColor(colorUnselected);
+
+            } else if (GameEntry.COLUMN_NAME_WANT_GAME.equalsIgnoreCase(userFilterBy.getQuery())) {
+                holder.getScoreWantGame().setBackgroundColor(colorSelected);
+                holder.getScoreMyGame().setBackgroundColor(colorUnselected);
+                holder.getScoreFavorite().setBackgroundColor(colorUnselected);
+
+            }
+        } else {
+            holder.getScoreMyGame().setBackgroundColor(colorUnselected);
+            holder.getScoreFavorite().setBackgroundColor(colorUnselected);
+            holder.getScoreWantGame().setBackgroundColor(colorUnselected);
+
+        }
     }
 
     private void configItemHolder(GameViewItemHolder holder, int position) {

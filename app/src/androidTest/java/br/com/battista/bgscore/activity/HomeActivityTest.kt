@@ -77,7 +77,7 @@ class HomeActivityTest {
         assertNotNull(bottomNavigationView.menu.findItem(R.id.action_home))
         assertNotNull(bottomNavigationView.menu.findItem(R.id.action_matches))
         assertNotNull(bottomNavigationView.menu.findItem(R.id.action_games))
-        assertNotNull(bottomNavigationView.menu.findItem(R.id.action_account))
+        assertNotNull(bottomNavigationView.menu.findItem(R.id.action_more))
     }
 
     @Test

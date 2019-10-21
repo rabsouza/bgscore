@@ -5,6 +5,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
 import com.orm.dsl.Column;
+import com.orm.dsl.Ignore;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
@@ -70,6 +71,7 @@ public class Game extends BaseEntity implements Serializable {
     @Column(name = GameEntry.COLUMN_NAME_BADGE_GAME)
     private BadgeGameEnum badgeGame = BadgeGameEnum.BADGE_GAME_NONE;
 
+    @Ignore
     @Column(name = GameEntry.COLUMN_NAME_EXPANSIONS)
     private Set<ExpansionGame> expansions = Sets.newLinkedHashSet();
 

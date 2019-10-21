@@ -116,7 +116,7 @@ public class HomeActivity extends BaseActivity {
                                     ValueActions.VALUE_CLICK_MENU_GAMES);
                             replaceFragment(GameFragment.newInstance());
                             break;
-                        case R.id.action_account:
+                        case R.id.action_more:
                             item.setChecked(true);
                             setUpToolbar(R.string.title_account);
                             AnswersUtils.onActionMetric(Actions.ACTION_CLICK_MENU,

@@ -124,6 +124,7 @@
     <string name="text_match_schedule_match">Do you want to schedule this game?</string>
     <string name="text_match_sort_list_info_01">*¹ Select one of the options to change the order of the list of matches.</string>
     <string name="text_game_sort_list_info_01">*¹ Select one of the options to change the order of the game list.</string>
+    <string name="text_game_filter_list_info_01">*¹ Select one of the options to filter the list of games.</string>
     <string name="text_game_games_info_01">*¹ List with the latest registered games.</string>
     <string name="text_game_games_empty_view">No games added yet. Please add new games.</string>
     <string name="text_game_games_error_view">Error while trying to load the game list. Please try again.</string>
@@ -137,7 +138,8 @@
     <string name="text_legend_game_players">Player numbers supported.</string>
     <string name="text_legend_game_time">Average time spent.</string>
     <string name="text_legend_game_age">Recommended minimum age to play the game.</string>
-    <string name="text_legend_game_sort_list">Changes the ordering of the game list.</string>
+    <string name="text_legend_game_sort_list">Change the ordering of the game list.</string>
+    <string name="text_legend_game_filter_list">Change the game list filter.</string>
     <string name="text_legend_game_broken_imgt">Fixes "broken" image issue by BGG image.</string>
     <string name="text_legend_game_import_collection">Import a new collection of games.</string>
     <string name="text_legend_game_year">Year of publication of the game.</string>
@@ -175,8 +177,8 @@
     <string name="text_dialog_import_data_db">Do you want to import data into my collection and matches?</string>
     <string name="text_dialog_search_game_info_01">*¹ Select the game you want to add to my collection/game from the list below.</string>
     <string name="text_player_with_punctuation">%1$s [&#x265c;:%2$s]</string>
-    <string name="text_games_score_my_game">i have</string>
-    <string name="text_games_score_want_game">want</string>
+    <string name="text_games_score_my_game">my games</string>
+    <string name="text_games_score_want_game">wish list</string>
     <string name="text_games_score_favorite_game">favorite</string>
     <string name="text_active">active</string>
     <string name="text_inactive">inactive</string>
@@ -203,6 +205,7 @@
     <string name="field_url_info_new_game">Page link (Ludopedia or boardgamegeek.com)</string>
     <string name="field_year_published_new_game">Year of publication</string>
     <string name="field_list_order_by">Sorted by</string>
+    <string name="field_list_filter_by">Filtered by</string>
     <string name="field_min_players_new_game">Minimum of players</string>
     <string name="field_max_players_new_game">Maximum players</string>
     <string name="field_min_play_time_new_game">Minimum Duration (Min.)</string>
@@ -295,6 +298,7 @@ Date release: {2}<br><br>
 <b>Contact:</b><br>
 Name: Rafael Alessandro Batista<br>
 E-mail: rabsouza@gmail.com<br>
+<a href="mailto:rabsouza@gmail.com?subject=\\"[BGScore]Suggestion for the BGScore App\\"">Send your suggestion</a><br>
 <br><br>
 <b>More information:</b><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Rate our app in store</a></b><br>
@@ -313,8 +317,8 @@ Welcome to Board Game Score, this application will help you to register your mat
 &nbsp;&nbsp;&nbsp;<b>3)</b> Screen to edit your profile and manage your friends.<br>
 &nbsp;&nbsp;&nbsp;<b>4)</b> Statics and ordering for your games and games.<br>
 &nbsp;&nbsp;&nbsp;<b>5) Automatic backup, manual and backup restore.</b><br>
-&nbsp;&nbsp;&nbsp;<b>6) Integration with your google account.</b><br>
-&nbsp;&nbsp;&nbsp;<b>7) Import from BGG collection.</b><br><br>
+&nbsp;&nbsp;&nbsp;<b>6) Integration with your google account and BGG collection.</b><br>
+&nbsp;&nbsp;&nbsp;<b>7) Game list filter and new in-app options.</b><br><br>
 <b><a href="https://play.google.com/store/apps/details?id=br.com.battista.bgscore.app">Rate our app in store</a></b><br>
 <br>
 ]]>
@@ -390,6 +394,12 @@ Welcome to Board Game Score, this application will help you to register your mat
         <item>Number of players [&#x2191;]</item>
         <item>Longer duration [&#x2191;]</item>
         <item>Shorter duration [&#x2193;]</item>
+    </string-array>
+    <string-array name="filter_list_games">
+        <item>No filter</item>
+        <item>My Games</item>
+        <item>Favorites Games</item>
+        <item>Wishlists Games</item>
     </string-array>
     <string-array name="sort_list_matches">
         <item>Default</item>

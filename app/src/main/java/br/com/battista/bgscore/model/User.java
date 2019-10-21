@@ -14,6 +14,7 @@ import java.util.Set;
 
 import br.com.battista.bgscore.BuildConfig;
 import br.com.battista.bgscore.constants.EntityConstant;
+import br.com.battista.bgscore.model.dto.FilterByDto;
 import br.com.battista.bgscore.model.dto.FriendDto;
 import br.com.battista.bgscore.model.dto.OrderByDto;
 import br.com.battista.bgscore.model.dto.RankingGamesDto;
@@ -69,6 +70,9 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = UserEntry.COLUMN_NAME_ORDER_BY)
     private Map<String, OrderByDto> orderBy = Maps.newLinkedHashMap();
+
+    @Column(name = UserEntry.COLUMN_NAME_ORDER_BY)
+    private Map<String, FilterByDto> filterBy = Maps.newLinkedHashMap();
 
     @Column(name = UserEntry.COLUMN_NAME_AUTOMATIC_BACKUP)
     private Boolean automaticBackup = Boolean.FALSE;
@@ -218,6 +222,14 @@ public class User extends BaseEntity implements Serializable {
         this.urlAvatar = urlAvatar;
     }
 
+    public Map<String, FilterByDto> getFilterBy() {
+        return filterBy;
+    }
+
+    public void setFilterBy(Map<String, FilterByDto> filterBy) {
+        this.filterBy = filterBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -253,6 +265,7 @@ public class User extends BaseEntity implements Serializable {
                 .add("customFont", customFont)
                 .add("lastBuildVersion", lastBuildVersion)
                 .add("orderBy", orderBy)
+                .add("filterBy", filterBy)
                 .add("automaticBackup", automaticBackup)
                 .add("signedSuccessfully", signedSuccessfully)
                 .add("statisticDto", statisticDto)
@@ -369,6 +382,27 @@ public class User extends BaseEntity implements Serializable {
 
     public User orderBy(Map<String, OrderByDto> orderBy) {
         this.orderBy = orderBy;
+        return this;
+    }
+
+    public FilterByDto getFilterBy(String filterBy) {
+        return this.filterBy.get(filterBy);
+    }
+
+    public FilterByDto putFilterBy(String key, FilterByDto filterByDto) {
+        return this.filterBy.put(key, filterByDto);
+    }
+
+    public void clearFilterBy() {
+        filterBy.clear();
+    }
+
+    public boolean containsFilterBy(String key) {
+        return filterBy.containsKey(key);
+    }
+
+    public User filterBy(final Map<String, FilterByDto> filterBy) {
+        this.filterBy = filterBy;
         return this;
     }
 

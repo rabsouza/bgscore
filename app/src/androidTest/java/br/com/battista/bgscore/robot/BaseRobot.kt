@@ -47,7 +47,7 @@ abstract class BaseRobot {
     }
 
     fun navigationToAccount() = apply {
-        onView(withId(R.id.action_account))
+        onView(withId(R.id.action_more))
                 .perform(click())
 
         onView(allOf(isAssignableFrom(TextView::class.java), withParent(isAssignableFrom(Toolbar::class.java))))
@@ -70,7 +70,7 @@ abstract class BaseRobot {
     }
 
     fun checkBottomBarAccountChecked() = apply {
-        onView(withId(R.id.action_account))
+        onView(withId(R.id.action_more))
                 .check(matches(withBottomBarItemCheckedStatus(true)))
     }
 

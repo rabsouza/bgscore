@@ -20,7 +20,7 @@
         android:title="@string/action_games" />
 
     <item
-        android:id="@+id/action_account"
+        android:id="@+id/action_more"
         android:enabled="true"
         android:icon="@drawable/ic_more_options"
         android:title="@string/action_more" />

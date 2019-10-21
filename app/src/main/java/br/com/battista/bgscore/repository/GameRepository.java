@@ -120,6 +120,19 @@ public class GameRepository extends BaseRepository implements Repository<Game> {
         return games;
     }
 
+    public List<Game> findAll(String columnName, String value, String orderBy, int offset, int limit) {
+        LogUtils.i(TAG, String.format("Find all Games by %s=[%s] orderly with offset[%s] and limit[%s].", columnName, value, offset, limit));
+        final List<Game> games = Select
+                .from(Game.class)
+                .where(MessageFormat.format("{0} = ?", columnName),
+                        new String[]{value})
+                .orderBy(orderBy)
+                .limit(String.format(SYNTAX_LIMIT_SQL_LITE, offset, limit))
+                .list();
+        reload(games);
+        return games;
+    }
+
     @Override
     public void deleteAll() {
         LogUtils.i(TAG, "Delete all Games.");

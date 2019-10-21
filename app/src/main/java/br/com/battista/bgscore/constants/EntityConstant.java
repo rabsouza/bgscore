@@ -2,7 +2,7 @@ package br.com.battista.bgscore.constants;
 
 public class EntityConstant {
 
-    public static final Integer SIZE_PAGE_DATA = 20;
+    public static final Integer SIZE_PAGE_DATA = 15;
     public static final String SYNTAX_LIMIT_SQL_LITE = "%s,%s ";
     public static final String EMPTY_STRING = "";
     public static final Long DEFAULT_VERSION = 1L;
